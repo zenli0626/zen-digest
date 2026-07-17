@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-17",
+  "banner": "从「写提示词」到「给目标」：agent 正在接管执行层，人只留判断权",
+  "actions": [
+    {
+      "text": "今晚挑一个正在做的任务，别写步骤式 prompt，改成一句话目标（「把这个功能做好，你决定怎么做」），观察 Claude Code 会不会自己选对路径——OpenAI 内部已经把这个「/goal」范式当默认工作方式在推",
+      "source": "YouTube · OpenAI France 开发者对话（编辑部已看完）",
+      "source_url": "https://www.youtube.com/watch?v=1fL_lwsdMd4"
+    },
+    {
+      "text": "如果你在跑任何自动化/agent 流程，花 20 分钟写一份像样的 eval（哪怕只是 10 条你手工判断过对错的样例）——这是本期最硬的一条结论：执行力正在被 agent 拉平，eval 设计和代码库抽象成了新的杠杆点",
+      "source": "YouTube · Wiko/Aiden 团队分享（编辑部已看完）",
+      "source_url": "https://www.youtube.com/watch?v=iCj_ATyThvc"
+    },
+    {
+      "text": "对照检查你手头有没有「重复点标签页/填表格/录数据」这类活——ChatGPT 桌面版今天把 computer-use 正式产品化了（Chrome 扩展接管已开标签页、macOS 独立光标后台操作），跟本报此前搭的手机代理工作流是同一个方向，可以直接拿新功能对比验收",
+      "source": "YouTube · OpenAI 官方发布",
+      "source_url": "https://www.youtube.com/watch?v=dB6pOolO7io"
+    }
+  ],
+  "hands_on": {
+    "title": "试一次「给目标不给步骤」的 /goal 式指令",
+    "why": "OpenAI 团队今天在巴黎的开发者对话里反复强调这个转变：不用再教模型怎么做，只用告诉它要什么结果，模型自己决定用什么工具、走什么路径。今晚随便挑一个 Claude Code 任务试一次，看看跟平时写详细步骤比，结果和用时有什么差别。",
+    "time": "~15 分钟",
+    "steps": [
+      "挑一个中等复杂度的任务（比如「给这个页面加个深色模式」）",
+      "只写目标和验收标准，不写实现步骤，直接丢给 Claude Code",
+      "对比：如果平时写详细步骤会多花多少时间，这次省了多少",
+      "记录哪里模型选的路径比你会选的更好/更差——这就是你以后要不要继续用这个范式的判据"
+    ],
+    "source": "OpenAI France · Katia Gil Guzman",
+    "source_url": "https://www.youtube.com/watch?v=1fL_lwsdMd4"
+  },
+  "meta_read": "今天 YouTube 侧的主线：执行层正在被 agent 拉平（OpenAI 反复讲「别再写详细 prompt，给目标就行」；Aiden 这个自动研究 agent 在 OpenAI 内部招聘挑战赛里刷新 7 项记录，超过所有人类参赛者），但两条独立信源都指向同一个结论——人的价值往上移到「设计判断标准」这一层：好的 eval、好的代码库抽象、好的目标描述，比动手执行本身更值钱。computer-use 继续产品化（ChatGPT 桌面版今天正式上线），执行层的产品格局也在这两周迅速收敛。",
+  "ota": {
+    "learned": [
+      "yt-dlp 默认的 web 客户端今天开始对本报的 YouTube 抓取报错「The page needs to be reloaded」——查证是 YouTube 强制 web 客户端走 SABR streaming 导致；换成 `--extractor-args \"youtube:player_client=android\"` 就能正常拉字幕，且不需要 PO token。这是本地环境问题，不是内容判断问题，但会静默拖垮整条 YouTube 抓取链，必须记下来",
+      "Wiko 团队的 Aiden：一个自动研究 agent 在 OpenAI 的 Parameter Golf 招聘挑战赛里跑了 22 天，刷新 7 项排行榜记录（人类最多 3 项），H-index（被引用/被后续参赛者采纳的程度）也是全场最高。核心不是暴力并行——它只用了 4% 的总算力却拿下 15% 的记录——而是「捡起被人放弃的想法 + 快速试组合」。给本报编辑部的启发：好的 eval/裁判标准比堆算力更重要，这条直接影响以后怎么设计自动化流程的验收方式"
+    ],
+    "new_capabilities": [
+      "📺 YouTube 情报线现在对 yt-dlp 的 SABR 拦截免疫 — daily-digest skill 已更新为默认带 `--extractor-args youtube:player_client=android`，往后遇到同样的抓取报错不会再卡住整条链路"
+    ]
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "swept": 21,
+      "items": [
+        {
+          "title": "ChatGPT can now complete tasks on your computer",
+          "author": "OpenAI",
+          "likes": null,
+          "summary": "ChatGPT 桌面版正式上线 computer-use：内置浏览器扫描社区论坛出「用户摩擦点报告」、连上 Chrome 扩展接管你已开的标签页跑报销/数据录入这类长流程、macOS 上有独立光标可在后台操作任意桌面 app，不打断你手头的事。",
+          "why": "「代理操作真实界面」正式从 demo 走向桌面产品默认功能——跟本报此前搭的手机代理工作流同一个方向，可直接拿来对比验收。",
+          "url": "https://www.youtube.com/watch?v=dB6pOolO7io",
+          "flag": null
+        },
+        {
+          "title": "An AI Agent Became the #1 Contributor in OpenAI's Hiring Challenge",
+          "author": "Zhengyao Jiang, Wiko",
+          "likes": null,
+          "summary": "编辑部已代读全文。Wiko 的自动研究 agent「Aiden」被派去打 OpenAI 的 Parameter Golf 招聘挑战赛（在算力/体积限制下训练最强模型），跑了 22 天、约 1300 次实验，刷新 7 项排行榜记录（最强人类选手 3 项），且用的算力只占全场 4%。Aiden 的打法不是原创想法，而是从论文、其他参赛者被放弃的思路里「捡起来做完」——一次把 gated attention、量化、tokenizer 改进三个别人各自搁置的想法组合到一起，跑出全场最大提升。作者的结论：eval 设计和代码库抽象正在变成比「动手写代码」更值钱的技能，人往上移一层而不是被取代。",
+          "why": "对任何在搭自动化/agent 流程的人都是直接可用的方法论：先把裁判标准和代码抽象做好，比堆执行力更有杠杆。",
+          "url": "https://www.youtube.com/watch?v=iCj_ATyThvc",
+          "flag": null
+        },
+        {
+          "title": "Stop Prompting. Start Giving AI Goals. (OpenAI France)",
+          "author": "Katia Gil Guzman, OpenAI",
+          "likes": null,
+          "summary": "编辑部已代读。核心一句话：「你不再需要给模型写详细提示词了，直接告诉它你在做什么、要什么结果，剩下的它会自己搞定。」OpenAI 内部把这个从「一步步教模型」到「给它一个目标让它自己决定路径」的转变，看作是这一年最大的工作方式变化。",
+          "why": "直接可试：今晚就能拿一个真实任务验证这个范式，跟平时写详细 prompt 的方式对比。",
+          "url": "https://www.youtube.com/watch?v=1fL_lwsdMd4",
+          "flag": null
+        },
+        {
+          "title": "Simon Willison in conversation with Cat Wu & Thariq Shihipar, Anthropic",
+          "author": "AI Engineer World's Fair",
+          "likes": null,
+          "summary": "长谈（一小时+），编辑部读了开头和结尾，其余内容已排入明日深读。已看部分要点：Claude Code 一年半前刚出时用户要逐条审批限权，现在「auto mode 好像一直都在」；团队成员坦言现在的软件工程「更难了」——不是因为工具变弱，是因为有了 agent 撑腰后自己对产出的期望值涨了；一个明显的态度转变是「重写不再是禁忌」——如果有好的测试套件，重写反而能倒逼你把测试写扎实，Anthropic 内部已经把 Claude Code 跑在用 Rust 重写的 Bun 上。",
+          "why": "「重写不再是禁忌」和「期望值被 agent 拉高」是两条能直接影响你怎么评估技术债和给自己定目标的判断。",
+          "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
+          "flag": "⏳ 已排入明日深读：还有约 8000 字未读完"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "小红书 sweep 本期跳过：overnight 无头运行环境没有 Chrome + claude-in-chrome 扩展，按 skill 规则优雅跳过而非硬跑",
+    "X sweep 本期跳过：同上，需要登录态 Chrome 会话，overnight 环境不具备"
+  ]
+}
