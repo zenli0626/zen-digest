@@ -89,6 +89,48 @@
       ]
     },
     {
+      "platform": "X",
+      "swept": 30,
+      "items": [
+        {
+          "title": "Claude Code 作者 Boris Cherny：企业 AI 采纳的四步阶梯",
+          "author": "@bcherny",
+          "likes": 3300,
+          "summary": "「我每天和各公司工程师聊，听到同一件事：有人用 Claude 把产出提了 10 倍，但组织其余部分没跟上。」他把观察到的团队采纳路径画成四步图（claude.ai artifact），今日登上 X 热榜（681 posts 讨论）。",
+          "why": "工具作者本人给出的组织采纳路线图——适合正在推动团队用 AI 的人直接拿去对照。",
+          "url": "https://x.com/bcherny",
+          "flag": null
+        },
+        {
+          "title": "Moonshot 发布 Kimi K3：2.8 万亿参数，主打编码",
+          "author": "X 热榜",
+          "likes": 35600,
+          "summary": "X 今日新闻榜第二位（35.6K posts）：Moonshot AI 发布 Kimi K3，宣称领先的编码模型、2.8T 参数。",
+          "why": "中国基模在 coding 赛道的正面进攻；编码模型竞争进入万亿参数档。",
+          "url": "https://x.com/search?q=Kimi%20K3",
+          "flag": "⚠️ 以热榜条目为据，编辑部尚未读一手发布——数据口径待验证"
+        },
+        {
+          "title": "Karpathy 转发：Bun 正在用 Rust 重写",
+          "author": "@jarredsumner (Karpathy 转发)",
+          "likes": 8700,
+          "summary": "Bun 作者 Jarred Sumner 宣布用 Rust 重写 Bun（3.5M 浏览），Karpathy 转发背书。与本期 YouTube 版 Claude Code 团队访谈互相印证：他们内部已在 Rust 版 Bun 上跑 Claude Code——「代码库就是 spec，重写不再是禁忌」。",
+          "why": "两个独立信源同日指向同一叙事：AI 时代重写成本塌方，这是判断技术债策略时的新变量。",
+          "url": "https://x.com/jarredsumner",
+          "flag": null
+        },
+        {
+          "title": "病毒帖：「Anthropic 免费 Loop Engineering 课程」",
+          "author": "@AnatoliKopadze",
+          "likes": 3300,
+          "summary": "657K 浏览的传播帖，声称 Anthropic 刚发布免费 Loop Engineering 课程。同日热榜确有「Andrew Ng 联合 Anthropic 发布免费斯坦福 2 小时 agentic 课程」条目（954 posts）——传播帖疑似把几件事揉在一起蹭热度。",
+          "why": "「loops > prompts」叙事已经强到能养活标题党——侧面印证本期社评的判断。",
+          "url": "https://x.com/AnatoliKopadze",
+          "flag": "⚠️ 传播帖表述与可查事实不完全吻合，课程出处以 Andrew Ng/官方渠道为准"
+        }
+      ]
+    },
+    {
       "platform": "小红书",
       "swept": 44,
       "items": [
