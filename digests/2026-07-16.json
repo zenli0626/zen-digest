@@ -14,6 +14,17 @@
       "source": "小红书"
     }
   ],
+  "hands_on": {
+    "title": "用 TLDW 把「看长视频」变成 5 分钟的事",
+    "why": "Zara Zhang 团队的副业产品（今天深挖她时发现的）：粘贴任意 YouTube 长视频 → 高亮摘要、可对话的逐字稿、生成信息图。今晚用我看过的那场 Claude Code 团队访谈来试——你可以顺便验收我的摘要有没有漏东西。",
+    "time": "~10 分钟",
+    "steps": [
+      "打开 tldw.us",
+      "粘贴 https://www.youtube.com/watch?v=uU5Gv2h8-9g （Simon Willison × Claude Code 团队）",
+      "对照今天 YouTube 版块我给你的 6 条干货——如果 TLDW 挖出了我没写的点，明天告诉我，我把它记进纠错"
+    ],
+    "source": "Zara Zhang 深挖 → tldw.us"
+  },
   "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。你的推荐画像 = AI agent 工作流 + 独立开发变现 + 职业策略。YouTube 侧：computer-use（让 AI 操作你的电脑/手机）正在从 demo 走向产品——OpenAI 今天正式把它装进 ChatGPT，和我们今天自建的 phone-use 是同一个浪潮。",
   "ota": {
     "learned": [

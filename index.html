@@ -120,6 +120,30 @@
     letter-spacing: 1px; margin-top: 3px;
   }
 
+  /* ============ HANDS-ON ============ */
+  section.hands-on {
+    margin: 26px 0 0;
+    background: #f8ecd7;
+    border: 1px solid #e4d2ad;
+    border-top: 4px solid var(--gold);
+    padding: 24px 30px 20px;
+  }
+  section.hands-on .sec-label { color: var(--gold); }
+  section.hands-on h2 {
+    font-family: var(--serif-cn); font-weight: 800; font-size: 24px;
+    letter-spacing: 3px; margin-bottom: 10px;
+  }
+  .ho-time {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
+    color: var(--gold); border: 1px solid var(--gold); border-radius: 999px;
+    padding: 2px 10px; vertical-align: 6px; margin-left: 8px; font-weight: 400;
+  }
+  .ho-title { font-family: var(--serif-cn); font-weight: 800; font-size: 17px; margin-bottom: 6px; }
+  .ho-why { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
+  .ho-steps { margin: 0 0 10px 20px; }
+  .ho-steps li { font-size: 14.5px; margin: 6px 0; }
+  .ho-src { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; color: var(--faint); }
+
   /* ============ 风向 ============ */
   .meta-read {
     margin: 34px 0 0; padding: 6px 0 6px 26px; position: relative;
@@ -280,6 +304,15 @@ async function loadDay(d) {
       day.actions.map((a, i) =>
         `<div class="action"><div class="num">${i+1}</div><div><div class="body">${esc(a.text)}</div><div class="src">SOURCE · ${esc(a.source)}</div></div></div>`
       ).join('') + '</section>');
+  }
+  if (day.hands_on) {
+    const ho = day.hands_on;
+    h += blk(`<section class="hands-on"><div class="sec-label">Try Something New Tonight</div>
+      <h2>今日上手 <span class="ho-time">${esc(ho.time ?? '')}</span></h2>
+      <div class="ho-title">${esc(ho.title)}</div>
+      <div class="ho-why">${esc(ho.why)}</div>
+      <ol class="ho-steps">${(ho.steps ?? []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+      ${ho.source ? `<div class="ho-src">SOURCE · ${esc(ho.source)}</div>` : ''}</section>`);
   }
   if (day.meta_read) h += blk(`<div class="meta-read">${esc(day.meta_read)}</div>`);
   if (day.ota) {
