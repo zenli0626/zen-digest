@@ -9,10 +9,16 @@ cd "$HOME/zen-digest" || exit 1
 claude -p --dangerously-skip-permissions >> "$LOG" 2>&1 << 'PROMPT'
 Run the /daily-digest skill (read ~/.claude/skills/daily-digest/SKILL.md and follow it
 fully). This is the scheduled 9pm run: Zen reads the issue TONIGHT, so the hands-on
-section must be tryable this evening. If Chrome/claude-in-chrome is unavailable in this
-headless context, skip the XHS sweep with a note; the YouTube sweep always runs. Include
-the OTA self-upgrade step and the hands_on section. Write digests/<today America/New_York>.json,
-update digests/index.json, commit locally, deploy a Vercel PREVIEW only (never production).
-Do not post to any user-visible surface. Finish by printing the deploy URL.
+section must be tryable this evening. Sweep as many source lanes as you can reach —
+YouTube (always, headless), plus X and 小红书 whenever Chrome/claude-in-chrome is
+available; a diverse issue is the goal. If you truly can ONLY reach YouTube (headless,
+no Chrome), set top-level "partial": true in the JSON so the diversity gate lets it
+through and the next interactive run backfills. Include the OTA self-upgrade step and
+the hands_on + image steps. Write digests/<today America/New_York>.json, update
+digests/index.json. DO NOT run vercel yourself — the runner publishes via bin/publish.sh
+(which enforces the diversity gate). Do not post to any user-visible surface.
 PROMPT
+
+# Validated publish (diversity gate -> commit -> preview deploy). Never prod.
+"$HOME/zen-digest/bin/publish.sh" >> "$LOG" 2>&1
 echo "[run-digest] exit=$? $(date)" >> "$LOG"

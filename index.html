@@ -112,6 +112,7 @@
     margin-top: 6px; letter-spacing: 1px;
   }
   .banner-rule { border-top: 1px solid var(--rule); margin: 12px 0 0; }
+  .partial-note { text-align: center; font-family: var(--kai); font-size: 12.5px; color: var(--red-deep); border: 1px dashed var(--red); background: rgba(213,17,30,.05); padding: 5px 10px; margin: 10px auto 0; width: fit-content; }
 
   /* ============ 头版照片（人民日报式） ============ */
   figure.hero {
@@ -270,6 +271,8 @@ async function loadDay(d) {
   const banner = day.banner ?? day.sources?.[0]?.items?.[0]?.title;
   if (banner) h += `<div class="rise banner">${esc(banner)}</div>
     <div class="banner-cite">《每日情报》（${cnDate(day.date)}　第 ${issueNo} 期）</div><div class="banner-rule"></div>`;
+
+  if (day.partial) h += `<div class="partial-note rise">⚠ 本期部分来源缺席（无头运行），稍后补全</div>`;
 
   if (day.image?.src) {
     h += `<figure class="hero rise" style="animation-delay:.15s">
