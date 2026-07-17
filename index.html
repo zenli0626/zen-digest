@@ -3,286 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日情报 · The Daily Zen</title>
+<title>每日情报</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f7f2e7;
-    --paper-deep: #efe7d5;
-    --ink: #1f1c17;
-    --ink-soft: #57503f;
-    --faint: #8c8370;
-    --rule: #d8cdb4;
-    --cinnabar: #c2402a;
-    --pine: #2e5e46;
-    --pine-wash: #e7ede4;
-    --indigo: #2b3a55;
-    --gold: #b08b3e;
-    --serif-cn: "Noto Serif SC", "Songti SC", serif;
-    --serif-en: "Fraunces", "Songti SC", serif;
-    --sans: "PingFang SC", "Hiragino Sans GB", -apple-system, sans-serif;
-    --mono: "IBM Plex Mono", "PingFang SC", monospace;
+    --news: #f4f1ea;          /* newsprint */
+    --ink: #191713;
+    --ink-2: #444038;
+    --faint: #8a8477;
+    --rule: #1a1712;
+    --rule-soft: #cfc8b8;
+    --red: #c01e26;           /* 报头红 */
+    --red-deep: #9d151c;
+    --serif: "Noto Serif SC", "Songti SC", serif;
+    --mono: "IBM Plex Mono", monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
   body {
-    font-family: var(--sans);
-    background:
-      radial-gradient(1200px 500px at 50% -200px, #fffdf6 0%, transparent 70%),
-      var(--paper);
+    font-family: var(--serif);
+    background: var(--news);
     color: var(--ink);
-    line-height: 1.75;
-    padding: 0 20px 90px;
-    position: relative;
+    padding: 0 18px 70px;
   }
-  /* paper grain */
   body::before {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
   }
-  .wrap { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+  .wrap { max-width: 1020px; margin: 0 auto; position: relative; z-index: 1; }
 
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-  .rise { animation: rise .7s cubic-bezier(.2,.7,.3,1) both; }
-
-  /* ============ MASTHEAD ============ */
-  header {
-    text-align: center;
-    padding: 44px 0 18px;
-    position: relative;
+  /* ============ 报头 ============ */
+  header { padding-top: 30px; }
+  .head-grid {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 12px;
   }
-  .over-title {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 5px;
-    color: var(--faint); text-transform: uppercase; margin-bottom: 14px;
+  .head-side {
+    font-size: 12px; line-height: 2; color: var(--ink-2);
+    border-top: 1px solid var(--rule-soft); padding-top: 6px;
   }
+  .head-side.right { text-align: right; }
   h1 {
-    font-family: var(--serif-cn);
-    font-weight: 800;
-    font-size: clamp(42px, 8vw, 64px);
-    letter-spacing: 10px;
-    text-indent: 10px;
-    line-height: 1.15;
+    font-weight: 900; font-size: clamp(56px, 10vw, 92px);
+    color: var(--red); letter-spacing: 6px; text-indent: 6px;
+    line-height: 1.05; text-align: center;
+    text-shadow: 1px 1px 0 rgba(157,21,28,.25);
   }
-  .masthead-en {
-    font-family: var(--serif-en); font-weight: 500; font-style: italic;
-    font-size: 15px; color: var(--ink-soft); margin-top: 6px; letter-spacing: 1px;
+  .head-sub {
+    text-align: center; font-size: 12.5px; letter-spacing: 4px;
+    color: var(--ink-2); margin-top: 4px;
   }
-  .rules { border-top: 3px double var(--ink); border-bottom: 1px solid var(--ink); height: 7px; margin: 22px 0 0; }
+  .head-rules { margin-top: 14px; border-top: 3.5px solid var(--rule); border-bottom: 1px solid var(--rule); height: 6px; }
   .dateline {
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px;
-    color: var(--ink-soft); padding: 9px 2px;
-    border-bottom: 1px solid var(--ink);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    font-size: 12.5px; letter-spacing: 1px; color: var(--ink-2);
+    border-bottom: 1px solid var(--rule); padding: 8px 2px;
   }
+  .dateline .mono { font-family: var(--mono); font-size: 11.5px; }
   .dateline select {
-    font-family: var(--mono); font-size: 12px; letter-spacing: 1px;
-    color: var(--ink); background: transparent; border: none;
-    border-bottom: 1px dashed var(--faint); padding: 1px 2px; cursor: pointer;
+    font-family: var(--mono); font-size: 12px; color: var(--ink);
+    background: transparent; border: none; border-bottom: 1px dashed var(--faint);
+    cursor: pointer;
   }
-  .dateline select:focus { outline: none; border-bottom-color: var(--cinnabar); }
+  .dateline select:focus { outline: none; border-bottom-color: var(--red); }
 
-  /* seal */
-  .seal {
-    position: absolute; right: 4px; top: 40px; width: 74px; height: 74px;
-    transform: rotate(8deg); opacity: .92;
-  }
-  @media (max-width: 640px) { .seal { width: 56px; height: 56px; top: 28px; } }
-
-  /* ============ ACTIONS ============ */
+  /* ============ 导读（可行动） ============ */
   section.actions {
-    margin: 40px 0 0;
-    background: var(--pine-wash);
-    border: 1px solid #cdd9cb;
-    border-top: 4px solid var(--pine);
-    padding: 26px 30px 22px;
-    position: relative;
+    margin-top: 22px;
+    border: 2.5px solid var(--rule);
+    outline: 1px solid var(--rule);
+    outline-offset: 3px;
+    padding: 18px 26px 14px;
+    background: #f8f5ee;
   }
-  .sec-label {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--pine); margin-bottom: 4px;
+  .box-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+  .box-head .tag {
+    background: var(--red); color: #fdf9ee; font-weight: 900;
+    font-size: 16px; letter-spacing: 4px; padding: 4px 14px 5px;
   }
-  section.actions h2 {
-    font-family: var(--serif-cn); font-weight: 800; font-size: 24px;
-    letter-spacing: 3px; color: var(--ink); margin-bottom: 16px;
+  .box-head .en {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--faint);
   }
-  .action { display: flex; gap: 18px; padding: 13px 0; border-top: 1px dashed #b9c9b7; }
+  .action { display: flex; gap: 14px; padding: 9px 0; border-top: 1px dotted var(--rule-soft); }
   .action:first-of-type { border-top: none; }
   .action .num {
-    font-family: var(--serif-en); font-weight: 900; font-size: 34px;
-    line-height: 1; color: var(--pine); min-width: 34px; text-align: center;
-    padding-top: 3px;
+    font-weight: 900; color: var(--red); font-size: 20px; min-width: 26px;
+    text-align: center; line-height: 1.5;
   }
-  .action .body { font-size: 15px; }
-  .action .src {
-    font-family: var(--mono); font-size: 11px; color: var(--faint);
-    letter-spacing: 1px; margin-top: 3px;
-  }
+  .action .body { font-size: 15px; line-height: 1.85; }
+  .action .src { font-family: var(--mono); font-size: 10.5px; color: var(--faint); letter-spacing: 1px; }
 
-  /* ============ HANDS-ON ============ */
+  /* ============ 今日试新 ============ */
   section.hands-on {
-    margin: 26px 0 0;
-    background: #f8ecd7;
-    border: 1px solid #e4d2ad;
-    border-top: 4px solid var(--gold);
-    padding: 24px 30px 20px;
+    margin-top: 18px;
+    border: 1.5px solid var(--red);
+    padding: 16px 24px 14px;
+    background: linear-gradient(0deg, rgba(192,30,38,.035), rgba(192,30,38,.035));
   }
-  section.hands-on .sec-label { color: var(--gold); }
-  section.hands-on h2 {
-    font-family: var(--serif-cn); font-weight: 800; font-size: 24px;
-    letter-spacing: 3px; margin-bottom: 10px;
-  }
-  .ho-time {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
-    color: var(--gold); border: 1px solid var(--gold); border-radius: 999px;
-    padding: 2px 10px; vertical-align: 6px; margin-left: 8px; font-weight: 400;
-  }
-  .ho-title { font-family: var(--serif-cn); font-weight: 800; font-size: 17px; margin-bottom: 6px; }
-  .ho-why { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
-  .ho-steps { margin: 0 0 10px 20px; }
-  .ho-steps li { font-size: 14.5px; margin: 6px 0; }
-  .ho-src { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; color: var(--faint); }
+  .ho-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .ho-head .tag { color: var(--red); font-weight: 900; font-size: 17px; letter-spacing: 3px; }
+  .ho-head .tag::before { content: "◆ "; font-size: 13px; }
+  .ho-time { font-family: var(--mono); font-size: 11px; color: var(--red-deep); }
+  .ho-title { font-weight: 900; font-size: 17px; margin-bottom: 4px; }
+  .ho-why { font-size: 13.5px; color: var(--ink-2); line-height: 1.9; margin-bottom: 8px; }
+  .ho-steps { margin-left: 22px; }
+  .ho-steps li { font-size: 14px; margin: 4px 0; line-height: 1.85; }
+  .ho-src { font-family: var(--mono); font-size: 10.5px; color: var(--faint); margin-top: 6px; letter-spacing: 1px; }
 
-  /* ============ 风向 ============ */
+  /* ============ 社评（风向） ============ */
   .meta-read {
-    margin: 34px 0 0; padding: 6px 0 6px 26px; position: relative;
-    font-family: var(--serif-cn); font-weight: 600;
-    font-size: 16.5px; line-height: 2; color: var(--ink-soft);
+    margin-top: 18px; padding: 14px 20px;
+    border-top: 2.5px solid var(--rule); border-bottom: 2.5px solid var(--rule);
+    font-size: 14.5px; line-height: 2.1; color: var(--ink);
+    text-align: justify;
   }
-  .meta-read::before {
-    content: "风\A向"; white-space: pre; position: absolute; left: 0; top: 8px;
-    font-family: var(--serif-cn); font-weight: 800; font-size: 13px; line-height: 1.3;
-    color: #fff; background: var(--cinnabar); padding: 6px 4px; letter-spacing: 0;
+  .meta-read .lede {
+    float: left; background: var(--ink); color: var(--news);
+    font-weight: 900; font-size: 14px; letter-spacing: 2px;
+    padding: 3px 10px; margin: 5px 12px 0 0;
   }
 
-  /* ============ OTA ============ */
+  /* ============ 升级公告（OTA） ============ */
   section.ota {
-    margin: 40px 0 0;
-    background: linear-gradient(160deg, #232838 0%, var(--indigo) 100%);
-    color: #e9e4d6;
-    padding: 28px 32px 26px;
-    position: relative; overflow: hidden;
-    box-shadow: 0 18px 40px -18px rgba(31,28,23,.45);
+    margin-top: 22px;
+    border: 2.5px double var(--red);
+    padding: 18px 26px;
+    background: #f8f5ee;
   }
-  section.ota::after {
-    content: ""; position: absolute; inset: 0; pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-  }
-  .ota-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
-  section.ota .sec-label { color: #9fb3d9; }
-  section.ota h2 {
-    font-family: var(--serif-cn); font-weight: 800; font-size: 24px;
-    letter-spacing: 3px; color: #f5f1e4;
-  }
-  .ota-ver {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
-    color: #9fb3d9; border: 1px solid #47557a; padding: 3px 10px; border-radius: 999px;
-  }
-  .ota-sub {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--gold); margin: 18px 0 8px;
-  }
+  .ota-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--rule-soft); padding-bottom: 8px; margin-bottom: 10px; }
+  .ota-head .tag { color: var(--red); font-weight: 900; font-size: 18px; letter-spacing: 3px; }
+  .ota-head .ver { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 2px; }
+  .ota-sub { font-weight: 900; font-size: 13.5px; color: var(--ink); margin: 10px 0 4px; letter-spacing: 2px; }
+  .ota-sub::before { content: "■ "; color: var(--red); font-size: 10px; }
   section.ota li {
-    list-style: none; position: relative; padding-left: 22px;
-    font-size: 14.5px; margin: 8px 0; color: #ddd6c4;
+    list-style: none; font-size: 13.5px; line-height: 1.95; color: var(--ink-2);
+    padding-left: 16px; position: relative; margin: 4px 0; text-align: justify;
   }
-  section.ota .learned li::before {
-    content: "▸"; position: absolute; left: 2px; color: var(--gold);
-  }
-  section.ota .caps li::before {
-    content: "+"; position: absolute; left: 2px; color: #7fd1a8;
-    font-family: var(--mono); font-weight: 500;
-  }
-  section.ota .caps li { color: #eae5d5; }
-  section.ota code, section.ota .cmd {
-    font-family: var(--mono); font-size: 13px; color: #7fd1a8;
-  }
+  section.ota li::before { content: "—"; position: absolute; left: 0; color: var(--faint); }
+  section.ota .caps li::before { content: "＋"; color: var(--red); }
+  section.ota code { font-family: var(--mono); font-size: 12.5px; color: var(--red-deep); }
 
-  /* ============ PLATFORM SECTIONS ============ */
+  /* ============ 版面（多栏正文） ============ */
   .platform-head {
-    display: flex; align-items: baseline; gap: 14px;
-    margin: 52px 0 6px; padding-bottom: 8px;
-    border-bottom: 2px solid var(--ink);
+    margin: 34px 0 12px;
+    display: flex; align-items: center; gap: 14px;
   }
+  .platform-head::after { content: ""; flex: 1; border-top: 1px solid var(--rule); position: relative; top: 1px; }
   .platform-head h2 {
-    font-family: var(--serif-cn); font-weight: 800; font-size: 26px; letter-spacing: 2px;
+    font-weight: 900; font-size: 22px; letter-spacing: 2px;
+    border-left: 6px solid var(--red); padding-left: 12px; line-height: 1.3;
   }
-  .platform-head .stat {
-    font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: 1px;
+  .platform-head .stat { font-family: var(--mono); font-size: 10.5px; color: var(--faint); letter-spacing: 1.5px; }
+  .col-flow {
+    column-count: 2; column-gap: 34px;
+    column-rule: 1px solid var(--rule-soft);
   }
+  @media (max-width: 760px) { .col-flow { column-count: 1; } }
   article {
-    padding: 24px 0 22px;
-    border-bottom: 1px solid var(--rule);
-    display: grid; grid-template-columns: 1fr; gap: 8px;
+    break-inside: avoid; padding: 4px 0 16px; margin-bottom: 10px;
+    border-bottom: 1px dotted var(--rule-soft);
   }
-  article h3 {
-    font-family: var(--serif-cn); font-weight: 800; font-size: 20px;
-    line-height: 1.5; letter-spacing: .5px;
-  }
+  article h3 { font-weight: 900; font-size: 17.5px; line-height: 1.6; margin-bottom: 4px; }
   article h3 a { color: var(--ink); text-decoration: none; }
-  article h3 a:hover { color: var(--cinnabar); }
-  article h3 a::after {
-    content: "↗"; font-family: var(--mono); font-size: 13px; color: var(--faint);
-    margin-left: 7px; vertical-align: 4px;
-  }
-  .byline {
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: 1.2px;
-    color: var(--faint);
-  }
-  .byline b { color: var(--ink-soft); font-weight: 500; }
-  .summary { font-size: 15px; color: var(--ink); }
+  article h3 a:hover { color: var(--red); }
+  .byline { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; color: var(--faint); margin-bottom: 6px; }
+  .summary { font-size: 14px; line-height: 1.95; text-align: justify; color: var(--ink); }
   .why {
-    font-size: 13.5px; color: var(--pine);
-    border-left: 3px solid var(--pine); padding: 2px 0 2px 12px;
-    background: linear-gradient(90deg, rgba(46,94,70,.07), transparent 70%);
+    margin-top: 8px; font-size: 13px; line-height: 1.9; color: var(--ink-2);
+    background: rgba(192,30,38,.05); padding: 6px 10px;
   }
-  .why b { font-weight: 600; }
+  .why b { color: var(--red-deep); font-weight: 900; }
   .flag {
-    font-size: 13px; color: var(--cinnabar);
-    border: 1px dashed var(--cinnabar); padding: 6px 12px;
-    background: rgba(194,64,42,.05); width: fit-content;
+    margin-top: 6px; font-size: 12.5px; color: var(--red-deep);
+    border: 1px dashed var(--red); padding: 4px 10px; width: fit-content;
   }
 
   footer {
-    margin-top: 70px; text-align: center;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 2.5px;
-    color: var(--faint);
-  }
-  footer .end-mark {
-    font-family: var(--serif-cn); font-size: 15px; letter-spacing: 8px;
-    color: var(--ink-soft); margin-bottom: 10px;
+    margin-top: 56px; text-align: center;
+    border-top: 3.5px solid var(--rule); padding-top: 14px;
+    font-size: 12px; letter-spacing: 2px; color: var(--faint);
   }
   .empty { text-align: center; color: var(--faint); padding: 80px 0; font-family: var(--mono); font-size: 13px; letter-spacing: 2px; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .rise { animation: rise .55s ease-out both; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="rise">
-    <svg class="seal" viewBox="0 0 80 80" aria-hidden="true">
-      <circle cx="40" cy="40" r="37" fill="none" stroke="#c2402a" stroke-width="2.6"/>
-      <circle cx="40" cy="40" r="30" fill="none" stroke="#c2402a" stroke-width="1"/>
-      <text x="40" y="36" text-anchor="middle" font-family="Noto Serif SC, Songti SC, serif" font-weight="800" font-size="17" fill="#c2402a">每日</text>
-      <text x="40" y="56" text-anchor="middle" font-family="Noto Serif SC, Songti SC, serif" font-weight="800" font-size="17" fill="#c2402a">情报</text>
-    </svg>
-    <div class="over-title">Private Intelligence · For Zen Only</div>
-    <h1>每日情报</h1>
-    <div class="masthead-en">The Daily Zen — read this, not the feeds</div>
-    <div class="rules"></div>
+    <div class="head-grid">
+      <div class="head-side">
+        AI 情报参考<br>
+        每日一期 · 代读代译
+      </div>
+      <h1>每日情报</h1>
+      <div class="head-side right">
+        视频由编辑部代读<br>
+        本报每日自我升级
+      </div>
+    </div>
+    <div class="head-sub">扫读中外信息流 · 只印值得花时间的内容</div>
+    <div class="head-rules"></div>
     <div class="dateline">
-      <span id="issue-no">ISSUE —</span>
-      <select id="datepick" aria-label="选择日期"></select>
-      <span id="daycount">—</span>
+      <span class="mono" id="issue-no">第 — 期</span>
+      <span><select id="datepick" aria-label="选择日期"></select></span>
+      <span class="mono" id="daycount">—</span>
     </div>
   </header>
 
-  <div id="content"><div class="empty">LOADING…</div></div>
+  <div id="content"><div class="empty">排版中…</div></div>
 
-  <footer>
-    <div class="end-mark">— 完 —</div>
-    由 CLAUDE 彻夜扫读生成 · 视频我已替你看完 · 每日自我升级
-  </footer>
+  <footer>本报由 CLAUDE 编辑部每日自动编发 · 长视频均已代读 · 明日同一时间见</footer>
 </div>
 
 <script>
@@ -293,50 +226,49 @@ let allDays = [];
 async function loadDay(d) {
   const r = await fetch('digests/' + d + '.json'); const day = await r.json();
   const idx = allDays.indexOf(d);
-  document.getElementById('issue-no').textContent = 'ISSUE No.' + String(allDays.length - idx).padStart(3, '0');
+  document.getElementById('issue-no').textContent = '第 ' + String(allDays.length - idx).padStart(3, '0') + ' 期';
   document.getElementById('daycount').textContent =
     day.sources.map(s => s.platform + '×' + s.items.length).join(' · ');
   let h = '', delay = 0;
-  const blk = inner => { delay += 0.12; return `<div class="rise" style="animation-delay:${delay}s">${inner}</div>`; };
+  const blk = inner => { delay += 0.1; return `<div class="rise" style="animation-delay:${delay}s">${inner}</div>`; };
 
   if (day.actions?.length) {
-    h += blk('<section class="actions"><div class="sec-label">Do These Today</div><h2>今日可行动</h2>' +
+    h += blk('<section class="actions"><div class="box-head"><span class="tag">今日可行动</span><span class="en">Do These Today</span></div>' +
       day.actions.map((a, i) =>
-        `<div class="action"><div class="num">${i+1}</div><div><div class="body">${esc(a.text)}</div><div class="src">SOURCE · ${esc(a.source)}</div></div></div>`
+        `<div class="action"><div class="num">${'一二三四五六'[i] ?? i+1}</div><div><div class="body">${esc(a.text)}</div><div class="src">来源 · ${esc(a.source)}</div></div></div>`
       ).join('') + '</section>');
   }
   if (day.hands_on) {
     const ho = day.hands_on;
-    h += blk(`<section class="hands-on"><div class="sec-label">Try Something New Tonight</div>
-      <h2>今日上手 <span class="ho-time">${esc(ho.time ?? '')}</span></h2>
+    h += blk(`<section class="hands-on"><div class="ho-head"><span class="tag">今日试新</span><span class="ho-time">${esc(ho.time ?? '')}</span></div>
       <div class="ho-title">${esc(ho.title)}</div>
       <div class="ho-why">${esc(ho.why)}</div>
       <ol class="ho-steps">${(ho.steps ?? []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
-      ${ho.source ? `<div class="ho-src">SOURCE · ${esc(ho.source)}</div>` : ''}</section>`);
+      ${ho.source ? `<div class="ho-src">来源 · ${esc(ho.source)}</div>` : ''}</section>`);
   }
-  if (day.meta_read) h += blk(`<div class="meta-read">${esc(day.meta_read)}</div>`);
+  if (day.meta_read) h += blk(`<div class="meta-read"><span class="lede">本报社评</span>${esc(day.meta_read)}</div>`);
   if (day.ota) {
-    let o = '<section class="ota"><div class="ota-head"><div><div class="sec-label">System Update Log</div><h2>今日自我升级</h2></div>' +
-      `<span class="ota-ver">OTA ${esc(day.date)}</span></div>`;
-    if (day.ota.learned?.length) o += '<div class="ota-sub">// 今天学到</div><ul class="learned">' +
+    let o = '<section class="ota"><div class="ota-head"><span class="tag">编辑部升级公告</span>' +
+      `<span class="ver">SELF-UPDATE ${esc(day.date)}</span></div>`;
+    if (day.ota.learned?.length) o += '<div class="ota-sub">今日所学</div><ul class="learned">' +
       day.ota.learned.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>';
-    if (day.ota.new_capabilities?.length) o += '<div class="ota-sub">// 现在新会做</div><ul class="caps">' +
+    if (day.ota.new_capabilities?.length) o += '<div class="ota-sub">新增能力</div><ul class="caps">' +
       day.ota.new_capabilities.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>';
     h += blk(o + '</section>');
   }
   for (const s of day.sources) {
-    let p = `<div class="platform-head"><h2>${esc(s.platform)}</h2><span class="stat">SWEPT ${s.swept ?? '?'} → PICKED ${s.items.length}</span></div>`;
+    let p = `<div class="platform-head"><h2>${esc(s.platform)}版</h2><span class="stat">扫读 ${s.swept ?? '?'} 条 · 精选 ${s.items.length} 条</span></div><div class="col-flow">`;
     for (const it of s.items) {
       p += `<article>
         <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3>
-        <div class="byline"><b>${esc(it.author)}</b> · ❤ ${fmtN(it.likes)}${it.saves ? ' · ★ ' + fmtN(it.saves) : ''}${it.comments ? ' · ✎ ' + it.comments : ''}</div>
+        <div class="byline">${esc(it.author)} ｜ 赞 ${fmtN(it.likes)}${it.saves ? ' ｜ 藏 ' + fmtN(it.saves) : ''}${it.comments ? ' ｜ 评 ' + it.comments : ''}</div>
         <div class="summary">${esc(it.summary)}</div>
-        <div class="why"><b>对你</b> — ${esc(it.why)}</div>
+        <div class="why"><b>编者按</b> ｜ ${esc(it.why)}</div>
         ${it.flag ? `<div class="flag">${esc(it.flag)}</div>` : ''}</article>`;
     }
-    h += blk(p);
+    h += blk(p + '</div>');
   }
-  document.getElementById('content').innerHTML = h || '<div class="empty">这一天没有条目</div>';
+  document.getElementById('content').innerHTML = h || '<div class="empty">本期无内容</div>';
 }
 (async () => {
   allDays = await (await fetch('digests/index.json')).json();

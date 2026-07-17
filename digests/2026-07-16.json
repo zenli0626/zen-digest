@@ -2,42 +2,42 @@
   "date": "2026-07-16",
   "actions": [
     {
-      "text": "试一次「笔记本合盖+锁屏，手机遥控 Claude Code」：Anthropic 内部几乎人人这么干（remote control 连本地 session）。你已有 iPhone Z + handover 流程，成本为零，今晚沙发上就能试",
-      "source": "YouTube · Claude Code 团队访谈（我已看完全文）"
+      "text": "试一次「笔记本合盖+锁屏，用手机遥控 Claude Code」：Anthropic 内部几乎人人这么干（remote control 连本地 session）。成本为零，今晚沙发上就能试",
+      "source": "YouTube · Claude Code 团队访谈（编辑部已看完全文）"
     },
     {
-      "text": "把 Paul Graham 的 Stay Upwind 标准套在你当前的选择上：平台运营 offer vs 自建分析产品，哪个让你之后的选项更多？",
+      "text": "把 Paul Graham 的 Stay Upwind 标准套在你手头正在纠结的选择上：哪个选项让你之后的选项更多？选那个",
       "source": "小红书"
     },
     {
-      "text": "FDE（Forward Deployed Engineer）是你候选画像旁边正在起飞的岗位类别——OpenAI/Anthropic/Google 都在建队。值得花 30 分钟研究 JD，看是否纳入求职雷达",
+      "text": "FDE（Forward Deployed Engineer）正在起飞——OpenAI/Anthropic/Google 都在建队。对有平台运营/策略背景的人是条新赛道，值得花 30 分钟研究 JD",
       "source": "小红书"
     }
   ],
   "hands_on": {
     "title": "用 TLDW 把「看长视频」变成 5 分钟的事",
-    "why": "Zara Zhang 团队的副业产品（今天深挖她时发现的）：粘贴任意 YouTube 长视频 → 高亮摘要、可对话的逐字稿、生成信息图。今晚用我看过的那场 Claude Code 团队访谈来试——你可以顺便验收我的摘要有没有漏东西。",
+    "why": "Zara Zhang 团队的副业产品（本期深挖她时发现的）：粘贴任意 YouTube 长视频 → 高亮摘要、可对话的逐字稿、生成信息图。今晚用编辑部看过的那场 Claude Code 团队访谈来试——可以顺便验收本报的摘要有没有漏东西。",
     "time": "~10 分钟",
     "steps": [
       "打开 tldw.us",
       "粘贴 https://www.youtube.com/watch?v=uU5Gv2h8-9g （Simon Willison × Claude Code 团队）",
-      "对照今天 YouTube 版块我给你的 6 条干货——如果 TLDW 挖出了我没写的点，明天告诉我，我把它记进纠错"
+      "对照本期 YouTube 版的 6 条干货——如果 TLDW 挖出了本报没写的点，欢迎来信纠错"
     ],
     "source": "Zara Zhang 深挖 → tldw.us"
   },
-  "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。你的推荐画像 = AI agent 工作流 + 独立开发变现 + 职业策略。YouTube 侧：computer-use（让 AI 操作你的电脑/手机）正在从 demo 走向产品——OpenAI 今天正式把它装进 ChatGPT，和我们今天自建的 phone-use 是同一个浪潮。",
+  "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。YouTube 侧：computer-use（让 AI 操作你的电脑/手机）正在从 demo 走向产品——OpenAI 今天正式把它装进 ChatGPT，与本报编辑部同日自建的手机代理工作流同属一个浪潮。",
   "ota": {
     "learned": [
       "OpenAI 把 computer-use 正式装进 ChatGPT 桌面版：in-app browser、Chrome 扩展接管标签页、macOS 上有独立光标可后台操作——验证了「代理操作真实界面」已是产品级方向",
-      "Cua (Computer-Use 2.0)：accessibility-tree 优先、像素兜底、把操作范围限定在单个窗口而不是整个桌面 → 通过率 62%→80%，token -34%。我们 phone.sh 的窗口级捕获方向是对的；缺的是 accessibility 层",
+      "Cua (Computer-Use 2.0)：accessibility-tree 优先、像素兜底、把操作范围限定在单个窗口而不是整个桌面 → 通过率 62%→80%，token -34%。编辑部的窗口级捕获方向是对的；缺的是 accessibility 层",
       "Zara Zhang 的策展方法论：follow builders not influencers；把 YouTube 当人名搜索引擎（爱用的产品 → 找到 PM/创始人 → 看完他所有访谈）",
-      "Claude Code 团队（1小时访谈，已看完）：给前沿模型的提示词要删例子、删 always/never 硬约束——每条指令必须 100% 为真；他们靠这个把系统提示词砍掉 80%。已采纳为我写 skill 的新纪律（存入长期记忆）"
+      "Claude Code 团队（1小时访谈，已看完）：给前沿模型的提示词要删例子、删 always/never 硬约束——每条指令必须 100% 为真；他们靠这个把系统提示词砍掉 80%。已采纳为编辑部写 skill 的新纪律（存入长期记忆）"
     ],
     "new_capabilities": [
-      "📱 /phone-use — 通过 iPhone Mirroring 读你的手机、抓小红书链接、（草稿+确认后）代你发布",
-      "📮 /xhs-brief — 登录态 rednote.com 网页扫读你的推荐流：排序 → 深读 → 交付摘要",
-      "📰 /daily-digest — 本站的引擎：多平台扫读 → 今日可行动 → 自我升级汇报，已排入每晚 2am 队列",
-      "📺 YouTube 情报线 — 9 频道花名册（Karpathy/Anthropic/OpenAI/AI Engineer/Latent Space/Lenny's/No Priors/Dwarkesh/Zara），RSS 无头扫读 + 逐字稿深读"
+      "📱 phone-use — 通过 iPhone Mirroring 读手机屏幕、抓小红书笔记链接、（草稿+确认后）代为发布",
+      "📮 xhs-brief — 登录态网页扫读小红书推荐流：排序 → 深读 → 交付摘要",
+      "📰 daily-digest — 本报的引擎：多平台扫读 → 今日可行动 → 升级公告，已排入每晚定时队列",
+      "📺 YouTube 情报线 — 9 频道花名册（Karpathy/Anthropic/OpenAI/AI Engineer/Latent Space/Lenny's/No Priors/Dwarkesh/Zara），RSS 无头扫读 + 逐字稿代读"
     ]
   },
   "sources": [
@@ -50,7 +50,7 @@
           "author": "OpenAI",
           "likes": 41139,
           "summary": "ChatGPT 桌面版正式获得 computer-use：内置浏览器扫网页出报告、Chrome 扩展直接用你已开的标签页跑流程（报销、批量录入）、macOS 上用独立光标后台操作任何桌面 app。",
-          "why": "和你今天让我控制 iPhone/Chrome 是同一件事的产品化版本——「代理操作真实界面」赛道正式起飞。",
+          "why": "「代理操作真实界面」赛道正式起飞——同类工作流本报编辑部当天也在自建，方向撞车即验证。",
           "url": "https://www.youtube.com/watch?v=dB6pOolO7io",
           "flag": null
         },
@@ -59,7 +59,7 @@
           "author": "AI Engineer World's Fair",
           "likes": 2559,
           "summary": "开源 Cua driver：agent 不抢你的屏幕（后台光标），accessibility-tree 优先、像素兜底；把操作范围限定在单窗口后，基准通过率 62%→80% 且省 34% token。同场发布 CuaBench：专业软件任务上最强模型通过率 <30%——还早。",
-          "why": "直接验证我们 phone-use 的窗口级设计；也给了下一步升级方向（accessibility 层、后台光标）。",
+          "why": "给所有做屏幕代理的人指了条明路：窗口级 + accessibility 层，别跟整个桌面较劲。",
           "url": "https://www.youtube.com/watch?v=ZSQb5fzRFPw",
           "flag": null
         },
@@ -76,8 +76,8 @@
           "title": "Simon Willison × Anthropic Claude Code 团队 (Cat Wu, Thariq)",
           "author": "AI Engineer World's Fair",
           "likes": 2629,
-          "summary": "已替你看完（1小时）。干货：① Claude Tag 落地了 Anthropic 产品团队 65% 的 PR——多人协作+主动监听频道+团队记忆，「建议放公开频道，culture hack」；② 给前沿模型写提示要反直觉：删例子、删 always/never 式硬约束，Claude Code 系统提示词因此砍掉 80%（每个指令必须 100% 为真，否则模型被带偏）；③ 「代码库就是唯一的 spec」→ 重写不再是禁忌（他们内部已把 Claude Code 跑在 Rust 重写的 Bun 上）；④ auto mode = 每次工具调用都有 Sonnet 分类器把关（含沙箱逃逸判断），内部 1 月用到现在，红队攻击基本全被缓解；⑤ 信任新模型的方法 = 评测集回归，让新模型成为 drop-in replacement；⑥ 文化：don't negotiate against yourself——别在脑子里替自己谈判出一个「不行」。",
-          "why": "①③⑥ 直接可搬进你的工作流；② 我已经拿来升级自己写 skill 的方式（见上方 OTA）。",
+          "summary": "编辑部已代读（1小时）。干货：① Claude Tag 落地了 Anthropic 产品团队 65% 的 PR——多人协作+主动监听频道+团队记忆，「建议放公开频道」是他们给出的 culture hack；② 给前沿模型写提示要反直觉：删例子、删 always/never 式硬约束，Claude Code 系统提示词因此砍掉 80%（每个指令必须 100% 为真，否则模型被带偏）；③ 「代码库就是唯一的 spec」→ 重写不再是禁忌（内部已把 Claude Code 跑在 Rust 重写的 Bun 上）；④ auto mode = 每次工具调用都有 Sonnet 分类器把关（含沙箱逃逸判断），内部 1 月用到现在，红队攻击基本全被缓解；⑤ 信任新模型的方法 = 评测集回归，让新模型成为 drop-in replacement；⑥ 文化：don't negotiate against yourself——别在脑子里替自己谈判出一个「不行」。",
+          "why": "①③⑥ 可直接搬进任何团队的工作流；② 编辑部已拿来升级自己写 skill 的方式（见升级公告）。",
           "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
           "flag": null
         }
@@ -93,7 +93,7 @@
           "likes": 7104,
           "saves": 9871,
           "summary": "两位 Anthropic 工程师 24 分钟讲解鲜为人知的 Claude 隐藏工作流（视频转发帖，正文信息量少，价值在视频本身）。",
-          "why": "你的日常工具箱；也证明 Claude 工作流内容是你所在赛道最热的题材。",
+          "why": "9.8k 收藏说明「Claude 工作流」是当下中文社区最饥渴的题材——做内容的人请注意。",
           "url": "https://www.rednote.com/explore/6a3cb3e5000000001101ceae",
           "flag": null
         },
@@ -102,7 +102,7 @@
           "author": "晓辉博士",
           "likes": 1691,
           "summary": "Paul Graham：两难选择时，选让你处于「上风位」的那个——下风方向永远有更多选项。另一条：伟大不能被计划。",
-          "why": "直接映射你当前的职业分叉：外部 offer vs 自建产品。",
+          "why": "适用于一切职业分叉口：打工 vs 创业、深耕 vs 转行——判据不是眼下收益，是后续选项数。",
           "url": "https://www.rednote.com/explore/6a466522000000001603f340",
           "flag": null
         },
@@ -111,7 +111,7 @@
           "author": "杉森楠",
           "likes": 937,
           "summary": "万字长文：OpenAI 与 Anthropic 同一天成立部署公司（OpenAI 首期 40 亿美元、向 PE 承诺年化 17.5%），Google Cloud CEO 亲自招 59 个 FDE，四大咨询全部跟进；但作者认为 FDE 依赖的三个前提在中国不成立。热评补充：金蝶/用友类 SaaS 会与基模大厂并购融合，agent 让定制成本塌方。",
-          "why": "FDE 是紧邻你候选画像（AI infra ops / platform ops）的新兴岗位浪潮，求职雷达应该覆盖。",
+          "why": "FDE 是「懂业务 + 会用 agent」人群的新兴岗位浪潮，正反两面论据这篇都齐了。",
           "url": "https://www.rednote.com/explore/6a478775000000000f032e64",
           "flag": null
         },
@@ -121,7 +121,7 @@
           "likes": 714,
           "comments": 667,
           "summary": "点子清单式引流帖，真正的价值在 667 条评论：真实用户在报需求（冰箱库存记录、教我用 AI 写小程序……）。",
-          "why": "免费的需求信号矿——想找周末 build 目标时来翻评论区。",
+          "why": "免费的需求信号矿——想找周末 build 目标的人去翻评论区。",
           "url": "https://www.rednote.com/explore/6a335d4f0000000007025d83",
           "flag": null
         },
