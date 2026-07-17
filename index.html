@@ -67,13 +67,21 @@
   }
   #dl-pdf:hover { background: #fff; }
   #dl-pdf:disabled { opacity: .6; cursor: wait; }
-  /* PDF 导出模式：强制单栏竖版 */
-  .pdf-mode { width: 640px !important; padding: 0 24px 40px; background: #fbfaf6; }
-  .pdf-mode .front-flow { column-count: 1 !important; }
-  .pdf-mode .masthead { grid-template-columns: 1fr; }
-  .pdf-mode .mast-side { display: none; }
-  .pdf-mode #dl-pdf, .pdf-mode select, .pdf-mode .ban-nav { display: none; }
+  /* PDF 导出模式：整版报纸（参考消息头版式） */
+  .pdf-mode { width: 1080px !important; padding: 0 30px 36px; background: #fbfaf6; }
+  .pdf-mode .front-flow { column-count: 3 !important; }
+  .pdf-mode #dl-pdf, .pdf-mode select { display: none; }
   .pdf-mode .rise { animation: none; opacity: 1; transform: none; }
+  .pdf-mode .qr-box {
+    margin-top: 8px; margin-left: auto; width: fit-content;
+    border: 1.5px solid var(--red); background: #fff;
+    padding: 7px 7px 4px; text-align: center;
+  }
+  .pdf-mode .qr-box img, .pdf-mode .qr-box canvas { display: block; margin: 0 auto; }
+  .pdf-mode .qr-box .cap {
+    font-family: var(--hei); font-weight: 700; font-size: 9.5px;
+    color: var(--red); letter-spacing: 1px; margin-top: 4px;
+  }
 
   /* ============ 版面导读格（人民日报式） ============ */
   .ban-nav {
@@ -294,14 +302,25 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
   try {
     if (!window.html2canvas) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
     if (!window.jspdf) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    if (!window.QRCode) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js');
     const day = document.getElementById('datepick').value;
     const clone = document.querySelector('.wrap').cloneNode(true);
     clone.classList.add('pdf-mode');
+    // 报头右上角：扫码读网页版
+    const qrBox = document.createElement('div');
+    qrBox.className = 'qr-box';
+    const qrEl = document.createElement('div');
+    qrBox.appendChild(qrEl);
+    const cap = document.createElement('div');
+    cap.className = 'cap'; cap.textContent = '扫码在线读';
+    qrBox.appendChild(cap);
+    clone.querySelector('.mast-side.right')?.appendChild(qrBox);
+    new QRCode(qrEl, { text: 'https://zen-digest.vercel.app/?d=' + day, width: 86, height: 86, correctLevel: QRCode.CorrectLevel.M });
     const holder = document.createElement('div');
     holder.style.cssText = 'position:absolute;left:-99999px;top:0;';
     holder.appendChild(clone); document.body.appendChild(holder);
-    await new Promise(r => setTimeout(r, 300));
-    const canvas = await html2canvas(clone, { scale: 2, backgroundColor: '#fbfaf6', useCORS: true, windowWidth: 640 });
+    await new Promise(r => setTimeout(r, 400));
+    const canvas = await html2canvas(clone, { scale: 2, backgroundColor: '#fbfaf6', useCORS: true, windowWidth: 1080 });
     holder.remove();
     const w = canvas.width / 2, h = canvas.height / 2;
     const pdf = new jspdf.jsPDF({ orientation: 'portrait', unit: 'px', format: [w, h], hotfixes: ['px_scaling'] });
@@ -322,7 +341,9 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
   const sel = document.getElementById('datepick');
   sel.innerHTML = allDays.map(d => `<option>${d}</option>`).join('');
   sel.onchange = () => loadDay(sel.value);
-  if (allDays.length) loadDay(allDays[0]);
+  const want = new URLSearchParams(location.search).get('d');
+  if (want && allDays.includes(want)) { sel.value = want; loadDay(want); }
+  else if (allDays.length) loadDay(allDays[0]);
   else document.getElementById('content').innerHTML = '<div class="empty">还没有任何一期</div>';
 })();
 </script>
