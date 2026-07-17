@@ -60,6 +60,8 @@
   }
   .pub-strip select:focus { outline: none; }
   .pub-strip option { color: var(--ink); }
+  #arch-link { color: #fdf6ec; text-decoration: none; font-family: var(--hei); font-weight: 700; font-size: 11.5px; border-bottom: 1px dashed rgba(253,246,236,.6); }
+  #arch-link:hover { border-bottom-style: solid; }
   #dl-pdf {
     font-family: var(--hei); font-weight: 700; font-size: 12px; letter-spacing: 1px;
     color: var(--red); background: #fdf6ec; border: none; border-radius: 2px;
@@ -226,6 +228,7 @@
       <span>AI 编辑部 · 编发</span>
       <span><select id="datepick" aria-label="选择日期"></select></span>
       <span class="mono" id="daycount">—</span>
+      <a href="/archive.html" id="arch-link">📚 往期合订本</a>
       <button id="dl-pdf" title="下载本期头版长图（PNG，可直接发小红书）">⬇ 分享长图</button>
     </div>
   </header>
