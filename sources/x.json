@@ -1,0 +1,14 @@
+{
+  "timeline": ["https://x.com/home"],
+  "scrolls": 4,
+  "accounts": [
+    { "handle": "karpathy",      "why": "最高信噪比；一条推文常常就是当周叙事的源头" },
+    { "handle": "simonw",        "why": "Simon Willison — LLM 工具生态最勤奋的一手评测者" },
+    { "handle": "swyx",          "why": "AI Engineer 圈层节点；FDE/agent 话语策源地" },
+    { "handle": "bcherny",       "why": "Boris Cherny — Claude Code 作者，工作流一手信息" },
+    { "handle": "zarazhangrui",  "why": "策展人 Zara Zhang 的英文主阵地" },
+    { "handle": "AnthropicAI",   "why": "官方发布" },
+    { "handle": "OpenAI",        "why": "官方发布" }
+  ],
+  "notes": "logged-in x.com in Chrome; timeline For You + Following, then per-account pages x.com/<handle>. get_page_text returns tweet text + reply/RT/like/view counts. 'Today's News' sidebar on /home is a free trending-AI digest — always read it."
+}
