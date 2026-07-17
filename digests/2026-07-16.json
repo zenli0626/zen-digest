@@ -1,6 +1,10 @@
 {
   "date": "2026-07-16",
   "banner": "AI 开始替你动手：computer-use 全线走向产品化",
+  "image": {
+    "src": "digests/img/2026-07-16.jpg",
+    "caption": "OpenAI 正式把 computer-use 装进 ChatGPT——代理开始直接操作你的浏览器与桌面。（图：官方演示）"
+  },
   "actions": [
     {
       "text": "试一次「笔记本合盖+锁屏，用手机遥控 Claude Code」：Anthropic 内部几乎人人这么干（remote control 连本地 session）。成本为零，今晚沙发上就能试",

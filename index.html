@@ -6,221 +6,203 @@
 <title>每日情报</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,600&family=Noto+Serif+SC:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #ece3cf;          /* 陈年报纸 */
-    --paper-hi: #f3ecda;
-    --paper-lo: #e0d4ba;
-    --ink: #211a10;
-    --ink-2: #4a4030;
-    --faint: #8d7f66;
-    --rule: #2b2214;
-    --rule-soft: #c4b598;
-    --oxblood: #6e2f22;        /* 唯一的一点旧红 */
-    --en: "Playfair Display", "Noto Serif SC", serif;
-    --serif: "Noto Serif SC", "Songti SC", serif;
-    --kai: "Kaiti SC", "STKaiti", "KaiTi", "Noto Serif SC", serif;
+    --news: #fbfaf6;
+    --ink: #17150f;
+    --ink-2: #3e3a31;
+    --faint: #8b8577;
+    --rule: #17150f;
+    --rule-soft: #c9c2b1;
+    --red: #d5111e;          /* 报宣红 */
+    --red-deep: #a90d17;
+    --brush: "Ma Shan Zheng", "Kaiti SC", "STKaiti", cursive;
+    --serif: "Noto Serif SC", "Songti SC", serif;          /* 宋体 正文 */
+    --hei: "Noto Sans SC", "PingFang SC", "Heiti SC", sans-serif;  /* 黑体 标题 */
+    --kai: "Kaiti SC", "STKaiti", "KaiTi", "Noto Serif SC", serif; /* 楷体 按语/社评 */
     --mono: "IBM Plex Mono", monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: var(--serif); color: var(--ink); padding: 0 16px 60px;
-    background:
-      radial-gradient(1400px 900px at 50% 0%, rgba(255,250,235,.55), transparent 70%),
-      radial-gradient(1800px 1200px at 50% 105%, rgba(90,70,40,.16), transparent 60%),
-      linear-gradient(97deg, transparent 49.7%, rgba(90,70,40,.05) 50%, transparent 50.4%),
-      var(--paper);
-  }
+  body { font-family: var(--serif); background: var(--news); color: var(--ink); padding: 0 16px 60px; }
   body::before {
-    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 2;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
-    mix-blend-mode: multiply;
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   }
   .wrap { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .rise { animation: rise .5s ease-out both; }
 
-  /* ============ 报头 ============ */
-  header { padding-top: 34px; }
-  .masthead { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
-  .mast-side {
-    font-size: 10.5px; line-height: 1.9; color: var(--ink-2);
-    border: 1.5px solid var(--rule); padding: 6px 10px; text-align: center;
-    background: var(--paper-hi);
-  }
-  .mast-side .mono { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; }
+  /* ============ 报头：黑色毛笔字 ============ */
+  header { padding-top: 26px; }
+  .masthead { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; }
+  .mast-side { font-size: 11.5px; line-height: 1.9; color: var(--ink-2); }
+  .mast-side.right { text-align: right; }
+  .mast-side .mono { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; }
   h1 {
-    font-family: var(--serif); font-weight: 900;
-    font-size: clamp(58px, 9.5vw, 96px);
-    color: var(--ink); letter-spacing: 14px; text-indent: 14px; line-height: 1.05;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(255,250,235,.5);
+    font-family: var(--brush); font-weight: 400;
+    font-size: clamp(64px, 11vw, 104px);
+    color: var(--red); letter-spacing: 2px; line-height: 1;
+    text-align: center; transform: rotate(-0.6deg);
+    text-shadow: 1px 1px 0 rgba(169,13,23,.18);
   }
-  .mast-en {
-    text-align: center; font-family: var(--en); font-style: italic; font-weight: 600;
-    font-size: 13px; color: var(--ink-2); letter-spacing: 3px; margin-top: 2px;
+  /* 红色主办条 */
+  .pub-strip {
+    margin-top: 10px;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
+    background: var(--red); color: #fdf6ec;
+    padding: 5px 14px; font-size: 12.5px; letter-spacing: 2px; font-weight: 700;
   }
-  /* VOL 行 */
-  .vol-line {
-    margin-top: 14px;
-    border-top: 3.5px solid var(--rule); border-bottom: 1px solid var(--rule);
-    display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;
-    padding: 6px 4px;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; color: var(--ink-2);
+  .pub-strip .mono { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.5px; font-weight: 400; }
+  .pub-strip select {
+    font-family: var(--mono); font-size: 11.5px; color: #fdf6ec;
+    background: transparent; border: none; border-bottom: 1px dashed rgba(253,246,236,.6); cursor: pointer;
   }
-  .vol-line .cn { font-family: var(--serif); font-weight: 700; font-size: 12.5px; letter-spacing: 2px; color: var(--ink); }
-  .vol-line select {
-    font-family: var(--mono); font-size: 11px; color: var(--ink);
-    background: transparent; border: none; border-bottom: 1px dashed var(--faint); cursor: pointer;
-  }
-  .vol-line select:focus { outline: none; }
+  .pub-strip select:focus { outline: none; }
+  .pub-strip option { color: var(--ink); }
   #dl-pdf {
-    font-family: var(--serif); font-weight: 700; font-size: 11.5px; letter-spacing: 2px;
-    color: var(--paper-hi); background: var(--ink); border: none;
-    padding: 3px 12px; cursor: pointer;
+    font-family: var(--hei); font-weight: 700; font-size: 12px; letter-spacing: 1px;
+    color: var(--red); background: #fdf6ec; border: none; border-radius: 2px;
+    padding: 3px 10px; cursor: pointer;
   }
-  #dl-pdf:hover { background: var(--oxblood); }
+  #dl-pdf:hover { background: #fff; }
   #dl-pdf:disabled { opacity: .6; cursor: wait; }
-  .vol-line-2 { border-bottom: 3.5px solid var(--rule); height: 2px; margin-bottom: 2px; }
+  /* PDF 导出模式：整版报纸（参考消息头版式） */
+  .pdf-mode { width: 1080px !important; padding: 0 30px 36px; background: #fbfaf6; }
+  .pdf-mode .front-flow { column-count: 3 !important; }
+  .pdf-mode #dl-pdf, .pdf-mode select { display: none; }
+  .pdf-mode .rise { animation: none; opacity: 1; transform: none; }
+  .pdf-mode .qr-box {
+    margin-top: 8px; margin-left: auto; width: fit-content;
+    border: 1.5px solid var(--red); background: #fff;
+    padding: 7px 7px 4px; text-align: center;
+  }
+  .pdf-mode .qr-box img, .pdf-mode .qr-box canvas { display: block; margin: 0 auto; }
+  .pdf-mode .qr-box .cap {
+    font-family: var(--hei); font-weight: 700; font-size: 9.5px;
+    color: var(--red); letter-spacing: 1px; margin-top: 4px;
+  }
 
-  /* ============ 版面导读（黑白格） ============ */
+  /* ============ 版面导读格（人民日报式） ============ */
   .ban-nav {
     margin-top: 10px;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
-    gap: 0; border: 1.5px solid var(--rule);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2px; background: #fff;
+    border: 2px solid var(--red);
   }
   .ban-nav a {
-    color: var(--ink); text-decoration: none; background: var(--paper-hi);
-    font-family: var(--serif); font-weight: 700; font-size: 12px; letter-spacing: 1.5px;
-    text-align: center; padding: 6px 4px;
-    border-right: 1px solid var(--rule-soft);
+    background: var(--red); color: #fdf6ec; text-decoration: none;
+    font-family: var(--hei); font-weight: 700; font-size: 12.5px; letter-spacing: 1px;
+    text-align: center; padding: 7px 4px;
   }
-  .ban-nav a:last-child { border-right: none; }
-  .ban-nav a:hover { background: var(--ink); color: var(--paper-hi); }
-  .ban-nav a b { font-family: var(--mono); font-weight: 500; font-size: 9.5px; margin-right: 5px; color: var(--faint); }
-  .ban-nav a:hover b { color: var(--paper-lo); }
+  .ban-nav a:hover { background: var(--red-deep); }
+  .ban-nav a b { font-weight: 900; margin-right: 4px; }
 
-  /* ============ 头版通栏大标题 ============ */
+  /* ============ 头版红色通栏大标题 ============ */
   .banner {
-    margin: 22px 0 4px;
-    font-family: var(--serif); font-weight: 900; color: var(--ink);
-    font-size: clamp(30px, 5.4vw, 50px);
-    line-height: 1.3; letter-spacing: 3px; text-align: center;
+    margin: 16px 0 6px;
+    font-family: var(--hei); font-weight: 900; color: var(--red);
+    font-size: clamp(30px, 5.6vw, 52px);
+    line-height: 1.28; letter-spacing: 3px; text-align: center;
   }
   .banner-cite {
-    text-align: center; font-family: var(--kai); font-size: 12.5px; color: var(--ink-2);
-    margin: 6px 0 2px; letter-spacing: 1px;
+    text-align: center; font-size: 12px; color: var(--ink-2);
+    margin-top: 6px; letter-spacing: 1px;
   }
-  .banner-rule { text-align: center; color: var(--faint); font-size: 13px; letter-spacing: 8px; margin-top: 6px; }
-  .banner-rule::before { content: "❦"; }
+  .banner-rule { border-top: 1px solid var(--rule); margin: 12px 0 0; }
+
+  /* ============ 头版照片（人民日报式） ============ */
+  figure.hero {
+    margin: 14px auto 0; max-width: 620px; text-align: center;
+  }
+  figure.hero .frame {
+    border: 1px solid var(--rule); padding: 5px; background: #fff;
+    box-shadow: 2px 3px 0 rgba(23,21,15,.12);
+  }
+  figure.hero img {
+    display: block; width: 100%; height: auto;
+    filter: grayscale(1) contrast(1.05);
+  }
+  figure.hero figcaption {
+    font-family: var(--kai); font-size: 12.5px; color: var(--ink-2);
+    margin-top: 7px; line-height: 1.7; letter-spacing: .5px;
+  }
+  figure.hero figcaption b { font-family: var(--hei); font-weight: 700; color: var(--ink); }
 
   /* ============ 导读框（今日可行动） ============ */
   section.actions {
-    margin-top: 16px;
-    border: 1.5px solid var(--rule); outline: 1px solid var(--rule); outline-offset: 3px;
-    padding: 14px 20px 10px; background: var(--paper-hi);
+    margin-top: 16px; border: 1.5px solid var(--rule); padding: 12px 18px 8px;
+    background: #faf8f1;
   }
-  .box-tab { display: flex; align-items: baseline; justify-content: center; gap: 12px; margin-bottom: 8px; border-bottom: 1px solid var(--rule-soft); padding-bottom: 7px; }
-  .box-tab .tag { font-family: var(--serif); font-weight: 900; font-size: 17px; letter-spacing: 6px; }
-  .box-tab .tag::before, .box-tab .tag::after { content: " ✦ "; color: var(--faint); font-size: 11px; letter-spacing: 0; }
-  .box-tab .en { font-family: var(--en); font-style: italic; font-size: 10.5px; letter-spacing: 2px; color: var(--faint); }
-  .action { display: flex; gap: 12px; padding: 8px 0; border-top: 1px dotted var(--rule-soft); }
+  .box-tab { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .box-tab .tag {
+    background: var(--red); color: #fdf6ec; font-family: var(--hei); font-weight: 900;
+    font-size: 14.5px; letter-spacing: 3px; padding: 2px 10px 3px;
+  }
+  a { color: inherit; }
+  .src a, .byline a { color: var(--red-deep); text-decoration: none; border-bottom: 1px dotted var(--red-deep); }
+  .src a:hover, .byline a:hover { color: var(--red); }
+  .box-tab .en { font-family: var(--mono); font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--faint); }
+  .action { display: flex; gap: 10px; padding: 7px 0; border-top: 1px dotted var(--rule-soft); }
   .action:first-of-type { border-top: none; }
-  .action .num {
-    font-family: var(--serif); font-weight: 900; color: var(--ink); font-size: 15px;
-    min-width: 24px; text-align: center; line-height: 1.75;
-  }
-  .action .body { font-size: 14px; line-height: 1.9; }
-  .action .src { font-family: var(--kai); font-size: 11.5px; color: var(--faint); }
+  .action .num { font-weight: 900; color: var(--red); font-size: 15.5px; min-width: 22px; text-align: center; line-height: 1.7; }
+  .action .body { font-size: 14px; line-height: 1.85; }
+  .action .src { font-size: 11px; color: var(--faint); }
 
   /* ============ 三栏正文 ============ */
   .front-flow {
-    margin-top: 18px;
-    column-count: 3; column-gap: 28px; column-rule: 1px solid var(--rule-soft);
+    margin-top: 16px;
+    column-count: 3; column-gap: 26px; column-rule: 1px solid var(--rule-soft);
   }
   @media (max-width: 900px) { .front-flow { column-count: 2; } }
   @media (max-width: 620px) { .front-flow { column-count: 1; } }
 
   .platform-head {
-    break-inside: avoid; break-after: avoid;
-    margin: 6px 0 8px; padding: 6px 0 6px; text-align: center;
-    border-top: 3px double var(--rule); border-bottom: 1px solid var(--rule);
+    break-inside: avoid; break-after: avoid; column-span: none;
+    margin: 2px 0 8px; padding: 4px 0 5px;
+    border-top: 3px solid var(--rule); border-bottom: 1px solid var(--rule);
+    display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
   }
-  .platform-head h2 {
-    font-family: var(--serif); font-weight: 900; font-size: 17px; letter-spacing: 5px;
-    display: inline;
-  }
-  .platform-head .stat { display: block; font-family: var(--mono); font-size: 9px; color: var(--faint); letter-spacing: 1.5px; margin-top: 2px; }
+  .platform-head h2 { font-family: var(--hei); font-weight: 900; font-size: 17px; letter-spacing: 2px; }
+  .platform-head .stat { font-family: var(--mono); font-size: 9.5px; color: var(--faint); letter-spacing: 1px; }
   article { padding: 6px 0 12px; border-bottom: 1px dotted var(--rule-soft); margin-bottom: 8px; orphans: 3; widows: 3; }
-  article h3 { font-family: var(--serif); font-weight: 900; font-size: 16px; line-height: 1.6; margin-bottom: 3px; break-after: avoid; break-inside: avoid; }
+  article h3 { font-family: var(--hei); font-weight: 700; font-size: 15.5px; line-height: 1.6; margin-bottom: 3px; break-after: avoid; break-inside: avoid; }
   article h3 a { color: var(--ink); text-decoration: none; }
-  article h3 a:hover { color: var(--oxblood); }
-  .byline { font-family: var(--kai); font-size: 11px; letter-spacing: .5px; color: var(--faint); margin-bottom: 5px; break-after: avoid; break-inside: avoid; }
-  .byline a { color: var(--oxblood); text-decoration: none; border-bottom: 1px dotted var(--oxblood); }
-  .summary { font-size: 13px; line-height: 1.95; text-align: justify; }
-  article .summary::first-letter {
-    font-family: var(--serif); font-weight: 900; font-size: 34px; line-height: .95;
-    float: left; padding: 4px 6px 0 0; color: var(--ink);
-  }
-  .why { margin-top: 6px; font-family: var(--kai); font-size: 12.5px; line-height: 1.85; color: var(--ink-2); text-align: justify; }
-  .why b { font-family: var(--serif); font-weight: 900; font-size: 11.5px; color: var(--oxblood); }
+  article h3 a:hover { color: var(--red); }
+  .byline { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px; color: var(--faint); margin-bottom: 4px; break-after: avoid; break-inside: avoid; }
+  .summary { font-size: 13px; line-height: 1.95; text-align: justify; text-indent: 2em; }
+  .why { margin-top: 5px; font-family: var(--kai); font-size: 13px; line-height: 1.85; color: var(--ink-2); text-align: justify; }
+  .why b { color: var(--red-deep); font-weight: 900; font-family: var(--hei); font-size: 12px; }
   .why b::after { content: "｜"; color: var(--rule-soft); }
-  .src a { color: var(--oxblood); text-decoration: none; border-bottom: 1px dotted var(--oxblood); }
-  .flag {
-    margin-top: 6px; font-family: var(--kai); font-size: 12px; color: var(--oxblood);
-    border: 1px dashed var(--oxblood); padding: 4px 9px; width: fit-content;
-    background: rgba(110,47,34,.05);
-  }
-  a { color: inherit; }
+  .flag { margin-top: 5px; font-size: 11.5px; color: var(--red-deep); border: 1px dashed var(--red); padding: 3px 8px; width: fit-content; }
 
-  /* ============ 盒装特稿 ============ */
+  /* ============ 盒装特稿：今日试新 / 社评 / 升级公告 ============ */
   .boxed {
     border: 1.5px solid var(--rule); padding: 12px 16px 10px; margin: 4px 0 14px;
-    background: var(--paper-hi); orphans: 3; widows: 3;
+    background: #faf8f1; orphans: 3; widows: 3;
     box-decoration-break: clone; -webkit-box-decoration-break: clone;
   }
-  .boxed .b-head {
-    text-align: center; border-bottom: 1px solid var(--rule-soft);
-    padding-bottom: 6px; margin-bottom: 9px; break-after: avoid; break-inside: avoid;
-  }
-  .boxed .b-head .t { font-family: var(--serif); font-weight: 900; font-size: 15.5px; letter-spacing: 4px; display: block; }
-  .boxed .b-head .t::before, .boxed .b-head .t::after { content: " ❧ "; color: var(--faint); font-size: 11px; letter-spacing: 0; }
-  .boxed .b-head .sub { font-family: var(--mono); font-size: 8.5px; color: var(--faint); letter-spacing: 2px; }
-  .ho-title { font-family: var(--serif); font-weight: 900; font-size: 14.5px; margin-bottom: 3px; }
+  .boxed .b-head { display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--rule-soft); padding-bottom: 6px; margin-bottom: 8px; break-after: avoid; break-inside: avoid; }
+  .boxed li.oi, .ho-steps li { break-inside: avoid; }
+  .boxed .b-head .t { font-family: var(--hei); font-weight: 900; font-size: 15px; letter-spacing: 2px; color: var(--red); }
+  .boxed .b-head .sub { font-family: var(--mono); font-size: 9.5px; color: var(--faint); letter-spacing: 1.5px; }
+  .ho-title { font-weight: 900; font-size: 14.5px; margin-bottom: 3px; }
   .ho-why { font-size: 12.5px; line-height: 1.9; color: var(--ink-2); margin-bottom: 6px; text-align: justify; }
   .ho-steps { margin-left: 18px; }
-  .ho-steps li { font-size: 12.5px; margin: 3px 0; line-height: 1.85; word-break: break-all; break-inside: avoid; }
+  .ho-steps li { font-size: 12.5px; margin: 3px 0; line-height: 1.85; word-break: break-all; }
   .meta-read { font-family: var(--kai); font-size: 13.5px; line-height: 2.05; text-align: justify; text-indent: 2em; }
-  .ota-sub { font-family: var(--serif); font-weight: 900; font-size: 12.5px; margin: 9px 0 3px; letter-spacing: 2px; text-align: center; }
-  .ota-sub::before, .ota-sub::after { content: " — "; color: var(--faint); }
-  .boxed li.oi { list-style: none; font-size: 12.5px; line-height: 1.9; color: var(--ink-2); padding-left: 14px; position: relative; margin: 3px 0; text-align: justify; break-inside: avoid; }
-  .boxed li.oi::before { content: "·"; position: absolute; left: 2px; font-weight: 900; color: var(--faint); }
-  .boxed ul.caps li.oi::before { content: "＋"; color: var(--oxblood); font-size: 11px; }
+  .ota-sub { font-weight: 900; font-size: 12.5px; margin: 8px 0 3px; letter-spacing: 1.5px; }
+  .ota-sub::before { content: "■ "; color: var(--red); font-size: 9px; }
+  .boxed li.oi { list-style: none; font-size: 12.5px; line-height: 1.9; color: var(--ink-2); padding-left: 14px; position: relative; margin: 3px 0; text-align: justify; }
+  .boxed li.oi::before { content: "—"; position: absolute; left: 0; color: var(--faint); }
+  .boxed ul.caps li.oi::before { content: "＋"; color: var(--red); }
 
   footer {
-    margin-top: 48px; text-align: center;
-    border-top: 3px double var(--rule); padding-top: 12px;
-    font-family: var(--kai); font-size: 12px; letter-spacing: 2px; color: var(--faint);
+    margin-top: 44px; text-align: center;
+    border-top: 3px solid var(--rule); padding-top: 12px;
+    font-size: 11.5px; letter-spacing: 2px; color: var(--faint);
   }
-  footer .orn { letter-spacing: 10px; color: var(--faint); margin-bottom: 6px; }
   .empty { text-align: center; color: var(--faint); padding: 80px 0; font-family: var(--mono); font-size: 13px; letter-spacing: 2px; }
-
-  /* ============ 长图导出模式 ============ */
-  .pdf-mode { width: 1080px !important; padding: 0 30px 36px; background: var(--paper); }
-  .pdf-mode .front-flow { column-count: 3 !important; }
-  .pdf-mode #dl-pdf, .pdf-mode select { display: none; }
-  .pdf-mode .rise { animation: none; opacity: 1; transform: none; }
-  .pdf-mode .qr-box {
-    margin: 6px auto 0; width: fit-content;
-    border: 1.5px solid var(--rule); background: var(--paper-hi);
-    padding: 6px 6px 3px; text-align: center;
-  }
-  .pdf-mode .qr-box img, .pdf-mode .qr-box canvas { display: block; margin: 0 auto; }
-  .pdf-mode .qr-box .cap {
-    font-family: var(--serif); font-weight: 700; font-size: 9px;
-    color: var(--ink); letter-spacing: 2px; margin-top: 3px;
-  }
 </style>
 </head>
 <body>
@@ -229,32 +211,28 @@
   <header class="rise">
     <div class="masthead">
       <div class="mast-side">
-        AI 情报参考<br>代读中外信息流<br>
-        <span class="mono">EST. 2026</span>
+        AI 情报参考<br>
+        代读中外信息流<br>
+        <span class="mono">DAILY INTEL DIGEST</span>
       </div>
-      <div>
-        <h1>每日情报</h1>
-        <div class="mast-en">— The Daily Intelligence · All Long Videos Read For You —</div>
-      </div>
+      <h1>每日情报</h1>
       <div class="mast-side right">
-        长视频由编辑部代读<br>本报每日自我升级<br>
-        <span class="mono" id="issue-no">NO. —</span>
+        长视频均由编辑部代读<br>
+        本报每日自我升级<br>
+        <span class="mono" id="issue-no">第 — 期</span>
       </div>
     </div>
-    <div class="vol-line">
-      <span id="vol-left">VOL 1</span>
-      <span class="cn" id="daycount">—</span>
-      <span><select id="datepick" aria-label="选择日期"></select>　<button id="dl-pdf" title="下载本期头版长图（PNG，可直接分享）">分享长图</button></span>
+    <div class="pub-strip">
+      <span>AI 编辑部 · 编发</span>
+      <span><select id="datepick" aria-label="选择日期"></select></span>
+      <span class="mono" id="daycount">—</span>
+      <button id="dl-pdf" title="下载本期头版长图（PNG，可直接发小红书）">⬇ 分享长图</button>
     </div>
-    <div class="vol-line-2"></div>
   </header>
 
   <div id="content"><div class="empty">排版中…</div></div>
 
-  <footer>
-    <div class="orn">❦ ❦ ❦</div>
-    本报由 AI 编辑部每日自动编发 · 只印值得花时间的内容 · 明日同一时间见
-  </footer>
+  <footer>本报由 AI 编辑部每日自动编发 · 只印值得花时间的内容 · 明日同一时间见</footer>
 </div>
 
 <script>
@@ -271,8 +249,7 @@ async function loadDay(d) {
   const r = await fetch('digests/' + d + '.json'); const day = await r.json();
   const idx = allDays.indexOf(d);
   const issueNo = String(allDays.length - idx).padStart(3, '0');
-  document.getElementById('issue-no').textContent = 'NO. ' + issueNo;
-  document.getElementById('vol-left').textContent = 'VOL 1; NO. ' + issueNo;
+  document.getElementById('issue-no').textContent = '第 ' + issueNo + ' 期';
   document.getElementById('daycount').textContent = cnDate(day.date) + ' · ' +
     day.sources.map(s => s.platform + '×' + s.items.length).join(' · ');
   let h = '';
@@ -280,16 +257,23 @@ async function loadDay(d) {
   // 版面导读格
   let tiles = [], vn = 1;
   const pad2 = n => String(n).padStart(2, '0');
-  if (day.actions?.length) tiles.push(`<a href="#sec-actions"><b>${pad2(vn++)}</b>今日可行动</a>`);
-  if (day.hands_on) tiles.push(`<a href="#sec-handson"><b>${pad2(vn++)}</b>今日试新</a>`);
-  if (day.meta_read) tiles.push(`<a href="#sec-metaread"><b>${pad2(vn++)}</b>本报社评</a>`);
-  for (const s of day.sources) tiles.push(`<a href="#sec-${esc(s.platform)}"><b>${pad2(vn++)}</b>${esc(s.platform)}版</a>`);
-  if (day.ota) tiles.push(`<a href="#sec-ota"><b>${pad2(vn++)}</b>升级公告</a>`);
+  if (day.actions?.length) tiles.push(`<a href="#sec-actions"><b>${pad2(vn++)}版</b>可行动</a>`);
+  if (day.hands_on) tiles.push(`<a href="#sec-handson"><b>${pad2(vn++)}版</b>试新</a>`);
+  if (day.meta_read) tiles.push(`<a href="#sec-metaread"><b>${pad2(vn++)}版</b>社评</a>`);
+  for (const s of day.sources) tiles.push(`<a href="#sec-${esc(s.platform)}"><b>${pad2(vn++)}版</b>${esc(s.platform)}</a>`);
+  if (day.ota) tiles.push(`<a href="#sec-ota"><b>${pad2(vn++)}版</b>升级公告</a>`);
   if (tiles.length) h += `<nav class="ban-nav rise">${tiles.join('')}</nav>`;
 
   const banner = day.banner ?? day.sources?.[0]?.items?.[0]?.title;
   if (banner) h += `<div class="rise banner">${esc(banner)}</div>
     <div class="banner-cite">《每日情报》（${cnDate(day.date)}　第 ${issueNo} 期）</div><div class="banner-rule"></div>`;
+
+  if (day.image?.src) {
+    h += `<figure class="hero rise" style="animation-delay:.15s">
+      <div class="frame"><img src="${esc(day.image.src)}" alt=""></div>
+      ${day.image.caption ? `<figcaption><b>▲ 本期要图</b> ${esc(day.image.caption)}</figcaption>` : ''}
+    </figure>`;
+  }
 
   if (day.actions?.length) {
     h += '<section id="sec-actions" class="actions rise" style="animation-delay:.1s"><div class="box-tab"><span class="tag">今日可行动</span><span class="en">Do These Today</span></div>' +
@@ -301,17 +285,17 @@ async function loadDay(d) {
   let flow = '';
   if (day.hands_on) {
     const ho = day.hands_on;
-    flow += `<div id="sec-handson" class="boxed"><div class="b-head"><span class="t">今日试新</span><span class="sub">TRY SOMETHING NEW · ${esc(ho.time ?? '')}</span></div>
+    flow += `<div id="sec-handson" class="boxed"><div class="b-head"><span class="t">◆ 今日试新</span><span class="sub">${esc(ho.time ?? '')}</span></div>
       <div class="ho-title">${esc(ho.title)}</div>
       <div class="ho-why">${esc(ho.why)}</div>
       <ol class="ho-steps">${(ho.steps ?? []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
-      ${ho.source ? `<div class="src" style="margin-top:6px;font-family:var(--kai);font-size:11.5px;color:var(--faint)">〔来源 · ${ho.source_url ? `<a href="${esc(ho.source_url)}" target="_blank" rel="noopener">${esc(ho.source)} ↗</a>` : esc(ho.source)}〕</div>` : ''}</div>`;
+      ${ho.source ? `<div class="src" style="margin-top:6px">〔来源 · ${ho.source_url ? `<a href="${esc(ho.source_url)}" target="_blank" rel="noopener">${esc(ho.source)} ↗</a>` : esc(ho.source)}〕</div>` : ''}</div>`;
   }
   if (day.meta_read) {
     flow += `<div id="sec-metaread" class="boxed"><div class="b-head"><span class="t">本报社评</span></div><div class="meta-read">${esc(day.meta_read)}</div></div>`;
   }
   for (const s of day.sources) {
-    flow += `<div id="sec-${esc(s.platform)}" class="platform-head"><h2>${esc(s.platform)}版</h2><span class="stat">SWEPT ${s.swept ?? '?'} · PICKED ${s.items.length}</span></div>`;
+    flow += `<div id="sec-${esc(s.platform)}" class="platform-head"><h2>${esc(s.platform)}版</h2><span class="stat">扫读${s.swept ?? '?'}·选${s.items.length}</span></div>`;
     for (const it of s.items) {
       flow += `<article>
         <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3>
@@ -332,8 +316,7 @@ async function loadDay(d) {
   h += `<div class="front-flow rise" style="animation-delay:.2s">${flow}</div>`;
   document.getElementById('content').innerHTML = h || '<div class="empty">本期无内容</div>';
 }
-
-// ============ 头版长图导出（PNG） ============
+// ============ 竖版长图 PDF 导出 ============
 const loadScript = src => new Promise((ok, err) => {
   const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = err;
   document.head.appendChild(s);
@@ -347,6 +330,7 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
     const day = document.getElementById('datepick').value;
     const clone = document.querySelector('.wrap').cloneNode(true);
     clone.classList.add('pdf-mode');
+    // 报头右上角：扫码读网页版
     const qrBox = document.createElement('div');
     qrBox.className = 'qr-box';
     const qrEl = document.createElement('div');
@@ -355,24 +339,24 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
     cap.className = 'cap'; cap.textContent = '扫码在线读';
     qrBox.appendChild(cap);
     clone.querySelector('.mast-side.right')?.appendChild(qrBox);
-    new QRCode(qrEl, { text: 'https://zen-digest.vercel.app/?d=' + day, width: 84, height: 84, correctLevel: QRCode.CorrectLevel.M });
+    new QRCode(qrEl, { text: 'https://zen-digest.vercel.app/?d=' + day, width: 86, height: 86, correctLevel: QRCode.CorrectLevel.M });
     const holder = document.createElement('div');
     holder.style.cssText = 'position:absolute;left:-99999px;top:0;';
     holder.appendChild(clone); document.body.appendChild(holder);
     await new Promise(r => setTimeout(r, 400));
-    const canvas = await html2canvas(clone, { scale: 2, backgroundColor: '#ece3cf', useCORS: true, windowWidth: 1080 });
+    const canvas = await html2canvas(clone, { scale: 2, backgroundColor: '#fbfaf6', useCORS: true, windowWidth: 1080 });
     holder.remove();
     const a = document.createElement('a');
     a.href = canvas.toDataURL('image/png');
     a.download = `每日情报-${day}.png`;
     a.click();
   } catch (e) {
-    console.error('[png-export]', e);
+    console.error('[pdf-export]', e);
     btn.textContent = '导出失败，重试';
     btn.disabled = false;
     return;
   }
-  btn.disabled = false; btn.textContent = '分享长图';
+  btn.disabled = false; btn.textContent = '⬇ 分享长图';
 });
 
 (async () => {

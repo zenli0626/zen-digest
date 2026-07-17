@@ -1,6 +1,10 @@
 {
   "date": "2026-07-17",
   "banner": "从「写提示词」到「给目标」：agent 正在接管执行层，人只留判断权",
+  "image": {
+    "src": "digests/img/2026-07-17.jpg",
+    "caption": "OpenAI「Stop Prompting, Start Giving AI Goals」演讲：交互范式从写提示词转向给目标。（图：AI Engineer World’s Fair）"
+  },
   "actions": [
     {
       "text": "今晚挑一个正在做的任务，别写步骤式 prompt，改成一句话目标（「把这个功能做好，你决定怎么做」），观察 Claude Code 会不会自己选对路径——OpenAI 内部已经把这个「/goal」范式当默认工作方式在推",
