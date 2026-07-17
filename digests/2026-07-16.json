@@ -2,8 +2,8 @@
   "date": "2026-07-16",
   "actions": [
     {
-      "text": "看 Anthropic 工程师那个 24 分钟的 Claude 工作流视频（今天全站最热，9.8k 收藏）——你每天用 Claude，值得对照检查自己的用法",
-      "source": "小红书"
+      "text": "试一次「笔记本合盖+锁屏，手机遥控 Claude Code」：Anthropic 内部几乎人人这么干（remote control 连本地 session）。你已有 iPhone Z + handover 流程，成本为零，今晚沙发上就能试",
+      "source": "YouTube · Claude Code 团队访谈（我已看完全文）"
     },
     {
       "text": "把 Paul Graham 的 Stay Upwind 标准套在你当前的选择上：平台运营 offer vs 自建分析产品，哪个让你之后的选项更多？",
@@ -19,7 +19,8 @@
     "learned": [
       "OpenAI 把 computer-use 正式装进 ChatGPT 桌面版：in-app browser、Chrome 扩展接管标签页、macOS 上有独立光标可后台操作——验证了「代理操作真实界面」已是产品级方向",
       "Cua (Computer-Use 2.0)：accessibility-tree 优先、像素兜底、把操作范围限定在单个窗口而不是整个桌面 → 通过率 62%→80%，token -34%。我们 phone.sh 的窗口级捕获方向是对的；缺的是 accessibility 层",
-      "Zara Zhang 的策展方法论：follow builders not influencers；把 YouTube 当人名搜索引擎（爱用的产品 → 找到 PM/创始人 → 看完他所有访谈）"
+      "Zara Zhang 的策展方法论：follow builders not influencers；把 YouTube 当人名搜索引擎（爱用的产品 → 找到 PM/创始人 → 看完他所有访谈）",
+      "Claude Code 团队（1小时访谈，已看完）：给前沿模型的提示词要删例子、删 always/never 硬约束——每条指令必须 100% 为真；他们靠这个把系统提示词砍掉 80%。已采纳为我写 skill 的新纪律（存入长期记忆）"
     ],
     "new_capabilities": [
       "📱 /phone-use — 通过 iPhone Mirroring 读你的手机、抓小红书链接、（草稿+确认后）代你发布",
@@ -64,10 +65,10 @@
           "title": "Simon Willison × Anthropic Claude Code 团队 (Cat Wu, Thariq)",
           "author": "AI Engineer World's Fair",
           "likes": 2629,
-          "summary": "Claude Code 产品团队与 Simon Willison 的一小时对谈（逐字稿已存档，明日深读）。",
-          "why": "你每天的主力工具，一手信息源。",
+          "summary": "已替你看完（1小时）。干货：① Claude Tag 落地了 Anthropic 产品团队 65% 的 PR——多人协作+主动监听频道+团队记忆，「建议放公开频道，culture hack」；② 给前沿模型写提示要反直觉：删例子、删 always/never 式硬约束，Claude Code 系统提示词因此砍掉 80%（每个指令必须 100% 为真，否则模型被带偏）；③ 「代码库就是唯一的 spec」→ 重写不再是禁忌（他们内部已把 Claude Code 跑在 Rust 重写的 Bun 上）；④ auto mode = 每次工具调用都有 Sonnet 分类器把关（含沙箱逃逸判断），内部 1 月用到现在，红队攻击基本全被缓解；⑤ 信任新模型的方法 = 评测集回归，让新模型成为 drop-in replacement；⑥ 文化：don't negotiate against yourself——别在脑子里替自己谈判出一个「不行」。",
+          "why": "①③⑥ 直接可搬进你的工作流；② 我已经拿来升级自己写 skill 的方式（见上方 OTA）。",
           "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
-          "flag": "📌 已排入明日深读"
+          "flag": null
         }
       ]
     },

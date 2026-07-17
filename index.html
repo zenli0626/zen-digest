@@ -3,113 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zen 每日情报</title>
+<title>每日情报 · The Daily Zen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #2b2a26; --paper: #faf7f0; --card: #fff; --accent: #b0554d;
-    --gray: #8a857c; --line: #e4ddd0; --act: #4c7a5e;
+    --paper: #f7f2e7;
+    --paper-deep: #efe7d5;
+    --ink: #1f1c17;
+    --ink-soft: #57503f;
+    --faint: #8c8370;
+    --rule: #d8cdb4;
+    --cinnabar: #c2402a;
+    --pine: #2e5e46;
+    --pine-wash: #e7ede4;
+    --indigo: #2b3a55;
+    --gold: #b08b3e;
+    --serif-cn: "Noto Serif SC", "Songti SC", serif;
+    --serif-en: "Fraunces", "Songti SC", serif;
+    --sans: "PingFang SC", "Hiragino Sans GB", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", "PingFang SC", monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: "PingFang SC", "Hiragino Sans GB", -apple-system, sans-serif;
-    background: var(--paper); color: var(--ink); line-height: 1.7;
-    padding: 32px 16px 80px;
+    font-family: var(--sans);
+    background:
+      radial-gradient(1200px 500px at 50% -200px, #fffdf6 0%, transparent 70%),
+      var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 0 20px 90px;
+    position: relative;
   }
-  .wrap { max-width: 720px; margin: 0 auto; }
-  header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
-  header h1 { font-size: 22px; letter-spacing: 1px; }
-  #datepick { font-size: 14px; color: var(--gray); border: 1px solid var(--line); background: var(--card); border-radius: 8px; padding: 4px 10px; }
-  .day-title { font-size: 15px; color: var(--gray); margin-bottom: 20px; }
+  /* paper grain */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
 
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .rise { animation: rise .7s cubic-bezier(.2,.7,.3,1) both; }
+
+  /* ============ MASTHEAD ============ */
+  header {
+    text-align: center;
+    padding: 44px 0 18px;
+    position: relative;
+  }
+  .over-title {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 5px;
+    color: var(--faint); text-transform: uppercase; margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--serif-cn);
+    font-weight: 800;
+    font-size: clamp(42px, 8vw, 64px);
+    letter-spacing: 10px;
+    text-indent: 10px;
+    line-height: 1.15;
+  }
+  .masthead-en {
+    font-family: var(--serif-en); font-weight: 500; font-style: italic;
+    font-size: 15px; color: var(--ink-soft); margin-top: 6px; letter-spacing: 1px;
+  }
+  .rules { border-top: 3px double var(--ink); border-bottom: 1px solid var(--ink); height: 7px; margin: 22px 0 0; }
+  .dateline {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px;
+    color: var(--ink-soft); padding: 9px 2px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .dateline select {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 1px;
+    color: var(--ink); background: transparent; border: none;
+    border-bottom: 1px dashed var(--faint); padding: 1px 2px; cursor: pointer;
+  }
+  .dateline select:focus { outline: none; border-bottom-color: var(--cinnabar); }
+
+  /* seal */
+  .seal {
+    position: absolute; right: 4px; top: 40px; width: 74px; height: 74px;
+    transform: rotate(8deg); opacity: .92;
+  }
+  @media (max-width: 640px) { .seal { width: 56px; height: 56px; top: 28px; } }
+
+  /* ============ ACTIONS ============ */
   section.actions {
-    background: #eef4ef; border: 1px solid #d7e4da; border-radius: 12px;
-    padding: 18px 20px; margin-bottom: 24px;
+    margin: 40px 0 0;
+    background: var(--pine-wash);
+    border: 1px solid #cdd9cb;
+    border-top: 4px solid var(--pine);
+    padding: 26px 30px 22px;
+    position: relative;
   }
-  section.actions h2 { font-size: 15px; color: var(--act); letter-spacing: 2px; margin-bottom: 10px; }
-  section.actions li { margin: 8px 0 8px 18px; font-size: 15px; }
-  section.actions .src { color: var(--gray); font-size: 12px; margin-left: 6px; }
+  .sec-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--pine); margin-bottom: 4px;
+  }
+  section.actions h2 {
+    font-family: var(--serif-cn); font-weight: 800; font-size: 24px;
+    letter-spacing: 3px; color: var(--ink); margin-bottom: 16px;
+  }
+  .action { display: flex; gap: 18px; padding: 13px 0; border-top: 1px dashed #b9c9b7; }
+  .action:first-of-type { border-top: none; }
+  .action .num {
+    font-family: var(--serif-en); font-weight: 900; font-size: 34px;
+    line-height: 1; color: var(--pine); min-width: 34px; text-align: center;
+    padding-top: 3px;
+  }
+  .action .body { font-size: 15px; }
+  .action .src {
+    font-family: var(--mono); font-size: 11px; color: var(--faint);
+    letter-spacing: 1px; margin-top: 3px;
+  }
 
+  /* ============ 风向 ============ */
+  .meta-read {
+    margin: 34px 0 0; padding: 6px 0 6px 26px; position: relative;
+    font-family: var(--serif-cn); font-weight: 600;
+    font-size: 16.5px; line-height: 2; color: var(--ink-soft);
+  }
+  .meta-read::before {
+    content: "风\A向"; white-space: pre; position: absolute; left: 0; top: 8px;
+    font-family: var(--serif-cn); font-weight: 800; font-size: 13px; line-height: 1.3;
+    color: #fff; background: var(--cinnabar); padding: 6px 4px; letter-spacing: 0;
+  }
+
+  /* ============ OTA ============ */
   section.ota {
-    background: #f3f0fa; border: 1px solid #e0d8ef; border-radius: 12px;
-    padding: 18px 20px; margin-bottom: 24px;
+    margin: 40px 0 0;
+    background: linear-gradient(160deg, #232838 0%, var(--indigo) 100%);
+    color: #e9e4d6;
+    padding: 28px 32px 26px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 18px 40px -18px rgba(31,28,23,.45);
   }
-  section.ota h2 { font-size: 15px; color: #6b5b95; letter-spacing: 2px; margin-bottom: 10px; }
-  section.ota .ota-sub { font-size: 13px; color: var(--gray); margin: 10px 0 4px; }
-  section.ota li { margin: 6px 0 6px 18px; font-size: 14.5px; }
-
-  .meta {
-    border-left: 4px solid var(--accent); background: var(--card);
-    border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 14px;
-    color: #57534a; margin-bottom: 28px;
+  section.ota::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  }
+  .ota-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+  section.ota .sec-label { color: #9fb3d9; }
+  section.ota h2 {
+    font-family: var(--serif-cn); font-weight: 800; font-size: 24px;
+    letter-spacing: 3px; color: #f5f1e4;
+  }
+  .ota-ver {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
+    color: #9fb3d9; border: 1px solid #47557a; padding: 3px 10px; border-radius: 999px;
+  }
+  .ota-sub {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold); margin: 18px 0 8px;
+  }
+  section.ota li {
+    list-style: none; position: relative; padding-left: 22px;
+    font-size: 14.5px; margin: 8px 0; color: #ddd6c4;
+  }
+  section.ota .learned li::before {
+    content: "▸"; position: absolute; left: 2px; color: var(--gold);
+  }
+  section.ota .caps li::before {
+    content: "+"; position: absolute; left: 2px; color: #7fd1a8;
+    font-family: var(--mono); font-weight: 500;
+  }
+  section.ota .caps li { color: #eae5d5; }
+  section.ota code, section.ota .cmd {
+    font-family: var(--mono); font-size: 13px; color: #7fd1a8;
   }
 
-  .platform { font-size: 17px; margin: 26px 0 4px; }
-  .platform .n { color: var(--gray); font-size: 13px; font-weight: normal; }
+  /* ============ PLATFORM SECTIONS ============ */
+  .platform-head {
+    display: flex; align-items: baseline; gap: 14px;
+    margin: 52px 0 6px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .platform-head h2 {
+    font-family: var(--serif-cn); font-weight: 800; font-size: 26px; letter-spacing: 2px;
+  }
+  .platform-head .stat {
+    font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: 1px;
+  }
   article {
-    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: 16px 18px; margin: 12px 0;
+    padding: 24px 0 22px;
+    border-bottom: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1fr; gap: 8px;
   }
-  article h3 { font-size: 16px; margin-bottom: 2px; }
+  article h3 {
+    font-family: var(--serif-cn); font-weight: 800; font-size: 20px;
+    line-height: 1.5; letter-spacing: .5px;
+  }
   article h3 a { color: var(--ink); text-decoration: none; }
-  article h3 a:hover { color: var(--accent); }
-  .byline { font-size: 12.5px; color: var(--gray); margin-bottom: 8px; }
-  .summary { font-size: 14.5px; margin-bottom: 8px; }
-  .why { font-size: 13.5px; color: var(--act); background: #f2f6f3; border-radius: 6px; padding: 6px 10px; }
-  .flag { font-size: 13.5px; color: var(--accent); background: #f9efed; border-radius: 6px; padding: 6px 10px; margin-top: 6px; }
-  footer { text-align: center; color: var(--gray); font-size: 12px; margin-top: 40px; }
-  .empty { text-align: center; color: var(--gray); padding: 60px 0; }
+  article h3 a:hover { color: var(--cinnabar); }
+  article h3 a::after {
+    content: "↗"; font-family: var(--mono); font-size: 13px; color: var(--faint);
+    margin-left: 7px; vertical-align: 4px;
+  }
+  .byline {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 1.2px;
+    color: var(--faint);
+  }
+  .byline b { color: var(--ink-soft); font-weight: 500; }
+  .summary { font-size: 15px; color: var(--ink); }
+  .why {
+    font-size: 13.5px; color: var(--pine);
+    border-left: 3px solid var(--pine); padding: 2px 0 2px 12px;
+    background: linear-gradient(90deg, rgba(46,94,70,.07), transparent 70%);
+  }
+  .why b { font-weight: 600; }
+  .flag {
+    font-size: 13px; color: var(--cinnabar);
+    border: 1px dashed var(--cinnabar); padding: 6px 12px;
+    background: rgba(194,64,42,.05); width: fit-content;
+  }
+
+  footer {
+    margin-top: 70px; text-align: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2.5px;
+    color: var(--faint);
+  }
+  footer .end-mark {
+    font-family: var(--serif-cn); font-size: 15px; letter-spacing: 8px;
+    color: var(--ink-soft); margin-bottom: 10px;
+  }
+  .empty { text-align: center; color: var(--faint); padding: 80px 0; font-family: var(--mono); font-size: 13px; letter-spacing: 2px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>📮 Zen 每日情报</h1>
-    <select id="datepick"></select>
+
+  <header class="rise">
+    <svg class="seal" viewBox="0 0 80 80" aria-hidden="true">
+      <circle cx="40" cy="40" r="37" fill="none" stroke="#c2402a" stroke-width="2.6"/>
+      <circle cx="40" cy="40" r="30" fill="none" stroke="#c2402a" stroke-width="1"/>
+      <text x="40" y="36" text-anchor="middle" font-family="Noto Serif SC, Songti SC, serif" font-weight="800" font-size="17" fill="#c2402a">每日</text>
+      <text x="40" y="56" text-anchor="middle" font-family="Noto Serif SC, Songti SC, serif" font-weight="800" font-size="17" fill="#c2402a">情报</text>
+    </svg>
+    <div class="over-title">Private Intelligence · For Zen Only</div>
+    <h1>每日情报</h1>
+    <div class="masthead-en">The Daily Zen — read this, not the feeds</div>
+    <div class="rules"></div>
+    <div class="dateline">
+      <span id="issue-no">ISSUE —</span>
+      <select id="datepick" aria-label="选择日期"></select>
+      <span id="daycount">—</span>
+    </div>
   </header>
-  <div class="day-title" id="daytitle"></div>
-  <div id="content"><div class="empty">加载中…</div></div>
-  <footer>由 Claude 每日扫读生成 · 只收录值得你花时间的内容</footer>
+
+  <div id="content"><div class="empty">LOADING…</div></div>
+
+  <footer>
+    <div class="end-mark">— 完 —</div>
+    由 CLAUDE 彻夜扫读生成 · 视频我已替你看完 · 每日自我升级
+  </footer>
 </div>
+
 <script>
 const fmtN = n => n >= 10000 ? (n/10000).toFixed(1) + '万' : (n ?? '');
+const esc = s => String(s ?? '');
+let allDays = [];
+
 async function loadDay(d) {
   const r = await fetch('digests/' + d + '.json'); const day = await r.json();
-  document.getElementById('daytitle').textContent = day.date + ' · ' +
-    day.sources.map(s => s.platform + ' ' + s.items.length + ' 条').join(' · ');
-  let h = '';
+  const idx = allDays.indexOf(d);
+  document.getElementById('issue-no').textContent = 'ISSUE No.' + String(allDays.length - idx).padStart(3, '0');
+  document.getElementById('daycount').textContent =
+    day.sources.map(s => s.platform + '×' + s.items.length).join(' · ');
+  let h = '', delay = 0;
+  const blk = inner => { delay += 0.12; return `<div class="rise" style="animation-delay:${delay}s">${inner}</div>`; };
+
   if (day.actions?.length) {
-    h += '<section class="actions"><h2>✅ 今日可行动</h2><ol>' +
-      day.actions.map(a => `<li>${a.text}<span class="src">· ${a.source}</span></li>`).join('') +
-      '</ol></section>';
+    h += blk('<section class="actions"><div class="sec-label">Do These Today</div><h2>今日可行动</h2>' +
+      day.actions.map((a, i) =>
+        `<div class="action"><div class="num">${i+1}</div><div><div class="body">${esc(a.text)}</div><div class="src">SOURCE · ${esc(a.source)}</div></div></div>`
+      ).join('') + '</section>');
   }
-  if (day.meta_read) h += `<div class="meta"><strong>风向：</strong>${day.meta_read}</div>`;
+  if (day.meta_read) h += blk(`<div class="meta-read">${esc(day.meta_read)}</div>`);
   if (day.ota) {
-    h += '<section class="ota"><h2>🆕 今日自我升级（OTA）</h2>';
-    if (day.ota.learned?.length) h += '<div class="ota-sub">今天学到</div><ul>' +
-      day.ota.learned.map(x => `<li>${x}</li>`).join('') + '</ul>';
-    if (day.ota.new_capabilities?.length) h += '<div class="ota-sub">现在新会做</div><ul>' +
-      day.ota.new_capabilities.map(x => `<li>${x}</li>`).join('') + '</ul>';
-    h += '</section>';
+    let o = '<section class="ota"><div class="ota-head"><div><div class="sec-label">System Update Log</div><h2>今日自我升级</h2></div>' +
+      `<span class="ota-ver">OTA ${esc(day.date)}</span></div>`;
+    if (day.ota.learned?.length) o += '<div class="ota-sub">// 今天学到</div><ul class="learned">' +
+      day.ota.learned.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>';
+    if (day.ota.new_capabilities?.length) o += '<div class="ota-sub">// 现在新会做</div><ul class="caps">' +
+      day.ota.new_capabilities.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>';
+    h += blk(o + '</section>');
   }
   for (const s of day.sources) {
-    h += `<h2 class="platform">${s.platform} <span class="n">扫读 ${s.swept ?? '?'} 条 → 精选 ${s.items.length} 条</span></h2>`;
+    let p = `<div class="platform-head"><h2>${esc(s.platform)}</h2><span class="stat">SWEPT ${s.swept ?? '?'} → PICKED ${s.items.length}</span></div>`;
     for (const it of s.items) {
-      h += `<article><h3><a href="${it.url}" target="_blank">${it.title}</a></h3>
-        <div class="byline">${it.author} · ❤️ ${fmtN(it.likes)}${it.saves ? ' · ⭐ ' + fmtN(it.saves) : ''}${it.comments ? ' · 💬 ' + it.comments : ''}</div>
-        <div class="summary">${it.summary}</div>
-        <div class="why">对你：${it.why}</div>
-        ${it.flag ? `<div class="flag">${it.flag}</div>` : ''}</article>`;
+      p += `<article>
+        <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3>
+        <div class="byline"><b>${esc(it.author)}</b> · ❤ ${fmtN(it.likes)}${it.saves ? ' · ★ ' + fmtN(it.saves) : ''}${it.comments ? ' · ✎ ' + it.comments : ''}</div>
+        <div class="summary">${esc(it.summary)}</div>
+        <div class="why"><b>对你</b> — ${esc(it.why)}</div>
+        ${it.flag ? `<div class="flag">${esc(it.flag)}</div>` : ''}</article>`;
     }
+    h += blk(p);
   }
   document.getElementById('content').innerHTML = h || '<div class="empty">这一天没有条目</div>';
 }
 (async () => {
-  const days = await (await fetch('digests/index.json')).json();
-  days.sort().reverse();
+  allDays = await (await fetch('digests/index.json')).json();
+  allDays.sort().reverse();
   const sel = document.getElementById('datepick');
-  sel.innerHTML = days.map(d => `<option>${d}</option>`).join('');
+  sel.innerHTML = allDays.map(d => `<option>${d}</option>`).join('');
   sel.onchange = () => loadDay(sel.value);
-  if (days.length) loadDay(days[0]);
+  if (allDays.length) loadDay(allDays[0]);
   else document.getElementById('content').innerHTML = '<div class="empty">还没有任何一期</div>';
 })();
 </script>
