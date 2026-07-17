@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --news: #f6f4ee;
+    --news: #fbfaf6;
     --ink: #17150f;
     --ink-2: #3e3a31;
     --faint: #8b8577;
@@ -42,8 +42,9 @@
   h1 {
     font-family: var(--brush); font-weight: 400;
     font-size: clamp(64px, 11vw, 104px);
-    color: var(--ink); letter-spacing: 2px; line-height: 1;
+    color: var(--red); letter-spacing: 2px; line-height: 1;
     text-align: center; transform: rotate(-0.6deg);
+    text-shadow: 1px 1px 0 rgba(169,13,23,.18);
   }
   /* 红色主办条 */
   .pub-strip {
@@ -59,6 +60,20 @@
   }
   .pub-strip select:focus { outline: none; }
   .pub-strip option { color: var(--ink); }
+  #dl-pdf {
+    font-family: var(--hei); font-weight: 700; font-size: 12px; letter-spacing: 1px;
+    color: var(--red); background: #fdf6ec; border: none; border-radius: 2px;
+    padding: 3px 10px; cursor: pointer;
+  }
+  #dl-pdf:hover { background: #fff; }
+  #dl-pdf:disabled { opacity: .6; cursor: wait; }
+  /* PDF 导出模式：强制单栏竖版 */
+  .pdf-mode { width: 640px !important; padding: 0 24px 40px; background: #fbfaf6; }
+  .pdf-mode .front-flow { column-count: 1 !important; }
+  .pdf-mode .masthead { grid-template-columns: 1fr; }
+  .pdf-mode .mast-side { display: none; }
+  .pdf-mode #dl-pdf, .pdf-mode select, .pdf-mode .ban-nav { display: none; }
+  .pdf-mode .rise { animation: none; opacity: 1; transform: none; }
 
   /* ============ 版面导读格（人民日报式） ============ */
   .ban-nav {
@@ -180,6 +195,7 @@
       <span>AI 编辑部 · 编发</span>
       <span><select id="datepick" aria-label="选择日期"></select></span>
       <span class="mono" id="daycount">—</span>
+      <button id="dl-pdf" title="下载本期竖版长图 PDF">⬇ 长图PDF</button>
     </div>
   </header>
 
@@ -262,6 +278,39 @@ async function loadDay(d) {
   h += `<div class="front-flow rise" style="animation-delay:.2s">${flow}</div>`;
   document.getElementById('content').innerHTML = h || '<div class="empty">本期无内容</div>';
 }
+// ============ 竖版长图 PDF 导出 ============
+const loadScript = src => new Promise((ok, err) => {
+  const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = err;
+  document.head.appendChild(s);
+});
+document.getElementById('dl-pdf').addEventListener('click', async () => {
+  const btn = document.getElementById('dl-pdf');
+  btn.disabled = true; btn.textContent = '排版中…';
+  try {
+    if (!window.html2canvas) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    if (!window.jspdf) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    const day = document.getElementById('datepick').value;
+    const clone = document.querySelector('.wrap').cloneNode(true);
+    clone.classList.add('pdf-mode');
+    const holder = document.createElement('div');
+    holder.style.cssText = 'position:absolute;left:-99999px;top:0;';
+    holder.appendChild(clone); document.body.appendChild(holder);
+    await new Promise(r => setTimeout(r, 300));
+    const canvas = await html2canvas(clone, { scale: 2, backgroundColor: '#fbfaf6', useCORS: true, windowWidth: 640 });
+    holder.remove();
+    const w = canvas.width / 2, h = canvas.height / 2;
+    const pdf = new jspdf.jsPDF({ orientation: 'portrait', unit: 'px', format: [w, h], hotfixes: ['px_scaling'] });
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
+    pdf.save(`每日情报-${day}.pdf`);
+  } catch (e) {
+    console.error('[pdf-export]', e);
+    btn.textContent = '导出失败，重试';
+    btn.disabled = false;
+    return;
+  }
+  btn.disabled = false; btn.textContent = '⬇ 长图PDF';
+});
+
 (async () => {
   allDays = await (await fetch('digests/index.json')).json();
   allDays.sort().reverse();
