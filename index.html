@@ -6,7 +6,7 @@
 <title>每日情报</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --news: #f6f4ee;
@@ -18,7 +18,9 @@
     --red: #d5111e;          /* 报宣红 */
     --red-deep: #a90d17;
     --brush: "Ma Shan Zheng", "Kaiti SC", "STKaiti", cursive;
-    --serif: "Noto Serif SC", "Songti SC", serif;
+    --serif: "Noto Serif SC", "Songti SC", serif;          /* 宋体 正文 */
+    --hei: "Noto Sans SC", "PingFang SC", "Heiti SC", sans-serif;  /* 黑体 标题 */
+    --kai: "Kaiti SC", "STKaiti", "KaiTi", "Noto Serif SC", serif; /* 楷体 按语/社评 */
     --mono: "IBM Plex Mono", monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -58,12 +60,31 @@
   .pub-strip select:focus { outline: none; }
   .pub-strip option { color: var(--ink); }
 
+  /* ============ 版面导读格（人民日报式） ============ */
+  .ban-nav {
+    margin-top: 10px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2px; background: #fff;
+    border: 2px solid var(--red);
+  }
+  .ban-nav a {
+    background: var(--red); color: #fdf6ec; text-decoration: none;
+    font-family: var(--hei); font-weight: 700; font-size: 12.5px; letter-spacing: 1px;
+    text-align: center; padding: 7px 4px;
+  }
+  .ban-nav a:hover { background: var(--red-deep); }
+  .ban-nav a b { font-weight: 900; margin-right: 4px; }
+
   /* ============ 头版红色通栏大标题 ============ */
   .banner {
     margin: 16px 0 6px;
-    font-weight: 900; color: var(--red);
+    font-family: var(--hei); font-weight: 900; color: var(--red);
     font-size: clamp(30px, 5.6vw, 52px);
-    line-height: 1.28; letter-spacing: 2px; text-align: center;
+    line-height: 1.28; letter-spacing: 3px; text-align: center;
+  }
+  .banner-cite {
+    text-align: center; font-size: 12px; color: var(--ink-2);
+    margin-top: 6px; letter-spacing: 1px;
   }
   .banner-rule { border-top: 1px solid var(--rule); margin: 12px 0 0; }
 
@@ -74,9 +95,12 @@
   }
   .box-tab { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
   .box-tab .tag {
-    background: var(--red); color: #fdf6ec; font-weight: 900;
+    background: var(--red); color: #fdf6ec; font-family: var(--hei); font-weight: 900;
     font-size: 14.5px; letter-spacing: 3px; padding: 2px 10px 3px;
   }
+  a { color: inherit; }
+  .src a, .byline a { color: var(--red-deep); text-decoration: none; border-bottom: 1px dotted var(--red-deep); }
+  .src a:hover, .byline a:hover { color: var(--red); }
   .box-tab .en { font-family: var(--mono); font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--faint); }
   .action { display: flex; gap: 10px; padding: 7px 0; border-top: 1px dotted var(--rule-soft); }
   .action:first-of-type { border-top: none; }
@@ -98,29 +122,29 @@
     border-top: 3px solid var(--rule); border-bottom: 1px solid var(--rule);
     display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
   }
-  .platform-head h2 { font-weight: 900; font-size: 17px; letter-spacing: 2px; }
+  .platform-head h2 { font-family: var(--hei); font-weight: 900; font-size: 17px; letter-spacing: 2px; }
   .platform-head .stat { font-family: var(--mono); font-size: 9.5px; color: var(--faint); letter-spacing: 1px; }
   article { break-inside: avoid; padding: 6px 0 12px; border-bottom: 1px dotted var(--rule-soft); margin-bottom: 8px; }
-  article h3 { font-weight: 900; font-size: 15.5px; line-height: 1.6; margin-bottom: 3px; }
+  article h3 { font-family: var(--hei); font-weight: 700; font-size: 15.5px; line-height: 1.6; margin-bottom: 3px; }
   article h3 a { color: var(--ink); text-decoration: none; }
   article h3 a:hover { color: var(--red); }
   .byline { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px; color: var(--faint); margin-bottom: 4px; }
-  .summary { font-size: 13px; line-height: 1.95; text-align: justify; }
-  .why { margin-top: 5px; font-size: 12.5px; line-height: 1.85; color: var(--ink-2); text-align: justify; }
-  .why b { color: var(--red-deep); font-weight: 900; }
+  .summary { font-size: 13px; line-height: 1.95; text-align: justify; text-indent: 2em; }
+  .why { margin-top: 5px; font-family: var(--kai); font-size: 13px; line-height: 1.85; color: var(--ink-2); text-align: justify; }
+  .why b { color: var(--red-deep); font-weight: 900; font-family: var(--hei); font-size: 12px; }
   .why b::after { content: "｜"; color: var(--rule-soft); }
   .flag { margin-top: 5px; font-size: 11.5px; color: var(--red-deep); border: 1px dashed var(--red); padding: 3px 8px; width: fit-content; }
 
   /* ============ 盒装特稿：今日试新 / 社评 / 升级公告 ============ */
   .boxed { break-inside: avoid; border: 1.5px solid var(--rule); padding: 12px 16px 10px; margin: 4px 0 14px; background: #faf8f1; }
   .boxed .b-head { display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--rule-soft); padding-bottom: 6px; margin-bottom: 8px; }
-  .boxed .b-head .t { font-weight: 900; font-size: 15px; letter-spacing: 2px; color: var(--red); }
+  .boxed .b-head .t { font-family: var(--hei); font-weight: 900; font-size: 15px; letter-spacing: 2px; color: var(--red); }
   .boxed .b-head .sub { font-family: var(--mono); font-size: 9.5px; color: var(--faint); letter-spacing: 1.5px; }
   .ho-title { font-weight: 900; font-size: 14.5px; margin-bottom: 3px; }
   .ho-why { font-size: 12.5px; line-height: 1.9; color: var(--ink-2); margin-bottom: 6px; text-align: justify; }
   .ho-steps { margin-left: 18px; }
   .ho-steps li { font-size: 12.5px; margin: 3px 0; line-height: 1.85; word-break: break-all; }
-  .meta-read { font-size: 13px; line-height: 2.05; text-align: justify; }
+  .meta-read { font-family: var(--kai); font-size: 13.5px; line-height: 2.05; text-align: justify; text-indent: 2em; }
   .ota-sub { font-weight: 900; font-size: 12.5px; margin: 8px 0 3px; letter-spacing: 1.5px; }
   .ota-sub::before { content: "■ "; color: var(--red); font-size: 9px; }
   .boxed li.oi { list-style: none; font-size: 12.5px; line-height: 1.9; color: var(--ink-2); padding-left: 14px; position: relative; margin: 3px 0; text-align: justify; }
@@ -167,50 +191,68 @@
 <script>
 const fmtN = n => n >= 10000 ? (n/10000).toFixed(1) + '万' : (n ?? '');
 const esc = s => String(s ?? '');
+const cnDate = d => {
+  const [y, m, dd] = d.split('-').map(Number);
+  const wk = '日一二三四五六'[new Date(y, m - 1, dd).getDay()];
+  return `${y}年${String(m).padStart(2,'0')}月${String(dd).padStart(2,'0')}日 星期${wk}`;
+};
 let allDays = [];
 
 async function loadDay(d) {
   const r = await fetch('digests/' + d + '.json'); const day = await r.json();
   const idx = allDays.indexOf(d);
-  document.getElementById('issue-no').textContent = '第 ' + String(allDays.length - idx).padStart(3, '0') + ' 期';
-  document.getElementById('daycount').textContent = day.date + ' · ' +
+  const issueNo = String(allDays.length - idx).padStart(3, '0');
+  document.getElementById('issue-no').textContent = '第 ' + issueNo + ' 期';
+  document.getElementById('daycount').textContent = cnDate(day.date) + ' · ' +
     day.sources.map(s => s.platform + '×' + s.items.length).join(' · ');
   let h = '';
 
+  // 版面导读格
+  let tiles = [], vn = 1;
+  const pad2 = n => String(n).padStart(2, '0');
+  if (day.actions?.length) tiles.push(`<a href="#sec-actions"><b>${pad2(vn++)}版</b>可行动</a>`);
+  if (day.hands_on) tiles.push(`<a href="#sec-handson"><b>${pad2(vn++)}版</b>试新</a>`);
+  if (day.meta_read) tiles.push(`<a href="#sec-metaread"><b>${pad2(vn++)}版</b>社评</a>`);
+  for (const s of day.sources) tiles.push(`<a href="#sec-${esc(s.platform)}"><b>${pad2(vn++)}版</b>${esc(s.platform)}</a>`);
+  if (day.ota) tiles.push(`<a href="#sec-ota"><b>${pad2(vn++)}版</b>升级公告</a>`);
+  if (tiles.length) h += `<nav class="ban-nav rise">${tiles.join('')}</nav>`;
+
   const banner = day.banner ?? day.sources?.[0]?.items?.[0]?.title;
-  if (banner) h += `<div class="rise banner">${esc(banner)}</div><div class="banner-rule"></div>`;
+  if (banner) h += `<div class="rise banner">${esc(banner)}</div>
+    <div class="banner-cite">《每日情报》（${cnDate(day.date)}　第 ${issueNo} 期）</div><div class="banner-rule"></div>`;
 
   if (day.actions?.length) {
-    h += '<section class="actions rise" style="animation-delay:.1s"><div class="box-tab"><span class="tag">今日可行动</span><span class="en">Do These Today</span></div>' +
+    h += '<section id="sec-actions" class="actions rise" style="animation-delay:.1s"><div class="box-tab"><span class="tag">今日可行动</span><span class="en">Do These Today</span></div>' +
       day.actions.map((a, i) =>
-        `<div class="action"><div class="num">${'一二三四五六'[i] ?? i+1}</div><div><div class="body">${esc(a.text)}</div><div class="src">〔来源 · ${esc(a.source)}〕</div></div></div>`
+        `<div class="action"><div class="num">${'一二三四五六'[i] ?? i+1}</div><div><div class="body">${esc(a.text)}</div><div class="src">〔来源 · ${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">${esc(a.source)} ↗</a>` : esc(a.source)}〕</div></div></div>`
       ).join('') + '</section>';
   }
 
   let flow = '';
   if (day.hands_on) {
     const ho = day.hands_on;
-    flow += `<div class="boxed"><div class="b-head"><span class="t">◆ 今日试新</span><span class="sub">${esc(ho.time ?? '')}</span></div>
+    flow += `<div id="sec-handson" class="boxed"><div class="b-head"><span class="t">◆ 今日试新</span><span class="sub">${esc(ho.time ?? '')}</span></div>
       <div class="ho-title">${esc(ho.title)}</div>
       <div class="ho-why">${esc(ho.why)}</div>
-      <ol class="ho-steps">${(ho.steps ?? []).map(s => `<li>${esc(s)}</li>`).join('')}</ol></div>`;
+      <ol class="ho-steps">${(ho.steps ?? []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+      ${ho.source ? `<div class="src" style="margin-top:6px">〔来源 · ${ho.source_url ? `<a href="${esc(ho.source_url)}" target="_blank" rel="noopener">${esc(ho.source)} ↗</a>` : esc(ho.source)}〕</div>` : ''}</div>`;
   }
   if (day.meta_read) {
-    flow += `<div class="boxed"><div class="b-head"><span class="t">本报社评</span></div><div class="meta-read">${esc(day.meta_read)}</div></div>`;
+    flow += `<div id="sec-metaread" class="boxed"><div class="b-head"><span class="t">本报社评</span></div><div class="meta-read">${esc(day.meta_read)}</div></div>`;
   }
   for (const s of day.sources) {
-    flow += `<div class="platform-head"><h2>${esc(s.platform)}版</h2><span class="stat">扫读${s.swept ?? '?'}·选${s.items.length}</span></div>`;
+    flow += `<div id="sec-${esc(s.platform)}" class="platform-head"><h2>${esc(s.platform)}版</h2><span class="stat">扫读${s.swept ?? '?'}·选${s.items.length}</span></div>`;
     for (const it of s.items) {
       flow += `<article>
         <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3>
-        <div class="byline">${esc(it.author)} ｜ 赞${fmtN(it.likes)}${it.saves ? ' 藏' + fmtN(it.saves) : ''}${it.comments ? ' 评' + it.comments : ''}</div>
+        <div class="byline">${esc(it.author)} ｜ 赞${fmtN(it.likes)}${it.saves ? ' 藏' + fmtN(it.saves) : ''}${it.comments ? ' 评' + it.comments : ''}${it.url ? ` ｜ <a href="${esc(it.url)}" target="_blank" rel="noopener">原文↗</a>` : ''}</div>
         <div class="summary">${esc(it.summary)}</div>
         <div class="why"><b>编者按</b>${esc(it.why)}</div>
         ${it.flag ? `<div class="flag">${esc(it.flag)}</div>` : ''}</article>`;
     }
   }
   if (day.ota) {
-    let o = `<div class="boxed"><div class="b-head"><span class="t">编辑部升级公告</span><span class="sub">SELF-UPDATE ${esc(day.date)}</span></div>`;
+    let o = `<div id="sec-ota" class="boxed"><div class="b-head"><span class="t">编辑部升级公告</span><span class="sub">SELF-UPDATE ${esc(day.date)}</span></div>`;
     if (day.ota.learned?.length) o += '<div class="ota-sub">今日所学</div><ul>' +
       day.ota.learned.map(x => `<li class="oi">${esc(x)}</li>`).join('') + '</ul>';
     if (day.ota.new_capabilities?.length) o += '<div class="ota-sub">新增能力</div><ul class="caps">' +

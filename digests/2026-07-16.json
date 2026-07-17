@@ -4,15 +4,18 @@
   "actions": [
     {
       "text": "试一次「笔记本合盖+锁屏，用手机遥控 Claude Code」：Anthropic 内部几乎人人这么干（remote control 连本地 session）。成本为零，今晚沙发上就能试",
-      "source": "YouTube · Claude Code 团队访谈（编辑部已看完全文）"
+      "source": "YouTube · Claude Code 团队访谈（编辑部已看完全文）",
+      "source_url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g"
     },
     {
       "text": "把 Paul Graham 的 Stay Upwind 标准套在你手头正在纠结的选择上：哪个选项让你之后的选项更多？选那个",
-      "source": "小红书"
+      "source": "小红书",
+      "source_url": "https://www.rednote.com/explore/6a466522000000001603f340"
     },
     {
       "text": "FDE（Forward Deployed Engineer）正在起飞——OpenAI/Anthropic/Google 都在建队。对有平台运营/策略背景的人是条新赛道，值得花 30 分钟研究 JD",
-      "source": "小红书"
+      "source": "小红书",
+      "source_url": "https://www.rednote.com/explore/6a478775000000000f032e64"
     }
   ],
   "hands_on": {
@@ -24,7 +27,8 @@
       "粘贴 https://www.youtube.com/watch?v=uU5Gv2h8-9g （Simon Willison × Claude Code 团队）",
       "对照本期 YouTube 版的 6 条干货——如果 TLDW 挖出了本报没写的点，欢迎来信纠错"
     ],
-    "source": "Zara Zhang 深挖 → tldw.us"
+    "source": "Zara Zhang 深挖 → tldw.us",
+    "source_url": "https://tldw.us"
   },
   "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。YouTube 侧：computer-use（让 AI 操作你的电脑/手机）正在从 demo 走向产品——OpenAI 今天正式把它装进 ChatGPT，与本报编辑部同日自建的手机代理工作流同属一个浪潮。",
   "ota": {
