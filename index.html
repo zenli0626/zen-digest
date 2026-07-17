@@ -132,18 +132,18 @@
   @media (max-width: 620px) { .front-flow { column-count: 1; } }
 
   .platform-head {
-    break-inside: avoid; column-span: none;
+    break-inside: avoid; break-after: avoid; column-span: none;
     margin: 2px 0 8px; padding: 4px 0 5px;
     border-top: 3px solid var(--rule); border-bottom: 1px solid var(--rule);
     display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
   }
   .platform-head h2 { font-family: var(--hei); font-weight: 900; font-size: 17px; letter-spacing: 2px; }
   .platform-head .stat { font-family: var(--mono); font-size: 9.5px; color: var(--faint); letter-spacing: 1px; }
-  article { break-inside: avoid; padding: 6px 0 12px; border-bottom: 1px dotted var(--rule-soft); margin-bottom: 8px; }
-  article h3 { font-family: var(--hei); font-weight: 700; font-size: 15.5px; line-height: 1.6; margin-bottom: 3px; }
+  article { padding: 6px 0 12px; border-bottom: 1px dotted var(--rule-soft); margin-bottom: 8px; orphans: 3; widows: 3; }
+  article h3 { font-family: var(--hei); font-weight: 700; font-size: 15.5px; line-height: 1.6; margin-bottom: 3px; break-after: avoid; break-inside: avoid; }
   article h3 a { color: var(--ink); text-decoration: none; }
   article h3 a:hover { color: var(--red); }
-  .byline { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px; color: var(--faint); margin-bottom: 4px; }
+  .byline { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px; color: var(--faint); margin-bottom: 4px; break-after: avoid; break-inside: avoid; }
   .summary { font-size: 13px; line-height: 1.95; text-align: justify; text-indent: 2em; }
   .why { margin-top: 5px; font-family: var(--kai); font-size: 13px; line-height: 1.85; color: var(--ink-2); text-align: justify; }
   .why b { color: var(--red-deep); font-weight: 900; font-family: var(--hei); font-size: 12px; }
@@ -151,8 +151,13 @@
   .flag { margin-top: 5px; font-size: 11.5px; color: var(--red-deep); border: 1px dashed var(--red); padding: 3px 8px; width: fit-content; }
 
   /* ============ 盒装特稿：今日试新 / 社评 / 升级公告 ============ */
-  .boxed { break-inside: avoid; border: 1.5px solid var(--rule); padding: 12px 16px 10px; margin: 4px 0 14px; background: #faf8f1; }
-  .boxed .b-head { display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--rule-soft); padding-bottom: 6px; margin-bottom: 8px; }
+  .boxed {
+    border: 1.5px solid var(--rule); padding: 12px 16px 10px; margin: 4px 0 14px;
+    background: #faf8f1; orphans: 3; widows: 3;
+    box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  }
+  .boxed .b-head { display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--rule-soft); padding-bottom: 6px; margin-bottom: 8px; break-after: avoid; break-inside: avoid; }
+  .boxed li.oi, .ho-steps li { break-inside: avoid; }
   .boxed .b-head .t { font-family: var(--hei); font-weight: 900; font-size: 15px; letter-spacing: 2px; color: var(--red); }
   .boxed .b-head .sub { font-family: var(--mono); font-size: 9.5px; color: var(--faint); letter-spacing: 1.5px; }
   .ho-title { font-weight: 900; font-size: 14.5px; margin-bottom: 3px; }
