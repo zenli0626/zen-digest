@@ -1,0 +1,73 @@
+{
+  "date": "2026-07-16",
+  "actions": [
+    {
+      "text": "看 Anthropic 工程师那个 24 分钟的 Claude 工作流视频（今天全站最热，9.8k 收藏）——你每天用 Claude，值得对照检查自己的用法",
+      "source": "小红书"
+    },
+    {
+      "text": "把 Paul Graham 的 Stay Upwind 标准套在你当前的选择上：平台运营 offer vs 自建分析产品，哪个让你之后的选项更多？",
+      "source": "小红书"
+    },
+    {
+      "text": "FDE（Forward Deployed Engineer）是你候选画像旁边正在起飞的岗位类别——OpenAI/Anthropic/Google 都在建队。值得花 30 分钟研究 JD，看是否纳入求职雷达",
+      "source": "小红书"
+    }
+  ],
+  "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。你的推荐画像 = AI agent 工作流 + 独立开发变现 + 职业策略。",
+  "sources": [
+    {
+      "platform": "小红书",
+      "swept": 44,
+      "items": [
+        {
+          "title": "看完觉得一直像猴子🐵一样在用claude",
+          "author": "不吃淡水鱼",
+          "likes": 7104,
+          "saves": 9871,
+          "summary": "两位 Anthropic 工程师 24 分钟讲解鲜为人知的 Claude 隐藏工作流（视频转发帖，正文信息量少，价值在视频本身）。",
+          "why": "你的日常工具箱；也证明 Claude 工作流内容是你所在赛道最热的题材。",
+          "url": "https://www.rednote.com/explore/6a3cb3e5000000001101ceae",
+          "flag": null
+        },
+        {
+          "title": "努力让自己站在上风位 Stay Upwind",
+          "author": "晓辉博士",
+          "likes": 1691,
+          "summary": "Paul Graham：两难选择时，选让你处于「上风位」的那个——下风方向永远有更多选项。另一条：伟大不能被计划。",
+          "why": "直接映射你当前的职业分叉：外部 offer vs 自建产品。",
+          "url": "https://www.rednote.com/explore/6a466522000000001603f340",
+          "flag": null
+        },
+        {
+          "title": "三个前提不成立，FDE 在中国注定扯淡",
+          "author": "杉森楠",
+          "likes": 937,
+          "summary": "万字长文：OpenAI 与 Anthropic 同一天成立部署公司（OpenAI 首期 40 亿美元、向 PE 承诺年化 17.5%），Google Cloud CEO 亲自招 59 个 FDE，四大咨询全部跟进；但作者认为 FDE 依赖的三个前提在中国不成立。热评补充：金蝶/用友类 SaaS 会与基模大厂并购融合，agent 让定制成本塌方。",
+          "why": "FDE 是紧邻你候选画像（AI infra ops / platform ops）的新兴岗位浪潮，求职雷达应该覆盖。",
+          "url": "https://www.rednote.com/explore/6a478775000000000f032e64",
+          "flag": null
+        },
+        {
+          "title": "需求很大却没人做的小程序",
+          "author": "CoderLim",
+          "likes": 714,
+          "comments": 667,
+          "summary": "点子清单式引流帖，真正的价值在 667 条评论：真实用户在报需求（冰箱库存记录、教我用 AI 写小程序……）。",
+          "why": "免费的需求信号矿——想找周末 build 目标时来翻评论区。",
+          "url": "https://www.rednote.com/explore/6a335d4f0000000007025d83",
+          "flag": null
+        },
+        {
+          "title": "这是金子，抓紧抄大神Karpathy的作业",
+          "author": "逸枫聊AIx",
+          "likes": 639,
+          "summary": "声称流出 Karpathy 私人 LOOPS.md 配置，并附带「Karpathy 五周前加入 Anthropic」的传闻。作者自己承认来源未验证。",
+          "why": "内核只是「写 loop 别写 prompt」的老观点换皮；名人背书是编的。",
+          "url": "https://www.rednote.com/explore/6a4454e00000000015027020",
+          "flag": "⚠️ 来源存疑：Karpathy 加入 Anthropic 无任何真实依据，当同人文看"
+        }
+      ]
+    }
+  ]
+}

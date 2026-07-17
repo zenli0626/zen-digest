@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zen 每日情报</title>
+<style>
+  :root {
+    --ink: #2b2a26; --paper: #faf7f0; --card: #fff; --accent: #b0554d;
+    --gray: #8a857c; --line: #e4ddd0; --act: #4c7a5e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", -apple-system, sans-serif;
+    background: var(--paper); color: var(--ink); line-height: 1.7;
+    padding: 32px 16px 80px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+  header h1 { font-size: 22px; letter-spacing: 1px; }
+  #datepick { font-size: 14px; color: var(--gray); border: 1px solid var(--line); background: var(--card); border-radius: 8px; padding: 4px 10px; }
+  .day-title { font-size: 15px; color: var(--gray); margin-bottom: 20px; }
+
+  section.actions {
+    background: #eef4ef; border: 1px solid #d7e4da; border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 24px;
+  }
+  section.actions h2 { font-size: 15px; color: var(--act); letter-spacing: 2px; margin-bottom: 10px; }
+  section.actions li { margin: 8px 0 8px 18px; font-size: 15px; }
+  section.actions .src { color: var(--gray); font-size: 12px; margin-left: 6px; }
+
+  .meta {
+    border-left: 4px solid var(--accent); background: var(--card);
+    border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 14px;
+    color: #57534a; margin-bottom: 28px;
+  }
+
+  .platform { font-size: 17px; margin: 26px 0 4px; }
+  .platform .n { color: var(--gray); font-size: 13px; font-weight: normal; }
+  article {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 18px; margin: 12px 0;
+  }
+  article h3 { font-size: 16px; margin-bottom: 2px; }
+  article h3 a { color: var(--ink); text-decoration: none; }
+  article h3 a:hover { color: var(--accent); }
+  .byline { font-size: 12.5px; color: var(--gray); margin-bottom: 8px; }
+  .summary { font-size: 14.5px; margin-bottom: 8px; }
+  .why { font-size: 13.5px; color: var(--act); background: #f2f6f3; border-radius: 6px; padding: 6px 10px; }
+  .flag { font-size: 13.5px; color: var(--accent); background: #f9efed; border-radius: 6px; padding: 6px 10px; margin-top: 6px; }
+  footer { text-align: center; color: var(--gray); font-size: 12px; margin-top: 40px; }
+  .empty { text-align: center; color: var(--gray); padding: 60px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📮 Zen 每日情报</h1>
+    <select id="datepick"></select>
+  </header>
+  <div class="day-title" id="daytitle"></div>
+  <div id="content"><div class="empty">加载中…</div></div>
+  <footer>由 Claude 每日扫读生成 · 只收录值得你花时间的内容</footer>
+</div>
+<script>
+const fmtN = n => n >= 10000 ? (n/10000).toFixed(1) + '万' : (n ?? '');
+async function loadDay(d) {
+  const r = await fetch('digests/' + d + '.json'); const day = await r.json();
+  document.getElementById('daytitle').textContent = day.date + ' · ' +
+    day.sources.map(s => s.platform + ' ' + s.items.length + ' 条').join(' · ');
+  let h = '';
+  if (day.actions?.length) {
+    h += '<section class="actions"><h2>✅ 今日可行动</h2><ol>' +
+      day.actions.map(a => `<li>${a.text}<span class="src">· ${a.source}</span></li>`).join('') +
+      '</ol></section>';
+  }
+  if (day.meta_read) h += `<div class="meta"><strong>风向：</strong>${day.meta_read}</div>`;
+  for (const s of day.sources) {
+    h += `<h2 class="platform">${s.platform} <span class="n">扫读 ${s.swept ?? '?'} 条 → 精选 ${s.items.length} 条</span></h2>`;
+    for (const it of s.items) {
+      h += `<article><h3><a href="${it.url}" target="_blank">${it.title}</a></h3>
+        <div class="byline">${it.author} · ❤️ ${fmtN(it.likes)}${it.saves ? ' · ⭐ ' + fmtN(it.saves) : ''}${it.comments ? ' · 💬 ' + it.comments : ''}</div>
+        <div class="summary">${it.summary}</div>
+        <div class="why">对你：${it.why}</div>
+        ${it.flag ? `<div class="flag">${it.flag}</div>` : ''}</article>`;
+    }
+  }
+  document.getElementById('content').innerHTML = h || '<div class="empty">这一天没有条目</div>';
+}
+(async () => {
+  const days = await (await fetch('digests/index.json')).json();
+  days.sort().reverse();
+  const sel = document.getElementById('datepick');
+  sel.innerHTML = days.map(d => `<option>${d}</option>`).join('');
+  sel.onchange = () => loadDay(sel.value);
+  if (days.length) loadDay(days[0]);
+  else document.getElementById('content').innerHTML = '<div class="empty">还没有任何一期</div>';
+})();
+</script>
+</body>
+</html>
