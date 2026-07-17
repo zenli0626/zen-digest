@@ -1,0 +1,14 @@
+{
+  "window_hours": 48,
+  "channels": [
+    { "handle": "AndrejKarpathy",  "id": "UCXUPKJO5MZQN11PqgIvyuvQ", "lane": "frontier",   "why": "最高信噪比；所有二手内容的源头" },
+    { "handle": "anthropic-ai",    "id": "UCrDwWp7EBBv4NwvScIpBDOA", "lane": "frontier",   "why": "Claude 官方一手信息（发布、工程师讲解）" },
+    { "handle": "OpenAI",          "id": "UCXZCJLdBC09xxGZ6gcdrc6A", "lane": "frontier",   "why": "OpenAI 官方一手信息" },
+    { "handle": "DwarkeshPatel",   "id": "UCXl4i9dYBrFOabk0xGmbkRA", "lane": "frontier",   "why": "实验室领袖深度访谈；未来12个月的思考" },
+    { "handle": "aidotengineer",   "id": "UCLKPca3kwwd-B59HNr-_lvA", "lane": "builder",    "why": "AI Engineer World's Fair 全部回放（Zara 认证最佳会议）" },
+    { "handle": "LatentSpacePod",  "id": "UCxBcwypKK-W3GHd_RZ9FZrQ", "lane": "builder",    "why": "AI 工程师圈层对话；FDE/agent 话语发源地" },
+    { "handle": "LennysPodcast",   "id": "UC6t1O76G0jYXOAoYCm153dA", "lane": "pm-strategy","why": "产品/增长一线访谈；匹配 Zen 的 PM 侧写" },
+    { "handle": "NoPriorsPodcast", "id": "UCSI7h9hydQ40K5MJHnCrQvw", "lane": "pm-strategy","why": "创始人访谈，投资人视角" },
+    { "handle": "zarazhangg",      "id": "UCdJpnGphFqq48lnb8o80TcQ", "lane": "curator",    "why": "策展人本人；非程序员 AI 工作流内容标杆" }
+  ]
+}

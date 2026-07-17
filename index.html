@@ -29,6 +29,14 @@
   section.actions li { margin: 8px 0 8px 18px; font-size: 15px; }
   section.actions .src { color: var(--gray); font-size: 12px; margin-left: 6px; }
 
+  section.ota {
+    background: #f3f0fa; border: 1px solid #e0d8ef; border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 24px;
+  }
+  section.ota h2 { font-size: 15px; color: #6b5b95; letter-spacing: 2px; margin-bottom: 10px; }
+  section.ota .ota-sub { font-size: 13px; color: var(--gray); margin: 10px 0 4px; }
+  section.ota li { margin: 6px 0 6px 18px; font-size: 14.5px; }
+
   .meta {
     border-left: 4px solid var(--accent); background: var(--card);
     border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 14px;
@@ -75,6 +83,14 @@ async function loadDay(d) {
       '</ol></section>';
   }
   if (day.meta_read) h += `<div class="meta"><strong>风向：</strong>${day.meta_read}</div>`;
+  if (day.ota) {
+    h += '<section class="ota"><h2>🆕 今日自我升级（OTA）</h2>';
+    if (day.ota.learned?.length) h += '<div class="ota-sub">今天学到</div><ul>' +
+      day.ota.learned.map(x => `<li>${x}</li>`).join('') + '</ul>';
+    if (day.ota.new_capabilities?.length) h += '<div class="ota-sub">现在新会做</div><ul>' +
+      day.ota.new_capabilities.map(x => `<li>${x}</li>`).join('') + '</ul>';
+    h += '</section>';
+  }
   for (const s of day.sources) {
     h += `<h2 class="platform">${s.platform} <span class="n">扫读 ${s.swept ?? '?'} 条 → 精选 ${s.items.length} 条</span></h2>`;
     for (const it of s.items) {

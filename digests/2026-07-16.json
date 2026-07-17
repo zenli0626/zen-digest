@@ -14,8 +14,63 @@
       "source": "小红书"
     }
   ],
-  "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。你的推荐画像 = AI agent 工作流 + 独立开发变现 + 职业策略。",
+  "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。你的推荐画像 = AI agent 工作流 + 独立开发变现 + 职业策略。YouTube 侧：computer-use（让 AI 操作你的电脑/手机）正在从 demo 走向产品——OpenAI 今天正式把它装进 ChatGPT，和我们今天自建的 phone-use 是同一个浪潮。",
+  "ota": {
+    "learned": [
+      "OpenAI 把 computer-use 正式装进 ChatGPT 桌面版：in-app browser、Chrome 扩展接管标签页、macOS 上有独立光标可后台操作——验证了「代理操作真实界面」已是产品级方向",
+      "Cua (Computer-Use 2.0)：accessibility-tree 优先、像素兜底、把操作范围限定在单个窗口而不是整个桌面 → 通过率 62%→80%，token -34%。我们 phone.sh 的窗口级捕获方向是对的；缺的是 accessibility 层",
+      "Zara Zhang 的策展方法论：follow builders not influencers；把 YouTube 当人名搜索引擎（爱用的产品 → 找到 PM/创始人 → 看完他所有访谈）"
+    ],
+    "new_capabilities": [
+      "📱 /phone-use — 通过 iPhone Mirroring 读你的手机、抓小红书链接、（草稿+确认后）代你发布",
+      "📮 /xhs-brief — 登录态 rednote.com 网页扫读你的推荐流：排序 → 深读 → 交付摘要",
+      "📰 /daily-digest — 本站的引擎：多平台扫读 → 今日可行动 → 自我升级汇报，已排入每晚 2am 队列",
+      "📺 YouTube 情报线 — 9 频道花名册（Karpathy/Anthropic/OpenAI/AI Engineer/Latent Space/Lenny's/No Priors/Dwarkesh/Zara），RSS 无头扫读 + 逐字稿深读"
+    ]
+  },
   "sources": [
+    {
+      "platform": "YouTube",
+      "swept": 25,
+      "items": [
+        {
+          "title": "ChatGPT can now complete tasks on your computer",
+          "author": "OpenAI",
+          "likes": 41139,
+          "summary": "ChatGPT 桌面版正式获得 computer-use：内置浏览器扫网页出报告、Chrome 扩展直接用你已开的标签页跑流程（报销、批量录入）、macOS 上用独立光标后台操作任何桌面 app。",
+          "why": "和你今天让我控制 iPhone/Chrome 是同一件事的产品化版本——「代理操作真实界面」赛道正式起飞。",
+          "url": "https://www.youtube.com/watch?v=dB6pOolO7io",
+          "flag": null
+        },
+        {
+          "title": "Computer-Use 2.0: Agents Just Got Multi-Cursor (Cua, AI Engineer)",
+          "author": "AI Engineer World's Fair",
+          "likes": 2559,
+          "summary": "开源 Cua driver：agent 不抢你的屏幕（后台光标），accessibility-tree 优先、像素兜底；把操作范围限定在单窗口后，基准通过率 62%→80% 且省 34% token。同场发布 CuaBench：专业软件任务上最强模型通过率 <30%——还早。",
+          "why": "直接验证我们 phone-use 的窗口级设计；也给了下一步升级方向（accessibility 层、后台光标）。",
+          "url": "https://www.youtube.com/watch?v=ZSQb5fzRFPw",
+          "flag": null
+        },
+        {
+          "title": "Introducing the Codex Micro",
+          "author": "OpenAI",
+          "likes": 156597,
+          "summary": "OpenAI 联名 Work Louder 出了个 Codex 实体键盘：语音键口述任务、旋钮调 reasoning effort、每个键映射一个并行任务。今天小红书那条「Codex Micro 平替」蹭的就是它。",
+          "why": "信号：agent 的「物理控制台」成为新品类；也演示了多任务并行操控 agent 的交互范式。",
+          "url": "https://www.youtube.com/watch?v=m8uUUUsMD3Y",
+          "flag": null
+        },
+        {
+          "title": "Simon Willison × Anthropic Claude Code 团队 (Cat Wu, Thariq)",
+          "author": "AI Engineer World's Fair",
+          "likes": 2629,
+          "summary": "Claude Code 产品团队与 Simon Willison 的一小时对谈（逐字稿已存档，明日深读）。",
+          "why": "你每天的主力工具，一手信息源。",
+          "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
+          "flag": "📌 已排入明日深读"
+        }
+      ]
+    },
     {
       "platform": "小红书",
       "swept": 44,
