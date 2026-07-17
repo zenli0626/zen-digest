@@ -35,7 +35,7 @@
     "source": "OpenAI France · Katia Gil Guzman",
     "source_url": "https://www.youtube.com/watch?v=1fL_lwsdMd4"
   },
-  "meta_read": "今天 YouTube 侧的主线：执行层正在被 agent 拉平（OpenAI 反复讲「别再写详细 prompt，给目标就行」；Aiden 这个自动研究 agent 在 OpenAI 内部招聘挑战赛里刷新 7 项记录，超过所有人类参赛者），但两条独立信源都指向同一个结论——人的价值往上移到「设计判断标准」这一层：好的 eval、好的代码库抽象、好的目标描述，比动手执行本身更值钱。computer-use 继续产品化（ChatGPT 桌面版今天正式上线），执行层的产品格局也在这两周迅速收敛。",
+  "meta_read": "今天 YouTube 侧的主线：执行层正在被 agent 拉平（OpenAI 反复讲「别再写详细 prompt，给目标就行」；Aiden 这个自动研究 agent 在 OpenAI 内部招聘挑战赛里刷新 7 项记录，超过所有人类参赛者），但两条独立信源都指向同一个结论——人的价值往上移到「设计判断标准」这一层：好的 eval、好的代码库抽象、好的目标描述，比动手执行本身更值钱。computer-use 继续产品化（ChatGPT 桌面版今天正式上线），执行层的产品格局也在这两周迅速收敛。 【中外风向】X 新闻榜今日被 Boris Cherny「千 agent 编码团队」、Kimi K3 登顶编码基准占据；小红书则是 Codex/OpenAI 刷屏（PS5 手柄控 Codex、Codex 国产化梗图）+ Anthropic 新广告因「像 AI 末日预告」遭嘲——中文社区这轮的情绪明显偏 OpenAI/Codex，而 Anthropic 的风险叙事在大众层水土不服。",
   "ota": {
     "learned": [
       "yt-dlp 默认的 web 客户端今天开始对本报的 YouTube 抓取报错「The page needs to be reloaded」——查证是 YouTube 强制 web 客户端走 SABR streaming 导致；换成 `--extractor-args \"youtube:player_client=android\"` 就能正常拉字幕，且不需要 PO token。这是本地环境问题，不是内容判断问题，但会静默拖垮整条 YouTube 抓取链，必须记下来",
@@ -85,6 +85,84 @@
           "why": "「重写不再是禁忌」和「期望值被 agent 拉高」是两条能直接影响你怎么评估技术债和给自己定目标的判断。",
           "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
           "flag": "⏳ 已排入明日深读：还有约 8000 字未读完"
+        }
+      ]
+    },
+    {
+      "platform": "X",
+      "swept": 28,
+      "items": [
+        {
+          "title": "Boris Cherny 勾画「千人级 AI 编码团队」路线",
+          "author": "X 热榜 · @bcherny",
+          "likes": 99,
+          "summary": "X 今日新闻榜首条（Trending now，99 posts）：Claude Code 作者 Boris Cherny 把团队采纳的想象力从「四步阶梯」直接推到「1,000 个 agent 的编码团队」编制。",
+          "why": "工具作者本人对 agent 团队规模天花板的最新判断——从「让团队用起来」跳到「千 agent 怎么编制」，是判断组织形态走向的风向标。",
+          "url": "https://x.com/bcherny",
+          "flag": null
+        },
+        {
+          "title": "Moonshot Kimi K3 登顶编码基准，压过美国对手",
+          "author": "X 热榜",
+          "likes": 102400,
+          "summary": "X 新闻榜第二条（102.4K posts）：Kimi K3 在编码基准上超过美国竞品。较昨日「发布传闻」升级为「基准登顶」的更强表述。",
+          "why": "中国基模在 coding 赛道的攻势升级；若基准属实，性价比会直接冲击现有编码模型格局。",
+          "url": "https://x.com/search?q=Kimi%20K3",
+          "flag": "⚠️ 以热榜表述为准，具体基准口径编辑部尚未逐项核对"
+        },
+        {
+          "title": "Anthropic 给 Claude Code 的 /code-review 加了「可配置力度」",
+          "author": "X 热榜 · @AnthropicAI",
+          "likes": 1113,
+          "summary": "X 新闻榜（1,113 posts）：Claude Code 的 /code-review 现在可调审查力度（configurable effort），从轻量到深挖分档。",
+          "why": "一手产品更新，正在用 Claude Code 的人今天就能用上；也呼应「给前沿模型按需给力度、别一刀切」的思路。",
+          "url": "https://x.com/AnthropicAI",
+          "flag": null
+        },
+        {
+          "title": "Claude Code 团队 Thariq：先搭原型，别烧 token 造你不想要的东西",
+          "author": "@trq212（Claude Code 团队）",
+          "likes": 179,
+          "summary": "「先做 mockup / schema / 数据模型 / PoC，是避免烧一堆 token 才发现不想要那个产出的最好办法。」引用 Evan Tana「最快的构建方式是找到最便宜的学习方式」。同期热帖：Anthropic 工程师 40 分钟演示用三个 agent（规划 / 构建 / 评判）循环直到 app 跑通。",
+          "why": "工具作者给的一手工作流经济学——原型就是最便宜的 eval，直接可搬。",
+          "url": "https://x.com/trq212",
+          "flag": null
+        }
+      ]
+    },
+    {
+      "platform": "小红书",
+      "swept": 45,
+      "items": [
+        {
+          "title": "奥特曼嘲笑 Anthropic 新广告：还以为是讽刺",
+          "author": "动察Beating",
+          "likes": 107,
+          "comments": 53,
+          "summary": "Anthropic 新广告《希望存在于难题中》用燃烧的房屋、人脸监控、大片墓碑开场，旁白「AI 能被信任吗？」「失控时谁来踩刹车？」——不少网友觉得像 AI 末日预告，有人看完打电话问「AI 公司为什么在威胁我们？」OpenAI 的 Sam Altman 跳出来嘲讽：一度以为是讽刺账号，还在找账号名是不是拼成了 c1audeai。",
+          "why": "一堂反面公关课：正视风险 ≠ 制造恐惧；也是 Claude 品牌叙事的真实市场反馈。",
+          "url": "https://www.rednote.com/explore/6a58a1b4000000000402bdd5",
+          "flag": null
+        },
+        {
+          "title": "我让 PS5 手柄控制 Codex，OpenAI 血亏 200 刀",
+          "author": "言辞之间",
+          "likes": 373,
+          "saves": 250,
+          "summary": "用 DualSense（PS5 手柄）驱动 Codex 的 DIY 视频：语音键口述任务、摇杆映射常用操作。OpenAI 那把 200 刀的 Codex Micro 实体键盘，被一个游戏手柄「平替」了。",
+          "why": "昨日本报报过 Codex Micro，今天社区就出了平替——「agent 物理控制台」正在被民间快速复刻，硬件门槛没那么高。",
+          "url": "https://www.rednote.com/explore/6a58a30a000000000f01746c",
+          "flag": null
+        },
+        {
+          "title": "给 Paul Graham 做了个沉浸式阅读站",
+          "author": "李然想当然",
+          "likes": 377,
+          "saves": 304,
+          "summary": "为 PG 的《How to do great work》 vibe-code 了一个沉浸式阅读站（ranli.me/read-paul-graham）：支持高亮/写笔记+一键复制所有笔记、可切换中英双语。作者说这是读过最好的 blog，10455 词、简单但耐读，「用 AI 概括不如不看」。",
+          "why": "昨日本报社评引过 PG 的 Stay Upwind，今天就有人把他另一篇长文做成产品；也是「深读 > AI 概括」的注脚，和本报「代读不偷懒」同频。",
+          "url": "https://www.rednote.com/explore/6a42f61c0000000008033549",
+          "flag": null
         }
       ]
     }
