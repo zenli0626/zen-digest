@@ -208,7 +208,7 @@
       <span>AI 编辑部 · 编发</span>
       <span><select id="datepick" aria-label="选择日期"></select></span>
       <span class="mono" id="daycount">—</span>
-      <button id="dl-pdf" title="下载本期竖版长图 PDF">⬇ 长图PDF</button>
+      <button id="dl-pdf" title="下载本期头版长图（PNG，可直接发小红书）">⬇ 分享长图</button>
     </div>
   </header>
 
@@ -301,7 +301,6 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
   btn.disabled = true; btn.textContent = '排版中…';
   try {
     if (!window.html2canvas) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
-    if (!window.jspdf) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
     if (!window.QRCode) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js');
     const day = document.getElementById('datepick').value;
     const clone = document.querySelector('.wrap').cloneNode(true);
@@ -322,17 +321,17 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
     await new Promise(r => setTimeout(r, 400));
     const canvas = await html2canvas(clone, { scale: 2, backgroundColor: '#fbfaf6', useCORS: true, windowWidth: 1080 });
     holder.remove();
-    const w = canvas.width / 2, h = canvas.height / 2;
-    const pdf = new jspdf.jsPDF({ orientation: 'portrait', unit: 'px', format: [w, h], hotfixes: ['px_scaling'] });
-    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
-    pdf.save(`每日情报-${day}.pdf`);
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = `每日情报-${day}.png`;
+    a.click();
   } catch (e) {
     console.error('[pdf-export]', e);
     btn.textContent = '导出失败，重试';
     btn.disabled = false;
     return;
   }
-  btn.disabled = false; btn.textContent = '⬇ 长图PDF';
+  btn.disabled = false; btn.textContent = '⬇ 分享长图';
 });
 
 (async () => {
