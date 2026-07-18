@@ -72,10 +72,10 @@
           "title": "The Great Loops Debate — Dex Raad, Geoff Huntley, Ian Livingston, Greg Kostruba",
           "author": "AI Engineer World's Fair（insecure agents 主持）",
           "likes": null,
-          "summary": "编辑部读了开头与结尾，中段约 9000 字已排入明日深读。牛津式辩论，辩题：agent『loops / 软件工厂』的炒作和实战之间到底有没有落差(delta)。正方(Geoff Huntley『Ralph loop』作者 + Ian)：loops 是工程的核心单元、势不可挡，把它当成一种新的 CPU 架构来研究，最简可压缩成一个 bash 循环，配上纪律/基础设施/测试就非常有效。反方(Dax Raad/Human Layer + Greg)：炒作跑在纪律前面——loops 能无人值守地跑『机械的、spec 明确、有测试覆盖的切片』，但它没法诚实判断『到底该不该建这个东西』，所以工程师必须留在环里。结尾的实操共识很硬：①别指望现在就能照搬进自己公司，市场上普遍还没解决；②静态类型=一种验证形式——用 Python/Ruby 跑 loop 会变成『马戏团』，Rust/Haskell 这类强类型语言可维护性好得多（『代码甚至不必可读，但必须可解释』）；③自己拥有供应链——他已 10 个月几乎不用开源，按需自己生成，供应链攻击『没波及到我』，核心是把爆炸半径压到最小。",
-          "why": "和上面 DeepMind、YC 两场独立信源交叉印证同一结论：执行可以交给 loop，但『判断建得对不对』和『验证(类型/测试/评测)』留给人。对在搭自动化流程的人，最落地的一条是：给你的 loop 配真正的验证（强类型/测试），机械切片才敢无人值守。",
+          "summary": "编辑部已代读全场（1 小时 Oxford 辩论）。正方（Ian Livingston / Jeff Huntley，Ralph loop 作者）：loop 已不可逆——Jeff 2.5 年没手写过代码，把 agent 迭代压成一个 bash while 循环，跑一小时约 10.42 美元、质量胜过市面上多数能招到的程序员；「loop engineering」里的工程 = 把领域约束编码成 pre-commit hook / 类型系统 / 模拟测试，逼 loop 不达标就不闭合（模型是个醉汉，我们的活是把火车头保持在轨道上）。反方（Dax Raad / Greg，Sentry）：loop 是好东西，但炒作跑在纪律前面——真正难的是语义验证：确定性的能验（类型 / lint / 仿真），整体正确性验不了；把非确定性验证套进 loop 会累积误差（单轮 5% 错 × 10~20 轮 → 50%）；更硬的墙是经济性（一个工程师每月烧 10k / 100k / 100 万美元 token？不可持续）；架构、取舍、「不该做什么」这些判断仍必须留给人。两队罕见地在结论上一致：得读产出物、自己动手试、少刷 Twitter。零散要点：模型 RL 越强越会钻空子（别把密钥存成文件，agent 会在文件系统里找高权限凭证）；Anthropic 已把 Ralph 收进 loop / batch / goal 三个命令；git 只能一个签名者，但人必须为 agent 产出担责。现场投票太接近，灯太亮没数清。",
+          "why": "本期最诚实的一张地图——loop 到底在哪能用（可验证、规格清晰、强类型的领域）、在哪不能（架构 / 品味 / 经济性）。正是判断层主题的落地版，也给了如何给 loop 加真验证的具体手法。",
           "url": "https://www.youtube.com/watch?v=c35YoMdnI78",
-          "flag": "⏳ 已排入明日深读：中段约 9000 字（loop 解剖学与历史）未读完"
+          "flag": null
         }
       ]
     },
