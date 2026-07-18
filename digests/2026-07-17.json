@@ -7,9 +7,9 @@
   },
   "actions": [
     {
-      "text": "今晚挑一件你今天已经做顺、以后还会再做的任务（一份报告格式、一次固定的抓取、一套构建流程），别只交付就走——用 /skill-creator 把它固化成一个 skill 文件。这是本期最硬的一条工作心法（Garry Tan：『永远不做一次性工作；一件事要问两遍就是失败』）：skill=员工，杠杆会天天复利",
-      "source": "YouTube · Garry Tan / Y Combinator（编辑部已看完）",
-      "source_url": "https://www.youtube.com/watch?v=eBUyTS7SzV4"
+      "text": "别再让 AI 一键概括长文——挑一篇你一直想认真读的（比如 PG 的《How to do great work》），用沉浸式方式慢读一遍。深读本身就是最好的 eval，也是判断层能力的日常训练",
+      "source": "小红书 · 给 Paul Graham 做沉浸式阅读站",
+      "source_url": "https://www.rednote.com/explore/6a42f61c0000000008033549"
     },
     {
       "text": "如果你在跑任何 agent 循环/自动化流程，今晚给它补一层真正的验证——强类型或一套测试。三场独立信源(DeepMind Benoit、YC、Loops 辩论)都指向同一句话：机械的、spec 明确、有测试覆盖的切片可以交给 loop 无人值守，但『建得对不对』要人判断；没有验证的 loop 就是『马戏团』",
@@ -35,7 +35,7 @@
     "source": "Garry Tan · The New Physics of Business（AI Engineer World's Fair）",
     "source_url": "https://www.youtube.com/watch?v=eBUyTS7SzV4"
   },
-  "meta_read": "今天 YouTube 侧三场独立演讲(DeepMind 研究 VP Benoit Schillings、YC 的 Garry Tan、AI Engineer 的 Loops 大辩论)几乎同时收敛到同一个结论，比昨天『别写 prompt、给目标就行』又深了一层：写代码本身已经免费(Benoit：语法生成早已超人、80% 新代码机器生成、一年内没人再逐行读)，价值全部上移到两处——①怎么编排(Garry Tan：400x 的差距不在模型在『怎么 wire the work』；skill=员工、context=公司大脑、绝不做一次性工作)；②怎么验证(Loops 辩论 + Benoit 都强调：强类型/测试/评测是新的护栏，loop 能跑机械切片但『建得对不对』留给人)。一句话：执行塌陷，判断和编排升值。 【中外风向】(沿用今日早间实时扫读，9pm 刷新时无登录态 Chrome 未重扫) X 榜由 Boris Cherny『千 agent 编码团队』、Kimi K3 登顶编码基准占据；小红书是 Codex/OpenAI 刷屏 + Anthropic 新广告因『像 AI 末日预告』遭嘲——中文社区这轮情绪偏 OpenAI/Codex。",
+  "meta_read": "把今天所有信源叠在一起，只有一句是它们共同的底层：执行层在贬值，判断层在升值——写代码、写详细提示词这类「动手」正在被 agent 拉平，而品味、eval、目标设计这类「定标准」成了新的稀缺。但更值得记下的是一道中外温差：英文圈在认真讨论怎么把 agent 编成千人团队、怎么给模型少约束多目标（生产力上限的话题）；中文圈的情绪却明显倒向 OpenAI/Codex，连 Anthropic 那支正视风险的广告都被当成「AI 末日预告」群嘲。一边在谈能力天花板，一边在谈消费情绪——这个错位本身，就是这一期最该带走的信号。",
   "ota": {
     "learned": [
       "Garry Tan(YC)的『新商业物理学』：同一个人同一个 Claude，2x 的人和 100x 的人差距不在模型权重，而在『怎么编排工作』——他把 agent 工程整套映射成一家公司：skill 文件=员工、resolver 表=组织架构、filing rules=流程、trigger eval=绩效考核；context/记忆层=『公司大脑』(图书馆+图书管理员，带来源标注和矛盾检查)。这套心法和 Zen 本来的『经理+子代理』打法完全同构，可以直接拿来系统化",
