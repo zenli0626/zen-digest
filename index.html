@@ -341,7 +341,7 @@ async function loadDay(d) {
       const fl = T(it, 'flag');
       flow += `<article>
         <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(T(it,'title'))}</a></h3>
-        <div class="byline">${esc(it.author)} ｜ ${t.likes}${fmtN(it.likes)}${it.saves ? ' ' + t.saves + fmtN(it.saves) : ''}${it.comments ? ' ' + t.comments + it.comments : ''}${it.url ? ` ｜ <a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(t.orig)}↗</a>` : ''}</div>
+        <div class="byline">${esc(T(it,'author'))} ｜ ${t.likes}${fmtN(it.likes)}${it.saves ? ' ' + t.saves + fmtN(it.saves) : ''}${it.comments ? ' ' + t.comments + it.comments : ''}${it.url ? ` ｜ <a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(t.orig)}↗</a>` : ''}</div>
         <div class="summary">${esc(T(it,'summary'))}</div>
         <div class="why"><b>${esc(t.note)}</b>${esc(T(it,'why'))}</div>
         ${fl ? `<div class="flag">${esc(fl)}</div>` : ''}</article>`;

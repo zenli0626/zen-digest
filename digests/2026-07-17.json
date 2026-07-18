@@ -59,6 +59,13 @@
     ],
     "new_capabilities": [
       "🧩 采纳『永远不做一次性工作 → skillify it』为默认工作心法：以后完成任何可复用任务，会主动用 skill-creator 固化成 skill 而不是每次重跑(已写入本项目记忆 feedback-skillify-recurring-work)。往后 Zen 让我做重复性活儿时，我会顺手把它变成一个可复用能力，杠杆天天复利"
+    ],
+    "learned_en": [
+      "Garry Tan (YC)’s “New Physics of Business”: same person, same Claude — the gap between a 2× and a 100× person isn’t in the model weights, it’s in how you wire the work. He maps agent engineering onto a whole company: skill files = employees, resolver tables = org chart, filing rules = process, trigger evals = performance reviews; the context/memory layer = the “company brain” (library + librarian, with source attribution and contradiction checks). This is isomorphic to Zen’s existing “manager + sub-agents” style — directly systematizable.",
+      "A hard conclusion where Benoit Schillings (DeepMind research VP) and the Loops debate cross-confirm: strong typing is a form of verification. Running an agent loop in Python/Ruby turns into a circus; strongly-typed languages like Rust/Haskell are far more maintainable; evals should move from “does the code run” to open-ended problems (Benoit’s lossless-compressor example). Takeaway for this paper: when designing acceptance for any automation, lean on structural verification (types/tests) first, not eyeballing the output."
+    ],
+    "new_capabilities_en": [
+      "🧩 Adopted “never do one-off work → skillify it” as a default working principle: from now on, any reusable task gets frozen into a skill via skill-creator instead of being re-run each time (written to this project’s memory feedback-skillify-recurring-work). When Zen gives me repetitive work, I’ll turn it into a reusable capability on the spot — leverage compounding daily."
     ]
   },
   "sources": [
@@ -100,7 +107,8 @@
           "flag": null,
           "title_en": "The Great Loops Debate — Dex Raad, Geoff Huntley, Ian Livingston, Greg Kostruba",
           "summary_en": "Read the full 1-hour Oxford debate. Pro side (Ian Livingston / Jeff Huntley, author of the Ralph loop): loops are inevitable — Jeff hasn’t hand-written code in 2.5 years, compressed agent iteration into a bash while-loop that runs at ~$10.42/hour and beats most hireable devs on quality; the “engineering” in loop engineering = encoding your domain constraints as pre-commit hooks / type systems / simulation tests so the loop can’t close until it meets the bar (“the model’s a drunk; our job is to keep the locomotive on the rails”). Con side (Dax Raad / Greg, Sentry): loops are good, but hype outran discipline — the hard part is semantic verification: you can verify deterministically (types / lint / sim), but not holistically; stacking non-deterministic verification into a loop compounds error (5% per round × 10–20 rounds → 50%); the harder wall is economics (an engineer burning $10k / $100k / $1M a month in tokens? not sustainable); architecture, tradeoffs, and “what NOT to build” must stay with humans. Both sides rarely agree on the conclusion: read the output, try it yourself, spend less time on Twitter. Scattered points: stronger RL makes models better at gaming checks (don’t store secrets as files — agents hunt the filesystem for higher-priv creds); Anthropic folded Ralph into three commands loop / batch / goal; git allows only one signer, but a human must be accountable for an agent’s output. The room vote was too close to call — lights too bright to count.",
-          "why_en": "The most honest map in this issue — exactly where loops work (verifiable, well-specified, strongly-typed domains) and where they don’t (architecture / taste / economics). The concrete, ground-level version of the judgment-layer theme, plus specific techniques for adding real verification to a loop."
+          "why_en": "The most honest map in this issue — exactly where loops work (verifiable, well-specified, strongly-typed domains) and where they don’t (architecture / taste / economics). The concrete, ground-level version of the judgment-layer theme, plus specific techniques for adding real verification to a loop.",
+          "author_en": "AI Engineer World’s Fair (insecure agents, host)"
         }
       ]
     },
@@ -118,7 +126,8 @@
           "flag": null,
           "title_en": "Boris Cherny sketches the path to 1,000-agent AI coding teams",
           "summary_en": "Top of X’s news list today (Trending now, 99 posts): Claude Code author Boris Cherny pushes team-adoption imagination from a “four-step ladder” straight to staffing a “1,000-agent coding team.”",
-          "why_en": "The tool’s own author on the ceiling of agent-team scale — jumping from “get the team using it” to “how do you staff 1,000 agents” is a bellwether for where org structure is heading."
+          "why_en": "The tool’s own author on the ceiling of agent-team scale — jumping from “get the team using it” to “how do you staff 1,000 agents” is a bellwether for where org structure is heading.",
+          "author_en": "X Trending · @bcherny"
         },
         {
           "title": "Moonshot Kimi K3 登顶编码基准，压过美国对手",
@@ -131,7 +140,8 @@
           "title_en": "Moonshot’s Kimi K3 tops coding benchmarks, beating U.S. rivals",
           "summary_en": "#2 on X’s news list (102.4K posts): Kimi K3 surpasses U.S. competitors on coding benchmarks — an upgrade from yesterday’s “launch rumor” to a stronger “benchmark-topping” claim.",
           "why_en": "China’s foundation models escalating the coding-lane offensive; if the benchmarks hold, the price/performance will directly pressure the current coding-model landscape.",
-          "flag_en": "⚠️ Based on the trending-list wording; the desk hasn’t verified the specific benchmark methodology item by item"
+          "flag_en": "⚠️ Based on the trending-list wording; the desk hasn’t verified the specific benchmark methodology item by item",
+          "author_en": "X Trending"
         },
         {
           "title": "Anthropic 给 Claude Code 的 /code-review 加了「可配置力度」",
@@ -143,7 +153,8 @@
           "flag": null,
           "title_en": "Anthropic adds “configurable effort” to Claude Code’s /code-review",
           "summary_en": "On X’s news list (1,113 posts): Claude Code’s /code-review now has adjustable review effort — tiers from light to deep-dig.",
-          "why_en": "A first-hand product update anyone using Claude Code can use today; also echoes the “give frontier models effort on demand, don’t one-size-fit-all” idea."
+          "why_en": "A first-hand product update anyone using Claude Code can use today; also echoes the “give frontier models effort on demand, don’t one-size-fit-all” idea.",
+          "author_en": "X Trending · @AnthropicAI"
         },
         {
           "title": "Claude Code 团队 Thariq：先搭原型，别烧 token 造你不想要的东西",
@@ -155,7 +166,8 @@
           "flag": null,
           "title_en": "Claude Code’s Thariq: prototype first, don’t burn tokens building what you don’t want",
           "summary_en": "“Building mockups / schemas / data models / PoCs is the best way to avoid spending a ton of tokens before realizing you don’t want that output.” Quoting Evan Tana: “the fastest way to build is to find the cheapest way to learn.” Same-window hot post: Anthropic engineers demo, in 40 minutes, three agents (plan / build / judge) looping until the app works.",
-          "why_en": "First-hand workflow economics from the tool’s author — a prototype is the cheapest eval, directly copyable."
+          "why_en": "First-hand workflow economics from the tool’s author — a prototype is the cheapest eval, directly copyable.",
+          "author_en": "@trq212 (Claude Code team)"
         }
       ]
     },
