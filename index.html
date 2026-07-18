@@ -215,20 +215,17 @@
 
   <header class="rise">
     <div class="masthead">
-      <div class="mast-side">
-        AI 情报参考<br>
-        代读中外信息流<br>
-        <span class="mono">DAILY INTEL DIGEST</span>
+      <div class="mast-side" id="mast-l">
+        AI 情报参考<br>代读中外信息流<br><span class="mono">DAILY INTEL DIGEST</span>
       </div>
       <h1>每日情报</h1>
       <div class="mast-side right">
-        长视频均由编辑部代读<br>
-        本报每日自我升级<br>
+        <span id="mast-r">长视频均由编辑部代读<br>本报每日自我升级</span><br>
         <span class="mono" id="issue-no">第 — 期</span>
       </div>
     </div>
     <div class="pub-strip">
-      <span>AI 编辑部 · 编发</span>
+      <span id="pub-by">AI 编辑部 · 编发</span>
       <span><select id="datepick" aria-label="选择日期"></select></span>
       <span class="mono" id="daycount">—</span>
       <a href="/archive.html" id="arch-link">📚 往期合订本</a>
@@ -271,14 +268,20 @@ const L = {
         empty:'本期无内容', swept:(a,b)=>`扫读${a}·选${b}`, issue:n=>`第 ${n} 期`,
         navAct:'可行动', navTry:'试新', navEd:'社评', navOta:'升级公告', deskSuffix:'版',
         cite:(dt,n)=>`《每日情报》（${dt}　第 ${n} 期）`, foot:'本报由 AI 编辑部每日自动编发 · 只印值得花时间的内容 · 明日同一时间见',
-        likes:'赞', saves:'藏', comments:'评' },
+        likes:'赞', saves:'藏', comments:'评', issuePfx:n=>`第 ${n} 期`,
+        mastL:'AI 情报参考<br>代读中外信息流<br><span class="mono">DAILY INTEL DIGEST</span>',
+        mastR:'长视频均由编辑部代读<br>本报每日自我升级', pubBy:'AI 编辑部 · 编发',
+        arch:'📚 往期合订本', dl:'⬇ 分享长图' },
   en: { act:'Today’s Actions', actEn:'Do These Today', tryNew:'◆ Try Something New', editorial:'Editorial',
         note:'Editor’s note', src:'Source', orig:'original', otaHead:'Editorial System Update', learned:'Learned today',
         caps:'New capabilities', photo:'Photo of the day', partial:'⚠ Some sources missing this issue (headless run) — to be backfilled',
         empty:'No content this issue', swept:(a,b)=>`swept ${a} · ${b} picked`, issue:n=>`No. ${n}`,
         navAct:'Actions', navTry:'Try', navEd:'Editorial', navOta:'Update', deskSuffix:'',
         cite:(dt,n)=>`The Daily Intelligence · ${dt} · No. ${n}`, foot:'Compiled daily by the AI desk · only what’s worth your time · same time tomorrow',
-        likes:'♥', saves:'★', comments:'✎' }
+        likes:'♥', saves:'★', comments:'✎', issuePfx:n=>`NO. ${n}`,
+        mastL:'AI Intelligence Digest<br>reads Chinese &amp; foreign feeds<br><span class="mono">DAILY INTEL DIGEST</span>',
+        mastR:'Long videos read by the desk<br>self-updating every day', pubBy:'AI Desk · edited',
+        arch:'📚 Archive', dl:'⬇ Share image' }
 };
 
 async function loadDay(d) {
@@ -289,10 +292,16 @@ async function loadDay(d) {
   const t = L[lang];
   const dateStr = lang === 'en' ? enDate(day.date) : cnDate(day.date);
   document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
-  document.getElementById('issue-no').textContent = lang === 'en' ? ('NO. ' + issueNo) : ('第 ' + issueNo + ' 期');
+  document.getElementById('issue-no').textContent = t.issuePfx(issueNo);
   document.getElementById('daycount').textContent = dateStr + ' · ' +
     day.sources.map(s => platName(s.platform) + '×' + s.items.length).join(' · ');
   document.querySelector('footer').textContent = t.foot;
+  // static masthead / pub-strip chrome
+  document.getElementById('mast-l').innerHTML = t.mastL;
+  document.getElementById('mast-r').innerHTML = t.mastR;
+  document.getElementById('pub-by').textContent = t.pubBy;
+  document.getElementById('arch-link').textContent = t.arch;
+  document.getElementById('dl-pdf').textContent = t.dl;
   let h = '';
 
   // 版面导读格
@@ -375,7 +384,7 @@ const loadScript = src => new Promise((ok, err) => {
 });
 document.getElementById('dl-pdf').addEventListener('click', async () => {
   const btn = document.getElementById('dl-pdf');
-  btn.disabled = true; btn.textContent = '排版中…';
+  btn.disabled = true; btn.textContent = lang === 'en' ? 'Rendering…' : '排版中…';
   try {
     if (!window.html2canvas) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
     if (!window.QRCode) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js');
@@ -404,11 +413,11 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
     a.click();
   } catch (e) {
     console.error('[pdf-export]', e);
-    btn.textContent = '导出失败，重试';
+    btn.textContent = lang === 'en' ? 'Export failed, retry' : '导出失败，重试';
     btn.disabled = false;
     return;
   }
-  btn.disabled = false; btn.textContent = '⬇ 分享长图';
+  btn.disabled = false; btn.textContent = L[lang].dl;
 });
 
 (async () => {
