@@ -62,6 +62,8 @@
   .pub-strip option { color: var(--ink); }
   #arch-link { color: #fdf6ec; text-decoration: none; font-family: var(--hei); font-weight: 700; font-size: 11.5px; border-bottom: 1px dashed rgba(253,246,236,.6); }
   #arch-link:hover { border-bottom-style: solid; }
+  #lang-toggle { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 1px; color: var(--red); background: #fdf6ec; border: none; border-radius: 2px; padding: 3px 9px; cursor: pointer; }
+  #lang-toggle:hover { background: #fff; }
   #dl-pdf {
     font-family: var(--hei); font-weight: 700; font-size: 12px; letter-spacing: 1px;
     color: var(--red); background: #fdf6ec; border: none; border-radius: 2px;
@@ -230,6 +232,7 @@
       <span><select id="datepick" aria-label="选择日期"></select></span>
       <span class="mono" id="daycount">—</span>
       <a href="/archive.html" id="arch-link">📚 往期合订本</a>
+      <button id="lang-toggle" title="切换中英文 / Toggle language">EN</button>
       <button id="dl-pdf" title="下载本期头版长图（PNG，可直接发小红书）">⬇ 分享长图</button>
     </div>
   </header>
@@ -247,81 +250,121 @@ const cnDate = d => {
   const wk = '日一二三四五六'[new Date(y, m - 1, dd).getDay()];
   return `${y}年${String(m).padStart(2,'0')}月${String(dd).padStart(2,'0')}日 星期${wk}`;
 };
-let allDays = [];
+let allDays = [], curDay = null;
+let lang = (new URLSearchParams(location.search).get('lang') === 'en') ? 'en' : 'zh';
+
+const enDate = d => {
+  const [y, m, dd] = d.split('-').map(Number);
+  const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1];
+  const wk = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date(y, m-1, dd).getDay()];
+  return `${mo} ${dd}, ${y} · ${wk}`;
+};
+// pick localized value: prefer <field>_en in EN mode, else fall back to Chinese
+const T = (o, k) => (lang === 'en' ? (o?.[k + '_en'] ?? o?.[k]) : o?.[k]);
+const L = {
+  zh: { act:'今日可行动', actEn:'Do These Today', tryNew:'◆ 今日试新', editorial:'本报社评',
+        note:'编者按', src:'来源', orig:'原文', otaHead:'编辑部升级公告', learned:'今日所学',
+        caps:'新增能力', photo:'本期要图', partial:'⚠ 本期部分来源缺席（无头运行），稍后补全',
+        empty:'本期无内容', swept:(a,b)=>`扫读${a}·选${b}`, issue:n=>`第 ${n} 期`,
+        navAct:'可行动', navTry:'试新', navEd:'社评', navOta:'升级公告', deskSuffix:'版',
+        cite:(dt,n)=>`《每日情报》（${dt}　第 ${n} 期）`, foot:'本报由 AI 编辑部每日自动编发 · 只印值得花时间的内容 · 明日同一时间见',
+        likes:'赞', saves:'藏', comments:'评' },
+  en: { act:'Today’s Actions', actEn:'Do These Today', tryNew:'◆ Try Something New', editorial:'Editorial',
+        note:'Editor’s note', src:'Source', orig:'original', otaHead:'Editorial System Update', learned:'Learned today',
+        caps:'New capabilities', photo:'Photo of the day', partial:'⚠ Some sources missing this issue (headless run) — to be backfilled',
+        empty:'No content this issue', swept:(a,b)=>`swept ${a} · ${b} picked`, issue:n=>`No. ${n}`,
+        navAct:'Actions', navTry:'Try', navEd:'Editorial', navOta:'Update', deskSuffix:'',
+        cite:(dt,n)=>`The Daily Intelligence · ${dt} · No. ${n}`, foot:'Compiled daily by the AI desk · only what’s worth your time · same time tomorrow',
+        likes:'♥', saves:'★', comments:'✎' }
+};
 
 async function loadDay(d) {
+  curDay = d;
   const r = await fetch('digests/' + d + '.json'); const day = await r.json();
   const idx = allDays.indexOf(d);
   const issueNo = String(allDays.length - idx).padStart(3, '0');
-  document.getElementById('issue-no').textContent = '第 ' + issueNo + ' 期';
-  document.getElementById('daycount').textContent = cnDate(day.date) + ' · ' +
+  const t = L[lang];
+  const dateStr = lang === 'en' ? enDate(day.date) : cnDate(day.date);
+  document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+  document.getElementById('issue-no').textContent = lang === 'en' ? ('NO. ' + issueNo) : ('第 ' + issueNo + ' 期');
+  document.getElementById('daycount').textContent = dateStr + ' · ' +
     day.sources.map(s => s.platform + '×' + s.items.length).join(' · ');
+  document.querySelector('footer').textContent = t.foot;
   let h = '';
 
   // 版面导读格
   let tiles = [], vn = 1;
   const pad2 = n => String(n).padStart(2, '0');
-  if (day.actions?.length) tiles.push(`<a href="#sec-actions"><b>${pad2(vn++)}版</b>可行动</a>`);
-  if (day.hands_on) tiles.push(`<a href="#sec-handson"><b>${pad2(vn++)}版</b>试新</a>`);
-  if (day.meta_read) tiles.push(`<a href="#sec-metaread"><b>${pad2(vn++)}版</b>社评</a>`);
-  for (const s of day.sources) tiles.push(`<a href="#sec-${esc(s.platform)}"><b>${pad2(vn++)}版</b>${esc(s.platform)}</a>`);
-  if (day.ota) tiles.push(`<a href="#sec-ota"><b>${pad2(vn++)}版</b>升级公告</a>`);
+  if (day.actions?.length) tiles.push(`<a href="#sec-actions"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navAct}</a>`);
+  if (day.hands_on) tiles.push(`<a href="#sec-handson"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navTry}</a>`);
+  if (day.meta_read) tiles.push(`<a href="#sec-metaread"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navEd}</a>`);
+  for (const s of day.sources) tiles.push(`<a href="#sec-${esc(s.platform)}"><b>${pad2(vn++)}${t.deskSuffix}</b>${esc(s.platform)}</a>`);
+  if (day.ota) tiles.push(`<a href="#sec-ota"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navOta}</a>`);
   if (tiles.length) h += `<nav class="ban-nav rise">${tiles.join('')}</nav>`;
 
-  const banner = day.banner ?? day.sources?.[0]?.items?.[0]?.title;
+  const banner = T(day, 'banner') ?? T(day.sources?.[0]?.items?.[0] ?? {}, 'title');
   if (banner) h += `<div class="rise banner">${esc(banner)}</div>
-    <div class="banner-cite">《每日情报》（${cnDate(day.date)}　第 ${issueNo} 期）</div><div class="banner-rule"></div>`;
+    <div class="banner-cite">${esc(t.cite(dateStr, issueNo))}</div><div class="banner-rule"></div>`;
 
-  if (day.partial) h += `<div class="partial-note rise">⚠ 本期部分来源缺席（无头运行），稍后补全</div>`;
+  if (day.partial) h += `<div class="partial-note rise">${esc(t.partial)}</div>`;
 
   if (day.image?.src) {
+    const cap = T(day.image, 'caption');
     h += `<figure class="hero rise" style="animation-delay:.15s">
       <div class="frame"><img src="${esc(day.image.src)}" alt=""></div>
-      ${day.image.caption ? `<figcaption><b>▲ 本期要图</b> ${esc(day.image.caption)}</figcaption>` : ''}
+      ${cap ? `<figcaption><b>▲ ${esc(t.photo)}</b> ${esc(cap)}</figcaption>` : ''}
     </figure>`;
   }
 
   if (day.actions?.length) {
-    h += '<section id="sec-actions" class="actions rise" style="animation-delay:.1s"><div class="box-tab"><span class="tag">今日可行动</span><span class="en">Do These Today</span></div>' +
+    h += `<section id="sec-actions" class="actions rise" style="animation-delay:.1s"><div class="box-tab"><span class="tag">${esc(t.act)}</span><span class="en">${esc(t.actEn)}</span></div>` +
       day.actions.map((a, i) =>
-        `<div class="action"><div class="num">${'一二三四五六'[i] ?? i+1}</div><div><div class="body">${esc(a.text)}</div><div class="src">〔来源 · ${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">${esc(a.source)} ↗</a>` : esc(a.source)}〕</div></div></div>`
+        `<div class="action"><div class="num">${lang==='en' ? (i+1) : ('一二三四五六'[i] ?? i+1)}</div><div><div class="body">${esc(T(a,'text'))}</div><div class="src">〔${esc(t.src)} · ${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">${esc(T(a,'source'))} ↗</a>` : esc(T(a,'source'))}〕</div></div></div>`
       ).join('') + '</section>';
   }
 
   let flow = '';
   if (day.hands_on) {
     const ho = day.hands_on;
-    flow += `<div id="sec-handson" class="boxed"><div class="b-head"><span class="t">◆ 今日试新</span><span class="sub">${esc(ho.time ?? '')}</span></div>
-      <div class="ho-title">${esc(ho.title)}</div>
-      <div class="ho-why">${esc(ho.why)}</div>
-      <ol class="ho-steps">${(ho.steps ?? []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
-      ${ho.source ? `<div class="src" style="margin-top:6px">〔来源 · ${ho.source_url ? `<a href="${esc(ho.source_url)}" target="_blank" rel="noopener">${esc(ho.source)} ↗</a>` : esc(ho.source)}〕</div>` : ''}</div>`;
+    flow += `<div id="sec-handson" class="boxed"><div class="b-head"><span class="t">${esc(t.tryNew)}</span><span class="sub">${esc(ho.time ?? '')}</span></div>
+      <div class="ho-title">${esc(T(ho,'title'))}</div>
+      <div class="ho-why">${esc(T(ho,'why'))}</div>
+      <ol class="ho-steps">${(T(ho,'steps') ?? []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+      ${ho.source ? `<div class="src" style="margin-top:6px">〔${esc(t.src)} · ${ho.source_url ? `<a href="${esc(ho.source_url)}" target="_blank" rel="noopener">${esc(T(ho,'source'))} ↗</a>` : esc(T(ho,'source'))}〕</div>` : ''}</div>`;
   }
   if (day.meta_read) {
-    flow += `<div id="sec-metaread" class="boxed"><div class="b-head"><span class="t">本报社评</span></div><div class="meta-read">${esc(day.meta_read)}</div></div>`;
+    flow += `<div id="sec-metaread" class="boxed"><div class="b-head"><span class="t">${esc(t.editorial)}</span></div><div class="meta-read">${esc(T(day,'meta_read'))}</div></div>`;
   }
   for (const s of day.sources) {
-    flow += `<div id="sec-${esc(s.platform)}" class="platform-head"><h2>${esc(s.platform)}版</h2><span class="stat">扫读${s.swept ?? '?'}·选${s.items.length}</span></div>`;
+    flow += `<div id="sec-${esc(s.platform)}" class="platform-head"><h2>${esc(s.platform)}${t.deskSuffix}</h2><span class="stat">${esc(t.swept(s.swept ?? '?', s.items.length))}</span></div>`;
     for (const it of s.items) {
+      const fl = T(it, 'flag');
       flow += `<article>
-        <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3>
-        <div class="byline">${esc(it.author)} ｜ 赞${fmtN(it.likes)}${it.saves ? ' 藏' + fmtN(it.saves) : ''}${it.comments ? ' 评' + it.comments : ''}${it.url ? ` ｜ <a href="${esc(it.url)}" target="_blank" rel="noopener">原文↗</a>` : ''}</div>
-        <div class="summary">${esc(it.summary)}</div>
-        <div class="why"><b>编者按</b>${esc(it.why)}</div>
-        ${it.flag ? `<div class="flag">${esc(it.flag)}</div>` : ''}</article>`;
+        <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(T(it,'title'))}</a></h3>
+        <div class="byline">${esc(it.author)} ｜ ${t.likes}${fmtN(it.likes)}${it.saves ? ' ' + t.saves + fmtN(it.saves) : ''}${it.comments ? ' ' + t.comments + it.comments : ''}${it.url ? ` ｜ <a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(t.orig)}↗</a>` : ''}</div>
+        <div class="summary">${esc(T(it,'summary'))}</div>
+        <div class="why"><b>${esc(t.note)}</b>${esc(T(it,'why'))}</div>
+        ${fl ? `<div class="flag">${esc(fl)}</div>` : ''}</article>`;
     }
   }
   if (day.ota) {
-    let o = `<div id="sec-ota" class="boxed"><div class="b-head"><span class="t">编辑部升级公告</span><span class="sub">SELF-UPDATE ${esc(day.date)}</span></div>`;
-    if (day.ota.learned?.length) o += '<div class="ota-sub">今日所学</div><ul>' +
-      day.ota.learned.map(x => `<li class="oi">${esc(x)}</li>`).join('') + '</ul>';
-    if (day.ota.new_capabilities?.length) o += '<div class="ota-sub">新增能力</div><ul class="caps">' +
-      day.ota.new_capabilities.map(x => `<li class="oi">${esc(x)}</li>`).join('') + '</ul>';
+    let o = `<div id="sec-ota" class="boxed"><div class="b-head"><span class="t">${esc(t.otaHead)}</span><span class="sub">SELF-UPDATE ${esc(day.date)}</span></div>`;
+    const learned = T(day.ota, 'learned'), caps = T(day.ota, 'new_capabilities');
+    if (learned?.length) o += `<div class="ota-sub">${esc(t.learned)}</div><ul>` +
+      learned.map(x => `<li class="oi">${esc(x)}</li>`).join('') + '</ul>';
+    if (caps?.length) o += `<div class="ota-sub">${esc(t.caps)}</div><ul class="caps">` +
+      caps.map(x => `<li class="oi">${esc(x)}</li>`).join('') + '</ul>';
     flow += o + '</div>';
   }
   h += `<div class="front-flow rise" style="animation-delay:.2s">${flow}</div>`;
-  document.getElementById('content').innerHTML = h || '<div class="empty">本期无内容</div>';
+  document.getElementById('content').innerHTML = h || `<div class="empty">${esc(t.empty)}</div>`;
 }
+
+document.getElementById('lang-toggle').addEventListener('click', () => {
+  lang = lang === 'en' ? 'zh' : 'en';
+  document.getElementById('lang-toggle').textContent = lang === 'en' ? '中' : 'EN';
+  if (curDay) loadDay(curDay);
+});
 // ============ 竖版长图 PDF 导出 ============
 const loadScript = src => new Promise((ok, err) => {
   const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = err;
@@ -366,6 +409,7 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
 });
 
 (async () => {
+  document.getElementById('lang-toggle').textContent = lang === 'en' ? '中' : 'EN';
   allDays = await (await fetch('digests/index.json')).json();
   allDays.sort().reverse();
   const sel = document.getElementById('datepick');

@@ -85,7 +85,7 @@
           "title": "Simon Willison × Anthropic Claude Code 团队 (Cat Wu, Thariq)",
           "author": "AI Engineer World's Fair",
           "likes": 2629,
-          "summary": "编辑部已代读（1小时）。干货：① Claude Tag 落地了 Anthropic 产品团队 65% 的 PR——多人协作+主动监听频道+团队记忆，「建议放公开频道」是他们给出的 culture hack；② 给前沿模型写提示要反直觉：删例子、删 always/never 式硬约束，Claude Code 系统提示词因此砍掉 80%（每个指令必须 100% 为真，否则模型被带偏）；③ 「代码库就是唯一的 spec」→ 重写不再是禁忌（内部已把 Claude Code 跑在 Rust 重写的 Bun 上）；④ auto mode = 每次工具调用都有 Sonnet 分类器把关（含沙箱逃逸判断），内部 1 月用到现在，红队攻击基本全被缓解；⑤ 信任新模型的方法 = 评测集回归，让新模型成为 drop-in replacement；⑥ 文化：don't negotiate against yourself——别在脑子里替自己谈判出一个「不行」。",
+          "summary": "干货：① Claude Tag 落地了 Anthropic 产品团队 65% 的 PR——多人协作+主动监听频道+团队记忆，「建议放公开频道」是他们给出的 culture hack；② 给前沿模型写提示要反直觉：删例子、删 always/never 式硬约束，Claude Code 系统提示词因此砍掉 80%（每个指令必须 100% 为真，否则模型被带偏）；③ 「代码库就是唯一的 spec」→ 重写不再是禁忌（内部已把 Claude Code 跑在 Rust 重写的 Bun 上）；④ auto mode = 每次工具调用都有 Sonnet 分类器把关（含沙箱逃逸判断），内部 1 月用到现在，红队攻击基本全被缓解；⑤ 信任新模型的方法 = 评测集回归，让新模型成为 drop-in replacement；⑥ 文化：don't negotiate against yourself——别在脑子里替自己谈判出一个「不行」。",
           "why": "①③⑥ 可直接搬进任何团队的工作流；② 编辑部已拿来升级自己写 skill 的方式（见升级公告）。",
           "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
           "flag": null
