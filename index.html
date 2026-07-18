@@ -261,6 +261,9 @@ const enDate = d => {
 };
 // pick localized value: prefer <field>_en in EN mode, else fall back to Chinese
 const T = (o, k) => (lang === 'en' ? (o?.[k + '_en'] ?? o?.[k]) : o?.[k]);
+// localized platform display name (X / YouTube stay; 小红书 → RedNote in EN)
+const PLAT_EN = { '小红书': 'RedNote' };
+const platName = p => (lang === 'en' ? (PLAT_EN[p] ?? p) : p);
 const L = {
   zh: { act:'今日可行动', actEn:'Do These Today', tryNew:'◆ 今日试新', editorial:'本报社评',
         note:'编者按', src:'来源', orig:'原文', otaHead:'编辑部升级公告', learned:'今日所学',
@@ -288,7 +291,7 @@ async function loadDay(d) {
   document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
   document.getElementById('issue-no').textContent = lang === 'en' ? ('NO. ' + issueNo) : ('第 ' + issueNo + ' 期');
   document.getElementById('daycount').textContent = dateStr + ' · ' +
-    day.sources.map(s => s.platform + '×' + s.items.length).join(' · ');
+    day.sources.map(s => platName(s.platform) + '×' + s.items.length).join(' · ');
   document.querySelector('footer').textContent = t.foot;
   let h = '';
 
@@ -298,7 +301,7 @@ async function loadDay(d) {
   if (day.actions?.length) tiles.push(`<a href="#sec-actions"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navAct}</a>`);
   if (day.hands_on) tiles.push(`<a href="#sec-handson"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navTry}</a>`);
   if (day.meta_read) tiles.push(`<a href="#sec-metaread"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navEd}</a>`);
-  for (const s of day.sources) tiles.push(`<a href="#sec-${esc(s.platform)}"><b>${pad2(vn++)}${t.deskSuffix}</b>${esc(s.platform)}</a>`);
+  for (const s of day.sources) tiles.push(`<a href="#sec-${esc(s.platform)}"><b>${pad2(vn++)}${t.deskSuffix}</b>${esc(platName(s.platform))}</a>`);
   if (day.ota) tiles.push(`<a href="#sec-ota"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navOta}</a>`);
   if (tiles.length) h += `<nav class="ban-nav rise">${tiles.join('')}</nav>`;
 
@@ -336,7 +339,7 @@ async function loadDay(d) {
     flow += `<div id="sec-metaread" class="boxed"><div class="b-head"><span class="t">${esc(t.editorial)}</span></div><div class="meta-read">${esc(T(day,'meta_read'))}</div></div>`;
   }
   for (const s of day.sources) {
-    flow += `<div id="sec-${esc(s.platform)}" class="platform-head"><h2>${esc(s.platform)}${t.deskSuffix}</h2><span class="stat">${esc(t.swept(s.swept ?? '?', s.items.length))}</span></div>`;
+    flow += `<div id="sec-${esc(s.platform)}" class="platform-head"><h2>${esc(platName(s.platform))}${t.deskSuffix}</h2><span class="stat">${esc(t.swept(s.swept ?? '?', s.items.length))}</span></div>`;
     for (const it of s.items) {
       const fl = T(it, 'flag');
       flow += `<article>
