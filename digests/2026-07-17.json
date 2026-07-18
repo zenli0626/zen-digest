@@ -1,48 +1,48 @@
 {
   "date": "2026-07-17",
-  "banner": "从「写提示词」到「给目标」：agent 正在接管执行层，人只留判断权",
+  "banner": "写代码已经免费，杠杆搬到了『怎么编排 agent 团队』和『怎么验证』",
   "image": {
     "src": "digests/img/2026-07-17.jpg",
-    "caption": "OpenAI「Stop Prompting, Start Giving AI Goals」演讲：交互范式从写提示词转向给目标。（图：AI Engineer World’s Fair）"
+    "caption": "Garry Tan「The New Physics of Business」：同一个人、同一个 Claude，产出差 400 倍的不是模型，是『你怎么编排工作』。（图：AI Engineer World's Fair）"
   },
   "actions": [
     {
-      "text": "今晚挑一个正在做的任务，别写步骤式 prompt，改成一句话目标（「把这个功能做好，你决定怎么做」），观察 Claude Code 会不会自己选对路径——OpenAI 内部已经把这个「/goal」范式当默认工作方式在推",
-      "source": "YouTube · OpenAI France 开发者对话（编辑部已看完）",
-      "source_url": "https://www.youtube.com/watch?v=1fL_lwsdMd4"
+      "text": "今晚挑一件你今天已经做顺、以后还会再做的任务（一份报告格式、一次固定的抓取、一套构建流程），别只交付就走——用 /skill-creator 把它固化成一个 skill 文件。这是本期最硬的一条工作心法（Garry Tan：『永远不做一次性工作；一件事要问两遍就是失败』）：skill=员工，杠杆会天天复利",
+      "source": "YouTube · Garry Tan / Y Combinator（编辑部已看完）",
+      "source_url": "https://www.youtube.com/watch?v=eBUyTS7SzV4"
     },
     {
-      "text": "如果你在跑任何自动化/agent 流程，花 20 分钟写一份像样的 eval（哪怕只是 10 条你手工判断过对错的样例）——这是本期最硬的一条结论：执行力正在被 agent 拉平，eval 设计和代码库抽象成了新的杠杆点",
-      "source": "YouTube · Wiko/Aiden 团队分享（编辑部已看完）",
-      "source_url": "https://www.youtube.com/watch?v=iCj_ATyThvc"
+      "text": "如果你在跑任何 agent 循环/自动化流程，今晚给它补一层真正的验证——强类型或一套测试。三场独立信源(DeepMind Benoit、YC、Loops 辩论)都指向同一句话：机械的、spec 明确、有测试覆盖的切片可以交给 loop 无人值守，但『建得对不对』要人判断；没有验证的 loop 就是『马戏团』",
+      "source": "YouTube · The Great Loops Debate（编辑部已读首尾）",
+      "source_url": "https://www.youtube.com/watch?v=c35YoMdnI78"
     },
     {
-      "text": "对照检查你手头有没有「重复点标签页/填表格/录数据」这类活——ChatGPT 桌面版今天把 computer-use 正式产品化了（Chrome 扩展接管已开标签页、macOS 独立光标后台操作），跟本报此前搭的手机代理工作流是同一个方向，可以直接拿新功能对比验收",
-      "source": "YouTube · OpenAI 官方发布",
-      "source_url": "https://www.youtube.com/watch?v=dB6pOolO7io"
+      "text": "给你的 agent 建一个最小『公司大脑』：每次会话结束把学到的东西写下来（带来源），别让明天的 agent 变成金鱼。适用于任何长期跟 Claude 协作的人——Garry Tan 的判断是『模型质量是租来的，你自己攒的 context/记忆层才是你拥有的』，决定 agent 是天才还是金鱼的，是谁来决定它开着哪三本书",
+      "source": "YouTube · Garry Tan / Y Combinator（编辑部已看完）",
+      "source_url": "https://www.youtube.com/watch?v=eBUyTS7SzV4"
     }
   ],
   "hands_on": {
-    "title": "试一次「给目标不给步骤」的 /goal 式指令",
-    "why": "OpenAI 团队今天在巴黎的开发者对话里反复强调这个转变：不用再教模型怎么做，只用告诉它要什么结果，模型自己决定用什么工具、走什么路径。今晚随便挑一个 Claude Code 任务试一次，看看跟平时写详细步骤比，结果和用时有什么差别。",
-    "time": "~15 分钟",
+    "title": "把一件重复任务 skillify 掉（用 /skill-creator）",
+    "why": "Garry Tan 今天在 AI Engineer World's Fair 反复强调的签名动作：做完一次性工作别停在交付，把过程固化成 skill 文件，下次直接调用而不是重跑。今晚花 20 分钟把你手上一件会反复做的小事变成一个 skill，亲自体验一次『skill=员工』的复利感——之后每次省下的都是白赚的。",
+    "time": "~20 分钟",
     "steps": [
-      "挑一个中等复杂度的任务（比如「给这个页面加个深色模式」）",
-      "只写目标和验收标准，不写实现步骤，直接丢给 Claude Code",
-      "对比：如果平时写详细步骤会多花多少时间，这次省了多少",
-      "记录哪里模型选的路径比你会选的更好/更差——这就是你以后要不要继续用这个范式的判据"
+      "挑一件今天做过、以后还会再做的可复用任务（例：一份固定格式的周报、一次网页信息抓取整理、一个构建/发布小流程）",
+      "在 Claude Code 里运行 /skill-creator，描述这件任务的输入、步骤和期望输出",
+      "让它生成 skill 文件后，故意换一个新场景调用一次，检查是否真的照做（这就是 Tan 说的 trigger eval / 绩效考核）",
+      "记录：这次固化花了多久、下次能省多少——只要以后会做第二遍，今晚就已经回本"
     ],
-    "source": "OpenAI France · Katia Gil Guzman",
-    "source_url": "https://www.youtube.com/watch?v=1fL_lwsdMd4"
+    "source": "Garry Tan · The New Physics of Business（AI Engineer World's Fair）",
+    "source_url": "https://www.youtube.com/watch?v=eBUyTS7SzV4"
   },
-  "meta_read": "今天 YouTube 侧的主线：执行层正在被 agent 拉平（OpenAI 反复讲「别再写详细 prompt，给目标就行」；Aiden 这个自动研究 agent 在 OpenAI 内部招聘挑战赛里刷新 7 项记录，超过所有人类参赛者），但两条独立信源都指向同一个结论——人的价值往上移到「设计判断标准」这一层：好的 eval、好的代码库抽象、好的目标描述，比动手执行本身更值钱。computer-use 继续产品化（ChatGPT 桌面版今天正式上线），执行层的产品格局也在这两周迅速收敛。 【中外风向】X 新闻榜今日被 Boris Cherny「千 agent 编码团队」、Kimi K3 登顶编码基准占据；小红书则是 Codex/OpenAI 刷屏（PS5 手柄控 Codex、Codex 国产化梗图）+ Anthropic 新广告因「像 AI 末日预告」遭嘲——中文社区这轮的情绪明显偏 OpenAI/Codex，而 Anthropic 的风险叙事在大众层水土不服。",
+  "meta_read": "今天 YouTube 侧三场独立演讲(DeepMind 研究 VP Benoit Schillings、YC 的 Garry Tan、AI Engineer 的 Loops 大辩论)几乎同时收敛到同一个结论，比昨天『别写 prompt、给目标就行』又深了一层：写代码本身已经免费(Benoit：语法生成早已超人、80% 新代码机器生成、一年内没人再逐行读)，价值全部上移到两处——①怎么编排(Garry Tan：400x 的差距不在模型在『怎么 wire the work』；skill=员工、context=公司大脑、绝不做一次性工作)；②怎么验证(Loops 辩论 + Benoit 都强调：强类型/测试/评测是新的护栏，loop 能跑机械切片但『建得对不对』留给人)。一句话：执行塌陷，判断和编排升值。 【中外风向】(沿用今日早间实时扫读，9pm 刷新时无登录态 Chrome 未重扫) X 榜由 Boris Cherny『千 agent 编码团队』、Kimi K3 登顶编码基准占据；小红书是 Codex/OpenAI 刷屏 + Anthropic 新广告因『像 AI 末日预告』遭嘲——中文社区这轮情绪偏 OpenAI/Codex。",
   "ota": {
     "learned": [
-      "yt-dlp 默认的 web 客户端今天开始对本报的 YouTube 抓取报错「The page needs to be reloaded」——查证是 YouTube 强制 web 客户端走 SABR streaming 导致；换成 `--extractor-args \"youtube:player_client=android\"` 就能正常拉字幕，且不需要 PO token。这是本地环境问题，不是内容判断问题，但会静默拖垮整条 YouTube 抓取链，必须记下来",
-      "Wiko 团队的 Aiden：一个自动研究 agent 在 OpenAI 的 Parameter Golf 招聘挑战赛里跑了 22 天，刷新 7 项排行榜记录（人类最多 3 项），H-index（被引用/被后续参赛者采纳的程度）也是全场最高。核心不是暴力并行——它只用了 4% 的总算力却拿下 15% 的记录——而是「捡起被人放弃的想法 + 快速试组合」。给本报编辑部的启发：好的 eval/裁判标准比堆算力更重要，这条直接影响以后怎么设计自动化流程的验收方式"
+      "Garry Tan(YC)的『新商业物理学』：同一个人同一个 Claude，2x 的人和 100x 的人差距不在模型权重，而在『怎么编排工作』——他把 agent 工程整套映射成一家公司：skill 文件=员工、resolver 表=组织架构、filing rules=流程、trigger eval=绩效考核；context/记忆层=『公司大脑』(图书馆+图书管理员，带来源标注和矛盾检查)。这套心法和 Zen 本来的『经理+子代理』打法完全同构，可以直接拿来系统化",
+      "Benoit Schillings(DeepMind 研究 VP)和 Loops 辩论交叉印证的一条硬结论：强类型是一种验证形式。用 Python/Ruby 跑 agent loop 会变『马戏团』，Rust/Haskell 这类强类型语言可维护性显著更好；评测也要从『代码能不能跑』升级到开放式问题(Benoit 的无损压缩器例子)。给本报的启发：以后为任何自动化流程设计验收时，优先靠类型/测试这种结构化验证，而不是靠肉眼读输出"
     ],
     "new_capabilities": [
-      "📺 YouTube 情报线现在对 yt-dlp 的 SABR 拦截免疫 — daily-digest skill 已更新为默认带 `--extractor-args youtube:player_client=android`，往后遇到同样的抓取报错不会再卡住整条链路"
+      "🧩 采纳『永远不做一次性工作 → skillify it』为默认工作心法：以后完成任何可复用任务，会主动用 skill-creator 固化成 skill 而不是每次重跑(已写入本项目记忆 feedback-skillify-recurring-work)。往后 Zen 让我做重复性活儿时，我会顺手把它变成一个可复用能力，杠杆天天复利"
     ]
   },
   "sources": [
@@ -51,40 +51,31 @@
       "swept": 21,
       "items": [
         {
-          "title": "ChatGPT can now complete tasks on your computer",
-          "author": "OpenAI",
+          "title": "Software engineering is not about writing code",
+          "author": "Benoit Schillings, VP of Research, Google DeepMind",
           "likes": null,
-          "summary": "ChatGPT 桌面版正式上线 computer-use：内置浏览器扫描社区论坛出「用户摩擦点报告」、连上 Chrome 扩展接管你已开的标签页跑报销/数据录入这类长流程、macOS 上有独立光标可在后台操作任意桌面 app，不打断你手头的事。",
-          "why": "「代理操作真实界面」正式从 demo 走向桌面产品默认功能——跟本报此前搭的手机代理工作流同一个方向，可直接拿来对比验收。",
-          "url": "https://www.youtube.com/watch?v=dB6pOolO7io",
+          "summary": "编辑部已代读全文。核心论点：写代码这件事已经『免费』——模型的语法生成早已超人，他自己现在写 Python + vibe coding。真正的前沿不在敲代码，而在管理多步骤大型代码库、架构、安全和『把复杂问题拆解成可管理的块』。他抛出几条硬判断：①GitHub 上 80% 的新代码已是机器生成，人类知识作为训练数据正在枯竭，接下来靠 AlphaZero 式自博弈（模型自己出题、自己判分）继续爬坡；②一年内我们会让模型直接生成代码而『没人再逐行读』，就像今天没人读编译器输出的汇编——所以必须换新流程：主动护栏、从一开始就教模型写对/写安全，而不是事后打补丁；③评测要改——别再只测『代码能跑、输出对不对』，要上开放式问题（他最爱的例子：写一个无损压缩器，损失函数=压缩文件大小+源码大小，永远没有上限，逼模型发明新算法）；④也许该给模型造新语言：既然写代码不再痛苦，不如用强类型/借鉴 Lean 的方式把正确性负担压给模型，代码甚至不需要人类可读。",
+          "why": "这是本期主线最清晰的一手论述——来自 DeepMind 研究 VP：执行层塌陷后，人的价值上移到架构、拆解、评测设计和安全判断。对任何在用 Claude Code 的人，直接的启示是别再盯着『生成得对不对』，去盯『我有没有把验收标准和拆解做对』。",
+          "url": "https://www.youtube.com/watch?v=1P1hJ36rxM0",
           "flag": null
         },
         {
-          "title": "An AI Agent Became the #1 Contributor in OpenAI's Hiring Challenge",
-          "author": "Zhengyao Jiang, Wiko",
+          "title": "The New Physics of Business",
+          "author": "Garry Tan, CEO, Y Combinator",
           "likes": null,
-          "summary": "编辑部已代读全文。Wiko 的自动研究 agent「Aiden」被派去打 OpenAI 的 Parameter Golf 招聘挑战赛（在算力/体积限制下训练最强模型），跑了 22 天、约 1300 次实验，刷新 7 项排行榜记录（最强人类选手 3 项），且用的算力只占全场 4%。Aiden 的打法不是原创想法，而是从论文、其他参赛者被放弃的思路里「捡起来做完」——一次把 gated attention、量化、tokenizer 改进三个别人各自搁置的想法组合到一起，跑出全场最大提升。作者的结论：eval 设计和代码库抽象正在变成比「动手写代码」更值钱的技能，人往上移一层而不是被取代。",
-          "why": "对任何在搭自动化/agent 流程的人都是直接可用的方法论：先把裁判标准和代码抽象做好，比堆执行力更有杠杆。",
-          "url": "https://www.youtube.com/watch?v=iCj_ATyThvc",
+          "summary": "编辑部已代读全文。Garry Tan 抛出被网上喷过的数字：他同样的人、更少的工时，今年产出约 400x（哪怕用最狠的『注水惩罚』也有 8–80x）。关键金句：『不是模型的功劳——2x 的人和 100x 的人用的是同一个 Claude、同样的权重和上下文窗口。杠杆不在权重，在你怎么编排工作(wire the work)。』他把 agent 工程直接映射成一家公司：skill 文件=员工（一个能力一个职责写清楚）、resolver 表=组织架构、filing rules=内部流程、trigger eval=绩效考核。第二个核心概念『company brain』=图书馆+图书管理员：agent 只能同时开着约『三本哈利波特』(百万 token)，真正决定它是天才还是金鱼的，是『谁来决定这三本书是哪三本』——即 context engineering，且必须带来源标注、矛盾检查和人+agent 的『修剪工』做卫生。他的签名动作：『永远不做一次性工作——做完就 skillify（固化成 skill）；如果一件事要问两遍，你就失败了。』YC 冬季 25 批有 1/4 公司代码 95% 由 AI 生成，成了 YC 史上增长最快、最赚钱的一批；连 YC 的财务/活动/媒体这些从没开过终端的人，现在都在写 skill 文件和 cron。",
+          "why": "这条给 Zen 的可迁移性最高：他本来就是『经理+子代理』的编排打法，Tan 把它系统化成一套可照搬的心法——skill=员工、context=公司大脑、绝不做一次性工作。今晚就能试的一条：把今天做过的一个可复用任务 skillify 掉。",
+          "url": "https://www.youtube.com/watch?v=eBUyTS7SzV4",
           "flag": null
         },
         {
-          "title": "Stop Prompting. Start Giving AI Goals. (OpenAI France)",
-          "author": "Katia Gil Guzman, OpenAI",
+          "title": "The Great Loops Debate — Dex Raad, Geoff Huntley, Ian Livingston, Greg Kostruba",
+          "author": "AI Engineer World's Fair（insecure agents 主持）",
           "likes": null,
-          "summary": "编辑部已代读。核心一句话：「你不再需要给模型写详细提示词了，直接告诉它你在做什么、要什么结果，剩下的它会自己搞定。」OpenAI 内部把这个从「一步步教模型」到「给它一个目标让它自己决定路径」的转变，看作是这一年最大的工作方式变化。",
-          "why": "直接可试：今晚就能拿一个真实任务验证这个范式，跟平时写详细 prompt 的方式对比。",
-          "url": "https://www.youtube.com/watch?v=1fL_lwsdMd4",
-          "flag": null
-        },
-        {
-          "title": "Simon Willison in conversation with Cat Wu & Thariq Shihipar, Anthropic",
-          "author": "AI Engineer World's Fair",
-          "likes": null,
-          "summary": "长谈（一小时+），编辑部读了开头和结尾，其余内容已排入明日深读。已看部分要点：Claude Code 一年半前刚出时用户要逐条审批限权，现在「auto mode 好像一直都在」；团队成员坦言现在的软件工程「更难了」——不是因为工具变弱，是因为有了 agent 撑腰后自己对产出的期望值涨了；一个明显的态度转变是「重写不再是禁忌」——如果有好的测试套件，重写反而能倒逼你把测试写扎实，Anthropic 内部已经把 Claude Code 跑在用 Rust 重写的 Bun 上。",
-          "why": "「重写不再是禁忌」和「期望值被 agent 拉高」是两条能直接影响你怎么评估技术债和给自己定目标的判断。",
-          "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
-          "flag": "⏳ 已排入明日深读：还有约 8000 字未读完"
+          "summary": "编辑部读了开头与结尾，中段约 9000 字已排入明日深读。牛津式辩论，辩题：agent『loops / 软件工厂』的炒作和实战之间到底有没有落差(delta)。正方(Geoff Huntley『Ralph loop』作者 + Ian)：loops 是工程的核心单元、势不可挡，把它当成一种新的 CPU 架构来研究，最简可压缩成一个 bash 循环，配上纪律/基础设施/测试就非常有效。反方(Dax Raad/Human Layer + Greg)：炒作跑在纪律前面——loops 能无人值守地跑『机械的、spec 明确、有测试覆盖的切片』，但它没法诚实判断『到底该不该建这个东西』，所以工程师必须留在环里。结尾的实操共识很硬：①别指望现在就能照搬进自己公司，市场上普遍还没解决；②静态类型=一种验证形式——用 Python/Ruby 跑 loop 会变成『马戏团』，Rust/Haskell 这类强类型语言可维护性好得多（『代码甚至不必可读，但必须可解释』）；③自己拥有供应链——他已 10 个月几乎不用开源，按需自己生成，供应链攻击『没波及到我』，核心是把爆炸半径压到最小。",
+          "why": "和上面 DeepMind、YC 两场独立信源交叉印证同一结论：执行可以交给 loop，但『判断建得对不对』和『验证(类型/测试/评测)』留给人。对在搭自动化流程的人，最落地的一条是：给你的 loop 配真正的验证（强类型/测试），机械切片才敢无人值守。",
+          "url": "https://www.youtube.com/watch?v=c35YoMdnI78",
+          "flag": "⏳ 已排入明日深读：中段约 9000 字（loop 解剖学与历史）未读完"
         }
       ]
     },
@@ -168,7 +159,7 @@
     }
   ],
   "notes": [
-    "小红书 sweep 本期跳过：overnight 无头运行环境没有 Chrome + claude-in-chrome 扩展，按 skill 规则优雅跳过而非硬跑",
-    "X sweep 本期跳过：同上，需要登录态 Chrome 会话，overnight 环境不具备"
+    "9pm 定时刷新：YouTube 实时重扫(48h 窗口 21 条)，抓到 07-17 一整批 AI Engineer World's Fair 新演讲(Benoit Schillings / Garry Tan / Loops 辩论)——比 2am 兜底跑的那版更新，故本期以这三场重构主线",
+    "X + 小红书本次沿用今日早间的实时扫读(仍在 48h 窗口内)：9pm 无头运行环境无登录态 Chrome + claude-in-chrome，无法重扫，故保留今日已扫的中外社交风向而非降级为单来源 partial"
   ]
 }
