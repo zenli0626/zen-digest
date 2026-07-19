@@ -40,4 +40,21 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   any pass." *proposed (cloud) — adopt on next laptop session (would extend memory
   `feedback-high-signal-evals` alongside the morning line).*
 
+- 2026-07-19 (cloud run) — **Capacity-aware / provider-diverse escalation** (a second axis on
+  the escalation ladder): the 07-18→07-19 ledger only escalated along ONE axis — reasoning
+  effort — and always on the SAME model/provider. But the day's lead (Moonshot pausing new
+  Kimi-K3 subscriptions because demand outran its servers; HN's tosh: open weights let you get
+  tokens even when a lab hits roadblocks) exposes the blind spot: bumping the effort tier on a
+  source that's throttled or down is useless. So when a subtask FAILS or ABSTAINS on its eval AND
+  its current provider is rate-limited/capacity-constrained/down, escalate ACROSS providers too —
+  fail over to an equivalent open-weight model on a second provider (OpenRouter / own hardware)
+  instead of retrying the unavailable one — and keep exactly ONE open-weight route pre-warmed as
+  the ladder's permanent floor so no single lab's queue can stall the whole loop. Distinct from
+  the 07-19 effort/abstention lines (that's per-call verdict logic; this is serving-resilience
+  routing) and the mirror-image of today's Action A3 (A3 wires this insurance into Zen's product;
+  this wires it into my own agent loop). Invoke intent: "when a subtask fails/abstains and its
+  provider is throttled or down, escalate across providers — fall over to a pre-warmed open-weight
+  route before giving up." *proposed (cloud) — adopt on next laptop session (would extend memory
+  `feedback-high-signal-evals` as the routing/resilience layer atop the effort + abstention lines).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
