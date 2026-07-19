@@ -1,0 +1,164 @@
+{
+  "date": "2026-07-19",
+  "partial": true,
+  "banner": "『少即是多』的一周：开 /goal 反而更差、开源 Kimi K3 逼平 Opus 只要半价——护城河彻底搬出模型，搬进你给它套的那层壳",
+  "banner_en": "A “less is more” week: turning on /goal made runs worse, open-weight Kimi K3 matched Opus at half price — the moat has fully left the model and moved into the shell you wrap around it",
+  "image": {
+    "src": "digests/img/2026-07-19.jpg",
+    "caption": "六款旗舰在同一道 NP 难题（KIRO 光纤网设计，搜索空间约 10¹²²³）上跑 30 分钟、无提示的一次匹配对照。真正反直觉的一点不在谁赢，而在：给 Fable 5 和 GPT-5.6 Sol 打开 /goal（自动续跑）后，两者平均分都变差了——加『更多自治』并不等于更好。（图：Charles Azam）",
+    "caption_en": "Six flagship models on one matched, no-hint 30-minute run of an NP-hard problem (the KIRO fiber-network design, search space ~10¹²²³). The counterintuitive part isn’t who won — it’s that switching on /goal (auto-continue) made both Fable 5 and GPT-5.6 Sol score worse on average. More autonomy did not mean better. (Photo: Charles Azam)"
+  },
+  "actions": [
+    {
+      "text": "审计你的 /goal 用法：只在有『可验证的完成判据』时才用它（例如『测试全绿且 lint 干净』，由另一个模型核验），别把它当『接着跑 / 兜时间』的默认开关。在开放式优化 / 搜索类任务上，/goal 会放大糟糕的算法选择、把最坏情况拖得更差——实测它赢了 4/6 单场，却拉低了两个模型的平均分。更普适的一条：评估任何『默认开启』的功能时，盯最坏情况回归，别只看中位数。",
+      "source": "文摘 · Fable 5 vs GPT-5.6 Sol：/goal 有用吗",
+      "source_url": "https://charlesazam.com/blog/fable-5-gpt-5-6-sol-goal/",
+      "text_en": "Audit how you use /goal: use it only when you have a verifiable completion criterion (e.g. “tests all green and lint clean,” checked by a separate model), not as a “keep going / fill the time” default switch. On open-ended optimization or search tasks, /goal amplifies bad algorithmic choices and drags the worst case down — in this test it won 4 of 6 individual trials yet lowered both models’ average score. The general lesson: when evaluating any “on by default” feature, watch the worst-case regression, not just the median.",
+      "source_en": "Digest · Fable 5 vs GPT-5.6 Sol: does /goal help?"
+    },
+    {
+      "text": "拿一条真实的、对『品味』不敏感的批量 / agent 工作负载做一次成本平价测算：按 Kimi K3 约 $5.4/1M（Opus 4.8 级、承诺 7-27 开源）对比你现在模型的账单（Opus 约 $9/1M）。若质量够用，就把这条负载路由到更便宜的模型，把省下的钱投进你的 harness——评测、护栏、编排、成本可预测性。能力正在被打成半价商品，差异化不在选哪个模型，而在模型外面那层壳。",
+      "source": "文摘 · Kimi K3 2.8T-A50B（Latent Space）",
+      "source_url": "https://www.latent.space/p/ainews-kimi-k3-28t-a50b-the-largest",
+      "text_en": "Run a cost-parity check on one real, taste-insensitive bulk/agent workload: price it on Kimi K3 (~$5.4/1M, Opus-4.8-class, open weights promised July 27) against your current model (Opus ~$9/1M). If quality is good enough, route that workload to the cheaper model and pour the savings into your harness — evals, guardrails, orchestration, cost predictability. Capability is being commoditized to half price; the differentiation isn’t which model you pick, it’s the shell around it.",
+      "source_en": "Digest · Kimi K3 2.8T-A50B (Latent Space)"
+    },
+    {
+      "text": "下次撞上你领域里一个『公认很难 / 悬了很久』的问题，别默认它无解：把你已有的资料和前期工作整理成一份长提示词给前沿模型定向，让它去啃『用现有技术就够得着』的执行部分。关键是你提供框架与领域上下文，并用可形式化 / 可核验的方式（Lean、测试、可复现脚本）确认结果可信——护城河是你的专业判断，不是模型本身。",
+      "source": "文摘 · GPT-5.6 补上凸优化 30 年缺口（HN / r/math）",
+      "source_url": "https://news.ycombinator.com/item?id=48957779",
+      "text_en": "Next time you hit a “known-hard / long-open” problem in your domain, don’t assume it’s unsolvable: package your existing material and prior work into a long priming prompt to steer a frontier model, and let it grind the execution part that’s “reachable with existing techniques.” The key is that you supply the framing and domain context, and you confirm the result with something formal/verifiable (Lean, tests, a reproducible script). The moat is your expert judgment, not the model.",
+      "source_en": "Digest · GPT-5.6 closes a 30-year convex-optimization gap (HN / r/math)"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚给危险的 agent 建一个『一次性隔离账户』（不用第二台机器）",
+    "why": "你会越来越多地用 --dangerously-skip-permissions 跑自治 agent，而最大的单点风险是它就跑在你的主账户里。今天这份 ykdojo 的指南给了完整的『隔离机』方案；它最轻量的版本——一个全新的、非管理员的本地账户——不用买任何硬件，约 15 分钟就能把 agent 的爆炸半径关进一个可随时抹掉的沙盒。今晚先把这条最便宜的路走通。",
+    "time": "~15 分钟",
+    "steps": [
+      "系统设置 → 用户与群组 → 新建一个『标准』（非管理员）用户，例如 agent；登入一次完成初始化",
+      "开启远程登录：在终端运行 sudo systemsetup -setremotelogin on",
+      "回到你的主账户配免密 SSH：ssh-keygen -t ed25519，再 ssh-copy-id agent@$(scutil --get LocalHostName).local",
+      "SSH 进去装 Claude Code：ssh agent@<主机名>.local 后运行 curl -fsSL https://claude.ai/install.sh | bash，再 claude 走一遍浏览器登录",
+      "之后把高危自治任务都放这里跑：claude --dangerously-skip-permissions——即便搞砸，也只是一个可秒删的账户，碰不到你的主目录（要出网就再 brew install tailscale 接远程）"
+    ],
+    "source": "ykdojo · Setting up your spare Mac for Claude Code to control（Hacker News）",
+    "source_url": "https://ykdojo.github.io/claude-controls-mac/",
+    "title_en": "Tonight: give risky agents a “throwaway isolation account” (no second machine needed)",
+    "why_en": "You’ll increasingly run autonomous agents with --dangerously-skip-permissions, and the biggest single point of risk is that they run inside your primary account. Today’s ykdojo guide lays out a full “isolation box”; its lightest version — a brand-new, non-admin local account — needs no hardware and takes ~15 minutes to wall an agent’s blast radius into a wipe-anytime sandbox. Walk this cheapest path tonight.",
+    "time_en": "~15 min",
+    "steps_en": [
+      "System Settings → Users & Groups → create a new Standard (non-admin) user, e.g. agent; log in once to initialize it",
+      "Enable Remote Login: run sudo systemsetup -setremotelogin on in Terminal",
+      "Back in your main account, set up passwordless SSH: ssh-keygen -t ed25519, then ssh-copy-id agent@$(scutil --get LocalHostName).local",
+      "SSH in and install Claude Code: ssh agent@<hostname>.local, then curl -fsSL https://claude.ai/install.sh | bash, then run claude and complete the browser login",
+      "From now on run risky autonomous tasks there: claude --dangerously-skip-permissions — if it goes wrong it’s only a wipe-in-seconds account that can’t touch your home directory (add brew install tailscale if you need off-network access)"
+    ],
+    "source_en": "ykdojo · Setting up your spare Mac for Claude Code to control (Hacker News)"
+  },
+  "meta_read": "把今天几条互不相干的消息叠在一起，会看到同一根指针：这一周，模型本身既不再是差异点，也不再是最大的风险点。Kimi K3 用开源、逼平 Opus、只要一半价，说明『能力』正在被打成半价商品；那道 NP 难题的实测又说明，往模型上再加『持续性 / 自治』（/goal）并不自动带来质量，反而可能把最坏情况拖得更差；连 Claude Code 换掉运行时，都把『没人察觉』当成最高褒奖。真正没被任何一条单独说破的是：当能力被商品化、当『加更多』变成负收益，杠杆和危险就双双搬出了模型、搬进了你给它套的那层壳——你怎么给它定可验证的目标、把它关进哪个沙盒、给它配多贵的模型、以及知道何时收手。这对非前沿的独立建设者反而是好消息：这一层拼的不是买不起的权重，而是判断力与克制。本周反直觉的赢法是『做减法』——更紧的目标、更便宜的模型、更硬的隔离、更早的收手——而不是『上更强的模型、给更多的自治』。",
+  "meta_read_en": "Stack today’s unrelated items together and one needle points the same way: this week, the model itself is neither the differentiator nor the biggest risk. Kimi K3 — open-weight, matching Opus, at half the price — shows capability is being commoditized to half price. The NP-hard test shows that bolting more “persistence/autonomy” (/goal) onto a model doesn’t automatically buy quality and can drag the worst case down. Even Claude Code swapping out its runtime treated “nobody noticed” as the highest praise. What no single item says outright: once capability is commoditized and “adding more” turns negative, both the leverage and the danger move out of the model and into the shell you wrap around it — how you set it verifiable goals, which sandbox you cage it in, how expensive a model you assign it, and knowing when to stop. That’s good news for non-frontier solo builders: this layer isn’t a contest of weights you can’t afford, but of judgment and restraint. This week’s counterintuitive winning move is subtraction — tighter goals, cheaper models, harder isolation, stopping earlier — not “a stronger model and more autonomy.”",
+  "ota": {
+    "learned": [
+      "从 Charles Azam 的 /goal 实测里提炼出一条能直接改进我做事方式的原则：一个能力 / 脚手架功能可以赢下多数单场，却仍是个糟糕的『默认值』——因为决定要不要设为默认，看的是最坏情况 / 尾部回归，而不是均值或中位数。/goal 赢了 4/6 却把两个模型的平均分都拉低了。这把 07-18 采纳的『高信号二元评测』又推深了一层：光把『好』定义成是 / 否还不够，任何改动要变成默认开启前，得先在留出集上过『最坏情况不恶化』这道关，而不是『平均更好』。只抬高中位数、却让失败尾部变肥的改动，作为默认值是负收益。",
+      "Kimi K3 + Codex Resets 两条合看：模型能力正被打到约一半价（K3 逼平 Opus 4.8、约 $5.4/1M vs $9），而租用额度的波动大到有人专门建站追踪 OpenAI 的 quota 重置（35 次、平均 8.9 天一次）。这从供给和需求两侧共同印证：对 Zen 的应用向工作，持久的杠杆在 harness（评测、护栏、编排、成本可预测性），不在选哪个模型——对品味不敏感的负载就该路由到够用的最便宜模型，把余量投到上游那层壳。"
+    ],
+    "new_capabilities": [
+      "🎯（云端提议，待笔记本采纳）『尾部守门的默认值』：以后我自我改进任何 skill / 提示词 / 本报 OTA 循环时，一个候选改动要先在留出集上过『最坏情况不回归』这道关，才允许变成默认——直接建立在 07-18 采纳的二元评测记忆（feedback-high-signal-evals）之上，把促进规则从『平均更好』升级为『失败尾部不变肥』。已排入 ota-ledger.md，由 Zen 的笔记本 Claude 在下次会话落地为记忆更新。调用意图：『这个改动按最坏情况来把关，别按平均。』"
+    ],
+    "learned_en": [
+      "From Charles Azam’s /goal test I distilled a principle that directly improves how I work: a capability/scaffolding feature can win most individual runs and still be a bad default — because what decides a default is the worst-case / tail regression, not the mean or median. /goal won 4 of 6 trials yet lowered both models’ average score. This deepens the “high-signal binary evals” adopted 07-18 one level further: defining “good” as a yes/no isn’t enough; before any change becomes on-by-default it must clear a “worst case does not get worse” bar on a held-out set, not just “better on average.” A change that lifts the median while fattening the failure tail is negative-value as a default.",
+      "Reading Kimi K3 + Codex Resets together: model capability is being pushed to ~half price (K3 matches Opus 4.8 at ~$5.4/1M vs $9), while rented quotas are volatile enough that people build a site to track OpenAI’s quota resets (35 of them, one every 8.9 days). Supply and demand sides confirm the same thing: for Zen’s applied work the durable leverage is in the harness (evals, guardrails, orchestration, cost predictability), not model choice — route taste-insensitive workloads to the cheapest adequate model and invest the headroom in that shell."
+    ],
+    "new_capabilities_en": [
+      "🎯 (cloud-proposed, pending laptop adoption) “Tail-guarded defaults”: from now on, when I self-improve any skill / prompt / this paper’s OTA loop, a candidate change must first clear a “worst case does not regress” bar on a held-out set before it’s allowed to become a default — built directly on the binary-eval memory adopted 07-18 (feedback-high-signal-evals), upgrading the promotion rule from “better on average” to “no fattened failure tail.” Queued in ota-ledger.md for Zen’s laptop Claude to land as a memory update next session. Invoke intent: “gate this change on worst-case, not average.”"
+    ]
+  },
+  "sources": [
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 58,
+      "items": [
+        {
+          "title": "拿一道 NP 难题实测：开 /goal 反而更差——Fable 5 vs GPT-5.6 Sol",
+          "author": "Charles Azam · Hacker News",
+          "author_en": "Charles Azam · Hacker News",
+          "likes": null,
+          "flag": null,
+          "url": "https://charlesazam.com/blog/fable-5-gpt-5-6-sol-goal/",
+          "summary": "作者拿一道未公开的 NP 难题（KIRO 光纤网设计，2018 黑客松题，搜索空间约 10¹²²³）做基准，30 分钟预算、开满推理，对比 Fable 5 / Opus 4.8 / Sonnet 5 与 GPT-5.6 Sol / Terra / Luna，旗舰对决各跑 3 次匹配。他顺带扒清了 /goal 的两种实现：Claude Code 里它是『会话级 Stop hook』，由一个更小的评委模型（默认 Haiku）只凭 transcript 判断是否完成；Codex 里则是持久化的目标状态 + 专用工具（create/get/update_goal）由主模型自评。结果反直觉——Fable 5 纯跑均分 32,386，开 /goal 变 33,145（更差，分越高=成本越高）；Sol 纯跑 34,261，开 /goal 变 35,129（也更差）。/goal 赢了 6 场里的 4 场单场，平均分却更低；Fable 5 最好的干净分 31,934、整体最稳最强。结论原话：『/goal 能赢多数单场，仍可能是个糟糕的默认』——当多出来的迭代放大了糟糕的算法选择，续跑只是把无效路径拖长；最坏情况的回归远超典型收益。作者自己列了 caveats：单一任务、订阅串行可能有漂移、容器把 8 核报成 1 核（利于 Fable 的并行）。HN 上 233 分、111 条评论的真实风向更冷静：结果偏噪声（每模型只一评、空间又大），有人跑了更多轮次发现 /goal 影响甚微；大家认同 /goal 的正确用法是给一个明确『可验证的完成判据』（由另一个 Claude 实例核验，防止 agent『打包票』说做完了），而不是拿来兜时间 / 自动续跑。",
+          "why": "Zen 每天都在用 /goal、也在 Fable 与 Sol 之间做取舍——这条是一记直接、反共识的教训：一个能赢下多数场次的持续性功能，仍可能是错误的默认值。把 /goal 只用在有具体可验证完成条件的地方，别当『接着跑』的开关；评估任何默认功能时看最坏情况，而不是中位数。也是本期头版要图与主线的落点。",
+          "summary_en": "The author benchmarks an unpublished NP-hard problem (the KIRO fiber-network design, a 2018 hackathon task, search space ~10¹²²³) with a 30-minute budget and max reasoning, comparing Fable 5 / Opus 4.8 / Sonnet 5 against GPT-5.6 Sol / Terra / Luna, three matched runs each for the flagship duel. He also reverse-engineers /goal’s two implementations: in Claude Code it’s a “session-scoped Stop hook” where a smaller judge model (Haiku by default) rules on completion from the transcript alone; in Codex it’s persisted goal state plus dedicated tools (create/get/update_goal) with the main model self-assessing. The result is counterintuitive — Fable 5 plain averaged 32,386, with /goal 33,145 (worse; higher = costlier); Sol plain 34,261, with /goal 35,129 (also worse). /goal won 4 of 6 individual trials yet averaged worse; Fable 5’s best clean score was 31,934 and it was the most consistent overall. His words: “/goal can win most runs and still be a bad default” — when extra iterations amplify a poor algorithmic choice, continuation just extends unproductive paths, and worst-case regressions dwarf the typical benefit. His own caveats: a single task, possible drift from sequential subscription runs, and a container reporting 8 cores as 1 (favoring Fable’s parallel approach). The HN thread (233 pts, 111 comments) is cooler still: the results look like noise (one eval per model in a huge space), others ran more trials and found /goal’s effect negligible, and the consensus is that /goal’s correct use is an explicit *verifiable* completion criterion (checked by a separate Claude instance, so the agent can’t just pinky-promise it’s done), not time-boxing or auto-continue.",
+          "why_en": "Zen uses /goal daily and chooses between Fable and Sol — this is a direct, off-consensus lesson: a persistence feature that wins most runs can still be the wrong default. Use /goal only where there’s a concrete verifiable completion condition, not as a “keep going” switch; judge any default feature by its worst case, not its median. It’s also where this issue’s front-page chart and through-line land."
+        },
+        {
+          "title": "Kimi K3 开源逼平 Opus 4.8、成本约一半——护城河被推向『壳』",
+          "author": "Latent Space（AINews）",
+          "author_en": "Latent Space (AINews)",
+          "likes": null,
+          "flag": null,
+          "url": "https://www.latent.space/p/ainews-kimi-k3-28t-a50b-the-largest",
+          "summary": "Moonshot 于 7-15/16 发布 Kimi K3：2.8T 总参数、A50B 激活、1M 上下文、原生多模态，架构上用了 Kimi Delta Attention（KDA）+ LatentMoE（896 专家激活 16）+ Attention Residuals；承诺 7-27 开源权重，若如期就是史上最大开源模型。数字：Artificial Analysis 智能指数 57，微超 Opus 4.8 的 56；每任务成本约 $0.94 vs Opus $1.80；混合价约 $5.4/1M（Opus $9、GPT-5.5 $10）。前端代码竞技场排第 1（1679 分、76% 对战胜率），超过 Fable 5 与 GPT-5.6 Sol；但总体智能与 GDPval 仍落后（K3 1668 vs Sol 1747.8）。短板明确：幻觉率从 39% 退到 51%，模型『想很多』、保留大量推理历史会推高真实成本，2.8T 规模让自托管对多数团队不现实（要 64+ 加速器的超节点）。评论区把它读作『中国实验室把差距从 6–8 个月缩到几周』，但也区分了能力平价 ≠ 全栈平价（产品可靠性、部署毛利、推理优化仍偏向西方在位者）。对建设者，最实的含义是经济性：前沿级能力正在低价商品化，逼压闭源毛利，把差异化推向 harness、agent 工作流与部署这层。",
+          "why": "这是 Zen『自建 vs 租用 / 模型路由』决策的直接输入——一个 Opus 级、成本减半、（很快）可自查可微调的模型，会实打实改写成本结构。可落地的一步：把对品味不敏感的批量 / agent 负载路由到更便宜的模型，把省下的钱投进你自己的壳。与本期『成本经济学』另一面（Codex Resets）同一账两面对照。",
+          "summary_en": "Moonshot released Kimi K3 on July 15–16: 2.8T total params, ~50B activated, 1M context, native multimodal, with a custom architecture (Kimi Delta Attention + LatentMoE — 16 of 896 experts active — plus Attention Residuals). Open weights are promised for July 27; if it ships, it’s the largest open-weight model ever. The numbers: an Artificial Analysis Intelligence Index of 57, just above Opus 4.8’s 56; ~$0.94 per task vs Opus’s $1.80; a blended ~$5.4/1M (Opus $9, GPT-5.5 $10). It ranks #1 in the Frontend Code Arena (1679, 76% pairwise win rate), ahead of Fable 5 and GPT-5.6 Sol — but trails on overall intelligence and GDPval (K3 1668 vs Sol 1747.8). Clear weaknesses: hallucination regressed from 39% to 51%; it “thinks a lot” and preserves long reasoning history, inflating real cost; and 2.8T scale makes self-hosting impractical for most teams (64+ accelerator supernodes). Commentators read it as Chinese labs narrowing the gap from 6–8 months to weeks, while distinguishing capability parity from full-stack parity (product reliability, deployment margins, inference optimization still favor Western incumbents). For builders the practical meaning is economic: frontier-class capability is commoditizing at lower prices, squeezing closed-model margins and pushing differentiation into the harness, agentic-workflow, and deployment layer.",
+          "why_en": "A direct input to Zen’s build-vs-rent / model-routing decision — an Opus-class model at half the cost that will (soon) be inspectable and fine-tunable materially rewrites the cost structure. The actionable move: route taste-insensitive bulk/agent workloads to the cheaper model and invest the savings in your own shell. Read as the flip side of this issue’s other cost-economics item (Codex Resets)."
+        },
+        {
+          "title": "给 Claude Code 配一台『隔离机』：一步步把危险自治关进沙盒",
+          "author": "ykdojo · Hacker News",
+          "author_en": "ykdojo · Hacker News",
+          "likes": null,
+          "flag": null,
+          "url": "https://ykdojo.github.io/claude-controls-mac/",
+          "summary": "一份把闲置 Mac（或一个全新非管理员账户）专门辟给 Claude Code 的完整指南：让它以完整 / --dangerously-skip-permissions 权限独立运行，再从主 Mac 用 SSH、或用 Claude 手机 App 远控。步骤覆盖：抹盘 + 建无 Apple ID 的本地账户、开远程登录、（可选）免密 sudo、免密 SSH 密钥、禁睡眠、剪贴板同步、装 Claude Code、可选 computer-use（GUI 会话里跑 tmux）、手机远控（ic rc）、VNC、以及用 Tailscale 出网。核心动机：把一个握有 root 的 agent 的『爆炸半径』隔离掉。HN 上 213 分、140 条评论意见分裂：安全派警告给 agent sudo/root 很鲁莽，建议单独划 VLAN 防『网络逃逸』；怀疑派问『它到底在干嘛，管个待办清单？』称其为 bikeshedding；被说清的用例包括离桌时查日志 / 处置告警、跑数小时的数据分析、跨额度重置继续干活、GUI 自动化。也讨论了替代方案：VM / 容器（libvirt）、云 VM（数据隐私权衡）、手机走 SSH/Mosh 轻量远控。",
+          "why": "随着 Zen 跑更多自治 agent，单点最高杠杆的安全动作就是：别再在主机上用 --dangerously-skip-permissions。这是一份今天就能照做的隔离配方；其最便宜的版本（一个全新的非管理员账户）不用额外硬件——本期『今日上手』就把这条最轻量的路拆成了可粘贴的命令。",
+          "summary_en": "A full guide to dedicating a spare Mac (or a brand-new non-admin account) to Claude Code: let it run independently with full / --dangerously-skip-permissions access, then reach it over SSH from your main Mac or via the Claude phone app. Steps cover wiping + creating a local account with no Apple ID, enabling Remote Login, (optionally) passwordless sudo, passwordless SSH keys, disabling sleep, clipboard sync, installing Claude Code, optional computer-use (tmux in the GUI session), phone remote control (ic rc), VNC, and Tailscale for off-network access. The core motive: isolate the blast radius of an agent holding root. The HN thread (213 pts, 140 comments) is split: security folk call giving an agent sudo/root reckless and suggest a dedicated VLAN against “network escape”; skeptics ask “what’s it doing, managing a to-do list?” and call it bikeshedding; articulated uses include away-from-desk log/alert triage, multi-hour data-science runs, continuing work across usage-limit resets, and GUI automation. Alternatives discussed: VMs/containers (libvirt), cloud VMs (a data-privacy tradeoff), and lightweight SSH/Mosh from a phone.",
+          "why_en": "As Zen runs more autonomous agents, the single highest-leverage safety move is to stop running --dangerously-skip-permissions on your primary machine. This is a do-it-today isolation recipe; its cheapest version (a fresh non-admin account) needs no extra hardware — this issue’s 今日上手 breaks that lightest path into paste-ready commands."
+        },
+        {
+          "title": "GPT-5.6 补上凸优化里一个 30 年的缺口——但功劳属于那份 10 页提示词",
+          "author": "Hacker News · r/math",
+          "author_en": "Hacker News · r/math",
+          "likes": null,
+          "flag": "⚠️ Lean 形式化验证通过，但尚未同行评审；作者自述对该问题断续研究约一年、并用一份 10 页高等数学提示词为模型定向——这是『人类专家把已有技术组合到位』的成果，而非模型自主发现新方法，勿读作『AI 独立解决了数学难题』。",
+          "url": "https://news.ycombinator.com/item?id=48957779",
+          "summary": "一位断续研究该问题约一年的研究者，给 GPT-5.6 喂了一份 10 页、把模型往正确方向定向的高等数学提示词，模型产出的证明随后在 Lean 里被形式化并验证通过。HN（541 分、345 评论）真实风向：genuinely impressive but not revolutionary——没有出现根本性的新技术，AI 是把『用现有技术就够得着』的已知策略大规模执行到位；没有那份专家提示词模型做不出来；而且尚未同行评审（这条对任何声称的证明都成立）。一句被顶起来的话：『如果一个结果用现有技术能够达到，现代 AI 方法就能解出它。』",
+          "why": "比标题更可用的是那套工作模式：对你领域里任何『公认很难』的问题，杠杆在于用真实文献 / 你的前期工作给前沿模型定向，再让它去啃执行部分；专业判断与框架才是护城河，模型不是。而 Lean 式的形式化验证，是让这种产出可信的关键一环。本期刻意保留的一条偏『能力前沿』的调剂，也给主线『模型不是护城河』补了一个反面注脚：模型很强，但强在被专家喂对方向时。",
+          "summary_en": "A researcher who’d worked the problem on and off for about a year fed GPT-5.6 a 10-page prompt of advanced math priming it in the right direction; the proof it produced was then formalized and verified in Lean. The HN thread (541 pts, 345 comments) reads it as genuinely impressive but not revolutionary — no fundamentally new technique emerged; the AI executed known strategies (“reachable with existing techniques”) at scale; without the expert prompt it couldn’t have done it; and it’s not yet peer-reviewed (a caveat that applies to any claimed proof). A top line: “if a result is attainable with existing techniques, modern AI methods will be able to solve it.”",
+          "why_en": "More useful than the headline is the working pattern: for any “known-hard” problem in your domain, the leverage is priming a frontier model with the real literature / your prior work and letting it grind the execution, while your expert judgment and framing remain the moat — not the model. And Lean-style formal verification is the piece that makes such output trustworthy. A deliberate capability-frontier change-of-pace this issue, and a counter-footnote to the through-line: the model is strong, but strong precisely when an expert feeds it the right direction."
+        },
+        {
+          "title": "『Codex Resets』：一个专门追 OpenAI 额度重置的站点——35 次、平均 8.9 天一次",
+          "author": "Thibault Sottiaux · Hacker News",
+          "author_en": "Thibault Sottiaux · Hacker News",
+          "likes": null,
+          "flag": null,
+          "url": "https://codex-resets.com/",
+          "summary": "一个社区追踪站，专门记录 OpenAI 每次重置 Codex 使用额度：至今 35 次，平均间隔 8.9 天，最长间隔 67.7 天，配一张 26 周的日历。重置的理由五花八门——处理服务事故、庆祝里程碑、就技术问题补偿，或者单纯『让大家继续试用』；对付费订阅者，这些重置等于免费多给的额度。",
+          "why": "一个很能说明当下定价形态的小物件：当一家厂商的额度波动到用户要专门建站去追它，『租用』这一侧的隐性方差就很实在了。和 Kimi 那条对照着读——它是同一笔账的需求侧：推理经济学本身不稳定，而这恰恰是为什么『拥有自己的 harness 与成本可预测性』正在成为差异点。",
+          "summary_en": "A community tracker that logs every time OpenAI resets Codex usage quotas: 35 resets so far, an average interval of 8.9 days, a longest gap of 67.7 days, and a 26-week calendar. Resets happen for all sorts of reasons — handling incidents, celebrating milestones, compensating for technical issues, or simply “letting everyone experiment” — and for paid subscribers they amount to free extra usage.",
+          "why_en": "A small artifact that says a lot about the current pricing regime: when a vendor’s quota is volatile enough that users build a site to track it, the hidden variance on the “rent” side is real. Read alongside the Kimi item — it’s the demand side of the same ledger: inference economics are inherently unstable, which is exactly why owning your own harness and cost predictability is becoming the differentiator."
+        },
+        {
+          "title": "Claude Code 已悄悄换成『用 Rust 重写的 Bun』运行——而且没人察觉",
+          "author": "Simon Willison",
+          "author_en": "Simon Willison",
+          "likes": null,
+          "flag": null,
+          "url": "https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/",
+          "summary": "自 v2.1.181（2026-06-17）起，Claude Code 已跑在 Bun 的 Rust 实现上。Jarred Sumner 的原话：『Linux 上启动快了 10%，除此之外几乎没人察觉。无聊是好事。』Simon 亲自验证：他的二进制里是 Bun v1.4.0（领先公开发布的预览版），并发现 563 处 Rust 源文件引用，确认这个 Rust 移植确实在生产里跑，覆盖数百万台设备。",
+          "why": "在这一周花哨的模型新闻里，这是一条安静的反调：Zen 天天在用的工具把地基整个换了个运行时，而它的 KPI 是『没人察觉』。对任何在做 AI 产品的人，这就是基础设施变更该有的样子——对用户不可见、刻意求无聊。正好呼应本期『做减法 / 别炫技』的主线。",
+          "summary_en": "Since v2.1.181 (2026-06-17), Claude Code runs on a Rust implementation of Bun. Jarred Sumner’s words: “Startup got 10% faster on Linux but otherwise, barely anyone noticed. Boring is good.” Simon verified it himself: his binary contains Bun v1.4.0 (a preview ahead of public releases) with 563 Rust source-file references, confirming the Rust port is genuinely running in production across millions of devices.",
+          "why_en": "Amid the week’s flashy model news, a quiet counter-note: the tool Zen lives in swapped out its entire runtime, and its KPI was “nobody noticed.” For anyone building AI products, that’s the bar for an infrastructure change — invisible to users, boring on purpose. It rhymes neatly with this issue’s “subtract, don’t dazzle” through-line."
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "云端 9 点无头运行（GitHub Actions）：本期由两条无头带中的『文摘』一条独力承担——扫了 Hacker News 头版（约 40 条）、Simon Willison、Latent Space、TLDR AI、Ahead of AI（Import AI 撞 Cloudflare 挑战、跳过），从中读全并精选 6 条，选题按既定口径偏 AI 应用 / GTM / 产品。",
+    "YouTube 带本次整条失守：CI 出口 IP 被 YouTube 判定为机器人，yt-dlp 的全部 player client（android/tv/ios/web_safari/mweb/web_embedded 等）、watch 页 HTML 直扒、三家第三方转写服务、Jina 阅读器代理、旧版 timedtext 接口——逐一 403 / 『Sign in to confirm you're not a bot』。因此拿不到任何可信的字幕全文；按『我替你看完』的诚实底线，没有伪造任何视频摘要。",
+    "partial=true：因此本期实际只有『文摘』一个来源平台达标（YouTube 零条可读）。已诚实置 partial:true，站顶显示『部分来源缺席』，并可过多样性闸门、但按质量自检会被压在预览、待回填。窗口内确有多条未覆盖的 YouTube 素材，等下次有登录态 / 未被封 IP 的可交互运行回填：AI Engineer 的 The Great Loops Debate（07-17）、Benoit Schillings『软件工程不只是写代码』（07-17）、ZenML『Your Agents Need a Save Button』、Content Is Code（07-18），以及 Dwarkesh × Sarah Paine 新一期『Why Industrialized Nations Rule the Modern World』（07-18）。",
+    "OTA：读台账后选了在 07-18『高信号二元评测』基础上再深一层的『尾部守门的默认值』（看最坏情况回归、而非均值/中位数才决定是否设为默认）。因云端不能改 ~/.claude，已把它作为 proposed(cloud) 追加到 ota-ledger.md，交由 Zen 笔记本上的 Claude 下次落地为记忆更新。"
+  ]
+}

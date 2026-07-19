@@ -12,4 +12,12 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   scores when self-improving any skill/prompt/the OTA loop itself → memory
   `feedback-high-signal-evals` (source: Langfuse "Stop Burning Tokens", 第003期).
 
+- 2026-07-19 — **Tail-guarded defaults**: before promoting any change to a DEFAULT (skill /
+  prompt / the OTA loop), gate it on WORST-CASE regression across the held-out set, not the
+  mean/median — a change can win most runs and still be a bad default (source: Charles Azam's
+  Fable5-vs-Sol `/goal` NP-hard test, 第004期). Deepens the 07-18 binary-evals line → still
+  yes/no evals, but now the promotion rule is "no fattened failure tail", not "better average".
+  Invoke intent: "gate this change on worst-case, not average." *proposed (cloud) — adopt on
+  next laptop session (would extend memory `feedback-high-signal-evals`).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
