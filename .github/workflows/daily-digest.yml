@@ -49,6 +49,7 @@ jobs:
 
       - name: Publish (diversity gate + quality check → prod or preview + notify)
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # publicize.mjs calls `claude -p` for the hhxxttxs mirror
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
