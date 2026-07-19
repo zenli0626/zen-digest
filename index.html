@@ -225,6 +225,7 @@
   .sub-strip button:hover { background: var(--red-deep); }
   .sub-strip button:disabled { opacity: .6; cursor: wait; }
   .sub-strip .sub-result { font-family: var(--kai); font-size: 13.5px; color: var(--red-deep); }
+  .sub-strip .sub-soon { font-family: var(--hei); font-weight: 700; font-size: 13px; color: var(--red); border: 1px dashed var(--red); border-radius: 5px; padding: 6px 14px; letter-spacing: .5px; }
 
   footer {
     margin-top: 44px; text-align: center;
@@ -323,8 +324,8 @@ const L = {
         mastL:'AI 情报参考<br>代读中外信息流<br><span class="mono">DAILY INTEL DIGEST</span>',
         mastR:'长视频均由编辑部代读<br>本报每日自我升级', pubBy:'AI 编辑部 · 编发',
         arch:'📚 往期合订本', hiw:'🛠 本报如何制成', dl:'⬇ 分享长图',
-        subHead:'订阅每日情报', subSub:'每天一份，AI 编辑部为你写的报纸——留个邮箱，明早自动送达',
-        subBtn:'订阅', subOk:'✓ 已订阅，明早见报', subDup:'你已经订阅啦', subErr:'出错了，稍后再试' },
+        subHead:'订阅每日情报', subSub:'每天一份，AI 编辑部为你写的报纸。留个邮箱，明早自动送达',
+        subBtn:'订阅', subOk:'✓ 已订阅，明早见报', subDup:'你已经订阅啦', subErr:'出错了，稍后再试', subSoon:'订阅即将开放 · 敬请期待' },
   en: { act:'Today’s Actions', actEn:'Do These Today', tryNew:'◆ Try Something New', editorial:'Editorial',
         note:'Editor’s note', src:'Source', orig:'original', otaHead:'Editorial System Update', learned:'Learned today',
         caps:'New capabilities', photo:'Photo of the day', partial:'⚠ Some sources missing this issue (headless run) — to be backfilled',
@@ -335,8 +336,8 @@ const L = {
         mastL:'AI Intelligence Digest<br>reads Chinese &amp; foreign feeds<br><span class="mono">DAILY INTEL DIGEST</span>',
         mastR:'Long videos read by the desk<br>self-updating every day', pubBy:'AI Desk · edited',
         arch:'📚 Archive', hiw:'🛠 How it’s made', dl:'⬇ Share image',
-        subHead:'Subscribe', subSub:'One paper a night, written by an AI newsroom. Drop your email — tomorrow’s edition lands in your inbox.',
-        subBtn:'Subscribe', subOk:'✓ Subscribed — see you tomorrow', subDup:'You’re already on the list', subErr:'Something went wrong, try again' }
+        subHead:'Subscribe', subSub:'One paper a night, written by an AI newsroom. Drop your email; tomorrow’s edition lands in your inbox.',
+        subBtn:'Subscribe', subOk:'✓ Subscribed — see you tomorrow', subDup:'You’re already on the list', subErr:'Something went wrong, try again', subSoon:'Subscriptions opening soon' }
 };
 
 async function loadDay(d) {
@@ -361,6 +362,7 @@ async function loadDay(d) {
   document.querySelectorAll('[data-sub-heading]').forEach(el => el.textContent = t.subHead);
   document.querySelectorAll('[data-sub-sub]').forEach(el => el.textContent = t.subSub);
   document.querySelectorAll('[data-sub-btn]').forEach(el => { if (!el.disabled) el.textContent = t.subBtn; });
+  document.querySelectorAll('[data-sub-soon]').forEach(el => el.textContent = t.subSoon);
   let h = '';
 
   // 版面导读格
@@ -438,37 +440,52 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
 });
 
 // ============ 订阅 ============
-document.querySelectorAll('[data-sub-form]').forEach(form => {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const strip = form.closest('[data-sub-strip]');
-    const btn = form.querySelector('[data-sub-btn]');
-    const email = form.querySelector('[data-sub-email]').value.trim();
-    const hp = form.querySelector('[data-sub-hp]').value;
-    const result = strip.querySelector('[data-sub-result]');
-    btn.disabled = true;
-    try {
-      const r = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, lang, hp }),
-      });
-      const data = await r.json().catch(() => ({ ok: false }));
-      const t = L[lang];
-      if (data.ok && data.already) result.textContent = t.subDup;
-      else if (data.ok) result.textContent = t.subOk;
-      else result.textContent = t.subErr;
-      form.style.display = 'none';
-      result.style.display = '';
-    } catch (err) {
-      console.error('[subscribe]', err);
-      strip.querySelector('[data-sub-result]').textContent = L[lang].subErr;
-      form.style.display = 'none';
-      strip.querySelector('[data-sub-result]').style.display = '';
-    }
-    btn.disabled = false;
+// 邮件后端（Supabase + Resend）暂缓 parked → 显示"订阅即将开放"，不 POST（否则 /api/subscribe 会 500）。
+// 恢复上线：把 SUBSCRIBE_LIVE 改回 true 即可。
+const SUBSCRIBE_LIVE = true;
+if (SUBSCRIBE_LIVE) {
+  document.querySelectorAll('[data-sub-form]').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const strip = form.closest('[data-sub-strip]');
+      const btn = form.querySelector('[data-sub-btn]');
+      const email = form.querySelector('[data-sub-email]').value.trim();
+      const hp = form.querySelector('[data-sub-hp]').value;
+      const result = strip.querySelector('[data-sub-result]');
+      btn.disabled = true;
+      try {
+        const r = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, lang, hp }),
+        });
+        const data = await r.json().catch(() => ({ ok: false }));
+        const t = L[lang];
+        if (data.ok && data.already) result.textContent = t.subDup;
+        else if (data.ok) result.textContent = t.subOk;
+        else result.textContent = t.subErr;
+        form.style.display = 'none';
+        result.style.display = '';
+      } catch (err) {
+        console.error('[subscribe]', err);
+        strip.querySelector('[data-sub-result]').textContent = L[lang].subErr;
+        form.style.display = 'none';
+        strip.querySelector('[data-sub-result]').style.display = '';
+      }
+      btn.disabled = false;
+    });
   });
-});
+} else {
+  document.querySelectorAll('[data-sub-strip]').forEach(strip => {
+    const form = strip.querySelector('[data-sub-form]');
+    if (form) form.style.display = 'none';
+    const soon = document.createElement('div');
+    soon.className = 'sub-soon';
+    soon.setAttribute('data-sub-soon', '');
+    soon.textContent = L[lang].subSoon;
+    strip.appendChild(soon);
+  });
+}
 // ============ 竖版长图 PDF 导出 ============
 const loadScript = src => new Promise((ok, err) => {
   const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = err;
