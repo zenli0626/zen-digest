@@ -1,0 +1,47 @@
+{
+  "platform": "文摘",
+  "platform_en": "Digest",
+  "why": "全 headless 可达的文本情报带 —— 让无 Chrome 的 9 点自动跑也能凑齐 ≥2 来源平台（YouTube + 文摘），不再依赖小红书/X 登录态，几乎不需要 partial:true。",
+  "window_hours": 48,
+  "sources": [
+    {
+      "handle": "Hacker News",
+      "kind": "front_page",
+      "url": "https://news.ycombinator.com/",
+      "api": "https://hn.algolia.com/api/v1/search?tags=front_page&query=AI",
+      "why": "从业者一手讨论 + 发布首现地；抓 AI/LLM/agent 相关高分帖，点进 comments 读真实评价",
+      "filter": "只取与 AI / LLM / agents / 编程工具 / 独立开发变现相关的条目"
+    },
+    {
+      "handle": "Import AI",
+      "author": "Jack Clark (Anthropic 联创)",
+      "kind": "newsletter",
+      "url": "https://importai.substack.com/",
+      "rss": "https://importai.substack.com/feed",
+      "why": "研究 × 政策/地缘 —— roster 里唯一的这条线，不与 YouTube/X 重叠；匹配 Zen 的策略侧"
+    },
+    {
+      "handle": "TLDR AI",
+      "kind": "newsletter",
+      "url": "https://tldr.tech/ai",
+      "rss": "https://tldr.tech/api/rss/ai",
+      "why": "工程师每日「发布雷达」：新模型/repo/工程博客，密度高、噪音低"
+    },
+    {
+      "handle": "Ahead of AI",
+      "author": "Sebastian Raschka",
+      "kind": "newsletter",
+      "url": "https://magazine.sebastianraschka.com/",
+      "rss": "https://magazine.sebastianraschka.com/feed",
+      "why": "LLM 架构 / 训练方法深读 —— roster 里唯一的深技术线"
+    },
+    {
+      "handle": "Simon Willison",
+      "kind": "blog",
+      "url": "https://simonwillison.net/",
+      "rss": "https://simonwillison.net/atom/everything/",
+      "why": "一手工具评测长文（simonw 已在 X roster，博客补长文；有重叠时择一）"
+    }
+  ],
+  "notes": "全部走 RSS / 前端页面，headless 可达（WebFetch / scrapling）。落地时聚合为单一 platform:文摘（EN: Digest）的一条 source 对象，items 里混合各来源、每条标 author=出处。多样性门槛按 platform 计数：YouTube + 文摘 = 2，达标，无需 partial。与 X/小红书 去重：同一事已在别的带出现就择强合一。"
+}

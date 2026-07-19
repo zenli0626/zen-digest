@@ -33,8 +33,9 @@ def check(path):
         return True
     print(f"  ✗ {path}: only {len(platforms)} platform ({', '.join(platforms) or 'none'}), "
           f"{total} items — needs >={MIN_PLATFORMS} platforms & >={MIN_TOTAL_ITEMS} items.")
-    print(f"     Fix: sweep another lane (X / 小红书 / YouTube) and add its source, "
-          f"or set \"partial\": true if this is an unavoidable headless run.")
+    print(f"     Fix: sweep another lane (文摘/newsletters + YouTube are both headless; "
+          f"X / 小红书 need Chrome) and add its source, "
+          f"or set \"partial\": true only if even the headless lanes failed.")
     return False
 
 def main(argv):
