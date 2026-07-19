@@ -15,7 +15,10 @@ BROADSHEET="/tmp/每日情报-$DAY.png"          # outside the repo → never co
 
 TG="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN:-}"
 
-notify() { bash bin/notify-telegram.sh "$1" || true; }
+notify() {
+  bash bin/notify-telegram.sh "$1" || true
+  node bin/notify-serverchan.mjs status "$1" || true
+}
 
 commit_back() {
   git add -A
@@ -35,6 +38,7 @@ send_paper() {  # $1 = caption
   else
     notify "$1"
   fi
+  node bin/notify-serverchan.mjs paper "$F" || true
 }
 
 # Render the broadsheet by driving the site's own export in a headless browser. Best-effort.
@@ -74,6 +78,20 @@ if python3 bin/quality-check.py "$F"; then
     exit 1
   fi
   commit_back "Publish 每日情报 $DAY (auto, cloud — quality pass → prod)"
+  node bin/send-newsletter.mjs "$F" "$BROADSHEET" || echo "newsletter send failed (non-fatal)"
+
+  # Mirror to the public "learning in public" repo (hhxxttxs) — best-effort, token-gated.
+  if [[ -n "${PUBLIC_REPO_TOKEN:-}" ]]; then
+    ( rm -rf /tmp/pub \
+      && git clone --depth 1 "https://x-access-token:${PUBLIC_REPO_TOKEN}@github.com/zenli0626/hhxxttxs.git" /tmp/pub \
+      && node bin/mirror-to-public.mjs "$F" /tmp/pub \
+      && node bin/scan-public-safe.mjs /tmp/pub \
+      && cd /tmp/pub && git add -A \
+      && git -c user.name="hhxxttxs-bot" -c user.email="bot@users.noreply.github.com" commit -m "好好学习天天向上 · $DAY" \
+      && git push \
+    ) && echo "public mirror pushed" || echo "public mirror failed (non-fatal)"
+  fi
+
   send_paper "🗞 每日情报 $DAY 已自动上线 mrqb.space（质量自检通过）—— 今晚的完整头版在此。🔗 https://mrqb.space"
 else
   OUT=$(vercel deploy --yes --token="$VERCEL_TOKEN" 2>&1)

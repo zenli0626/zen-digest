@@ -202,6 +202,30 @@
   .boxed li.oi::before { content: "—"; position: absolute; left: 0; color: var(--faint); }
   .boxed ul.caps li.oi::before { content: "＋"; color: var(--red); }
 
+  /* ============ 订阅条（报纸征订式） ============ */
+  .sub-strip {
+    border: 1.5px solid var(--red); background: #fff;
+    padding: 12px 18px; margin: 14px 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .sub-strip .sub-copy { flex: 1; min-width: 220px; }
+  .sub-strip .sub-heading { font-family: var(--hei); font-weight: 900; font-size: 15px; color: var(--red); letter-spacing: 1px; }
+  .sub-strip .sub-sub { font-family: var(--kai); font-size: 12.5px; color: var(--ink-2); margin-top: 3px; line-height: 1.7; }
+  .sub-strip form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .sub-strip input[type="email"] {
+    font-family: var(--mono); font-size: 12.5px; padding: 7px 10px;
+    border: 1px solid var(--rule); background: #faf8f1; min-width: 210px;
+  }
+  .sub-strip input[type="email"]:focus { outline: 1px solid var(--red); }
+  .sub-strip .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .sub-strip button {
+    font-family: var(--hei); font-weight: 700; font-size: 12.5px; letter-spacing: 1px;
+    color: #fdf6ec; background: var(--red); border: none; padding: 8px 18px; cursor: pointer;
+  }
+  .sub-strip button:hover { background: var(--red-deep); }
+  .sub-strip button:disabled { opacity: .6; cursor: wait; }
+  .sub-strip .sub-result { font-family: var(--kai); font-size: 13.5px; color: var(--red-deep); }
+
   footer {
     margin-top: 44px; text-align: center;
     border-top: 3px solid var(--rule); padding-top: 12px;
@@ -235,7 +259,33 @@
     </div>
   </header>
 
+  <div class="sub-strip rise" data-sub-strip>
+    <div class="sub-copy">
+      <div class="sub-heading" data-sub-heading></div>
+      <div class="sub-sub" data-sub-sub></div>
+    </div>
+    <form class="sub-form" data-sub-form>
+      <input type="email" required placeholder="you@example.com" data-sub-email>
+      <input type="text" class="hp-field" name="hp" tabindex="-1" autocomplete="off" data-sub-hp>
+      <button type="submit" data-sub-btn></button>
+    </form>
+    <div class="sub-result" data-sub-result style="display:none"></div>
+  </div>
+
   <div id="content"><div class="empty">排版中…</div></div>
+
+  <div class="sub-strip rise" data-sub-strip>
+    <div class="sub-copy">
+      <div class="sub-heading" data-sub-heading></div>
+      <div class="sub-sub" data-sub-sub></div>
+    </div>
+    <form class="sub-form" data-sub-form>
+      <input type="email" required placeholder="you@example.com" data-sub-email>
+      <input type="text" class="hp-field" name="hp" tabindex="-1" autocomplete="off" data-sub-hp>
+      <button type="submit" data-sub-btn></button>
+    </form>
+    <div class="sub-result" data-sub-result style="display:none"></div>
+  </div>
 
   <footer>本报由 AI 编辑部每日自动编发 · 只印值得花时间的内容 · 明日同一时间见</footer>
 </div>
@@ -272,7 +322,9 @@ const L = {
         likes:'赞', saves:'藏', comments:'评', issuePfx:n=>`第 ${n} 期`,
         mastL:'AI 情报参考<br>代读中外信息流<br><span class="mono">DAILY INTEL DIGEST</span>',
         mastR:'长视频均由编辑部代读<br>本报每日自我升级', pubBy:'AI 编辑部 · 编发',
-        arch:'📚 往期合订本', hiw:'🛠 本报如何制成', dl:'⬇ 分享长图' },
+        arch:'📚 往期合订本', hiw:'🛠 本报如何制成', dl:'⬇ 分享长图',
+        subHead:'订阅每日情报', subSub:'每天一份，AI 编辑部为你写的报纸——留个邮箱，明早自动送达',
+        subBtn:'订阅', subOk:'✓ 已订阅，明早见报', subDup:'你已经订阅啦', subErr:'出错了，稍后再试' },
   en: { act:'Today’s Actions', actEn:'Do These Today', tryNew:'◆ Try Something New', editorial:'Editorial',
         note:'Editor’s note', src:'Source', orig:'original', otaHead:'Editorial System Update', learned:'Learned today',
         caps:'New capabilities', photo:'Photo of the day', partial:'⚠ Some sources missing this issue (headless run) — to be backfilled',
@@ -282,7 +334,9 @@ const L = {
         likes:'♥', saves:'★', comments:'✎', issuePfx:n=>`NO. ${n}`,
         mastL:'AI Intelligence Digest<br>reads Chinese &amp; foreign feeds<br><span class="mono">DAILY INTEL DIGEST</span>',
         mastR:'Long videos read by the desk<br>self-updating every day', pubBy:'AI Desk · edited',
-        arch:'📚 Archive', hiw:'🛠 How it’s made', dl:'⬇ Share image' }
+        arch:'📚 Archive', hiw:'🛠 How it’s made', dl:'⬇ Share image',
+        subHead:'Subscribe', subSub:'One paper a night, written by an AI newsroom. Drop your email — tomorrow’s edition lands in your inbox.',
+        subBtn:'Subscribe', subOk:'✓ Subscribed — see you tomorrow', subDup:'You’re already on the list', subErr:'Something went wrong, try again' }
 };
 
 async function loadDay(d) {
@@ -304,6 +358,9 @@ async function loadDay(d) {
   document.getElementById('arch-link').textContent = t.arch;
   document.getElementById('hiw-link').textContent = t.hiw;
   document.getElementById('dl-pdf').textContent = t.dl;
+  document.querySelectorAll('[data-sub-heading]').forEach(el => el.textContent = t.subHead);
+  document.querySelectorAll('[data-sub-sub]').forEach(el => el.textContent = t.subSub);
+  document.querySelectorAll('[data-sub-btn]').forEach(el => { if (!el.disabled) el.textContent = t.subBtn; });
   let h = '';
 
   // 版面导读格
@@ -379,6 +436,39 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
   document.getElementById('lang-toggle').textContent = lang === 'en' ? '中' : 'EN';
   if (curDay) loadDay(curDay);
 });
+
+// ============ 订阅 ============
+document.querySelectorAll('[data-sub-form]').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const strip = form.closest('[data-sub-strip]');
+    const btn = form.querySelector('[data-sub-btn]');
+    const email = form.querySelector('[data-sub-email]').value.trim();
+    const hp = form.querySelector('[data-sub-hp]').value;
+    const result = strip.querySelector('[data-sub-result]');
+    btn.disabled = true;
+    try {
+      const r = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, lang, hp }),
+      });
+      const data = await r.json().catch(() => ({ ok: false }));
+      const t = L[lang];
+      if (data.ok && data.already) result.textContent = t.subDup;
+      else if (data.ok) result.textContent = t.subOk;
+      else result.textContent = t.subErr;
+      form.style.display = 'none';
+      result.style.display = '';
+    } catch (err) {
+      console.error('[subscribe]', err);
+      strip.querySelector('[data-sub-result]').textContent = L[lang].subErr;
+      form.style.display = 'none';
+      strip.querySelector('[data-sub-result]').style.display = '';
+    }
+    btn.disabled = false;
+  });
+});
 // ============ 竖版长图 PDF 导出 ============
 const loadScript = src => new Promise((ok, err) => {
   const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = err;
@@ -399,7 +489,7 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
     const qrEl = document.createElement('div');
     qrBox.appendChild(qrEl);
     const cap = document.createElement('div');
-    cap.className = 'cap'; cap.textContent = '扫码在线读';
+    cap.className = 'cap'; cap.textContent = '扫码在线读 · 扫码订阅 / Subscribe';
     qrBox.appendChild(cap);
     clone.querySelector('.mast-side.right')?.appendChild(qrBox);
     new QRCode(qrEl, { text: 'https://zen-digest.vercel.app/?d=' + day, width: 86, height: 86, correctLevel: QRCode.CorrectLevel.M });
