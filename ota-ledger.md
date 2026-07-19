@@ -24,4 +24,20 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   tier the default if its worst case beats the cheaper tier's." *proposed (cloud) — adopt on next
   laptop session (would extend memory `feedback-high-signal-evals`).*
 
+- 2026-07-19 (evening) — **Abstention-aware eval gates**: deepens the same-day
+  eval-gated escalation line by fixing its weak point (it assumes a reliable binary eval
+  exists). Every eval gate's judge must return one of THREE verdicts — pass / fail /
+  **unsure (can't-verify)** — and `unsure` is treated exactly like `fail` (escalate or
+  hand to a human), never let through. The judge itself runs at a LOW reasoning tier but
+  must attach a checkable reason for any PASS; no reason ⇒ `unsure`. Closes the
+  "who-watches-the-watcher" hole so a small judge model's false confidence can't
+  rubber-stamp bad output. Motivated by the Capraro/Marcoccia/Quattrociocchi study
+  ("a judge that can't say 'I don't know' is more dangerous", accuracy 27%→9% while
+  confidence 30%→76%) + Latent Space's harness-engineering frame (第005期, 2026-07-19,
+  evening). Completes 07-18 (high-signal binary evals) + 07-19 morning (effort escalation)
+  into a loop that can't self-certify. Invoke intent: "give every eval gate an abstain
+  verdict, treat unsure as fail; run the judge low-tier but require a checkable reason for
+  any pass." *proposed (cloud) — adopt on next laptop session (would extend memory
+  `feedback-high-signal-evals` alongside the morning line).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
