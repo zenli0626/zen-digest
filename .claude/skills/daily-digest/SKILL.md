@@ -182,6 +182,7 @@ not just summaries. Zen reads this instead of the feeds.
   actions[]/hands_on with `source_url`, and item bylines linking 原文. The 分享长图
   button exports the whole front page as a broadsheet PNG (masthead QR → prod URL,
   photo included). Don't drift to card layouts or the sepia vintage style.
+- **中文去 AI 腔 (added 2026-07-19) — write natural Chinese AT GENERATION, don't fix it after.** Follow the `humanizer-zh` principles; the non-negotiables: almost no 破折号 `——` (用句号/逗号/冒号/括号代替); kill 套话 (值得注意的是、总的来说、随着…不断深入、进一步、赋能、打造、助力、聚焦、抓手、闭环); verbs direct (「优化了」not「进行了优化」;「让」not「使得」;「能」not「能够」); no 「不仅…而且」or 三/四字词凑排比; no 升华结尾 (未来可期/值得期待/拭目以待); short sentences, allow dropped subjects; keep facts/numbers/links/术语 as-is. English `_en` fields follow the English `humanizer` skill instead (em dashes, delve/tapestry, etc.).
 - Read-only everywhere. No likes/follows/comments/posts during sweeps.
 - Timezone America/New_York for the date stamp.
 - If Zen names a topic ("digest on AI agents"), scope the sweeps to it.
