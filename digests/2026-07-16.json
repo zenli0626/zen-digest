@@ -3,7 +3,7 @@
   "banner": "AI 开始替你动手：computer-use 全线走向产品化",
   "image": {
     "src": "digests/img/2026-07-16.jpg",
-    "caption": "OpenAI 正式把 computer-use 装进 ChatGPT——代理开始直接操作你的浏览器与桌面。（图：官方演示）"
+    "caption": "OpenAI 正式把 computer-use 装进了 ChatGPT，代理开始直接操作你的浏览器和桌面。（图：官方演示）"
   },
   "actions": [
     {
@@ -17,24 +17,24 @@
       "source_url": "https://www.rednote.com/explore/6a466522000000001603f340"
     },
     {
-      "text": "FDE（Forward Deployed Engineer）正在起飞——OpenAI/Anthropic/Google 都在建队。对有平台运营/策略背景的人是条新赛道，值得花 30 分钟研究 JD",
+      "text": "FDE（Forward Deployed Engineer）正在起飞，OpenAI/Anthropic/Google 都在建队。对有平台运营/策略背景的人来说是条新赛道，值得花 30 分钟研究一下 JD",
       "source": "小红书",
       "source_url": "https://www.rednote.com/explore/6a478775000000000f032e64"
     }
   ],
   "hands_on": {
     "title": "用 TLDW 把「看长视频」变成 5 分钟的事",
-    "why": "Zara Zhang 团队的副业产品（本期深挖她时发现的）：粘贴任意 YouTube 长视频 → 高亮摘要、可对话的逐字稿、生成信息图。今晚用编辑部看过的那场 Claude Code 团队访谈来试——可以顺便验收本报的摘要有没有漏东西。",
+    "why": "Zara Zhang 团队的副业产品（本期深挖她时发现的）：粘贴任意 YouTube 长视频 → 高亮摘要、可对话的逐字稿、生成信息图。今晚用编辑部看过的那场 Claude Code 团队访谈来试试，顺便验收一下本报的摘要有没有漏东西。",
     "time": "~10 分钟",
     "steps": [
       "打开 tldw.us",
       "粘贴 https://www.youtube.com/watch?v=uU5Gv2h8-9g （Simon Willison × Claude Code 团队）",
-      "对照本期 YouTube 版的 6 条干货——如果 TLDW 挖出了本报没写的点，欢迎来信纠错"
+      "对照本期 YouTube 版的 6 条干货，如果 TLDW 挖出了本报没写的点，欢迎来信纠错"
     ],
     "source": "Zara Zhang 深挖 → tldw.us",
     "source_url": "https://tldw.us"
   },
-  "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。YouTube 侧：computer-use（让 AI 操作你的电脑/手机）正在从 demo 走向产品——OpenAI 今天正式把它装进 ChatGPT，与本报编辑部同日自建的手机代理工作流同属一个浪潮。",
+  "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。YouTube 侧：computer-use（让 AI 操作你的电脑/手机）正从 demo 走向产品：OpenAI 今天正式把它装进了 ChatGPT，跟本报编辑部同一天自建的手机代理工作流撞上了同一个浪潮。",
   "ota": {
     "learned": [
       "OpenAI 把 computer-use 正式装进 ChatGPT 桌面版：in-app browser、Chrome 扩展接管标签页、macOS 上有独立光标可后台操作——验证了「代理操作真实界面」已是产品级方向",
@@ -59,7 +59,7 @@
           "author": "OpenAI",
           "likes": 41139,
           "summary": "ChatGPT 桌面版正式获得 computer-use：内置浏览器扫网页出报告、Chrome 扩展直接用你已开的标签页跑流程（报销、批量录入）、macOS 上用独立光标后台操作任何桌面 app。",
-          "why": "「代理操作真实界面」赛道正式起飞——同类工作流本报编辑部当天也在自建，方向撞车即验证。",
+          "why": "「代理操作真实界面」赛道正式起飞，同类工作流本报编辑部当天也在自建，方向撞车正好算验证。",
           "url": "https://www.youtube.com/watch?v=dB6pOolO7io",
           "flag": null
         },
@@ -67,7 +67,7 @@
           "title": "Computer-Use 2.0: Agents Just Got Multi-Cursor (Cua, AI Engineer)",
           "author": "AI Engineer World's Fair",
           "likes": 2559,
-          "summary": "开源 Cua driver：agent 不抢你的屏幕（后台光标），accessibility-tree 优先、像素兜底；把操作范围限定在单窗口后，基准通过率 62%→80% 且省 34% token。同场发布 CuaBench：专业软件任务上最强模型通过率 <30%——还早。",
+          "summary": "开源 Cua driver：agent 不抢你的屏幕（后台光标），accessibility-tree 优先、像素兜底；把操作范围限定在单窗口后，基准通过率 62%→80% 且省 34% token。同场发布 CuaBench：专业软件任务上最强模型通过率只有 <30%，还早得很。",
           "why": "给所有做屏幕代理的人指了条明路：窗口级 + accessibility 层，别跟整个桌面较劲。",
           "url": "https://www.youtube.com/watch?v=ZSQb5fzRFPw",
           "flag": null
@@ -85,7 +85,7 @@
           "title": "Simon Willison × Anthropic Claude Code 团队 (Cat Wu, Thariq)",
           "author": "AI Engineer World's Fair",
           "likes": 2629,
-          "summary": "干货：① Claude Tag 落地了 Anthropic 产品团队 65% 的 PR——多人协作+主动监听频道+团队记忆，「建议放公开频道」是他们给出的 culture hack；② 给前沿模型写提示要反直觉：删例子、删 always/never 式硬约束，Claude Code 系统提示词因此砍掉 80%（每个指令必须 100% 为真，否则模型被带偏）；③ 「代码库就是唯一的 spec」→ 重写不再是禁忌（内部已把 Claude Code 跑在 Rust 重写的 Bun 上）；④ auto mode = 每次工具调用都有 Sonnet 分类器把关（含沙箱逃逸判断），内部 1 月用到现在，红队攻击基本全被缓解；⑤ 信任新模型的方法 = 评测集回归，让新模型成为 drop-in replacement；⑥ 文化：don't negotiate against yourself——别在脑子里替自己谈判出一个「不行」。",
+          "summary": "干货：① Claude Tag 落地了 Anthropic 产品团队 65% 的 PR，多人协作+主动监听频道+团队记忆，「建议放公开频道」是他们给出的 culture hack；② 给前沿模型写提示要反直觉：删例子、删 always/never 式硬约束，Claude Code 系统提示词因此砍掉 80%（每个指令必须 100% 为真，否则模型被带偏）；③ 「代码库就是唯一的 spec」→ 重写不再是禁忌（内部已把 Claude Code 跑在 Rust 重写的 Bun 上）；④ auto mode = 每次工具调用都有 Sonnet 分类器把关（含沙箱逃逸判断），内部 1 月用到现在，红队攻击基本全被缓解；⑤ 信任新模型的方法 = 评测集回归，让新模型成为 drop-in replacement；⑥ 文化：don't negotiate against yourself，别在脑子里替自己谈判出一个「不行」。",
           "why": "①③⑥ 可直接搬进任何团队的工作流；② 编辑部已拿来升级自己写 skill 的方式（见升级公告）。",
           "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
           "flag": null
@@ -101,7 +101,7 @@
           "author": "@bcherny",
           "likes": 3300,
           "summary": "「我每天和各公司工程师聊，听到同一件事：有人用 Claude 把产出提了 10 倍，但组织其余部分没跟上。」他把观察到的团队采纳路径画成四步图（claude.ai artifact），今日登上 X 热榜（681 posts 讨论）。",
-          "why": "工具作者本人给出的组织采纳路线图——适合正在推动团队用 AI 的人直接拿去对照。",
+          "why": "工具作者本人给出的组织采纳路线图，适合正在推动团队用 AI 的人直接拿去对照。",
           "url": "https://x.com/bcherny",
           "flag": null
         },
@@ -118,7 +118,7 @@
           "title": "Karpathy 转发：Bun 正在用 Rust 重写",
           "author": "@jarredsumner (Karpathy 转发)",
           "likes": 8700,
-          "summary": "Bun 作者 Jarred Sumner 宣布用 Rust 重写 Bun（3.5M 浏览），Karpathy 转发背书。与本期 YouTube 版 Claude Code 团队访谈互相印证：他们内部已在 Rust 版 Bun 上跑 Claude Code——「代码库就是 spec，重写不再是禁忌」。",
+          "summary": "Bun 作者 Jarred Sumner 宣布用 Rust 重写 Bun（3.5M 浏览），Karpathy 转发背书。与本期 YouTube 版 Claude Code 团队访谈互相印证：他们内部已在 Rust 版 Bun 上跑 Claude Code：「代码库就是 spec，重写不再是禁忌」。",
           "why": "两个独立信源同日指向同一叙事：AI 时代重写成本塌方，这是判断技术债策略时的新变量。",
           "url": "https://x.com/jarredsumner",
           "flag": null
@@ -127,8 +127,8 @@
           "title": "病毒帖：「Anthropic 免费 Loop Engineering 课程」",
           "author": "@AnatoliKopadze",
           "likes": 3300,
-          "summary": "657K 浏览的传播帖，声称 Anthropic 刚发布免费 Loop Engineering 课程。同日热榜确有「Andrew Ng 联合 Anthropic 发布免费斯坦福 2 小时 agentic 课程」条目（954 posts）——传播帖疑似把几件事揉在一起蹭热度。",
-          "why": "「loops > prompts」叙事已经强到能养活标题党——侧面印证本期社评的判断。",
+          "summary": "657K 浏览的传播帖，声称 Anthropic 刚发布免费 Loop Engineering 课程。同日热榜确有「Andrew Ng 联合 Anthropic 发布免费斯坦福 2 小时 agentic 课程」条目（954 posts），传播帖疑似把几件事揉在一起蹭热度。",
+          "why": "「loops > prompts」叙事已经强到能养活标题党，侧面印证本期社评的判断。",
           "url": "https://x.com/AnatoliKopadze",
           "flag": "⚠️ 传播帖表述与可查事实不完全吻合，课程出处以 Andrew Ng/官方渠道为准"
         }
@@ -144,7 +144,7 @@
           "likes": 7104,
           "saves": 9871,
           "summary": "两位 Anthropic 工程师 24 分钟讲解鲜为人知的 Claude 隐藏工作流（视频转发帖，正文信息量少，价值在视频本身）。",
-          "why": "9.8k 收藏说明「Claude 工作流」是当下中文社区最饥渴的题材——做内容的人请注意。",
+          "why": "9.8k 收藏说明「Claude 工作流」是当下中文社区最饥渴的题材，做内容的人请注意。",
           "url": "https://www.rednote.com/explore/6a3cb3e5000000001101ceae",
           "flag": null
         },
@@ -152,8 +152,8 @@
           "title": "努力让自己站在上风位 Stay Upwind",
           "author": "晓辉博士",
           "likes": 1691,
-          "summary": "Paul Graham：两难选择时，选让你处于「上风位」的那个——下风方向永远有更多选项。另一条：伟大不能被计划。",
-          "why": "适用于一切职业分叉口：打工 vs 创业、深耕 vs 转行——判据不是眼下收益，是后续选项数。",
+          "summary": "Paul Graham：两难选择时，选让你处于「上风位」的那个：下风方向永远有更多选项。另一条：伟大不能被计划。",
+          "why": "适用于一切职业分叉口：打工 vs 创业、深耕 vs 转行，判据不是眼下收益，是后续选项数。",
           "url": "https://www.rednote.com/explore/6a466522000000001603f340",
           "flag": null
         },
@@ -172,7 +172,7 @@
           "likes": 714,
           "comments": 667,
           "summary": "点子清单式引流帖，真正的价值在 667 条评论：真实用户在报需求（冰箱库存记录、教我用 AI 写小程序……）。",
-          "why": "免费的需求信号矿——想找周末 build 目标的人去翻评论区。",
+          "why": "免费的需求信号矿，想找周末 build 目标的人去翻评论区。",
           "url": "https://www.rednote.com/explore/6a335d4f0000000007025d83",
           "flag": null
         },
