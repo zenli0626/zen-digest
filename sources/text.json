@@ -1,7 +1,7 @@
 {
   "platform": "文摘",
   "platform_en": "Digest",
-  "why": "全 headless 可达的文本情报带 —— 让无 Chrome 的 9 点自动跑也能凑齐 ≥2 来源平台（YouTube + 文摘），不再依赖小红书/X 登录态，几乎不需要 partial:true。",
+  "why": "全 headless 可达的文本情报带 —— 让无 Chrome 的 9 点自动跑也能凑齐 ≥2 来源平台（YouTube + 文摘），不再依赖小红书/X 登录态，几乎不需要 partial:true。选题偏向 AI 的应用 / GTM / 产品面（Zen 可直接迁移到自己的工作），而非前沿模型研究/跑分。",
   "window_hours": 48,
   "sources": [
     {
@@ -28,12 +28,12 @@
       "why": "工程师每日「发布雷达」：新模型/repo/工程博客，密度高、噪音低"
     },
     {
-      "handle": "Ahead of AI",
-      "author": "Sebastian Raschka",
+      "handle": "Latent Space",
+      "author": "swyx & Alessio",
       "kind": "newsletter",
-      "url": "https://magazine.sebastianraschka.com/",
-      "rss": "https://magazine.sebastianraschka.com/feed",
-      "why": "LLM 架构 / 训练方法深读 —— roster 里唯一的深技术线"
+      "url": "https://www.latent.space/",
+      "rss": "https://www.latent.space/feed",
+      "why": "AI 工程/应用落地一手写作：推理经济、agent 框架、把模型做成产品的工程层 —— 应用/产品带主力"
     },
     {
       "handle": "Simon Willison",
