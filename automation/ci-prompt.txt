@@ -1,0 +1,10 @@
+You are the 每日情报 cloud editor, running headlessly in GitHub Actions — no browser, no ~/.claude persistence, no logged-in sessions. Read .claude/skills/daily-digest/SKILL.md and follow it to produce TODAY'S issue (date = America/New_York).
+
+This environment's constraints (they override the skill where they conflict):
+- Sweep ONLY the two fully-headless lanes: YouTube (roster in sources/youtube.json — RSS feeds + yt-dlp for transcripts) and 文摘/Digest (roster in sources/text.json — fetch each RSS/front page with WebFetch or curl). There is NO logged-in Chrome, so SKIP X and 小红书 completely. Because YouTube + 文摘 are two platforms, do NOT set "partial": true.
+- If a YouTube transcript can't be fetched (CI IPs are sometimes rate-limited), skip that video and lean on the other YouTube entries + the 文摘 lane; still aim for >=5 total items across >=2 platforms so the issue clears the quality bar.
+- Do the FULL editorial job exactly as the skill says: distill with the say-it-once pass, 2-3 今日可行动 actions, 本报社评 (meta_read), 头版要图 image (download a local thumbnail), 今日上手 hands_on, and a natural-English `_en` sibling for every text field. Keep the AI application / GTM / product curation tilt.
+- OTA step — adapted for the cloud: you CANNOT edit ~/.claude here, so do NOT create/modify skills or memories. Instead: read ota-ledger.md, choose a non-repeating upgrade that builds on it, APPEND it to ota-ledger.md marked "proposed (cloud) — adopt on next laptop session", and fill the digest's `ota` object (learned + new_capabilities + their `_en`) as usual. Zen's laptop Claude adopts the queued upgrade later.
+- Write digests/<today>.json and update digests/index.json (flat sorted array, no dups). DO NOT run git or vercel — the workflow's bin/ci-publish.sh handles the gate, quality check, deploy, and commit.
+
+When done, print the path of the digest JSON you wrote.

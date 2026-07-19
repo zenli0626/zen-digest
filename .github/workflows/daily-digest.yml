@@ -1,0 +1,53 @@
+name: daily-digest
+
+# Truly-automated nightly build of 每日情报 (mrqb.space), running in the cloud so it no
+# longer depends on Zen's laptop being awake. Generates the issue with Claude Code headless,
+# then bin/ci-publish.sh gates it and auto-publishes to prod ONLY if it passes the quality
+# self-check (otherwise holds a preview + Telegram pings Zen).
+
+on:
+  schedule:
+    # 01:00 UTC ≈ 21:00 America/New_York (EDT). Drifts ~1h across DST; GitHub cron is UTC-only
+    # and best-effort (can lag under load). Fine for a nightly.
+    - cron: '0 1 * * *'
+  workflow_dispatch: {}   # manual "Run workflow" button — used for the first shakedown test
+
+permissions:
+  contents: write         # commit the generated issue back to main
+
+concurrency:
+  group: daily-digest
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tooling (yt-dlp, vercel, claude-code)
+        run: |
+          python3 -m pip install --quiet --upgrade yt-dlp
+          npm install -g vercel @anthropic-ai/claude-code
+
+      - name: Generate today's issue (Claude Code, headless)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "$(cat automation/ci-prompt.txt)" --dangerously-skip-permissions || true
+
+      - name: Publish (diversity gate + quality check → prod or preview + notify)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: bash bin/ci-publish.sh
