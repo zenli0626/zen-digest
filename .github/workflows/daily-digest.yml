@@ -37,7 +37,8 @@ jobs:
       - name: Install tooling (yt-dlp, vercel, claude-code, playwright)
         run: |
           python3 -m pip install --quiet --upgrade yt-dlp
-          npm install -g vercel @anthropic-ai/claude-code playwright
+          npm install -g vercel @anthropic-ai/claude-code
+          npm install playwright
           npx playwright install --with-deps chromium
 
       - name: Generate today's issue (Claude Code, headless)

@@ -1,2 +1,8 @@
 bin/
 logs/
+node_modules
+package.json
+package-lock.json
+automation
+.github
+.claude

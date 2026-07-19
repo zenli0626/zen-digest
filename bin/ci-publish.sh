@@ -43,7 +43,7 @@ render_broadsheet() {
   python3 -m http.server 8799 >/tmp/srv.log 2>&1 &
   local srv=$!
   sleep 2
-  NODE_PATH="$(npm root -g 2>/dev/null)" node bin/render-broadsheet.mjs \
+  node bin/render-broadsheet.mjs \
     "http://localhost:8799/index.html?d=$DAY" "$BROADSHEET" \
     || echo "broadsheet render failed (non-fatal) — will send text instead"
   kill "$srv" 2>/dev/null || true
