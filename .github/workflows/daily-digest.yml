@@ -34,10 +34,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install tooling (yt-dlp, vercel, claude-code)
+      - name: Install tooling (yt-dlp, vercel, claude-code, playwright)
         run: |
           python3 -m pip install --quiet --upgrade yt-dlp
-          npm install -g vercel @anthropic-ai/claude-code
+          npm install -g vercel @anthropic-ai/claude-code playwright
+          npx playwright install --with-deps chromium
 
       - name: Generate today's issue (Claude Code, headless)
         env:
