@@ -1,8 +1,8 @@
 {
   "date": "2026-07-19",
   "partial": false,
-  "banner": "开源旗舰一周开了三家,Moonshot 却因为 Kimi K3 需求太猛,直接停了新订阅。能力越来越不要钱,真正卡脖子的挪到了两头:谁还供得上 token,和你没关掉的那颗脑子。",
-  "banner_en": "Three open-weight flagships in a week — and yet Moonshot froze new subscriptions because Kimi K3 demand outran its servers. Capability keeps getting cheaper; the real bottleneck moved to the two ends: who can still serve the tokens, and the head you didn't switch off.",
+  "banner": "一周三款开源旗舰，瓶颈转向算力",
+  "banner_en": "Three open-weight flagships in a week; the bottleneck shifts to compute",
   "image": {
     "src": "digests/img/2026-07-19.jpg",
     "caption": "开源旗舰的参数量赛跑,一张画完就得重画。Latent Space 追踪的开源最大模型:7 月 16 日还是 Moonshot 的 Kimi K3(2.8T)领跑,后面跟着 DeepSeek 1.6T、小米 1.02T、Thinking Machines 的 Inkling 975B。可就在本报截稿这几天,阿里又开出 2.4T 的 Qwen 3.8,而 Kimi K3 的需求已经猛到 Moonshot 停售新订阅。参数在涨,能供上的算力才是真门槛。(图:Latent Space《AINews:Kimi K3 2.8T-A50B》)",
