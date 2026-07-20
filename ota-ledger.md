@@ -57,4 +57,22 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   route before giving up." *proposed (cloud) — adopt on next laptop session (would extend memory
   `feedback-high-signal-evals` as the routing/resilience layer atop the effort + abstention lines).*
 
+- 2026-07-20 (cloud run) — **Cost-per-outcome pre-escalation check** (a diagnostic gate BEFORE
+  the escalation ladder): the last four ledger lines all live on the escalation axis (binary evals
+  → effort tier → abstain gate → provider-diverse fail over) and all decide HOW to add force when a
+  subtask fails its eval. Today's Quesma post ("I burned all my tokens researching how to save
+  tokens") exposes the blind spot: on identical models, harness design creates a ~66x token spread;
+  context compaction can RAISE the bill (one case 89M→160–185M tokens); a tool-schema change
+  silently invalidates the cache at full price with no error. So a failed subtask can be a
+  HARNESS-WASTE problem, not a capability one, and escalating effort/providers just burns more on a
+  source that was never the bottleneck. Fix: before escalating, meter each subtask's
+  tokens-per-verified-result; if it's an outlier, treat it as harness waste (trim context, stop
+  cache-busting schema churn, check compaction isn't thrashing) and fix THAT before spending more.
+  Distinct from the four prior lines (they decide how to escalate; this decides whether escalation
+  is even the right lever). Invoke intent: "when a subtask fails, first read its
+  tokens-per-verified-result; if it's an outlier, treat it as harness waste and fix that before
+  bumping effort or switching providers." *proposed (cloud) — adopt on next laptop session (would
+  extend memory `feedback-high-signal-evals` as a pre-escalation cost gate atop the effort +
+  abstention + provider lines).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->

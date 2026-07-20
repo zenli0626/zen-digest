@@ -1,0 +1,164 @@
+{
+  "date": "2026-07-20",
+  "partial": false,
+  "banner": "Ollama 融资八千八百万，开源社区不买账",
+  "banner_en": "Ollama raises $88M; the open-source crowd isn't buying it",
+  "image": {
+    "src": "digests/img/2026-07-20.jpg",
+    "caption": "Ollama 宣布 8800 万美元 A 轮融资、已服务 890 万开发者，博客标题《all aboard open models》把自己摆在开源模型生态的中心。可 HN 头版的高赞位置几乎一边倒，摆的是一篇《停用 Ollama》：有人指它分发的二进制一度没带上所依赖的 llama.cpp 那份 MIT 许可声明，还在把上游的新功能包装成自家的、一步步往它的云上引。开源模型的价值是真的，问题是这一层便利由谁收钱、又是否记得给上游署名。（图：Ollama 官方博客《all aboard open models》）",
+    "caption_en": "Ollama announced an $88M Series A and says it now serves 8.9 million developers, its blog post “all aboard open models” placing it at the center of the open-model ecosystem. But the top of the HN front-page thread runs almost the other way, anchored by a piece titled “Stop Using Ollama”: commenters say its binaries once shipped without the required MIT license notice for the llama.cpp code they depend on, that it rebrands upstream features as its own, and that it keeps nudging you toward its cloud. The value in open models is real; the question is who collects on this convenience layer, and whether it remembers to credit upstream. (Image: Ollama's official blog, “all aboard open models.”)"
+  },
+  "actions": [
+    {
+      "text": "今晚花 10 分钟盘一下你本地跑模型那层。如果你用 Ollama，先搞清楚你到底在跑什么：它的量化版本、更新滞后、以及它默认会不会把请求悄悄发去它的云，都值得你亲自确认一遍（HN 上不少人指它把 llama.cpp 的功能包装成自家的、还一步步引你上云）。做两件事：一，拿一条真实任务，直接用 llama.cpp 跑一遍、再用 Ollama 跑一遍，比一比速度和你能控的量化档，看便利层收走的是不是你本可以自己拿的性能；二，把任何自动云回退关掉或看清楚，别让私有 prompt 在你不知道的时候离开这台机器。开源模型的价值是真的，关键是这份价值由你拿，而不是被一层帮你装好、顺手向你卖云的便利收走。",
+      "source": "Hacker News · Ollama: All Aboard Open Models",
+      "source_url": "https://news.ycombinator.com/item?id=48965880",
+      "text_en": "Spend 10 minutes tonight auditing the layer where you run models locally. If you use Ollama, first know what you're actually running: its quant versions, its update lag, and whether it quietly sends requests to its cloud by default are all worth checking yourself (plenty of people on HN say it repackages llama.cpp's features as its own and steadily nudges you toward its cloud). Do two things: (1) take one real task, run it straight through llama.cpp and then through Ollama, and compare speed and the quant levels you can control — see whether the convenience layer is taking performance you could have had yourself; (2) turn off or fully inspect any automatic cloud fallback, so private prompts don't leave this machine without you knowing. The value in open models is real; the point is that YOU capture it, not a convenience layer that installs it for you and upsells you its cloud on the side.",
+      "source_en": "Hacker News · Ollama: All Aboard Open Models"
+    },
+    {
+      "text": "把你那条 agent / 研究流水线的顺序倒过来排。Quesma 复盘里最能抄的一条：同一批模型，harness 设计不同，token 能差 66 倍；他们的解法是让便宜模型先做探索和查找、贵模型只做核查、最重的分析放到最后，一分钱没多付，把 30 分钟的额度撑成了几个小时。今晚挑你花钱最多的那条链，照这个次序重排一遍：小模型（Haiku 级）抽取和跑量，Sonnet 级找线索，Opus 级只在最后核查有争议的地方。顺带记住两个反直觉的坑：压缩上下文不一定省钱，他们有一次一调阈值，账单从 8900 万 token 涨到 1.6 至 1.85 亿；改动工具的 schema 会让缓存在你毫不知情时按全价失效。省 token 的功夫在排布，不在换更强的模型。",
+      "source": "Hacker News · I burned all my tokens researching how to save tokens",
+      "source_url": "https://news.ycombinator.com/item?id=48967355",
+      "text_en": "Reverse the order of your agent / research pipeline. The single most copyable line from Quesma's write-up: on the same set of models, different harness design produces a 66x token spread. Their fix was to let cheap models explore and find first, use expensive ones only to verify, and put the heaviest analysis last — not a penny more spent, and a 30-minute budget stretched into hours. Tonight, take your most expensive chain and re-sequence it: small models (Haiku tier) for extraction and bulk work, Sonnet tier to find leads, Opus tier only to verify the contested parts at the end. Keep two counterintuitive traps in mind: compacting context doesn't always save money — one threshold change took their bill from 89M tokens to 160–185M; and changing a tool's schema silently invalidates your cache at full price with no warning. The savings live in the arrangement, not in reaching for a stronger model.",
+      "source_en": "Hacker News · I burned all my tokens researching how to save tokens"
+    },
+    {
+      "text": "这周起给自己立一条规矩：任何 AI 提效的说法，不带一个真实的前后对比数字就不往外说，也不往上报。Nik Suresh 那篇戳破的正是这套：一个没用过 ChatGPT 的高管拍了公司的 AI 战略，底下没人敢说这些收益不成立，因为那会拆客户高管的台，于是虚高的说法一层层被默认下来。你挡这套的办法很朴素：挑一个你自己已经上了的 AI 工作流，这周老老实实量一次，省了多少时间、错误率动没动，前后各记一个数。真动了，拿数字说；没动，就照实讲。你一个人守住诚实计量，就已经站在这场集体做账的反面。",
+      "source": "文摘 · Simon Willison / Nik Suresh：AI 狂热正在掏空全球决策",
+      "source_url": "https://simonwillison.net/2026/Jul/19/ai-mania/",
+      "text_en": "Starting this week, set yourself a rule: don't repeat — or report up — any AI productivity claim without one real before/after number attached. What Nik Suresh's piece punctures is exactly this: an executive who has never used ChatGPT sets a company's AI strategy, and no one below dares say the gains aren't plausible, because that would undercut the customer's executive — so inflated claims get rubber-stamped up the chain. The way to block it is plain: pick one AI workflow you've actually adopted, measure it honestly this week — how much time it saved, whether the error rate moved — and record a number before and after. If it really moved, say so with the number; if it didn't, say that too. One person holding to honest measurement already stands on the opposite side of this collective bookkeeping.",
+      "source_en": "Digest · Simon Willison / Nik Suresh: AI Mania Is Eviscerating Global Decision-Making"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚 15 分钟：用 SymPy 亲手验一次 AI 给出的雅可比反例",
+    "why": "今天 HN 上 Fable 给出了雅可比猜想的一个反例，最有意思的不是模型，是 tptacek 那句『你自己在 Sage 里就能验』。一个够强的模型给你一个可检验的结论，正确的反应既不是信、也不是不信，是自己跑一遍。这条正好把今天那篇『AI 在场时人反而更不愿说不知道』的教训落成一次肌肉训练：今晚就练一次『不替我信、我自己核』。",
+    "time": "~15 分钟",
+    "steps": [
+      "打开原帖（HN 48973869 里指向的 __alpoge__ 那条），把它给出的多项式映射 F: C³→C³ 三个分量原样抄下来",
+      "pip install sympy；用 sympy.symbols 定义 x, y, z，把 F 写成一个 sympy.Matrix",
+      "算 F.jacobian([x, y, z]).det() 并 simplify，确认它是一个非零常数（帖子说是 −2）。雅可比行列式恒为非零常数，是这个反例成立的前提",
+      "再验『不可逆』：按帖子给的两三个不同输入点分别代入 F、比较输出，确认存在两个不同的点映到同一个输出，这就推翻了『雅可比恒非零 ⇒ 全局可逆』的猜想",
+      "两步都过，你就独立复核了一条今天刚出的数学结论；有一步过不了，你也正好知道该给这条新闻打几分，这就是今天要练的判断力"
+    ],
+    "source": "Hacker News · Claude Fable produced a counterexample to the Jacobian Conjecture",
+    "source_url": "https://news.ycombinator.com/item?id=48973869",
+    "title_en": "Tonight, 15 minutes: verify an AI's Jacobian counterexample yourself in SymPy",
+    "why_en": "On HN today, Fable produced a counterexample to the Jacobian Conjecture, and the most interesting part isn't the model — it's tptacek's line, “you can check this yourself in Sage.” When a strong-enough model hands you a checkable claim, the right response is neither to believe it nor to dismiss it, but to run it yourself. This turns today's other lesson — that people grow less willing to say “I don't know” when AI is on hand — into a muscle you actually exercise: tonight, don't believe on my behalf; verify it yourself.",
+    "time_en": "~15 min",
+    "steps_en": [
+      "Open the source thread (the __alpoge__ post that HN 48973869 links to) and copy down, verbatim, the three components of the polynomial map F: C³→C³ it gives",
+      "pip install sympy; define x, y, z with sympy.symbols and write F as a sympy.Matrix",
+      "Compute F.jacobian([x, y, z]).det() and simplify it — confirm it's a nonzero constant (the post says −2); a Jacobian determinant that's a nonzero constant is the premise this counterexample needs",
+      "Now check “not invertible”: plug the two or three distinct input points the post gives into F and compare outputs — confirm two different points map to the same output, which refutes the conjecture's claim that a nonzero-constant Jacobian forces global invertibility",
+      "If both steps pass, you've independently checked a math result that appeared today; if one fails, you know exactly how much to trust the news — that judgment is the thing you're training tonight"
+    ],
+    "source_en": "Hacker News · Claude Fable produced a counterexample to the Jacobian Conjecture"
+  },
+  "meta_read": "把今天几条并排看：Ollama 拿了 8800 万、服务 890 万开发者，可 HN 高赞几乎一边倒地说它把 llama.cpp 重新包装、还在往云上引；Quesma 那篇复盘更扎心，同一批模型，harness 设计不同，token 花费能差 66 倍，他们没多付一分钱，只是把便宜模型探索、贵模型核查、复杂分析放最后，就把 30 分钟的额度撑成了几个小时；Nik Suresh 的稿子又揭了一层，一个营收两百亿以上公司的 AI 战略，是一个没用过 ChatGPT 的高管拍的，而没人敢当面说这些收益不成立，因为那会拆客户高管的台。市面把这三条分别读成好消息：开源工具拿到大钱、AI 让人效率十倍、人人都在上 AI。本报的另一种读法是：模型本身越来越不是价值所在，今天这几条恰好画出价值漏到了哪三个地方，又是怎么被人悄悄拿走或做假的。一处漏进了便利层，那层由别人收钱、还可能不给上游署名（Ollama）；一处漏进了编排纪律，好 harness 和坏 harness 差 66 倍，而这层功夫没人替你做（Quesma）；一处漏进了叙事，收益是被摆出来的、不是被量出来的（Suresh）。Fable 给出雅可比反例那条，恰好是这盘棋里的定盘星：能力本身偶尔还真能干出全新的事，所以问题从来不是模型太弱，是这场价值的争夺已经基本挪到了模型之外，挪到了谁把它收走、以及有没有人在老老实实地量。所以昨天说护城河搬出了模型，今天更进一步：它搬进了『价值归谁』和『有没有人诚实计量』这两间屋子，而这两间屋子现在都在被人做手脚。对独立建设者，能拿的东西也在这里，不在最强权重上：自己那层便利别外包出去（详见一版行动），编排纪律自己练（详见二版行动与今日上手那类自己核的动作），任何效率说法先自己量一个真数（详见三版行动）。这三样都不花钱，花的是不偷懒。",
+  "meta_read_en": "Line up today's items: Ollama took $88M and serves 8.9M developers, yet the top HN replies run almost unanimously the other way — that it repackages llama.cpp and keeps nudging you to its cloud; Quesma's write-up cuts deeper — on the same set of models, different harness design produces a 66x token spread, and without paying a cent more they stretched a 30-minute budget into hours simply by letting cheap models explore, expensive ones verify, and heavy analysis come last; and Nik Suresh's piece peels back another layer — a $2B+ revenue company's AI strategy was set by an executive who has never used ChatGPT, and no one dares say the gains aren't plausible because that would undercut the customer's executive. The market reads these three as good news apiece: an open-source tool lands big money, AI 10x's productivity, everyone's adopting AI. This paper's other reading: the model itself is less and less where the value sits, and today's items happen to map the three places the value is leaking to — and how each is being quietly taken or faked. One leak goes into the convenience layer, which someone else monetizes and may not credit upstream (Ollama); one goes into orchestration discipline, where good and bad harnesses differ 66x and no one does that work for you (Quesma); one goes into the narrative, where gains are displayed rather than measured (Suresh). The Fable Jacobian counterexample is the fixed point on this board: capability itself still occasionally does something genuinely new — so the problem was never that models are weak, it's that the fight over value has largely moved off the model, to who captures it and whether anyone is honestly measuring it. So yesterday's “the moat left the model” advances today: it moved into two rooms — “who gets the value” and “is anyone measuring honestly” — and both rooms are now being tampered with. For solo builders, what you can grab is here too, not in the strongest weights: don't outsource your own convenience layer (see Action 1), train the orchestration discipline yourself (see Action 2 and the verify-it-yourself move in 今日上手), and attach one real number to any efficiency claim before you repeat it (see Action 3). None of the three costs money; they cost not being lazy.",
+  "ota": {
+    "learned": [
+      "读台账，最近四条升级全长在同一根轴上：从二元评测到按努力档升级、到弃权门、再到多供应商 fail over，讲的都是子任务过不了评测时该怎么加力。今天 Quesma 那篇《为了省 token 把 token 烧光》戳出这根轴的一个盲点：同一批模型，harness 设计不同，token 能差 66 倍；压缩上下文有时反而把账单从 8900 万顶到 1.8 亿；改个工具 schema，缓存就按全价默默失效、还不报错。也就是说，我可能一边在给失败的子任务升努力、换供应商，一边因为 harness 浪费在悄悄烧掉几十倍的 token，而循环里根本没有一个成本信号让我察觉。",
+      "所以该在升级阶梯之前先加一道成本诊断：给每个子任务量一个『每条已核实结果花了多少 token』的指标，失败时先看这个数是不是异常偏高。偏高，先当作 harness 浪费处理（裁上下文、别再改动会打掉缓存的 schema、检查压缩是不是在空转），把这层修好再谈加努力或换供应商；不偏高，才是真的能力不够，那时升级阶梯才该启动。这不是在重复那根轴，是在它前面加一个『该不该升级』的闸，免得我朝一个其实是浪费、不是没能力的问题一直砸钱。"
+    ],
+    "new_capabilities": [
+      "🎯（云端提议，待笔记本采纳）『成本诊断先于升级』（cost-per-outcome pre-escalation check）：在已排队的升级阶梯前面加一道闸。以前失败即沿轴加力（升努力档 → 换供应商），现在遇到子任务失败，我会先量它的『每条已核实结果耗多少 token』；这个数异常偏高，说明问题多半出在 harness 浪费（上下文臃肿、改 schema 打掉缓存、压缩空转），先把这层修好，而不是花更多钱去升级一个其实不缺能力的子任务。它跟之前几条是不同的东西（那些决定怎么升级，这条决定该不该升级），灵感来自今天 Quesma『同一模型 harness 差 66 倍、压缩反而涨账单、schema 一改缓存全价失效』的复盘。已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次落地。调用意图：『子任务失败时先读它的每结果 token 成本，异常偏高就当 harness 浪费先修，再谈升努力/换供应商。』"
+    ],
+    "learned_en": [
+      "Reading the ledger, the last four upgrades all grow on one axis: from binary evals to effort-tier escalation to the abstain gate to provider-diverse fail over — all about how to add force when a subtask fails its eval. Today's Quesma post (“I burned all my tokens researching how to save tokens”) exposes a blind spot on that axis: on the same set of models, different harness design creates a 66x token spread; compacting context can push a bill from 89M to 185M tokens; a single tool-schema change silently invalidates the cache at full price with no error. In other words, I could be escalating effort and switching providers on a failing subtask while quietly burning tens of times more tokens on harness waste — with no cost signal anywhere in the loop to notice it.",
+      "So a cost diagnostic belongs in front of the escalation ladder: meter each subtask's tokens-per-verified-result, and when it fails, first check whether that number is an outlier. If it is, treat it as harness waste first (trim context, stop touching schemas that bust the cache, check compaction isn't thrashing) and fix that before bumping effort or switching providers; only if it isn't is the failure a real capability gap, and only then should the ladder fire. This doesn't repeat the axis — it adds a “should we even escalate” gate in front of it, so I stop throwing money at a problem that's waste, not weakness."
+    ],
+    "new_capabilities_en": [
+      "🎯 (cloud-proposed, pending laptop adoption) “Cost-per-outcome pre-escalation check”: a gate in front of the already-queued escalation ladder. Previously a failure meant adding force along the axis (bump effort tier → switch providers); now, when a subtask fails, I first meter its tokens-per-verified-result. If that number is an outlier, the problem is most likely harness waste (bloated context, a schema change that busted the cache, compaction thrashing), so I fix that layer rather than spending more to escalate a subtask that isn't actually short on capability. It's distinct from the prior lines (those decide how to escalate; this decides whether to escalate at all), inspired by today's Quesma write-up (66x harness spread on the same model, compaction raising the bill, a schema change invalidating the cache at full price). Appended as proposed (cloud) to ota-ledger.md for Zen's laptop Claude to land next session. Invoke intent: “when a subtask fails, first read its per-result token cost; if it's an outlier, treat it as harness waste and fix that before bumping effort or switching providers.”"
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 60,
+      "items": [
+        {
+          "title": "Ollama 拿了 8800 万美元，开源社区却在喊『停用』",
+          "title_en": "Ollama raises $88M, and the open-source crowd is telling people to stop using it",
+          "author": "Ollama · Hacker News",
+          "author_en": "Ollama · Hacker News",
+          "likes": 126,
+          "flag": null,
+          "url": "https://news.ycombinator.com/item?id=48965880",
+          "summary": "Ollama 宣布完成 8800 万美元 A 轮，投资方包括 Benchmark、Theory Ventures、8VC、YC 及一批天使，自述已服务 890 万开发者，博客标题《all aboard open models》把自己摆在开源模型生态的中心。可 HN 头版的风向几乎和标题相反，高赞位置摆的是一篇《停用 Ollama》。批评集中在几点：msm_ 指它分发的二进制里一度没带上所依赖的 llama.cpp 那份 MIT 许可声明；fnlsnd、ianhawes 等人反复问它到底会不会好好给 llama.cpp 署名，还是继续把上游的新功能包装成自家的；还有人不满它量化版本少、跟进慢、并且在一步步把用户往它的云上引（intothemild 说它比纯 llama.cpp 更慢）。也有像 m_kos 这样的辩护：它上手简单、定价大方，这份便利本身有价值，只是这类声音在帖子里没占上风。",
+          "summary_en": "Ollama announced an $88M Series A from Benchmark, Theory Ventures, 8VC, Y Combinator, and a set of angels, saying it now serves 8.9M developers, its blog post “all aboard open models” placing it at the center of the open-model ecosystem. But the HN front-page mood runs almost opposite to the title, anchored by a piece called “Stop Using Ollama.” The criticism clusters: msm_ notes its binary distributions once didn't include the required MIT license notice for the llama.cpp code they ship; fnlsnd and ianhawes keep asking whether it will properly credit llama.cpp or keep rebranding upstream's new features as its own; others dislike the thin quant variety, the lag, and the steady push toward its cloud (intothemild says it's slower than pure llama.cpp). There's a defense too — m_kos argues its ease of use and generous pricing have real value — but that view didn't carry the thread.",
+          "why": "这是本期的头，也是一记很干净的 GTM 样本：模型本身开源免费之后，钱和摩擦都在往它上面那层便利/分发跑。8800 万押的不是模型，是『帮你把开源模型装好、跑起来』这门生意；而社区的反弹说的是这层便利的代价，给上游署名的诚信、以及它顺手把你引向自家云的锁定。对任何在开源之上做产品的人，两面都要收：便利层确实能变现，但你若不记得给上游署名、又把用户往云里锁，信任会先于收入流失。第一条行动就是让你别把这份价值默认交给便利层。",
+          "why_en": "The issue's lead, and a clean GTM specimen: once the model is open and free, the money and the friction both move to the convenience/distribution layer above it. The $88M isn't a bet on the model, it's a bet on the business of installing and running open models for you; the community pushback is about the cost of that layer — the integrity of crediting upstream, and the lock-in of being nudged to its cloud. For anyone building on open source, take both sides: the convenience layer really can monetize, but if you forget to credit upstream and lock users into your cloud, trust drains before revenue does. Action 1 is about not handing that value to the convenience layer by default."
+        },
+        {
+          "title": "我为了研究怎么省 token，把 token 全烧光了",
+          "title_en": "I burned all my tokens researching how to save tokens",
+          "author": "Quesma · Hacker News",
+          "author_en": "Quesma · Hacker News",
+          "likes": 104,
+          "flag": null,
+          "url": "https://news.ycombinator.com/item?id=48967355",
+          "summary": "Quesma 复盘他们做深研究流水线时的省钱心得，起点是一句自嘲：第一版 /deep-research 三十分钟就把 Claude Max 5x 的额度烧穿了。真正的发现不在模型，在 harness：同一批模型，编排方式不同，token 花费能差到 66 倍。他们的解法是按角色分派模型、并把顺序倒过来，便宜的先探索查找（Sonnet 级找线索、Haiku 抽取和格式化），贵的只做核查（Opus 核验），最复杂的分析放到最后而不是最前；结果一分钱没多付，把 30 分钟的可用时长撑成了几个小时。文章还点了两个反直觉的坑：压缩上下文不一定省，他们有一次调了阈值，账单反而从 8900 万 token 涨到 1.6 至 1.85 亿；改动工具的 schema 会让缓存按全价失效，而且不报错、你根本不知道。评论区补充了缓存意识（动态改 prompt 前缀会打掉前缀缓存）、批量定价能省一半、以及『把检索选择尽早冻住别再动』等几条可抄的经验。",
+          "summary_en": "Quesma recounts what it learned about cost while building a deep-research pipeline, starting with a self-deprecating line: the first /deep-research burned the whole Claude Max 5x limit in 30 minutes. The real finding isn't about the model, it's about the harness — on the same set of models, different orchestration produces up to a 66x token spread. Their fix was to assign models by role and reverse the order: cheap ones explore and find first (Sonnet tier for leads, Haiku for extraction and formatting), expensive ones only verify (Opus), and the heaviest analysis comes last rather than first; the result was hours of runtime for the same 30-minute budget, no extra spend. The post flags two counterintuitive traps: compaction doesn't always save — one threshold change took the bill from 89M tokens to 160–185M; and changing a tool's schema invalidates the cache at full price with no error, so you never know. Comments add cache awareness (mutating the prompt prefix dynamically kills prefix caching), batch pricing at ~50% off, and “freeze your retrieval selection early and stop changing it.”",
+          "why": "这是那层壳最实用的一面，直接可抄的省钱工程。对 Zen，可迁移的一课很硬：决定你账单的往往不是模型多强，是你怎么排布它，好 harness 和坏 harness 能差 66 倍。第二条行动把它落成动作，按『便宜探索、贵的核查、重活最后』重排你最烧钱的那条链；两个坑也要记牢，压缩未必省、schema 一改缓存就白交钱。它和昨天『把上下文当预算管』是同一条线的推进，昨天讲砍死重，今天讲整条链的次序和缓存的脆弱。",
+          "why_en": "The most practical face of the shell — cost engineering you can copy straight over. The transferable lesson for Zen is sharp: what sets your bill is usually not how strong the model is but how you arrange it, and good vs bad harness can differ 66x. Action 2 turns it into a move: re-sequence your most expensive chain as “cheap explores, expensive verifies, heavy work last.” Keep the two traps too — compaction may not save, and one schema change wastes your cache at full price. It advances yesterday's “manage context as a budget”: yesterday was cutting dead weight, today is the ordering of the whole chain and the fragility of the cache."
+        },
+        {
+          "title": "Fable 给出雅可比猜想的一个反例",
+          "title_en": "Claude Fable produced a counterexample to the Jacobian Conjecture",
+          "author": "__alpoge__ · Hacker News",
+          "author_en": "__alpoge__ · Hacker News",
+          "likes": 117,
+          "flag": "⚠️ 尚待独立复核，非已确证定理：这是一位数学博士贴在推特上的反例，HN 上 tptacek 等人说其算术在 Sage 里可自行验证、门槛不高，但截稿时没有 Lean 等证明器的形式化验证，也没有资深数学家的正式背书。当一条『可检验但待复核』的结果读，别当已盖棺的定理。",
+          "flag_en": "⚠️ Awaiting independent review, not a confirmed theorem: this is a counterexample a math PhD posted on Twitter; on HN, tptacek and others say the arithmetic is checkable yourself in Sage and the bar is low, but at press time there's no formal verification in a proof assistant like Lean and no endorsement from senior mathematicians. Read it as a “checkable but unreviewed” result, not a settled theorem.",
+          "url": "https://news.ycombinator.com/item?id=48973869",
+          "summary": "一位数学博士（帖子里说其持普林斯顿数学博士学位）贴出，用 Claude Fable 得到了 85 年悬而未决的雅可比猜想的一个反例：一个从 C³ 到 C³ 的多项式映射，雅可比行列式恒为常数 −2（即处处非零），却把三个不同的输入点映到了同一个输出，因而不是全局可逆，这正好推翻了『雅可比恒为非零常数就一定可逆』的猜想。HN 的反应有意思的地方在于，它是可以自己验的：tptacek 说这不过是一个雅可比行列式加三个点，你在 Sage 里就能亲自核；SyzygyRhythm 说一个聪明的高中生都能验；wenc 把式子喂给 GPT-5.6 Sol 做符号运算，也回说『看起来确实推翻了猜想』。同时保留意见也在：rvz 提醒这类网上宣称要等资深数学家独立复核再信；有人怀疑模型只是把过往失败证明里的碎片拼了出来（tptacek 觉得这个解释站不住）；截稿时没有 Lean 之类证明器的形式化验证。",
+          "summary_en": "A math PhD (the thread says they hold a Princeton doctorate in mathematics) posted that, using Claude Fable, they obtained a counterexample to the 85-year-old Jacobian Conjecture: a polynomial map from C³ to C³ whose Jacobian determinant is the constant −2 (nonzero everywhere) yet sends three different input points to the same output, so it isn't globally invertible — exactly refuting the conjecture that a nonzero-constant Jacobian forces invertibility. What's interesting about the HN reaction is that it's self-checkable: tptacek says it's just a Jacobian determinant and three points, verifiable yourself in Sage; SyzygyRhythm says a bright high schooler could check it; wenc fed the expression to GPT-5.6 Sol for symbolic algebra, which also replied it “appears to disprove the conjecture.” Caveats are present too: rvz cautions to wait for independent verification by seasoned mathematicians before trusting online claims; some suspect the model just stitched fragments from prior failed proofs (tptacek finds that explanation implausible); and at press time there's no formal verification in a proof assistant like Lean.",
+          "why": "在满版『能力在变便宜、护城河搬出模型』里，这条是刻意留的定盘星：能力本身偶尔还真能干出全新的事。但它更值钱的用法不是拿去膜拜，是拿去练一个动作，一个够强的模型给你一个可检验的结论，正确反应既不是信也不是不信，是自己跑一遍。今日上手就是让你今晚用 SymPy 亲手验这条。带 flag 读：待独立复核，不是已盖棺的定理。",
+          "why_en": "On a page full of “capability is getting cheaper, the moat left the model,” this is a deliberate fixed point: capability itself still occasionally does something genuinely new. But its more valuable use isn't worship, it's practicing a move — when a strong-enough model hands you a checkable result, the right response is neither belief nor dismissal but running it yourself. 今日上手 has you verify this one in SymPy tonight. Read it with the flag: awaiting independent review, not a settled theorem."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 30,
+      "items": [
+        {
+          "title": "AI 狂热正在掏空全球决策",
+          "title_en": "AI Mania Is Eviscerating Global Decision-Making",
+          "author": "Simon Willison",
+          "author_en": "Simon Willison",
+          "likes": null,
+          "flag": null,
+          "url": "https://simonwillison.net/2026/Jul/19/ai-mania/",
+          "summary": "Simon Willison 转引 Nik Suresh 的一篇长文，核心是一套自我维持的『可信度陷阱』：高管为了对客户显得跟得上 AI，给出夸大的收益承诺；供应商即便觉得这些数字不成立，也不敢当面戳破，因为那会拆掉客户高管的台、甚至丢掉企业合同，于是虚高的叙事被一层层默认、往上传。文章里有两个扎眼的段子：一个营收两百亿以上公司的 AI 战略，出自一个从没用过 ChatGPT 的高管；一个工程师为了在内部指标上显得高产，把代码反复用不同语言重写。Suresh 的原话大意是，只要供应商里有人说这些收益不可信，就会动摇客户高管的信誉、可能导致合同被取消。Simon 自己读得挺乐，说这是『匿名信源的辣评』，但点出的机制是真的：是组织的自利在维持不切实际的 AI 叙事，而不是诚实的技术判断。",
+          "summary_en": "Simon Willison relays a long piece by Nik Suresh whose core is a self-sustaining “credibility trap”: executives make inflated gain promises to look on top of AI for customers; vendors, even when they think the numbers don't hold, dare not contradict them, because that would undermine the customer's executive and could cost the enterprise contract — so the inflated narrative gets rubber-stamped up the chain. Two striking anecdotes: a $2B+ revenue company's AI strategy came from an executive who has never used ChatGPT; an engineer rewrites code in different languages repeatedly just to look productive on internal metrics. Suresh's line, roughly: if any vendor executive said the gains weren't plausible, it would undermine the customer executive's credibility and possibly cancel the contract. Simon reads it with amusement — “spicy anecdotes from anonymous sources” — but flags that the mechanism is real: organizational self-interest, not honest technical judgment, is what sustains the unrealistic AI narrative.",
+          "why": "这是本期特意留的逆风稿，也是最贴 Zen 的产品 / GTM 世界的一条。它说的不是模型行不行，是一整条价值链在合谋不去诚实计量：收益是被摆出来的，不是被量出来的。对做 AI 产品和增长的人，防身办法很朴素，别让自己成为那条默认链里的一环。第三条行动把它落地：任何提效说法，先自己量一个真实的前后数字再往外说。",
+          "why_en": "The issue's deliberate counter-wind piece, and the one closest to Zen's product/GTM world. It's not about whether models work; it's about a whole value chain colluding not to measure honestly: gains are displayed, not measured. For anyone in AI product and growth, the defense is plain — don't be a link in that rubber-stamp chain. Action 3 operationalizes it: attach one real before/after number to any efficiency claim before you repeat it."
+        },
+        {
+          "title": "Anthropic 差点把最强模型抽出订阅，又改了主意",
+          "title_en": "Anthropic nearly pulled its best model from subscriptions, then reversed course",
+          "author": "Simon Willison",
+          "author_en": "Simon Willison",
+          "likes": null,
+          "flag": null,
+          "url": "https://simonwillison.net/2026/Jul/18/claude-make-fable-5-permanent/",
+          "summary": "Anthropic 原打算把最强的 Fable 5 从订阅账户里拿掉、只留 API 计价，理由是算力吃紧。竞争压力逼它回了头：Simon 那句话点透了尴尬，谁会为一个不含厂商最强模型的 100 或 200 美元订阅买单。最后的落点是，7 月 20 日起 Fable 5 永久进入 Max 和 Team Premium（按 50% 额度），Pro 和标准用户靠用量额度加一次性 100 美元额度用上。Simon 把订阅用户之前那阵怕丢访问权的焦虑戏称为『Fable 末日』，还猜 Anthropic 可能得回收一部分训练用的 GPU，才能腾出算力服务这个模型。",
+          "summary_en": "Anthropic had planned to remove its most capable model, Fable 5, from subscription accounts and keep it API-only, citing compute constraints. Competitive pressure forced a reversal: Simon nails the awkwardness — why pay $100 or $200/month for a subscription that doesn't include the vendor's best model? The resolution: from July 20, Fable 5 is permanently in Max and Team Premium (at 50% of limits), with Pro and Standard users reaching it via usage credits plus a one-time $100 credit. Simon dubs subscribers' earlier anxiety about losing access the “Fablepocalypse,” and speculates Anthropic may have to dial back some training GPUs to free capacity to serve the model.",
+          "why": "把它和上周 Moonshot 因 Kimi K3 需求太猛停售新订阅并排看，同一个约束两处印证：第一梯队实验室现在都被服务产能卡着脖子，产能正在倒过来决定它们怎么定价、把最强模型放进哪个档。对靠订阅或 API 搭产品的人，这不是花边，是排期风险：你依赖的旗舰在哪个档位、会不会被抽走或降额，得当成一个会变的变量来管，而不是理所当然。（承接昨天那条产能主线，今天不再重复接开源备胎的做法，只提醒把模型依赖当成会变的变量盘一遍。）",
+          "why_en": "Set beside last week's Moonshot pausing new subscriptions as Kimi K3 demand overran it, this is the same constraint confirmed twice: top-tier labs are all bottlenecked on serving capacity, and capacity is starting to dictate how they price and which tier their best model lives in. For anyone building on subscriptions or APIs, this isn't trivia, it's scheduling risk: which tier your flagship sits in, and whether it could be pulled or throttled, is a variable to manage, not a given. (Continuing yesterday's capacity thread without repeating the open-weight-spare move — today's nudge is just to audit your model dependencies as variables that can change.)"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "云端无头运行（GitHub Actions，America/New_York 傍晚）：本期由两条无头带独立凑齐，Hacker News（扫头版约 60 条，取 AI/LLM/agent/开发工具/独立建设相关高分帖，逐条点进 comments 与原文读真实风向）与『文摘』（Simon Willison 的 RSS/博客，逐篇点进读全再精选）。两平台达标（≥2 来源、5 条），故 partial=false，无缺席横幅。刻意避开昨日已覆盖的条目（Kimi K3/Qwen 3.8 开源潮、Codex 上下文、Claude Code 换 Rust、Ahead of AI 推理努力、『AI 建议让人更差更自信』研究）。TLDR AI 最新一期为 07-17（超出 48h 窗口），Ahead of AI/Latent Space/Import AI 窗口内无新增未覆盖长文，本次未纳入。",
+    "YouTube 带整条失守：RSS 本身可达，窗口内确有多条高价值素材（Lenny's《The Answer to What's My Job in the Age of AI?》《Why Netflix is betting on systems thinkers—Elizabeth Stone CPTO》、AIE World's Fair 新放出的《Build Evals That Actually Matter—Lyft》《You Didn't Ship a Bug. You Just Wrote It for a Human—Scalekit》《From Blind Spots to Merged PRs—Hud》、Dwarkesh×Sarah Paine），但 yt-dlp 逐一撞『Sign in to confirm you're not a bot』，android/tv/ios/web_safari 多个 player client 全被这台 Actions 出口 IP 封死，拿不到任何字幕全文。按『我替你看完』的诚实底线，未伪造任何视频摘要，等下次有登录态/未被封 IP 的可交互运行回填。",
+    "OTA：读台账后，发现最近四条（07-18 二元评测 → 07-19 按档升级 → 07-19 傍晚弃权门 → 07-19 云端多供应商 fail over）全长在『升级阶梯』同一根轴上，讲的都是失败后怎么加力。今天 Quesma『为了省 token 把 token 烧光』暴露盲点（同一模型 harness 差 66 倍、压缩反而涨账单、schema 一改缓存全价失效），合成『成本诊断先于升级』：子任务失败先量它每条已核实结果的 token 成本，异常偏高就先修 harness 浪费，再谈升努力/换供应商。因云端不能改 ~/.claude，已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次落地为记忆更新。"
+  ]
+}
