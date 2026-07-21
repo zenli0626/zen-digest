@@ -75,4 +75,23 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   extend memory `feedback-high-signal-evals` as a pre-escalation cost gate atop the effort +
   abstention + provider lines).*
 
+- 2026-07-21 (cloud run) — **Planner/worker cost-tiering by role** (a start-of-work default in FRONT
+  of the whole escalation ladder): the last five ledger lines all decide what to do AFTER a subtask
+  fails (binary evals → effort tier → abstain gate → provider-diverse fail over → cost-per-outcome
+  pre-escalation check). Today's Cursor write-up ("Agent swarms and the new model economics") gives
+  the structural default those lines never pinned down: on the SAME task at the SAME quality, model
+  mix alone swings the bill ~8x ($1,339 Opus-4.8-planner+Composer-worker hybrid vs $10,565 GPT-5.5
+  solo), and for identical work the worker fleet costs $411 (Composer) vs $9,373 (GPT-5.5). Only a
+  few moments in a large task need frontier intelligence (decomposition, defining contracts/
+  interfaces, key trade-offs); once a strong planner collapses ambiguity into explicit instructions,
+  cheap models just follow. So: by default reserve the frontier model for those few judgment steps
+  and route ALL execution/worker tokens to the cheapest model that clears the subtask's eval, rather
+  than running the whole chain strong and rescuing it later. Builds on 07-20's cost-per-outcome check
+  (that meters cost after a failure) by moving the conclusion forward into a start-of-work default,
+  not a patch. Invoke intent: "tier at the start — strong model only decomposes / defines contracts /
+  decides key trade-offs; all execution goes to the cheapest model that passes its eval; don't run the
+  whole chain on the strong model." *proposed (cloud) — adopt on next laptop session (would extend
+  memory `feedback-high-signal-evals` as the default allocation atop the effort + abstention + provider
+  + cost-diagnostic lines).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
