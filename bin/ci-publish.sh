@@ -58,6 +58,14 @@ if [[ ! -f "$F" ]]; then
   echo "publish: no issue at $F"; exit 1
 fi
 
+# 0) Native-Chinese polish pass (DeepSeek). Non-fatal: a down API must not
+# block the nightly paper — it just goes out unpolished.
+if [[ -n "${DEEPSEEK_API_KEY:-}" ]]; then
+  node bin/polish-zh.mjs "$F" || echo "WARN: polish-zh failed — publishing unpolished zh text"
+else
+  echo "WARN: DEEPSEEK_API_KEY not set — skipping zh polish"
+fi
+
 # 1) Diversity gate — hard requirement even to preview-publish.
 if ! python3 bin/validate-digest.py "$F"; then
   commit_back "Draft 每日情报 $DAY (auto — failed diversity gate)"

@@ -1,52 +1,52 @@
 {
   "date": "2026-07-16",
-  "banner": "AI 开始替你动手：computer-use 全线走向产品化",
+  "banner": "AI 替你动手：computer-use 全面产品化",
   "image": {
     "src": "digests/img/2026-07-16.jpg",
-    "caption": "OpenAI 正式把 computer-use 装进了 ChatGPT，代理开始直接操作你的浏览器和桌面。（图：官方演示）"
+    "caption": "OpenAI 将 computer-use 植入 ChatGPT，代理可直接操作浏览器和桌面。（图：官方演示）"
   },
   "actions": [
     {
-      "text": "试一次「笔记本合盖+锁屏，用手机遥控 Claude Code」：Anthropic 内部几乎人人这么干（remote control 连本地 session）。成本为零，今晚沙发上就能试",
+      "text": "试一次「合盖锁屏，手机遥控 Claude Code」：Anthropic 内部几乎人人都这么干（远程控制本地 session）。零成本，今晚沙发上就能试。",
       "source": "YouTube · Claude Code 团队访谈（编辑部已看完全文）",
       "source_url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g"
     },
     {
-      "text": "把 Paul Graham 的 Stay Upwind 标准套在你手头正在纠结的选择上：哪个选项让你之后的选项更多？选那个",
+      "text": "把 Paul Graham 的 Stay Upwind 标准套在纠结的选择上：哪个选项让你未来的选项更多？选那个。",
       "source": "小红书",
       "source_url": "https://www.rednote.com/explore/6a466522000000001603f340"
     },
     {
-      "text": "FDE（Forward Deployed Engineer）正在起飞，OpenAI/Anthropic/Google 都在建队。对有平台运营/策略背景的人来说是条新赛道，值得花 30 分钟研究一下 JD",
+      "text": "FDE（前部署工程师）正崛起，OpenAI、Anthropic、Google 均在组队。对有平台运营或策略背景者是条新路，值得花 30 分钟研究 JD。",
       "source": "小红书",
       "source_url": "https://www.rednote.com/explore/6a478775000000000f032e64"
     }
   ],
   "hands_on": {
-    "title": "用 TLDW 把「看长视频」变成 5 分钟的事",
-    "why": "Zara Zhang 团队的副业产品（本期深挖她时发现的）：粘贴任意 YouTube 长视频 → 高亮摘要、可对话的逐字稿、生成信息图。今晚用编辑部看过的那场 Claude Code 团队访谈来试试，顺便验收一下本报的摘要有没有漏东西。",
+    "title": "用 TLDW 把长视频压缩到 5 分钟",
+    "why": "Zara Zhang 团队的副业产品（本期对她进行深挖时发现）：粘贴 YouTube 长视频链接，即可生成高亮摘要、可对话的逐字稿和信息图。今晚用编辑部看过的 Claude Code 团队访谈来试试，顺便检查本刊摘要有无遗漏。",
     "time": "~10 分钟",
     "steps": [
       "打开 tldw.us",
-      "粘贴 https://www.youtube.com/watch?v=uU5Gv2h8-9g （Simon Willison × Claude Code 团队）",
-      "对照本期 YouTube 版的 6 条干货，如果 TLDW 挖出了本报没写的点，欢迎来信纠错"
+      "粘贴 https://www.youtube.com/watch?v=uU5Gv2h8-9g （Simon Willison × Claude Code 团队访谈）",
+      "对照本期 YouTube 版总结的 6 条干货。如果 TLDW 挖出了本刊没写的点，欢迎来信指正。"
     ],
     "source": "Zara Zhang 深挖 → tldw.us",
     "source_url": "https://tldw.us"
   },
-  "meta_read": "今天推荐流的主旋律：「loops/系统 > prompts」已成为中文科技小红书的共识叙事（吴恩达三层 Loop、Karpathy LOOPS.md 传闻、周报四种 loop……同一波浪潮的不同切片）。YouTube 侧：computer-use（让 AI 操作你的电脑/手机）正从 demo 走向产品：OpenAI 今天正式把它装进了 ChatGPT，跟本报编辑部同一天自建的手机代理工作流撞上了同一个浪潮。",
+  "meta_read": "今天推荐流的主线：「循环与系统优于提示词」已成中文科技圈的共识叙事（吴恩达三层循环、Karpathy 的 LOOPS.md 传闻、周报四种循环……同一浪潮的不同切片）。YouTube 侧：computer-use（让 AI 操作电脑或手机）正从演示走向产品——OpenAI 今天将其正式植入 ChatGPT，与本刊编辑部同日自建的手机代理工作流撞上同一股浪潮。",
   "ota": {
     "learned": [
-      "OpenAI 把 computer-use 正式装进 ChatGPT 桌面版：in-app browser、Chrome 扩展接管标签页、macOS 上有独立光标可后台操作——验证了「代理操作真实界面」已是产品级方向",
-      "Cua (Computer-Use 2.0)：accessibility-tree 优先、像素兜底、把操作范围限定在单个窗口而不是整个桌面 → 通过率 62%→80%，token -34%。编辑部的窗口级捕获方向是对的；缺的是 accessibility 层",
-      "Zara Zhang 的策展方法论：follow builders not influencers；把 YouTube 当人名搜索引擎（爱用的产品 → 找到 PM/创始人 → 看完他所有访谈）",
-      "Claude Code 团队（1小时访谈，已看完）：给前沿模型的提示词要删例子、删 always/never 硬约束——每条指令必须 100% 为真；他们靠这个把系统提示词砍掉 80%。已采纳为编辑部写 skill 的新纪律（存入长期记忆）"
+      "OpenAI 将 computer-use 正式植入 ChatGPT 桌面版：内置浏览器、Chrome 扩展接管标签页、macOS 独立光标可后台操作——验证了「代理操作真实界面」已是产品级方向。",
+      "Cua（Computer-Use 2.0）：优先使用 accessibility-tree，像素级兜底；将操作范围限定于单个窗口而非整个桌面，通过率从 62% 提升至 80%，token 消耗减少 34%。编辑部采用的窗口级捕获方向正确，但缺少 accessibility 层。",
+      "Zara Zhang 的策展方法：追随构建者而非网红；将 YouTube 当作人名搜索引擎（喜欢某产品→找到产品经理或创始人→看完其所有访谈）。",
+      "Claude Code 团队（1 小时访谈，已看完）：给前沿模型的提示词要删去示例、删去 always 或 never 之类的硬约束——每条指令必须 100% 为真；他们凭此将系统提示词削减了 80%。已采纳为本刊编写 skill 的新纪律（存入长期记忆）。"
     ],
     "new_capabilities": [
-      "📱 phone-use — 通过 iPhone Mirroring 读手机屏幕、抓小红书笔记链接、（草稿+确认后）代为发布",
-      "📮 xhs-brief — 登录态网页扫读小红书推荐流：排序 → 深读 → 交付摘要",
-      "📰 daily-digest — 本报的引擎：多平台扫读 → 今日可行动 → 升级公告，已排入每晚定时队列",
-      "📺 YouTube 情报线 — 9 频道花名册（Karpathy/Anthropic/OpenAI/AI Engineer/Latent Space/Lenny's/No Priors/Dwarkesh/Zara），RSS 无头扫读 + 逐字稿代读"
+      "📱 phone-use —— 通过 iPhone 镜像读取手机屏幕、抓取小红书笔记链接、草稿后经确认代发。",
+      "📮 xhs-brief —— 登录态网页扫读小红书推荐流：排序、深读、交付摘要。",
+      "📰 daily-digest —— 本刊引擎：多平台扫读、今日可行动项、升级公告，已排入每晚定时队列。",
+      "📺 YouTube 情报线 —— 9 个频道名单（Karpathy、Anthropic、OpenAI、AI Engineer、Latent Space、Lenny's、No Priors、Dwarkesh、Zara），RSS 无头扫读加逐字稿代读。"
     ]
   },
   "sources": [
@@ -58,8 +58,8 @@
           "title": "ChatGPT can now complete tasks on your computer",
           "author": "OpenAI",
           "likes": 41139,
-          "summary": "ChatGPT 桌面版正式获得 computer-use：内置浏览器扫网页出报告、Chrome 扩展直接用你已开的标签页跑流程（报销、批量录入）、macOS 上用独立光标后台操作任何桌面 app。",
-          "why": "「代理操作真实界面」赛道正式起飞，同类工作流本报编辑部当天也在自建，方向撞车正好算验证。",
+          "summary": "ChatGPT 桌面版正式获得 computer-use：内置浏览器扫网页出报告，Chrome 扩展直接使用已开标签页运行流程（如报销、批量录入），macOS 上用独立光标后台操作任意桌面应用。",
+          "why": "「代理操作真实界面」赛道正式起飞，同类工作流本刊编辑部当天也在自建，方向撞车正好算验证。",
           "url": "https://www.youtube.com/watch?v=dB6pOolO7io",
           "flag": null
         },
@@ -67,8 +67,8 @@
           "title": "Computer-Use 2.0: Agents Just Got Multi-Cursor (Cua, AI Engineer)",
           "author": "AI Engineer World's Fair",
           "likes": 2559,
-          "summary": "开源 Cua driver：agent 不抢你的屏幕（后台光标），accessibility-tree 优先、像素兜底；把操作范围限定在单窗口后，基准通过率 62%→80% 且省 34% token。同场发布 CuaBench：专业软件任务上最强模型通过率只有 <30%，还早得很。",
-          "why": "给所有做屏幕代理的人指了条明路：窗口级 + accessibility 层，别跟整个桌面较劲。",
+          "summary": "开源 Cua driver：代理不抢占屏幕（后台光标），优先使用 accessibility-tree，像素级兜底。将操作范围限定于单窗口后，基准通过率从 62% 升至 80%，token 消耗节省 34%。同时发布 CuaBench：专业软件任务上最强模型通过率不足 30%，差距还很大。",
+          "why": "为所有屏幕代理开发者指明方向：窗口级加 accessibility 层，别跟整个桌面较劲。",
           "url": "https://www.youtube.com/watch?v=ZSQb5fzRFPw",
           "flag": null
         },
@@ -76,7 +76,7 @@
           "title": "Introducing the Codex Micro",
           "author": "OpenAI",
           "likes": 156597,
-          "summary": "OpenAI 联名 Work Louder 出了个 Codex 实体键盘：语音键口述任务、旋钮调 reasoning effort、每个键映射一个并行任务。今天小红书那条「Codex Micro 平替」蹭的就是它。",
+          "summary": "OpenAI 联合 Work Louder 推出 Codex 实体键盘：语音键口述任务，旋钮调节 reasoning effort，每个键映射一个并行任务。今天小红书那条「Codex Micro 平替」蹭的就是它。",
           "why": "信号：agent 的「物理控制台」成为新品类；也演示了多任务并行操控 agent 的交互范式。",
           "url": "https://www.youtube.com/watch?v=m8uUUUsMD3Y",
           "flag": null

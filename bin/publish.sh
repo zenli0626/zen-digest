@@ -10,6 +10,10 @@ day=${1:-$(TZ=America/New_York date +%F)}
 f="digests/$day.json"
 [[ -f "$f" ]] || { echo "publish: no issue at $f"; exit 1; }
 
+# Native-Chinese polish pass (DeepSeek). Non-fatal: an unpolished issue still
+# publishes — a down API must not block the daily paper.
+node bin/polish-zh.mjs "$f" || echo "WARN: polish-zh failed — publishing unpolished zh text"
+
 python3 bin/validate-digest.py "$f" || {
   echo "PUBLISH ABORTED — $day failed the diversity gate. Backfill another source lane (or set partial:true for an unavoidable headless run), then retry."
   exit 1
