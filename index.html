@@ -39,6 +39,13 @@
   .mast-side { font-size: 11.5px; line-height: 1.9; color: var(--ink-2); }
   .mast-side.right { text-align: right; }
   .mast-side .mono { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; }
+
+  /* 手机版报头：报名占整行，两耳落到下一行各占一半，短语只在 <br> 处换行 */
+  @media (max-width: 620px) {
+    .masthead { grid-template-columns: 1fr 1fr; row-gap: 4px; }
+    .masthead h1 { grid-column: 1 / -1; grid-row: 1; }
+    .mast-side { grid-row: 2; word-break: keep-all; font-size: 10.5px; line-height: 1.75; }
+  }
   h1 {
     font-family: var(--brush); font-weight: 400;
     font-size: clamp(64px, 11vw, 104px);
