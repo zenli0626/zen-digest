@@ -169,6 +169,11 @@ not just summaries. Zen reads this instead of the feeds.
    gate on any digest commit. Prod needs Zen's literal "ship to prod"; never push without Zen.
 
 ## Rules
+- 中文一律过 DeepSeek 润色:数字报 JSON 由 publish.sh / ci-publish.sh 自动跑
+  bin/polish-zh.mjs;任何新增或改动的静态页中文(index.html / how-it-works.html /
+  archive.html 等)在发布前手动跑 bin/polish-zh-html.mjs <file>。两者都要
+  DEEPSEEK_API_KEY(.env 或 CI secret),API 挂了照常发布,只是不润色。
+
 
 - **Public-shareable content** (Zen plans to share the site): write in the paper's
   editorial voice — 本报/编辑部, item commentary labeled 编者按. No personal
