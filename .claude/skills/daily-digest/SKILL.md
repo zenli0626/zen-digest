@@ -119,7 +119,7 @@ not just summaries. Zen reads this instead of the feeds.
    `hqdefault.jpg` if <3KB) into `~/zen-digest/digests/img/<date>.jpg`. XHS note covers
    or an X screenshot also work if downloaded locally. Set
    `image: {src: "digests/img/<date>.jpg", caption: "<一句话说明>（图：<出处>）"}`.
-   The page renders it grayscale+framed under the banner with a 本期要图 caption.
+   The page renders it in original color (lightly toned), framed under the banner with a 本期要图 caption.
 4. **OTA self-upgrade — the compounding learner (mandatory; this is the point of the
    whole system).** Zen's framing (confirmed 2026-07-18): **the daily learner is HIS
    Claude Code, not Zen directly** — "Claude learns every day and tells me what new it
