@@ -112,4 +112,24 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   session (would extend memory `feedback-high-signal-evals` as the eval-integrity/isolation floor under the effort +
   abstention + provider + cost-diagnostic + role-tiering lines).*
 
+- 2026-07-23 (cloud run) — **Rolling-window online routing (bandit-refreshed model tiers)** (turns the static
+  routing table under the whole ladder into a live one): the last seven ledger lines all decide, once a subtask
+  is defined or has failed, how much force/money to spend and how to keep the grading gate honest (binary evals →
+  effort tier → abstain gate → provider-diverse fail over → cost-per-outcome check → planner/worker cost-tiering
+  by role → capability-scoped eval gates). They all silently assume the routing table is STATIC: once "which model
+  is the cheapest that clears this subtask's eval" is decided, it stays put. Today's Ramp Router launch (its
+  three-year internal LLM gateway, 2.75T tokens/month, cut Ramp's own AI cost 30%, one OpenAI-compatible endpoint)
+  stabs that assumption: it re-tests new models on real traffic EVERY WEEK and auto-reroutes, because in a market
+  shipping a new open-weight flagship (Kimi/GLM/Gemini Flash) weekly, the "cheapest that still passes" line itself
+  moves weekly. So: stop treating "which model for this class of subtask" as a one-time decision — make it a policy
+  continuously re-estimated over a ROLLING WINDOW of real, graded outcomes (bandit / Thompson-sampling style), so a
+  model that just became cheap-enough is auto-promoted and one that quietly regressed is auto-demoted, with no manual
+  re-shuffle. Builds on 07-21's planner/worker cost-tiering by role (that assigns the tiers) by keeping those
+  assignments LIVE instead of static; distinct from 07-20's cost-per-outcome check (a one-shot post-failure
+  diagnostic — this is continuous and automatic). Invoke intent: "keep model routing as a rolling-window bandit over
+  real graded outcomes; auto-promote a newly-cheap-enough model and auto-demote a regressed one — don't hardcode the
+  tier." *proposed (cloud) — adopt on next laptop session (would extend memory `feedback-high-signal-evals` as the
+  make-the-routing-table-live layer atop the effort + abstention + provider + cost-diagnostic + role-tiering +
+  eval-isolation lines).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
