@@ -132,4 +132,27 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   make-the-routing-table-live layer atop the effort + abstention + provider + cost-diagnostic + role-tiering +
   eval-isolation lines).*
 
+- 2026-07-24 (cloud run) — **No-fast-oracle → front-load alignment (classify before you climb the ladder)** (a triage
+  gate in FRONT of the entire escalation/routing ladder): the last eight ledger lines all sit on one axis — using evals to
+  run a multi-agent loop well and cheaply (binary evals → effort tier → abstain gate → provider-diverse fail over →
+  cost-per-outcome check → planner/worker cost-tiering by role → capability-scoped eval gates → rolling-window online
+  routing). They share one silent precondition: that every subtask HAS a fast, reliable eval to gate on. Today's lead,
+  Dex Horthy's "Why Software Factories Fail (harness engineering is not enough)," stabs exactly that: coding models are
+  trained/rewarded on FAIL_TO_PASS + PASS_TO_PASS (did you fix it without breaking other tests), with NO penalty for
+  eroding maintainability — because the cost of bad design shows up only in weeks/months, so there is no fast oracle and
+  RL can't reward it. For that highest-value class of work (architecture, interface/contract design, naming,
+  maintainability, taste) more loops and higher tiers can't recover quality the eval can't see. So add a triage in FRONT
+  of the whole ladder: classify each subtask by whether its REAL quality has a fast reliable oracle. If yes (tests pass,
+  compiles, numbers match) → run it up the existing ladder freely. If no (design/maintainability/taste) → do NOT
+  loopmaxx; front-load a cheap planning artifact (contract, call-stack sketch, a vertical slice) and get a human or a
+  strong-planner model to review it BEFORE generation, since planning up front is cheaper than a review that can't see
+  the rot. This is the missing precondition under 07-18's binary-evals line (which assumed a good eval exists) and the
+  complement of 07-19-evening's abstain gate (that guards a judge that CAN evaluate but is unsure; this guards work that
+  is UN-evaluable by any fast judge). Invoke intent: "before putting a subtask on the escalation/loop ladder, ask whether
+  its real quality has a fast reliable oracle; if not (design/maintainability/taste), don't loopmaxx — front-load a cheap
+  spec/contract/call-stack artifact and get human-or-strong-planner review BEFORE generation, because more loops can't
+  recover quality the eval can't see." *proposed (cloud) — adopt on next laptop session (would extend memory
+  `feedback-high-signal-evals` as the pre-ladder triage that fixes the "assumes a fast eval exists" gap under the effort
+  + abstention + provider + cost-diagnostic + role-tiering + eval-isolation + rolling-window lines).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
