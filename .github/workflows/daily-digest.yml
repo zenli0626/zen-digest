@@ -45,7 +45,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          claude -p "$(cat automation/ci-prompt.txt)" --dangerously-skip-permissions || true
+          claude -p "$(cat automation/ci-prompt.txt)" --model claude-sonnet-5 --dangerously-skip-permissions || true
 
       - name: Publish (diversity gate + quality check → prod or preview + notify)
         env:

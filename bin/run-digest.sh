@@ -6,7 +6,7 @@ LOG_DIR="$HOME/zen-digest/logs"; mkdir -p "$LOG_DIR"
 LOG="$LOG_DIR/$(date +%F).log"
 cd "$HOME/zen-digest" || exit 1
 
-claude -p --dangerously-skip-permissions >> "$LOG" 2>&1 << 'PROMPT'
+claude -p --model claude-sonnet-5 --dangerously-skip-permissions >> "$LOG" 2>&1 << 'PROMPT'
 Run the /daily-digest skill (read ~/.claude/skills/daily-digest/SKILL.md and follow it
 fully). This is the scheduled 9pm run: Zen reads the issue TONIGHT, so the hands-on
 section must be tryable this evening. Sweep as many source lanes as you can reach —

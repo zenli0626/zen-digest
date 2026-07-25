@@ -81,7 +81,7 @@ export function publicize(markdown, opts = {}) {
       .replace("{{OUTPUT_PATH}}", outputPath);
 
     try {
-      execFileSync("claude", ["-p", prompt, "--dangerously-skip-permissions"], {
+      execFileSync("claude", ["-p", prompt, "--model", "claude-sonnet-5", "--dangerously-skip-permissions"], {
         stdio: ["ignore", "pipe", "pipe"],
         timeout: timeoutMs,
       });
