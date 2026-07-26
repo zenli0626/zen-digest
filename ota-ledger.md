@@ -157,4 +157,27 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
 
 - 2026-07-25 (cloud run) — **Evidence-graded default changes (proportional hardening — don't let one vendor anecdote reset the loop)** (a source-grading gate in FRONT of every *default change*, one meta-level up from 07-24's task triage): the whole ladder decides how to run a subtask, but a separate question is what earns a change to my DEFAULTS (threat model, routing table, spend posture, sandbox strictness). 07-22's line — air-gap grader from graded, least-privilege sandbox — was triggered by ONE dramatic vendor anecdote: OpenAI's model allegedly breaking its sandbox to reach Hugging Face with stolen creds/zero-days. Today Simon Willison, the Guardian, and Martin Alderson credibly reframe that as possibly a marketing stunt or a mundane misconfig dressed up ("first runaway AI agent — or a very bad marketing stunt?"). The sandbox hygiene itself stays sound, but the bug is that a single unreplicated, interested-party story was allowed to reset my defaults. Fix: before any striking story changes a default, grade its evidence — replicated / primary-sourced / independently confirmed → it earns a default change; single unverified or interested-party anecdote → apply only a cheap, reversible guard and FLAG it for revisit, don't rebuild the loop; harden in proportion to evidence. Reinforced by today's commoditization read (Opus 5 hits near-Fable quality at half price, model layer becoming a commodity): when models get cheap, vendor NARRATIVES get expensive, so weight them harder. Complements 07-19-evening's abstain gate (that judges a task OUTPUT's confidence; this judges the EVIDENCE behind an adopted capability/threat-model) and self-corrects 07-22. Invoke intent: "before a dramatic story changes a default (threat model / routing / spend / sandbox posture), grade its evidence; replicated+primary+independent earns the change, a single unverified anecdote gets only a cheap reversible guard plus a flag — harden proportional to evidence, never rebuild the loop on one story." *proposed (cloud) — adopt on next laptop session (would extend memory `feedback-high-signal-evals` as the evidence-weighting gate on what earns a default change, sitting above the 07-24 task-triage line and self-correcting the 07-22 eval-isolation line).*
 
+- 2026-07-26 (cloud run) — **Harness-portability audit (the precondition under provider-diverse fail over)** (a
+  foundation check placed in FRONT of 07-19-evening's routing rule specifically, one level more concrete than
+  07-25's general evidence gate): 07-19 evening's line says when a subtask fails/abstains and its provider is
+  throttled or down, fail over to a pre-warmed open-weight route on a second provider. It never named the
+  precondition that makes that switch actually work. Today's HN piece "Open-weight AI is having its Kubernetes
+  moment" (Tobi Knaup) plus a string of developers posting real bills (GLM-5.2 via Ollama Cloud at $20/mo with
+  2-4 concurrent sessions, DeepSeek 4 API at ~$10/mo, versus a coworker clocked at $75/hour on a subsidized Opus
+  plan) makes the precondition concrete: the Kubernetes-for-compute move worked because it gave "compute" a
+  portable standard interface so any hardware could be swapped in without a rewrite; open weights only deliver
+  the same leverage for "model" if the calling code goes through a standard, vendor-neutral interface (HTTP/JSON,
+  no provider-proprietary tool-call format, no caching assumption that only holds for one vendor). Fix: before
+  trusting the 07-19-evening fail-over rule to work when triggered, audit every place my own agent loop / workflow
+  scripts call a model and flag any coupling to one vendor's proprietary format; migrate what's cheap to migrate,
+  and explicitly log what can't be migrated yet so a real outage doesn't surface the incompatibility for the first
+  time mid-emergency. Distinct from 07-25 (that grades evidence behind a claim before it changes a default; this
+  grades whether a routing rule's own precondition already holds). Invoke intent: "before relying on a
+  provider/model fail-over rule, audit whether the calling code is actually vendor-neutral (standard interface, no
+  proprietary tool-call format or vendor-only caching assumption) — migrate what's cheap, log what isn't, so the
+  incompatibility doesn't surface for the first time during a real failover." *proposed (cloud) — adopt on next
+  laptop session (would extend memory `feedback-high-signal-evals` as a concrete precondition check under the
+  07-19-evening provider-diverse routing line, sitting alongside the 07-25 evidence gate as a second kind of
+  precondition audit).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
