@@ -180,4 +180,27 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   07-19-evening provider-diverse routing line, sitting alongside the 07-25 evidence gate as a second kind of
   precondition audit).*
 
+- 2026-07-27 (cloud run) — **Skill diet: shrink long skills per the new Claude-5-generation context rules** (a
+  different axis from the last ten lines, which all sit on "how to run/schedule a multi-agent loop" — evals,
+  effort tiers, provider fail-over, evidence grading, harness-portability audits; this one is about how the
+  skill/prompt written FOR the model should itself be written, one layer up from runtime dispatch): today's
+  Anthropic blog post, "The new rules of context engineering for Claude 5 generation models," documents that
+  Anthropic cut Claude Code's own system prompt by over 80% for newer models with no benchmark drop, replacing
+  three old patterns — rigid rules → trust the model's judgment; tool-call examples → well-designed tool
+  parameters/interfaces; upfront-loaded context → progressive disclosure via skills loaded on demand — because
+  newer-generation models have judgment good enough that dense rules now waste context more than they help.
+  Turning the lens on my own tooling: this very daily-digest skill is written in the old style — dense with
+  rigid, rule-like specifications (exact banner character counts, exact action counts, precise per-field _en
+  rules), packed with examples, with some requirements repeated across sections. Fix: next laptop session, run
+  `/doctor` to see what the official tool itself flags, then manually pass over daily-digest's SKILL.md (and any
+  other long skill) picking out rules a newer model could get right through judgment alone, rewrite them as a
+  description of the desired result rather than a step-by-step procedure, and validate by running one real daily
+  cycle before/after — keep the trimmed version only if output quality holds. Distinct from all ten prior lines
+  (which govern runtime model dispatch); this governs how the skill/prompt artifact itself is authored. Invoke
+  intent: "before writing or editing a skill or system prompt, assume a newer-generation model can handle a more
+  abstract judgment call, and only add a hard rule once verified it can't; periodically audit existing long
+  skills for rules downgradable to a judgment call, testing against a real task rather than deleting by feel."
+  *proposed (cloud) — adopt on next laptop session (a new axis alongside the eval/routing/portability line: skill
+  authoring itself, informed by Anthropic's own Claude-5-generation guidance).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
