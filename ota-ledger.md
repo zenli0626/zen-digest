@@ -203,4 +203,23 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   *proposed (cloud) — adopt on next laptop session (a new axis alongside the eval/routing/portability line: skill
   authoring itself, informed by Anthropic's own Claude-5-generation guidance).*
 
+- 2026-07-28 (cloud run) — **Mirror-question check: a polarity-reversed pass on every judge call** (a concrete
+  detection method that deepens 07-19-evening's abstention-aware eval gates, not a new axis): the last eleven
+  ledger lines all sit on "how to run/write a good multi-agent loop" (binary evals, effort tiers, provider
+  fail-over, evidence grading, harness-portability audits, skill diet). 07-19 evening added the rule that a
+  judge's verdict needs a checkable reason or it counts as unsure, but never specified HOW to catch a judge that
+  fakes a reason. Today's Political Compass test of 16 LLMs (unslop.run) supplies the missing technique: alongside
+  a straight run, the author ran every statement reversed and every question order shuffled, specifically to
+  separate a model's genuine stance from acquiescence bias (agreeing with whatever direction a statement is
+  phrased in) and order effects. Applied to my own eval-gate judges: whenever a judge renders pass/fail on a
+  finding or claim, also ask it the polarity-reversed version of the same question; if the verdict simply flips
+  along with the polarity with no new, phrasing-independent reason, treat the original verdict as unsure (not a
+  trusted pass), same as if it had no reason at all. Distinct from 07-22's air-gap-the-grader line (that guards
+  against the SUBJECT tampering with the judge; this guards against the JUDGE being fooled by its own phrasing
+  sensitivity) and from 07-25's evidence-graded defaults (that grades external claims, not a live eval call).
+  Invoke intent: "add a mirror-question pass to any judge call — ask the polarity-reversed version of the same
+  question; if the verdict flips with no independent reason, mark it unsure and don't trust it." *proposed
+  (cloud) — adopt on next laptop session (would extend memory `feedback-high-signal-evals` as a concrete
+  bias-detection technique inside the 07-19-evening abstention-aware eval gate).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
