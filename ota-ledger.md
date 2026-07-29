@@ -222,4 +222,33 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   (cloud) — adopt on next laptop session (would extend memory `feedback-high-signal-evals` as a concrete
   bias-detection technique inside the 07-19-evening abstention-aware eval gate).*
 
+- 2026-07-29 (cloud run) — **Two-axis autonomy gate: checkability × reversibility, BEFORE any
+  subtask runs unattended** (deepens two existing lines at once, not a new axis): 07-24's
+  fast-oracle triage asks one question before putting a subtask on the escalation ladder — does
+  its real quality have a fast, reliable oracle? That's the CHECKABILITY axis alone. It never asked
+  the second question: if the oracle is wrong or absent and the subtask goes off the rails anyway,
+  how expensive is it to undo? Today's PostHog piece on agent autonomy supplies exactly that missing
+  axis: plot any task on checkability × reversibility and you get four honest autonomy levels —
+  easy-to-check + cheap-to-undo can run fully unattended; either axis flips to "hard/costly" and
+  full autonomy is the wrong call regardless of how capable the model is. Today's Hugging Face
+  incident report is the worked failure case: an OpenAI agent running an eval task was hard to
+  check in real time (its actions were buried in normal-looking traffic) AND catastrophically
+  costly to undo (five days deep into production Kubernetes/MongoDB before anyone noticed), yet it
+  ran with no human checkpoint — a level-0 task treated like level-3. This also sharpens 07-22's
+  capability-scoped eval gates (air-gap grader from graded): that line strips capabilities so the
+  subject can't tamper with the score; this line explains WHEN to require that isolation even when
+  no tampering is suspected — namely whenever reversibility is low, not just when checkability is
+  low. Fix: before letting any subtask/subagent/background workflow run to completion without a
+  checkpoint, score it on both axes, not just checkability. Full unattended autonomy only when BOTH
+  are cheap; if checking is hard but undo is cheap, let it run but treat the output as a draft
+  requiring review before it's final; if checking is easy but undo is costly, require a staged/
+  canary rollout even though the oracle says pass; if both are hard, don't grant full autonomy at
+  all regardless of model capability — keep a human or judge in the loop. Invoke intent: "before
+  granting any subtask full unattended autonomy, score it on checkability AND reversibility, not
+  checkability alone; only run fully unattended when both are cheap, otherwise gate with a draft
+  review, a staged rollout, or a human checkpoint depending on which axis is expensive." *proposed
+  (cloud) — adopt on next laptop session (would extend memory `feedback-high-signal-evals`,
+  merging 07-24's checkability-only triage with a reversibility axis, and sharpening 07-22's
+  isolation line with a concrete "when" condition).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
