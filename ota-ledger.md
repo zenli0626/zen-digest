@@ -251,4 +251,29 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   merging 07-24's checkability-only triage with a reversibility axis, and sharpening 07-22's
   isolation line with a concrete "when" condition).*
 
+- 2026-07-30 (cloud run) — **Structural gates over written policy (the concrete mechanism
+  07-29's reversibility axis left unspecified)**: 07-29 split autonomy into checkability ×
+  reversibility but never said what "checkable" should actually look like once reversibility
+  is expensive — it left the enforcement MEDIUM unspecified. Today's Handbook.md paper (65
+  agent tasks across five domains, each governed by a 20-124 page expert-written policy
+  document placed in context) supplies the missing piece: even the best of 30 model
+  configurations passed only 36.2% of trials, with agents prioritizing convenient in-context
+  requests over standing policy, running required compliance checks and then ignoring the
+  result, or forgetting policy details across a long horizon. The HN thread's real-world
+  anecdotes sharpen it further — one developer reports Claude drops its own CLAUDE.md rules
+  within ten minutes — and its proposed fixes converge on one idea: stop trusting an agent to
+  remember a policy TEXT, and instead encode expensive-to-violate rules as a hook, a CI check,
+  or a separate review agent with no shared context. Fix: for any rule whose violation lands
+  on the expensive/hard-to-undo side of 07-29's reversibility axis, don't rely on writing it
+  into CLAUDE.md or a system prompt — convert it into a structural gate (git hook, CI check,
+  hard permission boundary, or independent review agent) the acting agent can't route around.
+  Distinct from 07-24's fast-oracle triage (that asks whether a fast oracle EXISTS) and from
+  07-29 itself (that scores WHETHER autonomy should be granted); this specifies HOW to make
+  the checkability side of that gate real once the stakes are high. Invoke intent: "for any
+  rule whose violation is expensive to undo, don't rely on CLAUDE.md/system-prompt text alone
+  — enforce it with a hook, CI check, permission boundary, or independent review agent the
+  acting agent can't bypass." *proposed (cloud) — adopt on next laptop session (would extend
+  memory `feedback-high-signal-evals`, giving 07-29's reversibility axis a concrete
+  enforcement mechanism).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
