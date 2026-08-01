@@ -45,7 +45,16 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          claude -p "$(cat automation/ci-prompt.txt)" --model claude-sonnet-5 --dangerously-skip-permissions || true
+          DAY="$(TZ=America/New_York date +%F)"
+          # Retry across models: a transient API error or a per-model safeguard trip on one
+          # attempt shouldn't cost the whole night's issue.
+          for MODEL in claude-sonnet-5 claude-sonnet-5 claude-opus-5; do
+            if [ -f "digests/$DAY.json" ]; then break; fi
+            echo "::group::generate attempt with $MODEL"
+            claude -p "$(cat automation/ci-prompt.txt)" --model "$MODEL" --dangerously-skip-permissions || true
+            echo "::endgroup::"
+          done
+          test -f "digests/$DAY.json" || echo "generate: no digests/$DAY.json after all attempts"
 
       - name: Publish (diversity gate + quality check → prod or preview + notify)
         env:
