@@ -46,9 +46,11 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           DAY="$(TZ=America/New_York date +%F)"
-          # Retry across models: a transient API error or a per-model safeguard trip on one
-          # attempt shouldn't cost the whole night's issue.
-          for MODEL in claude-sonnet-5 claude-sonnet-5 claude-opus-5; do
+          # Retry across models. Sonnet goes first for cost, but its safeguards trip on the
+          # security-flavoured AI news this sweep keeps surfacing — that killed the 07-31 and
+          # 08-01 nightlies outright, and flagged twice more on the 08-01 rerun. So escalate
+          # to Opus instead of re-rolling Sonnet, which fails the same way on the same content.
+          for MODEL in claude-sonnet-5 claude-opus-5 claude-opus-5; do
             if [ -f "digests/$DAY.json" ]; then break; fi
             echo "::group::generate attempt with $MODEL"
             claude -p "$(cat automation/ci-prompt.txt)" --model "$MODEL" --dangerously-skip-permissions || true
