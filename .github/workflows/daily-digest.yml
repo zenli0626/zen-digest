@@ -7,9 +7,16 @@ name: daily-digest
 
 on:
   schedule:
-    # 01:00 UTC ≈ 21:00 America/New_York (EDT). Drifts ~1h across DST; GitHub cron is UTC-only
-    # and best-effort (can lag under load). Fine for a nightly.
-    - cron: '0 1 * * *'
+    # Target: 21:00 America/New_York, year-round. GitHub cron is UTC-only, so DST needs two
+    # entries — 01:37 UTC is 21:37 EDT (summer), 02:37 UTC is 21:37 EST (winter). Both fire
+    # in both seasons; the "already published?" guard below lets only the first one through,
+    # so the second is a free retry if the first failed.
+    #
+    # The :37 is deliberate. On the old '0 1 * * *' every run landed 3-3.5h late (04:00-04:36
+    # UTC = ~00:20 NY) — top-of-hour is the most contended slot on shared runners. Off-peak
+    # minutes get dispatched far closer to on-time. Cron is still best-effort, not a guarantee.
+    - cron: '37 1 * * *'
+    - cron: '37 2 * * *'
   workflow_dispatch: {}   # manual "Run workflow" button — used for the first shakedown test
 
 permissions:
@@ -26,15 +33,40 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Dedupes the two DST cron entries: whichever fires first builds the issue and commits
+      # it to main, so the other checks out a tree that already has it and stops here.
+      # A manual dispatch always proceeds, so a rebuild is never blocked.
+      - name: Skip if today's issue is already published
+        id: guard
+        run: |
+          DAY="$(TZ=America/New_York date +%F)"
+          HOUR="$(TZ=America/New_York date +%H)"
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          elif [ -f "digests/$DAY.json" ]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "digests/$DAY.json already published — nothing to do."
+          elif [ "$HOUR" -lt 21 ]; then
+            # Off-season half of the DST pair: 01:37 UTC is 20:37 EST in winter. Never publish
+            # before 21:00 NY — the other cron entry covers this season an hour later.
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "it is ${HOUR}:xx in New York, before the 21:00 target — leaving it to the later cron."
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-node@v4
+        if: steps.guard.outputs.run == 'true'
         with:
           node-version: '20'
 
       - uses: actions/setup-python@v5
+        if: steps.guard.outputs.run == 'true'
         with:
           python-version: '3.12'
 
       - name: Install tooling (yt-dlp, vercel, claude-code, playwright)
+        if: steps.guard.outputs.run == 'true'
         run: |
           python3 -m pip install --quiet --upgrade yt-dlp
           npm install -g vercel @anthropic-ai/claude-code
@@ -42,6 +74,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Generate today's issue (Claude Code, headless)
+        if: steps.guard.outputs.run == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
@@ -59,6 +92,7 @@ jobs:
           test -f "digests/$DAY.json" || echo "generate: no digests/$DAY.json after all attempts"
 
       - name: Publish (diversity gate + quality check → prod or preview + notify)
+        if: steps.guard.outputs.run == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # publicize.mjs calls `claude -p` for the hhxxttxs mirror
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
