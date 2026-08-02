@@ -304,4 +304,12 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   the machine path." *proposed (cloud) — adopt on next laptop session (would extend memory
   `feedback-high-signal-evals`, adding an objective-side pass in front of 07-30's action-side gates).*
 
+- 2026-08-01 (9pm run) — **Open-set audit framing for finder/verifier loops**: when running
+  a bug-hunt / code-review sweep / `ReportFindings` pass, never state or imply the expected
+  count of issues to the finder (it fixates on the easiest one and stops), and grade the
+  returned set by precision + recall against a held-out known-issue set instead of a single
+  pass/fail → extends memory `feedback-high-signal-evals` (source: David Brumley, CMU/Bugcrowd,
+  "Designing RL Environments for Cybersecurity", AI Engineer World's Fair, 第016期). Directly
+  usable next time I fan out a Workflow finder stage or run `/code-review`.
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
