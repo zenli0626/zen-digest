@@ -6,7 +6,7 @@ platforms (each with >=1 item). A headless run that genuinely can't reach the
 browser lanes may set top-level "partial": true to pass with a loud warning —
 that issue is expected to be backfilled by the next interactive run.
 
-Usage: validate-digest.py <digest.json> [<digest.json> ...]
+Usage: validate-digest.py [--strict] <digest.json> [...]   (--strict: repetition blocks too)
 Exit 0 = all pass (or partial-flagged). Exit 1 = a full issue lacks diversity.
 """
 import json, os, sys
@@ -55,7 +55,7 @@ def check_repetition(path, d):
         pass  # no parseable date — skip the lookback, keep the per-domain check
     return problems
 
-def check(path):
+def check(path, strict=False):
     try:
         d = json.load(open(path, encoding="utf-8"))
     except Exception as e:
@@ -66,6 +66,11 @@ def check(path):
     total = sum(len(s["items"]) for s in srcs)
     ok = len(platforms) >= MIN_PLATFORMS and total >= MIN_TOTAL_ITEMS
     repetition = check_repetition(path, d)
+    if repetition and not strict:
+        # Repetition only blocks the publish paths (--strict). The pre-commit hook runs
+        # without it, so copy edits and backfills of existing issues still commit.
+        print(f"  ⚠ {path}: repetitive (warn only; blocks at publish) — " + "; ".join(repetition))
+        repetition = []
     if repetition:
         print(f"  ✗ {path}: repetitive —")
         for p in repetition:
@@ -88,12 +93,14 @@ def check(path):
     return False
 
 def main(argv):
-    files = argv[1:]
+    args = argv[1:]
+    strict = "--strict" in args
+    files = [a for a in args if a != "--strict"]
     if not files:
         print("usage: validate-digest.py <digest.json> ...")
         return 0
     print("每日情报 · 来源多样性校验")
-    results = [check(f) for f in files]
+    results = [check(f, strict) for f in files]
     if all(results):
         return 0
     print("\n发布已拦截：有一期来源过于单一（见上方 ✗）。")

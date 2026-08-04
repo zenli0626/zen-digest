@@ -67,7 +67,7 @@ else
 fi
 
 # 1) Diversity gate — hard requirement even to preview-publish.
-if ! python3 bin/validate-digest.py "$F"; then
+if ! python3 bin/validate-digest.py --strict "$F"; then
   commit_back "Draft 每日情报 $DAY (auto — failed diversity gate)"
   notify "🔴 每日情报 $DAY：未过多样性闸门（来源过单一）。已存草稿，未部署。见 Actions 日志。"
   echo "publish: diversity gate failed"; exit 1
