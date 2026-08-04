@@ -6,6 +6,7 @@
 <title>每日情报</title>
 <meta name="description" content="每日情报 · AI 编辑部代读中外信息流，每天一份值得花时间的新闻纸。Daily Intel — an AI newsroom that reads the day's feeds so you don't have to.">
 <link rel="canonical" href="https://mrqb.space/">
+<link rel="alternate" type="application/rss+xml" title="每日情报 · Daily Intel" href="/feed.xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="每日情报 · Daily Intel">
 <meta property="og:title" content="每日情报 · Daily Intel">
@@ -328,7 +329,15 @@
 <script>
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 // only http(s) URLs are allowed to reach an href/src; anything else (javascript:, data:, relative junk) is dropped
-const safeUrl = u => (typeof u === 'string' && /^https?:\/\//i.test(u)) ? u : '';
+const safeUrl = u => {
+  if (typeof u !== 'string') return '';
+  const v = u.trim();
+  // absolute: only http(s). relative: same-origin paths like digests/img/x.png are fine,
+  // but reject protocol-relative (//evil.com) and anything with a scheme.
+  if (/^https?:\/\//i.test(v)) return v;
+  if (/^\/\//.test(v) || /^[a-z][a-z0-9+.-]*:/i.test(v)) return '';
+  return v;
+};
 const slug = s => String(s ?? '').trim().toLowerCase().replace(/[^a-z0-9一-龥]+/g, '-').replace(/^-+|-+$/g, '');
 const fmtN = n => {
   if (n === null || n === undefined) return '';
