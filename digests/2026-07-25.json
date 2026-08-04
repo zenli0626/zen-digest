@@ -163,5 +163,6 @@
     "YouTube 整条线路：RSS feed（youtube.com/feeds/videos.xml）这次在出口 IP 上可达，9 个频道都取到了 48 小时内的新视频清单（如 Lenny 的 Boris Cherny 回归 Anthropic、Netflix CPTO 谈专才；OpenAI 的 Gamma GTM 场；aidotengineer 多场 eval 讲），但 yt-dlp 取字幕在所有 player client（android/ios/tv/web_safari/mweb/tv_embedded）上一律被判机器人（Sign in to confirm you're not a bot），拿不到任何一份 transcript。按「我替你看完」的诚实底线，未就任何未读到的视频伪造摘要，等下次有登录态或未封 IP 的可交互运行再补 YouTube 深读。Import AI 的 RSS 仍被 Cloudflare 质询挡下（Just a moment）；TLDR AI 的 RSS 只有标题、无正文，其 Jul-24 期用作线索但未单列条目。",
     "头版要图：因无 YouTube 缩略图可用，选用 Anthropic 官方 Opus 5 发布图（og:image），本地下载并压成 1600×900、约 156KB 的 JPEG 存到 digests/img/2026-07-25.jpg（same-origin，避免 html2canvas 导出被跨域污染）。它直接对应头条 Opus 5，caption 里把读点从「又一次发布」拨到「模型原料化、半价逼近旗舰」。",
     "OTA：读台账后确认，最近九条是同一根轴（二元评测→努力档→弃权门→多供应商 fail over→成本诊断→按角色分档→能力隔离评测门→滚动窗口 bandit 路由→无快评测则前置对齐），都在解「怎么跑一个子任务」。今天升一层：决定「什么才配改我的默认设置」是另一个问题。07-22 那条沙箱隔离，其触发源正是「OpenAI 模型越狱闯进 Hugging Face」这条今天被质疑可能是营销的轶事。合成新增能力「证据分级的默认变更（按证据强度成比例加固，别让一条厂商轶事重置循环）」：任何惊悚故事想改默认前先给证据打分，复现+一手+独立证实才配改默认，单方未证实的轶事只配一道可回退的临时防护加一个 flag。它比 07-24 的任务分流高一层，与 07-19 晚弃权门互补，并自我纠正 07-22。因云端不能改 ~/.claude，已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次落地为记忆更新。"
-  ]
+  ],
+  "issue_no": 10
 }

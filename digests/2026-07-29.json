@@ -193,5 +193,6 @@
     "YouTube 今天有转机：9 个频道里 3 个（DwarkeshPatel、aidotengineer、LennysPodcast）RSS 恢复 200，能看到 48 小时内的新视频列表，但 yt-dlp 用 android client 抓字幕仍返回“Sign in to confirm you're not a bot”，GitHub Actions 出口 IP 依旧被字幕接口拒绝，拿不到任何一条转写文本。按诚实底线，没有伪造任何一条视频摘要，YouTube 部分本期依旧空缺，留给下次有登录态或未封 IP 的可交互运行补做。",
     "头版要图：选用 Hugging Face 官方博客文章《Anatomy of a Frontier Lab Agent Intrusion》的 og:image 题图，本地下载存至 digests/img/2026-07-29.png（同源，避免 html2canvas 导出被跨域污染）。",
     "OTA：查台账确认，最近 11 条主线都在讲如何运行一个多 agent 循环。今天 PostHog 的 agent 自主权文章补上了 07-24 那条“先看有没有快速裁判”里缺的第二条轴——撤回代价，而 Hugging Face 今天发布的技术复盘正好是这个缺口的真实事故版本。已把“双轴自主权分级”写成 proposed（cloud）追加至 ota-ledger.md，留给 Zen 笔记本 Claude 下次采纳。"
-  ]
+  ],
+  "issue_no": 14
 }

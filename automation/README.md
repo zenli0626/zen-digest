@@ -1,19 +1,37 @@
 # 每日情报 — cloud automation (truly hands-off)
 
 The nightly issue is built **in the cloud** (GitHub Actions), so it no longer needs Zen's
-laptop to be awake. Flow:
+laptop to be awake. Two jobs, split across a validated-artifact boundary so the step that
+runs untrusted swept content never holds a deploy secret:
 
 ```
-GitHub Actions cron (~21:00 ET nightly)
+job: generate  (holds ONLY ANTHROPIC_API_KEY)
   └─ Claude Code headless runs /daily-digest (YouTube + 文摘 lanes; no browser)
-       └─ writes digests/<date>.json + index.json
+       └─ writes digests/<date>.json (+ digests/img/<date>.*)
+  └─ uploads those two paths as a workflow artifact — nothing else leaves this job
+
+job: publish  (needs: generate; fresh checkout; holds the deploy secrets)
+  └─ downloads the artifact
+  └─ bin/validate-artifact.py — file allowlist + JSON schema + size caps, reject closed
   └─ bin/ci-publish.sh
+       ├─ assign-issue-no.mjs + gen-feed.mjs
        ├─ diversity gate (validate-digest.py)   ── fail → hold, 🔴 Telegram
        ├─ quality self-check (quality-check.py)
        │     PASS → vercel --prod  → live on mrqb.space → 🟢 Telegram
        │     FAIL → vercel preview → held for review     → 🟡 Telegram (you promote)
        └─ commits the issue back to main
+
+job: notify-no-issue  (needs: generate; only TELEGRAM_* secrets)
+  └─ runs if generate produced nothing — 🔴 Telegram, no publish attempted
 ```
+
+Why the split: `generate` runs `claude -p ... --dangerously-skip-permissions` over content
+swept from the open web. A prompt injection there could otherwise rewrite `bin/ci-publish.sh`
+in the same checkout and have the very next step exfiltrate secrets or publish arbitrary
+content — the old single-job design had exactly that shape. Now `generate` never sees
+`VERCEL_TOKEN` / `SUPABASE_*` / `RESEND_API_KEY` / etc., and `publish` runs a FRESH checkout
+of the trusted, committed scripts, gated by `bin/validate-artifact.py` before it touches the
+artifact at all.
 
 Deploys go through the **Vercel token in the workflow**, NOT Vercel's git integration — so
 prod is only ever touched when the quality bar passes. Manual `workflow_dispatch` ("Run
