@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日情报</title>
+<meta name="description" content="每日情报 · AI 编辑部代读中外信息流，每天一份值得花时间的新闻纸。Daily Intel — an AI newsroom that reads the day's feeds so you don't have to.">
+<link rel="canonical" href="https://mrqb.space/">
+<link rel="alternate" type="application/rss+xml" title="每日情报 · Daily Intel" href="/feed.xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="每日情报 · Daily Intel">
+<meta property="og:title" content="每日情报 · Daily Intel">
+<meta property="og:description" content="AI 编辑部代读中外信息流，每天一份值得花时间的新闻纸。">
+<meta property="og:image" content="https://mrqb.space/favicon.svg">
+<meta property="og:url" content="https://mrqb.space/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="每日情报 · Daily Intel">
+<meta name="twitter:description" content="AI 编辑部代读中外信息流，每天一份值得花时间的新闻纸。">
+<meta name="twitter:image" content="https://mrqb.space/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,7 +26,7 @@
     --news: #fbfaf6;
     --ink: #17150f;
     --ink-2: #3e3a31;
-    --faint: #8b8577;
+    --faint: #6f6a5c;
     --rule: #17150f;
     --rule-soft: #c9c2b1;
     --red: #d5111e;          /* 报宣红 */
@@ -24,6 +38,7 @@
     --mono: "IBM Plex Mono", monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
   body { font-family: var(--serif); background: var(--news); color: var(--ink); padding: 0 16px 60px; }
   body::before {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
@@ -32,6 +47,9 @@
   .wrap { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .rise { animation: rise .5s ease-out both; }
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none; opacity: 1; transform: none; }
+  }
 
   /* ============ 报头：黑色毛笔字 ============ */
   header { padding-top: 26px; }
@@ -66,11 +84,15 @@
     background: transparent; border: none; border-bottom: 1px dashed rgba(253,246,236,.6); cursor: pointer;
   }
   .pub-strip select:focus { outline: none; }
+  .pub-strip select:focus-visible { outline: 2px solid #fdf6ec; outline-offset: 2px; }
   .pub-strip option { color: var(--ink); }
   #arch-link, #hiw-link { color: #fdf6ec; text-decoration: none; font-family: var(--hei); font-weight: 700; font-size: 11.5px; border-bottom: 1px dashed rgba(253,246,236,.6); }
   #arch-link:hover, #hiw-link:hover { border-bottom-style: solid; }
-  #lang-toggle { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 1px; color: var(--red); background: #fdf6ec; border: none; border-radius: 2px; padding: 3px 9px; cursor: pointer; }
-  #lang-toggle:hover { background: #fff; }
+  #arch-link:focus-visible, #hiw-link:focus-visible { outline: 2px solid #fdf6ec; outline-offset: 2px; }
+  #lang-toggle, #nav-prev, #nav-next { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 1px; color: var(--red); background: #fdf6ec; border: none; border-radius: 2px; padding: 3px 9px; cursor: pointer; }
+  #lang-toggle:hover, #nav-prev:hover, #nav-next:hover { background: #fff; }
+  #nav-prev:disabled, #nav-next:disabled { opacity: .4; cursor: default; }
+  #lang-toggle:focus-visible, #nav-prev:focus-visible, #nav-next:focus-visible, #dl-pdf:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
   #dl-pdf {
     font-family: var(--hei); font-weight: 700; font-size: 12px; letter-spacing: 1px;
     color: var(--red); background: #fdf6ec; border: none; border-radius: 2px;
@@ -78,7 +100,7 @@
   }
   #dl-pdf:hover { background: #fff; }
   #dl-pdf:disabled { opacity: .6; cursor: wait; }
-  /* PDF 导出模式：整版报纸（参考消息头版式） */
+  /* 长图导出模式（PNG，非 PDF）：整版报纸（参考消息头版式） */
   .pdf-mode { width: 1080px !important; padding: 0 30px 36px; background: #fbfaf6; }
   .pdf-mode .front-flow { column-count: 3 !important; }
   .pdf-mode #dl-pdf, .pdf-mode select { display: none; }
@@ -108,6 +130,7 @@
   }
   .ban-nav a:hover { background: var(--red-deep); }
   .ban-nav a b { font-weight: 900; margin-right: 4px; }
+  .ban-nav a:focus-visible { outline: 2px solid #fdf6ec; outline-offset: -3px; }
 
   /* ============ 头版红色通栏大标题 ============ */
   .banner {
@@ -152,6 +175,7 @@
     font-size: 14.5px; letter-spacing: 3px; padding: 2px 10px 3px;
   }
   a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
   .src a, .byline a { color: var(--red-deep); text-decoration: none; border-bottom: 1px dotted var(--red-deep); }
   .src a:hover, .byline a:hover { color: var(--red); }
   .box-tab .en { font-family: var(--mono); font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--faint); }
@@ -176,13 +200,13 @@
     display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
   }
   .platform-head h2 { font-family: var(--hei); font-weight: 900; font-size: 17px; letter-spacing: 2px; }
-  .platform-head .stat { font-family: var(--mono); font-size: 9.5px; color: var(--faint); letter-spacing: 1px; }
+  .platform-head .stat { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 1px; }
   article { padding: 6px 0 12px; border-bottom: 1px dotted var(--rule-soft); margin-bottom: 8px; orphans: 3; widows: 3; }
   article h3 { font-family: var(--hei); font-weight: 700; font-size: 15.5px; line-height: 1.6; margin-bottom: 3px; break-after: avoid; break-inside: avoid; }
   article h3 a { color: var(--ink); text-decoration: none; }
   article h3 a:hover { color: var(--red); }
-  .byline { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px; color: var(--faint); margin-bottom: 4px; break-after: avoid; break-inside: avoid; }
-  .summary { font-size: 13px; line-height: 1.95; text-align: justify; text-indent: 2em; }
+  .byline { font-family: var(--mono); font-size: 11px; letter-spacing: .5px; color: var(--faint); margin-bottom: 4px; break-after: avoid; break-inside: avoid; }
+  .summary { font-size: 14px; line-height: 1.95; text-align: justify; text-indent: 2em; }
   .why { margin-top: 5px; font-family: var(--kai); font-size: 13px; line-height: 1.85; color: var(--ink-2); text-align: justify; }
   .why b { color: var(--red-deep); font-weight: 900; font-family: var(--hei); font-size: 12px; }
   .why b::after { content: "｜"; color: var(--rule-soft); }
@@ -201,7 +225,7 @@
   .ho-title { font-weight: 900; font-size: 14.5px; margin-bottom: 3px; }
   .ho-why { font-size: 12.5px; line-height: 1.9; color: var(--ink-2); margin-bottom: 6px; text-align: justify; }
   .ho-steps { margin-left: 18px; }
-  .ho-steps li { font-size: 12.5px; margin: 3px 0; line-height: 1.85; word-break: break-all; }
+  .ho-steps li { font-size: 12.5px; margin: 3px 0; line-height: 1.85; overflow-wrap: anywhere; }
   .meta-read { font-family: var(--kai); font-size: 13.5px; line-height: 2.05; text-align: justify; text-indent: 2em; }
   .ota-sub { font-weight: 900; font-size: 12.5px; margin: 8px 0 3px; letter-spacing: 1.5px; }
   .ota-sub::before { content: "■ "; color: var(--red); font-size: 9px; }
@@ -249,6 +273,12 @@
   </script>
 </head>
 <body>
+<noscript>
+  <div style="max-width:640px;margin:40px auto;padding:20px;border:2px solid #d5111e;background:#fff;font-family:serif;text-align:center;">
+    本页面需要 JavaScript 才能显示内容，请启用 JavaScript，或查看 <a href="/archive.html">往期合订本</a>。<br>
+    This page needs JavaScript to render. Please enable it, or browse the <a href="/archive.html">archive</a>.
+  </div>
+</noscript>
 <div class="wrap">
 
   <header class="rise">
@@ -264,7 +294,11 @@
     </div>
     <div class="pub-strip">
       <span id="pub-by">AI 编辑部 · 编发</span>
-      <span><select id="datepick" aria-label="选择日期"></select></span>
+      <span>
+        <button id="nav-prev" aria-label="上一期 / older issue" title="上一期 / Older">‹</button>
+        <select id="datepick" aria-label="选择日期"></select>
+        <button id="nav-next" aria-label="下一期 / newer issue" title="下一期 / Newer">›</button>
+      </span>
       <span class="mono" id="daycount">—</span>
       <a href="/archive.html" id="arch-link">📚 往期合订本</a>
       <a href="/how-it-works.html" id="hiw-link">🛠 本报如何制成</a>
@@ -281,19 +315,39 @@
       <div class="sub-sub" data-sub-sub></div>
     </div>
     <form class="sub-form" data-sub-form>
-      <input type="email" required placeholder="you@example.com" data-sub-email>
+      <label class="visually-hidden" for="sub-email-input" data-sub-label></label>
+      <input type="email" id="sub-email-input" required placeholder="you@example.com" data-sub-email>
       <input type="text" class="hp-field" name="hp" tabindex="-1" autocomplete="off" data-sub-hp>
       <button type="submit" data-sub-btn></button>
     </form>
-    <div class="sub-result" data-sub-result style="display:none"></div>
+    <div class="sub-result" data-sub-result style="display:none" aria-live="polite"></div>
   </div>
 
   <footer>本报由 AI 编辑部每日自动编发·只印值得花时间的内容·明日同一时间见</footer>
 </div>
 
 <script>
-const fmtN = n => n >= 10000 ? (n/10000).toFixed(1) + '万' : (n ?? '');
-const esc = s => String(s ?? '');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+// only http(s) URLs are allowed to reach an href/src; anything else (javascript:, data:, relative junk) is dropped
+const safeUrl = u => {
+  if (typeof u !== 'string') return '';
+  const v = u.trim();
+  // absolute: only http(s). relative: same-origin paths like digests/img/x.png are fine,
+  // but reject protocol-relative (//evil.com) and anything with a scheme.
+  if (/^https?:\/\//i.test(v)) return v;
+  if (/^\/\//.test(v) || /^[a-z][a-z0-9+.-]*:/i.test(v)) return '';
+  return v;
+};
+const slug = s => String(s ?? '').trim().toLowerCase().replace(/[^a-z0-9一-龥]+/g, '-').replace(/^-+|-+$/g, '');
+const fmtN = n => {
+  if (n === null || n === undefined) return '';
+  if (lang === 'en') {
+    if (n >= 1000000) return (n/1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1000) return (n/1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    return String(n);
+  }
+  return n >= 10000 ? (n/10000).toFixed(1) + '万' : String(n);
+};
 const cnDate = d => {
   const [y, m, dd] = d.split('-').map(Number);
   const wk = '日一二三四五六'[new Date(y, m - 1, dd).getDay()];
@@ -308,6 +362,52 @@ const enDate = d => {
   const wk = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date(y, m-1, dd).getDay()];
   return `${mo} ${dd}, ${y} · ${wk}`;
 };
+const enDateShort = d => {
+  const [y, m, dd] = d.split('-').map(Number);
+  const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1];
+  return `${mo} ${dd}, ${y}`;
+};
+// keep ?d= and ?lang= in the URL in sync with what's on screen, without adding history entries
+function syncUrl() {
+  const params = new URLSearchParams(location.search);
+  if (curDay) params.set('d', curDay); else params.delete('d');
+  if (lang === 'en') params.set('lang', 'en'); else params.delete('lang');
+  const qs = params.toString();
+  history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+}
+// select options + prev/next controls (index-based numbering; real issue_no is only known once a day is loaded)
+function renderDatePicker() {
+  const sel = document.getElementById('datepick');
+  const cur = sel.value;
+  sel.innerHTML = allDays.map((d, i) => {
+    const n = String(allDays.length - i).padStart(3, '0');
+    const label = lang === 'en' ? `No.${n} · ${d}` : `第${n}期 · ${d}`;
+    return `<option value="${esc(d)}">${esc(label)}</option>`;
+  }).join('');
+  if (cur) sel.value = cur;
+}
+function updateNav() {
+  const idx = allDays.indexOf(curDay);
+  const prevBtn = document.getElementById('nav-prev');
+  const nextBtn = document.getElementById('nav-next');
+  // allDays is sorted newest-first: prev (older) moves to a higher index, next (newer) to a lower index
+  prevBtn.disabled = idx === -1 || idx >= allDays.length - 1;
+  nextBtn.disabled = idx === -1 || idx <= 0;
+}
+document.getElementById('nav-prev').addEventListener('click', () => {
+  const idx = allDays.indexOf(curDay);
+  if (idx !== -1 && idx < allDays.length - 1) {
+    document.getElementById('datepick').value = allDays[idx + 1];
+    loadDay(allDays[idx + 1]);
+  }
+});
+document.getElementById('nav-next').addEventListener('click', () => {
+  const idx = allDays.indexOf(curDay);
+  if (idx > 0) {
+    document.getElementById('datepick').value = allDays[idx - 1];
+    loadDay(allDays[idx - 1]);
+  }
+});
 // pick localized value: prefer <field>_en in EN mode, else fall back to Chinese
 const T = (o, k) => (lang === 'en' ? (o?.[k + '_en'] ?? o?.[k]) : o?.[k]);
 // localized platform display name (X / YouTube stay; 小红书 → RedNote in EN)
@@ -325,7 +425,8 @@ const L = {
         mastR:'长视频均由编辑部代读<br>本报每日自我升级', pubBy:'AI 编辑部 · 编发',
         arch:'📚 往期合订本', hiw:'🛠 本报如何制成', dl:'⬇ 分享长图',
         subHead:'订阅每日情报', subSub:'每天一份，AI 编辑部为你写的报纸。留个邮箱，明早自动送达',
-        subBtn:'订阅', subOk:'✓ 已订阅，明早见报', subDup:'你已经订阅啦', subErr:'出错了，稍后再试', subSoon:'订阅即将开放 · 敬请期待' },
+        subBtn:'订阅', subOk:'✓ 已订阅，明早见报', subDup:'你已经订阅啦', subErr:'出错了，稍后再试', subSoon:'订阅即将开放 · 敬请期待',
+        subEmailLabel:'邮箱地址', loadErr:'本期加载失败', loadErrEn:'Failed to load this issue', backToArchive:'📚 返回往期合订本' },
   en: { act:'Today’s Actions', actEn:'Do These Today', tryNew:'◆ Try Something New', editorial:'Editorial',
         note:'Editor’s note', src:'Source', orig:'original', otaHead:'Editorial System Update', learned:'Learned today',
         caps:'New capabilities', photo:'Photo of the day', partial:'⚠ Some sources missing this issue (headless run) — to be backfilled',
@@ -337,22 +438,15 @@ const L = {
         mastR:'Long videos read by the desk<br>self-updating every day', pubBy:'AI Desk · edited',
         arch:'📚 Archive', hiw:'🛠 How it’s made', dl:'⬇ Share image',
         subHead:'Subscribe', subSub:'One paper a night, written by an AI newsroom. Drop your email; tomorrow’s edition lands in your inbox.',
-        subBtn:'Subscribe', subOk:'✓ Subscribed — see you tomorrow', subDup:'You’re already on the list', subErr:'Something went wrong, try again', subSoon:'Subscriptions opening soon' }
+        subBtn:'Subscribe', subOk:'✓ Subscribed — see you tomorrow', subDup:'You’re already on the list', subErr:'Something went wrong, try again', subSoon:'Subscriptions opening soon',
+        subEmailLabel:'Email address', loadErr:'本期加载失败', loadErrEn:'Failed to load this issue', backToArchive:'📚 Back to archive' }
 };
 
 async function loadDay(d) {
   curDay = d;
-  const r = await fetch('digests/' + d + '.json'); const day = await r.json();
-  const idx = allDays.indexOf(d);
-  const issueNo = String(allDays.length - idx).padStart(3, '0');
   const t = L[lang];
-  const dateStr = lang === 'en' ? enDate(day.date) : cnDate(day.date);
   document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
-  document.getElementById('issue-no').textContent = t.issuePfx(issueNo);
-  document.getElementById('daycount').textContent = dateStr + ' · ' +
-    day.sources.map(s => platName(s.platform) + '×' + s.items.length).join(' · ');
-  document.querySelector('footer').textContent = t.foot;
-  // static masthead / pub-strip chrome
+  // language-dependent chrome that doesn't need the day's JSON — set it regardless of fetch outcome
   document.getElementById('mast-l').innerHTML = t.mastL;
   document.getElementById('mast-r').innerHTML = t.mastR;
   document.getElementById('pub-by').textContent = t.pubBy;
@@ -363,6 +457,40 @@ async function loadDay(d) {
   document.querySelectorAll('[data-sub-sub]').forEach(el => el.textContent = t.subSub);
   document.querySelectorAll('[data-sub-btn]').forEach(el => { if (!el.disabled) el.textContent = t.subBtn; });
   document.querySelectorAll('[data-sub-soon]').forEach(el => el.textContent = t.subSoon);
+  document.querySelectorAll('[data-sub-label]').forEach(el => el.textContent = t.subEmailLabel);
+  renderDatePicker();
+
+  let day;
+  try {
+    const r = await fetch('digests/' + d + '.json');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    day = await r.json();
+  } catch (err) {
+    console.error('[loadDay] failed to load', d, err);
+    document.title = '每日情报 · Daily Intel — 加载失败 / Load failed';
+    document.getElementById('issue-no').textContent = '—';
+    document.getElementById('daycount').textContent = d;
+    document.querySelector('footer').textContent = t.foot;
+    document.getElementById('content').innerHTML = `<div class="empty" role="alert">
+      ${esc(t.loadErr)} / ${esc(t.loadErrEn)}<br>
+      <a href="/archive.html" style="display:inline-block;margin-top:12px">${esc(t.backToArchive)}</a>
+    </div>`;
+    updateNav();
+    syncUrl();
+    return;
+  }
+
+  const idx = allDays.indexOf(d);
+  const issueNoRaw = day.issue_no ?? (allDays.length - idx);
+  const issueNo = String(issueNoRaw).padStart(3, '0');
+  const dateStr = lang === 'en' ? enDate(day.date) : cnDate(day.date);
+  document.title = lang === 'en'
+    ? `Daily Intel · No.${issueNo} · ${enDateShort(day.date)}`
+    : `每日情报 · 第${issueNo}期 · ${day.date}`;
+  document.getElementById('issue-no').textContent = t.issuePfx(issueNo);
+  document.getElementById('daycount').textContent = dateStr + ' · ' +
+    day.sources.map(s => platName(s.platform) + '×' + s.items.length).join(' · ');
+  document.querySelector('footer').textContent = t.foot;
   let h = '';
 
   // 版面导读格
@@ -371,7 +499,7 @@ async function loadDay(d) {
   if (day.actions?.length) tiles.push(`<a href="#sec-actions"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navAct}</a>`);
   if (day.hands_on) tiles.push(`<a href="#sec-handson"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navTry}</a>`);
   if (day.meta_read) tiles.push(`<a href="#sec-metaread"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navEd}</a>`);
-  for (const s of day.sources) tiles.push(`<a href="#sec-${esc(s.platform)}"><b>${pad2(vn++)}${t.deskSuffix}</b>${esc(platName(s.platform))}</a>`);
+  for (const s of day.sources) tiles.push(`<a href="#sec-${slug(s.platform)}"><b>${pad2(vn++)}${t.deskSuffix}</b>${esc(platName(s.platform))}</a>`);
   if (day.ota) tiles.push(`<a href="#sec-ota"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navOta}</a>`);
   if (tiles.length) h += `<nav class="ban-nav rise">${tiles.join('')}</nav>`;
 
@@ -383,38 +511,50 @@ async function loadDay(d) {
 
   if (day.image?.src) {
     const cap = T(day.image, 'caption');
-    h += `<figure class="hero rise" style="animation-delay:.15s">
-      <div class="frame"><img src="${esc(day.image.src)}" alt=""></div>
+    const imgUrl = safeUrl(day.image.src);
+    if (imgUrl) h += `<figure class="hero rise" style="animation-delay:.15s">
+      <div class="frame"><img src="${esc(imgUrl)}" alt="${esc(cap ?? '')}"></div>
       ${cap ? `<figcaption><b>▲ ${esc(t.photo)}</b> ${esc(cap)}</figcaption>` : ''}
     </figure>`;
   }
 
   if (day.actions?.length) {
     h += `<section id="sec-actions" class="actions rise" style="animation-delay:.1s"><div class="box-tab"><span class="tag">${esc(t.act)}</span><span class="en">${esc(t.actEn)}</span></div>` +
-      day.actions.map((a, i) =>
-        `<div class="action"><div class="num">${lang==='en' ? (i+1) : ('一二三四五六'[i] ?? i+1)}</div><div><div class="body">${esc(T(a,'text'))}</div><div class="src">〔${esc(t.src)} · ${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">${esc(T(a,'source'))} ↗</a>` : esc(T(a,'source'))}〕</div></div></div>`
-      ).join('') + '</section>';
+      day.actions.map((a, i) => {
+        const srcUrl = safeUrl(a.source_url);
+        return `<div class="action"><div class="num">${lang==='en' ? (i+1) : ('一二三四五六'[i] ?? i+1)}</div><div><div class="body">${esc(T(a,'text'))}</div><div class="src">〔${esc(t.src)} · ${srcUrl ? `<a href="${esc(srcUrl)}" target="_blank" rel="noopener">${esc(T(a,'source'))} ↗</a>` : esc(T(a,'source'))}〕</div></div></div>`;
+      }).join('') + '</section>';
   }
 
   let flow = '';
   if (day.hands_on) {
     const ho = day.hands_on;
+    const hoSrcUrl = safeUrl(ho.source_url);
     flow += `<div id="sec-handson" class="boxed"><div class="b-head"><span class="t">${esc(t.tryNew)}</span><span class="sub">${esc(ho.time ?? '')}</span></div>
       <div class="ho-title">${esc(T(ho,'title'))}</div>
       <div class="ho-why">${esc(T(ho,'why'))}</div>
       <ol class="ho-steps">${(T(ho,'steps') ?? []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
-      ${ho.source ? `<div class="src" style="margin-top:6px">〔${esc(t.src)} · ${ho.source_url ? `<a href="${esc(ho.source_url)}" target="_blank" rel="noopener">${esc(T(ho,'source'))} ↗</a>` : esc(T(ho,'source'))}〕</div>` : ''}</div>`;
+      ${ho.source ? `<div class="src" style="margin-top:6px">〔${esc(t.src)} · ${hoSrcUrl ? `<a href="${esc(hoSrcUrl)}" target="_blank" rel="noopener">${esc(T(ho,'source'))} ↗</a>` : esc(T(ho,'source'))}〕</div>` : ''}</div>`;
   }
   if (day.meta_read) {
     flow += `<div id="sec-metaread" class="boxed"><div class="b-head"><span class="t">${esc(t.editorial)}</span></div><div class="meta-read">${esc(T(day,'meta_read'))}</div></div>`;
   }
   for (const s of day.sources) {
-    flow += `<div id="sec-${esc(s.platform)}" class="platform-head"><h2>${esc(platName(s.platform))}${t.deskSuffix}</h2><span class="stat">${esc(t.swept(s.swept ?? '?', s.items.length))}</span></div>`;
+    flow += `<div id="sec-${slug(s.platform)}" class="platform-head"><h2>${esc(platName(s.platform))}${t.deskSuffix}</h2><span class="stat">${esc(t.swept(s.swept ?? '?', s.items.length))}</span></div>`;
     for (const it of s.items) {
       const fl = T(it, 'flag');
+      const itUrl = safeUrl(it.url);
+      const title = esc(T(it,'title'));
+      const metrics = [];
+      if (it.likes) metrics.push(t.likes + fmtN(it.likes));
+      if (it.saves) metrics.push(t.saves + fmtN(it.saves));
+      if (it.comments) metrics.push(t.comments + fmtN(it.comments));
+      const byline = [esc(T(it,'author'))];
+      if (metrics.length) byline.push(esc(metrics.join(' ')));
+      if (itUrl) byline.push(`<a href="${esc(itUrl)}" target="_blank" rel="noopener">${esc(t.orig)}↗</a>`);
       flow += `<article>
-        <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(T(it,'title'))}</a></h3>
-        <div class="byline">${esc(T(it,'author'))} ｜ ${t.likes}${fmtN(it.likes)}${it.saves ? ' ' + t.saves + fmtN(it.saves) : ''}${it.comments ? ' ' + t.comments + it.comments : ''}${it.url ? ` ｜ <a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(t.orig)}↗</a>` : ''}</div>
+        <h3>${itUrl ? `<a href="${esc(itUrl)}" target="_blank" rel="noopener">${title}</a>` : title}</h3>
+        <div class="byline">${byline.join(' ｜ ')}</div>
         <div class="summary">${esc(T(it,'summary'))}</div>
         <div class="why"><b>${esc(t.note)}</b>${esc(T(it,'why'))}</div>
         ${fl ? `<div class="flag">${esc(fl)}</div>` : ''}</article>`;
@@ -431,12 +571,14 @@ async function loadDay(d) {
   }
   h += `<div class="front-flow rise" style="animation-delay:.2s">${flow}</div>`;
   document.getElementById('content').innerHTML = h || `<div class="empty">${esc(t.empty)}</div>`;
+  updateNav();
+  syncUrl();
 }
 
 document.getElementById('lang-toggle').addEventListener('click', () => {
   lang = lang === 'en' ? 'zh' : 'en';
   document.getElementById('lang-toggle').textContent = lang === 'en' ? '中' : 'EN';
-  if (curDay) loadDay(curDay);
+  if (curDay) loadDay(curDay); else syncUrl();
 });
 
 // ============ 订阅 ============
@@ -461,15 +603,14 @@ if (SUBSCRIBE_LIVE) {
         });
         const data = await r.json().catch(() => ({ ok: false }));
         const t = L[lang];
-        if (data.ok && data.already) result.textContent = t.subDup;
-        else if (data.ok) result.textContent = t.subOk;
-        else result.textContent = t.subErr;
-        form.style.display = 'none';
+        if (data.ok && data.already) { result.textContent = t.subDup; form.style.display = 'none'; }
+        else if (data.ok) { result.textContent = t.subOk; form.style.display = 'none'; }
+        else result.textContent = t.subErr; // keep the form visible so they can retry
         result.style.display = '';
       } catch (err) {
         console.error('[subscribe]', err);
+        // network error: keep the form visible so they can retry, just surface the message
         strip.querySelector('[data-sub-result]').textContent = L[lang].subErr;
-        form.style.display = 'none';
         strip.querySelector('[data-sub-result]').style.display = '';
       }
       btn.disabled = false;
@@ -486,7 +627,7 @@ if (SUBSCRIBE_LIVE) {
     strip.appendChild(soon);
   });
 }
-// ============ 竖版长图 PDF 导出 ============
+// ============ 竖版长图 PNG 导出（长图分享，不是 PDF）============
 const loadScript = src => new Promise((ok, err) => {
   const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = err;
   document.head.appendChild(s);
@@ -509,7 +650,7 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
     cap.className = 'cap'; cap.textContent = '扫码在线读 · 扫码订阅 / Subscribe';
     qrBox.appendChild(cap);
     clone.querySelector('.mast-side.right')?.appendChild(qrBox);
-    new QRCode(qrEl, { text: 'https://zen-digest.vercel.app/?d=' + day, width: 86, height: 86, correctLevel: QRCode.CorrectLevel.M });
+    new QRCode(qrEl, { text: 'https://mrqb.space/?d=' + day, width: 86, height: 86, correctLevel: QRCode.CorrectLevel.M });
     const holder = document.createElement('div');
     holder.style.cssText = 'position:absolute;left:-99999px;top:0;';
     holder.appendChild(clone); document.body.appendChild(holder);
@@ -531,11 +672,23 @@ document.getElementById('dl-pdf').addEventListener('click', async () => {
 
 (async () => {
   document.getElementById('lang-toggle').textContent = lang === 'en' ? '中' : 'EN';
-  allDays = await (await fetch('digests/index.json')).json();
-  allDays.sort().reverse();
   const sel = document.getElementById('datepick');
-  sel.innerHTML = allDays.map(d => `<option>${d}</option>`).join('');
+  try {
+    const r = await fetch('digests/index.json');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    allDays = await r.json();
+  } catch (err) {
+    console.error('[index.json] failed to load', err);
+    document.getElementById('content').innerHTML = `<div class="empty" role="alert">
+      本期加载失败 / Failed to load this issue<br>
+      <a href="/archive.html" style="display:inline-block;margin-top:12px">📚 返回往期合订本 / Back to archive</a>
+    </div>`;
+    return;
+  }
+  allDays.sort().reverse();
+  renderDatePicker();
   sel.onchange = () => loadDay(sel.value);
+  updateNav();
   const want = new URLSearchParams(location.search).get('d');
   if (want && allDays.includes(want)) { sel.value = want; loadDay(want); }
   else if (allDays.length) loadDay(allDays[0]);
