@@ -46,12 +46,16 @@ jobs:
           elif [ -f "digests/$DAY.json" ]; then
             echo "run=false" >> "$GITHUB_OUTPUT"
             echo "digests/$DAY.json already published — nothing to do."
-          elif [ "$HOUR" -lt 21 ]; then
+          elif [ "$HOUR" -ge 12 ] && [ "$HOUR" -lt 21 ]; then
             # Off-season half of the DST pair: 01:37 UTC is 20:37 EST in winter. Never publish
             # before 21:00 NY — the other cron entry covers this season an hour later.
             echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "it is ${HOUR}:xx in New York, before the 21:00 target — leaving it to the later cron."
+            echo "it is ${HOUR}:xx in New York, before tonight's 21:00 target — leaving it to the later cron."
           else
+            # HOUR >= 21: on-time evening run. HOUR < 12: GitHub dispatched the cron hours
+            # late, past NY midnight (observed delays land at 00-01 NY). A plain `< 21` skip
+            # here made BOTH entries self-skip every night and froze the site on 08-02/08-03;
+            # run anyway and build the new NY day's issue, as the pre-guard nightly always did.
             echo "run=true" >> "$GITHUB_OUTPUT"
           fi
 
