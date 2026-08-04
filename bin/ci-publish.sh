@@ -73,6 +73,13 @@ if ! python3 bin/validate-digest.py --strict "$F"; then
   echo "publish: diversity gate failed"; exit 1
 fi
 
+# 1a) Assign this issue's stable issue_no (never recomputed from array position —
+# that's what let backfilling 08-02/08-03 renumber all of history).
+node bin/assign-issue-no.mjs "$DAY" || echo "WARN: assign-issue-no failed — issue_no not set"
+
+# 1b) Refresh feed.xml / sitemap.xml / robots.txt so every publish keeps them current.
+node bin/gen-feed.mjs || echo "WARN: gen-feed failed — feed/sitemap not refreshed"
+
 # 2) Render the front-page broadsheet (best-effort; before deploy so it reflects this issue).
 render_broadsheet
 

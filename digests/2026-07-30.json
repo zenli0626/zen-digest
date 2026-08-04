@@ -194,5 +194,6 @@
     "YouTube：9 个频道里只有 AndrejKarpathy 一条 RSS 正常返回，但最新视频停在 2025 年，48 小时窗口内无新内容；其余 8 个频道的 videos.xml 端点这次返回 404（不是鉴权拒绝，像是频道 ID 或端点本身的问题），未强行重试规避。按诚实底线，没有伪造任何一条视频摘要，YouTube 本期依旧空缺。",
     "头版要图：选用《Pacing the Frontier》联署声明官网自己的 og:image 预览图，本地下载存至 digests/img/2026-07-30.jpg（同源，避免 html2canvas 导出被跨域污染）。",
     "OTA：查台账确认，07-29 那条把自主权拆成核实难度和撤回代价两条轴，但没讲清楚“核实”具体该是什么形式。今天 Handbook.md 论文加上 HN 评论区的修法讨论，正好把这个空白补上：核实手段应该是结构化的钩子/CI/独立复核 agent，而不是写给 agent 看的文字政策。已把“结构化门禁优先于文字政策”写成 proposed（cloud）追加至 ota-ledger.md，留给 Zen 笔记本 Claude 下次采纳。"
-  ]
+  ],
+  "issue_no": 15
 }

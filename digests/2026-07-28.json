@@ -193,5 +193,6 @@
     "YouTube 全线沦陷：9 个频道的 RSS feed 今天全部返回 404 或 500，比往常“RSS 能取、yt-dlp 被拒”更严重，视频列表本身都无法获取。判断是 GitHub Actions 的出口 IP 被更彻底地封禁。基于诚实底线，未对任何视频伪造摘要，待下次拥有登录态或未封 IP 的可交互运行时再补做 YouTube 深读。",
     "头版要图：选用 Anthropic 官方博客文章《Our position on open-weights models》的标题页截图，本地下载并存至 digests/img/2026-07-28.png（同源，避免 html2canvas 导出被跨域污染）。",
     "OTA：查台账确认，最近 11 条主线均围绕“如何运行/写好多个 agent 循环”展开（评测分级、供应商容错、证据分级、harness 可移植性审计、技能瘦身）。今天 unslop.run 的政治罗盘测试提供了另一个角度的具体方法：通过正反颠倒提问来排除模型的从众偏差。该检测手段值得补入 07-19 晚间那条 abstention-aware eval gates 中，具体方案已作为 proposed（cloud）追加至 ota-ledger.md，留待 Zen 笔记本 Claude 下次采纳。"
-  ]
+  ],
+  "issue_no": 13
 }

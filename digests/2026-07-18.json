@@ -221,5 +221,6 @@
   "notes": [
     "9pm 定时刷新：YouTube 无头实时重扫（48 小时窗口，29 条在窗），抓到了 07-18 一整批 AI Engineer 新演讲（Feature Flags / UX of AI / Stop Burning Tokens / Cognitive Infra / Froglet）以及 Dwarkesh。本期主线刻意绕开前两期已写透的 computer-use（07-16）与 agent 编排（07-17），聚焦于“采纳→控制”的运营转向，并特意保留了一条非 AI 的历史线以增加多样性。",
     "partial=true：9pm 无头环境无登录态 Chrome / claude-in-chrome，无法扫描 X 与小红书，故本期只有 YouTube 单一来源，站顶显示部分来源缺席；待下一次可交互运行时，回填 X 与小红书两条社交风向。"
-  ]
+  ],
+  "issue_no": 3
 }

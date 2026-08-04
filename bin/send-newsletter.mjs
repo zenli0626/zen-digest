@@ -45,7 +45,7 @@ async function main() {
   let subscribers;
   try {
     const r = await fetch(
-      `${SUPABASE_URL}/rest/v1/subscribers?status=eq.active&select=email,lang,ref_code`,
+      `${SUPABASE_URL}/rest/v1/subscribers?status=eq.active&select=email,lang,ref_code,unsub_token`,
       {
         headers: {
           apikey: SUPABASE_SERVICE_KEY,
@@ -82,7 +82,10 @@ async function main() {
 
   for (const chunk of chunks) {
     const emails = chunk.map((sub) => {
-      const unsubUrl = `${SITE_URL}/api/unsubscribe?token=${encodeURIComponent(sub.ref_code || '')}`;
+      // Prefer the long unsub_token (>=128 bits); fall back to the legacy short
+      // ref_code for subscribers from before migrations/add_unsub_token.sql ran.
+      const unsubToken = sub.unsub_token || sub.ref_code || '';
+      const unsubUrl = `${SITE_URL}/api/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
       const html = (sub.lang === 'zh' ? bodyZh : sub.lang === 'en' ? bodyEn : bodyBoth)
         .replace('{{UNSUB_URL}}', unsubUrl);
       const subject = sub.lang === 'en' ? subjectEn : subjectZh;
@@ -91,6 +94,14 @@ async function main() {
         to: sub.email,
         subject,
         html,
+        // RFC 8058 one-click unsubscribe: compliant mail clients (Gmail, Outlook, ...)
+        // show their own native "Unsubscribe" affordance and POST straight to this URL
+        // (no user landing on our page) when List-Unsubscribe-Post is present.
+        // api/unsubscribe.js's POST handler is exactly that target.
+        headers: {
+          'List-Unsubscribe': `<${unsubUrl}>`,
+          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+        },
       };
     });
 

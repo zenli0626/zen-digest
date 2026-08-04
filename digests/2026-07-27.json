@@ -165,5 +165,6 @@
     "YouTube 整条线路：RSS feed 可达，9 个频道都取到 48 小时内新视频（其中 Lenny's Podcast 的 Dianne Penn 访谈、aidotengineer 的 Loop Engineering 讲座尤其对题），但 yt-dlp 在 android/ios/tv/web_safari/mweb 全部 player client 上一律被判“Sign in to confirm you're not a bot”，拿不到任何一份 transcript。按诚实底线，未就任何未读到的视频伪造摘要，等下次有登录态或未封 IP 的可交互运行再补 YouTube 深读。",
     "头版要图：选用 Anthropic 官方博客配图（一幅手捧空白书的简笔画），本地下载存到 digests/img/2026-07-27.jpg（same-origin，避免 html2canvas 导出被跨域污染），caption 把读点从插画本身落到头条“系统提示词砍掉八成”这个具体数据上。",
     "OTA：读台账确认，最近十条主线都在“怎么运行多 agent 循环调度”这一轴上（评测分级、供应商容错、证据分级、harness 可移植性审计）。今天换了一个不同的轴：Anthropic 官方博客给了“管模型的规矩该怎么随模型代际精简”的方法论，回头看 daily-digest 这份 skill 本身写法偏老派、条文密集，具体精简方案已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次跑 `/doctor` 并动手精简。"
-  ]
+  ],
+  "issue_no": 12
 }

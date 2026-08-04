@@ -19,5 +19,8 @@ python3 bin/validate-digest.py --strict "$f" || {
   exit 1
 }
 
+node bin/assign-issue-no.mjs "$day" || echo "WARN: assign-issue-no failed — issue_no not set"
+node bin/gen-feed.mjs || echo "WARN: gen-feed failed — feed/sitemap not refreshed"
+
 git add -A && git commit -m "Publish 每日情报 $day" 2>/dev/null
 vercel deploy --yes

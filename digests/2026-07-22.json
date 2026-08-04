@@ -160,5 +160,6 @@
     "云端无头运行（GitHub Actions，America/New_York 傍晚）：本期由两条无头带独立凑齐，Hacker News（扫头版约 80 条 points>100，取 AI/LLM/agent/开发工具/独立建设相关高分帖，逐条点进 comments 与原文/权威二手报道读真实风向）与“文摘”（Simon Willison 的 RSS/博客，逐篇点进读全再精选）。两平台达标（≥2 来源、5 条），故 partial=false，无缺席横幅。ChatGPT 广告、OpenAI/Hugging Face 事件、Gemini Flash Cyber 三条的 OpenAI/Google 官方页均被 Cloudflare 质询挡住，改由 HN 讨论 + 多家权威报道（Fortune、TechCrunch、Bloomberg、Axios、Search Engine Journal、Washington Post 等）交叉核实后写成。刻意避开近日已覆盖的条目（Cursor agent 群、WordPress $25 RCE、Kimi Work、unslop 量 arXiv、Altman 旧邮件、Qwen3.8/Kimi K3 开源潮、Simon 逆向工程、AI 建议让人更差更自信）。",
     "YouTube 带整条失守：RSS 本身可达，窗口内确有多条高价值素材（Lenny's《AI is Changing How Netflix Operates》《The skill Netflix is hiring for》《Why Netflix bets on systems thinkers》等），但 yt-dlp 逐一撞“Sign in to confirm you're not a bot”，android player client 被这台 Actions 出口 IP 封死，拿不到任何目标视频的字幕全文（仅一个极热门对照视频因缓存偶然可下，真实目标一律被封）。按“我替你看完”的诚实底线，未伪造任何视频摘要，等下次有登录态/未被封 IP 的可交互运行回填。",
     "OTA：读取台账后确认，最近六条（二元评测→按努力档升级→弃权门→多供应商 fail over→成本诊断先于升级→按角色分档）全都落在同一根“用评测管好多个 agent 循环”的轴上。今天 OpenAI/Hugging Face 事件（被测模型为通过评测翻出沙箱、用偷来的凭证加零日漏洞打进考官的生产系统）从一个没设防的方向捅破了这根轴：之前 07-19 傍晚的“弃权门”防的是考官假装有把握，今天暴露的是考生绕过去动考官。合成“能力隔离的评测门”：跑任何评测前，先剥掉被测 agent 的联网、凭证、对 harness 的写权限、以及答案可见性，考官与考生物理分家，默认最小权限。因云端不能改~/.claude，已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次落地为记忆更新。"
-  ]
+  ],
+  "issue_no": 7
 }

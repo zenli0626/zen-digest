@@ -160,5 +160,6 @@
     "云端无头运行（GitHub Actions，America/New_York 傍晚）：本期由两条无头渠道独立凑齐，Hacker News（浏览头版约 60 条，选取 AI/LLM/agent/开发工具/独立建设相关的高分帖子，逐一点开评论和原文阅读真实风向）与“文摘”（Simon Willison 的 RSS/博客，逐篇点开阅读全文后再精选）。两平台达标（≥2 来源、5 条），故 partial=false，无缺席横幅。刻意避开昨日已覆盖的条目（Kimi K3/Qwen 3.8 开源潮、Codex 上下文、Claude Code 换 Rust、Ahead of AI 推理努力、“AI 建议让人更差更自信”研究）。TLDR AI 最新一期为 07-17（超出 48 小时窗口），Ahead of AI/Latent Space/Import AI 窗口内无新增未覆盖长文，本次未纳入。",
     "YouTube 整条渠道失守：RSS 本身可达，窗口内确实有多条高价值素材（Lenny's《The Answer to What's My Job in the Age of AI?》《Why Netflix is betting on systems thinkers—Elizabeth Stone CPTO》、AIE World's Fair 新放出的《Build Evals That Actually Matter—Lyft》《You Didn't Ship a Bug. You Just Wrote It for a Human—Scalekit》《From Blind Spots to Merged PRs—Hud》、Dwarkesh×Sarah Paine），但 yt-dlp 逐一撞上“Sign in to confirm you're not a bot”提示，android/tv/ios/web_safari 等多个播放器客户端全部被这台 Actions 出口 IP 封死，无法获取任何字幕全文。基于“我替你看完”的诚实底线，未伪造任何视频摘要，待下次有登录态或未被封 IP 的可交互运行时回填。",
     "OTA：阅读台账后，发现最近四条（07-18 二元评测 → 07-19 按档升级 → 07-19 傍晚弃权门 → 07-19 云端多供应商 fail over）全长在“升级阶梯”同一根轴上，讲的都是失败后如何加力。今天 Quesma“为了省 token 把 token 烧光”暴露了盲点（同一模型 harness 差异达 66 倍、压缩反而涨账单、schema 一改缓存全价失效），合成“成本诊断先于升级”：子任务失败时，先测量每条已核实结果的 token 成本，若异常偏高，就先修复 harness 浪费，再考虑提升努力或更换供应商。因云端无法修改 ~/.claude，已作为 proposed（cloud）追加进 ota-ledger.md，交由 Zen 笔记本 Claude 下次落地为记忆更新。"
-  ]
+  ],
+  "issue_no": 5
 }

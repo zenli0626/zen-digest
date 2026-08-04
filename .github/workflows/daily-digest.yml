@@ -1,9 +1,18 @@
 name: daily-digest
 
 # Truly-automated nightly build of 每日情报 (mrqb.space), running in the cloud so it no
-# longer depends on Zen's laptop being awake. Generates the issue with Claude Code headless,
-# then bin/ci-publish.sh gates it and auto-publishes to prod ONLY if it passes the quality
-# self-check (otherwise holds a preview + Telegram pings Zen).
+# longer depends on Zen's laptop being awake.
+#
+# Split into two jobs across a validated-artifact boundary — this is a supply-chain
+# guard, not just organization. `generate` runs `claude -p ... --dangerously-skip-
+# permissions` over content swept from the open web (untrusted) and holds ONLY
+# ANTHROPIC_API_KEY; its sole output is a workflow artifact. `publish` does a FRESH
+# checkout (so it runs the trusted, committed bin/*.sh — not anything a prompt injection
+# in the swept content may have rewritten in generate's checkout), downloads that
+# artifact, validates it with bin/validate-artifact.py, and only then runs
+# bin/ci-publish.sh with the full deploy secret set (VERCEL_TOKEN, SUPABASE_*,
+# RESEND_API_KEY, TELEGRAM_*, PUBLIC_REPO_TOKEN, ...). A prompt injection in generate can
+# at worst produce a bad artifact, which the validator rejects before publish ever runs.
 
 on:
   schedule:
@@ -19,28 +28,32 @@ on:
     - cron: '37 2 * * *'
   workflow_dispatch: {}   # manual "Run workflow" button — used for the first shakedown test
 
-permissions:
-  contents: write         # commit the generated issue back to main
-
 concurrency:
   group: daily-digest
   cancel-in-progress: false
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 30
+    permissions:
+      contents: read      # no secrets beyond ANTHROPIC_API_KEY, no write access either
+    outputs:
+      run: ${{ steps.guard.outputs.run }}
+      day: ${{ steps.guard.outputs.day }}
+      produced: ${{ steps.produced.outputs.ok }}
     steps:
       - uses: actions/checkout@v4
 
-      # Dedupes the two DST cron entries: whichever fires first builds the issue and commits
-      # it to main, so the other checks out a tree that already has it and stops here.
+      # Dedupes the two DST cron entries: whichever fires first builds the issue, so the
+      # other checks out a tree that already has it (once published) and stops here.
       # A manual dispatch always proceeds, so a rebuild is never blocked.
       - name: Skip if today's issue is already published
         id: guard
         run: |
           DAY="$(TZ=America/New_York date +%F)"
           HOUR="$(TZ=America/New_York date +%H)"
+          echo "day=$DAY" >> "$GITHUB_OUTPUT"
           if [ "${{ github.event_name }}" != "schedule" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           elif [ -f "digests/$DAY.json" ]; then
@@ -69,20 +82,18 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install tooling (yt-dlp, vercel, claude-code, playwright)
+      - name: Install tooling (yt-dlp, claude-code)
         if: steps.guard.outputs.run == 'true'
         run: |
           python3 -m pip install --quiet --upgrade yt-dlp
-          npm install -g vercel @anthropic-ai/claude-code
-          npm install playwright
-          npx playwright install --with-deps chromium
+          npm install -g @anthropic-ai/claude-code
 
       - name: Generate today's issue (Claude Code, headless)
         if: steps.guard.outputs.run == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          DAY="$(TZ=America/New_York date +%F)"
+          DAY="${{ steps.guard.outputs.day }}"
           # Retry across models. Sonnet goes first for cost, but its safeguards trip on the
           # security-flavoured AI news this sweep keeps surfacing — that killed the 07-31 and
           # 08-01 nightlies outright, and flagged twice more on the 08-01 rerun. So escalate
@@ -95,8 +106,84 @@ jobs:
           done
           test -f "digests/$DAY.json" || echo "generate: no digests/$DAY.json after all attempts"
 
-      - name: Publish (diversity gate + quality check → prod or preview + notify)
+      - name: Check whether an issue was produced
         if: steps.guard.outputs.run == 'true'
+        id: produced
+        run: |
+          DAY="${{ steps.guard.outputs.day }}"
+          if [ -f "digests/$DAY.json" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Only the two content paths — nothing else the generation step touched (which could
+      # include a rewritten bin/ci-publish.sh under prompt injection) leaves this job.
+      - name: Upload digest artifact
+        if: steps.guard.outputs.run == 'true' && steps.produced.outputs.ok == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: digest-${{ steps.guard.outputs.day }}
+          path: |
+            digests/${{ steps.guard.outputs.day }}.json
+            digests/img/${{ steps.guard.outputs.day }}.*
+          retention-days: 7
+          if-no-files-found: error
+
+  publish:
+    needs: generate
+    if: needs.generate.outputs.run == 'true' && needs.generate.outputs.produced == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write      # commit the validated issue back to main
+    steps:
+      # Fresh checkout — deliberately NOT reused from `generate`, so every script this job
+      # runs (bin/ci-publish.sh and everything it sources) is the trusted committed version,
+      # untouched by whatever the untrusted generation step may have done to its own checkout.
+      - uses: actions/checkout@v4
+
+      - name: Download digest artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: digest-${{ needs.generate.outputs.day }}
+          path: /tmp/digest-artifact
+
+      - name: Validate artifact before trusting it
+        run: |
+          python3 bin/validate-artifact.py /tmp/digest-artifact "${{ needs.generate.outputs.day }}"
+
+      - name: Copy validated artifact into the working tree
+        run: |
+          DAY="${{ needs.generate.outputs.day }}"
+          mkdir -p digests/img
+          cp "/tmp/digest-artifact/digests/$DAY.json" "digests/$DAY.json"
+          cp /tmp/digest-artifact/digests/img/"$DAY".* digests/img/ 2>/dev/null || true
+          python3 - "$DAY" <<'PY'
+          import json, sys, os
+          day = sys.argv[1]
+          idx_path = "digests/index.json"
+          idx = json.load(open(idx_path)) if os.path.exists(idx_path) else []
+          if day not in idx:
+              idx.append(day)
+          json.dump(sorted(idx), open(idx_path, "w"), ensure_ascii=False)
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tooling (vercel, playwright for the broadsheet render, claude-code for the hhxxttxs mirror's publicize step)
+        run: |
+          npm install -g vercel @anthropic-ai/claude-code
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Publish (diversity gate + quality check → prod or preview + notify)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # publicize.mjs calls `claude -p` for the hhxxttxs mirror
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -109,4 +196,20 @@ jobs:
           NEWSLETTER_FROM: ${{ secrets.NEWSLETTER_FROM }}
           SERVERCHAN_SENDKEY: ${{ secrets.SERVERCHAN_SENDKEY }}
           PUBLIC_REPO_TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
-        run: bash bin/ci-publish.sh
+        run: bash bin/ci-publish.sh "${{ needs.generate.outputs.day }}"
+
+  notify-no-issue:
+    needs: generate
+    if: needs.generate.outputs.run == 'true' && needs.generate.outputs.produced != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4   # trusted checkout, just for the notify script
+      - name: Notify — no issue produced
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          bash bin/notify-telegram.sh "🔴 每日情报 ${{ needs.generate.outputs.day }}：generate 阶段未产出当期文件，未发布。见 GitHub Actions 日志。"

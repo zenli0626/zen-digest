@@ -187,5 +187,6 @@
     "云端无头运行（GitHub Actions，America/New_York 傍晚，重跑覆盖当日早前一版）：本期由两条无头带独立凑齐——Hacker News（扫头版约 50 条，取 AI/LLM/agent/开发工具/独立建设相关高分帖，逐条点进 comments 读真实风向）与“文摘”（Simon Willison、Ahead of AI、Latent Space 的 RSS/前端页，逐篇点进读全再精选）。两平台达标（≥2 来源、7 条），故 partial=false，无缺席横幅。TLDR AI、Import AI 本次未纳入（与已选条目重叠/取舍从简）。",
     "YouTube 带整条失守：RSS 本身可达，窗口内确有多条高价值素材（Lenny's《Why Netflix is betting on systems thinkers—Elizabeth Stone CPTO》《The Answer to What's My Job in the Age of AI?》、AIE World's Fair 新放出的《You Didn't Ship a Bug. You Just Wrote It for a Human—Scalekit》《From Blind Spots to Merged PRs—Hud》《Build Evals That Actually Matter—Lyft》、Dwarkesh×Sarah Paine 两期），但 yt-dlp 逐一撞“Sign in to confirm you're not a bot”，android/ios/tv/web_embedded 四个 player client 全被这台 Actions 出口 IP 封死，拿不到任何字幕全文。按“我替你看完”的诚实底线，未伪造任何视频摘要，等下次有登录态/未被封 IP 的可交互运行回填。",
     "OTA：读台账后发现，前几条（07-18 二元评测 → 07-19 按档升级 → 07-19 傍晚弃权门）只沿“推理努力”一条轴升级，且都在同一供应商上加力。今天头条（Moonshot 因需求停售 + HN tosh“开源=拿得到 token 的保险”）触发了第二条轴，合成“容量感知/多供应商升级”：子任务失败或弃权，且供应商被限流或宕机时，横向 fail over 到另一供应商的等价开源权重模型，并留一条开源路由预热当地板。因云端不能改 ~/.claude，已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次落地为记忆更新。"
-  ]
+  ],
+  "issue_no": 4
 }

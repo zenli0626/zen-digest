@@ -173,5 +173,6 @@
     "云端无头运行（GitHub Actions，America/New_York 傍晚）：本期由两条无头带独立凑齐。Hacker News（扫头版约 70 条 points>80，取 AI/LLM/agent/开发工具/独立建设相关高分帖，逐条点进 comments 与原文读真实风向）与“文摘”（Simon Willison 的 RSS/博客，逐篇点进读全再精选）。两平台达标（≥2 来源、6 条），故 partial=false，无缺席横幅。刻意避开近日已覆盖的条目（Ollama 融资、Quesma 省 token、Fable 雅可比反例、Simon“AI 狂热掏空决策”、Anthropic Fable 5、Qwen 3.8/Kimi K3 开源潮、Codex 上下文、Claude Code 换 Rust、“AI 建议让人更差更自信”）。TLDR AI 最新一期 07-20 主打 Qwen3.8/Kimi Code CLI/Netflix LLM 栈，多与近日重叠，未单列；Import AI 本次 RSS 取回为空、Latent Space 窗口内为“not much happened”日报、Ahead of AI 无窗口内新长文，均未纳入。",
     "YouTube 带整条失守：RSS 本身可达，窗口内确有多条高价值素材（Lenny's《The Answer to What's My Job in the Age of AI?》《AI is Changing How Netflix Operates》《Why Netflix bets on systems thinkers》、AIE World's Fair 新放出的若干场、Dwarkesh 等），但 yt-dlp 逐一撞“Sign in to confirm you're not a bot”，android/tv/ios/web_safari/mweb 多个 player client 全被这台 Actions 出口 IP 封死，拿不到任何字幕全文（仅一个极热门的对照视频偶然可下，真实目标一律被封）。按“我替你看完”的诚实底线，未伪造任何视频摘要，等下次有登录态/未被封 IP 的可交互运行回填。",
     "OTA：读台账后确认最近五条（二元评测 → 按努力档升级 → 弃权门 → 多供应商 fail over → 成本诊断先于升级）全在“升级阶梯”一根轴上，讲失败后怎么加力。今天 Cursor《Agent swarms and the new model economics》给出结构性默认（同任务同质量，模型搭配让账单差近八倍，worker 队 411 对 9373 美元），合成“按角色分档、而非按调用升档”：开工就把前沿模型只留给分解/定契约/定关键取舍的少数几步，执行一律交给能过评测的最便宜模型。它把昨天“成本诊断先于升级”的结论从“失败后补救”前移成“开工时默认”。因云端不能改 ~/.claude，已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次落地为记忆更新。"
-  ]
+  ],
+  "issue_no": 6
 }

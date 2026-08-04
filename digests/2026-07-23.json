@@ -161,5 +161,6 @@
     "YouTube 整条线路失守，本在预期内。本地 RSS 请求直接被 YouTube 返回 Error 500——GitHub Actions 的出口 IP 整段被判定为机器人。9 个频道的 feed 全部拿不到，yt-dlp 更无从谈起。按照“我替你看完”的诚实底线，未伪造任何视频摘要，等下次有登录态或未被封 IP 的可交互运行时再补 YouTube 部分。Import AI 的 RSS 被 Cloudflare 质询挡下，本期未取用。",
     "头版要图：因 YouTube 缩略图不可达，改用 Wikimedia Commons 上一张 CC BY-SA 授权的陶哲轩真人照（Oberwolfach Photo Collection / Gert-Martin Greuel），本地下载到 digests/img/2026-07-23.jpg（same-origin，避免 html2canvas 导出被跨域污染）。",
     "OTA：读台账后确认，最近七条——二元评测、按努力档升级、弃权门、多供应商 fail over、成本诊断、按角色分档、能力隔离的评测门——全落在“用评测把多 agent 循环管好、管省”这根轴上，且都默认路由表是静态的。今天 Ramp Router 开放（每月 2.75 万亿 token、每周拿真实流量重测新模型并自动改路由、背后是 Thompson sampling 式在线学习）戳中这个盲点：“最便宜够用”那条线本身每周都在移动。合成新增能力“滚动窗口在线路由（bandit 刷新的模型档位）”：把“哪类活用哪个模型”从开工定一次的静态分档，改成在滚动窗口上用真实评测结果持续重估的活策略，自动升/降档。它接在 07-21“按角色分档”之后、与 07-20“成本诊断”互补。因云端不能改 ~/.claude，已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次落地为记忆更新。"
-  ]
+  ],
+  "issue_no": 8
 }

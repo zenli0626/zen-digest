@@ -165,5 +165,6 @@
     "文摘线内部取舍：Import AI 的 RSS 仍被 Cloudflare 质询挡下（Just a moment）。TLDR AI 的 RSS 只给标题，本期改为直接抓 tldr.tech/ai/2026-07-24 正文页（该期发布于周五，是周末缺更新窗口下最新一期，距抓取时间约 52 小时，略超 48 小时窗口，出于周末无更新的现实做了这一次放宽，已如实记录）；从中选了 Kimi K3 思维链、Sierra 收购 TakeOff 两条，另有 DeepSeek 创始人投资者电话会引语、Poolside 模型工厂等条目因与 HN/aidotengineer 已覆盖的主题重叠而未重复收录。Latent Space 当期头条（Opus 5 AINews）与昨日重叠，跳过；Simon Willison 当期两篇（Ruff v0.16、Boris Cherny 转发）改用于今日上手来源，未再单列为版面条目，避免头版和上手来源重复计入。",
     "头版要图：因无 YouTube 缩略图可用，选用 Cloudflare 官方博客配图（og:image），本地下载并转成约 74KB 的 JPEG 存到 digests/img/2026-07-26.jpg（same-origin，避免 html2canvas 导出被跨域污染）。它直接对应头条 Cloudflare AI 流量分类新规，caption 里把读点从「拆分本身」拨到「9 月新默认值连 Google 搜索可见度都会波及」。",
     "OTA：读台账后确认，最近十条同一根轴都在解「怎么跑一个子任务」，其中 07-19 晚间「供应商失败切开源权重路线」默认了一个没写出来的前提——工具本身得支持无痛换模型。今天用开发者亲测账单和「Kubernetes 时刻」类比给这条规则补上前置检查：先审计自己的 agent/workflow 调用点是不是绑死了某家专属格式，能改就改，改不动就先记下来。因云端不能改 ~/.claude，已作为 proposed（cloud）追加进 ota-ledger.md，交 Zen 笔记本 Claude 下次落地为记忆更新。"
-  ]
+  ],
+  "issue_no": 11
 }
