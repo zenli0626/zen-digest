@@ -98,6 +98,15 @@ not just summaries. Zen reads this instead of the feeds.
    - **Dedupe across platforms:** if the same event is on YouTube AND X (common — X often
      just reacts to a talk), keep the stronger single treatment and note "同一事两处印证"
      once; don't write it twice.
+   - **Dedupe across DAYS (7-day lookback):** before selecting, read the last 7
+     issues in digests/ and list their item URLs, authors/domains, and story threads.
+     Never re-run a URL already covered. Max ONE item per author/domain per issue
+     (platform hosts like youtube.com are exempt — the "author" there is the channel).
+     An author/domain featured in either of the last 2 issues needs a clearly
+     better-than-the-alternatives reason to appear again — "Simon Willison posted
+     again" is not a reason. A RUNNING story (open letters/petitions, a product saga)
+     may return only on a material new development, and the blurb must state the
+     delta in one clause (上次说到X，今天的进展是Y) — otherwise it reads as a repeat.
    - **Theme diversity:** cap ~2 items per thread across the whole issue. Prefer surfacing
      a NEW thread over a 3rd item on the hot one. A day where every item says "agents take
      over execution" is a failed issue — go find the off-consensus / different-topic items
