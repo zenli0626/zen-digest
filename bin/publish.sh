@@ -14,7 +14,7 @@ f="digests/$day.json"
 # publishes — a down API must not block the daily paper.
 node bin/polish-zh.mjs "$f" || echo "WARN: polish-zh failed — publishing unpolished zh text"
 
-python3 bin/validate-digest.py "$f" || {
+python3 bin/validate-digest.py --strict "$f" || {
   echo "PUBLISH ABORTED — $day failed the diversity gate. Backfill another source lane (or set partial:true for an unavoidable headless run), then retry."
   exit 1
 }

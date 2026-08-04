@@ -111,6 +111,9 @@ not just summaries. Zen reads this instead of the feeds.
      a NEW thread over a 3rd item on the hot one. A day where every item says "agents take
      over execution" is a failed issue — go find the off-consensus / different-topic items
      (a career move, a business-model shift, a trading signal, an odd build).
+   - **Chinese style:** follow docs/STYLE-ZH.md (zen-digest repo) for every zh field —
+     exact facts/numbers/names, no officialese or tabloid register, why 栏必须是真判断;
+     the 2026-08-04 issue is the calibrated sample.
 3. **今日上手 / hands_on (one per issue).** Zen wants to TRY one new thing every day
    (his example: trying scroll-world for the first time). Pick exactly one — from
    today's swept content, or from Zen's own toolbox of built-but-untried capabilities.
