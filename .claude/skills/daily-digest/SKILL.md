@@ -88,13 +88,20 @@ not just summaries. Zen reads this instead of the feeds.
      "computer-use 产品化", "给目标不给提示词"). Assign each thread ONE home — its single
      best source item. A thread that headlines the banner does NOT also get its own
      action AND fill the 社评 AND appear in OTA; cross-reference instead ("详见 X版").
-   - **Sections have non-overlapping jobs — enforce:** ① 今日可行动 = 2-3 actions, each
-     on a DIFFERENT thread (never two actions about one story). ② 本报社评 (meta_read) =
-     the ONE cross-cutting synthesis the items DON'T state — the pattern / "so what" /
-     the off-consensus read. If it's re-listing the day's stories, delete and rewrite.
+   - **Sections have non-overlapping jobs — enforce (see docs/STYLE-ZH.md #12-14 for the
+     full rules + the calibrated model; audited 2026-08 as unenforced, don't repeat the
+     miss):** ① 今日可行动 = 2-3 actions, each on a DIFFERENT thread (never two actions
+     about one story), and each one is a verb-phrase action FIRST, then the time cost,
+     then how you'll know it's done — background is at most one sentence, never a
+     200-300-character news recap with the instruction buried at the end. ② 本报社评
+     (meta_read) = the ONE cross-cutting synthesis the items DON'T state — the pattern /
+     "so what" / the off-consensus read — and it must NOT restate facts the item
+     summaries already gave; if it's re-listing the day's stories, delete and rewrite.
      ③ 版面 items = the stories themselves; the banner's own item adds detail beyond the
-     headline, doesn't repeat it. ④ 升级公告 (ota) = ONLY my tool/skill/memory changes —
-     never a news recap; if an OTA line reads like a headline it's in the wrong section.
+     headline, doesn't repeat it. ④ 升级公告 (ota) = ONLY my tool/skill/memory changes,
+     verified against what actually happened — never a news recap; tag each entry
+     观察/已实施/已验证 and only let 已验证 entries into new_capabilities; if an OTA line
+     reads like a headline it's in the wrong section.
    - **Dedupe across platforms:** if the same event is on YouTube AND X (common — X often
      just reacts to a talk), keep the stronger single treatment and note "同一事两处印证"
      once; don't write it twice.
@@ -152,7 +159,10 @@ not just summaries. Zen reads this instead of the feeds.
      adopted + how to invoke it) so tomorrow's run compounds instead of repeating.
    - Fill the digest's `ota` object: `learned` (what I learned today, plain sentences)
      and `new_capabilities` (what I can now do that I couldn't yesterday, with the
-     skill/command name to invoke it). The site renders this as 🆕 今日自我升级.
+     skill/command name to invoke it). The site renders this as 🆕 今日自我升级. Per
+     docs/STYLE-ZH.md #14: tag each entry 观察/已实施/已验证 and only put 已验证 entries
+     into `new_capabilities` — this section is about my own tooling, never a recap of
+     today's news.
 4b. **Bilingual — write an `_en` for every text field.** The site has a 中/EN toggle
    (same newspaper format); EN mode renders `<field>_en`, falling back to Chinese if
    missing. So every rendered text field gets a natural-English sibling: `banner_en`,

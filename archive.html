@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日情报 · 往期合订本</title>
+<meta name="description" content="《每日情报》往期合订本——AI 编辑部每日自动采编的中文情报，逐期回顾。">
+<meta property="og:title" content="每日情报 · 往期合订本">
+<meta property="og:description" content="AI 编辑部每日自动采编，只印值得花时间的内容——往期合订本，逐期回顾。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mrqb.space/archive.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -138,7 +144,7 @@ const cnDate = d => {
       const banner = day.banner ?? day.sources?.[0]?.items?.[0]?.title ?? '（本期无大标题）';
       const stat = (day.sources ?? []).map(s => s.platform + '×' + s.items.length).join(' · ');
       const photo = day.image?.src
-        ? `<div class="photo"><img src="${esc(day.image.src)}" alt=""></div>`
+        ? `<div class="photo"><img src="${esc(day.image.src)}" alt="" loading="lazy"></div>`
         : `<div class="photo none">報</div>`;
       return `<a class="issue rise" style="animation-delay:${Math.min(i*0.05,.6)}s" href="/?d=${esc(d)}">
         <div class="mh">
@@ -151,7 +157,18 @@ const cnDate = d => {
         <div class="cols"><i></i><i></i><i></i></div>
         <div class="stat">翻阅当日全部要闻<span class="read">→</span></div>
       </a>`;
-    } catch (e) { return ''; }
+    } catch (e) {
+      return `<div class="issue rise" style="animation-delay:${Math.min(i*0.05,.6)}s; opacity:.55;">
+        <div class="mh">
+          <div class="name">每日情报</div>
+          <div class="meta"><span>AI 情报参考</span><span>${cnDate(d)}</span></div>
+        </div>
+        <div class="no-bar">第 ${String(days.length - i).padStart(3, '0')} 期 · 加载失败</div>
+        <h3>本期暂时无法加载</h3>
+        <div class="photo none">⚠</div>
+        <div class="stat">这一期的数据文件读取出错，稍后再试</div>
+      </div>`;
+    }
   }));
   document.getElementById('rack').innerHTML = items.join('') || '<div class="empty">还没有任何一期</div>';
 })();
