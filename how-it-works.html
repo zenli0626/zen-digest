@@ -123,7 +123,7 @@
   .platform-head .stat { font-family: var(--mono); font-size: 9.5px; color: var(--faint); letter-spacing: 1px; }
 
   article.step { padding: 8px 0 12px; border-bottom: 1px dotted var(--rule-soft); margin-bottom: 8px; break-inside: avoid; orphans: 3; widows: 3; }
-  article.step .stepno { display: inline-block; background: var(--red); color: #fdf6ec; font-family: var(--hei); font-weight: 900; font-size: 13px; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 2px; margin-right: 8px; }
+  .stepno { display: inline-block; background: var(--red); color: #fdf6ec; font-family: var(--hei); font-weight: 900; font-size: 13px; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
   article.step h3 { font-family: var(--hei); font-weight: 700; font-size: 15.5px; line-height: 1.6; display: inline; break-after: avoid; }
   .byline { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px; color: var(--faint); margin: 4px 0 4px; }
   .summary { font-size: 13.5px; line-height: 1.95; text-align: justify; text-indent: 2em; margin-top: 4px; }
@@ -201,7 +201,7 @@
       <a href="#sec-desk"><b>02版</b>唤起编辑部</a>
       <a href="#sec-sweep"><b>03版</b>扫读两带</a>
       <a href="#sec-distill"><b>04版</b>提炼成稿</a>
-      <a href="#sec-gate"><b>05版</b>多样性闸门</a>
+      <a href="#sec-gate"><b>05版</b>质量闸门</a>
       <a href="#sec-publish"><b>06版</b>发布晋级</a>
     </nav>
   </header>
@@ -212,7 +212,7 @@
 
   <section class="actions rise" style="animation-delay:.15s">
     <div class="box-tab"><span class="tag">编者按</span><span class="en">EDITOR'S NOTE</span></div>
-    <div class="note-body">本报每晚由一位无人值守的 AI 编辑部自动采编——不设人工值夜，只设规则与闸门。从定时唤起到成稿见报，全程十步，逐一记录于本期特稿，供关心“这份报纸从哪里来”的读者查阅。</div>
+    <div class="note-body">本报每晚由一位无人值守的 AI 编辑部在云端自动采编——不设人工值夜，只设规则与闸门，达标即自动上线，不必等 Zen 醒来点头。从定时唤起到成稿见报，全程十步，逐一记录于本期特稿，供关心“这份报纸从哪里来”的读者查阅。</div>
   </section>
 
   <figure class="pipeline-map rise" style="animation-delay:.18s">
@@ -235,7 +235,7 @@
     <path d="M990,270 C1030,255 1040,215 1084,190" stroke="#3e3a31" marker-end="url(#arr-ink)"/>
     <path d="M1340,175 L1394,175" stroke="#3e3a31" marker-end="url(#arr-ink)"/>
     <path d="M1490,265 L1490,412" stroke="#3e3a31" marker-end="url(#arr-ink)"/>
-    <path d="M1400,240 C1300,290 1230,340 1195,412" stroke="#9a948a" stroke-dasharray="7,6" marker-end="url(#arr-grey)"/>
+    <path d="M1450,265 C1445,340 1330,398 1245,412" stroke="#9a948a" stroke-dasharray="7,6" marker-end="url(#arr-grey)"/>
     <path d="M535,335 L535,300" stroke="#6b665c" marker-end="url(#arr-grey)"/>
     <path d="M595,300 L595,335" stroke="#6b665c" marker-end="url(#arr-grey)"/>
   </g>
@@ -288,10 +288,10 @@
     <text x="565" y="188" text-anchor="middle" style="font-family:var(--mono);font-size:12.5px;fill:#4c7a3f;">Worth Your Time</text>
     <rect x="490" y="302" width="150" height="34" rx="17" fill="#fbf7ec" stroke="#8a8478" stroke-width="1.5"/>
     <text x="565" y="324" text-anchor="middle" style="font-family:var(--hei);font-weight:700;font-size:15.5px;fill:#3e3a31;">取舍讨论 · Triage</text>
-    <rect x="455" y="412" width="220" height="130" rx="14" fill="#f7e0da" stroke="#b0402f" stroke-width="2"/>
-    <text x="565" y="450" text-anchor="middle" style="font-size:26px;">📉</text>
-    <text x="565" y="482" text-anchor="middle" style="font-family:var(--hei);font-weight:900;font-size:21px;fill:#8f3325;">不值得</text>
-    <text x="565" y="505" text-anchor="middle" style="font-family:var(--mono);font-size:12.5px;fill:#b0402f;">Cut, With Reasons</text>
+    <rect x="455" y="386" width="220" height="130" rx="14" fill="#f7e0da" stroke="#b0402f" stroke-width="2"/>
+    <text x="565" y="424" text-anchor="middle" style="font-size:26px;">📉</text>
+    <text x="565" y="456" text-anchor="middle" style="font-family:var(--hei);font-weight:900;font-size:21px;fill:#8f3325;">不值得</text>
+    <text x="565" y="479" text-anchor="middle" style="font-family:var(--mono);font-size:12.5px;fill:#b0402f;">Cut, With Reasons</text>
   </g>
   <text x="742" y="158" text-anchor="middle" style="font-family:var(--hei);font-weight:700;font-size:15px;fill:#3c6231;">入选证据</text>
   <text x="742" y="174" text-anchor="middle" style="font-family:var(--mono);font-size:12px;fill:#4c7a3f;">Keep Evidence</text>
@@ -309,13 +309,16 @@
     <rect x="760" y="470" width="260" height="46" rx="12" fill="#efece4" stroke="#c9c2b1" stroke-width="1.5"/>
     <text x="890" y="492" text-anchor="middle" style="font-family:var(--hei);font-weight:700;font-size:14.5px;fill:#3e3a31;">✒ DeepSeek 中文润色</text>
     <text x="890" y="508" text-anchor="middle" style="font-family:var(--mono);font-size:12px;fill:#9a948a;">deepseek-chat · native-zh rewrite</text>
+    <rect x="735" y="526" width="310" height="46" rx="12" fill="#efece4" stroke="#c9c2b1" stroke-width="1.5"/>
+    <text x="890" y="548" text-anchor="middle" style="font-family:var(--hei);font-weight:700;font-size:14.5px;fill:#3e3a31;">🤝 五模型顾问团 · 定文风</text>
+    <text x="890" y="564" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#9a948a;">Claude · DeepSeek · Kimi · GPT · Gemini → STYLE-ZH</text>
     <path d="M890,470 L890,395" stroke="#9a948a" stroke-width="2" stroke-dasharray="6,5" fill="none" marker-end="url(#arr-grey)"/>
   </g>
   <text x="1044" y="212" text-anchor="middle" style="font-family:var(--hei);font-weight:700;font-size:15px;fill:#3e3a31;">成稿</text>
   <text x="1044" y="228" text-anchor="middle" style="font-family:var(--mono);font-size:12px;fill:#6b665c;">Draft Issue</text>
 
   <g>
-    <rect x="1090" y="60" width="250" height="230" rx="18" fill="#e3ebf4" stroke="#2f5d8a" stroke-width="2.5"/>
+    <rect x="1090" y="60" width="250" height="320" rx="18" fill="#e3ebf4" stroke="#2f5d8a" stroke-width="2.5"/>
     <rect x="1090" y="60" width="250" height="44" rx="18" fill="#2f5d8a"/><rect x="1090" y="86" width="250" height="18" fill="#2f5d8a"/>
     <text x="1215" y="88" text-anchor="middle" style="font-family:var(--hei);font-weight:900;font-size:17.5px;fill:#fff;">质量把关 · Quality Gates</text>
     <circle cx="1122" cy="134" r="13" fill="#d9772e"/><text x="1122" y="139" text-anchor="middle" style="font-size:14.5px;fill:#fff;">☰</text>
@@ -327,6 +330,12 @@
     <circle cx="1122" cy="242" r="13" fill="#5f4b8b"/><text x="1122" y="247" text-anchor="middle" style="font-size:14.5px;fill:#fff;">文</text>
     <text x="1146" y="240" style="font-family:var(--hei);font-weight:700;font-size:15.5px;fill:#17150f;">中文润色</text>
     <text x="1146" y="255" style="font-family:var(--mono);font-size:12px;fill:#6b665c;">DeepSeek native-zh pass</text>
+    <circle cx="1122" cy="296" r="13" fill="#b0402f"/><text x="1122" y="301" text-anchor="middle" style="font-size:14.5px;fill:#fff;">↻</text>
+    <text x="1146" y="294" style="font-family:var(--hei);font-weight:700;font-size:15.5px;fill:#17150f;">反重复闸门</text>
+    <text x="1146" y="309" style="font-family:var(--mono);font-size:12px;fill:#6b665c;">近7期 URL/域名 · hard gate</text>
+    <circle cx="1122" cy="350" r="13" fill="#caa75f"/><text x="1122" y="355" text-anchor="middle" style="font-size:14.5px;fill:#fff;">守</text>
+    <text x="1146" y="348" style="font-family:var(--hei);font-weight:700;font-size:15.5px;fill:#17150f;">文风守则</text>
+    <text x="1146" y="363" style="font-family:var(--mono);font-size:12px;fill:#6b665c;">STYLE-ZH · 五模型联审定稿</text>
   </g>
 
   <g>
@@ -351,7 +360,7 @@
   <g>
     <rect x="420" y="594" width="640" height="60" rx="12" fill="#efece4" stroke="#c9c2b1" stroke-width="1.5"/>
     <text x="440" y="618" style="font-family:var(--hei);font-weight:900;font-size:14.5px;fill:#17150f;">编辑部一览 Team Overview：</text>
-    <text x="440" y="641" style="font-family:var(--hei);font-size:13px;fill:#3e3a31;">编辑组扫读五路信源并取舍 → 主编提炼头版与行动 → 把关组守闸门并润色 → 发布决策定 prod 或预览</text>
+    <text x="440" y="641" style="font-family:var(--hei);font-size:13px;fill:#3e3a31;">编辑组扫读五路信源并取舍 → 主编提炼头版与行动 → 五模型顾问团定文风 → 把关组守四道闸门并润色 → 发布决策定 prod 或预览</text>
   </g>
 </svg></div>
     <figcaption>图：本报采编流程（中英对照）· Editorial pipeline, bilingual</figcaption>
@@ -359,20 +368,20 @@
 
   <div class="front-flow rise" style="animation-delay:.2s">
 
-    <div id="sec-trigger" class="platform-head"><h2>定时触发</h2><span class="stat">launchd · 20:57 每晚</span></div>
+    <div id="sec-trigger" class="platform-head"><h2>定时触发</h2><span class="stat">GitHub Actions · 21:37 美东 ×2</span></div>
     <article class="step">
       <h3><span class="stepno">1</span>定时触发</h3>
-      <div class="byline">launchd · com.zen.daily-digest</div>
-      <div class="summary">macOS 后台任务调度器 <span class="mono-inline">launchd</span>每晚 20:57 唤醒一个名为 <span class="mono-inline">com.zen.daily-digest</span> 的作业，运行脚本 <span class="mono-inline">bin/run-digest.sh</span>选在这个时间点，是为了让 Zen 当晚就能读到今日情报，并有机会在睡前试一试“今日上手”里的那件小事。</div>
-      <div class="why"><b>为何这样设计</b>用系统级定时任务而非人工触发，保证即使无人操作，每天也有一期见报。</div>
+      <div class="byline">.github/workflows/daily-digest.yml</div>
+      <div class="summary">触发点已经搬到云端：GitHub Actions 用两条 cron 分别在 UTC 01:37 与 02:37 唤醒——换算成美国东部时间，夏令时、冬令时都落在 21:37，瞄准的是纽约当地 21:00 前后；选在 37 分而非整点，是因为整点是共享 runner 最拥挤的时段，错峰几十分钟能让实际派发更准时。即便如此，GitHub 的定时任务仍常常晚点，这两条实际经常在纽约午夜之后才真正跑起来；工作流里专门写了一道判断——先看今天的 <span class="mono-inline">digests/&lt;date&gt;.json</span> 是不是已经发过：发过了就跳过，让另一条 cron 白跑一场当备份；没发过，哪怕已经过了午夜，也照样往下走、生成"新的一天"这一期。这种晚点是预期之内、被工作流本身接住的，不是故障。Zen 笔记本上原来的 launchd 定时任务（<span class="mono-inline">com.zen.daily-digest</span> · 20:57 本地时间）还留着，但降格为兜底，且被限定只能出预览，从不碰生产环境。</div>
+      <div class="why"><b>为何这样设计</b>云端定时不再依赖笔记本电脑是否开机联网，这正是把流程搬上云的初衷——本报才配得上“每晚必到”四个字。</div>
     </article>
 
-    <div id="sec-desk" class="platform-head"><h2>唤起编辑部</h2><span class="stat">claude -p · headless</span></div>
+    <div id="sec-desk" class="platform-head"><h2>唤起编辑部</h2><span class="stat">claude -p · 云端无头</span></div>
     <article class="step">
       <h3><span class="stepno">2</span>唤起编辑部</h3>
-      <div class="byline">run-digest.sh → claude -p</div>
-      <div class="summary"><span class="mono-inline">run-digest.sh</span> 以无头模式（<span class="mono-inline">claude -p --dangerously-skip-permissions</span>）唤起 Claude Code，交给它 <span class="mono-inline">/daily-digest</span>这份技能说明就是本报的“AI 编辑部”：没有编辑室，没有值班人，只有一份写清楚流程的技能文件，和一次性运行的无头进程。</div>
-      <div class="why"><b>为何这样设计</b>无头运行意味着当晚很可能连不上浏览器（小红书/X 需要登录态的 Chrome 会话），所以编辑部必须首先保证“常驻无头”的两条带能扫到东西——见下一版。</div>
+      <div class="byline">daily-digest.yml → claude -p</div>
+      <div class="summary">工作流以无头模式（<span class="mono-inline">claude -p --dangerously-skip-permissions</span>）在 GitHub Actions 的一次性容器里唤起 Claude Code，读的是 <span class="mono-inline">automation/ci-prompt.txt</span>——这是同一份 <span class="mono-inline">/daily-digest</span> 技能说明的云端版，只补上云端特有的限制：没有登录态的浏览器，只能扫 YouTube 与文摘两条无头带，X/小红书直接跳过。先用 Sonnet 生成一次，若失败（常见诱因：当晚扫到的安全类新闻触发了模型自身的安全判断，直接拒答）就升级到 Opus 重试两次。</div>
+      <div class="why"><b>为何这样设计</b>这一步确实带着 <span class="mono-inline">--dangerously-skip-permissions</span> 唤起，读起来像不设防——但它能碰到的东西被环境本身圈死了：这一步的环境变量里只有一把用来生成文字的 API key，看不到任何能把内容送上生产环境或对外发消息的密钥（Vercel、Telegram、DeepSeek、Supabase 的 token 都不在这一步的环境表里），它写得出的只是这次运行检出的代码树里的一份 <span class="mono-inline">digests/&lt;date&gt;.json</span>。真正握着部署密钥、能把东西送上线的，是紧接着单独跑起来的发布步骤（第9-10步，见06版）。编辑部正在做的下一步，是把生成和发布彻底分居两个互不预热的检出环境，并让生成产物先过一轮字段白名单与 schema 校验，才轮到带着部署密钥的发布步骤登场。</div>
     </article>
 
     <div id="sec-sweep" class="platform-head"><h2>扫读两带</h2><span class="stat">headless × 2 ・ enrichment × 2</span></div>
@@ -427,13 +436,16 @@
     </article>
 
     <div id="sec-gate" class="boxed">
-      <div class="b-head"><span class="t">◆ 多样性闸门</span><span class="sub">bin/validate-digest.py</span></div>
-      <div class="b-body">发布前，<span class="mono-inline">bin/publish.sh</span> 会先跑 <span class="mono-inline">bin/validate-digest.py</span>做“来源多样性校验”——防止一期报纸只靠单一来源撑起门面。</div>
+      <div class="b-head"><span class="stepno">8</span><span class="t">◆ 质量闸门</span><span class="sub">bin/validate-digest.py · docs/STYLE-ZH.md</span></div>
+      <div class="b-body">发布前，<span class="mono-inline">bin/publish.sh</span> 会先跑 <span class="mono-inline">bin/validate-digest.py</span>做两重校验：来源多样性，防止一期报纸只靠单一来源撑起门面；反重复，防止同一个链接、同一位作者在报上连轴转。</div>
       <table>
         <tr><th>门槛</th><th>要求</th></tr>
         <tr><td>来源平台数</td><td>≥ 2 个不同 platform（各至少 1 条）</td></tr>
         <tr><td>总条目数</td><td>≥ 4 条</td></tr>
+        <tr><td>链接不重复</td><td>近 7 期出现过的 URL 不得再上报（发布时硬闸，历史期修订仅提醒）</td></tr>
+        <tr><td>来源不扎堆</td><td>同一非平台域名一期至多 1 条（YouTube 等平台域除外）</td></tr>
       </table>
+      <div class="b-body" style="margin-top:10px">选题之外还有文风：<span class="mono-inline">docs/STYLE-ZH.md</span> 是本报的中文文案守则，由五个前沿模型联席评审定稿（2026-08-04：Claude 主笔，DeepSeek、Kimi、GPT、Gemini 各自独立重写后匿名互评，主笔裁决合稿）——事实数字一字不差是红线，公文腔、翻译腔、标题党皆不许上版。每晚生成与润色都逐条对照这份守则。</div>
       <ul style="margin-top:8px">
         <li class="oi">达标 → 正常发布，闸门放行。</li>
         <li class="oi">不达标但真的只够 1 个平台（例如纯无头跑，YouTube 都没扫到东西）→ 顶层字段 <span class="mono-inline">"partial": true</span> → 首页顶部带出“⚠ 本期部分来源缺席（无头运行），稍后补全”的横幅照常发出，留待下一次交互式运行补全。</li>
@@ -441,17 +453,23 @@
       </ul>
     </div>
 
-    <div id="sec-publish" class="platform-head"><h2>发布晋级</h2><span class="stat">preview → 人工晋级</span></div>
+    <div id="sec-publish" class="platform-head"><h2>发布晋级</h2><span class="stat">质量自检 → 自动上线 / 留人工复核</span></div>
     <article class="step">
-      <h3><span class="stepno">9</span>预览发布</h3>
-      <div class="byline">bin/publish.sh</div>
-      <div class="summary">闸门放行后，<span class="mono-inline">publish.sh</span> 执行 <span class="mono-inline">git commit</span>，随后 <span class="mono-inline">vercel deploy</span>——注意这是 <b>PREVIEW</b>部署，从不直接碰生产环境。</div>
+      <h3><span class="stepno">9</span>质量自检 · 自动上线</h3>
+      <div class="byline">bin/ci-publish.sh → bin/quality-check.py</div>
+      <div class="summary">多样性闸门放行后（第8步，见05版），<span class="mono-inline">ci-publish.sh</span> 先渲染出当期头版长图，再跑 <span class="mono-inline">bin/quality-check.py</span>——比多样性闸门更高一道门槛：条目数、行动数、摘要长度、图片与 OTA 字段是否齐全。过了这道门槛，脚本直接执行 <span class="mono-inline">vercel deploy --prod</span> 把当期送上 mrqb.space，同时把生成结果提交回仓库、发出邮件，并把 Telegram 头版长图发给 Zen——绝大多数晚上，上线这一下都是自动完成的，不等 Zen 醒来点头。</div>
+      <div class="why"><b>为何这样设计</b>仓库本身没有跟 Vercel 做 Git 集成，生产环境只能靠这一步握着的 <span class="mono-inline">VERCEL_TOKEN</span> 部署——这一步不跑，不管前面生成了什么，都碰不到生产环境。</div>
     </article>
     <article class="step">
-      <h3><span class="stepno">10</span>人工晋级</h3>
-      <div class="summary">次日，Zen 审阅这份预览，确认无误后手动执行 <span class="mono-inline">vercel --prod</span>，报纸才真正上线 mrqb.space。全流程唯一的人工步骤，就是这最后一次“点头”。</div>
-      <div class="why"><b>为何这样设计</b>AI 编辑部可以自动写稿、自动校验、自动发预览，但“公开上线”这一下，永远留给人来按。</div>
+      <h3><span class="stepno">10</span>没过自检，才轮到人工</h3>
+      <div class="summary">没过质量自检的当期，脚本改去发一份 <span class="mono-inline">vercel deploy</span> 预览，把生成结果提交为草稿，再把预览链接和一张“未达标”的头版长图一并 Telegram 给 Zen——这时才需要 Zen 亲自看一眼预览、判断是否手动把它 promote 到生产环境。全流程里唯一常态化保留的人工步骤，就是这个“没通过才需要你”的例外分支；正常的晚上它根本不会被触发。</div>
+      <div class="why"><b>为何这样设计</b>把“人工把关”从每晚的必经流程改成只在自检不通过时才出现的例外，报纸才谈得上真正的“每晚必到”。</div>
     </article>
+
+    <div class="boxed" style="margin-top:4px;">
+      <div class="b-head"><span class="t">◆ 继续读下去</span><span class="sub">Where To Next</span></div>
+      <div class="b-body">这篇特稿只讲流程本身。想看流程跑出来的实际内容，请翻<a href="index.html">今日头版</a>，或去<a href="archive.html">往期合订本</a>翻阅此前每一期。<br>流程最后核对日期：2026-08-04（对照 <span class="mono-inline">.github/workflows/daily-digest.yml</span> 与 <span class="mono-inline">bin/ci-publish.sh</span> 逐行核实）。</div>
+    </div>
 
   </div>
 
