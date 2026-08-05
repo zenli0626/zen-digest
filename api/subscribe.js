@@ -1,8 +1,28 @@
 // POST /api/subscribe — add an email to the 每日情报 subscribers list.
 // Dependency-free Vercel Node function: uses only global fetch (Node 18+).
 // Env: SUPABASE_URL, SUPABASE_SERVICE_KEY.
+// Optional: TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID — ping Zen on each new subscriber.
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Best-effort: never let a notify failure affect the subscriber's response.
+async function notifyTelegram(email, lang) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: `📬 每日情报新订阅：${email}（${lang}）`,
+      }),
+    });
+  } catch (err) {
+    console.error('[subscribe] telegram notify failed:', err.message);
+  }
+}
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -62,6 +82,9 @@ module.exports = async (req, res) => {
       return;
     }
     res.status(200).json({ ok: true });
+    // New subscriber only (dups/honeypot returned above). Awaited so the
+    // function isn't frozen before the send completes; response already went out.
+    await notifyTelegram(email, lang || 'both');
   } catch (err) {
     console.error('[subscribe] error', err);
     res.status(500).json({ ok: false });
