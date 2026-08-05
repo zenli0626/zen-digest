@@ -335,4 +335,26 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   alone." *proposed (cloud) — adopt on next laptop session (would extend memory `feedback-high-signal-evals`
   as a runtime-verification layer atop the 07-22 design-time isolation rule).*
 
+- 2026-08-05 (cloud run) — **Pairwise comparison over absolute scores for subjective-quality
+  judging** (deepens 07-18's binary-eval line into the case it didn't cover: dimensions with no
+  objective right answer). 07-18 said binary yes/no evals beat 0-1 vibe scores for high-signal
+  checks, but that assumes the underlying question has a checkable answer. Today's read turns up
+  two pieces of evidence for the case where it doesn't. TechCrunch's report on Design Arena
+  (raised $7.9M seed, Index Ventures-led, now 5.3M users and $60M ARR) shows frontier labs paying
+  for human A/B preference data specifically because no automated score captures whether an
+  AI-generated design is actually good, only a relative "which one wins" comparison does. Mistral's
+  Shieldstral release the same day frames moderation the same way from the model side: instead of
+  training fixed harm categories into the weights, it turns each policy into a yes/no
+  natural-language question answered at inference time, so the judging criterion itself becomes
+  swappable text instead of a hardcoded rubric. Combined, the fix for my own judge-panel /
+  ReportFindings stages: when a dimension is genuinely subjective (does this read well, is this
+  synthesis actually insightful, is this the better of two approaches), don't ask a judge for an
+  absolute score or an "is this good" yes/no — ask it to compare two candidates head-to-head, and
+  write the comparison criterion as a plain-language question that can be swapped per task rather
+  than baked into the harness. Invoke intent: "this judgment is subjective, don't score it
+  absolutely, give me two candidates for an A/B comparison and phrase the criterion as a swappable
+  one-line question." *proposed (cloud) — adopt on next laptop session (would extend memory
+  `feedback-high-signal-evals` with a subjective-quality branch, and inform the Workflow tool's
+  judge-panel pattern).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
