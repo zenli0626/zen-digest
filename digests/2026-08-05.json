@@ -1,0 +1,176 @@
+{
+  "date": "2026-08-05",
+  "partial": false,
+  "banner": "拖拽式工作流，败给了代码 agent",
+  "banner_en": "No-code AI workflows lose to coding agents",
+  "image": {
+    "src": "digests/img/2026-08-05.jpg",
+    "caption": "本期头版配图：Mistral 官方发布 Shieldstral 时配的产品图。Shieldstral 是 Mistral 今天开源的 30 亿参数审核模型，也是本期社评提到的三条新闻之一。（图：Mistral 官方博客）",
+    "caption_en": "This issue's lead image: Mistral's own product graphic for Shieldstral, the 3-billion-parameter moderation model it open-sourced today, one of the three stories behind this issue's synthesis. (Image: Mistral's official blog)"
+  },
+  "actions": [
+    {
+      "text": "打开你们团队还在用的拖拽式 workflow 工具（n8n、Zapier AI 或类似产品），挑一个最常跑的自动化，直接用 Claude Code 或同类 agent 从头做一遍同样的任务，不经过工作流图。花 10 分钟对比两边的产出和总耗时。如果 agent 直接做的结果不比工作流差，你就有了砍掉这层配置的理由。Flowise 今天以同样的理由官宣关站，被 Workday 收购不到一年就撑不下去，OpenAI 自己的 Agent Builder 也在同期停摆。",
+      "source": "Hacker News · Flowise",
+      "source_url": "https://flowiseai.com/sunset",
+      "text_en": "Open whatever drag-and-drop workflow tool your team still uses (n8n, Zapier AI, or similar), pick the automation you run most often, and rebuild that exact task from scratch using Claude Code or a similar coding agent instead of the visual workflow graph. Spend 10 minutes comparing the two outputs and the total time each took. If the agent's direct approach matches or beats the workflow tool, you have a real reason to cut that layer of configuration. Flowise announced today it's shutting down for exactly this reason, less than a year after Workday acquired it, and OpenAI's own Agent Builder is winding down around the same time.",
+      "source_en": "Hacker News · Flowise"
+    },
+    {
+      "text": "接下来一个完整工作日，每次切换任务前随手记一笔，把时间分成敲代码和其他（设计、开会、协调、读代码）两类，用手机备忘录就够。这件事不额外占时间，开销只是记一笔的几秒钟，晚上花 2 分钟把两类加总。如果敲代码那类占比接近或低于 14%，你就能对《八个软件工程神话》这篇论文和 Hacker News 700 多条评论的争论说一句，这条到底对不对得上你自己的工作。ACM Queue 今天这篇论文说，开发者平均只有 14% 时间用在写代码上，这也是 Hacker News 评论区吵得最凶的一点。",
+      "source": "Hacker News · ACM Queue",
+      "source_url": "https://queue.acm.org/detail.cfm?id=3807963",
+      "text_en": "Over one full workday, jot a quick note every time you switch tasks, splitting your time into two buckets: writing code, versus everything else (design, meetings, coordination, reading code). Your phone's notes app is enough, no special tracking software needed. This barely costs any extra time beyond a few seconds per note, and takes about 2 minutes to tally at day's end. If your coding-time bucket comes in near or under 14%, you'll have a real answer to whether the argument in \"Eight Myths on Software Engineering and GenAI\" and its 700-plus Hacker News comments actually applies to your own job. The ACM Queue paper published today claims developers spend only about 14% of their time writing code, and that's exactly the number the Hacker News thread argued over hardest.",
+      "source_en": "Hacker News · ACM Queue"
+    },
+    {
+      "text": "打开你最近用得最勤的 AI 编程或对话订阅的用量后台，对比切换到最新模型前后两周的 token 消耗，没有用量后台就找最近两次账单比总花费。花 10 分钟做这组对比就够。如果消耗涨了却没人提前告诉你，要么把模型切回旧版本，要么按新数字重新算一遍这个月的预算。独立开发者 Vincent Schmalbach 今天实测，切到 GPT-5.6 Sol xhigh 后，同等工作量下每个会话的 token 消耗比 GPT-5.5 xhigh 涨了 2.25 倍，官方挂的单价却没变。",
+      "source": "文摘 · Vincent Schmalbach（TLDR AI 收录）",
+      "source_url": "https://www.vincentschmalbach.com/gpt-5-6-sol-xhigh-uses-twice-tokens-gpt-5-5",
+      "text_en": "Open the usage dashboard for whichever AI coding or chat subscription you use most, and compare token consumption for the two weeks before and after you switched to a newer model. No usage dashboard? Compare your last two billing statements instead. This comparison takes about 10 minutes. If usage jumped without anyone telling you upfront, either switch back to the older model or recalculate this month's budget against the new numbers. Independent developer Vincent Schmalbach found today that after switching to GPT-5.6 Sol xhigh, his per-session token consumption for equivalent work rose 2.25x compared to GPT-5.5 xhigh, even though OpenAI's listed pricing didn't change.",
+      "source_en": "Digest · Vincent Schmalbach (via TLDR AI)"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚 20 分钟：升级 Simon Willison 的 llm 命令行工具，看它怎么把推理过程亮出来",
+    "why": "Simon Willison 今天发布 llm 0.32，加了推理轨迹（模型的“思考”过程会打到 stderr，不污染正常输出）、服务端工具调用（OpenAI 的 CodeInterpreter、WebSearch，llm-anthropic 插件新增的 WebSearch、WebFetch、CodeExecution、AnthropicMCP），还有一套仿 Git 做的内容寻址日志存储，重复出现的消息不会再重复写进日志。",
+    "time": "~20 分钟",
+    "steps": [
+      "升级：pip install -U llm（或 pipx upgrade llm）",
+      "试一句会“思考”的调用，看 stderr 里能不能看到推理过程：llm \"think about the best thing about pelicans\"，想要干净输出就加 -R/--hide-reasoning",
+      "如果你在用 Claude，装或升级 llm-anthropic 插件：llm install -U llm-anthropic，试试新增的 WebSearch 或 CodeExecution 工具",
+      "跑一次带工具调用的请求，比如 llm --tool CodeInterpreter 'Show current python and SQLite versions'（需要对应插件和 API key）",
+      "跑一次 llm logs，看新版内容寻址日志跟以前比有什么不同"
+    ],
+    "source": "文摘 · Simon Willison",
+    "source_url": "https://simonwillison.net/2026/Aug/4/new-release-of-llm/",
+    "title_en": "Tonight, 20 minutes: upgrade Simon Willison's llm CLI and watch it surface its own reasoning",
+    "why_en": "Simon Willison shipped llm 0.32 today, adding reasoning traces (a model's \"thinking\" prints to stderr instead of cluttering normal output), server-side tool calls (OpenAI's CodeInterpreter and WebSearch, plus WebSearch, WebFetch, CodeExecution, and AnthropicMCP support newly added to the llm-anthropic plugin), and a Git-style content-addressable log store so repeated messages stop getting logged twice.",
+    "time_en": "~20 min",
+    "steps_en": [
+      "Upgrade: pip install -U llm (or pipx upgrade llm)",
+      "Try a prompt that makes the model think out loud and check whether stderr shows the reasoning: llm \"think about the best thing about pelicans\" (add -R/--hide-reasoning for clean output)",
+      "If you use Claude, install or upgrade the llm-anthropic plugin: llm install -U llm-anthropic, then try the new WebSearch or CodeExecution tools",
+      "Run one request with a tool call, e.g. llm --tool CodeInterpreter 'Show current python and SQLite versions' (needs the matching plugin and API key)",
+      "Run llm logs once and see how the new content-addressable log format differs from before"
+    ]
+  },
+  "meta_read": "今天三条新闻说的是同一件事在退场。Flowise 关站，理由很直接：开发者不再需要拖拽工作流图，把活派给一个够强的 agent 更快。OpenAI 自己的 Agent Builder 同期也停摆，做工作流工具的团队自己也不用工作流工具了。Mistral 的 Shieldstral 走的是另一条路，方向却一样，内容审核不再靠提前训练进权重的分类表，换成一句自然语言问题，模型推理时现问现答。Hacker News 上《八个软件工程神话》引来的争论也一样。文章统计写代码占多少时间，前提是写代码和其他工作能分得开，可 agent 一旦把两头都接管，这条统计线本身就量不出真正在变的东西。三件事放一起看，不是 agent 又变强了这么简单，是工作流图、审核分类表、时间统计法这些提前设计好的结构，正在失去存在的理由。能直接问模型的地方，配置反而成了多余的一层。",
+  "meta_read_en": "Three stories today describe the same retreat. Flowise shut down, and its own explanation was blunt: developers no longer need drag-and-drop workflow diagrams once handing the job straight to a strong enough agent is faster. OpenAI's own Agent Builder wound down around the same time, so even the team that built a workflow tool doesn't use one anymore. Mistral's Shieldstral goes the opposite direction but lands on the same idea: instead of baking moderation categories into the model's weights ahead of time, it turns each policy into a plain-language question the model answers at inference time. The argument Hacker News had over \"Eight Myths on Software Engineering and GenAI\" takes the same shape again. The article measures how much of a workday goes to writing code, which assumes coding and everything else can be cleanly separated. Once an agent takes over both sides at once, that measurement stops capturing what's actually changing. Put the three together and it isn't just that agents got stronger again. Workflow diagrams, moderation category tables, and time-use taxonomies, the structures designed in advance, are losing their reason to exist. Wherever you can just ask the model directly, the extra layer of configuration is what's now in the way.",
+  "ota": {
+    "learned": [
+      "读台账时，07-18 那条讲的是二元（是/否）评测比 0-1 的模糊打分更干净，但没处理一种情况：有些判断本来就没有客观对错，比如“这个设计好不好看”“这段文字顺不顺”，是非题也套不上去。今天两条内容分别从两头证实了同一个修法。Design Arena 靠人类做 A/B 二选一收集对 AI 生成设计的偏好数据，做到 530 万用户、年经常性收入 6000 万美元，前沿实验室反过来花钱买这份数据，说明自动化评分打不出的信号，换成“A 和 B 哪个更好”的相对比较就能稳定测出来。",
+      "Mistral 的 Shieldstral 从另一个角度支持同一思路：它把审核规则从预先训练进权重的分类表，换成推理时才问的一句自然语言问题，不必为每条新政策重新训练。两条合起来，给我的评测流程一条具体可执行的修法：遇到主观质量维度，评测问题不要问「这个东西好不好」或打 0-10 分，要问「A 和 B 哪个更好」，判断标准写成一句可替换的自然语言问题，不必固定进评测代码里。"
+    ],
+    "new_capabilities": [
+      "主观质量评测改为相对比较：以后凡是要评「设计好不好看」「文案顺不顺」「哪个综合判断更到位」这类没有客观对错的维度，评测问题从「打几分」或「是不是好」换成「A 和 B 哪个更好」的二选一比较，判断标准写成一句可替换的自然语言问题，而不是写死的规则表。源自 Design Arena（TechCrunch，2026-08-03 报道）和 Mistral Shieldstral 发布（2026-08-05）。调用意图：「这个判断是主观质量类的，别用绝对打分，给我两个候选做 A/B 相对比较，标准写成一句问题」。已写入 ota-ledger.md，标记 proposed (cloud)，下次本地会话落地到 feedback-high-signal-evals 记忆和 judge-panel 工作流模式里。"
+    ],
+    "learned_en": [
+      "Reading the ledger first: 07-18's entry says binary (yes/no) evals beat fuzzy 0-1 vibe scores, but it never covered the case where a judgment has no objective right answer to begin with, like whether a design looks good or whether a passage of writing reads well. A yes/no question doesn't fit that either. Today's reading confirms the same fix from two directions. Design Arena collects human A/B preference data on AI-generated designs and has scaled that to 5.3 million users and $60M in annual recurring revenue, with frontier labs paying for the data precisely because no automated score captures the signal a relative \"which one is better\" comparison catches reliably.",
+      "Mistral's Shieldstral supports the same idea from a different angle: instead of training fixed moderation categories into the model's weights ahead of time, it turns each policy into a plain-language question asked at inference time, with no retraining needed per new policy. Together they give my own eval pipelines one concrete, actionable fix: when a dimension is genuinely subjective, don't ask a judge \"is this good\" or for an absolute 0-10 score. Ask it to compare two candidates head to head, and write the judging criterion as a swappable one-line question instead of baking it into the harness."
+    ],
+    "new_capabilities_en": [
+      "Pairwise comparison for subjective-quality judging: for any dimension with no objective right answer (does this design look good, does this copy read well, which synthesis is more insightful), phrase the eval question as an A-vs-B relative comparison instead of an absolute score or a yes/no \"is this good,\" and write the judging criterion as a swappable one-line natural-language question rather than a fixed rubric. Source: Design Arena (via TechCrunch, reported 2026-08-03) plus Mistral's Shieldstral release, 2026-08-05. Invoke intent: \"this judgment is subjective, don't score it absolutely, give me two candidates for an A/B comparison and phrase the criterion as a swappable one-line question.\" Logged to ota-ledger.md, marked proposed (cloud); the next laptop session lands it in the feedback-high-signal-evals memory and the Workflow tool's judge-panel pattern."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 100,
+      "items": [
+        {
+          "title": "Mistral 开源审核模型 Shieldstral，规则问一句就换",
+          "title_en": "Mistral open-sources Shieldstral, a moderation model you reprogram with a sentence",
+          "author": "Mistral AI · Hacker News",
+          "author_en": "Mistral AI · Hacker News",
+          "likes": 346,
+          "url": "https://mistral.ai/news/shieldstral/",
+          "summary": "Mistral 开源了 Shieldstral，一个 30 亿参数的多模态审核模型，Apache 2.0 权重放在 Hugging Face 上，单张 16GB 显卡就能跑。它不把违规类别提前训练进权重，而是把审核规则拆成一句一句的是非问题，比如「这段内容是否包含暴力威胁」，连着待审内容一起喂给模型，推理时直接判断，输出连续的安全分数而不是简单标签。官方称它在文本安全、拒答识别、跨政策适配和多模态审核几项测试中，打平甚至超过体量是它 7 倍的开放模型。Hacker News 评论区分歧很大：有人担心这是老套审核逻辑换了张皮，模型只给分数不给理由，出问题很难解释；也有人算过账，欧盟《AI 法案》等合规要求快落地，这种能按政策临时改的审核模型正切中需求。",
+          "summary_en": "Mistral open-sourced Shieldstral, a 3-billion-parameter multimodal moderation model, releasing the weights under Apache 2.0 on Hugging Face and designed to run on a single 16GB GPU. Rather than training fixed harm categories into its weights, it breaks moderation policy into individual yes/no questions, such as whether content contains a violent threat, feeds those alongside the content being evaluated, and scores it at inference time, producing a continuous safety score rather than a simple label. Mistral says it matches or beats open guard models up to 7x its size on text-safety, refusal-detection, policy-adaptability, and multimodal-moderation benchmarks. Hacker News commenters split hard: some worry it's the same old moderation logic in a new wrapper, made worse by giving only a score with no reasoning trace to explain a rejection in production; others point out that with EU AI Act-style compliance requirements approaching, a moderation model whose policy can be rewritten without retraining is arriving right when demand for it is rising.",
+          "why": "审核规则从写死的分类表变成推理时才问的一句话，这个思路今天在别处也在发生，详见本报社评。",
+          "why_en": "Moderation rules turning from a fixed category table into a single question asked at inference time is happening elsewhere today too. See this issue's synthesis."
+        },
+        {
+          "title": "达拉斯无人车全面开放，覆盖地图却挑着走",
+          "title_en": "Waymo opens Dallas to everyone, but its map is picky",
+          "author": "Waymo 官方 · Hacker News",
+          "author_en": "Waymo · Hacker News",
+          "likes": 273,
+          "url": "https://waymo.com/blog/shorts/dallas-open-to-all/",
+          "summary": "Waymo 官方宣布，无人驾驶网约车服务向达拉斯全体居民开放，无需再进等候名单。自 2 月开放候补名单以来，已有近 15 万人使用过服务。下一步是达拉斯 Love Field 机场的航站楼接驳，以及正在测试的高速路段，官方称高速测试是向公众开放这类路线前的最后一步。Hacker News 评论区补充的细节比官方通稿多：服务范围只覆盖 Bishop Arts、Fair Park、White Rock 等几个城区，郊区不在内；有人贴出对比，Uber 的 Avride 和特斯拉的 Robotaxi 在达拉斯只跑相对富裕的区域，而 Waymo 的覆盖范围反倒包含历史上被「红线」政策低估的社区；还有人指出，各州推进速度与下雪天数明显相关，得州这类少雪地区推得快。Uber 和 Waymo 的独家合作协议将在 2028 年到期。",
+          "summary_en": "Waymo announced its robotaxi service is now open to all Dallas residents, no longer requiring a waitlist. Nearly 150,000 people have used the service since the waitlist phase began in February. Next up is terminal service at Dallas Love Field airport and freeway testing already underway, which Waymo calls the final step before opening those routes to public riders. Hacker News commenters filled in details the announcement left out: the service area only covers a handful of neighborhoods (Bishop Arts, Fair Park, White Rock), not the suburbs; one commenter contrasted this with Uber's Avride and Tesla's Robotaxi, which in Dallas serve only relatively wealthier areas, while Waymo's map happens to include neighborhoods historically undervalued by redlining; another noted that state-by-state rollout speed tracks closely with snow days, which is why low-snow states like Texas move faster. Uber and Waymo's exclusivity agreement expires in 2028.",
+          "why": "自动驾驶商业化的节奏，跟着天气和居住格局走，不完全是技术成熟度说了算。",
+          "why_en": "Robotaxi rollout speed tracks weather and historical settlement patterns as much as it tracks how mature the technology actually is."
+        },
+        {
+          "title": "《八个软件工程神话》，被 Hacker News 追着打第一条",
+          "title_en": "\"Eight Myths on Software Engineering and GenAI\" gets picked apart on its very first myth",
+          "author": "Jenna Butler 等六位作者 · Hacker News",
+          "author_en": "Jenna Butler et al. · Hacker News",
+          "likes": 132,
+          "url": "https://queue.acm.org/detail.cfm?id=3807963",
+          "summary": "Jenna Butler、Brian Houck 等六位研究者在 ACM Queue 发文，列出软件工程中关于 GenAI 的八个流行说法，逐条用数据反驳。开头一条是「开发者大部分时间在写代码」，文章引用的研究显示，写代码只占开发者一天工作的 14% 左右，其余是设计、评审、协调，AI 生成代码只碰到这一小片。后面几条依次戳穿「代码行数能衡量生产力」「AI 提效效果稳定一致」「10x 开发者神话在真实代码库里也成立」「开发者怕被 AI 取代」（实际仅 10% 担心）、「信任低是因为模型不够强」（实际是系统性问题），以及「个人用好工具就能带来组织收益」。Hacker News 上 700 多条评论正对着第一条争论：有人反问，一旦不用自己写代码，设计会议、代码评审这些「14% 以外」的活也会随之消失，用这条数据说 AI 影响有限站不住；也有人指出，文章引用的研究多为 2025 年或更早的数据，结论可能已经过时。",
+          "summary_en": "Jenna Butler, Brian Houck, and four co-authors published a piece in ACM Queue listing eight popular claims about GenAI in software engineering and rebutting each with data. The first myth is that developers spend most of their time writing code; the cited research puts actual coding time at roughly 14% of a workday, with the rest going to design, review, and coordination, meaning AI code generation only touches a small slice of the job. The remaining myths knock down claims that lines of code measure productivity, that AI's productivity gains are consistent, that the \"10x developer\" narrative holds up in real codebases, that developers mainly fear being replaced (only 10% report that worry), that low trust in AI reflects weak model capability rather than systemic issues, and that individual tool optimization drives organizational value. Hacker News piled 700-plus comments onto the first myth alone: some argued that once you're not writing the code yourself, the design meetings and code reviews that make up the other 86% disappear too, so the 14% figure understates AI's real reach; others dug up that most of the cited studies are from 2025 or earlier and questioned whether the conclusions still hold.",
+          "why": "详见今日行动第二条：花一天记录自己的时间分配，看这场争论是否对得上你的实际工作。",
+          "why_en": "See the second action item: track your own time split for a day to see whether this argument actually applies to your job."
+        },
+        {
+          "title": "被 Workday 收购不到一年，Flowise 官宣关站",
+          "title_en": "Bought by Workday less than a year ago, Flowise announces it's shutting down",
+          "author": "Flowise 团队 · Hacker News",
+          "author_en": "Flowise team · Hacker News",
+          "likes": 29,
+          "url": "https://flowiseai.com/sunset",
+          "summary": "Flowise 是一款拖拽式 AI workflow 搭建工具，2025 年 8 月被 Workday 收购，当时公告说得很满：「Flowise 哪儿也不去，我们才刚开始」。不到一年，团队于 7 月 29 日官宣关站，理由直接：开发者已转向用 Claude Code 这类编码 agent 直接干活，「僵硬的低代码工作流一到复杂场景就到头了」。代码留在 GitHub，Apache 2.0 协议，欢迎自行 fork 维护，但 8 月 10 日仓库归档、npm 包和 Docker 镜像标记弃用，8 月 31 日团队彻底退出 Discord 和 GitHub 支持。评论区提醒，OpenAI 自家的 Agent Builder 也在同期走向下线；有人翻出旧文回忆用 Flowise 搭过企业内部搜索工具，感慨拖拽式低代码这个品类本身已经很拥挤（Langflow、n8n 都在），关站更像行业洗牌而非意外。",
+          "summary_en": "Flowise, a drag-and-drop AI workflow-building tool, was acquired by Workday in August 2025, with the acquisition announcement at the time declaring \"Flowise isn't going anywhere, we're just getting started.\" Less than a year later, the team announced on July 29 that it's shutting down, giving a blunt reason: developers have shifted to handing tasks straight to coding agents like Claude Code, and \"the typical rigid workflow low-code approach quickly hits its limit when it comes to complexity.\" The source stays public on GitHub under Apache 2.0 and users are encouraged to fork it, but the repo gets archived on August 10 with npm packages and Docker images marked deprecated, and the core team withdraws from Discord and GitHub support entirely by August 31. Commenters noted OpenAI's own Agent Builder is winding down around the same time; one recalled building an enterprise search tool with Flowise years ago and noted the drag-and-drop low-code category was already crowded (Langflow, n8n), making this look more like category consolidation than a one-off failure.",
+          "why": "详见今日行动第一条。",
+          "why_en": "See the first action item."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 34,
+      "items": [
+        {
+          "title": "OpenAI 想把 10 亿周活都装进 ChatGPT Work 这一个产品里",
+          "title_en": "OpenAI wants ChatGPT Work to absorb all 1 billion weekly users",
+          "author": "Latent Space",
+          "author_en": "Latent Space",
+          "likes": null,
+          "url": "https://www.latent.space/p/unpacking-chatgpt-work",
+          "summary": "Latent Space 拆解了 OpenAI 7 月 9 日上线的 ChatGPT Work，这是把 ChatGPT、Codex 和之前的云端 agent 拼到一起的新产品，跑在常驻的云端 microVM 上，自带托管版 Chrome，能接 Slack、Gmail、Drive、CRM 等外部服务拉上下文，直接产出可交互的表格、文档、幻灯片，甚至能建一个能访问的网页（Sites 功能）。OpenAI 的算盘是年底前把 Work 和普通 Chat 合并，用 ChatGPT 现有的 10 亿周活用户导流。文章挑出一个具体问题：Work 已经接了 1000 多个插件，但用户没装某个插件时系统不会主动推荐，很多人遇到需求还是习惯回去用网页搜索，插件生态搭好了，发现环节还没搭好。",
+          "summary_en": "Latent Space breaks down ChatGPT Work, which OpenAI launched July 9 as a unified interface merging ChatGPT, Codex, and its earlier cloud agents. It runs on persistent cloud microVMs with a managed Chrome browser, connects to external services like Slack, Gmail, Drive, and CRMs to pull context, and produces interactive artifacts (sheets, docs, slides) or even a hosted web app through its \"Sites\" feature. OpenAI's plan is to merge Work into regular Chat by year-end, using ChatGPT's existing 1 billion weekly active users as the distribution channel. The article flags a specific gap: despite 1,000-plus available plugins, Work doesn't proactively suggest a relevant one when it isn't installed, so users often default back to a plain web search, meaning the plugin ecosystem is built but plugin discovery isn't.",
+          "why": "把「合并 Work 和 Chat」当分发渠道用，这步棋只有站在 10 亿周活体量上的公司才走得动。插件发现率低这个具体问题，也是任何做插件生态的团队都会撞上的墙。",
+          "why_en": "Treating a Work-Chat merger as a distribution play is a move only a company with 1 billion weekly users can actually make. The low plugin-discovery rate is a wall any team building a plugin ecosystem will eventually hit."
+        },
+        {
+          "title": "审美打不出分，Design Arena 靠人类 A/B 卖到 6000 万美元年收入",
+          "title_en": "Taste can't be scored, so Design Arena sells human A/B judgments instead, at $60M ARR",
+          "author": "TechCrunch · TLDR AI",
+          "author_en": "TechCrunch · TLDR AI",
+          "likes": null,
+          "url": "https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/",
+          "summary": "TechCrunch 报道，做 AI 输出「审美打分」的创业公司 Design Arena（公司主体叫 Intelligence）拿到 790 万美元种子轮，Index Ventures 领投，Conviction、A*、Valkyrie 等跟投。创始人 Grace Li 和几个大学同学 2025 年临近毕业时起步，最早想改进自己做的 AI 游戏引擎，做着做着发现模型能生成「能跑」的游戏，却生成不出「好玩」的游戏，这类主观质量没有自动化指标能打分。Design Arena 让真人在 A/B 两个选项里选一个更好的，网站、图片等视觉产出都做，现在全球有 530 万用户，年经常性收入 6000 万美元，前沿实验室反过来付费买这份人类偏好数据。平台还能看出地区审美差异，报道提到亚洲用户更偏好信息量大的「极繁」网页仪表盘，这类洞察是自动跑分给不出来的。",
+          "summary_en": "TechCrunch reports that Design Arena, a startup (legally named Intelligence) that measures the subjective \"taste\" quality of AI-generated output, raised a $7.9M seed round led by Index Ventures, with Conviction (Sarah Guo and Mike Vernal), A*, and Valkyrie also participating. Co-founder Grace Li and a few college friends started the company near graduation in 2025, originally trying to improve their own AI game engine, and realized along the way that models could generate games that ran but weren't actually fun, a subjective quality no automated metric could score. Design Arena has humans pick the better of two options (A/B) across visual outputs like websites and images, and now has 5.3 million users worldwide and $60M in annual recurring revenue, with frontier labs paying for that human-preference data. The platform also surfaces regional taste differences, noting for instance that users in Asia tend to prefer denser, more maximalist web dashboards, an insight automated benchmarks can't produce.",
+          "why": "自动化打分打不出来的主观质量，Design Arena 靠人类相对比较测出来了，还卖出了价钱。这条思路今天写进了本报的自我升级：以后评这类没有客观对错的判断，换成 A/B 相对比较，别追求打分。",
+          "why_en": "Subjective quality that automated scoring can't measure, Design Arena measures with human relative comparison instead, and sells it for real money. This is what today's self-upgrade section adopts: for judgments with no objective right answer, switch to A/B comparison instead of chasing a score."
+        },
+        {
+          "title": "同样的活，GPT-5.6 Sol 悄悄多吃 2.25 倍 token",
+          "title_en": "Same workload, GPT-5.6 Sol quietly burns 2.25x more tokens",
+          "author": "Vincent Schmalbach · TLDR AI",
+          "author_en": "Vincent Schmalbach · TLDR AI",
+          "likes": null,
+          "url": "https://www.vincentschmalbach.com/gpt-5-6-sol-xhigh-uses-twice-tokens-gpt-5-5",
+          "summary": "独立开发者 Vincent Schmalbach 对比了自己账号切换到 GPT-5.6 Sol xhigh 前后两个 14 天周期的用量：GPT-5.5 xhigh 平均每个会话消耗 730 万 token，换成 GPT-5.6 Sol xhigh 后涨到 1645 万，涨了 2.25 倍，会话数只多了 2.9%，两周总用量从 121.7 亿涨到 282.2 亿 token。OpenAI 给两个型号挂的是同一张输入、缓存输入、输出单价表，新模型还多收一笔旧版没有的缓存写入费，等于同样的活儿贵了 2 倍多。他原本一周的订阅配额，现在中等强度使用一天就能耗完。",
+          "summary_en": "Independent developer Vincent Schmalbach compared his own usage across two 14-day periods, before and after switching to GPT-5.6 Sol xhigh: GPT-5.5 xhigh averaged 7.30M tokens per session, GPT-5.6 Sol xhigh jumped to 16.45M, a 2.25x increase, while session count rose only 2.9%, taking total two-week usage from 12.17B to 28.22B tokens. OpenAI lists identical fresh-input, cached-input, and output pricing for both models, and the newer one adds a cache-write charge the older one didn't have, meaning the same work now costs more than twice as much. His subscription allocation that used to last roughly a week of extreme use now runs out in about one day of medium use.",
+          "why": "官方标价没变，实际账单却在悄悄翻倍，升级模型前先看自己的真实用量，不能只看价目表。详见今日行动第三条。",
+          "why_en": "Listed pricing didn't change, but the real bill quietly doubled. Check your actual usage before upgrading a model, not just the price sheet. See the third action item."
+        }
+      ]
+    }
+  ]
+}
