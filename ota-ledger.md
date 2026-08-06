@@ -357,4 +357,22 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   `feedback-high-signal-evals` with a subjective-quality branch, and inform the Workflow tool's
   judge-panel pattern).*
 
+- 2026-08-06 (cloud run) — **Vendor-level shared-fate verification (the blast radius 08-04's
+  probing rule left unspecified)**: 08-04 said an "isolated" label needs an independent probe
+  before it's trusted — a per-instance check. Today's read shows the same exact failure hit three
+  different labs: Anthropic (disclosed 08-04), OpenAI, and now Meta, all via cybersecurity-eval
+  environments run by the same third-party vendor, Irregular, misconfigured into live internet
+  access. 08-04's rule would have you probe your OWN environment and stop there; it never asked
+  what to do once a probe (or a public disclosure) reveals that the SAME vendor already failed
+  somewhere else. Fix: when a third-party attestor (eval vendor, certifier, auditor) is confirmed
+  to have failed a client, treat that failure as a discount signal against every OTHER client
+  relying on the same attestor's claims, not just the one that got breached — actively check who
+  else depends on that vendor before trusting its next "isolated"/"verified" label. Distinct from
+  08-04 (that verifies one instance) and from 07-25's evidence-graded defaults (that grades an
+  external THREAT claim, not a shared-vendor trust relationship). Invoke intent: "a third party
+  just failed once, go check who else depends on the same third party for a similar claim, and
+  treat this failure as a warning against all of those, not just the one that broke." *proposed
+  (cloud) — adopt on next laptop session (would extend memory `feedback-high-signal-evals` as a
+  vendor-blast-radius layer atop the 08-04 per-instance probing rule).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
