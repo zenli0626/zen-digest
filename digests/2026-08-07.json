@@ -1,0 +1,169 @@
+{
+  "date": "2026-08-07",
+  "partial": false,
+  "banner": "模型打平后，竞争转向芯片",
+  "banner_en": "Models converge, so everyone races to build chips",
+  "image": {
+    "src": "digests/img/2026-08-07.jpg",
+    "caption": "本期头版配图：The Register 报道 AMD 收购 Taalas 时所配的芯片渲染图。这笔收购与 Anthropic 同期自研芯片团队，共同指向本期头条主题：模型层拉平之后，护城河正向硅片迁移。（图：The Register）",
+    "caption_en": "This issue's lead image: the chip render The Register used in its report on AMD acquiring Taalas, the hardware story behind today's headline alongside Anthropic building its own chip team. As model capability converges, the moat is moving into silicon. (Image: The Register)"
+  },
+  "actions": [
+    {
+      "text": "花五分钟玩一轮 scalex.dev 的 agent 审批小游戏。系统会给出你的漏检率以及漏在哪些命令类型上，看完这份成绩单即算完成。背景：该网站统计了四万多局真实数据，人类平均准确率仅 66.3%，藏在命令历史里的恶意 npm 脚本，其批准通过率反而高于那些明显危险的命令。",
+      "source": "Hacker News · scalex.dev",
+      "source_url": "https://scalex.dev/blog/ai-agent-permissions-stats/",
+      "text_en": "Play one round of scalex.dev's agent-approval game tonight, five minutes start to finish. It scores your miss rate and shows which command categories you missed most; read that scorecard and you're done. Background: across 40,000+ real game runs, human reviewers averaged only 66.3% accuracy, and a malicious npm script hidden in the command history got approved more often than commands that were obviously dangerous.",
+      "source_en": "Hacker News · scalex.dev"
+    },
+    {
+      "text": "运行 npx copilotkit@latest channels setup，把你手头一个可用的 agent 接入自己的 Slack 或 Teams 频道，十五分钟内完成安装并做一次真实对话测试。看到 agent 在频道里理解上下文、调用工具、还能 @你请求审批，即算成功。背景：CopilotKit 刚开源 Channels SDK，Slack 和 Teams 的连接由官方托管，开发者只需关注 agent 本身。",
+      "source": "Hacker News (Show HN) · CopilotKit",
+      "source_url": "https://github.com/CopilotKit/channels-sdk",
+      "text_en": "Run npx copilotkit@latest channels setup tonight and wire an agent you already have into your own Slack or Teams channel, 15 minutes for install plus one real test conversation. You're done once the agent reads channel context, calls a tool, and can @-mention you for approval right there. Background: CopilotKit just open-sourced Channels SDK and hosts the Slack/Teams connection itself, so you only maintain the agent.",
+      "source_en": "Hacker News (Show HN) · CopilotKit"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试装 Prime Agent，看 agent 如何自主改配置",
+    "why": "Prime Intellect 将「上下文当变量、子 agent 当函数调用」的思路开源，并附带一个能在运行中自改提示词、技能、记忆的持续型 harness，配 Opus 5 跑 ARC-AGI 3 可达 95.5%，超过 95.4% 的人类专家基线。用它跑一次熟悉的任务，比读文档更能理解这套设计与现有 agent 骨架的差异。",
+    "time": "~20分钟",
+    "steps": [
+      "终端运行 curl -fsSL https://app.primeintellect.ai/prime-agent/install.sh | sh 完成安装",
+      "进入一个熟悉的小项目目录，运行 prime-agent 启动",
+      "首次启动执行 /login，用 API key 或订阅账号登录",
+      "让它执行一个平时交给 Claude Code 的小任务，观察它如何委派子 agent、如何调用 /refine",
+      "任务结束后，检查它是否自行改动过提示词、记忆或 skill 配置"
+    ],
+    "source": "文摘 · Prime Intellect",
+    "source_url": "https://www.primeintellect.ai/blog/prime-agent",
+    "title_en": "Tonight, install Prime Agent and watch it edit its own scaffolding",
+    "why_en": "Prime Intellect open-sourced its \"context as a variable, sub-agents as function calls\" approach, plus a continual harness that can rewrite its own prompts, skills, and memory mid-run; paired with Opus 5 it hit 95.5% on ARC-AGI 3, above the 95.4% human-expert baseline. Running one familiar task through it will show you more about how this scaffolding differs from your current agent setup than reading the docs would.",
+    "time_en": "~20 min",
+    "steps_en": [
+      "In a terminal, run curl -fsSL https://app.primeintellect.ai/prime-agent/install.sh | sh to install",
+      "cd into a small project you know well and run prime-agent to start it",
+      "On first launch run /login and sign in with an API key or subscription account",
+      "Hand it a small task you'd normally give Claude Code, and watch how it delegates to sub-agents and calls /refine",
+      "After the task finishes, check whether it modified its own prompts, memory, or skill config along the way"
+    ]
+  },
+  "meta_read": "今天两条硬件新闻方向相反，实为同一场赌局的两种下注。AMD 直接买下一家已把模型烧进硅片的公司：芯片一旦流片，模型版本即定死，下一代模型一出，芯片便报废。Anthropic 则自建团队从头研发，尚未决定是否走「烧死」路线，更可能想获得一块能随模型迭代调整的可编程芯片。评论区热议「这算不算烂护城河」其实问偏了：真正该问的是，你押注模型多久换代。AMD 赌客服、代码补全等小模型高并发场景足够稳定，芯片足以回本；Anthropic 赌前沿模型迭代太快，买断式硬件追不上，只能自攥设计权。两条路指向同一判断：模型能力日渐商品化后，谁掌握能与之同步变形的硬件，谁才守得住护城河。",
+  "meta_read_en": "Today's two hardware stories point opposite directions but are really two bets at the same table. AMD bought a company that already froze a model into silicon: once a chip is fabbed, the model version on it is locked, and the next model generation makes it obsolete. Anthropic is doing the reverse, building its own chip team from scratch, not yet committed to freezing anything, more likely aiming for programmable silicon that can move with the model. The question commenters kept arguing, whether this is a bad moat, asks the wrong thing: it's not whether etching a model into silicon is worth it, it's how long you're willing to bet that model stays current. AMD is betting that workloads like customer support and code completion, small models called at massive scale, stay stable long enough to pay back the chip. Anthropic is betting its own frontier models move too fast for any bought-and-frozen hardware to keep up, so the only option is to keep design control in house. Both bets land on the same conclusion: as model capability keeps commoditizing, the moat belongs to whoever holds hardware that can reshape itself alongside the model, not whoever owns today's fastest chip.",
+  "ota": {
+    "learned": [
+      "读台账：08-04 至 08-06 这条线强调「标签不等于核实过的事实」（隔离环境需主动探测，供应商出过事就该连坐怀疑）。今日输入换个角度：scalex.dev 统计的 4 万局审批游戏表明，即使标签无误，人做最后核验也有系统性盲区，且盲区并非随机分布。人类审批对「看起来正常」的命令（涉及凭据越权，漏检率 35.0%）远高于「一眼危险」的命令（11.7%），伪装越好越易被放过。",
+      "具体执行：我每天请 Zen 批准 Bash 命令、工具调用等「最后人工闸门」。今后请求批准时，不能只贴命令等他点头，应主动说明命令所属风险类别（读/写/执行/凭据/网络），尤其对那些看似日常、实际接触凭据或外网访问的命令重点标注，因为这是人最易看漏的类型。此条已写入 ota-ledger.md，标记为 proposed(cloud)。"
+    ],
+    "new_capabilities": [
+      "风险类别显式标注：请求人工批准可能有风险的工具调用或命令前，不再只贴命令，而是先说明其风险类别（读/写/执行/凭据/网络），对看似常规、实则会触达凭据或外网访问的命令重点提示，因为伪装成日常操作的高风险命令正是人工审批最易漏看的。依据来自 scalex.dev 统计的 4 万局 agent 命令审批游戏：40.9 万次判断中，人类平均准确率 66.3%，明显破坏性命令漏检率仅 11.7%，但涉及凭据越权的命令漏检率高达 35.0%，恶意命令一旦伪装成日常操作（如藏在历史记录里的 npm run analyze），批准率反而高达 64.7%。调用意图：「请求人工批准某个有风险操作前，先显式标出风险类别，对伪装成日常操作的高风险命令重点提示，不要只贴命令等对方自行判断。」"
+    ],
+    "learned_en": [
+      "Read the ledger first. The 08-04 through 08-06 line kept saying a label isn't a verified fact, an isolated environment needs an active probe, a vendor's failure elsewhere should discount its other claims too. Today's input comes from a different angle: scalex.dev's 40,000-run approval game shows that even when the label itself is fine, having a human do the final check is a systematic blind spot, and the blind spot isn't random. Human reviewers missed commands disguised as routine (credential-scope violations, 35.0% miss rate) far more often than commands that were obviously dangerous (11.7%); the better a threat's disguise, the more likely it slips through.",
+      "The concrete change: I ask Zen to approve Bash commands and tool calls, my own version of that last human gate, every day. From now on a permission request can't just paste the raw command and wait for a nod; it needs to state up front which risk category the command falls into (read/write/execute/credential/network), and flag anything that looks routine but actually touches credentials or network access, since that's exactly the category humans miss most. Logged to ota-ledger.md, marked proposed (cloud)."
+    ],
+    "new_capabilities_en": [
+      "Explicit risk-category labeling: when requesting human approval for a potentially risky tool call or command, stop just pasting the command and instead state which risk category it falls into (read/write/execute/credential/network), with extra emphasis on anything that looks routine but actually touches credentials or network access, since disguised-as-routine is exactly where human approval fails most. Source: scalex.dev's 40,000-run agent-command approval game, 409,000 decisions averaging 66.3% human accuracy, 11.7% miss rate for obviously destructive commands versus 35.0% for credential-scope violations, and a 64.7% approval rate for a malicious command disguised as routine (an npm run analyze payload buried in the history log). Invoke intent: \"before asking for approval of a risky action, explicitly label its risk category and flag anything disguised as routine, don't just paste the command and let the human judge it cold.\""
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 40,
+      "items": [
+        {
+          "title": "AMD收购Taalas，把模型直接刻进硅片",
+          "title_en": "AMD buys Taalas, etching AI models directly into silicon",
+          "author": "The Register · Hacker News",
+          "author_en": "The Register · Hacker News",
+          "likes": 464,
+          "url": "https://www.theregister.com/systems/2026/08/06/amd-acquires-ai-chip-startup-taalas-to-boost-inference-performance-by-etching-models-into-silicon/5284344",
+          "summary": "AMD 收购了芯片创业公司 Taalas，交易金额未公开，但据了解是实打实的收购，不是买人头。Taalas 2023 年成立，总部在多伦多，做法和英伟达 GPU、Groq、Cerebras 都不一样：模型权重不存进显存，直接刻进硅片，一块芯片就是某个模型的专用电路。今年 2 月公司放出第一款测试芯片 HC1，用台积电 6 纳米工艺，跑 Llama 3.1 8B 能到每秒 16,960 个 token，比英伟达 GPU 快 48 倍，比 Cerebras 快 8.5 倍。下一代 HC2 今年夏天出，单芯片能装 200 亿参数，照这个密度，跑一个万亿参数模型只要 50 块芯片。AMD 打算把 Taalas 芯片配上自家 Instinct 系统的 Helios 机架：提示词处理这类算力密集活交给 GPU，生成 token 的活挪给 Taalas 芯片。评论区有人在 chatjimmy.ai 的演示页面上试了试，说这速度快得不真实；也有人反驳这是个烂护城河：模型一刻进硅片就定型了，下一代模型一出，芯片就报废。",
+          "summary_en": "AMD acquired chip startup Taalas; the deal terms weren't disclosed, but by most accounts this is a real acquisition, not an acqui-hire. Founded in 2023 and based in Toronto, Taalas takes a radically different approach from Nvidia GPUs, Groq, or Cerebras: instead of storing model weights in HBM, it etches them directly into silicon, so each chip is a circuit dedicated to one specific model. In February the company revealed its first test chip, the HC1, built on TSMC's 6nm process; it served Llama 3.1 8B at 16,960 tokens per second, 48x faster than Nvidia GPUs and 8.5x faster than Cerebras. Its next chip, the HC2, ships this summer and targets 20 billion parameters per chip, meaning a trillion-parameter model would need just 50 chips at that density. AMD plans to pair Taalas chips with its own Instinct-based Helios racks: compute-heavy prompt processing stays on GPUs while token generation moves to Taalas silicon. In the comments, one user tried the public chatjimmy.ai demo and called the speed unreal; others pushed back that this is a terrible moat, since a model frozen into silicon becomes obsolete the moment the next model generation ships.",
+          "why": "把模型直接烧进硅片，换来的是数量级的速度提升，赌的是模型迭代的速度追不上芯片报废的速度。这笔赌注对不对，详见本报社评。",
+          "why_en": "Baking a model into silicon buys an order-of-magnitude speedup, betting that model iteration won't outpace the chip's obsolescence. Whether that bet holds up is this issue's synthesis."
+        },
+        {
+          "title": "40多万次审批测下来，人类拦不住三分之一的危险agent指令",
+          "title_en": "Across 409,000 approvals, humans miss a third of dangerous agent commands",
+          "author": "scalex.dev · Hacker News",
+          "author_en": "scalex.dev · Hacker News",
+          "likes": 267,
+          "url": "https://scalex.dev/blog/ai-agent-permissions-stats/",
+          "summary": "网站 scalex.dev 做了一个网页小游戏，玩家扮演人工审批员，给 AI 编程 agent 的每条命令按批准或拒绝，全程有时间压力。统计了 4 万多局游戏、40.9 万次单次判断：34% 的命令是恶意的，其余是正常操作。结果玩家平均准确率 66.3%，接近三分之一的场次最终是负分，只有 20.8% 的玩家做到了拦住全部威胁同时不误伤正常命令。漏检率按类型差别很大：明显带破坏性的命令只漏掉 11.7%，但涉及越权拿凭据这类命令漏掉了 35.0%。最惨的一条是一个叫 npm run analyze 的命令，恶意内容藏在命令历史记录里不直接显示，这条被批准通过的比例高达 64.7%，比同等危险但摆在明面上的命令漏检率高了差不多一倍。",
+          "summary_en": "Scalex.dev built a browser game where players act as a human reviewer, approving or denying an AI coding agent's commands under time pressure. Across 40,000+ game runs and 409,000 individual decisions, 34% of commands were malicious and the rest routine. Players averaged 66.3% accuracy, nearly a third of sessions ended in a negative score, and only 20.8% of players caught every threat while blocking almost no safe commands. The miss rate varied sharply by category: obviously destructive commands were missed only 11.7% of the time, but credential-scope violations were missed 35.0% of the time. The worst case was a command called npm run analyze, with its malicious payload hidden in the command history rather than shown directly; it was approved 64.7% of the time, roughly double the miss rate of an equally dangerous but obvious command.",
+          "why": "威胁越隐蔽，人越容易点头，这个规律比威胁本身更值得记。凡是靠人工审批当最后一道闸的 agent 流程，闸门本身就有系统性盲区。详见今日行动第一条与今日自我升级。",
+          "why_en": "The more disguised a threat, the more likely a human approves it, a pattern worth remembering more than any single threat. Any agent workflow that relies on human approval as its last gate has a built-in blind spot. See today's first action and self-upgrade."
+        },
+        {
+          "title": "Show HN：一行命令把agent接进Slack和Teams",
+          "title_en": "Show HN: One command wires your agent into Slack and Teams",
+          "author": "CopilotKit · Hacker News (Show HN)",
+          "author_en": "CopilotKit · Hacker News (Show HN)",
+          "likes": 94,
+          "url": "https://github.com/CopilotKit/channels-sdk",
+          "summary": "CopilotKit 开源了 Channels SDK，专门解决 agent 不在人干活的地方这个问题：把 agent 直接接进 Slack、Discord、Telegram 这些聊天工具，目前重点支持的是 Slack 和微软 Teams，托管连接由 CopilotKit Intelligence 负责。接入后 agent 能读懂对话上下文、调用工具、在聊天里渲染带交互的界面，还能在群里直接找人要审批，不用额外开一个网页。最简单的接入方式是跑一条命令 npx copilotkit@latest channels setup，手动接入的话装 @copilotkit/channels 和 @copilotkit/runtime 两个包，自己写一个监听器连上平台就行。项目自己的 agent、工具和凭据由开发者管理，CopilotKit 那头只管平台连接、安全和凭据分发，两边职责分开。目前仓库 656 个 star，45 个 fork。",
+          "summary_en": "CopilotKit open-sourced Channels SDK to solve a specific gap: AI agents usually live separately from where people actually work. Channels embeds an agent directly into chat platforms, with Slack and Microsoft Teams as the current focus and CopilotKit Intelligence managing the platform connection. Once wired in, the agent reads conversation context, calls tools, renders interactive components in the chat, and can ask a human for approval right there instead of opening a separate web page. The fastest setup is one command, npx copilotkit@latest channels setup; manual setup installs the @copilotkit/channels and @copilotkit/runtime packages and wires up a listener. Developers keep control of their own agent, tools, and credentials, while CopilotKit only handles the platform connection, security, and credential delivery. The repo currently has 656 stars and 45 forks.",
+          "why": "GTM 上最直接的一点：agent 能力再强，团队不去它待的地方用它，就等于没上线。详见今日行动第二条。",
+          "why_en": "The most direct GTM point here: no matter how capable an agent is, if it doesn't show up where a team already works, it hasn't really shipped. See today's second action."
+        },
+        {
+          "title": "新奥尔良911接线换成AI，只干一件事：分流",
+          "title_en": "New Orleans hands part of its 911 line to AI, but only to triage duplicate calls",
+          "author": "Shreveport Times · Hacker News",
+          "author_en": "Shreveport Times · Hacker News",
+          "likes": 46,
+          "url": "https://www.shreveporttimes.com/story/news/local/louisiana/2026/07/28/is-new-orleans-using-ai-to-answer-911-calls-instead-of-human-dispatchers-impacts-emergencies-crime/91065014007/",
+          "summary": "新奥尔良通信区（OPCD）用上了以色列公司 Carbyne 的 AI Emergency Call Triage 系统接 911 电话。今年 4 月，OPCD 先在 311 非紧急热线上用了 AI，官方说 311 来电里一半是单纯问信息，AI 正好接得住。这次 911 的用法更窄：系统只用来处理同一起事件引发的电话激增，比如一场车祸引来几十通报警电话，AI agent 先问来电是不是在报同一件事，是的话直接播报最新进展，不是的话立刻转人工。OPCD 明确说 AI 不负责处理真正的紧急情况，只负责分流。新奥尔良是美国 911 呼入量最大的城市之一，日均报警电话超过一千通。HN 评论区两派吵得凶：一派说人工接线本来就有敷衍、漏听的问题，AI 分流能让真正紧急的电话更快转到人；另一派担心系统一旦宕机或误判，责任说不清，而且没人公开测过这套系统在浓重口音或恐慌语速下的识别率。",
+          "summary_en": "The Orleans Parish Communication District (OPCD) is using Carbyne's AI Emergency Call Triage system on its 911 line. OPCD first used AI on its non-emergency 311 line back in April, saying half of 311 calls are simple information requests AI handles fine. Its use on 911 is narrower: the system only handles call surges tied to a single incident, say dozens of people calling about one car accident, where an AI agent first asks whether the caller is reporting that same incident; if yes, it gives an update directly, if no, it transfers immediately to a human. OPCD is explicit that the AI does not handle actual emergencies, only triage. New Orleans is one of the highest-volume 911 cities in the US, fielding over a thousand calls a day. HN's comments split hard: one side argues human dispatchers already miss or brush off calls, so AI triage gets genuinely urgent calls to a human faster; the other worries about accountability if the system goes down or misjudges a call, and notes nobody has publicly tested its accuracy on heavy accents or panicked, fast speech.",
+          "why": "跟今天其他几条不一样的地方在于，这次官方自己先画好了止损线：AI 只分流，不判断。这条线画得对不对，比 AI 听不听得懂电话更值得关注。",
+          "why_en": "What sets this apart from today's other stories: the agency drew its own stop line up front, AI only triages, it never judges. Whether that line holds is worth more attention than whether the AI understands the call."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 32,
+      "items": [
+        {
+          "title": "Anthropic也要自己造芯片",
+          "title_en": "Anthropic is building its own chip team too",
+          "author": "TechCrunch · TLDR AI",
+          "author_en": "TechCrunch · TLDR AI",
+          "likes": null,
+          "url": "https://techcrunch.com/2026/08/05/anthropic-is-hiring-an-ai-chip-design-team",
+          "summary": "TechCrunch 证实了 Business Insider 的爆料：Anthropic 正在组建一支自研芯片团队，目标是把芯片设计和 Claude 模型放在一起联合优化，提升速度和效率。此前 Anthropic 已经和 AWS、谷歌、英伟达、AMD 都签过算力合作，这次是额外再加一条自研路线，理由是现有合作伙伴的产能明显不够用来应付 Claude 暴涨的需求。报道还提到 Anthropic 在物色三星做代工。同行里这不是第一家：OpenAI 今年 6 月发布了博通代工的推理芯片 Jalapeño，谷歌 DeepMind 一直用自家 TPU，Meta 也有自己的 MTIA。文章没有披露团队规模或芯片具体参数。",
+          "summary_en": "TechCrunch confirmed a Business Insider report that Anthropic is assembling its own chip-design team, aiming to co-design hardware alongside Claude models to improve speed and efficiency. Anthropic has existing compute deals with AWS, Google, Nvidia, and AMD; this adds an in-house track on top of them, with the reasoning that existing partners' capacity clearly isn't enough to keep up with surging Claude demand. The report also says Anthropic has been scouting Samsung as a manufacturing partner. It's not the first lab to do this: OpenAI unveiled its Broadcom-built inference chip, Jalapeño, in June 2026; Google DeepMind runs on Alphabet's own TPUs; Meta has its own MTIA accelerators. The article discloses no team size or chip specifications.",
+          "why": "跟 AMD 收购 Taalas 放一起看更有意思，详见本报社评。",
+          "why_en": "More interesting read alongside AMD's Taalas acquisition, see this issue's synthesis."
+        },
+        {
+          "title": "Prime Agent把agent的脑子和骨架焊在一起，能自己改自己的配置",
+          "title_en": "Prime Agent lets an agent rewrite its own scaffolding while it works",
+          "author": "Prime Intellect · TLDR AI",
+          "author_en": "Prime Intellect · TLDR AI",
+          "likes": null,
+          "url": "https://www.primeintellect.ai/blog/prime-agent",
+          "summary": "Prime Intellect 开源了 Prime Agent，思路是把 agent 的执行环境与自身配置绑定，使其在运行中能直接修改自身架构。核心包括两部分：其一，将上下文视为变量，将调用子 agent 视为在常驻 IPython 环境中调用函数，agent 可直接编写代码操作自身的历史记录、工具和子 agent，不受固定工具 schema 限制；其二，采用“持续型 harness”，运行时可对提示词、技能、记忆、子 agent 配置进行增删改查，并在阶段结束后触发 /refine，让系统根据运行结果自动调整配置。所有会话以追加方式写入 JSONL 存档，支持分支与回溯。团队公布了多项测试结果：使用 Opus 5 运行 ARC-AGI 3 时，Best@1 达到 95.5% 的 RHAE，超过人类专家基线 95.4%，三次得分分别为 95.0、95.2、95.5；在 183 关全部通关的 Best@3 上，得分 99.97%；长上下文测试 OOLONG（128k）得分 0.700，而使用 GLM-5.2 的 Pi-mono 框架仅得 0.420。在重建世嘉 Genesis 和 Game Boy Color 模拟器等任务中，平均分也高于原生 Opus 5 和 GPT-5.6 Sol。作者称许多能力尚未被模型充分利用，未来若出现针对该架构专门训练的模型，性能还有提升空间。项目已开源，一行命令即可安装。",
+          "summary_en": "Prime Intellect open-sourced Prime Agent, built on the idea of fusing an agent's execution environment with its own configuration so it can rewrite its own scaffolding mid-run. Two core pieces: first, treating context as a variable and sub-agent calls as function calls inside a persistent IPython environment, so the agent writes code to operate on its own history, tools, and sub-agents instead of being boxed in by fixed tool schemas; second, a \"continual harness\" that lets the agent create, read, update, or delete its own prompts, skills, memory, and sub-agent specs during a run, and trigger a /refine step afterward that edits the harness based on what happened. Every session is stored as append-only JSONL, supporting branching and rollback. The team published a batch of benchmarks: paired with Opus 5 on ARC-AGI 3, it hit 95.5% RHAE Best@1, above the 95.4% human-expert baseline, consistent across three runs (95.0, 95.2, 95.5), with 99.97% Best@3 clearing all 183 levels; on the 128k-context OOLONG benchmark it scored 0.700 versus 0.420 for the Pi-mono framework on the same GLM-5.2 model; on tasks like reconstructing Sega Genesis and Game Boy Color emulators, its average also beat native Opus 5 and GPT-5.6 Sol. The team says much of this capability isn't fully used yet, and expects more headroom once a model is trained specifically around this architecture. The project is open source and installs with a single command.",
+          "why": "见今晚的实测。agent 能否在运行中修改自身架构，决定了其在长任务中能否持续优化，而非每次都从零开始。",
+          "why_en": "See tonight's hands-on pick. Whether an agent can rewrite its own scaffolding decides whether it gets sharper over a long task instead of restarting from zero every time."
+        },
+        {
+          "title": "小米开源具身智能基础模型，跟着放了训练到部署全流程",
+          "title_en": "Xiaomi open-sources an embodied-AI foundation model, pipeline included",
+          "author": "insideai.news · TLDR AI",
+          "author_en": "insideai.news · TLDR AI",
+          "likes": null,
+          "url": "https://insideai.news/news/robotics/xiaomi-open-sources-embodied-ai-foundation-model-xiaomi-robotics-1",
+          "summary": "小米开源了 Xiaomi-Robotics-1，这是一个面向通用机器人智能的具身 AI 基础模型，同时发布了从后训练到部署的完整流程和 benchmark 代码，均可在 GitHub 与 Hugging Face 获取。预训练使用了超过 10 万小时的 UMI（Universal Manipulation Interface）数据，后训练阶段增加了超过 1 万小时的跨本体（不同机器人形态）数据。官方未公布模型参数量，也未与 Figure AI、特斯拉等公司的闭源具身模型进行直接对比。放出完整流程而非仅模型权重，这种做法较为罕见：多数同类公司仅提供模型或演示视频，训练方法与 sim-to-real 细节通常不公开。",
+          "summary_en": "Xiaomi open-sourced Xiaomi-Robotics-1, an embodied-AI foundation model aimed at general-purpose robot intelligence, releasing alongside it a full post-training-to-deployment pipeline and benchmark evaluation code, all available on GitHub and Hugging Face. Pretraining used over 100,000 hours of Universal Manipulation Interface (UMI) data, with post-training adding over 10,000 hours of cross-embodiment data spanning different robot forms. Xiaomi didn't disclose parameter count or direct benchmark comparisons against closed embodied-AI systems from companies like Figure AI or Tesla. What makes this notable is releasing the full pipeline rather than just model weights, most comparable companies only share a model or a demo video and keep training methods and sim-to-real transfer undisclosed.",
+          "why": "开源的是完整流水线而非单一模型，这决定其价值更多体现在研究者群体，而非普通开发者。",
+          "why_en": "It's the pipeline that's open, not just the model, which makes this more valuable to researchers than to a typical developer."
+        }
+      ]
+    }
+  ]
+}

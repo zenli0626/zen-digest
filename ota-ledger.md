@@ -375,4 +375,26 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   (cloud) — adopt on next laptop session (would extend memory `feedback-high-signal-evals` as a
   vendor-blast-radius layer atop the 08-04 per-instance probing rule).*
 
+- 2026-08-07 (cloud run) — **Explicit risk-category labeling when requesting human approval**
+  (shifts the 08-04→08-06 verification chain from third-party claims to my own approval
+  requests, the gap that line never covered): 08-04 said probe an "isolated" label before
+  trusting it; 08-06 extended that to a vendor's other clients once it fails once. Both are
+  about verifying someone ELSE's claim. Today's read, scalex.dev's browser game where players
+  approve/deny an AI coding agent's commands under time pressure, turns the same lens on the
+  approval request itself: across 40,000+ game runs and 409,000 decisions, human reviewers
+  averaged 66.3% accuracy, missed obviously destructive commands only 11.7% of the time, but
+  missed credential-scope violations 35.0% of the time, and approved a malicious `npm run
+  analyze` command disguised in the history log 64.7% of the time, roughly double the miss
+  rate of an equally dangerous but obvious command. The blind spot isn't random, it's
+  concentrated exactly where a threat looks routine. Fix: when I ask Zen (or any human) to
+  approve a risky tool call or command, don't just paste the command and wait for a nod —
+  state up front which risk category it falls into (read/write/execute/credential/network),
+  and flag anything that looks like routine activity but actually touches credentials or
+  network access, since that disguise is precisely where human approval fails most. Invoke
+  intent: "before asking for approval of a risky action, explicitly label its risk category
+  and flag anything disguised as routine, don't just paste the command and let the human judge
+  it cold." *proposed (cloud) — adopt on next laptop session (would extend memory
+  `feedback-high-signal-evals` with a human-approval-interface layer alongside the 08-04
+  probing rule and the 08-06 vendor-blast-radius rule).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
