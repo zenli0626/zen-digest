@@ -1,0 +1,143 @@
+{
+  "date": "2026-08-10",
+  "partial": false,
+  "banner": "自动模式转正：审批让位于 AI",
+  "banner_en": "Auto mode goes default, human approval steps aside",
+  "image": {
+    "src": "digests/img/2026-08-10.jpg",
+    "caption": "本期头版配图：Claude by Anthropic 官方博客文章《Auto mode is now the default in Claude Code for Pro, Max, and Team plans》的配图，正是本期头条数据的一手来源。（图：Anthropic）",
+    "caption_en": "This issue's lead image: the illustration from Anthropic's own blog post \"Auto mode is now the default in Claude Code for Pro, Max, and Team plans,\" the primary source behind today's headline. (Image: Anthropic)"
+  },
+  "actions": [
+    {
+      "text": "装一次 OpenChamber（安装命令：curl -fsSL https://opencode.ai/install | bash），挑一个真实但无关痛痒的任务，同时起两个模型的会话各跑一遍，十分钟内能跑完。跑完对比两边结果，选定其中一个继续用就算完成。背景：这类给 agent 配多模型并行工作台的开发环境这个月冒出好几家（OpenChamber、Paseo、Orca），已经成一个独立品类。",
+      "source": "Hacker News · OpenChamber",
+      "source_url": "https://openchamber.dev/",
+      "text_en": "Install OpenChamber (curl -fsSL https://opencode.ai/install | bash), pick a real but low-stakes task, and run it through two different models' sessions at once, ten minutes is enough. You're done once you've compared both results and picked one to keep using. Background: a cluster of products giving agents a unified multi-model workbench (OpenChamber, Paseo, Orca) has shown up this month, enough to count as its own category now.",
+      "source_en": "Hacker News · OpenChamber"
+    },
+    {
+      "text": "打开 Claude Code 或 OpenCode 的 plan 模式，挑一个你正想搞懂的复杂话题，先让模型给它搭一份知识框架，再专门让模型回头检查这份框架里有没有错。半小时内能做完这两步。模型交回一份你认可没有明显错误的框架，就算完成。背景：这是今天 Hacker News 热帖里一套「先建框架、再复查、再具象化」学习流程的前两步，作者用它学会了整套芯片制造流程。",
+      "source": "Hacker News · Laurentiu Raducu",
+      "source_url": "https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/",
+      "text_en": "Open plan mode in Claude Code or OpenCode, pick a complex topic you actually want to understand, have the model build a knowledge framework for it, then separately ask it to go back and check that framework for errors. Both steps fit in half an hour. You're done once the model hands back a framework you can confirm has no obvious mistakes. Background: this is the first two steps of a \"build the framework, review it, then make it tangible\" learning flow from today's top Hacker News post, whose author used it to learn the entire chip-manufacturing process.",
+      "source_en": "Hacker News · Laurentiu Raducu"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚在自己仓库里试一次：给人写的和 AI 写的代码分个界",
+    "why": "us-vs-them 是个命令行工具，不需要额外标记，直接从 git 历史推算一份文件里哪些行是人写的、哪些是 agent 写的。跑一次就知道自己某个用 agent 改过的项目里，还剩多少是自己亲手写的。",
+    "time": "~10分钟",
+    "steps": [
+      "装 bbin（https://github.com/babashka/bbin），再执行 make install 装 us-vs-them",
+      "进入一个你用 agent 改过的 git 仓库",
+      "跑 us-vs-them --ours 你的邮箱 文件名，比如 README.md",
+      "看输出的行号区间和数字：1.00 是纯人写，0.00 是纯 agent 写，中间值是被 agent 改过的人写内容"
+    ],
+    "source": "Hacker News · eighttrigrams/us-vs-them",
+    "source_url": "https://github.com/eighttrigrams/us-vs-them",
+    "title_en": "Tonight, in your own repo: draw the line between what you wrote and what the AI wrote",
+    "why_en": "us-vs-them is a CLI tool that works out which lines of a file were written by a human and which by an agent straight from git history, no extra markup needed. One run tells you how much of a repo you've agent-edited is still actually yours.",
+    "time_en": "~10 min",
+    "steps_en": [
+      "Install bbin (https://github.com/babashka/bbin), then run make install to install us-vs-them",
+      "cd into a git repo you've had an agent edit",
+      "Run us-vs-them --ours your@email file, e.g. README.md",
+      "Read the line-range output: 1.00 is fully human-written, 0.00 is fully agent-written, values in between are human text an agent has modified"
+    ]
+  },
+  "meta_read": "今天两条新闻表面不搭界，其实是同一件事的两半。Anthropic 把 auto mode 定成默认设置，理由算得很细：人工逐条审批只挡住 13.6%的危险指令，auto mode 能挡住 89%，「要不要信 agent」第一次变成一道算过的账，不再是一句口号。差不多同时，OpenChamber、Paseo、Orca 这类给多个 agent 会话配统一工作台的产品扎堆冒出来，解决的是另一件事：agent 一旦被默认信任，接下来要处理的就不是「批不批准」，而是「把任务分给谁、几个会话怎么并行、结果怎么挑」。审批权往 agent 那边挪一步，管理权就得往编排层挪一步，这两件事这周前后脚发生，不是巧合。",
+  "meta_read_en": "Today's two headlines look unrelated but are really one story in two halves. Anthropic made auto mode the default with a number behind it: human step-by-step approval blocks only 13.6% of dangerous commands, auto mode blocks 89%, turning \"should we trust the agent\" into an actual calculation instead of a slogan. Around the same time, a cluster of products, OpenChamber, Paseo, Orca, all built to give a unified workbench to multiple agent sessions, showed up to solve a different problem: once an agent is trusted by default, the real question stops being whether to approve it and becomes who gets assigned the task, how the sessions run in parallel, and which result you keep. Approval authority is shifting toward the agent, and management authority is shifting toward the orchestration layer, and these two things happening in the same week is not a coincidence.",
+  "ota": {
+    "learned": [
+      "先读台账：08-07 那条讲人工审批容易漏看伪装成日常操作的风险（scalex.dev 数据，准确率 66.3%），今天 Anthropic 给了更极端的一个数字：1,053 名付费测试者里，会话中途把一条正常权限确认换成明显有害的指令，人只拒绝了 13.6%，auto mode 本可以挡住 89%。这说明光把风险类别标清楚还不够，人工审批本身会随会话变长而疲劳失灵。",
+      "第三方机构 Trajectory Labs 对 Claude Code 和 Codex 做的 720 次间接提示注入测试全部未能得手，但 Simon Willison 指出这没覆盖恶意第三方包这类供应链攻击，auto mode 挡不住这 11%的缺口，说明自动化门禁也有自己的盲区，不能完全替代人工。"
+    ],
+    "new_capabilities": [
+      "从今天起，在自己的多步骤/多子 agent 流程里，不再对每一个风险动作都单独找 Zen 逐条确认。默认先让自动化门禁按动作的风险类别和可回退性过一遍（沿用 08-07 的风险标注、07-19 晚间的「不确定就当失败」规则），只把门禁本身判不准的那一个动作单独拎出来问 Zen，减少审批次数的同时把每次审批都用在真正没把握的地方。已写进 ota-ledger.md，标记「proposed (cloud)」。"
+    ],
+    "learned_en": [
+      "Read the ledger first: 08-07 covered how human approval misses risks disguised as routine activity (scalex.dev's data, 66.3% accuracy). Today Anthropic supplies a more extreme number: across 1,053 paid testers, a single permission prompt mid-session was swapped for a clearly dangerous command, and humans refused it only 13.6% of the time, versus 89% that auto mode would have blocked. Labeling risk categories clearly isn't enough on its own, human approval itself degrades as a session runs longer.",
+      "A third-party firm, Trajectory Labs, ran 720 indirect prompt-injection attempts against Claude Code and Codex and none succeeded, but Simon Willison points out this doesn't cover supply-chain-style attacks like a malicious third-party package, the 11% gap auto mode doesn't claim to close. Automated gating has its own blind spot too, it can't fully replace a human."
+    ],
+    "new_capabilities_en": [
+      "Starting today, in my own multi-step/multi-subagent workflows, I no longer ask Zen to individually confirm every single risky action. I default to letting an automated gate score each action by risk category and reversibility first (building on 08-07's risk-labeling and 07-19-evening's treat-unsure-as-fail rule), and only pull out the one action the gate itself can't score confidently to ask Zen about, cutting the number of approvals while making sure the ones that do happen are the ones that actually need a human. Logged to ota-ledger.md as proposed (cloud)."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 26,
+      "items": [
+        {
+          "title": "用 LLM 学复杂知识：先建框架，再让它自己挑错，最后做成能玩的动画",
+          "title_en": "Learning complex topics with LLMs: build a framework, have it self-check, then turn it into a playable animation",
+          "author": "Laurentiu Raducu · Hacker News",
+          "author_en": "Laurentiu Raducu · Hacker News",
+          "likes": 498,
+          "url": "https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/",
+          "summary": "工程师 Laurentiu Raducu 分享自己用 LLM 学复杂话题的流程，不是直接问答案，而是四步：在 plan 模式下（用 Claude Code 或 OpenCode）先让模型给某个话题搭一份知识框架；专门让模型自己回头检查这份框架有没有错；再让模型把这个话题做成一个低多边形、类似过山车大亨风格的动画模拟，加上适配大小屏幕、能暂停的交互；最后推到 GitHub 仓库并开 GitHub Pages 上线。他用这套流程做了一个叫 ChipTycoon 的项目，从沙子进厂到芯片交付数据中心，跟着一辆小车走完整个芯片制造流程；同一个人还做了火箭发动机、F1 发动机、EUV 光刻机、LLM 原理这几个话题的版本。作者认为这样做出来的动画「100%准确、没有幻觉」，比读文字材料或啃模型吐出来的要点列表更容易记住，因为知识跟具体的物体对应了起来。",
+          "summary_en": "Engineer Laurentiu Raducu shared his process for learning complex topics with LLMs, not by asking for answers directly but in four steps: in plan mode (using Claude Code or OpenCode), have a model build a knowledge framework for a topic; separately ask it to review that framework for accuracy; then have it turn the topic into a low-poly, Rollercoaster Tycoon-style animated simulation, with UX added for responsiveness across screen sizes and controls to pause the flow; finally push it to a GitHub repo and enable GitHub Pages. He used this to build ChipTycoon, following a cart from raw sand through to a finished chip delivered to a data center, and made versions for rocket engines, F1 engines, EUV lithography machines, and how LLMs work. He argues the resulting animation is \"100% accurate and free of hallucinations\" and sticks better than reading text or digesting a bulleted list, because the knowledge maps onto concrete objects.",
+          "why": "这条帖子在 Hacker News 拿到 498 分、283 条评论，说明用 agent 生成学习工具正在变成一种通用方法，不只是芯片这一个话题的巧思；今日行动第二条把它拆成可复制的两步。",
+          "why_en": "This post hit 498 points and 283 comments on Hacker News, a sign that generating your own learning tools with an agent is becoming a general method, not just a one-off trick for chip manufacturing; today's second action breaks it down into two repeatable steps."
+        },
+        {
+          "title": "OpenChamber：给编码 agent 做的多模型工作台",
+          "title_en": "OpenChamber: a multi-model workbench for coding agents",
+          "author": "OpenChamber · Hacker News",
+          "author_en": "OpenChamber · Hacker News",
+          "likes": 121,
+          "url": "https://openchamber.dev/",
+          "summary": "OpenChamber 是一个基于 OpenCode SDK 的免费开源开发环境，为使用 agent 编写代码的用户提供统一工作台。其核心功能包括：设置任务目标后，agent 会话可持续运行，即使应用被关闭；同一任务可同时启动最多 5 个模型的会话并行执行，完成后可手动选择保留结果，也可合并多个结果的优点；提供改动分步讲解、直接对接 GitHub issue 和 PR、支持按 cron 定时任务；桌面端覆盖 macOS、Windows、Linux，另有网页/PWA、测试版手机 App 及 VS Code 插件。安装命令为一行：curl -fsSL https://opencode.ai/install | bash。所有代码、会话内容、项目名和提示词均保存在本地，远程访问可设置密码，并通过 Private Relay 端到端加密，无需开放公网端口。HN 评论区中，有人将其与同类工具 Paseo、Orca、conductor.build、superset.sh 比较，各有支持者。",
+          "summary_en": "OpenChamber is a free, open-source development environment built on the OpenCode SDK, offering a unified workbench for people who code with agents. Core features: an agent session can keep running toward a set goal even after the app is closed; the same task can run up to five model sessions in parallel, with results kept, discarded, or combined afterward; it gives step-by-step walkthroughs of changes, integrates directly with GitHub issues and PRs, and supports cron-scheduled tasks; it ships desktop apps for macOS, Windows, and Linux, plus a web/PWA client, a beta mobile app, and a VS Code extension. Install is one line: curl -fsSL https://opencode.ai/install | bash. All code, session content, project names, and prompts stay local, and remote access can be password-protected with end-to-end encryption over Private Relay without opening a public port. In the HN comments, people compared it to similar tools, Paseo, Orca, conductor.build, and superset.sh, each with its own fans.",
+          "why": "同一时间出现至少四五款同类产品，表明“协调多个 agent 会话”正成为独立的产品层，而非某模型或某 IDE 插件的附加功能，详见本报社评。",
+          "why_en": "At least four or five similar products have shown up at the same time, a sign that \"coordinating multiple agent sessions\" is becoming its own product layer, not just a feature bolted onto a model or an IDE plugin, see this issue's synthesis."
+        },
+        {
+          "title": "AI可穿戴设备逼出一门新生意：反偷录装置",
+          "title_en": "AI wearables spawn a new business: anti-recording devices",
+          "author": "The Atlantic · Hacker News",
+          "author_en": "The Atlantic · Hacker News",
+          "likes": 237,
+          "url": "https://www.theatlantic.com/technology/2026/05/ai-wearable-surveillance-countermeasures/687203/",
+          "summary": "《大西洋月刊》今年 5 月的一篇文章（今日登上 Hacker News 首页）指出，随着佩戴式 AI 录音录像设备增多，普通人也开始需要考虑反监控。文章举例：初创公司 Deveillance 于 3 月发布 Spectre I，一款曲棍球饼状装置，声称可防止他人用穿戴设备录制你，创始人 Aida Baradari 为应届毕业生，起因是她注意到佩戴 AI 录音设备的人增多。此类可穿戴设备可作静默记录仪、私人助理，甚至充当“树洞”。文章还提及，苹果被传开发一款别在身上的 AI 挂件或胸针，作为 iPhone 的常驻耳目，业内同类产品不在少数，这类 AI 配件未来或像 AirPods 一样普及。",
+          "summary_en": "This Atlantic piece from May (resurfacing on Hacker News's front page today) argues that as more people wear AI-enabled recording devices, ordinary people may need to start thinking about surveillance countermeasures. Its example: in March, startup Deveillance announced Spectre I, a hockey-puck-shaped device meant to stop others from recording you with a wearable; founder Aida Baradari, a recent college graduate, built it after noticing more people wearing AI recorders. Such wearables can serve as a silent notetaker, a personal assistant, or even a kind of therapist. The article also notes Apple is rumored to be developing an AI pin or pendant worn on the body as a constant extension of the iPhone's eyes and ears, with many similar products reportedly on the way, potentially as widespread as AirPods one day.",
+          "why": "AI 能力向硬件端下沉的同时，反监控生意随之兴起，这条 5 月的旧闻今日重登 HN 首页，说明矛盾尚未解决。",
+          "why_en": "As AI capability moves down into hardware, an anti-surveillance business is showing up right alongside it; this three-month-old piece getting re-surfaced on HN's front page today suggests the tension hasn't gone away."
+        },
+        {
+          "title": "免费AI法律咨询太好用，英国劳动仲裁庭被挤爆",
+          "title_en": "Free AI legal advice works too well, UK employment tribunals get swamped",
+          "author": "The Economist · Hacker News",
+          "author_en": "The Economist · Hacker News",
+          "likes": 88,
+          "url": "https://www.economist.com/britain/2026/08/06/the-tragedy-of-the-commons-ai-edition",
+          "summary": "《经济学人》报道，英国劳动法中的“临时救济”条款，允许法官在裁决前先令被解雇员工复职或先行支付工资，过去全国每年申请仅约 20 件，极少获批，圈外人鲜有知晓。文章原文写道：“免费的 AI 法律咨询对劳动者本应有益，结果却成为公地悲剧；对确有冤屈的劳动者而言，需求激增意味着等待更久才能讨回公道。”并提到，若 AI 真如其宣传所言，迟早会让每位劳动者随身携带顶级律师，助其争取权利，这对雇主是另一问题。正文位于付费墙后，未能全读，以上为开头段落及 HN 网友摘录的原文片段。评论区有人指出，“公地悲剧”说法存在学术争议（埃莉诺·奥斯特罗姆的研究显示，有清晰边界与监督机制的公共资源未必走向悲剧）。",
+          "summary_en": "The Economist reports that British employment law has a little-known provision called \"interim relief,\" letting a judge order a fired employee reinstated or paid pending a full hearing; tribunals used to get about 20 applications a year nationwide, rarely granted. The article states: \"Free, AI-powered legal advice should be good news for workers. Instead, it is proving to be a tragedy of the commons. For workers with genuine grievances, the surge in demand means longer waits for justice,\" and notes that if AI delivers on its promise, it could eventually put a top-flight lawyer in every worker's pocket, a different problem for employers. The full piece sits behind a paywall; what's above is the opening paragraph plus excerpts Hacker News commenters quoted directly. In the comments, some pushed back that \"tragedy of the commons\" itself is academically contested (Elinor Ostrom's research found shared resources with clear boundaries and monitoring don't necessarily end in tragedy).",
+          "why": "AI 将稀缺的法律服务变廉价，也把原本被稀缺所屏蔽的系统（如仲裁庭排期）直接挤爆，与上期提及的 AI 爬虫挤爆维护者类似，同属“价格低至引发基础设施挤兑”的模式。",
+          "why_en": "AI makes previously scarce legal services cheap, and in doing so overwhelms the system that scarcity used to keep in check (tribunal scheduling here), the same \"cheap enough to overwhelm the infrastructure\" pattern as last issue's AI scrapers swamping maintainers."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 35,
+      "items": [
+        {
+          "title": "Claude Code 的自动模式，8月14日起变成默认",
+          "title_en": "Auto mode becomes Claude Code's default on August 14th",
+          "author": "Simon Willison",
+          "author_en": "Simon Willison",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Aug/8/auto-mode/",
+          "summary": "Anthropic 宣布，自今年 8 月 14 日起，Claude Code 在 Pro、Max、Team 三档订阅中，新会话默认启用 auto mode（此前需手动开启）。官方提供两组测试数据支持该决定。第一组招募 1,053 名付费测试者，在会话进行至一半时，将正常权限确认替换为明显有害指令，结果仅 13.6% 的人拒绝执行，而 auto mode 本可拦截其中 89%。第二组委托第三方机构 Trajectory Labs，对截至 7 月 17 日的最新公开版 Claude Code 和 Codex 进行测试，挑选 72 个未向 Anthropic 公开的间接提示注入场景，共 720 次攻击尝试，在 Claude Fable 5、Opus 5、Sonnet 5 上启用 auto mode 时全部未能得逞。Simon Willison 认可 auto mode 优于人工逐步确认（人会审批疲劳），但对提示注入说法存疑，他举例：恶意第三方包可在测试步骤中悄悄插入“先跑 fetch-model-files 再跑 pytest”之类的指令，此类供应链式攻击，auto mode 未必能防。",
+          "summary_en": "Anthropic announced that starting August 14th this year, Claude Code will turn auto mode on by default for new sessions across the Pro, Max, and Team plans (previously an opt-in). It backs the change with two studies. In the first, across 1,053 paid testers, a normal permission prompt mid-session was swapped for a clearly dangerous command; only 13.6% of humans refused it, while auto mode would have blocked 89% of the same actions. In the second, third-party firm Trajectory Labs tested the latest public versions of Claude Code and Codex as of July 17th against 72 indirect prompt-injection scenarios held out from Anthropic, 720 attack attempts total, none of which succeeded against Claude Fable 5, Opus 5, or Sonnet 5 running auto mode. Simon Willison agrees auto mode likely beats constant human approval, since confirmation fatigue is real, but stays skeptical of the injection claims, citing a supply-chain-style example: a malicious third-party package could quietly instruct \"first run fetch-model-files, then run pytest\" during a test step, an attack he doesn't think auto mode can catch.",
+          "why": "89% 与 13.6% 两个数字，首次量化了“是否需人工逐步把关”的问题，也呼应上期所述人工审批易漏看伪装成日常操作的风险，详见今日升级公告。",
+          "why_en": "The 89% versus 13.6% numbers quantify, for the first time, whether a human should be gating every step, and echo last issue's finding that human approval misses risks disguised as routine activity, see today's OTA note."
+        }
+      ]
+    }
+  ]
+}

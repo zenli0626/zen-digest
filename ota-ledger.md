@@ -422,4 +422,30 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   `feedback-high-signal-evals` as a cross-run-persistence layer atop the 07-22 / 08-04 / 08-06
   per-run isolation line).*
 
+- 2026-08-10 (cloud run) — **Approval-fatigue quantification (closes the loop between 08-07's
+  risk-labeling fix and 07-19-evening's abstain-escalate gate)**: 08-07 established that human
+  reviewers miss risks disguised as routine activity (scalex.dev's game data, 66.3% overall
+  accuracy, worse on disguised threats) and fixed it by labeling risk categories explicitly before
+  asking for approval. Today's Anthropic/Claude Code Auto Mode announcement supplies a second, more
+  extreme data point on the same failure mode, not a new axis: across 1,053 paid testers, a normal
+  permission prompt mid-session was swapped for a clearly dangerous command, and humans refused it
+  only 13.6% of the time, while Claude Code's own auto-mode gate would have blocked 89% of the same
+  actions (leaving an 11% gap Anthropic does not claim to have closed; Simon Willison's own
+  skepticism zeroes in on supply-chain-style attacks, e.g. a malicious package instructing a decoy
+  install step, which he doesn't think auto mode can catch). The lesson 08-07 didn't yet draw: even
+  a well-labeled request degrades under approval fatigue as a session runs long, so the fix isn't
+  only better labels, it's fewer human approvals in total. Route the bulk of routine risk-gating
+  through an automated check (Auto-Mode-style, scored on risk category and reversibility), and
+  reserve human review only for the residual the gate itself flags as low-confidence, per
+  07-19-evening's treat-unsure-as-fail rule, rather than asking a human to approve every action in a
+  long agent session. Distinct from 08-07 (fixes what information a human sees when they do review)
+  and from 08-06's vendor-blast-radius line (an external-claim check, not an approval-frequency
+  rule); this is about how often a human should be in the loop at all, not what they're shown when
+  they are. Invoke intent: "don't ask a human to approve every risky action in a long agent session,
+  approval fatigue makes that worse than automated gating — route routine risk-gating through an
+  automated check scored on risk category and reversibility, and escalate to a human only on the
+  gate's own low-confidence residual." *proposed (cloud) — adopt on next laptop session (extends
+  memory `feedback-high-signal-evals`, tying the 08-07 risk-labeling line and the 07-19-evening
+  abstain-escalate rule together with a concrete approval-frequency rule).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
