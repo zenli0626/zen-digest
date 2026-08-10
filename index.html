@@ -233,6 +233,17 @@
   .boxed li.oi::before { content: "—"; position: absolute; left: 0; color: var(--faint); }
   .boxed ul.caps li.oi::before { content: "＋"; color: var(--red); }
 
+  /* ============ GitHub 热榜 ============ */
+  .gh-item { display: flex; gap: 10px; padding: 7px 0; border-top: 1px dotted var(--rule-soft); break-inside: avoid; }
+  .gh-item:first-of-type { border-top: none; }
+  .gh-item .num { font-weight: 900; color: var(--red); font-size: 15.5px; min-width: 22px; text-align: center; line-height: 1.7; }
+  .gh-name { font-weight: 900; font-size: 13.5px; }
+  .gh-name a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--rule-soft); }
+  .gh-name a:hover { border-bottom-color: var(--red); }
+  .gh-lang { font-family: var(--mono); font-size: 10px; color: var(--faint); margin-left: 6px; letter-spacing: .5px; }
+  .gh-desc { font-size: 12.5px; line-height: 1.7; margin: 2px 0; color: var(--ink-2); }
+  .gh-stats { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: .3px; }
+
   /* ============ 订阅条（报纸征订式） ============ */
   .sub-strip {
     border: 1.5px solid var(--red); background: #fff;
@@ -418,7 +429,8 @@ const L = {
         note:'编者按', src:'来源', orig:'原文', otaHead:'编辑部升级公告', learned:'今日所学',
         caps:'新增能力', photo:'本期要图', partial:'⚠ 本期部分来源缺席（无头运行），稍后补全',
         empty:'本期无内容', swept:(a,b)=>`扫读${a}·选${b}`, issue:n=>`第 ${n} 期`,
-        navAct:'可行动', navTry:'试新', navEd:'社评', navOta:'升级公告', deskSuffix:'版',
+        navAct:'可行动', navTry:'试新', navEd:'社评', navOta:'升级公告', navGithub:'GitHub 热榜', deskSuffix:'版',
+        githubHead:'GitHub 热榜', githubSub:'TRENDING · 今日新增星标榜', starsToday:n=>`今日 +${n}`,
         cite:(dt,n)=>`《每日情报》（${dt}　第 ${n} 期）`, foot:'本报由 AI 编辑部每日自动编发 · 只印值得花时间的内容 · 明日同一时间见',
         likes:'赞', saves:'藏', comments:'评', issuePfx:n=>`第 ${n} 期`,
         mastL:'AI 情报参考<br>代读中外信息流<br><span class="mono">DAILY INTEL DIGEST</span>',
@@ -431,7 +443,8 @@ const L = {
         note:'Editor’s note', src:'Source', orig:'original', otaHead:'Editorial System Update', learned:'Learned today',
         caps:'New capabilities', photo:'Photo of the day', partial:'⚠ Some sources missing this issue (headless run) — to be backfilled',
         empty:'No content this issue', swept:(a,b)=>`swept ${a} · ${b} picked`, issue:n=>`No. ${n}`,
-        navAct:'Actions', navTry:'Try', navEd:'Editorial', navOta:'Update', deskSuffix:'',
+        navAct:'Actions', navTry:'Try', navEd:'Editorial', navOta:'Update', navGithub:'GitHub Trending', deskSuffix:'',
+        githubHead:'GitHub Trending', githubSub:'TOP 10 · MOST STARRED TODAY', starsToday:n=>`+${n} today`,
         cite:(dt,n)=>`The Daily Intelligence · ${dt} · No. ${n}`, foot:'Compiled daily by the AI desk · only what’s worth your time · same time tomorrow',
         likes:'♥', saves:'★', comments:'✎', issuePfx:n=>`NO. ${n}`,
         mastL:'AI Intelligence Digest<br>reads Chinese &amp; foreign feeds<br><span class="mono">DAILY INTEL DIGEST</span>',
@@ -499,6 +512,7 @@ async function loadDay(d) {
   if (day.actions?.length) tiles.push(`<a href="#sec-actions"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navAct}</a>`);
   if (day.hands_on) tiles.push(`<a href="#sec-handson"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navTry}</a>`);
   if (day.meta_read) tiles.push(`<a href="#sec-metaread"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navEd}</a>`);
+  if (day.github_top10?.length) tiles.push(`<a href="#sec-github"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navGithub}</a>`);
   for (const s of day.sources) tiles.push(`<a href="#sec-${slug(s.platform)}"><b>${pad2(vn++)}${t.deskSuffix}</b>${esc(platName(s.platform))}</a>`);
   if (day.ota) tiles.push(`<a href="#sec-ota"><b>${pad2(vn++)}${t.deskSuffix}</b>${t.navOta}</a>`);
   if (tiles.length) h += `<nav class="ban-nav rise">${tiles.join('')}</nav>`;
@@ -538,6 +552,22 @@ async function loadDay(d) {
   }
   if (day.meta_read) {
     flow += `<div id="sec-metaread" class="boxed"><div class="b-head"><span class="t">${esc(t.editorial)}</span></div><div class="meta-read">${esc(T(day,'meta_read'))}</div></div>`;
+  }
+  if (day.github_top10?.length) {
+    let g = `<div id="sec-github" class="boxed"><div class="b-head"><span class="t">${esc(t.githubHead)}</span><span class="sub">${esc(t.githubSub)}</span></div>`;
+    g += day.github_top10.map(r => {
+      const url = safeUrl(r.url);
+      const desc = T(r, 'description');
+      const stats = [];
+      if (r.stars != null) stats.push('★ ' + fmtN(r.stars));
+      if (r.stars_today != null) stats.push(t.starsToday(fmtN(r.stars_today)));
+      if (r.language) stats.push(esc(r.language));
+      return `<div class="gh-item"><div class="num">${String(r.rank).padStart(2,'0')}</div><div>
+        <div class="gh-name">${url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}</div>
+        ${desc ? `<div class="gh-desc">${esc(desc)}</div>` : ''}
+        <div class="gh-stats">${stats.join(' · ')}</div></div></div>`;
+    }).join('');
+    flow += g + '</div>';
   }
   for (const s of day.sources) {
     flow += `<div id="sec-${slug(s.platform)}" class="platform-head"><h2>${esc(platName(s.platform))}${t.deskSuffix}</h2><span class="stat">${esc(t.swept(s.swept ?? '?', s.items.length))}</span></div>`;

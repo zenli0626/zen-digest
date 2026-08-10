@@ -130,6 +130,18 @@ not just summaries. Zen reads this instead of the feeds.
    `{title, why, time, steps[], source}`. Vary the type across days (a product, a
    workflow trick, one of my skills he hasn't used, a hardware/OS feature). Never
    repeat until the backlog is dry.
+3b0. **GitHub 热榜 / github_top10 (one per issue, unfiltered wire feed — not curated).**
+   Run `node bin/fetch-github-trending.mjs` — it scrapes `github.com/trending?since=daily`
+   (no login, no API token needed) and prints the top 10 repos by stars gained today as
+   JSON: `[{rank, name, url, description, language, stars, stars_today}]`. This is the
+   literal GitHub trending list, unfiltered by Zen's interests (unlike the rest of the
+   issue) — it's a reference wire strip, like a stock ticker, not something the editorial
+   desk picks or writes commentary on. Paste the array straight into the digest's
+   `github_top10` field. `description` is already in English (GitHub repo descriptions);
+   only add a `description_en` sibling if you want to polish/shorten it, otherwise the
+   `T()` fallback reuses `description` as-is in EN mode. No `_en` needed for `name` (repo
+   slugs don't translate). If the script fails (network/GitHub layout change), skip the
+   field entirely for that issue — never fabricate trending repos.
 3b. **头版要图 / image (one per issue, like a real 人民日报 front-page photo).** Pick
    the visual best matching the day's `banner`, source it as a LOCAL same-origin file
    (cross-origin images taint the html2canvas PNG export — always download, never
