@@ -5,7 +5,7 @@
   "banner_en": "Auto mode goes default, human approval steps aside",
   "image": {
     "src": "digests/img/2026-08-10.jpg",
-    "caption": "本期头版配图：Claude by Anthropic 官方博客文章《Auto mode is now the default in Claude Code for Pro, Max, and Team plans》的配图，正是本期头条数据的一手来源。（图：Anthropic）",
+    "caption": "本期头版配图：Anthropic 官方博客文章《Auto mode is now the default in Claude Code for Pro, Max, and Team plans》配图，即本期头条数据的一手来源。（图：Anthropic）",
     "caption_en": "This issue's lead image: the illustration from Anthropic's own blog post \"Auto mode is now the default in Claude Code for Pro, Max, and Team plans,\" the primary source behind today's headline. (Image: Anthropic)"
   },
   "actions": [
@@ -46,7 +46,7 @@
       "Read the line-range output: 1.00 is fully human-written, 0.00 is fully agent-written, values in between are human text an agent has modified"
     ]
   },
-  "meta_read": "今天两条新闻表面不搭界，其实是同一件事的两半。Anthropic 把 auto mode 定成默认设置，理由算得很细：人工逐条审批只挡住 13.6%的危险指令，auto mode 能挡住 89%，「要不要信 agent」第一次变成一道算过的账，不再是一句口号。差不多同时，OpenChamber、Paseo、Orca 这类给多个 agent 会话配统一工作台的产品扎堆冒出来，解决的是另一件事：agent 一旦被默认信任，接下来要处理的就不是「批不批准」，而是「把任务分给谁、几个会话怎么并行、结果怎么挑」。审批权往 agent 那边挪一步，管理权就得往编排层挪一步，这两件事这周前后脚发生，不是巧合。",
+  "meta_read": "今天两条新闻表面不搭界，其实是同一件事的两半。Anthropic 把 auto mode 定成默认设置，理由算得很细：人工逐条审批只挡住 13.6%的危险指令，auto mode 能挡住 89%。「要不要信 agent」头一次变成一道算过的账，不再是一句口号。差不多同时，OpenChamber、Paseo、Orca 这类给多个 agent 会话配统一工作台的产品扎堆冒出来，解决的是另一件事：agent 一旦被默认信任，接下来要处理的就不是「批不批准」，而是「把任务分给谁、几个会话怎么并行、结果怎么挑」。审批权往 agent 那边挪一步，管理权就得往编排层挪一步，这两件事这周前后脚发生，不是巧合。",
   "meta_read_en": "Today's two headlines look unrelated but are really one story in two halves. Anthropic made auto mode the default with a number behind it: human step-by-step approval blocks only 13.6% of dangerous commands, auto mode blocks 89%, turning \"should we trust the agent\" into an actual calculation instead of a slogan. Around the same time, a cluster of products, OpenChamber, Paseo, Orca, all built to give a unified workbench to multiple agent sessions, showed up to solve a different problem: once an agent is trusted by default, the real question stops being whether to approve it and becomes who gets assigned the task, how the sessions run in parallel, and which result you keep. Approval authority is shifting toward the agent, and management authority is shifting toward the orchestration layer, and these two things happening in the same week is not a coincidence.",
   "ota": {
     "learned": [
@@ -89,7 +89,7 @@
           "author_en": "OpenChamber · Hacker News",
           "likes": 121,
           "url": "https://openchamber.dev/",
-          "summary": "OpenChamber 是一个基于 OpenCode SDK 的免费开源开发环境，为使用 agent 编写代码的用户提供统一工作台。其核心功能包括：设置任务目标后，agent 会话可持续运行，即使应用被关闭；同一任务可同时启动最多 5 个模型的会话并行执行，完成后可手动选择保留结果，也可合并多个结果的优点；提供改动分步讲解、直接对接 GitHub issue 和 PR、支持按 cron 定时任务；桌面端覆盖 macOS、Windows、Linux，另有网页/PWA、测试版手机 App 及 VS Code 插件。安装命令为一行：curl -fsSL https://opencode.ai/install | bash。所有代码、会话内容、项目名和提示词均保存在本地，远程访问可设置密码，并通过 Private Relay 端到端加密，无需开放公网端口。HN 评论区中，有人将其与同类工具 Paseo、Orca、conductor.build、superset.sh 比较，各有支持者。",
+          "summary": "OpenChamber 是一款基于 OpenCode SDK 的免费开源开发环境，为使用 agent 编写代码的用户提供统一工作台。核心功能包括：设定任务目标后，agent 会话可持续运行，即使应用被关闭；同一任务可同时启动最多 5 个模型的会话并行执行，完成后可手动选择保留结果，也可合并多个结果的优点；提供改动分步讲解、直接对接 GitHub issue 和 PR、支持按 cron 定时任务；桌面端覆盖 macOS、Windows、Linux，另有网页/PWA、测试版手机 App 及 VS Code 插件。安装命令为一行：curl -fsSL https://opencode.ai/install | bash。所有代码、会话内容、项目名和提示词均保存在本地，远程访问可设置密码，并通过 Private Relay 端到端加密，无需开放公网端口。HN 评论区中，有人将其与同类工具 Paseo、Orca、conductor.build、superset.sh 比较，各有支持者。",
           "summary_en": "OpenChamber is a free, open-source development environment built on the OpenCode SDK, offering a unified workbench for people who code with agents. Core features: an agent session can keep running toward a set goal even after the app is closed; the same task can run up to five model sessions in parallel, with results kept, discarded, or combined afterward; it gives step-by-step walkthroughs of changes, integrates directly with GitHub issues and PRs, and supports cron-scheduled tasks; it ships desktop apps for macOS, Windows, and Linux, plus a web/PWA client, a beta mobile app, and a VS Code extension. Install is one line: curl -fsSL https://opencode.ai/install | bash. All code, session content, project names, and prompts stay local, and remote access can be password-protected with end-to-end encryption over Private Relay without opening a public port. In the HN comments, people compared it to similar tools, Paseo, Orca, conductor.build, and superset.sh, each with its own fans.",
           "why": "同一时间出现至少四五款同类产品，表明“协调多个 agent 会话”正成为独立的产品层，而非某模型或某 IDE 插件的附加功能，详见本报社评。",
           "why_en": "At least four or five similar products have shown up at the same time, a sign that \"coordinating multiple agent sessions\" is becoming its own product layer, not just a feature bolted onto a model or an IDE plugin, see this issue's synthesis."
