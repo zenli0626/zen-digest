@@ -1,0 +1,268 @@
+{
+  "date": "2026-08-11",
+  "partial": false,
+  "banner": "扎克伯格重提开源，新模型同日上线",
+  "banner_en": "Zuckerberg revives open source, ships a model same day",
+  "image": {
+    "src": "digests/img/2026-08-11.png",
+    "caption": "本期头版配图：Meta AI Research 官方博客为 Muse Glimmer 配的插画。当天扎克伯格发长文重提开源，Meta 同时放出了这款可装进个人电脑的 300 亿参数模型。（图：Meta AI Research 官方博客）",
+    "caption_en": "This issue's lead image: the illustration Meta AI Research used for its Muse Glimmer announcement. The same day, Zuckerberg published a long essay reviving Meta's open-source pitch, and Meta backed it with an actual 30B-parameter model built to run on a personal computer. (Image: Meta AI Research's official blog)"
+  },
+  "actions": [
+    {
+      "text": "今晚十分钟：打开你正在用的 agent 或工具链配置，挑一类现在无脑派给旗舰模型的重复性任务（比如跑 git 命令、查文档），换成便宜模型跑一遍对比。Cursor 今天公开了自己的路由器 Router 的规则：只有确认升级到旗舰模型能换来单边 75% 以上的效果提升才会真的升级，上线以来省了 68% 成本，满意度反而涨了 18%。改完看这类任务效果掉没掉，掉了就换回来。",
+      "source": "Cursor · TLDR AI",
+      "source_url": "https://cursor.com/blog/how-cursor-router-works",
+      "text_en": "Tonight, ten minutes: open your own agent or tool-chain config, pick a repetitive task you currently send to a frontier model by default (running git commands, looking things up), and swap it to a cheaper model to compare. Cursor published its routing rules today: its Router only upgrades to a frontier model when the observed uplift clears a one-sided 75% threshold, and since launch that's cut cost 68% while satisfaction actually rose 18%. Check afterward whether quality on that task dropped; if it did, switch it back.",
+      "source_en": "Cursor · TLDR AI"
+    },
+    {
+      "text": "今晚十分钟：翻一下你自己写的某个 agent 或 skill 的 prompt，看有没有让它中途「说人话」的指令（要求短句、别用术语、模拟某种语气）。Kuber Mehta 的博客说，这种要求混进执行过程里是有损压缩，用户看不出丢了什么，多层 agent 之间一层层转述还会把原始报错、边界情况磨没。把这类指令挪到最后一步再用，中间过程保留原始信息，看输出是不是更好排查问题。",
+      "source": "Kuber Mehta · Hacker News",
+      "source_url": "https://kuber.studio/blog/Reflections/Humanising-LLM-Outputs-is-Actually-Dumb",
+      "text_en": "Tonight, ten minutes: check the prompts in one of your own agents or skills for instructions telling it to sound human mid-task (short sentences, no jargon, a particular tone). Kuber Mehta's post argues that kind of instruction folded into execution is lossy compression, users can't see what got dropped, and in multi-agent chains each retelling smooths away the original errors and edge cases. Move that instruction to the very last step, keep raw state in between, and see if debugging gets easier.",
+      "source_en": "Kuber Mehta · Hacker News"
+    },
+    {
+      "text": "今晚十分钟：挑一个你最近打算用或推荐给别人的「开放权重」模型，去 Hugging Face 上跑一遍今天刚发布的 Model Genome 工具，看它的架构、词表、权重三项指纹分别落在原生、改造、混合、照搬里的哪一档。作者说这只是「报血缘不判对错」，权重那一项只对确认「确实从零训」给得准，分不清继续预训练和完全不相关。查完记下这个模型的真实血缘，以后再看到「独立训练」这类说法时能核对。",
+      "source": "mayafree · Hugging Face",
+      "source_url": "https://huggingface.co/blog/mayafree/model-dna",
+      "text_en": "Tonight, ten minutes: pick an \"open-weight\" model you're planning to use or recommend, and run it through the new Model Genome tool released today on Hugging Face to see where its architecture, tokenizer, and weight fingerprints land, native, adapted, mixed, or ported. The author's own caveat: it reports lineage, not wrongdoing, and the weights signal is only reliable at confirming true from-scratch training, not at telling continued pretraining apart from something unrelated. Note down what you find so you have something to check the next time a lab claims a model was trained independently.",
+      "source_en": "mayafree · Hugging Face"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试试：让两个 Claude Code 会话互相发消息",
+    "why": "Claude Code v2.1.224 起自带跨会话消息：一个会话发现的东西（改动、结论、卡点）能直接推给另一个会话，不用你在终端间来回复制粘贴。TLDR AI 8 月 10 日的雷达也把它列进了当期更新。",
+    "time": "~10-15 分钟",
+    "steps": [
+      "确认 Claude Code 版本 ≥ 2.1.224：跑 claude --version",
+      "开两个终端，各起一个 Claude Code 会话，分别在不同目录或不同任务上工作",
+      "在其中一个会话里输入 /list-agents（或 /peers）看能不能发现另一个会话",
+      "让这个会话给另一个发条消息，比如「告诉另一个会话，我们把 tenant_id 这一列加上了，它可以放心 rebase」",
+      "切到另一个会话确认收到，试着让它回复"
+    ],
+    "source": "Anthropic · Claude Code 文档",
+    "source_url": "https://code.claude.com/docs/en/cross-session-messaging",
+    "title_en": "Tonight, try it: get two Claude Code sessions to message each other",
+    "why_en": "Cross-session messaging ships in Claude Code v2.1.224+: a finding in one session (a change, a conclusion, a blocker) can go straight to another session instead of you copy-pasting between terminals. TLDR AI's roundup flagged it in its August 10 update too.",
+    "time_en": "~10-15 min",
+    "steps_en": [
+      "Check your Claude Code version is >= 2.1.224: run claude --version",
+      "Open two terminals, start a Claude Code session in each, working on different directories or tasks",
+      "In one session, type /list-agents (or /peers) to see if it can find the other session",
+      "Ask that session to message the other, e.g. \"tell the other session we added the tenant_id column, it can rebase safely\"",
+      "Switch to the other session to confirm it arrived, and try having it reply"
+    ]
+  },
+  "meta_read": "今天两条不搭界的新闻，说的其实是同一件事：「开源」这个词现在更像立场声明，不是可以核验的技术描述。扎克伯格的长文把开源和「让个人变强」绑在一起，用来跟同行拉开距离，但这类不点名的批评本来就没打算让人去核实。同一天上线的 Model Genome 做的正好是反过来的事：把「这模型是不是真从零训的」这种口头声明，拆成架构、词表、权重三项可以实际跑一遍的检查，作者还老实交代了权重那项检查力不从心的地方。真正的分野不是谁喊了「开源」，是这句话背后有没有留下能核实的东西。下次再看到「开放」「独立训练」这类说法，先问有没有配得上核验的具体细节，没有就只能当立场声明看。",
+  "meta_read_en": "Two unrelated stories today are actually making the same point: \"open source\" has become a stance to declare more than a technical claim you can check. Zuckerberg's essay ties openness to empowering individuals to draw a contrast with unnamed rivals, but that kind of unnamed criticism was never built to let anyone verify it. The tool that shipped the same day, Model Genome, does the opposite: it turns a claim like \"this model was trained from scratch\" into three checks you can actually run, on architecture, tokenizer, and weights, and its authors are upfront about where the weights check falls short. The real dividing line isn't who says \"open,\" it's whether that word comes with something checkable behind it. Next time a lab claims a model is \"open\" or \"trained independently,\" ask what verifiable detail backs it up before taking the label at face value.",
+  "ota": {
+    "learned": [
+      "读台账：08-04 到 08-06 这条线讲的是「隔离」「已验证」这类环境标签，得有独立探测才能信，且一个第三方栽过一次，它的其他客户也该打个问号。今天 Hugging Face 上的 Model Genome 工具把同一个逻辑用到了另一种标签上：模型是不是「独立训练」「从零训练」，也不能只看厂商自己说，得拆成架构参数是否照搬、词表重合度、权重 CKA 相似度三项可以实际跑的检查。",
+      "更关键的是作者自己讲的限制：CKA 这项检查只对「确实是从零训」给得准（数值接近 0），但分不清「在别人基础上继续预训练」和「完全不相关的模型」这两种情况。也就是说，一个复合声明用了几项检查去验证，这几项检查的可靠程度并不一样，不能拿其中一项过了就当整条声明都验证过了。这是 08-04「验证标签」规则一直没讲清楚的地方。"
+    ],
+    "new_capabilities": [
+      "从今天起，核实「独立训练」「从零构建」「与某模型无关」这类关于血缘或原创性的复合声明时，逐项列出用了哪几种检查（如架构参数比对、词表重合度、权重相似度），并分别说明每一项实际证明了什么、局限在哪，不用一句「已核实」笼统带过。此能力源自 Hugging Face 博客「Model Genome: Fingerprinting Whether an LLM Was Trained From Scratch or Derived」（作者 mayafree），2026-08-11，建在 08-04 至 08-06 的标签验证链之上。已写入 ota-ledger.md，标记「proposed (cloud)」。调用意图：「核实一个用了多项检查的复合声明时，逐项报告每个检查证明了什么、没证明什么，不要用单一'已验证'代替。」"
+    ],
+    "learned_en": [
+      "Read the ledger first: 08-04 through 08-06 established that a label like \"isolated\" or \"verified\" needs an independent probe before being trusted, and that one vendor's proven failure should discount its other claims too. Today's Hugging Face post, Model Genome, applies the same logic to a different label: whether a model was \"independently trained\" or built \"from scratch\" can't just be taken from a vendor's own claim either, it breaks down into three checkable signals, whether architecture parameters were copied, tokenizer vocabulary overlap, and weight similarity via Linear CKA.",
+      "The more important part is the limitation the authors state themselves: the CKA weights check only reliably confirms genuine from-scratch training (near-zero CKA), but can't tell continued pretraining apart from a genuinely unrelated model. In other words, when a compound claim is verified using several checks, those checks don't carry equal reliability, and passing one doesn't mean the whole claim is verified. That's the gap 08-04's label-verification rule never spelled out."
+    ],
+    "new_capabilities_en": [
+      "Starting today, when verifying a compound claim about lineage or originality (\"independently trained,\" \"built from scratch,\" \"unrelated to model X\"), list out each individual check used (architecture-parameter comparison, tokenizer overlap, weight similarity) and state what each one actually proved and where it's unreliable, instead of collapsing the result into a single \"verified\" statement. Source: the Hugging Face post \"Model Genome: Fingerprinting Whether an LLM Was Trained From Scratch or Derived\" (author mayafree), 2026-08-11, building on the 08-04 through 08-06 label-verification chain. Logged to ota-ledger.md, marked \"proposed (cloud).\" Invoke intent: \"when verifying a compound claim backed by more than one check, report what each individual check proved and didn't prove, don't substitute one blanket 'verified' for that.\""
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 23,
+      "items": [
+        {
+          "title": "扎克伯格发长文重提开源，暗指同行只服务机构",
+          "title_en": "Zuckerberg's essay revives Meta's open-source pitch, jabs at rivals serving \"institutions\"",
+          "author": "Mark Zuckerberg（Meta）· Hacker News",
+          "author_en": "Mark Zuckerberg (Meta) · Hacker News",
+          "likes": 419,
+          "url": "https://www.meta.com/thefutureisforeveryone/",
+          "summary": "马克·扎克伯格发表长文《未来属于每个人》，重新举起开源旗帜：开源是“赋能个人的重要正向力量”，限制开源是“错误”，美国应做出最强的开源模型，而非靠限制别国接触来占优。文中不点名地称，多数同行做的 AI 是给公司、政府等机构用的，Meta 做的是给个人用的；又说“头部模型”以意识形态理由拒绝任务，是在推行一套集中化的教条。他承诺 Meta Superintelligence Labs 重组后“很快”会再发一批开源模型，未给具体数量或时间表。HN 上 419 赞 405 条评论，有评论称这套说法眼熟：实验室领先时锁技术卖钱（举 Anthropic 为例），落后时就开源，再拉标准委员会拖慢对手，这次不过是同一套路。",
+          "summary_en": "Mark Zuckerberg published a long essay, \"The Future Is For Everyone,\" reviving Meta's open-source pitch: open source is \"a positive and important force for empowering people,\" restricting it would be \"a mistake,\" and the US should build the strongest open models rather than compete by restricting other countries' access. Without naming names, he writes that most other labs build AI for companies and governments, while Meta builds it for individuals, and that \"leading models\" refusing tasks on ideological grounds amounts to \"enforcing a centralized dogma.\" He commits to Meta \"resuming\" open-source model releases \"soon\" following the restructuring of Meta Superintelligence Labs, without a number or timeline. The essay drew 419 points and 405 comments on Hacker News; one commenter called the pattern familiar, a lab keeps tech closed and monetizes it while winning (citing Anthropic), then opens up and drags a standards committee into it to slow rivals down once it's losing, and this is the same playbook again.",
+          "why": "同日发布的 Muse Glimmer 是这套姿态的实际动作，两条一起看才完整，详见下一条与本报社评。",
+          "why_en": "Muse Glimmer, released the same day, is the concrete action behind this stance, see the next item and this issue's synthesis."
+        },
+        {
+          "title": "同日放出 Muse Glimmer：300 亿参数，专为个人电脑上的常驻 agent 做的",
+          "title_en": "Same day, Meta ships Muse Glimmer: a 30B model built for always-on agents on your own PC",
+          "author": "Meta AI Research · Hacker News",
+          "author_en": "Meta AI Research · Hacker News",
+          "likes": 1063,
+          "url": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+          "summary": "Meta 同日发布 Muse Glimmer，300 亿参数，走 Apache 2.0 协议，专为“常驻本地”的 agent 场景设计：可在 Mac 或单卡 PC 上运行，支持端到端完成 agent 任务、工具调用，多步推理出错时能自恢复，还能处理图片输入，覆盖 100 多种语言。跑分对比对象为 Gemma4-31B 和 Qwen3.6-27B，测试项包括 DeepSearch QA、MCP-Atlas、τ-Bench、SWE-Bench。工程上采用 4bit 量化将模型压至 20GB 以内，配合名为 DFlash 的推测解码器，生成速度比不用该加速快 1.5 至 3.1 倍。",
+          "summary_en": "The same day, Meta released Muse Glimmer, a 30B-parameter model under the Apache 2.0 license, built specifically for always-on local agents: it runs on a Mac or a single-GPU PC, handles end-to-end agentic tasks and tool calls, recovers from its own errors mid multi-step reasoning, takes image input, and covers 100+ languages. It's benchmarked against Gemma4-31B and Qwen3.6-27B on DeepSearch QA, MCP-Atlas, τ-Bench, and SWE-Bench. Engineering-wise, 4-bit quantization keeps it under 20GB, paired with a speculative decoder called DFlash for 1.5 to 3.1x faster generation.",
+          "why": "本期头条的另一半：嘴上讲开源能让个人变强，手上真给了能装进个人电脑的模型，姿态和产品对上了号。详见本报社评。",
+          "why_en": "The other half of today's lead pairing: the rhetoric about empowering individuals came with an actual model small enough to run on a personal computer. See this issue's synthesis."
+        },
+        {
+          "title": "YC 新公司做 GPU 二手市场：一笔订单能省 15.6 万美元",
+          "title_en": "A new YC startup runs a GPU marketplace: one order saved $156K",
+          "author": "Stoa Markets · Hacker News",
+          "author_en": "Stoa Markets · Hacker News",
+          "likes": 70,
+          "url": "https://www.stoaexchange.com",
+          "summary": "YC S26 这一期中，Stoa Markets 做的是 GPU 和 AI 硬件的机构级交易市场：A100、H100、H200、B200、B300 按新旧成色标价，4 卡或 8 卡整机也能买，卖点是“验证过的交易对手”和留痕的结算时间线，以降低场外交易常见的对手风险。官网给出的例子：一笔 8 节点 H100 订单，走 Stoa 比场外渠道能省约 15.6 万美元。服务对象列了九类，从 GPU 经销商、数据中心运营商到出租方和投资基金均算，暂未披露融资和成交量。",
+          "summary_en": "In this YC S26 batch, Stoa Markets runs an institutional marketplace for GPUs and AI hardware: A100, H100, H200, B200, and B300 units priced by condition (new, refurbished, used), plus 4- or 8-GPU node configurations, pitched on \"verified counterparties\" and a logged settlement timeline to cut the counterparty risk common in off-market trading. Its site's own example: an 8-node H100 order saved about $156K going through Stoa versus off-market channels. It lists nine customer types, from GPU brokers and data-center operators to lessors and investment funds, with no funding or transaction volume disclosed.",
+          "why": "算力紧俏的另一面是二手、闲置 GPU 的定价一直不透明，这类市场做的就是将场外黑市变成能挂牌核价的地方。",
+          "why_en": "The flip side of the GPU shortage is that pricing for used and idle GPUs has stayed opaque; this kind of marketplace turns an off-market trade into something with a postable, checkable price."
+        },
+        {
+          "title": "「让 AI 说人话」是个架构错误，这篇博客说清楚了为什么",
+          "title_en": "\"Make the AI sound human\" is an architecture mistake, this post explains why",
+          "author": "Kuber Mehta · Hacker News",
+          "author_en": "Kuber Mehta · Hacker News",
+          "likes": 178,
+          "url": "https://kuber.studio/blog/Reflections/Humanising-LLM-Outputs-is-Actually-Dumb",
+          "summary": "Kuber Mehta 的博客称，许多 agent 产品让模型全程“说人话”（用短句、避免术语，甚至模拟某种语气）是架构错误：这种压缩发生在执行过程中，是有损的，用户看不到丢了什么，因为读起来仍通顺。更麻烦的是多层 agent：子 agent 查完 bug 先写一份“人话总结”，父 agent 读完摘要，再压缩成给用户的“人话总结”，原始报错信息、边界情况在两次转述中被磨掉，用户看到的只是“这里有几点需要考虑”这种圆滑说法，看不出模型是否在编。他的建议：像数据库、编译器、API 那样，中间过程保留详细的、给机器读的状态，只在最后给人看的那一层做“说人话”的转换。",
+          "summary_en": "Kuber Mehta's post argues that having agents \"sound human\" throughout execution (short sentences, no jargon, a simulated tone) is an architecture mistake: that compression happens mid-task and is lossy, and users can't see what got dropped because the output still reads fine. It's worse across multiple agent layers: a subagent investigates a bug and writes a human-readable summary, the parent agent reads that summary and compresses it again into another human-readable summary for the user, and the raw error messages and edge cases get smoothed away in both retellings, leaving the user with something like \"there are a few considerations here\" instead of any sign the model might be wrong. His proposed fix: keep detailed, machine-facing state through the whole pipeline, the way databases, compilers, and APIs do, and only humanize output at the final boundary where a person actually reads it.",
+          "why": "对写 agent 或 skill 的人是个具体检查项：自己的 prompt 和摘要环节是否把原始信号提前磨没了，详见今日可行动第二条。",
+          "why_en": "A concrete checklist item for anyone building agents or skills: whether your own prompts and summary steps are smoothing away raw signal too early. See today's second action item."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 21,
+      "items": [
+        {
+          "title": "Cursor 公开了自己的模型路由规则：贵模型不是想用就能用",
+          "title_en": "Cursor publishes its model-routing rules: the expensive model has to earn its keep",
+          "author": "Cursor · TLDR AI",
+          "author_en": "Cursor · TLDR AI",
+          "likes": null,
+          "url": "https://cursor.com/blog/how-cursor-router-works",
+          "summary": "Cursor 发博客拆解了自己的模型路由系统 Router 的工作方式：先用名为 Compass 的模块判断这一轮任务复杂度，简单的直接派给便宜模型；复杂则按“领域（前端/后端/数据库）+任务类型（改 bug/敲命令/写测试）+修饰词（视觉改动/产品类问题）”三维标签，挑选最擅长的模型：Grok 管日常琐事和 git 命令，Sol 强于规划和读懂代码库，Opus 适合运维和调优等偏执行的任务，Fable 擅长调试和视觉相关实现。只有观测到升级到旗舰模型能带来单边 75%以上的效果提升，才真正升级，然后在预算范围内选收益最大的模型组合。上线以来，Auto Intelligence 模式比全用 Fable 省 68%成本，满意度打平且比上线时提升 18%；Auto Balance 模式比全用 Opus 4.8 省 41%成本，满意度反而更高。",
+          "summary_en": "Cursor published a blog post breaking down how its own model-routing system, Router, works: a module called Compass first judges whether a turn is simple enough for a cheap model; if not, it tags the task along three axes (domain: backend/frontend/database; task type: bug fix/command/test; modifier: visual change/product question) and picks whichever model performs best on that combination. Grok handles routine work like git commands, Sol is strongest at planning and codebase comprehension, Opus excels at execution-heavy work like devops and optimization, and Fable is best at debugging and visual implementation. It only upgrades to a frontier model when the observed uplift clears a one-sided 75% threshold, then picks the traffic-weighted combination with the best gain within the mode's cost budget. Since launch, Auto Intelligence mode costs 68% less than running everything on Fable, with satisfaction unchanged and up 18% since launch; Auto Balance costs 41% less than running everything on Opus 4.8, with satisfaction actually higher.",
+          "why": "详见今日可行动第一条：这套“先判断值不值得上贵模型”的路由逻辑，自己搭 agent 时可照抄。",
+          "why_en": "See today's first action item: this \"decide if it's worth the expensive model first\" routing logic is directly copyable if you're building your own agent."
+        },
+        {
+          "title": "LangChain 把 agent 生产化打包成托管服务，公测开放",
+          "title_en": "LangChain packages agent productionization into a managed service, now in beta",
+          "author": "LangChain · TLDR AI",
+          "author_en": "LangChain · TLDR AI",
+          "likes": null,
+          "url": "https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta",
+          "summary": "LangChain 将开源的 Deep Agents 框架包装成托管平台 Managed Deep Agents，并开启公测。该平台旨在省去 agent 生产化所需的基础设施，支持长任务中断后恢复（durable execution）、按会话或 agent 隔离的沙箱、跨对话记忆（Context Hub）、接入 Slack 和 GitHub 等渠道、多用户场景下的 OIDC 身份认证、基于自有 Harbor 框架的评测、流式输出及定时任务。命令行操作三步走：uv tool install managed-deepagents 安装，mda init 创建项目，mda dev 本地运行，mda deploy 一键部署到 LangSmith。目前仅开放 LangSmith Cloud 美国区域公测，定价未公布。",
+          "summary_en": "LangChain packaged its open-source Deep Agents framework into a hosted platform, Managed Deep Agents, now in public beta. The pitch: skip the infrastructure you'd otherwise have to build yourself to take an agent to production, including durable execution with pause and resume for long-running tasks, sandboxes isolated per thread or per agent, cross-conversation memory called Context Hub, channels for Slack and GitHub integrations, OIDC-based identity for multi-user setups, evals via its own Harbor framework, plus streaming and scheduled cron tasks. Getting started is three commands: uv tool install managed-deepagents, mda init to scaffold a project, mda dev to run locally, and mda deploy to ship straight to LangSmith. It's currently limited to a US-region beta on LangSmith Cloud, CLI-first, with no pricing disclosed yet.",
+          "why": "对于已在使用 LangChain agent 框架的用户，公测期是免费体验生产级基础设施的机会，正式发布后很可能收费。",
+          "why_en": "For anyone already building on LangChain's agent framework, the beta window is a chance to use production-grade infrastructure for free before pricing likely kicks in at general availability."
+        },
+        {
+          "title": "一个小工具，专门查一个模型是不是真的「从零训」",
+          "title_en": "A new tool checks whether a model was really trained from scratch",
+          "author": "mayafree · Hugging Face · TLDR AI",
+          "author_en": "mayafree · Hugging Face · TLDR AI",
+          "likes": null,
+          "url": "https://huggingface.co/blog/mayafree/model-dna",
+          "summary": "有人在 Hugging Face 上发布了一个名为 Model Genome 的小工具，用于检测模型是否为“从零训练”。其原理是比对 config.json 中的架构参数（如隐藏层大小、层数、注意力头数），多项匹配则表明架构抄袭自另一模型；再比较词表重合度，接近 1 说明词表继承而来；权重比较采用线性 CKA 衡量 embedding 空间，作者坦言该指标仅对“确实从零训练”的模型有效（CKA 接近 0），无法区分“基于他人模型继续预训练”和“完全无关”两种情况。结果分为原生、改造、混合、照搬四类，四个函数指向任意 Hugging Face 仓库即可运行。作者强调该工具“只报血缘，不判对错”，使用开放权重底座本就合法且普遍，其仪表盘已覆盖一批韩国基础模型。",
+          "summary_en": "Someone published a small tool on Hugging Face called Model Genome, built specifically to check whether a model was really trained from scratch: it compares architecture parameters in config.json (hidden size, layer count, attention heads), where multiple matching fields against another model suggest a copied architecture; it compares tokenizer vocabulary overlap, where a ratio near 1.0 suggests inherited vocabulary; and for weights, it uses Linear CKA to compare embedding spaces, though the author is upfront that this signal is only reliable at confirming genuine from-scratch training (near-zero CKA) and can't distinguish continued pretraining from a genuinely unrelated model. Results sort into four categories, native, adapted, mixed, or ported, and the three functions can be pointed at any Hugging Face repo. The author stresses the tool \"reports lineage, not wrongdoing,\" since building on someone else's open-weight base is legitimate and common; the dashboard's case study covers a set of Korean foundation models.",
+          "why": "这与今日自我升级直接相关：验证“隔离”“独立训练”等标签不能只看声明，详见今日自我升级。",
+          "why_en": "Directly related to today's self-upgrade: a label like \"isolated\" or \"independently trained\" can't be taken on a single sentence's word. See today's self-upgrade."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "semantica-agi/semantica",
+      "url": "https://github.com/semantica-agi/semantica",
+      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
+      "language": "Python",
+      "stars": 4271,
+      "stars_today": 970
+    },
+    {
+      "rank": 2,
+      "name": "msitarzewski/agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+      "language": "Shell",
+      "stars": 141950,
+      "stars_today": 1349
+    },
+    {
+      "rank": 3,
+      "name": "NanmiCoder/MediaCrawler",
+      "url": "https://github.com/NanmiCoder/MediaCrawler",
+      "description": "小红书笔记及评论爬虫、抖音视频及评论爬虫、快手视频及评论爬虫、B 站视频及评论爬虫、微博帖子及评论爬虫、百度贴吧帖子及回复爬虫、知乎问答文章及评论爬虫。",
+      "language": "Python",
+      "stars": 60849,
+      "stars_today": 259
+    },
+    {
+      "rank": 4,
+      "name": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "language": "JavaScript",
+      "stars": 85580,
+      "stars_today": 659
+    },
+    {
+      "rank": 5,
+      "name": "paperclipai/paperclip",
+      "url": "https://github.com/paperclipai/paperclip",
+      "description": "The open-source app everyone uses to manage agents at work",
+      "language": "TypeScript",
+      "stars": 76624,
+      "stars_today": 198
+    },
+    {
+      "rank": 6,
+      "name": "PrimeIntellect-ai/prime-agent",
+      "url": "https://github.com/PrimeIntellect-ai/prime-agent",
+      "description": "A self-improving RLM agent for coding workflows and long-running autonomous tasks.",
+      "language": "TypeScript",
+      "stars": 13257,
+      "stars_today": 2642
+    },
+    {
+      "rank": 7,
+      "name": "LadybirdBrowser/ladybird",
+      "url": "https://github.com/LadybirdBrowser/ladybird",
+      "description": "Truly independent web browser",
+      "language": "C++",
+      "stars": 65294,
+      "stars_today": 56
+    },
+    {
+      "rank": 8,
+      "name": "ruvnet/RuView",
+      "url": "https://github.com/ruvnet/RuView",
+      "description": "RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection, all without a single pixel of video.",
+      "language": "Rust",
+      "stars": 89424,
+      "stars_today": 154
+    },
+    {
+      "rank": 9,
+      "name": "danielmiessler/LifeOS",
+      "url": "https://github.com/danielmiessler/LifeOS",
+      "description": "A general hill-climbing AI harness that helps you move from current state to ideal state in both life and work.",
+      "language": "TypeScript",
+      "stars": 18022,
+      "stars_today": 315
+    },
+    {
+      "rank": 10,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "The context API to search, scrape, and interact with the web at scale.",
+      "language": "TypeScript",
+      "stars": 165224,
+      "stars_today": 835
+    }
+  ]
+}

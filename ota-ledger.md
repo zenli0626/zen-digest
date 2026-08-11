@@ -448,4 +448,29 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   memory `feedback-high-signal-evals`, tying the 08-07 risk-labeling line and the 07-19-evening
   abstain-escalate rule together with a concrete approval-frequency rule).*
 
+- 2026-08-11 (cloud run) — **Per-axis confidence when verifying a compound claim (deepens 08-04's
+  label-verification rule into a domain it never covered, model-lineage/originality claims, and adds a
+  nuance 08-04 skipped)**: 08-04 through 08-06 established that a label like "isolated" or "verified"
+  needs an independent probe before being trusted, and that a vendor's proven failure should discount
+  its other claims too. Today's read is a tool, not an incident: a Hugging Face post ("Model Genome," by
+  mayafree) ships three concrete checks for verifying a different kind of unverifiable label, "trained
+  from scratch" / "independently developed": an architecture fingerprint (do config.json fields like
+  hidden size, layer count, and attention heads match a known model closely enough to suggest adoption),
+  a tokenizer fingerprint (vocabulary overlap ratio), and a weights fingerprint (Linear CKA between
+  embedding spaces). The nuance 08-04 never covered: the authors are explicit that these three checks
+  don't carry equal weight, the weights axis reliably confirms from-scratch training (near-zero CKA) but
+  can't distinguish continued pretraining from an unrelated model, so a "verified" claim built from a
+  multi-signal check needs to report per-axis confidence, not a single pass/fail. Fix: when running an
+  independent probe or mechanical check to verify a compound claim (an isolation label, an originality
+  claim, anything checked via more than one signal), report what each individual signal actually proved
+  and where it's unreliable, instead of collapsing the result into one verified/not-verified verdict.
+  Distinct from 08-04 (establishes that probing should happen at all), from 08-06 (propagates a vendor's
+  failure across clients), and from 08-09 (extends the isolation unit from one run to shared cross-run
+  surfaces); this is about the internal reliability structure of the probe itself, once you've decided
+  to run one. Invoke intent: "when verifying a compound claim with more than one check/signal, report
+  each signal's own reliability and limits, don't collapse multi-signal verification into a single
+  pass/fail verdict." *proposed (cloud) — adopt on next laptop session (extends memory
+  `feedback-high-signal-evals`, adding a per-axis-confidence-reporting layer to the 08-04→08-06→08-09
+  label-verification chain).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
