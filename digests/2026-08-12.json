@@ -1,11 +1,11 @@
 {
   "date": "2026-08-12",
   "partial": false,
-  "banner": "假冒 AI 机器人，扫的是密钥文件",
+  "banner": "假机器人扫密钥",
   "banner_en": "Bots impersonate AI crawlers, hunting for leaked credentials",
   "image": {
     "src": "digests/img/2026-08-12.jpg",
-    "caption": "本期头版配图：AI Engineer World's Fair 上 NeoCognition 联合创始人 Yu Su 演讲《Intelligence + Continual Learning = Expertise》，今日社评「智能过剩、专长稀缺」的一手来源。（图：AI Engineer World's Fair / YouTube）",
+    "caption": "本期头版配图：AI Engineer World's Fair 上，NeoCognition 联合创始人 Yu Su 发表演讲《Intelligence + Continual Learning = Expertise》，今日社评「智能过剩、专长稀缺」的一手来源。（图：AI Engineer World's Fair / YouTube）",
     "caption_en": "This issue's lead image: a frame from NeoCognition co-founder Yu Su's talk \"Intelligence + Continual Learning = Expertise\" at AI Engineer World's Fair, the primary source behind today's \"intelligence is abundant, expertise is scarce\" thesis. (Image: AI Engineer World's Fair / YouTube)"
   },
   "actions": [
@@ -53,7 +53,7 @@
       "Scroll down to Decoded reasoning examples and check a few tagged Scheming considerations / Illegible reasoning to see what a model is actually thinking behind the scenes"
     ]
   },
-  "meta_read": "今天七条看着分散，其实说的是一件事：模型本身越来越不值钱，值钱的挪到了包在它外面那层判断上。Yu Su 在 AI Engineer World's Fair 上说得最直白：智能已经过剩，专长才稀缺，agent 真正卡壳的地方不是推理能力，是有没有针对具体场域攒下的经验。Herrengt 那篇被 Hacker News 顶上头条的博客说的是同一件事：实现代码已经免费，公司花大价钱雇的是能拦住烂 PR、看穿架构债的判断力。Lovable 把这套判断直接做成了产品，他们不押注哪个模型最强，押注的是一套盯着构建过程、随时换模型的控制层，这套积累本身才是护城河。No Priors 聊的创业策略是同一逻辑的另一面：前沿实验室随时能吃掉你的赛道，能活下来的团队往往是用判断力挑了一个实验室看不上的窄市场。剩下两条安全新闻更直接：冒充 AI 机器人扫描密钥路径，两次 API 调用就能从加密的思维链里偷出别家模型的推理过程。这说明判断层本身也没设防，大家忙着给模型划边界，没人把这层控制和核验逻辑也当成攻击面。模型会一直变便宜，真正该花力气守的，是这层天天被人绕过的判断。",
+  "meta_read": "今天七条看着分散，其实说的是同一件事：模型本身越来越不值钱，值钱的挪到了包在它外面那层判断上。Yu Su 在 AI Engineer World's Fair 上说得最直白：智能已经过剩，专长才稀缺，agent 真正卡壳的地方不是推理能力，是有没有针对具体场域攒下的经验。Herrengt 那篇被 Hacker News 顶上头条的博客说的是同一件事：实现代码已经免费，公司花大价钱雇的是能拦住烂 PR、看穿架构债的判断力。Lovable 把这套判断直接做成了产品，他们不押注哪个模型最强，押注的是一套盯着构建过程、随时换模型的控制层，这套积累本身才是护城河。No Priors 聊的创业策略是同一逻辑的另一面：前沿实验室随时能吃掉你的赛道，能活下来的团队往往是用判断力挑了一个实验室看不上的窄市场。剩下两条安全新闻更直接：冒充 AI 机器人扫描密钥路径，两次 API 调用就能从加密的思维链里偷出别家模型的推理过程。这说明判断层本身也没设防，大家忙着给模型划边界，没人把这层控制和核验逻辑也当成攻击面。模型会一直变便宜，真正该花力气守的，是这层天天被人绕过的判断。",
   "meta_read_en": "Today's seven stories look scattered, but they say one thing: the model itself keeps getting cheaper, and the value has moved into the judgment layer wrapped around it. Yu Su put it most plainly at the AI Engineer World's Fair: intelligence is already abundant, expertise is what's scarce, and agents don't stall on reasoning, they stall on not having accumulated experience specific to a domain. Herrengt's blog post, which topped Hacker News today, makes the same point from a different angle: implementation is now free, and companies pay top salaries for the judgment that stops a bad PR or spots architectural debt before it compounds. Lovable turned that judgment into an actual product — they're not betting on which model is best, they're betting on a control plane that watches the build unfold and swaps models mid-stream, and that accumulated know-how is the real moat. The startup strategy No Priors discussed is the same logic from another angle: frontier labs can eat your market anytime, so the teams that survive tend to be the ones who used judgment to pick a niche the labs don't care about. The two security stories cut closer to the bone: bots impersonating AI crawlers are scanning for credential paths, and researchers can steal another model's hidden reasoning in just two API calls by exploiting how encrypted chain-of-thought gets replayed. That's the same judgment layer showing up completely undefended — everyone's busy drawing boundaries around the model while nobody's treating the control and verification logic itself as an attack surface. Models will keep getting cheaper. What actually deserves the effort is the layer that keeps getting walked around.",
   "ota": {
     "learned": [
@@ -163,9 +163,9 @@
           "author_en": "Alexey Shabanov · TestingCatalog",
           "likes": 0,
           "url": "https://www.testingcatalog.com/cursor-prepares-to-launch-origin-platform-for-code-reviews/",
-          "summary": "Cursor 内测了几周的 Origin 平台，代号「Cursor Review」，据信最快这周就会向所有用户开放。上线后会多出两个新标签：Codebase 负责从 GitHub 同步、管理仓库；Review 是真正的重点，一条自动化 PR 处理流水线，agent 和人一起过 open PR，只在需要人判断的时候提醒你。Cursor 之前在自家发布会上演示过一秒钟能往一个仓库提交 22.6 次 commit 的速度，团队认为 GitHub 那套「一个人、一份 diff、顺序合并」的审查节奏是给人类设计的，早就跟不上一大群 agent 同时干活的速度。上线路径也很聪明：先做审查这层，让团队不用把代码托管搬离 GitHub，等审查这层站稳了再谈搬迁。同期 SpaceX 收购 Anysphere（Cursor 母公司）交易预计本季度完成，xAI 的 Grok Bot 也被曝出接入 Origin 的迹象，两条产品线正在往一起并。",
+          "summary": "Cursor 内测了几周的 Origin 平台，代号“Cursor Review”，据信最快本周就会向所有用户开放。上线后会多出两个新标签：Codebase 负责从 GitHub 同步、管理仓库；Review 是重点，一条自动化 PR 处理流水线，agent 和人一起过 open PR，只在需要人判断时提醒你。Cursor 此前在发布会上演示过一秒钟能往一个仓库提交 22.6 次 commit 的速度，团队认为 GitHub 那套“一个人、一份 diff、顺序合并”的审查节奏是为人类设计的，早已跟不上众多 agent 并行工作的速度。上线策略也很巧妙：先做审查层，让团队无需将代码托管搬离 GitHub，等审查层站稳后，再谈迁移。同期，SpaceX 收购 Anysphere（Cursor 母公司）的交易预计本季度完成，xAI 的 Grok Bot 也被曝出接入 Origin 的迹象，两条产品线正趋于融合。",
           "summary_en": "Origin, the platform Cursor has been testing internally for weeks under the codename \"Cursor Review,\" is reportedly rolling out to all users as early as this week. Two new tabs come with it: Codebase syncs and manages repos pulled from GitHub, and Review, the actual point of the release, is an automated PR pipeline where agents and humans work through open pull requests together, only pinging you when your judgment is actually needed. Cursor previously demoed committing 22.6 times per second into a single repo, and the team's argument is that GitHub's one-reviewer, one-diff, sequential-merge review pace was designed for humans and can't keep up with a fleet of agents working at once. The rollout sequencing is deliberate too: ship the review layer first so teams don't have to move their code hosting off GitHub, then make the case for migrating later once the review layer has proven itself. In the same window, SpaceX's acquisition of Anysphere (Cursor's parent company) is expected to close this quarter, and xAI's Grok Bot has reportedly been spotted with Origin integration hooks, so the two product lines are converging.",
-          "why": "跟 Herrengt 那条一起看更扎心：那边说 review 排队是团队正在经历的痛点，这边 Cursor 已经把「审查是 agent 时代真正的瓶颈」这句话做成了产品定位。",
+          "why": "跟 Herrengt 那条一起看，更显对比：那边说 review 排队是团队正经历的痛点，这边 Cursor 已把“审查是 agent 时代真正的瓶颈”做成产品定位。",
           "why_en": "Read next to the Herrengt piece, this lands harder: that post describes review-queue pain as something teams are living through right now, and Cursor has already turned \"review is the real bottleneck in the agent era\" into an actual product bet."
         }
       ]
