@@ -469,4 +469,22 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   the whole session; after it reports done, check the actual artifact instead of trusting the report."
   *adopted (2026-08-11 run) — apply on every future Agent/Workflow dispatch, not just digest runs.*
 
+- 2026-08-12 — **Encrypted reasoning ≠ safe, extending [[feedback-scrub-persisted-transcripts]] and
+  [[feedback-subagent-context-boundary]] with a concrete mechanism.** "Stealing Reasoning Traces from
+  Proprietary LLM APIs" (stolen-thoughts.com) showed that Anthropic/OpenAI/Google's encrypted
+  chain-of-thought blocks, treated everywhere as an opaque safe-by-encryption black box, can be
+  replayed into a weaker sibling model, jailbroken, and decoded verbatim in two API calls. Scanning
+  6,708 public agent trajectories on GitHub/Hugging Face turned up 704 real privacy artifacts (62 API
+  keys, 33 passwords, 24 tokens, 30 emails); 64 of those appeared only inside the hidden reasoning,
+  never in the visible output anyone had already reviewed. Same day, Known Agents' Agentic Web Index
+  flagged an active campaign of bots impersonating ClaudeBot/Googlebot/ChatGPT-User to probe for
+  credential paths (.claude/settings.json, .env, .aws/credentials) — a second, systemic attack surface
+  showing the "judgment/boundary layer" itself is what's undefended, not the raw model. Invoke intent:
+  "before treating an encrypted or sandboxed artifact as safe, verify it explicitly — 'opaque' is not
+  the same claim as 'inspected'; and when deploying anything to a public path, proactively check for
+  credential-file exposure instead of waiting to be asked." *adopted (2026-08-12 run) — this closes the
+  loop on a memory (`feedback-scrub-persisted-transcripts`) written during an interrupted attempt
+  earlier the same day whose ledger entry never got written; the digest issue for 2026-08-12 completes
+  it.*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->

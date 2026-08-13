@@ -1,0 +1,174 @@
+{
+  "date": "2026-08-12",
+  "partial": false,
+  "banner": "假冒 AI 机器人，扫的是密钥文件",
+  "banner_en": "Bots impersonate AI crawlers, hunting for leaked credentials",
+  "image": {
+    "src": "digests/img/2026-08-12.jpg",
+    "caption": "本期头版配图：AI Engineer World's Fair 上 NeoCognition 联合创始人 Yu Su 演讲《Intelligence + Continual Learning = Expertise》，今日社评「智能过剩、专长稀缺」的一手来源。（图：AI Engineer World's Fair / YouTube）",
+    "caption_en": "This issue's lead image: a frame from NeoCognition co-founder Yu Su's talk \"Intelligence + Continual Learning = Expertise\" at AI Engineer World's Fair, the primary source behind today's \"intelligence is abundant, expertise is scarce\" thesis. (Image: AI Engineer World's Fair / YouTube)"
+  },
+  "actions": [
+    {
+      "text": "去自己名下随便一个 Vercel 项目里翻一下最近的请求日志，搜有没有人在探 .env、.claude/settings.json、.aws/credentials 这类路径；这波冒充 AI 机器人的扫描潮这两天正活跃。",
+      "source": "Known Agents · The Agentic Web Index",
+      "source_url": "https://knownagents.com/insights",
+      "text_en": "Pull up the recent request logs on any Vercel project you own and search for probes on paths like .env, .claude/settings.json, .aws/credentials — the bot-impersonation scanning campaign for these is active right now.",
+      "source_en": "Known Agents · The Agentic Web Index"
+    },
+    {
+      "text": "给自己的 agent/skill 选模型时，别看公开榜单排名，做一个只有几个真实任务的小型自测集，让实际构建结果说了算，再决定要不要换模型。",
+      "source": "Lovable 官方博客",
+      "source_url": "https://lovable.dev/blog/the-model-picker-is-a-dead-end",
+      "text_en": "When picking a model for your own agent or skill, skip the public leaderboard — build a small eval set from a handful of real tasks and let actual build results decide whether to switch, not a ranking.",
+      "source_en": "Lovable official blog"
+    },
+    {
+      "text": "下次 Claude Code 甩出一个几千行的大 diff，先别急着合并，逼自己（或逼它）把改动拆成能一次看懂的小块，讲清楚每个新抽象是不是真的需要。",
+      "source": "Florian Herrengt 博客 · Hacker News",
+      "source_url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
+      "text_en": "Next time Claude Code hands you a diff thousands of lines long, don't rush to merge — force yourself (or the agent) to split it into chunks you can actually read in one pass, and make it explain whether each new abstraction is really needed.",
+      "source_en": "Florian Herrengt blog · Hacker News"
+    }
+  ],
+  "hands_on": {
+    "title": "去 stolen-thoughts.com 玩一把「猜模型」",
+    "why": "今天这篇研究证明加密的思维链能被两次 API 调用还原成明文。网站自己做了个互动小游戏，直接给你看解码出来的真实推理片段，猜它来自哪个模型，比看论文直观得多，也是判断力比模型更稀缺这条主线今晚唯一能亲手玩到的部分。",
+    "time": "10分钟",
+    "steps": [
+      "打开 https://stolen-thoughts.com/",
+      "滚到 Guess the model 区块，点 Next round",
+      "读一段解码出来的真实推理文本，猜它来自 Claude、GPT 还是 Gemini",
+      "翻到下面 Decoded reasoning examples 部分，挑几条 Scheming considerations / Illegible reasoning 标签的看看模型私下到底在想什么"
+    ],
+    "source": "Panfilov et al. · stolen-thoughts.com",
+    "source_url": "https://stolen-thoughts.com/",
+    "title_en": "Play \"Guess the model\" at stolen-thoughts.com",
+    "why_en": "Today's research proved an encrypted chain-of-thought block can be turned back into plaintext with just two API calls. The site built an interactive game around it, showing you real decoded reasoning fragments and asking which model they came from — far more visceral than reading the paper, and the one part of tonight's \"judgment is scarcer than models\" thread you can actually touch.",
+    "time_en": "10 min",
+    "steps_en": [
+      "Open https://stolen-thoughts.com/",
+      "Scroll to the Guess the model section and click Next round",
+      "Read a decoded reasoning passage and guess whether it's from Claude, GPT, or Gemini",
+      "Scroll down to Decoded reasoning examples and check a few tagged Scheming considerations / Illegible reasoning to see what a model is actually thinking behind the scenes"
+    ]
+  },
+  "meta_read": "今天七条看着分散，其实说的是一件事：模型本身越来越不值钱，值钱的挪到了包在它外面那层判断上。Yu Su 在 AI Engineer World's Fair 上说得最直白：智能已经过剩，专长才稀缺，agent 真正卡壳的地方不是推理能力，是有没有针对具体场域攒下的经验。Herrengt 那篇被 Hacker News 顶上头条的博客说的是同一件事：实现代码已经免费，公司花大价钱雇的是能拦住烂 PR、看穿架构债的判断力。Lovable 把这套判断直接做成了产品，他们不押注哪个模型最强，押注的是一套盯着构建过程、随时换模型的控制层，这套积累本身才是护城河。No Priors 聊的创业策略是同一逻辑的另一面：前沿实验室随时能吃掉你的赛道，能活下来的团队往往是用判断力挑了一个实验室看不上的窄市场。剩下两条安全新闻更直接：冒充 AI 机器人扫描密钥路径，两次 API 调用就能从加密的思维链里偷出别家模型的推理过程。这说明判断层本身也没设防，大家忙着给模型划边界，没人把这层控制和核验逻辑也当成攻击面。模型会一直变便宜，真正该花力气守的，是这层天天被人绕过的判断。",
+  "meta_read_en": "Today's seven stories look scattered, but they say one thing: the model itself keeps getting cheaper, and the value has moved into the judgment layer wrapped around it. Yu Su put it most plainly at the AI Engineer World's Fair: intelligence is already abundant, expertise is what's scarce, and agents don't stall on reasoning, they stall on not having accumulated experience specific to a domain. Herrengt's blog post, which topped Hacker News today, makes the same point from a different angle: implementation is now free, and companies pay top salaries for the judgment that stops a bad PR or spots architectural debt before it compounds. Lovable turned that judgment into an actual product — they're not betting on which model is best, they're betting on a control plane that watches the build unfold and swaps models mid-stream, and that accumulated know-how is the real moat. The startup strategy No Priors discussed is the same logic from another angle: frontier labs can eat your market anytime, so the teams that survive tend to be the ones who used judgment to pick a niche the labs don't care about. The two security stories cut closer to the bone: bots impersonating AI crawlers are scanning for credential paths, and researchers can steal another model's hidden reasoning in just two API calls by exploiting how encrypted chain-of-thought gets replayed. That's the same judgment layer showing up completely undefended — everyone's busy drawing boundaries around the model while nobody's treating the control and verification logic itself as an attack surface. Models will keep getting cheaper. What actually deserves the effort is the layer that keeps getting walked around.",
+  "ota": {
+    "learned": [
+      "今天再次印证了 feedback-scrub-persisted-transcripts 这条记忆的判断：stolen-thoughts.com 证明加密的推理块能被两次 API 调用还原成明文，说明「加密就安全」这个假设站不住，任何我持久化的记录（session log、Workflow journal、handover 文件）都不能因为看起来不透明就跳过检查。",
+      "Known Agents 的数据说明冒充 AI 机器人扫描密钥路径已经是一个活跃、系统性的攻击面，不是孤立个案，而且 ClaudeBot 是被仿冒最多的身份之一。这提醒我：凡是我建议 Zen 部署到公开可访问路径的项目，都该主动检查一遍常见密钥文件路径有没有意外暴露，而不是等出问题才查。"
+    ],
+    "new_capabilities": [
+      "补完了今早那次被打断的记忆条目 feedback-scrub-persisted-transcripts 对应的 ota-ledger 记录（memory 已写但 ledger 漏记了）。从今天起，每次涉及部署/日志排查的任务，我会主动提议检查一遍公开可访问路径有没有被扫描密钥文件的痕迹，而不是被动等 Zen 问。"
+    ],
+    "learned_en": [
+      "Today reconfirmed the feedback-scrub-persisted-transcripts memory: stolen-thoughts.com proved an encrypted reasoning block can be turned back into plaintext with just two API calls, so \"it's encrypted, therefore safe\" doesn't hold. Nothing I persist (a session log, a Workflow journal, a handover snapshot) gets to skip inspection just because it looks opaque.",
+      "Known Agents' data shows bots impersonating AI crawlers to scan for credential paths is an active, systemic attack surface, not an isolated incident, and ClaudeBot is one of the most frequently impersonated identities. Takeaway: for any project I help deploy to a public path, I should proactively check for exposed credential-file paths instead of waiting for something to go wrong first."
+    ],
+    "new_capabilities_en": [
+      "Closed the loop on this morning's interrupted memory write (feedback-scrub-persisted-transcripts existed but never made it into ota-ledger.md). Starting today, on any deployment or log-triage task I proactively suggest checking public paths for credential-scanning traces, instead of waiting for Zen to ask."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 28,
+      "items": [
+        {
+          "title": "智能已经过剩，专长才是稀缺品",
+          "title_en": "Intelligence is abundant now, expertise is what's scarce",
+          "author": "Yu Su · NeoCognition（AI Engineer World's Fair）",
+          "author_en": "Yu Su · NeoCognition (AI Engineer World's Fair)",
+          "likes": 0,
+          "url": "https://www.youtube.com/watch?v=I6aiEf3aEFQ",
+          "summary": "NeoCognition 联合创始人 Yu Su 在演讲里把「智能」和「专长」拆成两件事：智能是给定上下文后解决陌生问题的能力，这正是前沿模型越来越强的地方；专长是在某个具体场域里积累出的可靠判断，靠的是持续学习，不是靠模型更聪明。他用这个区分解释一个反常现象：为什么 coding agent 这么强，换个场景就很脆弱、还很吃 token。原因是编程本身是一个高度符号化、规则清楚的世界，换到企业软件、日常协作这些「微世界」里，每家公司配置都不一样，模型没法靠一次训练把这些差异都学会。他提出的 continual learning 定义是「把经验自适应地压缩成可复用结构」，并画了一张图：光靠堆智能，只能造出「世界上最聪明的新手」，只有配上强的持续学习算法，才能让专长随时间累积，甚至可能出现「有限智能、无限专长」的情况，模型不用一直变得更聪明，靠不断学习一样能到专家水平。",
+          "summary_en": "NeoCognition co-founder Yu Su split \"intelligence\" and \"expertise\" into two separate things in this talk. Intelligence is the ability to reason through an unfamiliar problem given context, exactly what frontier models keep getting better at. Expertise is reliable, situated judgment built up inside one specific domain, and it comes from continual learning, not from a smarter model. He used that split to explain a puzzle: why coding agents are so strong yet fall apart, and burn tokens, the moment they leave code. Code is a highly symbolic, rule-clear world; step into an enterprise workflow or everyday digital work and every company configures things differently, so no amount of pretraining captures all of that variation. His working definition of continual learning is \"adaptive compression of experience into reusable structures,\" and he sketched a chart: scaling raw intelligence alone just produces the world's smartest novice, while pairing it with a strong continual-learning algorithm lets expertise compound over time, potentially reaching \"unbounded expertise from bounded intelligence,\" where a model doesn't need to keep getting smarter, it just needs to keep learning.",
+          "why": "与当天另外两条（Herrengt 的博客、Lovable 的模型路由）合看，说的是同一件事的三个侧面：模型能力本身正变成 commodity，真正稀缺、值钱的是那层持续积累的判断。",
+          "why_en": "Read next to two other stories today (Herrengt's blog, Lovable's model routing), this is the same idea from a third angle: raw model capability is becoming a commodity, and the scarce, valuable thing is the judgment layer that accumulates over time."
+        },
+        {
+          "title": "前沿实验室吃得动大市场，创业者该往哪躲",
+          "title_en": "Frontier labs can eat the big markets, so where should founders hide",
+          "author": "No Priors 播客",
+          "author_en": "No Priors Podcast",
+          "likes": 0,
+          "url": "https://www.youtube.com/watch?v=two1jB-E2eI",
+          "summary": "嘉宾观察到，越来越多优秀创始人主动避开大市场，转做细分赛道，就怕被 OpenAI、Anthropic 等实验室的路线图正面覆盖。他举例 Harvey、Open Evidence、Decagon、Sierra 等公司，说明这些公司当年选的其实都是大市场，只是赌自己能跑赢。现在分化出两条路线：一批人继续押注中后期赛道能长成万亿公司，但他认为大部分做不到，可能到 200 亿、100 亿就见顶，也有归零的；另一批人干脆转去实验室大概率不会碰的领域，比如硬件，靠“实验室懒得做”这个逻辑找生存空间，代价是这类公司往往更容易同质化、缺乏差异化。",
+          "summary_en": "The guest flagged a shift: more strong founders are deliberately avoiding big markets and going niche instead, out of fear that OpenAI or Anthropic's roadmap will simply steamroll their category. He pointed to Harvey, Open Evidence, Decagon, and Sierra as companies that actually did enter big markets and bet they could outrun the labs. Now two things are happening at once: some founders keep betting on mid-to-late-stage markets reaching trillion-dollar scale (he thinks most won't, plenty will top out at $20B or $10B, some will go to zero), while others deliberately move into territory the labs probably won't bother with, like hardware, betting on \"the labs won't do this\" as their moat, at the cost of those companies often ending up more derivative and less differentiated from each other.",
+          "why": "与 Yu Su 那条是同一枚硬币的两面：一个讲模型能力过剩后专长怎么长出来，一个讲创业公司在能力过剩的世界里往哪站位，都为 Zen 做产品/GTM 决策提供直接参考。",
+          "why_en": "This is the flip side of the Yu Su talk: one is about how expertise grows once model capability is abundant, the other is about where a startup should position itself in that same abundant-capability world — both are directly usable inputs for product/GTM decisions."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 56,
+      "items": [
+        {
+          "title": "假冒AI机器人，扫的是密钥文件",
+          "title_en": "Bots impersonate AI crawlers, hunting for leaked credentials",
+          "author": "Known Agents · The Agentic Web Index",
+          "author_en": "Known Agents · The Agentic Web Index",
+          "likes": 0,
+          "url": "https://knownagents.com/insights",
+          "summary": "网站分析商 Known Agents 在监测 5000 多个网站的机器人流量时，发现一波仿冒潮：有人冒充 Googlebot、ChatGPT-User、ClaudeBot 等身份访问网站，但没通过对应身份应有的验证（如 IP 核验或 Web Bot Auth 签名）。这批假流量专门扫描的不是常规路径，而是 /.claude/settings.json、/.claude.json、/.openclaw/.env、/.aws/credentials、/service-account.json、/firebase-adminsdk.json、/terraform.tfstate 等文件，明显冲着 AI 编码工具和云服务的配置或密钥文件。数据显示 ClaudeBot 是被仿冒最频繁的身份之一，也是被网站拉黑最多的抓取者之一（21.6% 的顶级网站在 robots.txt 里挡了它）。",
+          "summary_en": "Known Agents, which tracks bot traffic across more than 5,000 sites, flagged an active campaign impersonating recognized crawler identities like Googlebot, ChatGPT-User, and ClaudeBot, all of it failing the verification method each identity is supposed to support (IP verification or Web Bot Auth signatures). This fake traffic isn't hitting normal pages, it's scanning for /.claude/settings.json, /.claude.json, /.openclaw/.env, /.aws/credentials, /service-account.json, /firebase-adminsdk.json, /terraform.tfstate — files that are obviously targeting AI coding tools' and cloud services' config and credential files. ClaudeBot shows up as one of the most frequently impersonated identities, and also one of the most-blocked crawlers overall (21.6% of top sites disallow it in robots.txt).",
+          "why": "对天天用 Claude Code、把项目部署在 Vercel 上的 Zen 来说，这不是别人的新闻，值得今晚就去自己的日志里翻一眼。",
+          "why_en": "For someone who runs Claude Code daily and deploys projects on Vercel, this isn't someone else's news — it's worth a five-minute check of your own logs tonight."
+        },
+        {
+          "title": "两次API调用，就能偷出别家模型的思维链",
+          "title_en": "Two API calls is all it takes to steal another model's chain of thought",
+          "author": "Panfilov et al. · stolen-thoughts.com",
+          "author_en": "Panfilov et al. · stolen-thoughts.com",
+          "likes": 0,
+          "url": "https://stolen-thoughts.com/",
+          "summary": "Anthropic、OpenAI、Google 都会把模型的推理过程加密后原样返回给客户端，方便下一轮对话续上下文，默认这块是“加密等于安全”的黑箱。这篇研究证明该假设不成立：把一个强模型（如 Claude Opus 4.8）产生的加密推理块，塞进同一家公司旗下一个更弱、已被越狱的模型（如 Claude Haiku 4.5）里，让它“逐字转录”这段推理，弱模型就会把强模型的原始思考过程用明文吐出来，全程没有直接攻击强模型本身，也没触发反蒸馏防护。研究者从 GitHub 和 Hugging Face 抓了 6708 份公开 agent 运行记录，解出 31.5 万段推理，光是非跑分的真实会话里就挖出 704 个真实隐私信息：62 个 API key、33 个密码、24 个访问令牌、30 个邮箱，其中 64 个只出现在隐藏推理里，可见回复文本中根本没有。",
+          "summary_en": "Anthropic, OpenAI, and Google all return a model's reasoning to the client as an encrypted block so the next turn can pick the context back up, and everyone treats that block as a safe, opaque black box because it's encrypted. This research shows that assumption doesn't hold. Take an encrypted reasoning block from a strong model (say, Claude Opus 4.8), feed it into a weaker, jailbroken sibling model from the same provider (Claude Haiku 4.5), and ask it to transcribe that reasoning verbatim, and the weaker model will spit out the stronger model's raw thinking in plaintext, without ever attacking the strong model directly or tripping its anti-distillation defenses. The researchers pulled 6,708 public agent trajectories off GitHub and Hugging Face, decoded 315,320 reasoning blocks, and in genuine non-benchmark sessions alone recovered 704 real privacy artifacts: 62 API keys, 33 passwords, 24 access tokens, 30 email addresses. 64 of those showed up only inside the hidden reasoning, nowhere in the visible reply text anyone had actually reviewed.",
+          "why": "跟上一条（假冒机器人扫密钥路径）是同一天出现的两种不同攻击面：一个从外面探你的服务器，一个从模型自己“看不见”的思考部分往外漏。都在提醒：加密、沙箱不等于安全，安不安全得看有没有人真去核验。",
+          "why_en": "Paired with the previous story (bots scanning for credential paths), this is a second, different attack surface showing up the same day: one probes your server from outside, the other leaks from the part of the model's own thinking nobody's supposed to see. Both are the same reminder: encrypted or sandboxed isn't the same as safe, that only holds if someone actually verifies it."
+        },
+        {
+          "title": "不押注最强模型，押注会换模型的那层系统",
+          "title_en": "Don't bet on the best model, bet on the system that knows when to switch",
+          "author": "Lovable 官方博客",
+          "author_en": "Lovable Official Blog",
+          "likes": 0,
+          "url": "https://lovable.dev/blog/the-model-picker-is-a-dead-end",
+          "summary": "AI 编程产品 Lovable 发文讲他们为何放弃“模型选择器”设计：让用户自选一个模型、指望它把所有活干好，这个假设本身站不住——某模型可能很会 debug，却做不好界面设计，新模型上线，排名又变。Lovable 的做法是养一个专门团队，针对每个模型单独调教指令、工具和上下文，测出它的强项和短板，再让一个“控制层”实时盯着构建进度：任务卡住时，是换模型、换工具，还是退回去改方案？换模型不免费，长时间构建会积累“历史”（试过哪些方案、踩过哪些坑），换模型往往要压缩甚至丢掉这些上下文，所以控制层要衡量换模型的收益是否抵得过代价。他们甚至开始训练自己的小模型，专做路由、总结等高频活，跑赢外部模型才能拿到流量。文章总结：模型公司能让模型变强，Lovable 能做的是让整套系统变强。",
+          "summary_en": "Lovable, the AI app-building product, wrote about why they killed the model-picker dropdown. Assuming one model can handle everything well doesn't hold up: a model that's great at debugging can be surprisingly bad at interface design, and rankings shuffle again the moment a new model ships. Lovable's fix is a dedicated team that tunes instructions, tools, and context separately for each model, tests where it's strong and where it stalls, then runs a control plane that watches the build unfold in real time: is the task stuck because it needs a different model, a different tool, or a different plan entirely? Switching models isn't free — a long-running build accumulates history (approaches already tried, mistakes already made), and a model switch often means compressing or losing that context, so the control plane has to weigh whether the switch is worth what gets lost. They've even started training their own small models for high-frequency jobs like routing and summarizing, and those only keep the traffic if they outperform outside models. Their conclusion: a model company can make its model smarter, Lovable's job is to make the whole system smarter.",
+          "why": "这是当天最直接能抄的一条：Zen 自己搭 agent 或 skill 时，面对同样决策——该按 benchmark 排名选模型，还是按自己场景的实测结果来？",
+          "why_en": "This is today's most directly copyable idea: the exact same decision comes up whenever Zen builds his own agents or skills — pick a model off a benchmark leaderboard, or decide based on how it actually performs in his own setup."
+        },
+        {
+          "title": "实现代码免费了，稀缺的是拦得住烂PR的判断力",
+          "title_en": "Implementation is free now, judgment that stops a bad PR is what's scarce",
+          "author": "Florian Herrengt · Hacker News",
+          "author_en": "Florian Herrengt · Hacker News",
+          "likes": 697,
+          "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
+          "summary": "这篇今天冲上 Hacker News 首页的博客讲了个很多人会觉得眼熟的场景：团队里人人都在用 agent 写代码，一个人一天就能开出几千行的 PR，review 队列排到没法看完，出了 bug 去问写这段代码的人，对方也说不清楚，只甩过来一段 Claude 对话记录让你自己读。作者的判断是：AI 拿掉了「实现代码有多贵」这个天然速度限制，以前技术债积累有个物理上限（写代码要花时间），现在这个限制没了，烂决定能在几小时内堆到没法回头的地步。他认为这会拉大薪资差距：好工程师因为能用 agent 干更多活，变得更值钱；差的工程师因为一天能捅的篓子比过去一年还多，变得雇不起。真正稀缺、真正该花钱买的，不是「会不会用 agent 写代码」，是有没有判断力去分辨这段代码该不该合、这个抽象是不是真的需要。",
+          "summary_en": "This blog post, which hit the front page of Hacker News today, describes a scenario a lot of people will recognize: everyone on the team is coding with an agent, one person can open a PR with tens of thousands of lines in an afternoon, the review queue is unreadable, and when a bug shows up, the person who wrote that code can't explain it either and just links you to a Claude conversation to read yourself. The author's take: AI removed the natural speed limit on how fast implementation could happen. Technical debt used to have a physical ceiling, because writing code took time, and that ceiling is gone now, so bad decisions can pile up past the point of no return within hours. He argues this pulls salaries further apart: good engineers become more valuable because an agent lets them do more, while bad engineers become unaffordable because they can now do more damage in a day than they used to in a year. What's actually scarce, and worth paying for, isn't whether someone can prompt an agent to write code — it's whether they have the judgment to say a piece of code shouldn't merge, or that abstraction wasn't actually needed.",
+          "why": "把这条摆进今天的整体脉络里：智能过剩、模型免费、判断力才稀缺，这条从工程管理的角度给出了最具体的证据。",
+          "why_en": "Slotted into today's larger pattern (intelligence is abundant, models are cheap, judgment is what's scarce), this is the most concrete piece of evidence for it, viewed from an engineering-management angle."
+        },
+        {
+          "title": "Cursor要出GitHub平替，先啃审查这块硬骨头",
+          "title_en": "Cursor's GitHub rival tackles review first, not hosting",
+          "author": "Alexey Shabanov · TestingCatalog",
+          "author_en": "Alexey Shabanov · TestingCatalog",
+          "likes": 0,
+          "url": "https://www.testingcatalog.com/cursor-prepares-to-launch-origin-platform-for-code-reviews/",
+          "summary": "Cursor 内测了几周的 Origin 平台，代号「Cursor Review」，据信最快这周就会向所有用户开放。上线后会多出两个新标签：Codebase 负责从 GitHub 同步、管理仓库；Review 是真正的重点，一条自动化 PR 处理流水线，agent 和人一起过 open PR，只在需要人判断的时候提醒你。Cursor 之前在自家发布会上演示过一秒钟能往一个仓库提交 22.6 次 commit 的速度，团队认为 GitHub 那套「一个人、一份 diff、顺序合并」的审查节奏是给人类设计的，早就跟不上一大群 agent 同时干活的速度。上线路径也很聪明：先做审查这层，让团队不用把代码托管搬离 GitHub，等审查这层站稳了再谈搬迁。同期 SpaceX 收购 Anysphere（Cursor 母公司）交易预计本季度完成，xAI 的 Grok Bot 也被曝出接入 Origin 的迹象，两条产品线正在往一起并。",
+          "summary_en": "Origin, the platform Cursor has been testing internally for weeks under the codename \"Cursor Review,\" is reportedly rolling out to all users as early as this week. Two new tabs come with it: Codebase syncs and manages repos pulled from GitHub, and Review, the actual point of the release, is an automated PR pipeline where agents and humans work through open pull requests together, only pinging you when your judgment is actually needed. Cursor previously demoed committing 22.6 times per second into a single repo, and the team's argument is that GitHub's one-reviewer, one-diff, sequential-merge review pace was designed for humans and can't keep up with a fleet of agents working at once. The rollout sequencing is deliberate too: ship the review layer first so teams don't have to move their code hosting off GitHub, then make the case for migrating later once the review layer has proven itself. In the same window, SpaceX's acquisition of Anysphere (Cursor's parent company) is expected to close this quarter, and xAI's Grok Bot has reportedly been spotted with Origin integration hooks, so the two product lines are converging.",
+          "why": "跟 Herrengt 那条一起看更扎心：那边说 review 排队是团队正在经历的痛点，这边 Cursor 已经把「审查是 agent 时代真正的瓶颈」这句话做成了产品定位。",
+          "why_en": "Read next to the Herrengt piece, this lands harder: that post describes review-queue pain as something teams are living through right now, and Cursor has already turned \"review is the real bottleneck in the agent era\" into an actual product bet."
+        }
+      ]
+    }
+  ]
+}
