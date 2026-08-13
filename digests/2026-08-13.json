@@ -1,0 +1,266 @@
+{
+  "date": "2026-08-13",
+  "partial": false,
+  "banner": "AI 代码量爆表，评审跟不上",
+  "banner_en": "AI writes code faster than reviews can keep up",
+  "image": {
+    "src": "digests/img/2026-08-13.jpg",
+    "caption": "「Build Wide，Ship Narrow」：AI 把写代码的成本压到最低之后，工程团队正在重新设计怎么拆、怎么审（图：Adapt 官方博客）。",
+    "caption_en": "\"Build Wide, Ship Narrow\": once AI made writing code nearly free, engineering teams had to redesign how they split and review it. (Image: Adapt's official blog)"
+  },
+  "actions": [
+    {
+      "text": "查一下自己名下发布的 AI 生成或辅助产品，有没有做过安全扫描，支付、发布这类敏感操作有没有对用户说明清楚。10 分钟内能把自己名下的项目过一遍，查完写下每个项目「有」或「缺」哪一项治理动作，就算做完。Lovable 这轮 4 亿美元融资里新增的功能，大多是这类把 AI 写的东西管起来的治理动作，不是新的生成能力。",
+      "source": "Lovable 官方博客",
+      "source_url": "https://lovable.dev/blog/series-c",
+      "text_en": "Check whether any AI-generated or AI-assisted product you've shipped has had a security scan, and whether sensitive actions like payments or publishing are clearly disclosed to users. This takes about 10 minutes to go through your own project list, and you're done once you've written down what each one has or is missing. Most of what Lovable's new $400M round funds is this kind of governance work for AI-written output, not new generation capability.",
+      "source_en": "Lovable's official blog"
+    },
+    {
+      "text": "把手头一个卡在工程排期里的运营自动化需求拆成两栏：哪些步骤不能出错、必须走固定代码，哪些步骤需要判断、可以交给 agent。15 分钟能列完，列完拿这张表去跟工程核对，能不能不用等排期就先把「交给 agent」那一半跑起来，就算做完。Show HN 上新出的 Ballet，卖点正是把这套判断标准做成了产品在卖。",
+      "source": "Ballet · Hacker News (Show HN)",
+      "source_url": "https://www.ballet.dev/",
+      "text_en": "Split one of your own operations-automation ideas stuck behind an engineering queue into two columns: which steps can't be allowed to drift and must be deterministic code, and which steps need judgment and can go to an agent. This takes about 15 minutes to list out, and you're done once you've checked with engineering whether the agent-judgment half can start running now, without waiting on the roadmap. Ballet, a new Show HN launch, sells exactly this distinction as a product.",
+      "source_en": "Ballet · Hacker News (Show HN)"
+    },
+    {
+      "text": "给自己正在搭的一个 agent 工作流写清楚：哪一步做完就该自动往下走，哪一步必须停下来等你点头批准。10 分钟能写完，写完贴进项目文档，团队成员不用问你也能看懂边界在哪，就算做完。xAI 今天上线的 Grok Bot，卖点正是「做完整件事才回来找你」，把这条边界模糊掉了。",
+      "source": "xAI",
+      "source_url": "https://x.ai/news/introducing-grok-bot",
+      "text_en": "Write down, for one agent workflow you're building, exactly which steps should auto-continue and which must pause for your explicit approval. This takes about 10 minutes to write, and you're done once it's in the project docs and a teammate can read the boundary without asking you. xAI's Grok Bot, launched today, sells itself on doing the whole job before coming back to you, which is exactly the boundary this blurs.",
+      "source_en": "xAI"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试试：用「鹈鹕骑自行车」测一次新模型的真实水平",
+    "why": "Simon Willison 今天测 DeepSeek 新模型时，用的是自己常年用的老办法：让模型画一只骑自行车的鹈鹕，同一道题在不同推理强度下各画一次，直接比输出。这比等厂商公布跑分更直观，而且哪个模型都能试。",
+    "time": "~10 分钟",
+    "steps": [
+      "打开任意能生成 SVG 的对话模型（Claude、GPT、DeepSeek 等都行）",
+      "发同一句提示：Generate an SVG of a pelican riding a bicycle. 说明画布大小，比如 800x600",
+      "把返回的 SVG 代码贴进 Simon Willison 的免费渲染工具 https://tools.simonwillison.net/markdown-svg-renderer ，或存成 .svg 文件用浏览器直接打开",
+      "换一档推理强度（如果模型支持 low/medium/high）或换一个模型，重复上面两步，对比几张鹈鹕画得有多不一样——这比单看跑分更能感觉出模型的稳定性"
+    ],
+    "source": "Simon Willison's Weblog",
+    "source_url": "https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/",
+    "title_en": "Tonight, try it: test a new model with the pelican-riding-a-bicycle benchmark",
+    "why_en": "When Simon Willison tested DeepSeek's new release today, he used the same idiosyncratic test he's run for years: ask a model to draw an SVG of a pelican riding a bicycle, once per reasoning level, and just look at the outputs side by side. It's more revealing than waiting on a vendor's published benchmark, and it works on any model.",
+    "time_en": "~10 minutes",
+    "steps_en": [
+      "Open any chat model that can generate SVG (Claude, GPT, DeepSeek, etc.)",
+      "Send the same prompt: \"Generate an SVG of a pelican riding a bicycle.\" Specify a canvas size, e.g. 800x600",
+      "Paste the returned SVG code into Simon Willison's free renderer at https://tools.simonwillison.net/markdown-svg-renderer, or save it as a .svg file and open it directly in a browser",
+      "Switch reasoning levels (if the model supports low/medium/high) or switch models, repeat the two steps above, and compare how different the pelicans look, that tells you more about a model's consistency than a benchmark score does"
+    ]
+  },
+  "meta_read": "今天几条新闻站的位置不一样，但拼在一起是同一条分界线：谁在给 AI 干的活加审查，谁在把审查往后挪。Lovable 拿到的四亿美元里，新功能大半是替客户管住 AI 写的东西：安全扫描、AIUC-1 认证、发布控制。Adapt 那篇工程笔记讲的是同一件事的个人版：把「先拆再建」倒过来，整块交给 agent 做完再拆成能审的小 PR，拆分这一步也交给 agent，只是挪到了评审开始前。这两条都在给审查加码。走反方向的是 Grok Bot，卖点直接就是「做完整件事才回来找你」，把人从流程里往外挪，今天工程师圈子里传得最广的那篇吐槽，说的正是这笔没人拦的账已经开始还不上。Manus 这次被迫和 Meta 拆伙，是同一逻辑的另一个版本：这次欠的不是代码审查的账，是监管和数据主权的账，同样是拖到临期才被迫处理。",
+  "meta_read_en": "A few different stories today, but they line up on the same divide: who is adding review to AI-generated work, and who is pushing review out of the loop. Most of what Lovable's new funding buys is the former: security scanning, AIUC-1 certification, publishing controls, all meant to keep AI-written software in check. Adapt's engineering post describes the individual version of the same idea: instead of splitting work into pieces before building, build the whole thing on one branch first, then let an agent split it into reviewable PRs afterward, moving the split step to just before review rather than skipping it. Both are investments in review. Grok Bot runs the other direction: its whole pitch is that it only comes back once the job is fully done, pulling people further out of the loop, which is exactly the debt today's most-discussed engineering post was warning about, that AI now produces work faster than anyone can review it. Manus's forced split from Meta is a version of the same pattern in a different currency: not code-review debt this time, but regulatory and data-sovereignty debt, left until it came due.",
+  "ota": {
+    "learned": [
+      "台账里 08-04 到 08-12 这条线一直在说，贴着「已验证」「独立训练」「真人专家」这类标签的声明，都得找独立证据核实，不能照单全收。这条线目前只查过身份、血缘类的声明，没查过跑分、能力提升这类声明。",
+      "今天 Simon Willison 测 DeepSeek 新模型的做法补上了另一半：他没有引用 DeepSeek 自己的跑分（这份跑分是从微信群外流，被转发到 Reddit 又被删帖，最后变成 Hacker News 上一张 ASCII 表格转出来的），而是自己拿一道固定的题——画一只骑自行车的鹈鹕——在三档推理强度下各测一次，直接看输出。三张图风格差异很大，这是任何官方跑分都测不出来的信号。跑分和能力提升声明，跟「是不是独立训练」「是不是真人专家」一样，也是厂商说了算的数字，同样需要自己动手的独立检查。"
+    ],
+    "new_capabilities": [
+      "从今天起，遇到需要真正影响判断的模型能力声明或跑分数字（该不该换模型、某次更新是不是真的变强了），会维护一小套固定的、不跟着任何公开跑分走的探测题，自己跑一遍、看实际输出再下判断，而不是直接引用厂商或转载方给出的分数。这把 08-04 到 08-12「复合声明要独立核实」的规则，从身份/血缘声明延伸到了能力/跑分声明这个新领域。已写入 ota-ledger.md，标记「proposed (cloud)」。调用意图：遇到需要拿来做真实决策的模型能力或跑分声明时，自己跑一套固定的探测题看真实输出，不要把厂商或转载方报出的数字当成已核实的结论。"
+    ],
+    "learned_en": [
+      "The ledger's 08-04 through 08-12 chain established that a label like \"verified,\" \"independently trained,\" or \"real human experts\" needs independent evidence, not blind acceptance. That chain has so far only ever checked identity and lineage claims, never benchmark or capability claims.",
+      "Today, Simon Willison's approach to testing DeepSeek's new release fills in the other half: instead of citing DeepSeek's own benchmark numbers (which reached him third-hand, leaked to a WeChat group, copied to Reddit, deleted by moderators, then re-copied into an ASCII table on Hacker News), he ran his own fixed test, drawing an SVG of a pelican riding a bicycle, once per reasoning level, and looked at the actual outputs. The three results varied wildly in style, a signal no published benchmark would have surfaced. A benchmark score or capability claim is the same kind of vendor-asserted number as \"trained from scratch\" or \"reviewed by real experts,\" and deserves the same independent, self-run check."
+    ],
+    "new_capabilities_en": [
+      "Starting today, when a model-capability or benchmark claim needs to inform a real decision (whether to switch models, whether an update genuinely improved things), maintain a small fixed set of repeatable probe prompts, not tied to any public benchmark, run them myself, and judge from the actual outputs rather than citing the vendor's or a third party's reported score. This extends the 08-04 through 08-12 rule (a compound claim needs independent verification) from identity/lineage claims into capability/benchmark claims. Logged to ota-ledger.md, marked \"proposed (cloud).\" Invoke intent: when a model-capability or benchmark claim needs to inform a real decision, run a fixed set of probe prompts yourself and look at the actual outputs, don't treat a vendor's or third party's reported number as already verified."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 50,
+      "items": [
+        {
+          "title": "AI把写代码变便宜了，工程师的中产阶级正在消失",
+          "title_en": "AI made writing code cheap, and it's hollowing out the middle class of engineering",
+          "author": "Florian Herrengt · Hacker News",
+          "author_en": "Florian Herrengt · Hacker News",
+          "likes": 779,
+          "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
+          "summary": "工程师 Florian Herrengt 在博客中写道，AI 拿掉了软件工程原本的“限速带”：过去写代码慢，团队里判断力弱的人捅的娄子好歹能被人及时发现；现在一个人一下午能写出两万行代码，PR 动辄 +24506/-3938 行，评审者根本来不及理解，只能选择放行。他举例说，一个功能的数据来源没人说得清，只能甩一段 Claude 对话记录让同事自己去读，里面夹着模型反复改主意的十几轮讨论。他的结论是，AI 会把工程师的价值拉向两极：能看懂系统、敢拦下烂决定的人更值钱，因为 AI 让他们干得更快；只会把需求丢给 agent、自己看不懂输出的人会变得比外包还便宜，甚至直接被替代。HN 779 赞，今日最高。",
+          "summary_en": "Engineer Florian Herrengt writes that AI removed software engineering's old speed limit: work used to be slow enough that a weak engineer's bad calls usually got caught in time. Now one person can produce 20,000 lines of code in an afternoon, PRs routinely run +24,506/-3,938 lines, and reviewers can't actually understand them fast enough to do anything but wave them through. His example: nobody on a team can explain where a feature's data comes from, so they just link a Claude conversation for a colleague to read through, a dozen-plus rounds of the model changing its mind buried inside. His conclusion is that AI pulls engineers' value toward two poles: people who can read a system and stop a bad decision become more valuable, because AI lets them move faster, while people who only prompt an agent and can't evaluate its output become cheaper to hire than outsourcing, or get replaced outright. 779 points on HN, today's highest.",
+          "why": "这篇写的是“谁还值这份工资”的问题：实现代码几乎免费之后，能看懂系统、敢拦下烂 PR 的判断力成了唯一还能定价的东西，招聘和薪资该按这个标准调整，而不是继续按“会不会写代码”来选人。",
+          "why_en": "This is really about who still deserves their salary: once writing code is nearly free, the judgment to read a system and stop a bad PR becomes the one thing still worth paying for, and hiring and pay should track that, not whether someone can produce code at all."
+        },
+        {
+          "title": "把「先拆再建」倒过来：整块做完再拆 PR，这条工作流火了",
+          "title_en": "Flip \"split first, build second\": build the whole thing, then split it into PRs",
+          "author": "Bruno Quaresma（Adapt）· Hacker News",
+          "author_en": "Bruno Quaresma (Adapt) · Hacker News",
+          "likes": 58,
+          "url": "https://adapt.com/blog/build-wide-ship-narrow",
+          "summary": "Adapt 工程师 Bruno Quaresma 说，AI 让“写代码”和“把一周工作量拆成 PR”都变便宜了，于是他把传统的“先拆任务再逐个实现”倒了过来：先用自研的 grill-me 技能对着需求连续追问，把设计逼出真正的决定；设计定了就整块开干，不为了评审在中途拆分，commit 只当存档点；功能跑通后不直接送审，先剪个视频或用预览环境给使用者看，趁改动还便宜时纠正方向；最后才用一句提示让 agent 把已完成的工作拆成“各自能独立评审、独立合并”的最小 PR 集合，用 git worktree 并行处理。他强调设计仍然要先行，拿掉的只是“先分好任务再动手”这一步。",
+          "summary_en": "Adapt engineer Bruno Quaresma writes that AI made both writing code and splitting a week's work into PRs cheap, so he inverted the usual order of splitting tasks before implementing them. He runs a self-built skill called grill-me that interrogates a plan until it contains real decisions, then builds the whole feature on one branch without stopping to split for review, treating commits as save points. Once it works, he demos it via a short video or preview deploy before anyone reads the code, catching wrong turns while they're still cheap to fix. Only at the end does he run a single prompt asking an agent to split the finished work into the smallest set of independently reviewable, independently mergeable PRs, using separate git worktrees. He's clear that design still comes first; what he cut is only the step of deciding task boundaries before writing anything.",
+          "why": "这是对“AI 写代码太快、评审跟不上”最直接的工程回应之一——不是让人跟上 AI 的速度，而是把“拆分”这个动作也交给 AI，只是挪到评审真正开始之前再做。",
+          "why_en": "This is one of the more direct engineering responses to \"AI writes code faster than anyone can review it\": not asking people to move faster, but handing the splitting step itself to an agent too, just moved to right before review starts instead of skipped."
+        },
+        {
+          "title": "Lovable 融资 4 亿美元，估值 133 亿美元，卖点是帮人把 AI 写的软件管起来",
+          "title_en": "Lovable raises $400M at a $13.3B valuation, selling governance for AI-written software",
+          "author": "Lovable · Hacker News",
+          "author_en": "Lovable · Hacker News",
+          "likes": 105,
+          "url": "https://lovable.dev/blog/series-c",
+          "summary": "AI 建站/建应用平台 Lovable 完成 4 亿美元 C 轮融资，估值 133 亿美元，由 Menlo Ventures 领投。官方数据：2024 年 11 月上线以来用户已创建超过 6000 万个项目，月访问量超过 9 亿次，财富 500 强公司里已有近三分之二用过 Lovable。这一轮之后新增的功能大多是“管起来”而不是“做更多”：自动安全扫描、拿到 AIUC-1 认证（首个面向 AI agent 的安全标准）、发布控制和应用清理这类治理功能，还给公开发布的应用配了单独的信任中心页面。",
+          "summary_en": "AI app-building platform Lovable closed a $400M Series C at a $13.3B valuation, led by Menlo Ventures. By its own numbers, users have created over 60 million projects since its November 2024 launch, the platform sees over 900 million monthly visits, and nearly two-thirds of Fortune 500 companies now have employees using it. Most of what the round funds is governance rather than raw generation: automatic security scanning, AIUC-1 certification (the first security standard aimed at AI agents), publishing controls and app cleanup tools, plus a dedicated trust-center page for publicly published apps.",
+          "why": "这轮钱投的不是“AI 能写更多代码”，而是“谁来替 AI 写的代码把关”，跟今天工程圈里“PR 太大评审跟不上”的吐槽对上了同一个缺口，只是 Lovable 把它做成了产品去卖。",
+          "why_en": "This round isn't funding \"AI can write more code,\" it's funding \"who checks the code AI writes,\" which lines up with today's engineering complaint about PRs too big to review, except Lovable turned the gap into a product to sell."
+        },
+        {
+          "title": "Show HN：Ballet 用大白话描述运营流程，自动写好跨系统自动化代码",
+          "title_en": "Show HN: Ballet turns a plain-English description into cross-system automation code",
+          "author": "Ballet 团队（Brainfish）· Hacker News (Show HN)",
+          "author_en": "Ballet team (Brainfish) · Hacker News (Show HN)",
+          "likes": 24,
+          "url": "https://www.ballet.dev/",
+          "summary": "Ballet 是 Brainfish 团队做的新产品，定位介于“让 Claude 之类的 agent 自由发挥”和“用 n8n 之类的工具手工拼图”之间：用大白话描述一个跨系统的运营需求（比如“线索进来先查重、按产品使用情况打分再路由给销售”），Ballet 把它写成可审查、可版本控制的代码，而不是一张会漂移的可视化流程图。官网的对比是：确定性要求高的步骤走固定代码，只有需要判断的步骤才交给 agent；官方说这样比传统工具快（几分钟对几周），也能接到没被连接器覆盖的私有系统。目前处于早期访问阶段，面向有真实多系统流程、卡在工程排期上的营收、支持团队。",
+          "summary_en": "Ballet, a new product from the Brainfish team, positions itself between letting an agent like Claude improvise and hand-wiring a visual tool like n8n: describe a cross-system operations need in plain English (say, dedupe an incoming lead, score it against product usage, then route it to sales), and Ballet writes it as reviewable, version-controlled code instead of a visual graph that can drift. Its pitch is that deterministic steps run as fixed code while only judgment-requiring steps go to an agent, claiming this is faster than traditional tools (minutes versus weeks) and can reach proprietary systems connector libraries don't cover. It's in early access, aimed at RevOps and support teams with real multi-system workflows stuck behind an engineering queue.",
+          "why": "把“agent 自由发挥”和“传统工作流工具”中间那段做成产品卖，说明市场已经认定“纯 agent 结果不可审、纯工作流工具不够灵活”是当下的真实缺口，不是脑补出来的痛点。",
+          "why_en": "Turning the middle ground between \"let an agent improvise\" and \"traditional workflow tools\" into a sellable product suggests the market has already decided that unreviewable agent output and inflexible workflow tools are both real gaps, not an imagined problem."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 28,
+      "items": [
+        {
+          "title": "DeepSeek 出新模型，Simon Willison 靠画一只鹈鹕验了个真",
+          "title_en": "DeepSeek ships a new model, Simon Willison checks it by drawing a pelican",
+          "author": "Simon Willison",
+          "author_en": "Simon Willison",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/",
+          "summary": "DeepSeek 上线新模型 V4 Pro 0813，只在 API 上开放（走 OpenRouter），官方没有正式发布页。这次跑分是靠微信群外流，被转发到 Reddit（后被版主以“内容单薄”删除），又被人抄进 Hacker News 的一张 ASCII 表格里才传出来的。Simon Willison 用自己常年用的老基准考它：让模型画一只骑自行车的鹈鹕，分别用低/中/高三档推理强度各画一次。三张图风格差异很大——低档是干净的平涂矢量画风，中档换成松散的手绘线条，高档又变成带音符和小鱼篮子的卡通版——他说没在别的模型上见过这么大的风格跳变。他还不确定 DeepSeek 会不会像 4 月和 7 月那两版一样公开权重。",
+          "summary_en": "DeepSeek released a new model, V4 Pro 0813, API-only via OpenRouter with no official announcement page. Its benchmark numbers only surfaced third-hand: leaked to a WeChat group, copied to Reddit (then deleted by moderators as \"low-effort\"), and re-copied into an ASCII table on Hacker News. Simon Willison tested it with his long-running personal benchmark: asking the model to draw an SVG of a pelican riding a bicycle, once at each of three reasoning levels. The three results varied sharply in style, a clean flat-vector look at low effort, loose hand-drawn linework at medium, a cartoon version with musical notes and a fish basket at high, a bigger swing than he says he's seen from any other model. He's still unsure whether DeepSeek will release open weights this time, as it did for its April and July versions.",
+          "why": "官方跑分这次是靠微信群外流、Reddit 删帖、HN 转抄一路传出来的，不算正式披露；比起等厂商公布数字，自己拿同一道题反复测、看输出稳不稳，是眼下更可靠的判断新模型的办法。",
+          "why_en": "The official benchmark this time only reached the public via a WeChat leak, a deleted Reddit post, and an HN re-post, not a formal disclosure; running the same fixed test yourself and watching whether the output holds steady is a more reliable read on a new model right now than waiting on a vendor's numbers."
+        },
+        {
+          "title": "Grok Bot 上线：AI 队友有自己的电脑，做完整件事才回来找你",
+          "title_en": "Grok Bot launches: an AI teammate with its own computer that only reports back when the job's done",
+          "author": "xAI · TLDR AI",
+          "author_en": "xAI · TLDR AI",
+          "likes": null,
+          "url": "https://x.ai/news/introducing-grok-bot",
+          "summary": "xAI 推出 Grok Bot，内测版本面向 SuperGrok Heavy、Cursor Ultra 和 Cursor Teams Premium 订阅用户开放，先在桌面端和 iOS 上线。Bot 有自己的云端电脑，能登录你已经在用的工具、跨应用和网页干活，包括没有干净 API 或 MCP 接口的平台，做完整件事才回来找你，而不是做到一半就停下来问。xAI 说这最早是内部原型，员工用它处理销售外联、市场活动、行政事务和 bug 修复，用顺手了才决定对外开放。企业用户目前只能排队等候。",
+          "summary_en": "xAI launched Grok Bot, in early beta for SuperGrok Heavy, Cursor Ultra, and Cursor Teams Premium subscribers, first on desktop and iOS. A Bot gets its own cloud computer and can sign into tools you already use, working across apps and websites including ones with no clean API or MCP integration, then reports back only once the job is fully finished rather than pausing partway through. xAI says it started as an internal prototype that employees used for sales outreach, marketing campaigns, office admin, and bug fixes, and only opened it up externally once it had proven itself in-house. Enterprise users are on a waitlist for now.",
+          "why": "从「等人审下一步」变成「做完整件事才回来」，是直接把中间的审查环节砍掉。今天工程圈在吵「AI 写代码太快、review 跟不上」，其实和这是同一件事的两面：一边在补审查，一边在绕开审查，赌错误不会攒到爆。",
+          "why_en": "Going from \"check in before the next step\" to \"only report back once it's done\" cuts out the review step in the middle, the flip side of today's engineering complaint about AI outpacing code review: one side patches review, the other skips it and bets the errors won't pile up before someone notices."
+        },
+        {
+          "title": "Manus 脱离 Meta 的真正原因浮出水面：卡在中国监管审查，不是主动分手",
+          "title_en": "Why Manus really split from Meta: stuck in Chinese regulatory review, not a voluntary breakup",
+          "author": "Geopolitechs · TLDR AI",
+          "author_en": "Geopolitechs · TLDR AI",
+          "likes": null,
+          "url": "https://www.geopolitechs.org/p/manus-unaccquired",
+          "summary": "昨天 Manus 官方只说「恢复独立运营」，今天 Geopolitechs 补上了背景：Meta 去年 12 月 29 日宣布收购 Manus，今年 1 月中国商务部就开始审查这笔交易是否符合中国法律法规。Manus 安排的用户数据备份与恢复（8 月 23 日 7:59 前备份，25 日 8 点后才能恢复，删除 2025 年 12 月 29 日之后产生的部分数据）不是常规产品升级，而是要把收购之后建立的数据和运营关系摘出来，更像是公司架构、数据归属和合规边界的一次重置。文章判断，这笔交易大概率是没能通过中国监管这一关。",
+          "summary_en": "Manus's own announcement yesterday only said it was \"resuming independent operations.\" Geopolitechs filled in the background today: Meta announced its acquisition of Manus on December 29, 2025, and China's Ministry of Commerce began reviewing whether the deal complied with Chinese law as early as this January. Manus's user data backup-and-restore plan (back up before 7:59 a.m. on August 23, restore only after 8:00 a.m. on August 25, with some data created on or after December 29, 2025 deleted) isn't a routine product upgrade, it's an untangling of the data and operating ties the acquisition created, closer to a reset of corporate structure, data ownership, and compliance boundaries. The piece's read is that the deal most likely failed to clear Chinese regulatory review.",
+          "why": "上次说到 Manus 从 Meta 收购中脱身，今天的进展是：背后是中国商务部的反垄断审查没通过，不是公司自愿分手——跨境 AI 收购的绊脚石，从价格谈判挪到了数据主权和监管合规上。",
+          "why_en": "Last time we noted Manus splitting from its Meta acquisition; today's development is that it was stuck in an antitrust review by China's Ministry of Commerce, not a voluntary split, showing that cross-border AI acquisitions now trip over data sovereignty and regulatory compliance before they ever get to price negotiations."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.",
+      "language": "HTML",
+      "stars": 11263,
+      "stars_today": 2855
+    },
+    {
+      "rank": 2,
+      "name": "macro-inc/macro",
+      "url": "https://github.com/macro-inc/macro",
+      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM, all @-linked together with shared AI memory.",
+      "language": "Rust",
+      "stars": 2014,
+      "stars_today": 227
+    },
+    {
+      "rank": 3,
+      "name": "semantica-agi/semantica",
+      "url": "https://github.com/semantica-agi/semantica",
+      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
+      "language": "Python",
+      "stars": 5847,
+      "stars_today": 845
+    },
+    {
+      "rank": 4,
+      "name": "stablyai/orca",
+      "url": "https://github.com/stablyai/orca",
+      "description": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and VPS.",
+      "language": "TypeScript",
+      "stars": 44119,
+      "stars_today": 1235
+    },
+    {
+      "rank": 5,
+      "name": "msitarzewski/agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "description": "A complete AI agency at your fingertips, from frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+      "language": "Shell",
+      "stars": 144703,
+      "stars_today": 1873
+    },
+    {
+      "rank": 6,
+      "name": "shiyu-coder/Kronos",
+      "url": "https://github.com/shiyu-coder/Kronos",
+      "description": "Kronos: A Foundation Model for the Language of Financial Markets",
+      "language": "Python",
+      "stars": 36981,
+      "stars_today": 266
+    },
+    {
+      "rank": 7,
+      "name": "NanmiCoder/MediaCrawler",
+      "url": "https://github.com/NanmiCoder/MediaCrawler",
+      "description": "小红书笔记/评论爬虫、抖音视频/评论爬虫、快手视频/评论爬虫、B 站视频/评论爬虫、微博帖子/评论爬虫、百度贴吧帖子/评论爬虫、知乎问答文章/评论爬虫",
+      "language": "Python",
+      "stars": 62096,
+      "stars_today": 215
+    },
+    {
+      "rank": 8,
+      "name": "hugohe3/ppt-master",
+      "url": "https://github.com/hugohe3/ppt-master",
+      "description": "AI turns documents or topics into real, native PowerPoint decks, with native shapes, transitions and animations, data-backed charts and tables on demand, audio narration from speaker notes, and support for your own .pptx templates.",
+      "language": "Python",
+      "stars": 45871,
+      "stars_today": 476
+    },
+    {
+      "rank": 9,
+      "name": "infiniflow/ragflow",
+      "url": "https://github.com/infiniflow/ragflow",
+      "description": "RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs",
+      "language": "Go",
+      "stars": 87622,
+      "stars_today": 139
+    },
+    {
+      "rank": 10,
+      "name": "paperclipai/paperclip",
+      "url": "https://github.com/paperclipai/paperclip",
+      "description": "The open-source app everyone uses to manage agents at work",
+      "language": "TypeScript",
+      "stars": 77821,
+      "stars_today": 571
+    }
+  ]
+}
