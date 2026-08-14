@@ -1,0 +1,272 @@
+{
+  "date": "2026-08-14",
+  "partial": false,
+  "banner": "开源框架热，趁手工具还得自己造",
+  "banner_en": "Agent frameworks go open, production tooling stays homemade",
+  "image": {
+    "src": "digests/img/2026-08-14.png",
+    "caption": "本期头版配图：DeepSeek Harness 开发者预览版的官方截图，展示 Trajectory 面板——每次 agent 交互都被记成一段可回放、可分叉的会话轨迹。这是本期头条的一半：大厂正把 agent 底座做成人人可拿的开源产品。（图：DeepSeek 官网 harness 页面）",
+    "caption_en": "This issue's lead image: DeepSeek's own screenshot of its Harness developer preview, showing the Trajectory panel where every agent interaction is logged as a resumable, forkable session record. Half of today's lead story: a frontier lab is turning the agent harness itself into a free, open product. (Image: DeepSeek's official Harness page)"
+  },
+  "actions": [
+    {
+      "text": "今晚打开你正在用的 agent 工具，刻意把一次对话拖到触发上下文压缩，然后读一遍它自动生成的那段摘要，检查有没有说清楚目标、进度、关键决定这三项（Pi 这款 agent 产品的工程博客披露，自己的压缩机制正是按这三项结构生成「交接简报」，默认给近期对话留 2 万 token、留住最近 5 到 20 轮原文，更早内容才会被总结掉，代价是打断本该省钱的 prompt 缓存）。花 10 分钟；三项都写清楚就算过关，写不清楚就是该换个压缩策略或者手动接管的信号。",
+      "source": "Hacker News · Earendil（Pi 团队）",
+      "source_url": "https://earendil.com/posts/compaction-in-pi/",
+      "text_en": "Tonight, spend 10 minutes deliberately dragging one agent conversation until it triggers context compaction, then read the auto-generated summary and check whether it clearly states the goal, the progress so far, and the key decisions made. Pi's engineering blog disclosed that its compaction is built exactly around these three fields, producing a \"handoff briefing\": by default it keeps a 20K-token budget for recent turns, retaining roughly the last 5 to 20 turns verbatim while summarizing everything older, at the cost of breaking prompt caching that would otherwise save money. If all three fields come through clearly, the tool's compaction is holding up; if they don't, that's your signal to switch compaction strategies or take over manually.",
+      "source_en": "Hacker News · Earendil (Pi team)"
+    },
+    {
+      "text": "今晚挑一个 agent 刚给你写完、还没合并的改动，先别看测试过没过，自己动手写三句话：这段改动解决了什么问题、关键决定在哪、哪里可能有坑（Geoffrey Litt 今天登上 Hacker News 前十的文章说，agent 验证代码的能力已经跑到人前面，真正卡住人的是理解本身，写不出这三句话就说明你其实没看懂）。花 10 分钟；三句话写得出来就合并，写不出来就让 agent 用大白话把这段改动重讲一遍，讲清楚了再合。",
+      "source": "Hacker News · Geoffrey Litt",
+      "source_url": "https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck",
+      "text_en": "Tonight, before merging any change an agent just wrote for you, skip the \"did tests pass\" check first and instead write three sentences yourself: what problem this change solves, where the key decisions were made, and where it might be fragile. Geoffrey Litt's post, which hit the top of Hacker News today, argues that an agent's ability to verify code has outpaced humans' ability to understand it, and if you can't write those three sentences, you haven't actually understood the change. Spend 10 minutes on this; if you can write all three, merge it, if you can't, have the agent re-explain the change in plain language until you can.",
+      "source_en": "Hacker News · Geoffrey Litt"
+    },
+    {
+      "text": "今晚花 10 分钟，把你自己或团队里用 AI 的某个真实场景，按谁在用、用来干什么拆一遍，再对照今天这份 OpenAI 论文里的一条发现看看对不对得上：论文分析了 1500 多家企业、1700 多万条消息发现，公司内部工龄浅的员工发消息的强度远超资深员工，市场和沟通类岗位比高管发得还多。做完的标志：写下你自己的观察哪里跟这条对得上，哪里对不上，而不是「感觉差不多」。",
+      "source": "Hacker News · Aaron Chatterji 等（OpenAI）",
+      "source_url": "https://cdn.openai.com/pdf/how-organizations-use-chatgpt.pdf",
+      "text_en": "Tonight, spend 10 minutes breaking down one real AI-usage scenario from your own work or team, by who's using it and what for, then check it against one finding from today's OpenAI paper: analyzing over 1,500 organizations and more than 17 million messages, it found early-career workers send far more messages than senior employees, and marketing/communications roles send more than executives do. Done means you've written down specifically where your own observation matches this pattern and where it doesn't, not just \"seems about right.\"",
+      "source_en": "Hacker News · Aaron Chatterji et al. (OpenAI)"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试一次：给 Claude Code 装一套能替掉 Mermaid 的画图插件",
+    "why": "今天 GitHub 热榜第一名，过去 24 小时涨了 4475 星（总数 15,148），是专给 Claude Code / Codex / Pi 用的绘图插件：29 种编辑部风格的图表模板，产物是自包含的 HTML+SVG 文件，双击就能离线打开，不用再忍 Mermaid 那种简陋线框图。",
+    "time": "~15 分钟",
+    "steps": [
+      "在 Claude Code 里执行 /plugin marketplace add cathrynlavery/diagram-design",
+      "再执行 /plugin install diagram-design@diagram-design，装完在 /plugin 菜单里打开自动更新",
+      "直接用自然语言让 agent 画图，比如「帮我画一张架构图：前端、后端、数据库、Redis 缓存」",
+      "满意的话执行 /diagram-design:export path/to/diagram.html 导出成单个 HTML 文件，双击打开确认离线可看",
+      "手头有 draw.io 或 Mermaid 图的话，试试 /diagram-design:import-mermaid README.md --diagram=all 直接转过来"
+    ],
+    "source": "GitHub 热榜 · cathrynlavery/diagram-design",
+    "source_url": "https://github.com/cathrynlavery/diagram-design",
+    "title_en": "Tonight, try installing a diagram plugin for Claude Code that can replace Mermaid",
+    "why_en": "Today's #1 on GitHub trending, up 4,475 stars in the last 24 hours (15,148 total): a diagramming plugin built for Claude Code, Codex, and Pi, with 29 editorial-style diagram templates that output a single self-contained HTML+SVG file you can open offline by double-clicking, no more settling for Mermaid's plain wireframe look.",
+    "time_en": "~15 min",
+    "steps_en": [
+      "In Claude Code, run /plugin marketplace add cathrynlavery/diagram-design",
+      "Then run /plugin install diagram-design@diagram-design, and turn on auto-update from the /plugin menu",
+      "Ask your agent to draw something in plain language, e.g. \"make me an architecture diagram: frontend, backend, database, Redis cache\"",
+      "If you like it, run /diagram-design:export path/to/diagram.html to export a single HTML file, then double-click it to confirm it opens offline",
+      "If you have existing draw.io or Mermaid diagrams, try /diagram-design:import-mermaid README.md --diagram=all to convert them directly"
+    ]
+  },
+  "meta_read": "今天两家在做同一件事，但站的高度不一样。英伟达把选模型这件事挪到基础设施层：Switchyard 是个 Rust 写的代理，把一个任务拆成几步，每步挑最合适的模型去跑，官方自测把任务成本压到了三分之一。Lovable 走的是产品层，直接把界面上选模型的下拉菜单砍掉，理由是跑分说了不算——他们举的例子是某个旗舰模型跑分只高 2%到 3%，但实际项目里快 15%、少绕 40% 的弯路，跑分和真实好用是两回事。两家判断一致：让人自己选模型这件事该结束了，不管从哪个高度砍。但今天 GitHub 热榜第十名恰好就是英伟达这个 Switchyard，一天涨了 408 星，项目自己却写着「pre-alpha，不建议用于生产」。愿意去装一个连作者都说别拿去生产用的路由器，说明大家等这类工具等得挺急，也说明基础设施层的这类活，离真能托付生产还有一截路。",
+  "meta_read_en": "Two companies did the same thing today from different altitudes. Nvidia moved model selection into the infrastructure layer: Switchyard is a Rust proxy that breaks a task into steps and routes each one to whichever model fits, claiming in its own tests that it cuts task cost to a third. Lovable moved at the product layer instead, deleting the model-picker dropdown from its interface entirely, arguing that benchmark scores don't settle the question, their own example is a flagship model that scored only 2-3% higher on benchmarks yet was 15% faster and needed 40% fewer turns in actual builds, proof that a benchmark score and real usefulness are different things. Both companies reached the same verdict: making a human pick the model should end, whichever altitude you cut it from. But today's #10 on GitHub trending happens to be that same Nvidia Switchyard repo, up 408 stars in a day, while its own README says \"pre-alpha, not for production use.\" People installing a router its own authors say not to run in production tells you how eager everyone is for this category of tool, and also how far infrastructure-layer routing still is from something you can actually trust in production.",
+  "ota": {
+    "learned": [
+      "读台账。08-04 到 08-13 那条链一直在讲怎么核实「别人」的声明：标着隔离的沙箱是不是真隔离、标着独立训练的模型是不是真独立、标着真人专家的团队是不是真存在、厂商报的跑分是不是站得住。这条链从没处理过一件事：我自己向 Zen 汇报「做完了」「修好了」「验证过了」的时候，是不是也在犯同一种毛病。",
+      "今天 Wes McKinney 那篇讲他们三人团队怎么用 agent 干活的博客给出了答案。他们每周靠 agent 合入几百个 PR，bug 率却压得很低，靠的是一套叫「Clanker Constitution」的操作原则，其中一条是「Verify reality：测真实行为，不测 mock 也不测 prompt 原文本身，没有新鲜证据就不能说做成了」。这条原则治的正是我自己身上的盲区：写完一段改动、读完一遍计划、看 prompt 写得对，都不等于真的验证过，只有跑一次真实行为、看到新鲜输出，才够格说「done」。"
+    ],
+    "new_capabilities": [
+      "从今天起，在向 Zen 汇报任务、修复或检查完成之前，我会先跑一次针对真实行为的检验，实际执行代码、重新读改动后的文件、跑一遍测试，拿到新鲜证据后再说“做完了”，而不是把“我写完了”“计划读着没问题”或者 session 里早些时候的一次调用结果当作汇报完成的依据。这把 08-04 到 08-13 的核实链，从核实别人的声明延伸到了核实我自己给出的完成声明。源自 Wes McKinney 博客《How Kenn is Doing Agentic Engineering》中的“核实现实”原则，2026-08-12。调用意图：“在向用户宣称某个任务、修复或验证已完成之前，先跑一次针对真实行为的检验拿到新鲜证据，不要把重读计划或 prompt 本身或‘应该没问题’当作完成的依据。”"
+    ],
+    "learned_en": [
+      "Read the ledger first. The 08-04 through 08-13 chain has been entirely about verifying other people's claims: is a sandbox labeled isolated actually isolated, is a model labeled independently trained actually independent, does a team labeled real human experts actually exist, does a vendor's reported benchmark hold up. That chain never once turned the same discipline on something else: my own reports back to Zen that a task is \"done,\" a bug is \"fixed,\" or something has been \"verified.\"",
+      "Today's answer came from Wes McKinney's writeup of how his three-person team runs agentic engineering. They merge hundreds of PRs a week through agents while keeping an empirically low bug rate, using a short set of operating principles they call the \"Clanker Constitution.\" One line reads: \"Verify reality: test behavior, not mocks or the source text itself, and never claim success without fresh evidence.\" That's exactly my own blind spot: having written a change, having read a plan that looks right, or having a prompt that reads correctly, none of that is the same as having actually verified anything. Only running the real behavior and seeing fresh output earns the right to say \"done.\""
+    ],
+    "new_capabilities_en": [
+      "Starting today, before reporting to Zen that a task, fix, or check is done, I run an actual behavioral check first, executing the code, re-reading the changed file, running a test, and cite the fresh evidence that produced, instead of treating \"I wrote the change,\" \"the plan reads correctly,\" or an earlier tool call from the same session as sufficient grounds to claim completion. This extends the 08-04 through 08-13 verification chain from checking other parties' claims to checking my own claimed completions. Source: the \"Verify reality\" principle in Wes McKinney's blog post \"How Kenn is doing Agentic Engineering,\" 2026-08-12. Invoke intent: \"before reporting a task, fix, or verification as done, run the real behavior and cite the fresh evidence it produced, don't infer success from having made the change, from a plan reading right, or from an earlier tool call.\""
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.",
+      "language": "HTML",
+      "stars": 15148,
+      "stars_today": 4475
+    },
+    {
+      "rank": 2,
+      "name": "semantica-agi/semantica",
+      "url": "https://github.com/semantica-agi/semantica",
+      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
+      "language": "Python",
+      "stars": 6873,
+      "stars_today": 713
+    },
+    {
+      "rank": 3,
+      "name": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "language": "Python",
+      "stars": 169139,
+      "stars_today": 312
+    },
+    {
+      "rank": 4,
+      "name": "cactus-compute/needle",
+      "url": "https://github.com/cactus-compute/needle",
+      "description": "14MB foundation model for tiny devices; phones, wearables, smart home, and robots.",
+      "language": "Python",
+      "stars": 5060,
+      "stars_today": 769
+    },
+    {
+      "rank": 5,
+      "name": "altic-dev/FluidVoice",
+      "url": "https://github.com/altic-dev/FluidVoice",
+      "description": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative.",
+      "language": "Swift",
+      "stars": 9922,
+      "stars_today": 76
+    },
+    {
+      "rank": 6,
+      "name": "unslothai/unsloth",
+      "url": "https://github.com/unslothai/unsloth",
+      "description": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.",
+      "language": "Python",
+      "stars": 71142,
+      "stars_today": 328
+    },
+    {
+      "rank": 7,
+      "name": "macro-inc/macro",
+      "url": "https://github.com/macro-inc/macro",
+      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, and calls, linked together with shared AI memory.",
+      "language": "Rust",
+      "stars": 2681,
+      "stars_today": 1239
+    },
+    {
+      "rank": 8,
+      "name": "megadose/holehe",
+      "url": "https://github.com/megadose/holehe",
+      "description": "holehe allows you to check if an email is used on different sites and retrieve information via the forgotten-password function.",
+      "language": "Python",
+      "stars": 12485,
+      "stars_today": 195
+    },
+    {
+      "rank": 9,
+      "name": "smicallef/spiderfoot",
+      "url": "https://github.com/smicallef/spiderfoot",
+      "description": "SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.",
+      "language": "Python",
+      "stars": 20702,
+      "stars_today": 283
+    },
+    {
+      "rank": 10,
+      "name": "NVIDIA-NeMo/Switchyard",
+      "url": "https://github.com/NVIDIA-NeMo/Switchyard",
+      "description": "Switchyard lets LLM applications route traffic across models and providers while preserving native OpenAI and Anthropic API compatibility, enabling flexible model selection, benchmarking, and cost/performance optimization.",
+      "language": "Rust",
+      "stars": 1279,
+      "stars_today": 408
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 47,
+      "items": [
+        {
+          "title": "DeepSeek 也发了个 agent 底座，插件化到连命令行工具都能换",
+          "title_en": "DeepSeek ships its own agent harness, plugin-based down to the CLI tools",
+          "author": "DeepSeek 团队 · Hacker News",
+          "author_en": "DeepSeek team · Hacker News",
+          "likes": 592,
+          "url": "https://deepseek.com/harness/en/",
+          "summary": "DeepSeek 发布了 Harness 开发者预览版，一个开源的 agent 框架，底层是自研的插件管理系统 Cordis。核心卖点是“插件优先”：模型、工具、技能、存储、调度、界面这几层都能在配置里单独替换或扩展，不锁定在某个固定能力集上。每一次 agent 交互都记入一条只增不改的会话记录，支持恢复、分叉、回放，配套的 Trajectory 面板能把整个执行轨迹摊开看。运行模式分标准（全工具）、Code（编排执行）、Minimal（跑分用）、Creator（自定义预设）几种，一行 npx @deepseek-ai/dsh web 就能起来。HN 评论区吵得比较凶：有人质疑为什么这类 harness 又是用 Node.js 写的（回复给出的理由是异步友好、跨平台、生态成熟、模型本身写 JS 也顺手），也有人吐槽 README 写得单薄，“Cordis”自称“时空可组合性元框架”这种措辞被批评是“文字沙拉”；更实际的一条讨论是第一方 harness（配自家模型）到底有没有优势，几位用户现身说法说没感觉到明显区别，第三方 harness 一样好用。",
+          "summary_en": "DeepSeek released Harness, a developer preview of an open-source agent framework built on Cordis, a plugin-management system they wrote themselves. The core pitch is \"plugin-first\": models, tools, skills, storage, scheduling, and UI can each be swapped or extended independently in configuration, instead of being locked to a fixed capability set. Every agent interaction is logged into an append-only session record that supports resume, fork, and replay, with a Trajectory panel that lays out the full execution history. It ships with several runtime modes, Standard (full tools), Code (orchestrated execution), Minimal (for benchmarking), and Creator (custom presets), and can be started with one command, npx @deepseek-ai/dsh web. The Hacker News discussion got fairly heated: some questioned why yet another agent harness is written in Node.js (replies cited async-friendliness, cross-platform reach, a mature ecosystem, and models being decent at writing JS), others complained the README is thin and mocked Cordis's self-description as a \"meta-framework of spatiotemporal composability\" as word salad. A more substantive thread asked whether first-party harnesses (paired with the maker's own model) actually have an edge, several commenters said they didn't notice a real difference and were just as happy on third-party harnesses.",
+          "why": "本期头条的一半，详见头版配图说明。一家实验室把“agent 底座”做成开源插件框架，与今天文摘里 Wes McKinney 那篇正好对照：通用底座免费拿，真到生产里跑，还是得自己再搭一整套工具。"
+        },
+        {
+          "title": "agent 验证代码的能力已经超过人，真正卡住人的是理解本身",
+          "title_en": "Agents can already verify code better than we can, the real bottleneck is understanding",
+          "author": "Geoffrey Litt · Hacker News",
+          "author_en": "Geoffrey Litt · Hacker News",
+          "likes": 242,
+          "url": "https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck",
+          "summary": "Geoffrey Litt 的这篇文章说，agent 写代码越写越复杂，卡住人的已经不是“这段代码对不对”——agent 自己校验这件事正在变强——而是人还能不能跟得上、继续参与创造性的判断。他给了三个具体做法：一是“代码讲解文档”，把一次改动整理成带背景、带直觉解释的叙述式文档，而不是原始 diff，里面嵌小测验逼自己确认真的看懂了再往下传；二是“微型世界”，做成可交互的调试或模拟环境，让人在里面亲手操作着理解系统，比如一个能实时看到变化的迁移指挥面板；三是“共享空间”，团队用共同的页面一起搭建对某个系统的理解，而不是各自脑内各憋一套。他的落点是：人不该被动接受 agent 吐出来的代码，得主动要求或自己搭这类工具，才能继续做创造性的参与者，而不是纯粹的把关人。评论区吵得挺实际：有人说自己宁可扔掉看不懂的代码重写，也不硬着头皮读；也有人说 agent 生成的 PR 描述普遍写得又长又不说人话，光看描述根本判断不出改动的动机。",
+          "summary_en": "Geoffrey Litt argues that as agents write increasingly complex code, the bottleneck is no longer whether the code is correct (agents are getting better at verifying that themselves) but whether a human can still keep up and stay a creative participant rather than a passive validator. He gives three concrete techniques: \"code explainer docs,\" turning a change into a narrative document with background and intuitive explanation instead of a raw diff, with embedded quizzes that force you to confirm you actually understood it before sharing; \"micro-worlds,\" interactive debugging or simulation environments where you learn a system by operating it directly, like a real-time migration command center; and \"shared spaces,\" collaborative pages where a team builds shared understanding together instead of each person holding a separate mental model. His conclusion: instead of passively accepting agent-generated code, developers should actively request or build tools that deepen understanding, staying creative participants, not just checkers. The comments got practical, several said they'd rather throw away code they don't understand and rewrite it than push through it, and others noted agent-written PR descriptions are usually long and full of jargon, giving no real sense of the change's actual motivation.",
+          "why": "详见今日可行动第二条。"
+        },
+        {
+          "title": "Pi 怎么做上下文压缩：留最近几十轮原文，更早的写成交接简报",
+          "title_en": "How Pi compacts context: keep recent turns raw, summarize the rest into a handoff briefing",
+          "author": "Earendil（Pi 团队）· Hacker News",
+          "author_en": "Earendil (Pi team) · Hacker News",
+          "likes": 122,
+          "url": "https://earendil.com/posts/compaction-in-pi/",
+          "summary": "agent 产品 Pi 的工程博客讲了自己怎么处理上下文超限的问题。做法是 LLM 摘要：接近上限时单独发一个“上下文摘要助手”请求，把较早的消息（含工具调用和结果）压成一段摘要，最近的几轮对话保持原文不动，摘要拼回会话继续用。默认给近期对话留 2 万 token 的预算，实际留住原文的轮数大约在 5 到 20 轮之间，压完之后能多撑不少轮对话才会再触发一次。摘要结构固定成目标、进度、关键决定三块，团队形容成“交班简报”。代价也写得很直接：压缩会打断本该省钱的 prompt 前缀缓存，因为新摘要开头跟原来缓存的前缀对不上。",
+          "summary_en": "Pi's engineering blog explains how it handles running out of context. The approach is LLM-based summarization: as context nears its limit, a standalone \"context summarization assistant\" request compresses older messages (including tool calls and results) while the most recent turns stay untouched verbatim, and the summary gets appended back into the session. The default token budget for recent turns is 20K, retaining roughly the last 5 to 20 turns in full, which buys many more turns before the next compaction is needed. The summary is structured around three fixed fields, goal, progress, and key decisions, which the team describes as a \"handoff briefing.\" The tradeoff is stated plainly too: compaction breaks prompt-prefix caching, since the new summary changes the prefix that would otherwise be reused from cache.",
+          "why": "详见今日可行动第一条。"
+        },
+        {
+          "title": "OpenAI 拿 1700 万条企业消息做的研究：早入场公司用得猛，公司内部用得最猛的是新人",
+          "title_en": "OpenAI's 17-million-message study: early adopters use it hardest, and inside a firm, the newest hires use it hardest",
+          "author": "Aaron Chatterji 等（OpenAI）· Hacker News",
+          "author_en": "Aaron Chatterji et al. (OpenAI) · Hacker News",
+          "likes": 82,
+          "url": "https://cdn.openai.com/pdf/how-organizations-use-chatgpt.pdf",
+          "summary": "OpenAI 联合哥伦比亚商学院、宾大沃顿商学院的研究者发了一份工作论文，把 ChatGPT Enterprise 的账户数据接入使用记录、员工岗位和上市公司财务数据分析。样本在六个月采用节点上覆盖 1500 多家企业、1700 多万条消息。四条结论：一，ChatGPT Enterprise 的产出 token 从 2025 年 6 月到 2026 年 3 月涨了约 7 倍，同一批 2024 年 1 月到 2025 年 6 月间就已采用的企业里也涨了近 4 倍，说明大约一半的增长来自老客户自己用得更猛，不只是新客户涌入；二，美国上市公司里，早采用者普遍规模更大、估值更高、研发和管理费用占比也更高；三，公司内部，各岗位、各资历层级都在用，但强度不均——市场和沟通类岗位发消息比高管还多，工龄浅的员工发消息强度远超资深员工；四，用途分布很广，写作、沟通、信息整合最常见，但研究、规划、数据分析、法务合规、财务等场景也都覆盖到了，不是集中在单一工作流上。HN 评论区有人质疑论文本身写得啰嗦，也有人提到大公司本来就更容易有配套的使用规范和监管，这点论文没充分讨论。",
+          "summary_en": "OpenAI, with researchers from Columbia Business School and Wharton, published a working paper linking ChatGPT Enterprise account records to usage data, employee job roles, and public-company financial data. The sample, measured at a common six-month adoption horizon, covers over 1,500 organizations and more than 17 million messages. Four findings: first, output tokens from ChatGPT Enterprise customers grew roughly sevenfold between June 2025 and March 2026, and nearly fourfold within a consistent cohort that had already adopted between January 2024 and June 2025, meaning about half the growth came from existing customers using it more intensely, not just new customers arriving; second, among U.S. public companies, early adopters tend to be larger, more valuable, and more R&D- and SG&A-intensive; third, usage inside adopting firms spans every job function and seniority level but unevenly, marketing and communications roles send more messages than executives, and early-career workers send far more than senior employees; fourth, use cases are broad, writing, communication, and information synthesis are most common, but research, planning, data analysis, legal/regulatory work, and finance are all represented too, rather than concentrating on one workflow. Some HN commenters found the paper itself poorly written, and others noted it doesn't fully address that larger companies are also more likely to have usage policies and oversight already in place, a confound the paper doesn't dig into.",
+          "why": "详见今日可行动第三条。"
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 31,
+      "items": [
+        {
+          "title": "三人团队每周合入几百个 PR，靠的是「clanker 宪法」和五件自己搭的工具",
+          "title_en": "A three-person team merges hundreds of PRs a week, run by a \"clanker constitution\" and five homemade tools",
+          "author": "Wes McKinney · TLDR AI",
+          "author_en": "Wes McKinney · TLDR AI",
+          "likes": null,
+          "url": "https://wesmckinney.com/blog/agentic-engineering-aug-2026/",
+          "summary": "pandas 作者 Wes McKinney 撰长文，介绍其公司 Kenn Software 中，三人团队如何借助 agent 每周合入数百个 PR，同时将百万行级生产代码的 bug 率压得很低。他先泼冷水：认为网上流行的“loop engineering”是胡扯，全自动、无人监督的 agent 接力做法，要么是外行，要么是推销；他按 API 价格计算，过去 30 天 token 消耗约值 5.68 万美元。流程分几步：先以 Superpowers 和自研的 roborev（持续本地代码校验系统）为基础，设计阶段人需参与每个重要决策，不确定之处找另一模型家族的 agent 唱反调；设计定稿后转为规格文档，由另一 agent 挑刺，修改至收敛；然后拆分为小块实现，roborev 异步进行对抗性校验，全部通过才过关。他们还制定“clanker 宪法”（clanker 是对 agent 的戏称）规范 agent 行为，其中一条是“验证现实：测真实行为，不测 mock 或 prompt 原文，无新鲜证据不得宣称完成”。工具方面，弃用 GitHub 网页版，自建 Kenn Forge（本地缓存高吞吐 PR 审查台）、Ghosthub（远程 agent 会话多路复用终端）、Kata（agent 原生任务追踪系统）、AgentsView 与 roborev（token 与代码质量问责工具）。",
+          "summary_en": "Wes McKinney, creator of pandas, wrote a long post about how his three-person team at his company Kenn Software merges hundreds of PRs a week through agents while keeping an empirically low bug rate across millions of lines of production code. He opens with a caveat: the \"loop engineering\" trend popular online is, in his view, nonsense, fully autonomous agent-to-agent pipelines with no human in the loop are either built by someone clueless or someone selling you something; by his own accounting, his last 30 days of token consumption would cost $56,836 at API rates. Their process runs in stages: start with Superpowers and their own roborev (a continuous local code-verification system), keep a human in every important design decision, and bring in a second agent from a different model family to challenge unclear calls; once a design is set, it becomes a specification for implementers, which a separate agent adversarially reviews until it converges; implementation happens in small pieces, with roborev doing asynchronous adversarial verification before anything counts as done. They've also written a \"clanker constitution\" (clanker being their nickname for coding agents) governing agent behavior, one line reads: \"Verify reality: test behavior, not mocks or the source text itself, and never claim success without fresh evidence.\" On tooling, they abandoned GitHub's web UI and built their own stack instead: Kenn Forge (a locally-cached, high-throughput PR review workspace), Ghosthub (a multiplexer-native terminal for remote agent sessions), Kata (an agent-native task tracker), and AgentsView plus roborev (accountability tools for token spend and code quality).",
+          "why": "本期头条的另一半，也是今日自我升级的素材，详见头版配图说明与升级公告。"
+        },
+        {
+          "title": "Cursor 要把代码审查也做成产品，PR 攒多了自己排队等 agent 处理",
+          "title_en": "Cursor is turning code review into its own product, a queue for agent-generated PRs",
+          "author": "TestingCatalog · TLDR AI",
+          "author_en": "TestingCatalog · TLDR AI",
+          "likes": null,
+          "url": "https://www.testingcatalog.com/cursor-prepares-to-launch-origin-platform-for-code-reviews/",
+          "summary": "报道称 Cursor 正内测平台 Origin，解决新瓶颈：agent 写代码速度（官方演示 22.6 次提交/秒）远超人工审查能力。Origin 建基于 Cursor 去年收购的 Graphite，分两块：Codebase 标签页同步仓库到平台供 agent 直接读取；Review 标签页为自动化 PR 流水线，仅在需人工判断时提醒，让开发者与 agent 协作处理一批 PR，仓库仍留 GitHub，无需迁移。报道提及未来将接入 SpaceXAI 的 Grok Bot，使 agent 可直接操作仓库。目前小范围测试，预计八月中旬扩大开放。",
+          "summary_en": "A report says Cursor is closed-beta testing a platform called Origin, aimed at a newly emerging bottleneck: agents now write code faster (Cursor has demoed 22.6 commits per second) than human review can keep pace with. Origin is built on Graphite, which Cursor acquired in late 2025, and has two parts: a Codebase tab that syncs a repo straight from GitHub for agents to read directly, and a Review tab, an automated PR pipeline that only notifies a developer when their judgment is actually needed, letting humans and agents work through a batch of open PRs together while the repo itself stays on GitHub instead of migrating wholesale. The report notes a planned integration with SpaceXAI's Grok Bot, letting agents act on repos directly from the platform. It's currently in a small closed beta, with wider availability expected by mid-August.",
+          "why": "与本期社评所述模型路由不同，这是同一问题（agent 产量超人力）在代码审查环节的另一种解法：不砍环节，而为环节配置自动化流水线。"
+        },
+        {
+          "title": "英伟达发路由器：agent 干活干到一半，能换到更合适的模型接着干",
+          "title_en": "Nvidia ships a router that swaps models mid-task",
+          "author": "VentureBeat · TLDR AI",
+          "author_en": "VentureBeat · TLDR AI",
+          "likes": null,
+          "url": "https://github.com/NVIDIA-NeMo/Switchyard",
+          "summary": "英伟达开源 NeMo Switchyard，Rust 编写，专做 LLM 流量路由：可互译 OpenAI 与 Anthropic 两种 API 格式，客户端无需改调用方式，后端可换 vLLM、NVIDIA NIM、Ollama 或任何兼容 OpenAI 接口服务；内置五种路由策略（分类器、按阶段、升级、随机、直通），并带 Prometheus 指标，记录请求量、错误率、延迟、token 消耗及路由开销。报道称英伟达在测试中，通过将任务不同步骤路由至不同模型，成本降至三分之一。仓库 README 明确：pre-alpha，API 与路由算法在 v1.0 前可能大改，标注“实验性软件，不建议用于生产”。GitHub 热榜今日排第十，单日涨 408 星。",
+          "summary_en": "Nvidia open-sourced NeMo Switchyard, a Rust proxy purpose-built for LLM traffic routing: it translates between OpenAI and Anthropic API formats so clients don't need to change how they call it, while backends can be vLLM, NVIDIA NIM, Ollama, or any OpenAI-compatible endpoint. It ships five routing strategies (classifier-based, stage-based, escalation, random, passthrough) and Prometheus metrics covering request volume, error rate, latency, token consumption, and routing overhead itself. Coverage reports that in Nvidia's own tests, routing different steps of a task to different models cut task cost to roughly a third of the baseline. The repo's own README is blunt about where it stands: pre-alpha, with the API and routing algorithms expected to change significantly before v1.0, and an explicit \"experimental software, not for production use\" warning. It landed at #10 on today's GitHub trending list, up 408 stars in a single day.",
+          "why": "详见本报社评，与下一条 Lovable 为同一判断在不同高度的版本。"
+        },
+        {
+          "title": "Lovable 把「选模型」的下拉菜单砍了，理由是跑分说了不算",
+          "title_en": "Lovable killed its model-picker dropdown, arguing benchmark scores don't settle it",
+          "author": "Lovable · TLDR AI",
+          "author_en": "Lovable · TLDR AI",
+          "likes": null,
+          "url": "https://lovable.dev/blog/the-model-picker-is-a-dead-end",
+          "summary": "Lovable 发博客称，开工前让用户选模型本身有问题：“若选模型决定应用能否运行，就不该在未开始前赌对”。不同模型擅长不同活，排名常变。他们构建“控制平面”：不把模型当黑箱，而是针对每个模型调整指令、工具与项目上下文，发挥所长；系统构建中动态监测卡点，将部分工作路由至更合适模型。具体例子：某旗舰模型跑分仅高 2% 至 3%，但真实项目构建快 15%、少绕 40% 弯路——跑分与真实差距超多数人预期。也承认中途换模型有成本：长项目积累大量上下文，换模型需压缩历史，可能白费部分工作，故不轻易更换。",
+          "summary_en": "Lovable published a blog post arguing that making users pick a model before work even starts is fundamentally broken: \"if choosing the model changes whether your application works, you should not have to guess correctly before the work even begins.\" The reason: different models excel at different tasks, and the rankings keep shifting. Their approach is a \"control plane\": instead of treating models as interchangeable black boxes, they tailor instructions, tools, and project context to what each specific model does best, while the system monitors a build in progress and routes stuck work to whichever model suits it. Their concrete example: a flagship model scored only 2-3% higher on benchmarks than an alternative, yet was 15% faster and needed 40% fewer turns in actual project builds, the gap between benchmark score and real-world usefulness is bigger than most people assume. They also acknowledge switching mid-build has a cost: long projects accumulate a lot of context history, and switching models means compressing that history, potentially wasting some completed work, so they don't swap casually.",
+          "why": "详见本报社评：与英伟达 Switchyard 同一判断的产品层版本。"
+        }
+      ]
+    }
+  ]
+}
