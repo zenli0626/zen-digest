@@ -1,7 +1,7 @@
 {
   "date": "2026-08-14",
   "partial": false,
-  "banner": "写代码变快了，看懂变成新门槛",
+  "banner": "写代码变快了，看懂成新门槛",
   "banner_en": "Code got faster to write. Understanding it got harder.",
   "image": {
     "src": "digests/img/2026-08-14.jpg",
@@ -10,7 +10,7 @@
   },
   "actions": [
     {
-      "text": "写任何“企业该不该上 AI”的材料前，先看一眼 OpenAI 这份用真实企业数据做的报告：一线员工和市场/传播岗发消息的频率比高管高得多，采用不是从上往下推的，是从做具体活的人那里先长起来的。",
+      "text": "写任何“企业该不该上 AI”的材料前，先看一眼 OpenAI 这份用真实企业数据写的报告：一线员工和市场/传播岗发消息的频率比高管高得多，采用不是从上往下推的，是从做具体活的人那里先长起来的。",
       "source": "Aaron Chatterji 等 · OpenAI",
       "source_url": "https://cdn.openai.com/pdf/how-organizations-use-chatgpt.pdf",
       "text_en": "Before writing any \"should we adopt AI\" pitch, skim OpenAI's own report built on real enterprise data: early-career and marketing/comms staff send far more messages than executives, so adoption grows bottom-up from people doing the actual work, not top-down.",
