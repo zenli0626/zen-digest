@@ -487,4 +487,48 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   earlier the same day whose ledger entry never got written; the digest issue for 2026-08-12 completes
   it.*
 
+- 2026-08-13 — **Verify with a deterministic signal, not an open-ended ask** — deepens
+  [[feedback-subagent-context-boundary]]'s rule 2 ("spot-check a subagent's 'done' claim")
+  with a concrete technique instead of ad hoc judgment. Trigger: Ben Hylak's (Raindrop,
+  AI Engineer World's Fair) "raising the floor" talk argued agents are bad at anomaly
+  detection on their own but good at investigating an anomaly once it's already been
+  flagged — so the fix isn't "ask the agent to find the problem," it's "extract a cheap
+  deterministic signal first (what changed and when, keyword frequency, blast radius/%
+  affected), then hand that specific spot to the agent to investigate." He also argued
+  clustering traces by similarity is useful for one-off analysis but doesn't scale as a
+  tracking mechanism, since it can't reliably answer "is this new" or "how many are hit,"
+  and that evals should look like code (unit/e2e tests) now that the prompt/harness IS
+  the system, not a managed prompt playground layered on top of it. Logged as memory
+  `feedback-verify-with-signal-not-open-ended-ask` (new file, linked to
+  `feedback-subagent-context-boundary`). Invoke intent: "when spot-checking a subagent
+  or Workflow stage's claim, don't re-ask open-endedly whether it worked — pull a
+  deterministic signal (diff size/timestamp, error keyword spikes, % of surface
+  affected) and direct the verifying agent at that specific spot; when designing a
+  Workflow verify stage, prefer code-shaped checks over an open-ended review prompt."
+  *adopted (2026-08-13 run, via the overnight worktree) — apply on every future spot-check
+  of a subagent/Workflow claim, not just digest runs. Note: the 2026-08-13 digest issue
+  itself was never published — its picks overlapped 3 URLs with the already-live 2026-08-12
+  issue (the overnight branch had diverged from main's real 2026-08-12), so it failed the
+  repetition gate on backfill and needs a fresh sweep, not a copy, to fill that date.*
+
+- 2026-08-14 — **Explain-diff before trusting, extending [[feedback-subagent-context-boundary]]
+  and [[feedback-verify-with-signal-not-open-ended-ask]] with a mechanism for code specifically.**
+  Geoffrey Litt (Notion, ex-Ink & Switch), in a talk from AI Engineer reposted to Hacker News
+  ("Understanding is the new bottleneck"), named the actual reason to review an agent-written
+  diff once agents get good at self-verifying correctness: not to catch bugs, but to stay a real
+  participant who can propose the next change. His mechanism: before reading a raw diff, generate
+  a short explainer (what existed before, why this change, then a walkthrough in logical order),
+  then answer a short self-quiz about the change before calling it reviewed — skimming doesn't
+  build the understanding a quiz forces. Invoke intent: "before calling a subagent's nontrivial
+  code diff done or merged, restate what existed before and why the change was needed, walk the
+  diff in logical order, then answer 2-3 concrete questions about it — skip for trivial/mechanical
+  diffs." Logged as memory `feedback-explain-diff-before-trusting` (new file, deepens the
+  subagent-verification thread rather than starting a new one — same thread as the last two runs,
+  now with a diff-specific technique instead of a general anomaly-detection one). Notion's own
+  `/explain-diff` tool is available in this session's skill list and worth trying directly on a
+  real diff next.
+  *adopted (2026-08-14 run, via the overnight worktree) — this 9pm run verified the digest content,
+  the memory files, and this ledger entry against the actual artifacts rather than relaying the
+  overnight worktree's self-report unread (applying the very rule logged on 2026-08-11).*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->

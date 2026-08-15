@@ -1,0 +1,148 @@
+{
+  "date": "2026-08-14",
+  "partial": false,
+  "banner": "写代码变快了，看懂变成新门槛",
+  "banner_en": "Code got faster to write. Understanding it got harder.",
+  "image": {
+    "src": "digests/img/2026-08-14.jpg",
+    "caption": "本期头版配图：Notion 工程师 Geoffrey Litt 在 AI Engineer 大会演讲《Understanding is the new bottleneck》的主视觉。（图：Geoffrey Litt 博客）",
+    "caption_en": "This issue's lead image: the cover art from Notion engineer Geoffrey Litt's AI Engineer talk \"Understanding is the new bottleneck.\" (Image: Geoffrey Litt's blog)"
+  },
+  "actions": [
+    {
+      "text": "写任何“企业该不该上 AI”的材料前，先看一眼 OpenAI 这份用真实企业数据做的报告：一线员工和市场/传播岗发消息的频率比高管高得多，采用不是从上往下推的，是从做具体活的人那里先长起来的。",
+      "source": "Aaron Chatterji 等 · OpenAI",
+      "source_url": "https://cdn.openai.com/pdf/how-organizations-use-chatgpt.pdf",
+      "text_en": "Before writing any \"should we adopt AI\" pitch, skim OpenAI's own report built on real enterprise data: early-career and marketing/comms staff send far more messages than executives, so adoption grows bottom-up from people doing the actual work, not top-down.",
+      "source_en": "Aaron Chatterji et al. · OpenAI"
+    },
+    {
+      "text": "拿 chess.com“看见问题就直接改，尽量缩短从发现到上线的距离”这条心法，对照自己手头一个项目：中间卡的审批或排期环节，有没有能用 agentic dev 直接砍掉的。",
+      "source": "Eric Allebest · No Priors 播客",
+      "source_url": "https://www.youtube.com/watch?v=hplb9IHWuw0",
+      "text_en": "Take chess.com's principle, see a problem, fix it, and shorten the gap between spotting an issue and shipping, and hold it against one of your own projects: which approval or scheduling step in the middle could agentic dev just cut out?",
+      "source_en": "Eric Allebest · No Priors podcast"
+    },
+    {
+      "text": "把 Bullet 这几条提速心法搬到自己写的 subagent prompt 里试试：独立的检索/读文件并行做，依赖的编辑/验证再串行；工具输出设个上限，读过的文件别重复读。",
+      "source": "Adi & Alex · Bullet（Hacker News Show HN）",
+      "source_url": "https://www.codewithbullet.com",
+      "text_en": "Try porting Bullet's speed rules into your own subagent prompts: batch independent searches/reads in parallel, keep dependent edits and verification sequential, cap tool output, and never re-read a file you've already read.",
+      "source_en": "Adi & Alex · Bullet (Hacker News Show HN)"
+    }
+  ],
+  "hands_on": {
+    "title": "试试 Claude in Chrome 的新 Cowork 侧边栏",
+    "why": "以前 Chrome 插件里的对话是孤立的，现在侧边栏直接变成一整个 Cowork 会话，存到账号里，换到桌面端、网页端、手机上能接着聊，skills 和 connector 也不用重新配。",
+    "time": "10 分钟",
+    "steps": [
+      "更新 Claude in Chrome 插件到最新版",
+      "打开侧边栏，开始一个真实任务（比如帮你整理一个网页的内容）",
+      "切到 claude.ai 桌面端或手机端，看这段对话是不是原样接上",
+      "检查一下你常用的 skill/connector 在浏览器里是否不需要重新连接"
+    ],
+    "source": "Anthropic · TLDR AI",
+    "source_url": "https://claude.com/claude-in-chrome",
+    "title_en": "Try Claude in Chrome's new Cowork side panel",
+    "why_en": "The old Chrome extension chat was a dead end. Now the side panel runs a full Cowork session that saves to your account, so you can pick it back up on desktop, web, or phone, and your existing skills and connectors work in the browser without re-setup.",
+    "time_en": "10 min",
+    "steps_en": [
+      "Update the Claude in Chrome extension to the latest version",
+      "Open the side panel and start a real task (e.g. have it summarize a page for you)",
+      "Switch to claude.ai on desktop or mobile and check the conversation picks up where you left off",
+      "Confirm whatever skills/connectors you normally use don't need re-setup in the browser"
+    ]
+  },
+  "meta_read": "今天这几条新闻表面上没什么关系，放一起看是同一件事的三个侧面。Cowork 让 Claude 在浏览器里直接接管一整段工作，Bullet 把编程 agent 的来回轮数砍掉三成多，这些都在往同一个方向使劲：让人越来越不用等，越来越不用管。可是 OpenAI 自己那份用了 1500 多家企业、1700 万条消息的报告说，企业真正用起来的深度还很浅，大部分公司还在摸索怎么把 AI 塞进日常流程。chess.com 给了一个反例：计算机三十年前就下棋超过人类了，但这家公司这些年反而靠着积分系统、AI 陪练、把“输棋也算数”变成产品设计，把人重新拉回牌桌，用户数一路涨到两亿五。今天头条那篇讲 explain-diff 的文章也是同一个道理：agent 写代码越快，人越容易变成看客，所以作者专门做了“读后小测验”逼自己不能装懂就过。工具厂商在拼速度，真正决定谁能把这速度用起来的，是有没有人专门设计“让人别掉队”这层东西。",
+  "meta_read_en": "These stories look unrelated but read together as one thing. Cowork lets Claude take over a whole browser session, Bullet cuts a coding agent's round trips by a third, and both push in the same direction: wait less, manage less. But OpenAI's own report, built from 1,500-plus companies and 17 million messages, shows enterprise adoption is still shallow, most firms are still figuring out how to fold AI into daily work. Chess.com is the counterexample. Computers passed humans at chess thirty years ago, yet the company grew to 250 million users by doing the opposite of stepping back: building ratings, AI coaching, and a culture where losing still counts, all to keep humans in the game. Today's lead story about explain-diff makes the same point from the coding side. The faster an agent writes code, the easier it is for the human to turn into a spectator, so its author built a quiz he has to pass before he lets himself call a diff reviewed. Every vendor this week is racing on speed. What decides who actually benefits from that speed is whether anyone bothered to build the layer that keeps people from falling behind.",
+  "ota": {
+    "learned": [
+      "Notion 的 Geoffrey Litt 在博客里拆了一个我一直没细想过的问题：agent 越来越会自己检查对错，那人类审代码到底图什么？他的答案不是“抓错”，是“保住继续参与、提想法的能力”，光看一眼 diff 建立不起这个能力，得先有讲解、再有小测验，逼自己真答得上来才算数。"
+    ],
+    "new_capabilities": [
+      "把这条落成了新记忆 feedback-explain-diff-before-trusting（挂在 feedback-subagent-context-boundary 下）：以后 subagent 产出非琐碎的代码 diff，不再是扫一眼就算审过，而是先用自己的话讲清楚改动前是什么、为什么改，按逻辑顺序走一遍改动，再问自己两三个具体问题，答得上来才算真的看懂了。也把 Notion 自带的 /explain-diff 工具记下来，下次拿一个真实 diff 试一次。"
+    ],
+    "learned_en": [
+      "Geoffrey Litt (Notion) named a problem I hadn't pinned down: agents are getting good at verifying their own correctness, so what's reviewing a diff even for anymore? His answer isn't catching bugs, it's staying a real participant who can propose what happens next, and a quick skim doesn't build that; it takes an explainer plus a quiz you actually have to pass."
+    ],
+    "new_capabilities_en": [
+      "Turned this into a new memory, feedback-explain-diff-before-trusting (filed under feedback-subagent-context-boundary): from now on, a nontrivial code diff from a subagent doesn't count as reviewed just because I skimmed it. I restate what existed before and why the change was needed, walk the diff in logical order, then answer 2-3 concrete questions about it before calling it done. Also noted Notion's own /explain-diff tool to try on a real diff next."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 45,
+      "items": [
+        {
+          "title": "计算机赢棋三十年，chess.com 却越活越大",
+          "title_en": "Computers beat humans at chess 30 years ago. Chess.com only grew.",
+          "author": "Eric Allebest · No Priors 播客",
+          "author_en": "Eric Allebest · No Priors podcast",
+          "likes": 0,
+          "url": "https://www.youtube.com/watch?v=hplb9IHWuw0",
+          "summary": "Eric Allebest 2005 年从破产拍卖里花 5.6 万美元买下 chess.com 这个域名，没融过一轮外部增资的钱，靠会员付费一路做到 2.5 亿注册用户、日活约 1000 万、今年营收超 2 亿美元、650 人的团队。他说深蓝 1997 年赢卡斯帕罗夫之后，很多人预测人类会放弃下棋，结果正相反：AI 陪练、复盘教练、生成的专属残局题，把下棋变得比以前更好玩，疫情和《后翼弃兵》又添了一把火，人数涨上去以后再没掉回原来的水平线。私募基金 General Atlantic、CVC 后来入股，买的都是老股东手里的老股，公司自己一分钱融资都没拿过。内部现在也重度用 AI，支持团队靠自动化提速但没裁人，研发流程按“看见问题就直接改”的心法，尽量缩短从发现问题到代码上线的距离。他们最近还上线了扑克产品 Gambit，把 chess.com 的积分体系搬过去，让“打得好不好”变成比“筹码多不多”更值得在意的事。",
+          "summary_en": "Eric Allebest bought the chess.com domain for $56,000 out of a bankruptcy auction in 2005 and never raised a funding round to grow the business, building it to 250 million registered members, roughly 10 million daily active users, over $200 million in revenue this year, and a 650-person team, entirely on membership fees. He says most people predicted humans would give up on chess after Deep Blue beat Kasparov in 1997, and the opposite happened: AI coaching, game-review tools, and personalized puzzles made the game more fun than before, COVID and The Queen's Gambit added another wave, and usage never fell back to its old baseline after each spike. General Atlantic and later CVC bought in as private equity, but only by purchasing shares from existing shareholders on secondary; the company itself has never taken outside capital. Internally they lean hard on AI too: automation speeds up support without cutting headcount, and engineering runs on a see-a-problem-fix-it principle meant to shorten the gap between spotting an issue and shipping code. They recently launched a poker product, Gambit, porting chess.com's rating system over so how well you actually play matters more than how many chips you're sitting on.",
+          "why": "跟今天其他几条速度至上的新闻放在一起看很有意思：chess.com 面对的是三十年前就已经被机器超越的领域，它靠的不是比机器快，是把人重新变成有参与感的玩家。",
+          "why_en": "Worth reading against today's speed-obsessed stories: chess.com operates in a field machines surpassed thirty years ago, and it grew not by being faster than the machine but by re-engineering the game to keep humans genuinely engaged as players."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 48,
+      "items": [
+        {
+          "title": "写代码变快了，看懂变成新门槛",
+          "title_en": "Code got faster to write. Understanding it got harder.",
+          "author": "Geoffrey Litt 博客（Hacker News 热帖）",
+          "author_en": "Geoffrey Litt blog (Hacker News)",
+          "likes": 277,
+          "url": "https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck",
+          "summary": "Notion 工程师 Geoffrey Litt 在 AI Engineer 大会上提出一个问题：agent 越来越擅长自我检查，人类还有什么理由读它写的代码？他说答案不是抓错，而是保住自己继续参与、提出下一步想法的能力。少了这层理解，人在项目里的创造力会被限制。他给出三招：先让 agent 生成讲解文档，交代改动背景和意图，再按逻辑顺序讲改动，而不是按文件名字母顺序摆代码；做交互式小例子帮助建立直觉；文档末尾加个小测验，答不上来就不算真懂，这是读速赶不上 agent 写速时逼自己不掉队的机制。他做了个叫 /explain-diff 的工具，每天在用，团队里不少人也用。",
+          "summary_en": "Notion engineer Geoffrey Litt, in a talk given at AI Engineer, asked a question worth sitting with: as agents get better at verifying their own correctness, what's left for a human to gain by reading the code they write? His answer isn't catching bugs, it's staying a real participant who can propose what happens next, and losing that understanding caps how creatively you can move a project forward. His method has three parts: have the agent generate an explainer first, background on what existed before and what this change is trying to do, then a literate walkthrough of the diff in logical order instead of a pile of files in alphabetical order; build small interactive examples to build intuition; and end the explainer with a short quiz, if you can't answer it, you haven't really understood the change. He calls it a speed regulator for when the agent's pace of writing outruns the human pace of understanding. He built this into a tool called /explain-diff that he uses daily and several coworkers have adopted too.",
+          "why": "banner 讲的就是这条，值得反复读：抓 bug 交给 agent，人该守的是能否接住下一步判断。",
+          "why_en": "This is the story behind today's banner, worth a careful read: catching bugs is something the agent handles on its own now, what's actually worth guarding is whether the human can still carry the next decision."
+        },
+        {
+          "title": "1700 万条消息看清企业到底怎么用 AI",
+          "title_en": "17 million messages show how enterprises actually use AI",
+          "author": "Aaron Chatterji 等 · OpenAI",
+          "author_en": "Aaron Chatterji et al. · OpenAI",
+          "likes": 93,
+          "url": "https://cdn.openai.com/pdf/how-organizations-use-chatgpt.pdf",
+          "summary": "OpenAI 联合哥伦比亚商学院、宾大沃顿的研究者，把 ChatGPT Enterprise 真实使用数据和企业财务数据对照，分析 1500 多家企业、六个月窗口期 1700 多万条消息。四个发现：用量涨得快，2025 年 6 月至 2026 年 3 月总产出 token 增长近 7 倍，一半涨幅来自老客户加深使用；美国上市公司中，规模更大、研发和销售管理费用占比高的公司先用；公司内部发消息最勤的不是高管，而是市场传播岗和新人；用途广泛，写作、沟通、信息整理最常见，研究、规划、数据分析、法务、财务也不少，并非集中一个爆款场景。结论：企业采用 AI 宽而不深，多数仍在摸索嵌入日常流程。",
+          "summary_en": "OpenAI, working with researchers from Columbia Business School and Wharton, linked real ChatGPT Enterprise usage data to public-company financial records, covering more than 1,500 organizations and over 17 million messages across a six-month adoption window. Four findings: usage is growing fast, aggregate output tokens grew roughly sevenfold from June 2025 to March 2026, with about half of that growth coming from existing customers going deeper rather than new signups; among U.S. public companies, early adopters skew larger and spend more on R&D and SG&A; within an adopting company, the heaviest senders aren't executives, they're marketing/comms staff and early-career employees; and use spans a wide range of tasks — writing, communication, and synthesis lead, but research, planning, data analysis, legal, and finance all show meaningful volume rather than clustering around one killer use case. The authors' takeaway: enterprise AI adoption is broad but shallow, most firms are still learning how to fold it into daily workflows.",
+          "why": "写企业上 AI 或内部推广材料前，看这份报告比听感受靠谱：采用是从基层做具体活的人先开始的，不是从上往下压。",
+          "why_en": "Worth citing before any \"should we adopt AI\" pitch or internal rollout deck: this data says adoption isn't pushed top-down from executives, it grows bottom-up from the people doing the actual work."
+        },
+        {
+          "title": "Claude 的 Chrome 侧边栏，升级成完整 Cowork 会话",
+          "title_en": "Claude's Chrome side panel becomes a full Cowork session",
+          "author": "Anthropic · TLDR AI",
+          "author_en": "Anthropic · TLDR AI",
+          "likes": 0,
+          "url": "https://claude.com/claude-in-chrome",
+          "summary": "Anthropic 把 Claude in Chrome 插件侧边栏升级为完整 Cowork 会话：对话存入 Claude 账号，桌面端、网页端、手机可接续，原有 skills 和 connector 在浏览器里不必重连。此前插件对话基本一次，关标签即失效。",
+          "summary_en": "Anthropic upgraded the Claude in Chrome extension so its side panel now runs a full Cowork session: conversations save to your Claude account and pick up on desktop, web, or mobile, and skills and connectors already set up elsewhere work in the browser with no extra setup. Previously, chats in the extension were essentially throwaway — closing the tab meant losing the thread.",
+          "why": "这条对常用 claude-in-chrome 跑网页任务的人，是今晚就能试的升级。",
+          "why_en": "A direct upgrade for anyone who regularly runs browser tasks through claude-in-chrome, worth trying tonight."
+        },
+        {
+          "title": "YC 新公司靠『减少来回』把编程 agent 做快 3 成",
+          "title_en": "A YC startup made a coding agent 35% faster by cutting round trips",
+          "author": "Adi & Alex · Bullet（Hacker News Show HN）",
+          "author_en": "Adi & Alex · Bullet (Hacker News Show HN)",
+          "likes": 93,
+          "url": "https://www.codewithbullet.com",
+          "summary": "两个刚毕业就创业的创始人，六次转型未果，最后解决自己天天等 Claude Code 和 Codex 的痛点，做了编程 agent Bullet。他们说瓶颈不在推理速度，而在来回轮数：独立检索和读文件应并行，依赖编辑和验证才串行；别把整个仓库塞进 embedding，也别堆全部上下文，做精准检索；工具输出设上限，读过的文件不重读，过时截图及时清。结果：SWE-bench Verified 单次通过率 95.8%，平均每任务 119 秒，比同类快 35% 到 67%。",
+          "summary_en": "Two founders who tried six failed pivots before this finally decided to fix a problem they had every day — waiting on Claude Code and Codex — and built a coding agent called Bullet. Their claim: the real bottleneck isn't raw model speed, it's round trips. Independent searches and file reads should run in parallel, dependent edits and verification should stay sequential; don't embed the whole repo and don't stuff the whole context into the conversation, do targeted search instead; cap tool output, never re-read a file you've already read, and clear stale screenshots promptly. On that approach they hit 95.8% on SWE-bench Verified in a single attempt, averaging 119 seconds per task, 35 to 67 percent faster than comparable setups.",
+          "why": "这几条提速心法不用换工具就能用，直接搬进 subagent prompt 试试就知道有没有用。",
+          "why_en": "These speed principles don't require switching tools — they're worth porting directly into your own subagent prompts to test."
+        }
+      ]
+    }
+  ]
+}
