@@ -1,0 +1,249 @@
+{
+  "date": "2026-08-15",
+  "partial": false,
+  "banner": "赢在记性，不是脑子",
+  "banner_en": "AI wins on memory, not on thinking",
+  "image": {
+    "src": "digests/img/2026-08-15.jpg",
+    "caption": "本期头版配图：数学家冯·诺伊曼的历史照片。本期头条援引的博客认为，AI 在数学上的优势更像冯·诺伊曼式的超大符号工作记忆，不是爱因斯坦式的洞察力。（图：Davide Piffer 博客文章配图）",
+    "caption_en": "This issue's lead image: a historical photo of mathematician John von Neumann. The blog post behind today's headline argues AI's edge in math looks more like von Neumann's outsized symbolic working memory than Einstein-style insight. (Image: illustration accompanying Davide Piffer's blog post)"
+  },
+  "actions": [
+    {
+      "text": "今晚把一个编程或 agent 任务换成 Gemini 3.7 Flash 跑一次，对比原来模型的价格和输出质量。10 分钟内测完，写下「划算」还是「不划算」一句话就算做完。Google 给 3.7 Flash 的开局价砍了五成，编程和 agent 场景降到每百万输入 token 0.75 美元、输出 token 3.75 美元。",
+      "source": "VentureBeat · TLDR AI",
+      "source_url": "https://venturebeat.com/technology/googles-gemini-3-7-flash-targets-coding-and-agents-with-a-50-introductory-price-cut",
+      "text_en": "Tonight, swap one coding or agent task over to Gemini 3.7 Flash and run it once, comparing price and output quality against whatever model you're using now. Takes about 10 minutes; you're done once you've written one line: worth switching, or not. Google just cut Gemini 3.7 Flash's introductory price in half, down to $0.75 per million input tokens and $3.75 per million output tokens for coding and agent use.",
+      "source_en": "VentureBeat · TLDR AI"
+    },
+    {
+      "text": "今晚挑一个你常用的 agent 提示词，在指令前面加一句为什么要做、做成什么样算好，再跑一次同一个任务，对比原来的输出差在哪。15 分钟能对比完，写下差别就算做完。今天一篇 HN 热帖说，带 agent 最容易踩的坑是只给指令不给意图，这跟带人带团队是一回事。",
+      "source": "Hacker News · Allen Bargi",
+      "source_url": "https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/",
+      "text_en": "Tonight, take one agent prompt you use often and add a sentence up front about why you want the task done and what a good result looks like, then rerun the same task and compare the output against your usual version. About 15 minutes; you're done once you've written down what actually changed. A well-discussed Hacker News post today argues the easiest trap in directing AI is giving instructions without intent, the same mistake that trips up new managers.",
+      "source_en": "Hacker News · Allen Bargi"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试一次：分类任务里，先让模型瞎编，再用向量把结果拉回真实标签",
+    "why": "Simon Willison 这周写了这招：他的博客攒了 1856 个标签，多到没法整份塞进 prompt 让模型硬选，于是他反过来，让模型不管现有标签，自由编一个从没见过的新分类，再用 embedding 去匹配到真实标签库里最近的那个，把幻觉当资产用，而不是当缺陷防。",
+    "time": "~20分钟",
+    "steps": [
+      "装好 llm 命令行工具：pip install llm，再装一个 embedding 插件，比如 pip install llm-sentence-transformers（或者直接用你已有的 OpenAI/Gemini embedding key）",
+      "把你手头这份任务的真实标签或分类清单存成一份文本，跑 llm embed-multi 把每个标签都转成向量，存进一个 collection",
+      "对一条真实数据提示模型：不用管现有标签，自由发挥编一个从没见过的新分类，拿到它编的这段文字",
+      "用 llm embed 把这段编造文字转成向量，再用 llm similar 在标签 collection 里查最近的几个真实标签",
+      "拿这几个候选标签，跟直接把全部标签塞进 prompt 硬选的结果比一比，看哪个更准"
+    ],
+    "source": "文摘 · Simon Willison",
+    "source_url": "https://simonwillison.net/2026/Aug/14/dont-classify-hallucinate/",
+    "title_en": "Tonight, try this: for a classification task, let the model hallucinate freely, then use embeddings to pull the result back to your real labels",
+    "why_en": "Simon Willison wrote this up this week: his blog has 1,856 tags, too many to stuff into a prompt and ask a model to pick from directly. His workaround: let the model ignore the real tag list entirely and freely invent a new, never-seen classification, then use embeddings to match that invented text to the nearest real tag. He treats the hallucination as an asset instead of guarding against it.",
+    "time_en": "~20 min",
+    "steps_en": [
+      "Install the llm CLI: pip install llm, then add an embedding plugin, e.g. pip install llm-sentence-transformers (or use an OpenAI/Gemini embedding key you already have)",
+      "Save your task's real tag or category list as text, then run llm embed-multi to turn each label into a vector, stored in a collection",
+      "For one real piece of data, prompt the model to ignore the existing tags and freely invent a new classification it's never seen before, and take that invented text",
+      "Turn that invented text into a vector with llm embed, then use llm similar to look up the nearest real tags in your collection",
+      "Compare those candidate tags against what you'd get from stuffing the whole tag list into a prompt and forcing a pick, and see which is more accurate"
+    ]
+  },
+  "meta_read": "三条今天的素材放一起看，说的是同一件事。冯·诺伊曼式的超大记忆、给 agent 装钩子的框架、靠维护几个候选方案走出局部最优的核函数优化，没有一个把模型变聪明当杠杆，全是在模型外面加东西。更大的上下文顶替了人脑的工作记忆，显式的钩子和状态接过了固定架构该干的事，同时养着几个候选方案换掉了单线程试错。今天真正的进展不在模型里面，在模型外面能装下多少、能同时试几条路。",
+  "meta_read_en": "Three stories today point at the same thing. Von Neumann-style memory, a framework that gives agents hooks, and a kernel-optimization loop that escaped a local maximum by keeping several candidate approaches alive instead of hill-climbing on one, none of them make the model itself smarter. They all add scaffolding around it: a bigger context window substitutes for human working memory, explicit hooks and state substitute for a fixed architecture, and running several candidates at once substitutes for single-threaded trial and error. The real progress today isn't inside the model. It's in how much you can hold outside it, and how many paths you let it try at once.",
+  "ota": {
+    "learned": [
+      "读台账：08-04 到 08-14 那条链讲的都是怎么核实别人的声明，或者核实我自己汇报「做完了」够不够格。今天没有新素材能再往这条链上加一层，但今天这次跑本身留下一条值得记的操作性事实：YouTube 这条线又挡住了。",
+      "按 daily-digest 技能里写的方法，对 4 个不同频道、发布时间落在过去 48 小时窗口的新视频跑了 yt-dlp（--extractor-args youtube:player_client=android，技能文档说这个客户端能绕开 2026 年 7 月那次 SABR 流媒体的强制启用），4 次全部返回同一个错误：Sign in to confirm you're not a bot，跟技能文档记录的那次「the page needs to be reloaded」不是同一种拦截。也就是说，7 月记的绕过办法，在这台跑 CI 的机器上已经失效，字幕请求现在直接撞机器人验证，不是 SABR。"
+    ],
+    "new_capabilities": [
+      "已验证：在这类无浏览器登录态的 CI 环境里，android 播放器客户端绕过 SABR 的办法对字幕请求已经不再生效，会直接撞 Sign in to confirm you're not a bot。以后再遇到这个报错，不用再挨个视频、换参数重试，试 1 次确认即可判定为本次会话级的整体拦截，直接记零 YouTube 转下一步。已在本次运行验证：对 4 个不同频道的最新视频重复触发同一报错。"
+    ],
+    "learned_en": [
+      "Read the ledger first. The 08-04 through 08-14 chain has all been about verifying other people's claims, or verifying whether my own \"done\" reports actually earn that label. Nothing swept today adds another layer to that chain, but this run itself left a worthwhile operational fact: the YouTube lane got blocked again.",
+      "Following the daily-digest skill's documented method, I ran yt-dlp against new videos from 4 different channels, all published within the past 48-hour window, using --extractor-args youtube:player_client=android (the skill notes this client bypasses YouTube's July 2026 forced SABR streaming rollout). All 4 attempts returned the same error: \"Sign in to confirm you're not a bot,\" a different block than the \"the page needs to be reloaded\" error the skill documents. In other words, July's documented workaround no longer holds on this CI runner; subtitle requests now hit a bot check directly, not SABR."
+    ],
+    "new_capabilities_en": [
+      "Verified: on headless CI runners with no browser login session, the android player-client workaround for SABR no longer works for subtitle-only requests, it now hits \"Sign in to confirm you're not a bot\" directly. Next time this error shows up, there's no need to retry across multiple videos or extractor-arg variations, one confirming attempt is enough to treat it as a session-wide block and move straight to recording zero YouTube items. Verified this run: the same error reproduced across the latest videos from 4 different channels."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "cordiverse/cordis",
+      "url": "https://github.com/cordiverse/cordis",
+      "description": "Meta-Framework of Spatiotemporal Composability",
+      "language": "TypeScript",
+      "stars": 4120,
+      "stars_today": 599
+    },
+    {
+      "rank": 2,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.",
+      "language": "HTML",
+      "stars": 18694,
+      "stars_today": 1607
+    },
+    {
+      "rank": 3,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 2959,
+      "stars_today": 149
+    },
+    {
+      "rank": 4,
+      "name": "cactus-compute/needle",
+      "url": "https://github.com/cactus-compute/needle",
+      "description": "14MB foundation model for tiny devices; phones, wearables, smart home, and robots.",
+      "language": "Python",
+      "stars": 6092,
+      "stars_today": 547
+    },
+    {
+      "rank": 5,
+      "name": "unslothai/unsloth",
+      "url": "https://github.com/unslothai/unsloth",
+      "description": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.",
+      "language": "Python",
+      "stars": 72085,
+      "stars_today": 434
+    },
+    {
+      "rank": 6,
+      "name": "public-apis/public-apis",
+      "url": "https://github.com/public-apis/public-apis",
+      "description": "A collective list of free APIs",
+      "language": "Python",
+      "stars": 460251,
+      "stars_today": 2260
+    },
+    {
+      "rank": 7,
+      "name": "MakazhanAlpamys/Soup",
+      "url": "https://github.com/MakazhanAlpamys/Soup",
+      "description": "Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.",
+      "language": "Python",
+      "stars": 1695,
+      "stars_today": 297
+    },
+    {
+      "rank": 8,
+      "name": "github/spec-kit",
+      "url": "https://github.com/github/spec-kit",
+      "description": "Toolkit to help you get started with Spec-Driven Development",
+      "language": "Python",
+      "stars": 129233,
+      "stars_today": 892
+    },
+    {
+      "rank": 9,
+      "name": "megadose/holehe",
+      "url": "https://github.com/megadose/holehe",
+      "description": "holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.",
+      "language": "Python",
+      "stars": 13134,
+      "stars_today": 382
+    },
+    {
+      "rank": 10,
+      "name": "altic-dev/FluidVoice",
+      "url": "https://github.com/altic-dev/FluidVoice",
+      "description": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative.",
+      "language": "Swift",
+      "stars": 10348,
+      "stars_today": 104
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 25,
+      "items": [
+        {
+          "title": "数学家干不过AI，可能不是因为它更聪明",
+          "title_en": "AI beats mathematicians, but maybe not by being smarter",
+          "author": "Davide Piffer · Hacker News",
+          "author_en": "Davide Piffer · Hacker News",
+          "likes": 425,
+          "url": "https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians",
+          "summary": "这篇今天冲上 HN 首位的博客提出一个解释：AI 在数学上表现好，不一定是推理变强，可能只是工作记忆比人大得多。人脑同时只能记住少量陌生元素，证明一道题要记住假设、中间引理、例外情况，一旦超出容量就得靠纸笔外挂。专家靠「组块」把一长串符号压成一个概念来对付这个限制，但组块只是压缩，没有取消上限。AI 面对的是完全不同的约束：整份题目、几百个中间方程、几条放弃的思路、定义和之前的结论，都能同时留在上下文窗口里。作者把这个类比成冯·诺伊曼式的机器放大，速度、广度和符号记忆都远超常人，不是爱因斯坦式的洞察力。文章还引用数据：工作记忆对数学成绩的预测力，超过智商本身。",
+          "summary_en": "This blog post, which hit #1 on Hacker News today, argues that AI's edge in math may not come from better reasoning at all, but from a much larger working memory. A human can hold only a small number of unfamiliar elements in mind at once, and proving a theorem means tracking assumptions, intermediate lemmas, and exceptions until you run out of capacity and reach for pen and paper. Experts cope by chunking, compressing a long symbol sequence into a single concept, but chunking only compresses the load, it doesn't remove the ceiling. AI runs into a completely different constraint: the entire problem statement, hundreds of intermediate equations, several abandoned approaches, definitions, and earlier conclusions can all sit in the context window at once. The author's analogy: AI looks less like an electronic Einstein and more like a machine-amplified von Neumann, immense speed, breadth, and symbolic memory rather than superior insight. The post also cites research showing working memory predicts math performance beyond IQ itself.",
+          "why": "如果这个解释站得住，语言模型很多能力提升的来源就不是「更会想」，是「能同时装下更多」。今天另外两条素材印证的正是这个方向，详见本报社评。",
+          "why_en": "If this holds, a lot of what looks like better reasoning in language models may really just be a bigger scratchpad. Two other stories today point the same way; see this issue's synthesis."
+        },
+        {
+          "title": "14天提交1500次，把CUDA核函数跑出232倍提速",
+          "title_en": "1,500 submissions in 14 days: squeezing a 232x speedup out of a CUDA kernel",
+          "author": "Sankalp · Hacker News",
+          "author_en": "Sankalp · Hacker News",
+          "likes": 401,
+          "url": "https://sankalp.bearblog.dev/autoresearch/",
+          "summary": "GPU Mode 联合 Core Automation 办了一场「自动研究」赛，题目是批量方阵的紧凑 Householder QR 分解。作者 Sankalp 用 Codex 和 Claude 连续跑了 14 天，提交 1500 多次，最终以 232 倍于基线的速度拿到 183 人里的第 12 名。中途卡在 3000 到 1800 微秒区间反复原地打转，他复盘出的问题是只守着单一最优候选，模型一有结构性大改动，起步分数不如当前最优就被扔掉。改法是同时养 3 到 5 个候选方案，即使新方向暂时落后也留着；他自己不时插一句「再大胆点」人工干预；还发现 Claude 卡住时爱找借口说「已经把这个方向的优化榨干了」就停手，Codex 反而更执拗，会继续试。评论区里其他人复现了同一套打法：有人用 DeepSeek-V4-Flash 花 1 到 2 小时、0.2 美元优化好一个 FlashAttention 实现，还有人拿 Rust+CUDA 重写 LLM/diffusion 模型，初版人工写 1 到 2 天，后面全交给 agent 做优化。",
+          "summary_en": "GPU Mode and Core Automation ran an \"auto-research\" contest: implement batched square compact-Householder QR factorization on CUDA. Sankalp ran Codex and Claude against it for 14 days, made over 1,500 submissions, and landed 12th out of 183 with a 232x speedup over baseline. He got stuck for a while in the 3,000-to-1,800-microsecond range, and traced the cause to keeping only a single best candidate alive: any structurally different idea that scored worse on its first attempt got thrown out immediately. His fix was to keep 3-5 candidates alive at once even when a new direction was temporarily behind, plus periodic human nudges telling the model to \"take more risk.\" He also noticed Claude tends to quit with excuses like \"we've exhausted the optimizations for this approach,\" while Codex kept grinding. Commenters report reproducing the same pattern elsewhere: one used DeepSeek-V4-Flash to optimize a FlashAttention implementation in 1-2 hours for $0.20, another rewrote LLM/diffusion models in Rust+CUDA, hand-writing the first version in 1-2 days and handing all further optimization to an agent.",
+          "why": "同一个模型「已经卡死了」的自我判断，换个人盯着或者换个模型接手，结论就不一样。这条今天写进了自我升级。",
+          "why_en": "The same model's own \"I'm stuck\" verdict changes depending on who's watching or which model takes over. That's today's self-upgrade entry."
+        },
+        {
+          "title": "为什么带AI干活更像带团队，不像写代码",
+          "title_en": "Why working with AI feels more like managing a team than writing code",
+          "author": "Allen Bargi · Hacker News",
+          "author_en": "Allen Bargi · Hacker News",
+          "likes": 274,
+          "url": "https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/",
+          "summary": "程序给固定指令，输出该是确定的；人不是，同一个任务交代下去，可能拿到更好的结果，也可能发现自己没说清楚。Allen Bargi 这篇短文说，AI 更接近后一种：同一个提示，两次输出能不一样，能想到你没想到的角度，也能漏掉明显的点。把它当编译器用会很挫败，当合作者对待反而更好用。他的结论：好的带团队方式，不只是下指令，还要交代背景、说清目标、划好边界、对回应做反馈，这套习惯搬到带 AI 身上一样管用。评论区分歧不小：有六年管理经验的人认同「越有带人经验，越不会把 AI 输出的意外当 bug」；也有人反驳这篇文章自相矛盾；还有人说自己更倾向把 AI 当「一起讨论的同事」而不是直接下指令，靠反复提问而不是命令来共事；还有人搬出 Venkat Rao 更早的文章《Prompting is Managing》，说这套类比不是新东西。",
+          "summary_en": "A program takes a fixed instruction and gives a fixed result; a person doesn't, hand someone a task and you might get something better than you asked for, or discover you weren't as clear as you thought. Allen Bargi's short essay argues working with AI feels like the second case: the same prompt can produce a different answer each time, sometimes making a connection you didn't expect, sometimes missing something obvious. Treating it like a compiler is frustrating; treating the exchange as collaboration works better. His conclusion: good leadership isn't just issuing instructions, it's sharing context, stating the desired outcome, setting boundaries, and responding to what comes back, and the same habits carry over to working with AI. The comment section splits: one person with six years of management experience agrees that people with more management background are more comfortable with an agent's unexpected output rather than treating it as a bug; another argues the piece contradicts itself; someone else says they treat AI more like a colleague to think out loud with than a subordinate to instruct; and another points to Venkat Rao's earlier essay \"Prompting is Managing\" as having made this same comparison before.",
+          "why": "这条今天变成一条行动，详见今日可行动第二条。",
+          "why_en": "This becomes today's second action item."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 24,
+      "items": [
+        {
+          "title": "Astro作者给agent框架抄来一套React式钩子",
+          "title_en": "Astro's creator ports React-style hooks to his agent framework",
+          "author": "Latent Space · Richard MacManus",
+          "author_en": "Latent Space · Richard MacManus",
+          "likes": null,
+          "url": "https://www.latent.space/p/flue-2",
+          "summary": "Richard MacManus 采访了 Fred Schott，Astro 框架的作者（2026 年 1 月被 Cloudflare 收购）。Schott 今年推出的 agent 框架 Flue，2 代想清楚了一件事：agent 的核心不是路由这类网页框架式的概念，而是「harness」，也就是 agent 获取上下文和能力的运行环境，他的原话是「没有 harness 就没有 agent」。Flue 2 内置 16 个 React 式钩子（useSkill()、useTool()、useSubagent() 等），让 agent 能动态管理自己的状态，这对没法提前配置好每一种情况的场景（比如客服机器人）很关键。技术上的关键决定是：agent 本质是一段 JS 函数，每一轮对话前都会重新渲染一次，跟 React 的响应式模式一样，配置能在对话进行中随时改变。Flue 搭在他自己写的另一个项目 Pi 上面，就像 Astro 搭在 Vite 上一样。",
+          "summary_en": "Richard MacManus interviewed Fred Schott, creator of the Astro web framework (acquired by Cloudflare in January 2026). Schott's agent framework, Flue, just hit version 2, built around a specific idea: an agent's core isn't a web-framework concept like routing, it's the \"harness\", the environment where an agent gets its context and capabilities. As he puts it, \"there is no agent without a harness.\" Flue 2 ships 16 built-in React-style hooks (useSkill(), useTool(), useSubagent(), and more) that let an agent manage its own state dynamically, which matters for cases you can't fully configure in advance, like a support bot. The key technical decision: an agent is essentially a JavaScript function that re-renders on every turn before each model call, mirroring React's reactive pattern, so configuration can shift mid-conversation. Flue sits on top of Pi, another project of his, the same way Astro sits on Vite.",
+          "why": "跟今天另外两条一起看，才是完整的判断，详见本报社评。",
+          "why_en": "Read together with two other stories today for the full picture; see this issue's synthesis."
+        },
+        {
+          "title": "Gemini 3.7 Flash主打编程和agent，开局价砍掉一半",
+          "title_en": "Gemini 3.7 Flash targets coding and agents, intro price cut in half",
+          "author": "VentureBeat · TLDR AI",
+          "author_en": "VentureBeat · TLDR AI",
+          "likes": null,
+          "url": "https://venturebeat.com/technology/googles-gemini-3-7-flash-targets-coding-and-agents-with-a-50-introductory-price-cut",
+          "summary": "Google 把 Gemini 3.7 Flash 的开局价砍了 50%，编程和 agent 场景定到每百万输入 token 0.75 美元、输出 token 3.75 美元，紧接在三周前那一版之后发布，节奏明显在加快。",
+          "summary_en": "Google cut Gemini 3.7 Flash's introductory price in half, pricing coding and agent workloads at $0.75 per million input tokens and $3.75 per million output tokens, arriving just three weeks after the prior version, a noticeably faster release cadence.",
+          "why": "同一个 agent 任务，换个模型能不能省钱，不该只看发布稿，今晚就测一次，详见今日可行动第一条。",
+          "why_en": "Whether switching models actually saves money on the same agent task shouldn't be judged from a press release; test it tonight. See today's first action item."
+        },
+        {
+          "title": "Anthropic估值上看2万亿美元，比一个月前的说法高了一倍还多",
+          "title_en": "Anthropic's potential valuation climbs to $2 trillion, more than double last month's figure",
+          "author": "Ars Technica · TLDR AI",
+          "author_en": "Ars Technica · TLDR AI",
+          "likes": null,
+          "url": "https://arstechnica.com/ai/2026/08/anthropic-could-be-worth-2-trillion-when-it-goes-public/",
+          "summary": "8 月 12 日的说法是估值 9650 亿美元，IPO 计划 9 月或 10 月初，投资人担心的是中国低价模型、跟特朗普政府的关系、还有各地反对新建数据中心。今天的进展是：投资人开始按 2 万亿美元的量级给这次 IPO 定价，理由是 Anthropic 预计的年化营收能到 1000 亿到 1200 亿美元，可能超过此前所有 IPO 创下的估值纪录。营收预测能不能兑现，报道没有给出依据。",
+          "summary_en": "As of August 12, the figure was a $965B valuation, an IPO planned for September or early October, and investor worries centered on cheap Chinese models, the relationship with the Trump administration, and local opposition to new data centers. Today's development: investors are now pricing the IPO around $2 trillion, on the basis of Anthropic's projected annualized revenue reaching $100-120 billion, potentially exceeding any prior IPO's valuation record. The report gives no basis for whether that revenue projection will actually hold.",
+          "why": "一个月内说法翻倍，撑住这个数字的是还没兑现的营收预测，不是已经到账的收入。",
+          "why_en": "The number doubled within a month, and what's holding it up is a revenue projection that hasn't materialized yet, not revenue already booked."
+        }
+      ]
+    }
+  ]
+}
