@@ -5,19 +5,19 @@
   "banner_en": "Savings live in the interface, not the model",
   "image": {
     "src": "digests/img/2026-08-15.jpg",
-    "caption": "本期头版配图：Corey Gallon 在 AI Engineer 大会演讲，主题是“CDP 驱动的浏览器 agent”。（图：YouTube/AI Engineer）",
+    "caption": "本期头版配图：Corey Gallon 在 AI Engineer 大会演讲，主题为“CDP 驱动的浏览器 agent”。（图：YouTube/AI Engineer）",
     "caption_en": "This issue's lead image: a still from Corey Gallon's AI Engineer talk on CDP-driven browser agents. (Image: YouTube/AI Engineer)"
   },
   "actions": [
     {
-      "text": "拿出你按次付费的数据或 context API 账单，粗略算一下每月查询量，对照 Bright Data 给出的 1.5 万次/实体这个自建拐点，十分钟内得出一个数。如果数字接近或超过拐点，就认真跑一版自建成本模型。",
+      "text": "拿出按次付费的数据或 context API 账单，粗略估算每月查询量，对比 Bright Data 给出的 1.5 万次/实体这一自建拐点，十分钟内得出一个数。若数字接近或超过拐点，就认真跑一版自建成本模型。",
       "source": "Omer Primor · Bright Data，AI Engineer 大会",
       "source_url": "https://www.youtube.com/watch?v=Ot4OPrPH4xY",
       "text_en": "Pull up whatever data or context API you're paying per-call for, do a quick monthly-query estimate, and compare it against Bright Data's 15,000-queries-per-entity build-vs-rent breakeven, ten minutes is enough for a rough number. If you're near or past that line, come back and run a real cost model for building it in-house.",
       "source_en": "Omer Primor · Bright Data, AI Engineer conference"
     },
     {
-      "text": "回顾这周与 agent 打交道最费劲的一次对话，对照 HN 那场争论中两派的说法：你是设定上下文、审查产出（支持“领导力”派），还是只是把需求写得更细（反对派）。认清自己更像哪一派，就往那个方向补技能。",
+      "text": "回顾本周与 agent 打交道最费劲的一次对话，对照 HN 那场争论中两派的说法：你是设定上下文、审查产出（支持“领导力”派），还是只是把需求写得更细（反对派）。认清自己更像哪一派，就往那个方向补技能。",
       "source": "allen（个人博客，Hacker News 热帖）",
       "source_url": "https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/",
       "text_en": "Pull up your most frustrating agent-directing session from this week and check it against both sides of this HN argument: were you setting context and reviewing output (the leadership camp's claim), or essentially writing more detailed requirements (the pushback camp's claim). Whichever is closer to true, that's the skill to actually build.",
