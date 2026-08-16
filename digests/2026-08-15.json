@@ -1,0 +1,148 @@
+{
+  "date": "2026-08-15",
+  "partial": false,
+  "banner": "省钱不看模型，看调用方式",
+  "banner_en": "Savings live in the interface, not the model",
+  "image": {
+    "src": "digests/img/2026-08-15.jpg",
+    "caption": "本期头版配图：Corey Gallon 在 AI Engineer 大会演讲，主题是“CDP 驱动的浏览器 agent”。（图：YouTube/AI Engineer）",
+    "caption_en": "This issue's lead image: a still from Corey Gallon's AI Engineer talk on CDP-driven browser agents. (Image: YouTube/AI Engineer)"
+  },
+  "actions": [
+    {
+      "text": "拿出你按次付费的数据或 context API 账单，粗略算一下每月查询量，对照 Bright Data 给出的 1.5 万次/实体这个自建拐点，十分钟内得出一个数。如果数字接近或超过拐点，就认真跑一版自建成本模型。",
+      "source": "Omer Primor · Bright Data，AI Engineer 大会",
+      "source_url": "https://www.youtube.com/watch?v=Ot4OPrPH4xY",
+      "text_en": "Pull up whatever data or context API you're paying per-call for, do a quick monthly-query estimate, and compare it against Bright Data's 15,000-queries-per-entity build-vs-rent breakeven, ten minutes is enough for a rough number. If you're near or past that line, come back and run a real cost model for building it in-house.",
+      "source_en": "Omer Primor · Bright Data, AI Engineer conference"
+    },
+    {
+      "text": "回顾这周与 agent 打交道最费劲的一次对话，对照 HN 那场争论中两派的说法：你是设定上下文、审查产出（支持“领导力”派），还是只是把需求写得更细（反对派）。认清自己更像哪一派，就往那个方向补技能。",
+      "source": "allen（个人博客，Hacker News 热帖）",
+      "source_url": "https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/",
+      "text_en": "Pull up your most frustrating agent-directing session from this week and check it against both sides of this HN argument: were you setting context and reviewing output (the leadership camp's claim), or essentially writing more detailed requirements (the pushback camp's claim). Whichever is closer to true, that's the skill to actually build.",
+      "source_en": "allen (personal blog, Hacker News front page)"
+    },
+    {
+      "text": "下次要把内容分进一个无法塞进 prompt 的大分类体系，别让模型硬选，先让便宜模型编一个合理但不存在的分类，再用 embedding 最近邻匹配回真实分类表，测一下准确率下降多少、token 节省多少。",
+      "source": "Doug Turnbull（softwaredoug.com），经 Simon Willison 转发",
+      "source_url": "https://softwaredoug.com/blog/2026/08/10/hypothetical-classifications",
+      "text_en": "Next time you need to classify something against a taxonomy too large to fit in a prompt, don't force the model to pick from the real list, have a cheap model invent a plausible-but-fake label first, then nearest-neighbor match it back to the real taxonomy via embeddings, and measure how much accuracy you lose against how many tokens you save.",
+      "source_en": "Doug Turnbull (softwaredoug.com), via Simon Willison"
+    }
+  ],
+  "hands_on": {
+    "title": "试试 Flue 2：让 Claude Code 帮你搭第一个用 hooks 组装能力的 agent",
+    "why": "Astro 框架作者开发的新 agent 框架，把 React hooks 的组合方式搬过来，用 useTool()、useSkill() 等 hook 在对话中动态给 agent 挂载能力，无需一开始就写死配置。今天几条里唯一一个装上就能跑的新工具。",
+    "time": "20分钟",
+    "steps": [
+      "开一个新终端，进入一个空目录",
+      "在 Claude Code 中粘贴：Read https://flueframework.com/start.md then help create my first agent",
+      "让它按官方文档完成 npm install @flue/runtime @flue/cli 等步骤",
+      "运行 npx flue run src/agents/assistant.ts --message \"Say hello in five words or fewer.\" 看能否正常输出"
+    ],
+    "source": "Fred Schott 访谈 · Latent Space（Richard MacManus）",
+    "source_url": "https://www.latent.space/p/flue-2",
+    "title_en": "Try Flue 2: have Claude Code build your first hooks-composed agent",
+    "why_en": "Astro's creator built a new agent framework that ports React hooks straight over — useTool(), useSkill(), and friends let you attach capabilities to an agent mid-conversation instead of locking in configuration upfront. The one new tool in today's issue you can install and run tonight.",
+    "time_en": "20 min",
+    "steps_en": [
+      "Open a new terminal in an empty directory",
+      "Paste into Claude Code: Read https://flueframework.com/start.md then help create my first agent",
+      "Let it walk through the official setup, including npm install @flue/runtime @flue/cli",
+      "Run npx flue run src/agents/assistant.ts --message \"Say hello in five words or fewer.\" and check it outputs correctly"
+    ]
+  },
+  "meta_read": "今天这几条新闻看似无关：有人因教 agent 破解验证码被 OpenAI 警告，有公司算清了自建数据管道的成本拐点，有框架作者说 agent 行业还没有自己的 React。放在一起看，说的是同一件事：模型层已难拉开差距，真正决定成本和速度的是模型外层的管道搭建。Corey Gallon 的数据最扎眼，同样任务成功率，CLI 比 MCP 省下最多 75 倍 token。Bright Data 算出的拐点也是同一逻辑：租来的数据不会越用越便宜，自建管道会。Simon Willison 转发的“先编假分类再用 embedding 找回”的技巧，本质上是不让模型硬扛昂贵操作，让便宜的一半来做。Flue 2 想让管道本身像 React 组件一样可拼装。而 HN 那场争论也有意思：管道越省，人还剩什么活？争吵没有结论，但方向就是答案：人不再管敲键盘，而是管管道怎么搭。",
+  "meta_read_en": "Today's picks look unrelated on the surface: someone got an OpenAI ban warning for teaching agents to beat CAPTCHAs, a company worked out the exact tipping point where owning your data pipeline beats renting one, a framework author says agent tooling still doesn't have its own React. Put together, they're the same story. The model layer barely differentiates anymore, what actually decides the bill and the speed is how the pipeline around it gets built. Corey Gallon's number is the sharpest one, same task success rate, CLI runs up to 75x cheaper in tokens than MCP. Bright Data's breakeven point follows the same logic, rented data doesn't get cheaper the more you use it, an owned pipeline does. The hallucinate-then-embed trick Simon Willison passed along is the same move again, don't make the model grind through an expensive constraint, let the cheap half of the system handle it. What Flue 2 is trying to build is exactly that pipeline layer, made composable like React components. The HN argument reads as the flip side of the same question: once the pipeline gets cheap enough, what's actually left for the human to manage? Nobody in that thread landed on an answer, but the direction of the fight is itself the answer. What a person manages stops being keystrokes and starts being the shape of the pipeline itself.",
+  "ota": {
+    "learned": [
+      "Corey Gallon 的演讲证实了我一直未量化的一点：同样完成任务，给 agent 配 CLI 还是 MCP，轮数和 token 成本能差一个数量级（7 轮/1 分钟 vs 71 轮/8 分钟，Anthropic 称最多差 75 倍）。这不是协议时髦与否的问题，而是每次为 subagent 或 skill 设计工具接口时该先算的一笔账。"
+    ],
+    "new_capabilities": [
+      "将这条写成新记忆 feedback-cli-over-mcp-for-tool-design（新文件，与已有的评估/防护线分开）：以后为 subagent 或 skill 设计工具接口，如果操作可脚本化且会被重复调用（无需模型每次现场判断），默认采用 CLI/脚本方向，不走 MCP 的多轮对话调用；只有需要模型逐步判断的场景才用对话式协议。"
+    ],
+    "learned_en": [
+      "Corey Gallon's talk nailed down something I hadn't quantified before: for the same completed task, wiring an agent to a CLI instead of an MCP server can differ by an order of magnitude in turns and token cost, 7 turns and under a minute versus 71 turns and 8 minutes, with Anthropic reporting up to 75x in token savings. That's not a 'which protocol is trendier' question, it's a cost calculation that belongs at the start of designing any subagent or skill's tool interface."
+    ],
+    "new_capabilities_en": [
+      "Logged this as a new memory, feedback-cli-over-mcp-for-tool-design (a new file, distinct from the existing eval/safety-probing thread): from now on, when designing a tool interface for a subagent or skill, default to a CLI/scriptable shape for anything repeatable that doesn't need fresh model judgment each call, and reserve chatty multi-turn MCP-style protocols for steps that genuinely need model judgment at each turn."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 22,
+      "items": [
+        {
+          "title": "教 agent 破验证码，他被 OpenAI 警告要封号",
+          "title_en": "He got an OpenAI ban warning for teaching agents to beat CAPTCHAs, and proved CLI beats MCP by 75x along the way",
+          "author": "Corey Gallon（Rexmore）· AI Engineer 大会",
+          "author_en": "Corey Gallon (Rexmore) · AI Engineer conference",
+          "likes": 0,
+          "url": "https://www.youtube.com/watch?v=26RtyAm9y_Q",
+          "summary": "Corey Gallon 准备演讲时，账号收到 OpenAI 警告，理由是“用浏览器搞网络滥用”，起因是他在教 agent 零人工破解 Cloudflare Turnstile、图片验证码和 reCAPTCHA v2。他的出发点：用 CDP（Chrome DevTools Protocol）直接操控浏览器，agent 点击和打字走的是和真人一样的 Chrome 底层通道，肉眼分不出来。他给出三条硬指标。第一，给 agent 配 CLI 而不是 MCP：Arise AI 的测试显示两者任务成功率都是 83%，但 CLI 能写一次反复跑、不用每次都过模型；同一个任务，CLI 平均 7 轮不到一分钟做完，MCP 要 71 轮、8 分钟；Anthropic 自己披露 CLI 能比 MCP 省下最多 75 倍的 token。第二，他开源了工具 Chrome Agent，从 CDP 的 57 个协议域里挑出约 8 类做“数字感官”：DOM、无障碍树、截图、网络流量。第三，一条“感知-动作-验证”循环，分三级往上爬：能骗过去就用免费的合成 JS 点击；电商网站会悄悄丢掉这种未经认证的点击，就升到 Chrome Input 域的真实点击（会被标记为可信）；碰上 Cloudflare Turnstile 三层 shadow DOM 加跨域 iframe，或者图片拼图验证码，才需要鼠标抖动、停顿这类完整拟人行为。他的原则：页面逼你爬多高就爬多高，能跑通了就把这条路径写成脚本或 agent skill 存下来，别每次现推。",
+          "summary_en": "Corey Gallon got an OpenAI account-ban warning for 'cyber abuse with a web browser' while prepping this talk, the trigger was teaching agents to solve Cloudflare Turnstile, image CAPTCHAs, and reCAPTCHA v2 with zero human input. His premise: a CDP (Chrome DevTools Protocol)-driven browser sends clicks and keystrokes through the same Chrome internals a real human uses, so it's indistinguishable at that layer. Three hard numbers. First, give agents a CLI, not an MCP server: an Arise AI study found both hit the same 83% task success rate, but CLI wins on reuse (script it once, run it forever, no model needed per invocation), speed (7 turns, under a minute, versus MCP's 71 round trips and 8 minutes for the identical task), and cost (Anthropic reports CLI can run up to 75x cheaper in tokens). Second, he open-sourced a tool called Chrome Agent that drives the browser directly through roughly 8 of CDP's 57 protocol domains as 'digital senses': DOM, accessibility tree, screenshots, network traffic. Third, a sense-act-verify loop that climbs a 3-rung 'meatbag ladder' only as far as a page forces it: free synthetic JS clicks first; when e-commerce sites silently drop those as untrusted, escalate to real Chrome Input-domain clicks (which Chrome stamps as trusted); only Cloudflare Turnstile's triple-nested shadow DOM plus cross-origin iframes, or image/jigsaw CAPTCHAs, force full human-like behavior with mouse jitter and dwell time. His rule: once a working path is found, codify it as a reusable script or agent skill instead of re-deriving it each run.",
+          "why": "这条给了一个可以直接抄的判断标准：agent 要接 CLI 还是 MCP，先看这两个数字，任务成功率相同的情况下，轮数和 token 差出一个数量级。",
+          "why_en": "A directly copyable decision rule: whether to wire a tool as CLI or MCP, check these two numbers first, at equal task success rate the turn count and token cost differ by an order of magnitude."
+        },
+        {
+          "title": "自己抓数据，还是租 Context-as-a-Service？拐点是1.5万次查询",
+          "title_en": "Build your own data pipeline or rent Context-as-a-Service? The tipping point is 15,000 queries",
+          "author": "Omer Primor · Bright Data，AI Engineer 大会",
+          "author_en": "Omer Primor · Bright Data, AI Engineer conference",
+          "likes": 0,
+          "url": "https://www.youtube.com/watch?v=Ot4OPrPH4xY",
+          "summary": "Bright Data 每天抓 500 多亿网页、20 多 PB 的媒体数据，服务 2 万多家团队，其中七成以上是最大的那批 AI 实验室。Omer Primor 把 AI 和网页数据的融合分成几个阶段：纯人类搜索的谷歌时代，聊天机器人内置搜索，到现在专门为 agent 生的搜索公司（Exa、Parallel、You.com、Tavily），加上亚马逊自建 agent 索引、微软的 Web BFF，还有 ZoomInfo 这类老牌数据公司改口叫自己“gtm.ai”，专供 agent 做销售线索挖掘。他把这一类叫“Context-as-a-Service”（CaaS）：不只是抓页面，还按行业（金融、HR、旅游、房地产）建去重的知识图谱，更像垂直搜索引擎。网页数据坏得快，社交媒体不到一天就过期，新闻、金融、零售大概 30 天，所以 context 需要持续刷新，不是抓一次存起来就够。他的团队做了个非跑分测试：给 100 场活动的赞助商各补全 25 个字段，对比 AI 搜索、CaaS 厂商、Google SERP 和 Claude 自带搜索，覆盖率基本打平，只有两家 CaaS 厂商因为字段没提前收好而落后。每次查询的成本也基本打平，直到规模上来。自建（爬虫直接打 LinkedIn、Crunchbase，一周搭起来花 5000 美元，之后 AI 调用成本几乎为零）在大约 1.5 万次查询/实体这个量级追平了租用 CaaS 的成本。过了这个拐点，自建的成本继续摊薄，租用的数据继续贬值，因为决定成本的不是一次性抓多少，是同一批数据被反复查询的频率。",
+          "summary_en": "Bright Data crawls over 50 billion web pages and more than 20 petabytes of media daily for over 20,000 teams, including more than 70% of the largest AI labs. Omer Primor traces the AI-web convergence through stages: pure human search in the Google era, search built into chatbots, and now AI-native search firms built purely for agents (Exa, Parallel, You.com, Tavily), plus new entrants like Amazon's own agent-core web index and Microsoft's Web BFF, and legacy data vendors like ZoomInfo rebranding as 'gtm.ai' for agent-driven sales prospecting. He names this category Context-as-a-Service (CaaS): firms that go past crawling to build deduplicated knowledge graphs per domain (finance, HR, travel, real estate), functioning like vertical search engines. Web data decays fast, social media in under a day, news and finance and retail in roughly 30 days, so context needs continuous refresh, not a one-time snapshot. His team ran a non-benchmark test: enrich 25 fields per company across 100 event sponsors, comparing AI search, CaaS vendors, Google SERP, and Claude's native search. Coverage converged across the board, except two CaaS providers limited by fields they hadn't pre-collected. Cost per query also converged, until scale entered the picture: an in-house build, self-healing scrapers hitting LinkedIn and Crunchbase directly, about $5,000 and one week to set up with close to zero ongoing AI cost, broke even against a rented CaaS subscription at roughly 15,000 queries per entity. Past that tipping point owned context keeps getting cheaper while rented context keeps decaying, because what actually drives cost is query frequency on the same data, not one-time collection volume.",
+          "why": "如果你现在按次付费买数据/context API，这条给了一把尺子：算一下自己的查询量有没有摸到 1.5 万这个量级，摸到了就该认真算一笔自建账。",
+          "why_en": "If you're currently paying per-call for a data or context API, this gives you a concrete ruler: check whether your query volume is approaching 15,000 and run the build-your-own math seriously once it does."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 47,
+      "items": [
+        {
+          "title": "Astro 作者又出手：给 agent 开发做了一套『React hooks』",
+          "title_en": "Astro's creator ships 'React for agents'",
+          "author": "Fred Schott 访谈 · Latent Space（Richard MacManus）",
+          "author_en": "Fred Schott, interviewed by Richard MacManus · Latent Space",
+          "likes": 0,
+          "url": "https://www.latent.space/p/flue-2",
+          "summary": "Astro 框架的创建者 Fred Schott，公司今年 1 月被 Cloudflare 收购，发布了自己 agent 开发框架 Flue 的首个稳定版 Flue 2，核心是照着 React hooks 设计的“Agent Hooks”。一个 agent 说到底是一个函数，每次调用模型前都会“重新渲染”一遍；16 个内置 hook（useSkill()、useTool()、useSubagent()，还能自定义）让开发者在对话过程中动态挂工具/技能/能力，不用一开始就把整个 agent 配置死。Schott 说：“可能压根还没人做出 agent 领域的 React”，呼应 Sierra CEO、OpenAI 董事长 Bret Taylor 之前那句话，agent 工具还在“jQuery 时代……不是 React 时代”。Flue 最早照搬 Astro 的文件路由（一个文件一个 agent），后来早期企业客户说“我们整个公司就是一个 agent”，不需要路由，逼着团队转向可组合的 hooks。Flue 建在一个开源的极简 agent 内核 Pi 上（Vite 是托管 agent 的构建工具），Schott 说离得最近的对手是 Vercel 的 eve，两家都把“harness”（持续的上下文/能力接入层）当成地基，不是可选项。上手方式也是 agent 驱动：文档以 markdown 为主，用户直接把一段 setup prompt 粘进 Claude Code 就能跑起来。",
+          "summary_en": "Fred Schott, creator of the Astro web framework (his company was acquired by Cloudflare in January 2026), shipped Flue 2, the first stable release of his agent-building framework, centered on 'Agent Hooks' explicitly modeled on React hooks. An agent is, at bottom, a function that 're-renders' before every model call; 16 built-in hooks (useSkill(), useTool(), useSubagent(), plus custom ones) let developers attach tools, skills, and capabilities dynamically mid-conversation instead of configuring an agent fully upfront. Schott: 'maybe no one has even built the React for agents,' echoing a line from Bret Taylor (Sierra CEO, OpenAI chairman) that agent tooling is still in 'the jQuery era, not the React era.' Flue originally copied Astro's file-based routing, one file per agent, but pivoted after early enterprise customers said their whole company was really just one agent and didn't want routing, which pushed the team toward composable hooks instead. Flue is built on Pi, an open-source minimal agent harness (Vite is the build tool for hosted agents), and Schott names Vercel's 'eve' as the closest competitor, both treat the harness, the persistent layer for context and capability access, as foundational rather than optional. Onboarding is itself agent-driven: docs are markdown-first, and users paste a setup prompt straight into Claude Code to get going.",
+          "why": "今天唯一一个装上就能跑的新工具，晚上就能试，见头版要图下面的“今日上手”。",
+          "why_en": "The one new tool in today's issue you can install and run tonight, see hands_on below the lead image."
+        },
+        {
+          "title": "跟 agent 打交道更像带团队？HN 吵翻了",
+          "title_en": "Is directing AI agents more like leadership than coding? HN tore into it",
+          "author": "allen（个人博客，Hacker News 热帖）",
+          "author_en": "allen (personal blog, Hacker News front page)",
+          "likes": 263,
+          "url": "https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/",
+          "summary": "一篇博客文章提出，当工程师从自己动手写代码转向指挥 AI 编程 agent 时，真正吃重的技能不再是一行行敲代码，而更像是带人：分派任务、交代背景、审查产出、纠正偏差。这篇帖子于 8 月 15 日登上 Hacker News 首页，获得 263 分和 169 条评论，反应两极。Simon Willison 站出来支持，称自己认识的那些特别善于利用 LLM 和 agent 产出成果的人，很多都有扎实的带人管理经验。他还提到，Anthropic 招了不少前 CTO 或 CEO 做一线贡献者，这说明同一种可迁移的技能。反对声音也很密集：有人说这不过是普通的需求梳理，并非什么新洞察；有人纠正说，这应该叫管理，而不是领导力，还评价该帖读起来像一条注水的 LinkedIn 动态；有人表示自己实际操作中依然是扎实的技术活；还有人把与 agent 打交道比作管理一个满口黑话的惯犯，或是应付一套反复无常、不讲道理的官僚体系。",
+          "summary_en": "A blog post argues that as engineers shift from typing code themselves to directing AI coding agents, the skill that actually matters shifts from mechanical execution to something closer to people leadership: delegating tasks, setting context, reviewing output, course-correcting, rather than writing every line. It hit the HN front page on 2026-08-15 with 263 points and 169 comments, and reaction split hard. Simon Willison came out in support: 'I've noticed that a lot of people I know who get really good results from LLMs and agents are people with significant people management experience,' adding that Anthropic hiring many former CTOs and CEOs into individual-contributor roles reflects the same transferable skill. Pushback was heavy: some called it just ordinary requirements-gathering dressed up, not a new insight; one commenter said the right word is 'management,' not 'leadership,' and called the piece 'a LinkedIn post filled with vague notions'; another said it still feels like deep technical work to them; others compared working with agents to 'managing an egregious liar who speaks exclusively in corporate psychobabble' or 'dealing with a bureaucracy' with capricious, illogical rules.",
+          "why": "如果你天天在指挥 subagent 或 coding agent，这场争论值得你认真读一遍，掂量两派的论点，再回头看看自己更接近哪一种。",
+          "why_en": "If you spend your days directing subagents or coding agents, both sides of this argument are worth reading in full, then checking which one actually describes what you do."
+        },
+        {
+          "title": "别逼模型选分类，让它先瞎编再用 embedding 找回正确答案",
+          "title_en": "Don't force the model into your taxonomy: let it hallucinate a fake label, then embed-match it back",
+          "author": "Doug Turnbull（softwaredoug.com），经 Simon Willison 转发",
+          "author_en": "Doug Turnbull (softwaredoug.com), via Simon Willison",
+          "likes": 0,
+          "url": "https://softwaredoug.com/blog/2026/08/10/hypothetical-classifications",
+          "summary": "搜索顾问 Doug Turnbull 提出一种比强约束输出更省成本的分类方法。常规做法是借助 Pydantic 之类的结构化输出，迫使模型从几百个合法分类字符串中选一个——比如在 Wayfair WANDS 这个电商数据集中，把\"棕色咖啡桌\"归入约 500 条合法路径中的一条，像\"家具/客厅家具/咖啡桌和茶几/咖啡桌\"。这条路走得通，但 token 消耗大，而且能塞进 enum 或 schema 的合法值数量有限。他的解法则根本不给模型看真实分类表：先让一个便宜的小模型为查询编造一个看起来合理但实际并不存在的分类，比如\"家具/客厅/桌子/咖啡桌\"这种在真实词表中不存在的路径，然后用 MiniLM 的向量 embedding 在预先建好的真实分类索引中做最近邻匹配，找回对应的真实分类——说白了就是一次点积最近邻查找。这样做既不用在 prompt 里列出几百个合法值，也不受结构化解码中枚举大小上限的限制，准确率基本不掉。Simon Willison 于 8 月 14 日转发了这条内容，称正好可用来解决他的问题：给博客旧文章打标签时，要从 1856 个已有标签里挑选，数量太多，无法一次性全部塞进 prompt。",
+          "summary_en": "Search consultant Doug Turnbull describes a cheaper alternative to constrained-output LLM classification against a large taxonomy. The standard approach forces a model, via structured outputs like Pydantic, to pick from hundreds of legal category strings, for instance in the Wayfair WANDS e-commerce dataset, classifying 'brown coffee table' into one of 500-plus literal paths like 'Furniture / Living Room Furniture / Coffee Tables & End Tables / Coffee Tables.' It works, but burns tokens and hits a practical ceiling on how many legal values fit in an enum or schema. His fix: don't send the real taxonomy at all. Prompt a cheap model to invent a plausible but entirely made-up label for the query, it might output something like 'Furniture / Living Room / Tables / Coffee,' which doesn't exist in the real vocabulary, then resolve that hallucinated string to the nearest real category via vector-embedding similarity (MiniLM) against a precomputed index of the true taxonomy, essentially a dot-product nearest-neighbor lookup. This sidesteps both the prompt cost of listing hundreds of legal values and the enum-size ceiling of structured decoding, while staying nearly as accurate. Simon Willison flagged it on 2026-08-14 as directly applicable to his own problem: auto-tagging old blog posts against 1,856 existing tags, too many to list in one prompt.",
+          "why": "只要遇到分类体系太大塞不进 prompt 的场景，这个办法（先瞎编再用 embedding 兜底）基本可以直接照搬。",
+          "why_en": "Any time a classification target is too large to fit in a prompt, this pattern, hallucinate a label then embed-match it back, is close to directly reusable."
+        }
+      ]
+    }
+  ]
+}

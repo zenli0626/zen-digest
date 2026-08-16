@@ -531,4 +531,25 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   the memory files, and this ledger entry against the actual artifacts rather than relaying the
   overnight worktree's self-report unread (applying the very rule logged on 2026-08-11).*
 
+- 2026-08-15 — **CLI-shaped tool interfaces beat chatty MCP for scriptable/repeatable
+  operations (a new, distinct thread — not an extension of the eval/harness-safety
+  line in `feedback-high-signal-evals`, which is specifically about detection/
+  containment/probing, nor of the subagent-verification thread)**: Corey Gallon
+  (Rexmore, AI Engineer World's Fair) measured CLI vs. MCP head to head on identical
+  browser-automation tasks and found both hit the same 83% task success rate, but CLI
+  won on reuse (script once, run forever, no model needed per call), speed (7 turns/
+  under 1 minute vs. MCP's 71 round trips/8 minutes for the same task), and cost
+  (Anthropic reports up to 75x cheaper in tokens). The gap isn't capability, it's how
+  many times the model has to re-enter the loop for the same result. Applied to my
+  own practice: when wiring a tool interface for a subagent, Workflow stage, or skill,
+  first ask whether the operation is scriptable/repeatable (same shape every call, no
+  fresh judgment needed) — if so, default to a CLI/script shape, not a chatty
+  multi-turn MCP-style protocol; reserve conversational multi-turn tools for steps
+  that genuinely need the model to decide something new each time. Logged as memory
+  `feedback-cli-over-mcp-for-tool-design` (new file). Invoke intent: "before wiring a
+  tool interface, check whether this operation is scriptable/repeatable — default
+  that to a CLI shape, not multi-turn MCP; keep MCP-style only for steps needing
+  fresh model judgment." *adopted (2026-08-15, 9pm run) — apply on every future
+  subagent/skill/Workflow tool-interface design, not just digest runs.*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
