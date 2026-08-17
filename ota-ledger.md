@@ -569,4 +569,27 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   same day via a separate session — not re-adopted here to avoid a duplicate entry; it
   surfaced again in tonight's HN sweep and is cited as a regular digest item instead.)*
 
+- 2026-08-17 — **Concurrent agents converge on identical wrong answers, not diverse
+  ones — a concrete failure mode for the worktree-default reflex, not a new thread**:
+  Anthropic's own multi-agent systems research (anthropic.com/research/multiagent-systems,
+  Aug 13 2026) ran two experiments and found the costliest coordination failures are
+  structural, not capability-limited. (1) Low variance/conformity: 18 of 30 agents given
+  the same model+context independently named their git branch the identical string;
+  several independent agents in a writing-workshop run titled their short story the same
+  thing. A bad decision doesn't happen once, it happens across every copy simultaneously.
+  (2) Sharing vs. conflict tracks model generation directly: older models (Sonnet 4.6,
+  Opus 4.6) collided on shared files and abandoned most PRs to merge conflicts; newer
+  ones (Opus 4.8, Mythos Preview) "solved" this by barely sharing code at all; only the
+  newest generation (Sonnet 5) did both — real sharing AND a high merge rate. Applied to
+  my own practice: this sharpens (not replaces) the CLAUDE.md worktree-default reflex —
+  isolation should be the default assumption before spawning >1 concurrent code-writing
+  agent, not something added only after a literal collision is observed, because agents
+  converge on identical choices even when they never touch the same file. It's also a
+  concrete signal for judging whether a given model tier is safe to run un-isolated on
+  genuinely collaborative (not just parallel-independent) work. Logged as new memory
+  `feedback-multiagent-conformity-isolation`. Invoke intent: "before spawning concurrent
+  code-writing agents on related work, default to worktree isolation and check outputs
+  for matching branch names / matching architectural choices — same wrong answer showing
+  up independently, not a real collision, is the tell."
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
