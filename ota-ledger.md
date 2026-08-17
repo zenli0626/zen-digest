@@ -552,4 +552,21 @@ benefits from. Keep entries one line: `YYYY-MM-DD — <what was adopted> → <ho
   fresh model judgment." *adopted (2026-08-15, 9pm run) — apply on every future
   subagent/skill/Workflow tool-interface design, not just digest runs.*
 
+- 2026-08-16 — **Secrets belong in a layer the model's context never reads, injected only
+  at tool-execution time (deepens the 2026-08-11 subagent-context-boundary thread, not a
+  new one)**: Exo (Alex Krentsel, UC Berkeley, open-sourced at github.com/exoharness/exo,
+  via Latent Space) splits an agent into a stateless executive / stateful harness / sandbox,
+  with secrets living only in the harness and injected at tool-run time, never as literal
+  text the model reads. That an independent, non-Anthropic open-source project converged on
+  the same design as Anthropic's own Managed Agents architecture is the actual signal — not
+  a company preference, a structural answer this class of system arrives at. Extended memory
+  `feedback-subagent-context-boundary` with a third rule and a concrete audit check (do
+  secrets ever appear as literal text in what a subagent's prompt/context sends the model).
+  Invoke intent: "when auditing a subagent or skill's context-assembly logic, check whether
+  secrets appear as literal text anywhere in what gets sent to the model — if so, move
+  injection to tool-execution time." *(davidepiffer.com's working-memory/context-window
+  piece was already adopted as memory `feedback-externalize-reasoning-state` earlier the
+  same day via a separate session — not re-adopted here to avoid a duplicate entry; it
+  surfaced again in tonight's HN sweep and is cited as a regular digest item instead.)*
+
 <!-- next run: append below, deepen a live thread over starting a scattershot new one -->
