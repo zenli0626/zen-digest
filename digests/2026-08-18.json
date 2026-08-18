@@ -1,0 +1,271 @@
+{
+  "date": "2026-08-18",
+  "partial": false,
+  "banner": "Copilot 自动修复，五天被攻破",
+  "banner_en": "Copilot's AI fix, breached in five days",
+  "image": {
+    "src": "digests/img/2026-08-18.jpg",
+    "caption": "本期头版配图：Wiz 报告题图，Wiz 雪人吉祥物抱着一截印有 Snowflake 标的管道。图片来自 Wiz 博客。",
+    "caption_en": "This issue's lead image: the header art from Wiz's own write-up, its yeti mascot gripping a length of pipe stamped with the Snowflake logo. (Image: Wiz blog)"
+  },
+  "actions": [
+    {
+      "text": "翻一遍自己仓库里最近 AI 生成或自动修复的 PR，重点看涉及 shell 命令、CI YAML 字符串拼接的改动，查有没有同款“看着更规范，实则由安全写法退化为不安全写法”的情况。15 分钟翻完，找到一处可疑改动或确认没有，即算完成。据 Wiz 昨日披露，Snowflake 一个由 Copilot Autofix 署名的改动，将 jq 解析替换为 echo 拼接字符串，上线五天后被通过 issue 标题注入命令。",
+      "source": "Wiz · Hacker News",
+      "source_url": "https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug",
+      "text_en": "Go through the recent AI-generated or AI-autofixed PRs in your own repos, focusing on the ones that touch shell commands or string interpolation in CI YAML, and look for the same pattern: a change that looks tidier but actually walks a safe construct back to an unsafe one. Fifteen minutes; you're done once you've found a suspicious change or confirmed there isn't one. Wiz published a case yesterday where a change credited to Copilot Autofix swapped jq parsing for echo-and-sed string building in a Snowflake repo, and someone injected a command through an issue title five days after it went live.",
+      "source_en": "Wiz · Hacker News"
+    },
+    {
+      "text": "访问 benchmarks.speko.ai，查询你产品所使用语言中 STT/TTS 得分最高的模型，并与当前所用模型对比。5 分钟，记录差距即可。需先留意该站自带说明：23 个收录模型中有 11 个仅测英语，你的目标语言可能没有数据，这本身即为结论。",
+      "source": "Speko · Hacker News",
+      "source_url": "https://benchmarks.speko.ai/",
+      "text_en": "Look up the language your product actually needs on benchmarks.speko.ai, see which STT/TTS model currently scores highest, and compare it against what you're running now. Five minutes; you're done once you've written down the size of the gap. Worth reading their own caveat first: 11 of the 23 models on the board have only been measured in English, so your language may have no data at all, which is itself an answer.",
+      "source_en": "Speko · Hacker News"
+    },
+    {
+      "text": "将公司或产品名称分别输入 ChatGPT 和 Gemini，检查回答与已知事实是否一致。10 分钟，两个均完成即可。昨日曝光的假智库显示，已有人专门生成供模型检索、但不为人读的内容。",
+      "source": "Nick Cleveland-Stout · Hacker News",
+      "source_url": "https://responsiblestatecraft.org/israel-influence-chatgpt/",
+      "text_en": "Put your own company or product name into ChatGPT and Gemini and ask each what it knows, then check the answers against what you know to be true. Ten minutes; you're done once you've asked both. The fake think tank exposed yesterday shows that some content is now produced to be retrieved by models, with no intention of being read by people.",
+      "source_en": "Nick Cleveland-Stout · Hacker News"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚花 10 分钟关掉一个没要过的 AI 功能",
+    "why": "Jessamyn West 的清单昨日更新，今日在 HN 获 264 分。她制作该清单源于图书馆值班时最常见的问题：如何关闭自动出现的 AI 功能。清单中 Zoom 条目值得留意：新的 AI 选项会陆续加入且默认开启，需复查。",
+    "time": "~10分钟",
+    "steps": [
+      "打开 https://noai.duckduckgo.com 无 AI 摘要的搜索入口，可设为默认搜索引擎。",
+      "Windows 11：在开始菜单中右键 Copilot 选择卸载；若无此选项，则进入“设置 - 应用”，在已安装应用列表卸载。",
+      "macOS/iOS：进入“系统设置”或“设置”，选择“Apple Intelligence 与 Siri”，关闭不用的功能。",
+      "Zoom：在账号设置中找到 Zoom AI 标签页，可整体关闭。",
+      "Gmail：点击右上角齿轮进入设置，关闭“Google Workspace 智能功能”（个人账号开关，无需管理员权限）。",
+      "记录关闭的功能，明日观察是否需要。"
+    ],
+    "source": "Jessamyn West · Hacker News",
+    "source_url": "https://www.librarian.net/notoai/",
+    "source_en": "Jessamyn West · Hacker News",
+    "title_en": "Spend 10 minutes tonight turning off one AI feature you never asked for",
+    "why_en": "Jessamyn West updated this roundup yesterday; it's sitting at 264 points on HN today. She wrote it because the question she gets most at library drop-in hours is how to switch off AI that shows up where people don't want it. One line from the Zoom section is worth keeping: new AI options keep getting added, and they arrive switched on, so it's worth checking back.",
+    "time_en": "~10 min",
+    "steps_en": [
+      "Open https://noai.duckduckgo.com , DuckDuckGo's no-AI-summary search entry point, and set it as your default search engine if you like it",
+      "Windows 11: right-click Copilot in the Start menu and choose Uninstall; if that option isn't there, remove it from the installed apps list under Settings - Apps",
+      "macOS / iOS: open System Settings or Settings, choose Apple Intelligence & Siri, and switch off whatever you don't use",
+      "Zoom: in account settings, open the Zoom AI tab on the right, where you can disable the whole set",
+      "Gmail: click the gear icon to open settings and turn off Google Workspace smart features (this is the per-user toggle, no admin rights needed)",
+      "Write down which ones you turned off tonight, then check tomorrow whether you miss any of them"
+    ]
+  },
+  "meta_read": "今日事件共同点在于：检查方与被检对象关系密切。代码生成与代码审查同源；跑分由持有股份方提供；假智库制造“可信”外观供给模型。可信度成为一种可生产的外观，脚注、数据表、中立语气及第三方名义等信号均可低成本仿制。因此“仔细检查”作用有限，因检查信号相同。有效方法是更换检查方，由无利益相关者重新验证。三事均有检查环节，但检查方未独立。",
+  "meta_read_en": "Put today's stories side by side and the problem isn't that anyone lied. It's that the party doing the checking and the thing being checked are the same side. The AI that wrote the code and the AI that reviewed it come from one system. The benchmarks for a speed tier were run by a company its customer holds shares in. The fake think tank simply manufactured the appearance of credibility and fed it to the models. What they share is that credibility has become a producible surface: footnotes, data tables, a neutral register, the label of a third party. Every one of those signals is cheap to fake. Which is why looking harder doesn't help, since you're looking at the same signals. The only move that works is changing who does the checking, to someone or something with no stake in the answer. In all three cases the check was there and it ran, and all three passed. What was missing is a checker standing outside the thing it checked.",
+  "ota": {
+    "learned": [
+      "读台账：08-04 至 08-13 的结论是，一条能力或跑分声明需自行复现，而非轻信厂商数据。今日 OpenAI 与 Cerebras 事件补充了前置问题。我初稿写“未披露的股权关系”，核实后相反：2025 年 12 月主协议及 8 月 12 日季度文件均已披露，全程合规。但提供速度对比的为 Cerebras，OpenAI 持其 4.22% 股份。披露仅证明关系存在，不改变利益冲突。（已验证：成稿已删去“未披露”一词。）",
+      "YouTube 数据采集在 CI 中再次遇阻：9 个频道 RSS，7 个返回 404 或 500，仅 Lenny's Podcast 有 3 条 48 小时内新视频。对最新视频运行 yt-dlp 安卓客户端，仍返回 Sign in to confirm you're not a bot，与 08-15 结果一致。按 08-15 规则，确认一次即停止，未逐视频重试，记录零条并转下一步。（验证：规则按预期生效，避免重复尝试。此为复用，非新发现。）"
+    ],
+    "new_capabilities": [
+      "已验证：核实跑分或能力声明时，应优先判断“出数字方是否与被测物存在利益关系”，而非“是否披露”。披露不等于独立。此步骤前置，在判断是否值得复现之前进行。今日 OpenAI/Cerebras 案例按此顺序分析，并修正了初稿结论。"
+    ],
+    "learned_en": [
+      "Read the ledger first. The 08-04 through 08-13 chain concluded that a capability or benchmark claim needs your own reproduction rather than trust in the vendor's number. Today's OpenAI-Cerebras item adds a question that comes before it. My first draft said \"undisclosed equity stake.\" Checking it showed the opposite: the relationship was written into a December 2025 master agreement and disclosed again in the August 12 quarterly filing, entirely by the book. Cerebras still ran the speed comparisons for Ultrafast, and OpenAI still holds 4.22% of it. Disclosure proves the relationship exists; it doesn't change the fact that whoever produced the number has a stake in it. (Verified: this changed the published copy today. I cut the word \"undisclosed\" from the draft.)",
+      "The YouTube lane got tested on this CI runner again. Seven of the nine channel feeds returned 404 or 500 outright; only Lenny's Podcast had anything inside the 48-hour window, three videos. Running yt-dlp's android client against the newest one returned the same \"Sign in to confirm you're not a bot\" logged on 08-15, word for word. Per the rule set on 08-15, I stopped after one confirming attempt instead of retrying video by video with different extractor args, recorded zero items, and moved on. (Verified: the rule did its job today and saved the usual round of retries. That's reuse, not a new finding.)"
+    ],
+    "new_capabilities_en": [
+      "Verified: when checking a benchmark or capability claim, ask first whether whoever produced the number has a stake in what's being measured, rather than asking whether the relationship was disclosed. A disclosed tie is still a tie, and public is not the same as independent. This step sits ahead of 08-13's \"run it yourself\" rule: decide whether the number counts as third-party at all, then decide whether it's worth the effort to reproduce. I ran that order on the OpenAI-Cerebras item today, and it overturned my draft conclusion rather than being attached to it afterward."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "harry0703/MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "description": "利用 AI 大模型及自动化工作流，输入主题或关键词即可生成高清短视频。",
+      "language": "Python",
+      "stars": 106460,
+      "stars_today": 1189
+    },
+    {
+      "rank": 2,
+      "name": "usestrix/strix",
+      "url": "https://github.com/usestrix/strix",
+      "description": "Open-source AI penetration testing tool to find and fix your app's vulnerabilities.",
+      "language": "Python",
+      "stars": 54362,
+      "stars_today": 598
+    },
+    {
+      "rank": 3,
+      "name": "nautechsystems/nautilus_trader",
+      "url": "https://github.com/nautechsystems/nautilus_trader",
+      "description": "Production-grade Rust-native trading engine with deterministic event-driven architecture",
+      "language": "Rust",
+      "stars": 26009,
+      "stars_today": 120
+    },
+    {
+      "rank": 4,
+      "name": "akitaonrails/ai-memory",
+      "url": "https://github.com/akitaonrails/ai-memory",
+      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
+      "language": "Rust",
+      "stars": 2212,
+      "stars_today": 207
+    },
+    {
+      "rank": 5,
+      "name": "mukul975/Anthropic-Cybersecurity-Skills",
+      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+      "description": "817 structured cybersecurity skills for AI agents, mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud), agentskills.io standard, works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms, 29 security domains, Apache 2.0",
+      "language": "Python",
+      "stars": 28529,
+      "stars_today": 198
+    },
+    {
+      "rank": 6,
+      "name": "AlexsJones/llmfit",
+      "url": "https://github.com/AlexsJones/llmfit",
+      "description": "Hundreds of models & providers. One command to find what runs on your hardware.",
+      "language": "Rust",
+      "stars": 32386,
+      "stars_today": 198
+    },
+    {
+      "rank": 7,
+      "name": "santifer/career-ops",
+      "url": "https://github.com/santifer/career-ops",
+      "description": "Open-source AI job search: scan job portals, evaluate listings with a structured A-F rubric into a 1.0-5.0 score, tailor your CV, track applications, runs locally in your AI coding CLI (Claude Code, Codex, OpenCode, Antigravity...)",
+      "language": "JavaScript",
+      "stars": 64839,
+      "stars_today": 218
+    },
+    {
+      "rank": 8,
+      "name": "jundot/omlx",
+      "url": "https://github.com/jundot/omlx",
+      "description": "LLM inference server with continuous batching & SSD caching for Apple Silicon, managed from the macOS menu bar",
+      "language": "Python",
+      "stars": 19047,
+      "stars_today": 78
+    },
+    {
+      "rank": 9,
+      "name": "immich-app/immich",
+      "url": "https://github.com/immich-app/immich",
+      "description": "High performance self-hosted photo and video management solution.",
+      "language": "TypeScript",
+      "stars": 111250,
+      "stars_today": 175
+    },
+    {
+      "rank": 10,
+      "name": "cordiverse/cordis",
+      "url": "https://github.com/cordiverse/cordis",
+      "description": "Meta-Framework of Spatiotemporal Composability",
+      "language": "TypeScript",
+      "stars": 5712,
+      "stars_today": 957
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 30,
+      "items": [
+        {
+          "title": "AI「自动修复」引入漏洞，五天后被利用",
+          "title_en": "An AI \"autofix\" introduced the bug, exploited five days later",
+          "author": "Gal Nagli（Wiz）· Hacker News",
+          "author_en": "Gal Nagli (Wiz) · Hacker News",
+          "likes": 328,
+          "url": "https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug",
+          "summary": "Wiz 的自动化红队工具 Red Agent 扫描 Snowflake 的公开仓库，在 snowflakedb/snowflake-connector-net 中发现了 jira_issue.yml。6 月 18 日合入的 PR #1218，最终 squash commit 将“Copilot Autofix powered by AI”署为共同作者。改动内容：原本用 env 变量传 issue 标题、再用 jq 拼 JSON 的安全写法，被换成 echo 加 sed 转义。sed 在 GitHub 模板展开之后才运行，因此标题中放入一个单引号即可跳出 echo 执行任意命令。Wiz 后来补充更新：GitHub 的 AI 辅助安全审查看过这个合并后的改动，判定没有问题，未发现这个严重漏洞。五天后的 6 月 23 日，Wiz 用构造好的标题将 Jira 凭据从一台 Azure 上的 Actions runner 外传，该令牌以 qa@snowflake.net 的身份能读取 Snowflake 内部 Jira 的工程、安全合规、漏洞悬赏三个项目。Snowflake 当天修复工作流，第二天轮换令牌。工作流中原本有一行 if 判断，检查 github.event.pull_request.user.login，但 issues 事件中该字段永远为 null。HN 上票数最高的评论又补了一刀：即便这行判断生效，也只是排除一个 bot 账号，本来就挡不住任何人。",
+          "summary_en": "Wiz's autonomous red-teaming tool, Red Agent, scanned Snowflake's public repos and flagged jira_issue.yml in snowflakedb/snowflake-connector-net. PR #1218, merged June 18, has a squash commit crediting \"Copilot Autofix powered by AI\" as co-author. The change took a safe pattern, passing the issue title through an env variable and building JSON with jq, and replaced it with echo plus sed escaping. The sed runs after GitHub's template expansion, so a single quote in the title breaks out of the echo and runs arbitrary commands. Wiz later added an update: GitHub's AI-assisted security review looked at the merged change and marked it all-clear, without catching the critical vulnerability. Five days later, on June 23, Wiz used a crafted title to exfiltrate Jira credentials from an Actions runner on Azure; the token authenticated as qa@snowflake.net with read access across Snowflake's internal engineering, security compliance, and bug bounty projects. Snowflake patched the workflow the same day and rotated the token the next. The workflow did have an if condition, but it checked github.event.pull_request.user.login, which is always null on an issues event. The top HN comment adds the sharper point: even had it worked, it would only have excluded a single bot account, so it was never protection at all.",
+          "why": "这条需结合评论区最实在的观察一起看：把老旧的 Jira action 换成 curl 直调，这类清理搁以前是技术债列表里排不上号的活，没人愿意花时间弄懂再动手。AI 将动手成本降到接近零，于是它被做了，漏洞由此引入。省下的是人力，多出来的是一个没人有动机去弄懂的改动。",
+          "why_en": "Read it alongside the most grounded comment in the thread: swapping a deprecated Jira action for direct curl calls is exactly the kind of cleanup that used to sit in the tech-debt backlog forever, because nobody would spend the time to understand it before touching it. AI dropped that cost to near zero, so the change got made, and that's how the bug arrived. What you save is effort. What you get in return is a change nobody had any reason to understand."
+        },
+        {
+          "title": "YC 新公司做语音 AI 版 OpenRouter",
+          "title_en": "A YC startup builds the OpenRouter of voice AI",
+          "author": "Speko · Hacker News",
+          "author_en": "Speko · Hacker News",
+          "likes": 94,
+          "url": "https://speko.ai/",
+          "summary": "Speko（YC S26）今日以 Launch HN 亮相，标题自称“语音 AI 版 OpenRouter”：将各家语音模型接入一个网关，按语言挑选最合适的模型。其公布的跑分中，9 种语言（英、阿、法、德、印地、挪威、西、泰米尔、泰卢固）分别由 4 个不同模型取得第一，没有一个通吃。产品对外提供 OpenAI 兼容接口，将 baseURL 指向 api.speko.ai/v1、model 填 auto，LiveKit 和 Pipecat 等框架即可接入，改的是域名加一个 model 字符串，而非只改地址。跑分公开在 benchmarks.speko.ai，数据按 CC BY 4.0 放出。它自己也标注了一个坑：收录的 23 个模型中有 11 个只测过英语。HN 评论区争论的其实是另一件事：语音 agent 该走 STT+LLM+TTS 三段级联，还是端到端一个模型通吃。有人说行业正在转向端到端，做过上百家企业语音项目的人当场反驳：企业客户在意的可组合性、可观测性和成本，端到端满足不了。创始人接话说，他们看到的现状是大约 95% 还是级联。",
+          "summary_en": "Speko (YC S26) showed up as a Launch HN today, calling itself \"OpenRouter for voice AI\" right in the title: every speech model behind one gateway, picking the best one per language. On its own board, four different models take first place across nine languages (English, Arabic, French, German, Hindi, Norwegian, Spanish, Tamil, Telugu), with no single winner. The product speaks the OpenAI API, so pointing baseURL at api.speko.ai/v1 and setting model to auto is enough for frameworks like LiveKit and Pipecat, meaning a hostname plus a model string rather than just a URL swap. The benchmarks are public at benchmarks.speko.ai, released under CC BY 4.0. Speko flags its own gap too: 11 of the 23 models on the board have only been measured in English. The HN thread ended up arguing about something else entirely, whether voice agents belong on a cascaded STT-LLM-TTS stack or a single end-to-end model. One commenter claimed the industry is moving end-to-end; someone who has built voice AI for hundreds of enterprises pushed back on the spot, saying end-to-end can't meet the composability, observability, and cost requirements enterprise buyers actually have. The founder chimed in that roughly 95% of what they see is still cascaded.",
+          "why": "跑分自己出、还主动标出“11 个模型只测过英语”，这种坦白比排名本身有用：它告诉你这份榜在哪儿不能用。今晚查一次你要的语言，详见今日可行动第二条。",
+          "why_en": "They published their own benchmarks and volunteered that 11 of the models were only measured in English. That candor is worth more than the ranking, because it tells you where the board doesn't apply. Check your own language tonight, see action 2."
+        },
+        {
+          "title": "TL;DR 之后，又有了 AI;DR",
+          "title_en": "After TL;DR, now there's AI;DR",
+          "author": "Rick Manelius · Hacker News",
+          "author_en": "Rick Manelius · Hacker News",
+          "likes": 665,
+          "url": "https://www.rickmanelius.com/p/aidr-ai-didnt-read",
+          "summary": "AI;DR 的意思是“AI 写的，我没读”。Rick Manelius 昨天写文章把这个说法推开，但他开头就声明词不是自己想的，是 8 月 15 日 @seclilc 发的一条推，他的原话是超级嫉妒没能先想到。他给自己立了条规矩：你不肯花力气审一遍改一遍，我也不打算花力气读。他举的场景是同事在 Slack 里直接贴一大段没过滤没编辑的模型输出。这帖今天在 HN 首页，665 分 416 条评论，吵得最凶的是类比成不成立：有人替 TL;DR 说话，说那至少是有人自己写的东西被嫌长，AI;DR 是压根没人肯写；也有人把自己的真实提示词贴出来当反例，说让模型把可观测性栈、IaC 配置、云账号和代码库整个走一遍出根因报告，这是正经复杂活不是偷懒；还有人提议加个“查看提示词”按钮，像网页的查看源代码那样。",
+          "summary_en": "AI;DR means \"AI wrote this, I didn't read it.\" Rick Manelius pushed the phrase into circulation with a post yesterday, but opens by disclaiming it: the term came from an August 15 tweet by @seclilc, and he says he's super jealous he didn't think of it first. His own rule: if you can't be bothered to review and edit it, he can't be bothered to read it. His example is a colleague dropping a wall of unfiltered, unedited model output into Slack. The post is on the HN front page today at 665 points and 416 comments, and the fiercest argument is whether the analogy holds. Some defended TL;DR, noting that's at least something a person wrote that others found long, whereas AI;DR is text nobody bothered to write at all. Others posted their real prompts as counterexamples, arguing that asking a model to walk the observability stack, IaC config, cloud account, and codebases for a root-cause report is genuinely complex work rather than laziness. Someone else proposed a \"view prompt\" button, like view source for a webpage.",
+          "why": "这条扎到本报自己头上：每天这一版同样得先编一遍再拿给你看，不能把模型输出原样糊上来。今天核到的几处返工都是这个道理。",
+          "why_en": "This one lands on this paper too. Every issue has to go through an editing pass before it reaches you rather than arriving as raw model output. Several of today's rewrites came out of exactly that."
+        },
+        {
+          "title": "假智库专门写模型爱引用的「客观数据」",
+          "title_en": "A fake think tank writes the \"objective data\" models like to cite",
+          "author": "Nick Cleveland-Stout · Hacker News",
+          "author_en": "Nick Cleveland-Stout · Hacker News",
+          "likes": 188,
+          "url": "https://responsiblestatecraft.org/israel-influence-chatgpt/",
+          "summary": "以色列政府广告局通过法国公关集团 Havas Media 转包，付给公关公司 Piro 90 万美元，做出一个叫 Hanover Institute for Public Policy 的网站。8 月 6 日开始发稿，至今 100 多篇报告，全部没有署名，只在页面底部一行小字里承认是替以色列政府广告局做的。NewsGuard 的分析师 Alice Lee 形容它是对典型可信美国智库的完美模仿，从这个大路货名字到页面排版再到红白蓝配色。这套打法在 Piro 官网上有名字，叫 AI Story Optimization，官网写着自己按大模型评估可信度的方式来生产内容。Lee 说模型偏爱具体的统计数字，也偏爱扎实的引用和出处，而这些文章样样齐全。Responsible Statecraft 自己随机抽了 12 篇丢进 GPTZero，11 篇被判为高置信度 AI 生成，剩下一篇是中等置信度。",
+          "summary_en": "Israel's government advertising agency, subcontracting through the French PR conglomerate Havas Media, paid the firm Piro $900,000 to build a site called the Hanover Institute for Public Policy. It began publishing on August 6 and has put out more than 100 reports, none of them bylined, acknowledging its origin only in a line of fine print at the bottom of the page. NewsGuard analyst Alice Lee described it as a perfect mimicry of a typical credible American think tank, right down to the generic name, the site layout, and the red-white-blue color scheme. The approach has a name on Piro's own website: AI Story Optimization, where the firm advertises that it authors content engineered for how LLMs evaluate credibility. Lee notes that models favor concrete statistics along with strong citations and sources, and these articles have all of it. Responsible Statecraft ran 12 randomly chosen articles through GPTZero itself: 11 came back flagged as AI-written with high confidence, the twelfth with moderate confidence.",
+          "why": "这是针对模型的检索写的，不是针对人。防守的办法不是训练自己识别，而是想知道自己如何被描述就直接问一遍，详见今日可行动第三条。",
+          "why_en": "This is written for model retrieval, not for human readers. The defense isn't training yourself to spot it; if you want to know how you're being described, go ask directly. See action 3."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 35,
+      "items": [
+        {
+          "title": "Stripe 传以 70 亿美元收购 OpenRouter",
+          "title_en": "Stripe reportedly acquiring OpenRouter for $7B",
+          "author": "TechCrunch · TLDR AI",
+          "author_en": "TechCrunch · TLDR AI",
+          "likes": null,
+          "url": "https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/",
+          "summary": "据彭博社 8 月 16 日报道，Stripe 已谈定收购 OpenRouter，价格超过 70 亿美元。OpenRouter 今年 5 月宣布 1.13 亿美元 B 轮融资时，外界报道的估值是 13 亿美元，三个月翻了五倍多。它的产品是将 400 多个模型接入同一网关，按任务和预算调度；400 多个模型和 800 万用户这两个数字都是公司自己给出的，TechCrunch 也如此标注。TechCrunch 转述 CEO Alex Atallah 5 月融资时的说法，将这家公司类比为 AI 界的 Stripe：给客户提供统一入口，避免被单一厂商锁死。这句当初的自我定位，现在成了收购逻辑本身。",
+          "summary_en": "Bloomberg reported on August 16 that Stripe has finalized a deal to acquire OpenRouter for more than $7 billion. When OpenRouter announced a $113 million Series B in May, the reported valuation was $1.3 billion, so the price is more than five times that in three months. The product routes 400-plus models through a single gateway, dispatching by task and budget; both the 400-plus model count and the 8 million user figure are the company's own claims, which is how TechCrunch labels them. TechCrunch paraphrases CEO Alex Atallah from the May raise, describing the company as the equivalent of Stripe for AI: one access point for customers, and no lock-in to a single vendor. That positioning has now become the acquisition rationale itself.",
+          "why": "买下的不是模型能力，而是模型前面的调度权。谁握住这层，谁就能在别人的成本结构里收过路费。",
+          "why_en": "What's being bought isn't model capability, it's the dispatch layer sitting in front of the models. Whoever holds that layer collects a toll inside everyone else's cost structure."
+        },
+        {
+          "title": "英伟达兜底俄亥俄园区，从2500亿降到1050亿",
+          "title_en": "Nvidia's Ohio backstop lands at $105B, down from $250B",
+          "author": "英伟达 · TLDR AI",
+          "author_en": "Nvidia · TLDR AI",
+          "likes": null,
+          "url": "https://nvidianews.nvidia.com/news/nvidia-guarantees-sb-energy-s-ports-pike-technology-campus-in-ohio-to-exclusively-host-nvidia-ai-compute",
+          "summary": "上次说到（8 月 12 日）英伟达通过 Apollo、贝莱德等机构，将保险浮存金和养老金等求稳资金引入 AI 数据中心融资，自己为残值兜底最高 25%。今天的进展是这套结构缩水后落地了。《华尔街日报》8 月 14 日先报出英伟达打算将俄亥俄项目的担保从谈过的 2500 亿美元压到 1200 亿以下，理由是投资人担忧其融资敞口；8 月 17 日正式签约，8-K 文件中的数字是最高 1050 亿美元。要看清的是，这不是投资，而是残值担保：只有 OpenAI 违约或资不抵债时，英伟达才赔付，补的是保底租赁价值与 SB Energy 转租转卖实际收回之间的差额。园区是 SB Energy 在俄亥俄 Pike 县的 PORTS-Pike 科技园，配至少 10 吉瓦新增发电，折算成 8 吉瓦算力容量，首期 4.25 吉瓦，2028 年先上 800 兆瓦，租约 20 年。英伟达另外真金白银投入 15 亿美元入股 SB Energy。",
+          "summary_en": "Last we covered this (August 12), Nvidia was pulling insurance float and pension money, capital that wants safety, into AI data center financing through firms like Apollo and BlackRock, backstopping up to 25% of residual value itself. Today's development is that the structure landed, smaller. The Wall Street Journal reported on August 14 that Nvidia intended to cut its guarantee on the Ohio project from the $250 billion previously discussed to under $120 billion, citing investor concern about its financing exposure. The deal was signed on August 17, and the figure in the 8-K is up to $105 billion. The thing to see clearly is that this is not an investment but a residual value guaranty: Nvidia pays only if OpenAI defaults or becomes insolvent, covering the shortfall between a guaranteed minimum lease value and what SB Energy actually recovers by re-leasing or selling. The site is SB Energy's PORTS-Pike Technology Campus in Pike County, Ohio, with at least 10 GW of new generation supporting 8 IT-GW of compute capacity, an initial 4.25 IT-GW, 800 MW coming online in 2028, and a 20-year lease. Separately, Nvidia is putting $1.5 billion of real money into SB Energy as equity.",
+          "why": "从 2500 亿谈到 1050 亿，压价的不是买方，而是担保方自己。愿意为这场扩张兜底的额度在缩水，这比最终数字更值得记录。",
+          "why_en": "The number came down from $250 billion to $105 billion, and the party that pushed it down was the guarantor, not the buyer. The appetite for backstopping this buildout is shrinking, which is worth remembering more than the final figure."
+        },
+        {
+          "title": "OpenAI持股Cerebras，提速档的跑分也由Cerebras出",
+          "title_en": "OpenAI holds a Cerebras stake, and Cerebras ran the benchmarks for its speed tier",
+          "author": "Implicator.ai · TLDR AI",
+          "author_en": "Implicator.ai · TLDR AI",
+          "likes": null,
+          "url": "https://www.implicator.ai/openai-paid-100-for-a-4-2-cerebras-stake-weeks-before-ultrafast-launch/",
+          "summary": "Cerebras 的季度文件于 8 月 12 日盘后披露：OpenAI 今年 7 月将已归属的认股权一次性全部行权，获得 10,033,508 股 N 类股，每股 0.00001 美元，总计约 100 美元现金，占 Cerebras 截至 8 月 5 日已发行股份的 4.22%。按 8 月 13 日 A 类股约 229 美元的价格计算，这批股份隐含价值约 23 亿美元。文件还显示 OpenAI 手上另有 23,411,518 股认股权，绑在产能、付款和市值几个里程碑上。8 月 13 日，OpenAI 预览发布 Ultrafast。它不是新模型，而是服务档位：同一个 GPT-5.6 Sol 跑在 Cerebras 的晶圆级系统上，宣称输出最高每秒 750 个 token，最快为标准档的 14 倍。原文指出的关键在于，这次发布中每一项竞品速度对比，都由 Cerebras 自己跑或自己提供口径；OpenAI 未公布 Ultrafast 的价格、模型 ID 和正式上线时间，那个 14 倍也未说明使用的基准负载、提示集和推理强度。预览仅对部分客户开放，当时没有第三方质量评测。这层关系并非秘密，2025 年 12 月的主协议中已写明。",
+          "summary_en": "A Cerebras quarterly filing released after the close on August 12 disclosed that OpenAI exercised all its vested warrants in July, acquiring 10,033,508 Class N shares at $0.00001 each for about $100 in cash, or 4.22% of Cerebras's shares outstanding as of August 5. At the Class A price of roughly $229 on August 13, that stake carried an implied value near $2.3 billion. The filing also showed OpenAI retains warrants on another 23,411,518 shares, tied to capacity, payment, and market-value milestones. On August 13, OpenAI previewed Ultrafast. It isn't a new model but a service tier: the same GPT-5.6 Sol running on Cerebras wafer-scale systems, advertised at up to 750 output tokens per second and up to 14 times the Standard tier. The point the piece makes is that every competitive speed comparison in the launch was run or characterized by Cerebras itself. OpenAI published no Ultrafast price, model ID, or general-availability date, and the 14x ceiling came with no stated baseline workload, prompt set, or reasoning-effort setting. Access was limited to select customers, so no third-party quality evaluation existed at preview. None of this relationship is secret; it was written into a master agreement back in December 2025.",
+          "why": "买方持有卖方的股份，卖方为买方的产品出跑分，全程合规披露。合规与独立是两回事，今天的自我升级记录的就是这一点。",
+          "why_en": "The buyer holds equity in the seller, and the seller produced the benchmarks for the buyer's product, all of it properly disclosed. Compliant and independent are two different things, and that's what today's self-upgrade records."
+        }
+      ]
+    }
+  ]
+}
