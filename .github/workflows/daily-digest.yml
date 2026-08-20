@@ -77,28 +77,67 @@ jobs:
           npm install playwright
           npx playwright install --with-deps chromium
 
-      - name: Generate today's issue (Claude Code, headless)
+      - name: Generate today's issue (Claude Code harness on DeepSeek)
         if: steps.guard.outputs.run == 'true'
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          ANTHROPIC_FALLBACK_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           DAY="$(TZ=America/New_York date +%F)"
-          # Retry across models. Sonnet goes first for cost, but its safeguards trip on the
-          # security-flavoured AI news this sweep keeps surfacing — that killed the 07-31 and
-          # 08-01 nightlies outright, and flagged twice more on the 08-01 rerun. So escalate
-          # to Opus instead of re-rolling Sonnet, which fails the same way on the same content.
+          PROMPT="$(cat automation/ci-prompt.txt)"
+
+          # Generation runs on the DeepSeek API via its Anthropic-compatible endpoint
+          # (https://api.deepseek.com/anthropic), so the Claude Code harness — tools,
+          # subagents, yt-dlp/WebFetch sweeps — is unchanged; only the model behind it
+          # moves. Verified 2026-08-20: /anthropic/v1/messages returns real tool_use +
+          # thinking blocks and reports usage. Reason for the move: the nightly was the
+          # only thing billing the paid Anthropic key, and the Sonnet->Opus->Opus retry
+          # ladder made a bad night the most expensive one.
+          #
+          # The model names stay CLAUDE names on purpose. DeepSeek maps them server-side
+          # (claude-sonnet-*/claude-haiku-* -> deepseek-v4-flash, claude-opus-* ->
+          # deepseek-v4-pro), so this loop keeps the same cheap-then-strong escalation,
+          # the CLI never has to accept a non-Claude --model string, and unsetting
+          # ANTHROPIC_BASE_URL below reverts the whole job to real Claude with sane models.
+          #
+          # Why the ladder escalates instead of re-rolling the cheap model (history worth
+          # keeping): on Claude, Sonnet's safeguards tripped on the security-flavoured AI
+          # news this sweep keeps surfacing — that killed the 07-31 and 08-01 nightlies
+          # outright and flagged twice more on the 08-01 rerun, so re-rolling Sonnet failed
+          # the same way on the same content. Whether deepseek-v4-flash declines the same
+          # material is UNKNOWN as of the switch — if the logs show attempt 1 refusing
+          # night after night, drop claude-sonnet-5 from the loop and start at
+          # claude-opus-5 (v4-pro) rather than paying for a doomed first attempt.
           for MODEL in claude-sonnet-5 claude-opus-5 claude-opus-5; do
             if [ -f "digests/$DAY.json" ]; then break; fi
-            echo "::group::generate attempt with $MODEL"
-            claude -p "$(cat automation/ci-prompt.txt)" --model "$MODEL" --dangerously-skip-permissions || true
+            echo "::group::deepseek generate attempt with $MODEL"
+            ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic \
+            ANTHROPIC_API_KEY="$DEEPSEEK_API_KEY" \
+            ANTHROPIC_AUTH_TOKEN="$DEEPSEEK_API_KEY" \
+              claude -p "$PROMPT" --model "$MODEL" --dangerously-skip-permissions || true
             echo "::endgroup::"
           done
+
+          # Safety net, and the reason the nightly does not get less reliable by getting
+          # cheaper: if DeepSeek produced nothing at all, spend one real-Anthropic attempt
+          # rather than skip the issue. Costs money only on a night that already failed.
+          if [ ! -f "digests/$DAY.json" ] && [ -n "$ANTHROPIC_FALLBACK_KEY" ]; then
+            echo "::group::anthropic fallback attempt with claude-opus-5"
+            ANTHROPIC_API_KEY="$ANTHROPIC_FALLBACK_KEY" \
+              claude -p "$PROMPT" --model claude-opus-5 --dangerously-skip-permissions || true
+            echo "::endgroup::"
+          fi
+
           test -f "digests/$DAY.json" || echo "generate: no digests/$DAY.json after all attempts"
 
       - name: Publish (diversity gate + quality check → prod or preview + notify)
         if: steps.guard.outputs.run == 'true'
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # publicize.mjs calls `claude -p` for the hhxxttxs mirror
+          # publicize.mjs calls `claude -p` for the hhxxttxs mirror — same DeepSeek routing
+          # as the generate step above (claude-sonnet-5 -> deepseek-v4-flash server-side).
+          ANTHROPIC_BASE_URL: https://api.deepseek.com/anthropic
+          ANTHROPIC_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.DEEPSEEK_API_KEY }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}  # bin/polish-zh.mjs native-zh rewrite
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
