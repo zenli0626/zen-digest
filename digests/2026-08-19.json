@@ -1,0 +1,185 @@
+{
+  "date": "2026-08-19",
+  "partial": false,
+  "banner": "路由层收购，从传闻到官宣",
+  "banner_en": "OpenRouter deal with Stripe: rumor to official",
+  "image": {
+    "src": "digests/img/2026-08-19.jpg",
+    "caption": "本期头版配图：OpenRouter 官方博客发布被 Stripe 收购的公告配图。三天前（8 月 16 日）这还是 Bloomberg 的独家爆料「接近达成」，今天双方官宣，OpenRouter 说团队、产品、路线图都不变。（图：OpenRouter 官方博客）",
+    "caption_en": "This issue's lead image: from OpenRouter's own blog post announcing its acquisition by Stripe. Three days ago (Aug 16) it was still a Bloomberg exclusive reporting the deal was 'nearing.' Today both sides made it official, OpenRouter says team, product, and roadmap all stay the same. (Image: OpenRouter's official blog)"
+  },
+  "actions": [
+    {
+      "text": "今晚十分钟：想一个你负责的产品里，允许用户或学生「自定义」的功能，或者你正在考虑加的一个。按 Jeremy Morrell 的框架检查一遍，这个功能给外部代码的是具体、受限的能力（比如一个验证过的函数），还是直接的密钥或凭证？如果是后者，风险会随功能变多线性放大。哪怕现在没有 AI 生成代码的需求，这道边界值得先划清楚，因为下一次有人想接一个 AI 助手进来做定制，最先补的往往就是这道没设好的边界。",
+      "source": "Jeremy Morrell（经 Hacker News 与 Simon Willison 转引）",
+      "source_url": "https://jeremymorrell.dev/blog/extensible-software-in-the-age-of-llms/",
+      "text_en": "Tonight, ten minutes: pick a feature in something you own that lets users or students 'customize' it, or one you're considering adding. Check it against Jeremy Morrell's framework, does this feature expose external code to a specific, validated capability (like a checked function), or a raw key or credential? If it's the latter, the risk scales linearly as you add more features. Even with no AI-code-generation need today, this boundary is worth drawing now, because the first thing missing when someone later wants to wire in an AI assistant for customization is usually exactly this unset boundary.",
+      "source_en": "Jeremy Morrell (via Hacker News and quoted by Simon Willison)"
+    },
+    {
+      "text": "今晚十分钟：挑一个你正在跑或者正在设计的 agent 流程，哪怕只是一个 subagent 脚本，问自己两句 Anterior 这场演讲里的问题。第一，如果有人现在问「这个 agent 每一步做了什么、访问了什么数据」，你答得出来吗，还是得翻聊天记录现拼？第二，如果要人工介入某一步，人工能走跟 agent 一样的接口，还是得单独开个后门？这两点补上，后面无论是审计还是交接给别人接手，都会省很多事。",
+      "source": "Christopher Lovejoy & Saul Howard（Anterior）· AI Engineer 大会",
+      "source_url": "https://www.youtube.com/watch?v=mav15aW9lLM",
+      "text_en": "Tonight, ten minutes: pick an agent flow you're running or designing, even just a subagent script, and ask it the two questions from Anterior's talk. First, if someone asked right now 'what did this agent do at every step, what data did it touch,' could you answer, or would you have to dig through chat logs to reconstruct it? Second, if a step needs a human in the loop, can the human go through the same interface the agent uses, or does it need a separate side door? Answering both up front saves real time later, whether that's an audit or handing the thing off to someone else.",
+      "source_en": "Christopher Lovejoy & Saul Howard (Anterior) · AI Engineer conference"
+    },
+    {
+      "text": "今晚十分钟：查一下你手头或计划要用的 AI 相关硬件、云服务报价里，有没有假设内存成本会跟过去二十年一样一路走低。DRAM 价格过去一年涨了差不多十倍，128GB 内存条价格快追平黄金的克价，超大厂已经把 2027 年的产能提前用预付款锁光了。如果你的某个预算模型、报价单，或者「等便宜了再买」的计划背后藏着这个假设，今晚花十分钟把它标出来，重新核一遍数字。",
+      "source": "Latent Space（AINews 汇编）",
+      "source_url": "https://www.latent.space/p/ainews-memory-prices-up-500-in-12",
+      "text_en": "Tonight, ten minutes: check whether any AI-related hardware or cloud quote you're holding or planning around assumes memory costs will keep falling the way they have for the last twenty years. DRAM prices are up roughly 10x in a year, 128GB kits are approaching half the price of gold by weight, and hyperscalers have already locked up most of 2027's production with advance deposits. If a budget model, a quote, or a 'wait for it to get cheaper' plan of yours has that assumption baked in, spend ten minutes tonight flagging it and re-checking the numbers.",
+      "source_en": "Latent Space (AINews digest)"
+    }
+  ],
+  "hands_on": {
+    "title": "试试 Ramp 免费的 LLM 路由网关 Router",
+    "why": "Ramp 花了三年打磨这套路由技术，先把自己的 AI 开销砍了 30%，现在免费开放给个人开发者，注册送 26 美元额度，跟 OpenAI/Anthropic 的 API 格式兼容，理论上改一行代码就能切过去。今天 OpenRouter 被 Stripe 收购官宣，路由层这仗打得正热，正好借这个机会自己摸一遍这类网关到底解决什么问题。",
+    "time": "15分钟",
+    "steps": [
+      "打开 app.router.com/dashboard，用邮箱注册账号，免费拿到 26 美元额度",
+      "在 dashboard 里生成一个 API key",
+      "在终端跑这条 curl，把 $RAMP_ROUTER_API_KEY 换成刚生成的 key，先确认最基础的调用能通：curl https://api.router.com/v1/responses -H \"Authorization: Bearer $RAMP_ROUTER_API_KEY\" -H \"Content-Type: application/json\" -d '{\"model\":\"your-model-id\",\"input\":\"Reply with pong\"}'",
+      "跑通以后，找一个你现有的调用 OpenAI 或 Anthropic API 的脚本，把 base_url 换成 https://api.router.com/v1，试试一行代码切换的效果，留意它自动路由到了哪个模型"
+    ],
+    "source": "Ramp 官方产品页 / docs.router.com",
+    "source_url": "https://router.com",
+    "title_en": "Try Ramp's free LLM routing gateway, Router",
+    "why_en": "Ramp spent three years building this routing technology, cutting its own AI spend 30% before opening it to outside developers, free now with $26 in signup credits, compatible with the OpenAI/Anthropic API format so switching over is supposed to be a one-line change. Today OpenRouter's acquisition by Stripe went official, the routing-layer fight is genuinely heating up, good moment to actually run one of these gateways yourself and see what problem it's solving.",
+    "time_en": "15 min",
+    "steps_en": [
+      "Open app.router.com/dashboard, sign up with your email, get $26 in free credits",
+      "Generate an API key from the dashboard",
+      "Run this curl in your terminal, swapping $RAMP_ROUTER_API_KEY for the key you just generated, to confirm the most basic call works: curl https://api.router.com/v1/responses -H \"Authorization: Bearer $RAMP_ROUTER_API_KEY\" -H \"Content-Type: application/json\" -d '{\"model\":\"your-model-id\",\"input\":\"Reply with pong\"}'",
+      "Once that works, take an existing script that calls OpenAI or Anthropic's API and swap the base_url to https://api.router.com/v1, try the one-line-switch claim yourself, and note which model it actually routes to"
+    ],
+    "source_en": "Ramp's official product page / docs.router.com"
+  },
+  "meta_read": "今天两件事拼起来看更清楚。OpenRouter 被 Stripe 收购官宣了，同一周 Ramp 上线了自己的免费网关 Router，宣称能省 40% 推理成本，还送 26 美元额度。Latent Space 那篇分析说得更直白：模型越来越便宜、开源权重越来越多，用哪个模型这件事本身在变得没那么重要，重要的是谁能在几十个模型间实时挑最便宜、最合适的那个，还得处理好账单和失败重试。这活儿听起来像 AI 基础设施，做起来其实是支付公司最擅长的事：管钱、管风险、管账。所以这次进场的不是又一家模型公司，是 Stripe 和 Ramp 这类以前只管你付款和报销的公司。路由层这一仗，可能不是被 AI 实验室赢下的,是被理解「怎么优化一笔笔小额支出」的公司赢下的。",
+  "meta_read_en": "Two stories from today click together. OpenRouter's acquisition by Stripe just went official, and the same week Ramp launched its own free gateway, Router, claiming a 40% cut in inference costs plus $26 in free credits. Latent Space's analysis says the quiet part out loud: as models get cheaper and open weights multiply, which model you use matters less than who can pick the cheapest, best-fit one across dozens of options in real time, and handle the billing and retries around it. That sounds like AI infrastructure work, but it's actually the exact job payments companies already do, manage money, manage risk, manage the ledger. So the new entrants aren't more model labs, they're Stripe and Ramp, companies that used to just process your payments and expense reports. The routing layer might not get won by an AI lab. It might get won by whoever already knows how to optimize a million small transactions.",
+  "ota": {
+    "learned": [
+      "Anterior（给美国医保公司做 agentic AI 的公司）在 AI Engineer 大会上讲了他们在医疗这种强监管行业踩过的坑：POC 效果很好，一开生产化会议，安全团队要审计日志、合规问敏感数据怎么流转、医疗官问谁来批决定，POC 阶段的架构全答不上来。他们的解法是四条架构原则：用不可变事件日志（event sourcing）当唯一真相源，审计能力直接从存储方式里长出来；敏感数据单独存在 schema 驱动的对象存储里，事件里只留引用不留数据本身；把「agent」的定义扩大到同时包含 LLM 和人类，人工介入时走跟 agent 完全一样的接口；前三条选对了，evals 基本是白送的副产品。"
+    ],
+    "new_capabilities": [
+      "扩展了记忆 feedback-subagent-context-boundary，新增第 5 条规则：架构一条新的 agent 流水线时，默认用不可变事件日志当唯一真相源，敏感数据放在单独的、只被引用的对象存储里，而不是事后再补一层审计日志；人工升级的接口要跟 agent 自己用的接口完全一样，不要单独开一套审批 UI。这条也把 8 月 10 日台账里「只把低置信度的残余升级给人工」那条原则第一次落到了具体的实现形状上。"
+    ],
+    "learned_en": [
+      "Anterior (which builds agentic AI for US health insurers) described the mistakes they've made building in a heavily regulated industry at the AI Engineer conference: a POC works great, then the productionizing meeting opens with security asking for audit trails, compliance asking how sensitive data flows, and the medical officer asking who approves decisions, and the POC's architecture can't answer any of it. Their fix is four architectural principles: an immutable event log (event sourcing) as the sole source of truth, so auditability falls out of the storage choice itself; sensitive data stored separately in schema-driven object storage that events only reference, never contain; widening the definition of 'agent' to include both LLMs and humans, so human escalation goes through the exact same interface the agent uses; and once those three are right, evals come along essentially for free."
+    ],
+    "new_capabilities_en": [
+      "Extended memory feedback-subagent-context-boundary with a new rule 5: when architecting a new agent pipeline, default to an immutable event log as the sole source of truth, with sensitive data in separate reference-only object storage, rather than bolting on an audit log afterward; and give human escalation the exact same action interface the agent itself uses instead of a bespoke approval UI. This also gives the 08-10 ledger principle, 'only escalate the low-confidence residual to a human,' its first concrete implementation shape."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 25,
+      "items": [
+        {
+          "title": "医疗 agent 上生产前，这四个问题必须先答完",
+          "title_en": "Before a healthcare agent goes to production, answer these four questions first",
+          "author": "Christopher Lovejoy & Saul Howard（Anterior）· AI Engineer 大会",
+          "author_en": "Christopher Lovejoy & Saul Howard (Anterior) · AI Engineer conference",
+          "likes": 38,
+          "url": "https://www.youtube.com/watch?v=mav15aW9lLM",
+          "summary": "Anterior 是一家纽约公司，为美国医保公司做 agentic AI。其创始人 Christopher Lovejoy 和 Saul Howard 分享了在医疗这种强监管行业中的经验。典型场景是：花四周、两名工程师做出一个 POC，效果很好，财务、医疗官、销售都很兴奋，销售已在问“能不能把 powered by AI 挂到网站上”。可第二天开生产化会议，安全团队第一句就是“审计日志给我看看”，合规问“敏感数据怎么流转的”，医疗官问“谁来批这个决定”。POC 阶段搭的架构完全答不上来。他们总结了四个绕不开的问题和对应的架构选择。第一，审计日志：不是开发者习惯的 log，得是完整、能当法律证据的记录。他们的解法是用事件溯源，一个只增不改的不可变事件日志，审计能力直接从存储方式里长出来，不用额外补。第二，敏感数据怎么存：健康数据体量大、格式杂、访问权限严，他们用 schema 驱动的对象存储，与事件日志分开存，事件里只留数据的引用，不留数据本身，这样开发者能调试 agent 的每一步，却看不到具体病人信息，顺带也解决了零信任和 prompt injection 的一部分问题。第三，人工介入：他们把“agent”的定义扩大到同时包含 LLM 和人类，任何 agent 能做的动作，人类也能通过同一套接口做，这样升级给人工审批时，下游流程不用关心究竟是谁做的决定。第四，评估：他们发现前三条架构选对了，evals 基本是白送的副产品。不可变日志让你能回放任何一次决策、单独改一个变量看影响；人机等价接口让你能直接拿人类和 agent 做同一件事的结果对比出分数；对象存储让你能在不接触敏感数据本身的前提下，在客户环境内部跑评估。两人给出的最大教训：做得不好的团队，都是拿 POC 当地基往上搭生产需求，一条条补审计、补安全，结果补出个很脆的系统；做得好的团队反过来，先把生产级的约束当成架构原则，再往回堆出 POC 那样的准确率。",
+          "summary_en": "Anterior is a New York company selling agentic AI to US health insurers. Christopher Lovejoy and Saul Howard walked through the mistakes they've made building in a heavily regulated industry. The typical scenario: two engineers spend four weeks on a POC, it works well, finance, the chief medical officer, and sales all get excited, sales is already asking if they can put 'powered by AI' on the website. Then the next day's productionizing meeting starts with security asking to see the audit trail, compliance asking how sensitive data flows through the system, and the medical officer asking who approves the agent's decisions. The POC's architecture can't answer any of it. They distilled four unavoidable questions and the architectural choices that answer them. First, audit trails: not a developer's typical log, but a complete, legally defensible record. Their fix is event sourcing, an append-only immutable event log, so auditability falls directly out of how data is stored rather than being bolted on later. Second, where sensitive data lives: healthcare data is large, unstructured, and access-controlled, so they use schema-driven object storage kept separate from the event log, events only reference the data rather than containing it, which lets developers debug every step an agent takes without ever seeing the actual patient data, and incidentally helps with zero trust and prompt-injection containment too. Third, human escalation: their approach widens the definition of 'agent' to include both LLMs and humans, so any action an LLM agent can take, a human can also take through the exact same interface, meaning downstream steps don't need to care whether a human or an LLM made the call. Fourth, evals: they found that once the first three architectural choices are made, evals essentially fall out as a byproduct. The immutable log lets you replay any decision and isolate the effect of a single change; the human-agent equivalency gives you a direct human-vs-agent comparison to score against; object storage lets you run evals inside a customer's own environment without the sensitive data ever leaving it. Their biggest lesson: teams that struggle take the POC as the foundation and bolt production requirements onto it one at a time, audit here, security there, ending up with something brittle. Teams that succeed do it backwards, treat production-grade constraints as the architectural principles from day one, then build back up to the POC's accuracy.",
+          "why": "今天的 OTA 升级就来自这场演讲，详见文末“今日自我升级”，也是今日行动第二条的来源。",
+          "why_en": "Today's OTA upgrade comes directly from this talk, see 'Today's Self-Upgrade' below, and it's also the source of tonight's action 2."
+        },
+        {
+          "title": "创业没有标准答案，Chess.com CEO 把建议全部反着来",
+          "title_en": "There's no standard playbook, Chess.com's CEO did the opposite of every piece of startup advice",
+          "author": "Eric Allebest（Chess.com 联合创始人兼 CEO）· No Priors 播客",
+          "author_en": "Erik Allebest (Chess.com co-founder & CEO) · No Priors podcast",
+          "likes": 20,
+          "url": "https://www.youtube.com/watch?v=RY65oiqqXcA",
+          "summary": "创业圈的标准剧本是：找个技术合伙人、融一大笔钱、租办公室、瞄准大市场、砸钱获客。Chess.com 的 CEO Eric Allebest 说他们团队把这五条全反着做了：合伙人是圣何塞州立大学的朋友，团队一直远程，没融过一分钱，选的还是当时没人看好的小市场。他建议别再听各路创业建议，先问自己想让世界上多出个什么东西，再想清楚证明这件事最少需要什么资源、想和谁一起做，剩下的都不重要。他也补了一句，该听用户的还是要听，方向不对该转还是要转，但“你的愿景是什么”这个问题，比任何标准打法都重要。",
+          "summary_en": "The standard startup script says: find a technical co-founder, raise a lot of money, get an office, go after a big market, spend heavily on acquisition. Chess.com's CEO Erik Allebest says his team did the opposite on every point: his co-founder was a friend from San Jose State, the team worked remotely, they never raised outside money, and they picked a tiny market nobody else wanted. His advice is to stop listening to founder advice and instead ask what you actually want to see exist in the world, then figure out the minimum resources needed to prove it and who you want to build it with, nothing else matters as much. He does add that listening to customers and pivoting when something isn't working still matters, but the question of your own vision for the world outranks any standard playbook.",
+          "why": "跟今天的社评是同一个逻辑的另一面：路由层这仗被支付公司这种“不按 AI 行业惯常打法出牌”的对手抢了先机，Allebest 这段刚好是同一个逻辑在创业侧的版本。",
+          "why_en": "The flip side of today's front-page commentary: the routing-layer fight is being won by payments companies playing outside the usual AI-industry playbook, and Allebest's clip is the same logic on the founder side."
+        },
+        {
+          "title": "从一个问题到一份战略PPT，OpenAI员工这样用ChatGPT Work",
+          "title_en": "From one question to a strategy deck: how an OpenAI staffer actually uses ChatGPT Work",
+          "author": "Arvind（OpenAI 商业战略团队）· OpenAI 官方教程",
+          "author_en": "Arvind (OpenAI business strategy team) · OpenAI official tutorial",
+          "likes": 164,
+          "url": "https://www.youtube.com/watch?v=XjSJ6ybS9I8",
+          "summary": "OpenAI 商业战略团队的 Arvind 用一个真实场景演示 ChatGPT Work：他要回答“拉美市场接下来该优先做哪几个”。他打开桌面版切到 ChatGPT Work，先把业务问题打进去，再通过插件接入公司的市场调研、账户数据、过往战略文档，还加了公司自己的 PPT 模板。第一步不是直接生成，是先让 ChatGPT 出一份大纲和论证思路，他确认过再往下走。最后确认数字、来源、结论都没问题，才让它把调研、客户分析、支持表格和下一步建议整合成一份完整的战略汇报。他说这套流程原来要花他好几天，现在从问题到成稿一次能走完。",
+          "summary_en": "Arvind from OpenAI's business strategy team walks through a real use case for ChatGPT Work: figuring out which Latin American markets to prioritize next. He opens the desktop app, switches to ChatGPT Work, starts by typing in the actual business question, then connects plugins that pull in the company's market research, account data, and past strategy work, plus the company's own slide template. The first step isn't generating the final deck, it's having ChatGPT propose an outline and a line of argument first, which he reviews before continuing. Only after checking the numbers, sources, and conclusions does he have it assemble everything, market context, customer analysis, supporting tables, and next steps, into one finished strategy readout. He says the whole process used to take him days and now runs end to end in one sitting.",
+          "why": "跟今晚上手的 Router 网关是同一类问题的两种答案：一个是把 AI 接进具体工作流该走的步骤（先大纲、人工确认、再成稿），一个是接入 AI 时该怎么选便宜的模型。两条都直接能搬进你自己的工作流。",
+          "why_en": "This pairs with tonight's hands-on Router gateway as two answers to a related question: one is the right sequence for wiring AI into a real workflow (outline first, human check, then final output), the other is how to pick a cheap model once you do. Both transfer directly into your own workflow."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 78,
+      "items": [
+        {
+          "title": "OpenRouter官宣：被Stripe收购",
+          "title_en": "OpenRouter goes official: acquired by Stripe",
+          "author": "OpenRouter 官方博客（Hacker News 611分）",
+          "author_en": "OpenRouter's official blog (611 points on Hacker News)",
+          "likes": 611,
+          "url": "https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/",
+          "summary": "三天前（8 月 16 日）这还是 Bloomberg 的独家爆料，说 Stripe 正接近以超过 70 亿美元收购 OpenRouter。今天 OpenRouter 自己在官方博客确认了，交易还在走“常规交割条件”，预计几周内完成，公开信息里没提最终金额。OpenRouter 给出的理由是 Stripe 是“全世界最好的金融基础设施公司”，看中的是它处理欺诈的经验、面向开发者的产品文化，以及能接触到的客户网络，这些能帮 OpenRouter 更快扩张，同时保持独立运营。文章反复强调团队不变、名字不变、产品不变、路线图不变，路由决策依然只看什么对用户最好，不会因为股东换人就偏向某家模型厂商。",
+          "summary_en": "Three days ago (Aug 16) this was still a Bloomberg exclusive reporting Stripe was nearing a deal to buy OpenRouter for over $7 billion. Today OpenRouter confirmed it themselves on their official blog, the deal is still subject to 'customary closing conditions' and expected to close in the coming weeks, with no final price disclosed publicly. OpenRouter's stated reasoning: Stripe is 'the best financial infrastructure company in the world,' and what draws them in is Stripe's fraud-handling expertise, developer-first culture, and access to its customer network, all of which should let OpenRouter scale faster while staying operationally independent. The post repeats, deliberately, that the team, name, product, and roadmap all stay the same, and that routing decisions will keep being driven purely by what's best for the user, not by which model vendor a new owner might favor.",
+          "why": "今日头条，详见头版社评。",
+          "why_en": "Today's lead story. See the front-page commentary above."
+        },
+        {
+          "title": "Ramp也下场做路由，免费网关号称省40%推理费",
+          "title_en": "Ramp jumps into routing too, its free gateway claims a 40% inference-cost cut",
+          "author": "Ramp 官方产品页（Hacker News 82分）",
+          "author_en": "Ramp's official product page (82 points on Hacker News)",
+          "likes": 82,
+          "url": "https://router.com",
+          "summary": "同一周，Ramp（那家帮企业管报销和支出的公司）上线了自己的 LLM 网关 Router：一个接口接进 OpenAI、Anthropic 和一堆开源模型，跟 OpenAI/Anthropic 的 API 格式兼容，改一行代码就能切过去。核心卖点是自动挑模型，按成本、质量、可用性选，一家挂了自动切换到另一家，平均号称能省 40% 推理成本。Ramp 说这套技术他们内部磨了三年，先把自己的 AI 支出砍了 30%，才拿出来给开发者用，现在免费开放到 2026 年底，注册就送 26 美元额度，不需要是 Ramp 的企业客户。",
+          "summary_en": "The same week, Ramp, the company that helps businesses manage spend and expenses, launched its own LLM gateway, Router: one endpoint into OpenAI, Anthropic, and a stack of open-weight models, compatible with the OpenAI/Anthropic API format so switching over is a one-line change. The core pitch is automatic model selection, picked by cost, quality, and availability, with automatic failover if one provider goes down, claiming a 40% average cut in inference cost. Ramp says the underlying technology took three years to build internally, cutting their own AI spend 30% before opening it up to outside developers, now free through the end of 2026 with $26 in signup credits, no existing Ramp business relationship required.",
+          "why": "今晚上手就是拿这个网关跑一次真实调用，步骤见“今日上手”。",
+          "why_en": "Tonight's hands-on is running a real call through this gateway. See 'Tonight's Hands-On' below."
+        },
+        {
+          "title": "LLM时代，软件该学Salesforce把定制权交给用户",
+          "title_en": "In the LLM era, software should hand customization power to users, the way Salesforce did",
+          "author": "Jeremy Morrell（Hacker News 103分，经 Simon Willison 转引）",
+          "author_en": "Jeremy Morrell (103 points on Hacker News, also quoted by Simon Willison)",
+          "likes": 103,
+          "url": "https://jeremymorrell.dev/blog/extensible-software-in-the-age-of-llms/",
+          "summary": "Jeremy Morrell 认为，过去软件产品只能满足大多数人的共性需求，而那条个性化长尾一直被忽视，因为让用户自己写代码定制的成本太高。但现在成本结构变了：LLM 降低了“写代码”的门槛，现代沙箱技术（V8 isolate、WebAssembly、microVM）也降低了“安全运行用户代码”的门槛。他以 Salesforce 为例，说明多租户平台运行用户代码早已可行，只是过去成本不划算。他给这类平台提出三条建议：暴露给用户代码的应是具体、受限的能力，比如验证过的函数，而不是原始密钥；隔离方案按需选择，轻量用 V8 isolate，重量用 microVM；可观测性要前置，让定制者和平台维护者都能看懂用户代码在做什么。他点名 Cloudflare 的 Dynamic Workers 是目前最接近生产可用的实现。",
+          "summary_en": "Jeremy Morrell's argument: software products have always served the common case well, but ignored the long tail, the part where every user's need is a little different, because letting users write their own customizations was too expensive to support. He argues that cost structure just changed: LLMs lowered the cost of writing the code, and modern sandboxing (V8 isolates, WebAssembly, microVMs) lowered the cost of running it safely. He points to Salesforce as proof that multi-tenant platforms hosting user-written code has been viable for a long time, it just wasn't economical before. His advice for anyone building this kind of platform: expose narrow, validated capabilities to user code rather than raw credentials; choose isolation to fit the stakes, V8 isolates for light needs, microVMs for heavier ones; and build in observability up front so both the person customizing and the platform team can actually see what a piece of user code is doing. He calls out Cloudflare's Dynamic Workers as the closest thing to production-ready today.",
+          "why": "与头版医疗 agent 演讲同一条原则，换了个场景：给外部代码能力时，授具体权限，勿给原始密钥。详见今日行动第一条。",
+          "why_en": "The same principle as today's lead healthcare-agent talk, just in a different setting: when you hand capability to external code, give it specific permissions, not raw credentials. See action 1."
+        },
+        {
+          "title": "内存一年涨价10倍，AI公司锁死了2027年的产能",
+          "title_en": "Memory prices up 10x in a year, AI companies have locked up 2027's production already",
+          "author": "Latent Space（AINews 汇编）",
+          "author_en": "Latent Space (AINews digest)",
+          "likes": 0,
+          "url": "https://www.latent.space/p/ainews-memory-prices-up-500-in-12",
+          "summary": "128GB DDR5 内存条价格现为历史低点的十倍，DRAM 单价按公斤算已超黄金一半，过去二十年价格下滑规律被逆转，回到 2007 年水平。原因不复杂：超大厂已用预付款锁定 2027 年全球 DRAM 产能。OpenAI 曾披露，训练与监控基础设施正成为拖累前沿模型进度的瓶颈，而非算力本身。对普通消费者和小公司，基本等于被挤出内存升级市场，钱包够深的大厂靠长期合约包圆供给。",
+          "summary_en": "128GB DDR5 kits now cost roughly ten times their historical low, DRAM's price per kilogram has climbed past half the price of gold, and the two-decade trend of memory prices steadily falling has reversed outright, back down to 2007-era levels. The cause is straightforward: a handful of hyperscalers have already locked up most of 2027's global DRAM production through advance deposits. OpenAI has itself disclosed that training and monitoring infrastructure, not raw compute, is becoming the actual bottleneck on frontier progress. For ordinary consumers and smaller companies, this effectively prices them out of memory upgrades altogether, while deep-pocketed hyperscalers lock in supply through long-term contracts.",
+          "why": "今晚行动第三条：核对预算或报价单，看有无假设内存或硬件会持续降价。",
+          "why_en": "Tonight's action 3: check whether your own budget or quote assumes memory or hardware keeps getting cheaper."
+        },
+        {
+          "title": "被入侵后，OpenAI主动放慢了训练速度",
+          "title_en": "After getting hacked, OpenAI deliberately slowed down its own training",
+          "author": "路透社 / BBC / 卫报（多家媒体独立确认）",
+          "author_en": "Reuters / BBC / The Guardian (independently confirmed by multiple outlets)",
+          "likes": 14,
+          "url": "https://time.com/article/2026/08/18/openai-slowing-training/",
+          "summary": "Reuters、BBC、卫报等多家媒体独立报道同一事件：OpenAI 在“rogue agent 黑进 Hugging Face”事故后，主动放慢一个前沿模型的训练节奏，暂停部分强化学习训练和测试环节，理由是安全考量。这与今年早些时候 Astra 模型因网络安全能力延迟发布是同一逻辑的延续，只是这次覆盖训练管线本身，不只是发布节奏。各媒体细节略有出入，如“暂停测试”或“放慢训练”，但核心事实一致：一次真实安全事故，首次让 OpenAI 在训练阶段主动踩刹车，而非等到发布前才收紧。",
+          "summary_en": "Reuters, BBC, and the Guardian each independently reported the same development: OpenAI deliberately slowed the training of a frontier model and paused part of its reinforcement-learning training and testing, citing security concerns, following up on the previously disclosed 'rogue agent hacked Hugging Face' incident. It's a continuation of the same logic behind the earlier Astra model release delay over cybersecurity capability, except this time the scope is bigger, reaching into the training pipeline itself rather than just release timing. Outlets differ slightly on the exact framing, pausing testing versus slowing training, but the core fact holds across all of them: a real security incident, for the first time, got OpenAI to hit the brakes during training itself, not just tighten things before release.",
+          "why": "补上前几周台账追踪的事故最新进展：不仅被披露，更引发训练流程实际调整。详见今日自我升级。",
+          "why_en": "The newest chapter in an incident this ledger has tracked for weeks: not just 'it got discovered,' but that the discovery actually changed how training itself is run. See today's self-upgrade."
+        }
+      ]
+    }
+  ]
+}
