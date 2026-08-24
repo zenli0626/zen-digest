@@ -11,6 +11,29 @@
 
 const SITE_URL = 'https://mrqb.space';
 
+// Single-recipient send via Resend's non-batch endpoint, used as a fallback when a batch
+// gets rejected (e.g. one bad address in an otherwise-good chunk). Returns true on success.
+async function sendOne(email) {
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(email),
+    });
+    if (r.ok) return true;
+    const text = await r.text().catch(() => '');
+    console.error(`[send-newsletter] send failed for ${email.to} (${r.status}): ${text}`);
+    return false;
+  } catch (err) {
+    console.error(`[send-newsletter] send error for ${email.to}:`, err.message);
+    return false;
+  }
+}
+
 async function main() {
   const [, , digestPath] = process.argv;
   if (!digestPath) {
@@ -106,13 +129,20 @@ async function main() {
       if (r.ok) {
         sent += emails.length;
       } else {
+        // The batch endpoint validates every recipient before sending any of them, so one
+        // bad address (e.g. a stray @example.com test row) zeroes out the whole chunk.
+        // Fall back to sending this chunk one at a time so the good addresses still go out.
         const text = await r.text().catch(() => '');
-        console.error(`[send-newsletter] batch failed (${r.status}): ${text}`);
-        failed += emails.length;
+        console.error(`[send-newsletter] batch failed (${r.status}): ${text} — retrying chunk individually`);
+        const results = await Promise.all(emails.map((email) => sendOne(email)));
+        sent += results.filter(Boolean).length;
+        failed += results.filter((ok) => !ok).length;
       }
     } catch (err) {
-      console.error('[send-newsletter] batch error:', err.message);
-      failed += emails.length;
+      console.error('[send-newsletter] batch error:', err.message, '— retrying chunk individually');
+      const results = await Promise.all(emails.map((email) => sendOne(email)));
+      sent += results.filter(Boolean).length;
+      failed += results.filter((ok) => !ok).length;
     }
   }
 
