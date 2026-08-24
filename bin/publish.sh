@@ -20,4 +20,5 @@ python3 bin/validate-digest.py --strict "$f" || {
 }
 
 git add -A && git commit -m "Publish 每日情报 $day" 2>/dev/null
+git push || echo "WARN: git push failed — commit is local only, will diverge from origin"
 vercel deploy --yes
