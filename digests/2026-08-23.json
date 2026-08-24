@@ -1,0 +1,238 @@
+{
+  "date": "2026-08-23",
+  "partial": false,
+  "banner": "差 10%便宜百倍，仿真接管一切",
+  "banner_en": "10% worse, 100x cheaper: simulation takes over",
+  "image": {
+    "src": "digests/img/2026-08-23.jpg",
+    "caption": "本期头版配图：Latent Space 8 月 22 日《[AINews] 10% worse, 100x cheaper, 10000x faster: Why Simulation is taking over》封面题图。此文梳理了 2022 年以来机器学习流水线的八个环节（奖励信号、训练数据、教师、课程、研究者、环境、人类被试、物理世界）先后从“人做”换成“模型做”，并用“差 10%、便宜百倍、快一万倍”概括这波合成替代的代价与收益。题图无官方配注。（图：Latent Space）",
+    "caption_en": "This issue's lead image: the cover of Latent Space's Aug 22 piece '[AINews] 10% worse, 100x cheaper, 10000x faster: Why Simulation is taking over.' The essay traces how all eight stages of the machine-learning pipeline (reward signal, training data, teacher, curriculum, researcher, environment, human subject, physical world) have flipped from human-made to model-made since 2022, and sums up the trade-off of this synthetic replacement as 10% worse, 100x cheaper, and 10,000x faster. The cover has no official caption. (Image: Latent Space)"
+  },
+  "actions": [
+    {
+      "text": "今晚花二十分钟查一次你 AI 花费的真实构成：登录 Ramp 之类的对账后台（或用你自己的月度账单），按模型或项目拉一份花费明细。验收标准：说出你七月支出里三个模型各占多少，哪个模型付了钱却没怎么用。刚发布的 Ramp AI 指数显示，企业真实账单里 Anthropic 的头牌 Fable 5 只占 8.0%，排第四，前三名是更便宜的 Opus 4.8（28%）、Sonnet 4.6（8.3%）和 Fable 5 自己；最贵的不等于用得最多的。",
+      "source": "Ramp AI 指数（经 Simon Willison 引用）",
+      "source_url": "https://simonwillison.net/2026/Aug/23/anthropics-best-ai-model-struggles-to-attract-users-as-cheaper-t/",
+      "text_en": "Tonight, spend twenty minutes checking what your AI spend is actually made of: log into an expense dashboard like Ramp (or use your own monthly bill) and pull a breakdown by model and project. You're done when you can name the three models that make up your July spending and which one you paid for without really using. One line of context: the just-released Ramp AI index shows that in real corporate bills, Anthropic's flagship Fable 5 is only 8.0% of spend, fourth place, behind cheaper Opus 4.8 (28%) and Sonnet 4.6 (8.3%); the priciest model is not the one being used most.",
+      "source_en": "Ramp AI index (via Simon Willison)"
+    },
+    {
+      "text": "本周花半天，让你的 Agent 跑一次训练任务，量一量“推理成本”这个变量：比如让它用 NanoGPT 速度跑一版迷你训练，或调一个你手头的训练脚本。验收标准：记下模型消耗的 token 数和收敛结果，并能说出换一个模型能省多少钱。Prime Intellect 刚发布的 NanoGPT Speedrun Frontier 有个反常发现：最强的 Fable 5 跑出 800M token，而 GPT-5.6 Sol 烧了 2.9B token，效果还没它好；token 效率和效果不成正比，这是给 agent 选型时最容易忽略的成本。",
+      "source": "Prime Intellect · NanoGPT Speedrun Frontier",
+      "source_url": "https://www.primeintellect.ai/research/nanogpt-speedrun",
+      "text_en": "This week, spend half a day running your agent on a training task to measure the variable everyone ignores: inference cost. For example, run a mini training run on the NanoGPT speedrun or tune a training script you already have. You're done when you've logged the token count and the convergence result, and can say how much switching models would save. One line of context: Prime Intellect's new NanoGPT Speedrun Frontier has a counterintuitive finding, the strongest model, Fable 5, burned 800M tokens while GPT-5.6 Sol burned 2.9B with worse results; token efficiency and quality don't correlate, and it's the easiest cost to overlook when picking an agent.",
+      "source_en": "Prime Intellect · NanoGPT Speedrun Frontier"
+    },
+    {
+      "text": "如果你想搭本地搜索，今晚花二十分钟把 Hister 跑起来，把你常逛的网站加进索引：下载二进制、运行./hister listen、装浏览器扩展。验收标准：本地启动后随便搜一个上周看过的页面，能按全文内容命中而非靠标题。Hister 是 searx 作者 asciimoo 新出的自托管搜索，端到端可检索的不仅是书签，还有你访问过的页面全文，还带 MCP 接口，可让 Claude 直接查你的历史。",
+      "source": "Hister · hister.org",
+      "source_url": "https://hister.org/",
+      "text_en": "If you want a local search engine, spend twenty minutes tonight getting Hister running and adding the sites you visit often: download the binary, run ./hister listen, install the browser extension. You're done when the local index is up and you can search a page you read last week by its full content, not its title. One line of context: Hister is the new self-hosted search engine from asciimoo, the searx author, and it indexes the full text of pages you've visited, with an MCP interface so you can point Claude at your own history.",
+      "source_en": "Hister · hister.org"
+    }
+  ],
+  "hands_on": {
+    "title": "装本地全文搜索 Hister，今晚就让 AI 查你的历史",
+    "why": "HN 今天 94 分热帖，searx 作者 asciimoo 的新自托管搜索。它索引的不是书签和标题，而是你访问过的页面全文和本地文件，无遥测、无强制云。装完自带 MCP 服务，能让 Claude 检索你的阅读历史，对天天攒资料的人而言，相当于“私人记忆免维护”。",
+    "time": "约 20 分钟",
+    "steps": [
+      "在 hister.org 或 GitHub releases 下载对应平台的二进制，重命名为 hister（Windows 是 hister.exe）",
+      "Linux 或 macOS 先执行 chmod +x hister，再运行./hister listen",
+      "打开 http://127.0.0.1:4433，按页面提示安装 Chrome 或 Firefox 扩展",
+      "浏览几个网页，让扩展把页面存进索引",
+      "验收：20 分钟内本地索引跑起来，搜一个上周看过的页面能按全文内容命中。注意：它会索引你访问过的页面全文，介意隐私就别装扩展"
+    ],
+    "source": "Hister · hister.org",
+    "source_url": "https://hister.org/",
+    "title_en": "Install Hister, a local full-text search engine your AI can query",
+    "why_en": "A 94-point Hacker News thread today, from asciimoo, the searx author. It indexes not bookmarks and titles but the full text of pages you've visited and files you keep, with no telemetry and no mandatory cloud. It ships with an MCP server, so Claude can search your own reading history, which for anyone who hoards links is a personal memory without the busywork.",
+    "time_en": "~20 min",
+    "steps_en": [
+      "Download the binary for your platform from hister.org or the GitHub releases page, rename it to hister (hister.exe on Windows)",
+      "On Linux/macOS: chmod +x hister, then run ./hister listen",
+      "Open http://127.0.0.1:4433 and install the Chrome or Firefox extension from the page",
+      "Visit a few pages so the extension stores them into the index",
+      "Done when the local index is running and you can find a page you read last week by its full content within 20 minutes. Note it indexes the full text of pages you visit, so skip the extension if that bothers you"
+    ],
+    "source_en": "Hister · hister.org"
+  },
+  "meta_read": "今天最值得读的不是某条新闻，而是这些新闻共用的潜台词：好模型的稀缺正从“聪明”转向“便宜”。Ramp 账单显示，企业真金白银花在最贵模型上的仅占 8%，冠军是便宜够用的 Opus 4.8；NanoGPT 速度赛显示，最强的 agent 用 800M token 就够，烧 2.9B 的反而输了。两件事指向同一方向：推理价格并非越贵越好，好用才是定价权。Latent Space 那篇“10% worse, 100x cheaper”把这点推到尽头：整个机器学习流水线，从奖励信号到物理世界，正逐个环节换成“便宜 100 倍”的合成替代品。把三条连起来看，今天判断是：真正卡脖子的已不是模型能力，而是验证机制。谁能令“更便宜”变得“可信”，谁就占得下一轮产品先机。",
+  "meta_read_en": "The most worth-reading thing today isn't any single headline, it's the shared subtext: the scarce thing about a good model is shifting from smart to cheap. Ramp's billing data says corporate dollars flow to the cheapest model that's good enough, Opus 4.8 at 28%, while the flagship Fable 5 sits at 8%; NanoGPT's speedrun says the strongest agent finishes on 800M tokens while the one burning 2.9B loses. Both point the same way: inference isn't priced like a luxury good, usefulness is pricing power. And Latent Space's '10% worse, 100x cheaper' pushes it to the end, the entire ML pipeline, from reward signal to the physical world, is flipping one stage at a time to a synthetic replacement that's 100x cheaper. Read the three together and today's judgment is: the real bottleneck is no longer model capability, it's verification. Whoever makes the cheaper thing trustworthy takes the next product position.",
+  "ota": {
+    "learned": [
+      "读台账。这条 OTA 延续 08-13 的“自测探针”规则，但补上了它漏掉的变量：08-13 说新模型上线要跑自己的重复探针，却没提探针本身有成本。今天的 NanoGPT Speedrun Frontier 给出反直觉数据：效果最好的 Fable 5 全程只烧 800M token，而 GPT-5.6 Sol 烧了 2.9B，收敛结果还不如前者；Grok 4.5、GLM 5.2 只用 46M–57M token 就接近同档。这推翻了“跑得越多测得越准”的默认假设：探针结果的价值要除以它的 token 成本，选模型和选验证方案都应比较“每单位信息的成本”，而非只比效果。"
+    ],
+    "new_capabilities": [
+      "经验证，当评估或比较模型或 agent 时，不能只看效果，而应将探针的运行成本（包括 token 数、耗时、实验次数）与结果一并报告，并按“单位信息的成本”排序，而非仅按效果排序。今日 NanoGPT 的数据表明，token 效率与效果并不成正比，若仅根据效果选型，可能会为那些尾效更差且成本高一个数量级的选项投入过多资金。这是 08-13 自测探针规则在成本维度上的延伸。调用意图：比较模型时，同时呈现效果和其 token 消耗，防止昂贵选项仅凭微弱优势胜出。"
+    ],
+    "learned_en": [
+      "Read the ledger. This OTA extends 08-13's self-probe rule but adds a variable it missed: 08-13 said run your own probe on a new model, but never mentioned the probe itself costs tokens. Today's NanoGPT Speedrun Frontier has a counterintuitive data point: the best result, Fable 5, burned only 800M tokens, while GPT-5.6 Sol burned 2.9B and converged worse; meanwhile Grok 4.5 and GLM 5.2 used just 46M-57M tokens for similar quality. That breaks the default assumption that more runs means better measurement: a probe result should be valued per unit of information, dividing by its token cost, for both model selection and verification design, not ranked by raw quality alone."
+    ],
+    "new_capabilities_en": [
+      "Verified: when evaluating or comparing models/agents, report the probe's operating cost (tokens, time, experiment count) alongside its result and rank by cost per unit of information, not by raw quality. Today's NanoGPT data shows token efficiency and quality don't correlate, so judging on quality alone burns money on an option that finishes worse and costs an order of magnitude more. Extends 08-13's self-probe rule along the cost axis. Invoke intent: when comparing models, report both the outcome and the tokens it burned, so a pricier option doesn't pass on a marginal quality edge."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "openai/codex",
+      "url": "https://github.com/openai/codex",
+      "description": "Lightweight coding agent that runs in your terminal",
+      "language": "Rust",
+      "stars": 115746,
+      "stars_today": 2715
+    },
+    {
+      "rank": 2,
+      "name": "freestylefly/awesome-gpt-image-2",
+      "url": "https://github.com/freestylefly/awesome-gpt-image-2",
+      "description": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，含 470+ 案例逆向工程、20+ 套工业级模板，并提炼出 Skills，持续更新。",
+      "language": "JavaScript",
+      "stars": 13316,
+      "stars_today": 401
+    },
+    {
+      "rank": 3,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 234087,
+      "stars_today": 2447
+    },
+    {
+      "rank": 4,
+      "name": "basecamp/omarchy",
+      "url": "https://github.com/basecamp/omarchy",
+      "description": "Beautiful, Modern &amp; Opinionated Linux",
+      "language": "Shell",
+      "stars": 29254,
+      "stars_today": 750
+    },
+    {
+      "rank": 5,
+      "name": "AprilNEA/OpenLogi",
+      "url": "https://github.com/AprilNEA/OpenLogi",
+      "description": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry.",
+      "language": "Rust",
+      "stars": 15087,
+      "stars_today": 1009
+    },
+    {
+      "rank": 6,
+      "name": "block/buzz",
+      "url": "https://github.com/block/buzz",
+      "description": "A hive mind communication platform",
+      "language": "Rust",
+      "stars": 30180,
+      "stars_today": 410
+    },
+    {
+      "rank": 7,
+      "name": "apache/maka",
+      "url": "https://github.com/apache/maka",
+      "description": "Apache Maka (Incubating) is a local-first AI agent workspace. Model messages, tool calls, tool results, permission decisions, and termination events are recorded as an append-only log.",
+      "language": "TypeScript",
+      "stars": 2414,
+      "stars_today": 51
+    },
+    {
+      "rank": 8,
+      "name": "Alishahryar1/free-claude-code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "description": "Use Claude Code, Codex, Pi, and OpenCode for free (1.3B+ free tokens) from your terminal, app, IDE, or phone like OpenClaw (voice supported + ToS friendly)",
+      "language": "Python",
+      "stars": 48083,
+      "stars_today": 1081
+    },
+    {
+      "rank": 9,
+      "name": "tinyhumansai/openhuman",
+      "url": "https://github.com/tinyhumansai/openhuman",
+      "description": "Your Personal AI super intelligence. A brain that builds a local-first memory of your life, a fantastic orchestrator of agent fleets and workflows, and a deep researcher.",
+      "language": "Rust",
+      "stars": 36830,
+      "stars_today": 39
+    },
+    {
+      "rank": 10,
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 242619,
+      "stars_today": 427
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 35,
+      "items": [
+        {
+          "title": "本地 27B 模型半小时逆向出商业软件授权，全程离线",
+          "title_en": "A local 27B model reverse-engineers a commercial license in 30 minutes, fully offline",
+          "author": "Ben Sin · XDA Developers",
+          "author_en": "Ben Sin · XDA Developers",
+          "likes": 159,
+          "url": "https://www.xda-developers.com/qwen-3-8-27b-reverse-engineering-job-frontier-model/",
+          "summary": "XDA 记者让 Qwen 3.8 27B 在自己电脑上逆向一个他合法购买的商业软件的授权校验系统。模型起初拒绝，并指出这是常见的越狱手法，还报出开发者名字。随后在纯静态分析下，模型改口，反汇编 arm64 代码，翻查数千行，挖出一个刻意隐藏的公钥，并重建出能通过校验的签名，全程约 30 分钟，未执行目标程序。更令人意外的是，模型展现出自我纠错能力：首次恢复的密钥签名虽通过校验，但哈希不一致，模型自行发现并重新推导，直至字节级一致。该模型运行于搭载 GB10 芯片的联想工作站，量化后占用 17GB 显存。作者坦言，这是一次应用、一次运行、一台机器的结果，并指出本地模型意味着无云端调用、无用量限制、也无远端监管。",
+          "summary_en": "An XDA writer asked Qwen 3.8 27B, running locally, to reverse-engineer the license-check system of a commercial app he legitimately owned. The model first refused, recognizing the common jailbreak attempt and naming the actual developer, then agreed under pure static analysis: it disassembled the arm64 framework, went through thousands of lines, dug out a deliberately hidden public verification key, and rebuilt a signature that passes, in roughly 30 minutes without ever executing the target. The surprise was self-correction: its first key passed the signature check but mismatched a hash, it caught its own error, went back to the drawing board, and re-derived until the values matched byte for byte. It ran on a Lenovo workstation with an Nvidia GB10 chip, 17GB of VRAM when quantized. The author admits this is one app, one run, one machine, and notes a local model means no cloud API, no usage limits, and no remote oversight.",
+          "why": "“本地小模型干不了硬活”的假设再被打破。它挑战了“逆向工程必须调用 API”的默认规则，使隐私保护与计算能力首次可以兼得。"
+        },
+        {
+          "title": "MCP 发布官方路线图：身份、安全、服务端主动消息",
+          "title_en": "MCP publishes an official roadmap: identity, security, server-initiated messaging",
+          "author": "David Soria Parra & Den Delimarsky · MCP",
+          "author_en": "David Soria Parra & Den Delimarsky · MCP",
+          "likes": 241,
+          "url": "https://blog.modelcontextprotocol.io/posts/mcp-roadmap/",
+          "summary": "MCP 联合维护者 David Soria Parra 和 Den Delimarsky 于 8 月 22 日发布新版官方路线图，列出五个优先事项：① agent 消息原语，包括服务端主动事件（webhook 和 channel），以及 Tasks 扩展（SEP-2663）向正式规范推进；② HTTP 原生传输统一，将 7 月 28 日发布的“无状态 HTTP”扩展至更多部署形态，例如本地服务器的“Streamable HTTP over stdio”；③ agent 身份与企业级安全，涵盖 DPoP（RFC 9449）、Workload Identity Federation 和标准 token 交换；④ 改进原语，统一 tools/call 的返回契约，支持“渐进式发现”，使服务器可分批次暴露工具目录而非一次性发送数百个；⑤ SDK 体验。路线图亦总结了 7 月 28 日规范版本的实施进展：无会话/无状态 MCP、server/discover 能力协商、可缓存列表结果、Tasks 转正为官方扩展。",
+          "summary_en": "MCP co-lead maintainers David Soria Parra and Den Delimarsky published a new official roadmap on Aug 22 with five priorities: ① agentic messaging primitives, server-initiated events (webhooks and channels) and maturing the Tasks extension (SEP-2663) toward spec inclusion; ② HTTP-native transport unification, extending the stateless HTTP model from the July 28 release to more deployment modes, including local servers speaking Streamable HTTP over stdio; ③ agent identity and enterprise-ready security, DPoP (RFC 9449), Workload Identity Federation, and standard token exchange; ④ improved primitives, standardizing the tools/call result contract and 'progressive discovery' so servers can reveal tool catalogs incrementally instead of exposing hundreds of tools up front; ⑤ SDK developer experience. It also summarizes what landed in the July 28 spec release: sessionless/stateless MCP, the server/discover call, cacheable list results, and Tasks becoming an official extension.",
+          "why": "MCP 正从“能连”迈向“能安全地规模化连”。对于构建过 agent 工具链者，身份与渐进式发现两项将直接决定未来工具生态形态。"
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 45,
+      "items": [
+        {
+          "title": "企业 AI 账单里的真相：头牌模型只占 8% 花费",
+          "title_en": "The truth in corporate AI bills: the flagship model is only 8% of spend",
+          "author": "Simon Willison（引 FT 报道）",
+          "author_en": "Simon Willison (citing the FT)",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Aug/23/anthropics-best-ai-model-struggles-to-attract-users-as-cheaper-t/",
+          "summary": "Simon Willison 引用 FT 报道并转述几组硬数据。Anthropic 七月“年化营收”升至 650 亿美元（五月为 470 亿），并预期 Q3 盈利。另告知投资人，已有 6000 个客户每年消费超过 10 万美元。OpenAI 年化营收本季度增长 35%，超过 400 亿，7 月发布的 GPT 5.6 扭转了年初的颓势。更值得注意的是，他附上了 Ramp AI 指数：基于 7 万家使用 Ramp 信用卡公司的账单数据估算模型采用情况。Anthropic 模型花费构成中，最贵的旗舰 Fable 5 仅占 8.0%，位列第四；前三名是 Opus 4.8（28.0%）、Sonnet 4.6（8.3%）与 Fable 5（8.0%）。",
+          "summary_en": "Simon Willison passes along hard numbers from an FT story. Anthropic's July 'annualized revenue' reached $65B (it was $47B in May), and it expects Q3 to be profitable by the same method it used to declare Q2 profitable; it also told investors it has 6,000 customers spending $100,000 or more annually. OpenAI's annualized revenue jumped 35% quarter-to-date to over $40B, the July GPT 5.6 launch jolting a sluggish start to the year. He also introduces the Ramp AI index, which uses billing data from 70,000 companies on Ramp cards to estimate model adoption: among Anthropic model spend, the priciest flagship Fable 5 is only 8.0%, fourth place, behind Opus 4.8 (28.0%), Sonnet 4.6 (8.3%), and Fable 5 (8.0%).",
+          "why": "这份罕见的“真实账单”数据直接将定价与采用脱钩：最贵模型并非使用最广。详见今日行动第一条及社评。"
+        },
+        {
+          "title": "一次对 agent 的公开拉力赛：最强模型用 1/3 的 token 赢了",
+          "title_en": "An open race for agents: the strongest model wins on a third of the tokens",
+          "author": "Prime Intellect · NanoGPT Speedrun",
+          "author_en": "Prime Intellect · NanoGPT Speedrun",
+          "likes": null,
+          "url": "https://www.primeintellect.ai/research/nanogpt-speedrun",
+          "summary": "Prime Intellect 让 18 个前沿模型各执行 153 次自主任务，目标是将 nanoGPT 优化至更低验证损失。人类纪录为 2.600，未调基线为 3.290。最佳结果是 Fable 5 搭配 claude-code，达到 2.726，收敛了 81.7% 的差距；Opus 5 收敛 53.6%，GPT-5.6 Sol 仅 35.9%。但真正异常的是成本：Fable 5 全程消耗 800M token，实验 811 次；而 GPT-5.6 Sol 消耗 2.9B token，耗时 6.1 天，效果却更差。Grok 4.5 和 GLM 5.2 仅用 46M–57M token 便接近同档。若固定 24 小时预算，排名会变，但 Fable 5 仍居首。作者给出值得铭记的结论：token 效率与效果不成正比，为 agent 选型时，这是最易被忽视的成本。",
+          "summary_en": "Prime Intellect ran 153 autonomous attempts each across 18 frontier models on the nanoGPT speedrun, where agents optimize a small GPT training run toward lower validation loss. The human record is 2.600; the untuned baseline is 3.290. The best result is Fable 5 with claude-code at 2.726, closing 81.7% of the gap; Opus 5 closes 53.6%, GPT-5.6 Sol just 35.9%. The real surprise is cost: Fable 5 burned 800M tokens over 811 experiments, while GPT-5.6 Sol burned 2.9B tokens over 6.1 days with worse results. Grok 4.5 and GLM 5.2 used only 46M-57M tokens for comparable quality. Rankings shift under a fixed 24-hour budget, but Fable 5 still leads. The authors' takeaway worth remembering: token efficiency and quality don't correlate, the easiest cost to overlook when choosing an agent.",
+          "why": "首次将“agent 从事机器学习研究”做成公开对照实验，并暴露了 token 成本这一盲区。详见今日行动第二条及社评。"
+        },
+        {
+          "title": "差 10%，便宜 100 倍：仿真正在接管机器学习的每一环",
+          "title_en": "10% worse, 100x cheaper: simulation is taking over every stage of ML",
+          "author": "Latent Space（AINews）",
+          "author_en": "Latent Space (AINews)",
+          "likes": null,
+          "url": "https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x",
+          "summary": "Latent Space 的 AINews 将 2022 年以来的趋势梳理为八级台阶：奖励信号（2022，InstructGPT 的奖励模型和 LLM-as-judge）、训练数据（2023，phi、WRAP 重写网页）、教师（2023，Alpaca 花 600 美元克隆前沿行为）、课程（2024，模型自己出题）、研究者（2026，AlphaEvolve、AI Scientist，Karpathy 的自主研究循环把到 GPT-2 的时间从 2.02 压到 1.80 小时）、环境（2026，GLM-5.3 端到端合成环境）、人类被试（2025，Simile 用访谈和 RCT 训练出复现人类非理性行为的数字双胞胎）、物理世界（进行中，Poolside 押注“谁拥有实验回路”）。其论点：每一环替换都发生在“验证机制让合成版本可信”的那一刻。结论值得抄录：合成前沿不是靠生成变好推进的，而是靠验证变好推进的。",
+          "summary_en": "Latent Space's AINews frames a trend since 2022 as eight stages: reward signal (2022, InstructGPT's reward models and LLM-as-judge), training data (2023, phi, WRAP rephrasing the web), teacher (2023, Alpaca cloning frontier behavior for $600), curriculum (2024, models generating their own tasks), researcher (2026, AlphaEvolve, AI Scientist, Karpathy's autonomous loop cutting time-to-GPT-2 from 2.02 to 1.80 hours), environment (2026, GLM-5.3 synthesizing environments end-to-end), human subject (2025, Simile training digital twins that reproduce irrational human behavior), and the physical world (in progress, Poolside betting the value accrues to whoever owns the experimental loop). The thesis: each flip happened at the exact moment a verification mechanism made the synthetic version trustworthy. The concluding line worth copying down: the synthetic frontier doesn't advance when generation gets better, it advances when verification does.",
+          "why": "本期头版配图出处。把散在各处的“合成替代”串成一条线，还给了判断标准：何时替换可信？看验证机制。详见社评。"
+        }
+      ]
+    }
+  ]
+}
