@@ -1,0 +1,267 @@
+{
+  "date": "2026-08-24",
+  "partial": false,
+  "banner": "旗舰半价促销，注意力成硬通货",
+  "banner_en": "Flagship at half price, attention becomes the scarce thing",
+  "image": {
+    "src": "digests/img/2026-08-24.jpg",
+    "caption": "本期头版配图：Latent Space《The Evolution of the Agent Harness》题图。此文用「模型会把外层装置（工具、上下文、权限、压缩）一段段吸收进权重」解释 agent 能力在 2025 年底的突进，并预测下一段要吸收的是「人类注意力的接口」：agent 何时可以打扰你、何时自主干活，会变成每家公司的默认配置。题图无官方配注。（图：Latent Space）",
+    "caption_en": "This issue's lead image: the header art for Latent Space's 'The Evolution of the Agent Harness.' The essay explains the late-2025 leap in agent capability as the model absorbing its harness (tools, context, permissions, compaction) into its weights piece by piece, and predicts the next thing to be absorbed is the interface to human attention: when an agent may interrupt you and when it works autonomously becomes a default every company ships. The art has no official caption. (Image: Latent Space)"
+  },
+  "actions": [
+    {
+      "text": "今晚花十分钟核一遍你正在用的模型价格：打开 OpenAI 定价页，把 gpt-5.6-sol 的促销价（短上下文输入 $2、输出 $10 每百万 token，至少到 11 月 21 日）和你主力模型的花费并排写下。算做完的标准：能说出你的主力模型当前单 token 成本，并决定要不要趁促销把某条流水线切到 Sol。背景一句：OpenAI 临时给旗舰 Sol 的输入输出各打对折，评论区已经在猜这是价格战打到旗舰的信号。",
+      "source": "OpenAI API 定价页 · Hacker News",
+      "source_url": "https://developers.openai.com/api/docs/pricing",
+      "text_en": "Tonight, spend ten minutes re-checking the prices of the models you actually use: open the OpenAI pricing page and write down the promotional rate for gpt-5.6-sol (short-context input $2 and output $10 per million tokens, good at least through November 21) side by side with what your main model costs. You're done when you can say your main model's per-token cost and decide whether any pipeline is worth switching to Sol during the promo. One line of background: OpenAI temporarily halved both input and output prices on flagship Sol, and the thread is already reading it as the price war reaching the top tier.",
+      "source_en": "OpenAI API pricing page · Hacker News"
+    },
+    {
+      "text": "今晚花十分钟核一遍你的推理引擎版本：如果自己托管 vLLM、SGLang 或 llama.cpp，查你跑的版本是否已修补 CVE-2025-9141（vLLM 的 Qwen3 Coder XML 工具解析器曾把几乎全部工具参数传给 eval()，让模型能在宿主机执行任意代码）。算做完的标准：能说出你用的版本号和对应补丁状态。背景一句：一篇新论证指出，模型吐出的 token 串本身可能被有 bug 的解析器当成代码执行，本地跑模型的机器同样暴露在这个攻击面里。",
+      "source": "Boyd Kane · Hacker News",
+      "source_url": "https://boydkane.com/essays/llms-could-control-their-host-machines-by-exploiting-inference-engines",
+      "text_en": "Tonight, spend ten minutes checking the version of your inference stack: if you self-host vLLM, SGLang, or llama.cpp, check whether your running version has patched CVE-2025-9141, where vLLM's XML tool parser for Qwen3 Coder passed nearly every tool-call argument to eval(), letting the model execute arbitrary code on the host machine. You're done when you can name your version and whether the fix is in. One line of background: a new essay argues that the token stream a model emits can itself be misparsed as code by a buggy inference engine, and locally hosted models are exposed the same way.",
+      "source_en": "Boyd Kane · Hacker News"
+    },
+    {
+      "text": "今晚花五分钟，验一张你最近生成的 AI 图的出处信息：用 exiftool 或图片信息面板，看它带不带 C2PA 或水印字段。算做完的标准：能说出那张图有没有出处标记、是什么。背景一句：有逆向工程师拆出微软 Paint 的链路，本地生成前提示词先送远端审查，服务器返回的 GUID 被隐形嵌进像素，保存格式也被限制成能保留 C2PA 的几种。",
+      "source": "Xusheng Li · Hacker News",
+      "source_url": "https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/",
+      "text_en": "Tonight, spend five minutes checking the provenance of a recent AI-generated image: use exiftool or the image's info panel to see whether it carries a C2PA or watermark field. You're done when you can say whether that image has a provenance marker and what it is. One line of background: a reverse engineer traced Microsoft Paint's pipeline, where even local generation sends the prompt to a remote moderation endpoint first, and the returned GUID gets invisibly embedded into the pixels, with save formats restricted to the ones that preserve C2PA.",
+      "source_en": "Xusheng Li · Hacker News"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚关掉补全，手写一个 50 行小脚本",
+    "why": "HN 今天 478 分热帖《AI Coding will Prevent Expertise》在讨论同一件事：越依赖 AI，越难长出识别好坏代码的「手感」。文章引了 JetBrains 转述的研究，新手用 AI 越放任，越容易跳过规划直接写码，最后带着「能力错觉」收场。今晚不做大工程，就手写一小段，体会摩擦本身在教什么。",
+    "time": "约 30 分钟",
+    "steps": [
+      "挑一个你熟悉的小任务，比如解析一个 CSV 或批量重命名文件，目标 50 行以内",
+      "关掉编辑器和终端里所有补全、agent、聊天面板",
+      "从头手写；写不出来就先查文档，别让 AI 替你把答案写出来",
+      "写完跑通，回头写两行：哪一步最别扭，哪一步让你真正想明白了之前没懂的东西",
+      "验收：30 分钟内手写完并跑通这个小脚本"
+    ],
+    "source": "Lars Faye · Hacker News",
+    "source_url": "https://larsfaye.com/articles/ai-coding-will-prevent-expertise",
+    "title_en": "Tonight: turn off autocomplete and hand-write a 50-line script",
+    "why_en": "Today's 478-point HN post 'AI Coding will Prevent Expertise' argues the same thing: the more you lean on AI, the harder it is to grow the taste for telling good code from bad. It cites a study JetBrains surfaced where the more unguarded novices used AI, the more they skipped planning and finished with an illusion of competence. No big project tonight, just hand-write something small and feel what the friction teaches.",
+    "time_en": "~30 min",
+    "steps_en": [
+      "Pick a small task you know well, like parsing a CSV or batch-renaming files, aim for under 50 lines",
+      "Turn off all autocomplete, agents, and chat panels in your editor and terminal",
+      "Write it by hand from scratch; when stuck, consult docs, don't have an AI produce the answer",
+      "Once it runs, write two lines: which step felt most awkward, and which step made something click you hadn't understood before",
+      "Done when you've hand-written and run the script within 30 minutes"
+    ],
+    "source_en": "Lars Faye · Hacker News"
+  },
+  "meta_read": "今天的新闻单独看是五六件事，合起来是一件事：模型本身在退潮，值钱的变成它周围那层装置。OpenAI 把最贵的 Sol 临时打对折，旗舰进了促销期，价格战打到顶端；同一周，一份长文用数据论证 agent 能力的突进一半来自 harness（工具、上下文、权限）与模型的共同演化，Harness-Bench 上同一个模型换外层装置能差 23.8 分。价格在降，能力来自装置，稀缺品自然挪到装置上。这层装置同时长着三副面孔：它是分配你注意力的界面，也是给出处的合规层，还是新的攻击面。微软把服务器下发的隐形水印嵌进本地生成图，把「图从哪来」做成平台默认；另一边，研究者演示恶意 token 串能利用推理引擎的解析器在宿主机上执行代码。今天的判断是：谁先把「何时打扰人、何时自己干」做成产品的默认配置，谁就占住下一轮；谁还觉得模型就是全部，谁就把护城河送给了做装置的人。",
+  "meta_read_en": "Read the day's stories as one story: the model is receding, and the value moved to the layer around it. OpenAI cut the price of its most expensive model, Sol, in half, temporarily, and the price war reached the top tier. The same week, a long essay argued with data that the recent leap in agent capability is half the co-evolution of the model and its harness (tools, context, permissions): on Harness-Bench the same model scores anywhere from 52.4 to 76.2, a 23.8-point spread with zero model change. Prices fall and capability comes from the harness, so scarcity shifts to the harness. That layer wears three faces: the interface that allocates your attention, the compliance layer that records provenance, and the new attack surface. Microsoft now embeds a server-issued watermark into locally generated images, making 'where did this image come from' a platform default; meanwhile a researcher demonstrated that a malicious token stream can exploit an inference engine's parser to execute code on the host machine. The judgment for today: whoever turns 'when to interrupt a human, when to work alone' into a product default takes the next position; whoever still believes the model is everything hands the moat to the people building the harness.",
+  "ota": {
+    "learned": [
+      "读台账。这条延续 08-23 的「按单位信息成本评估」规则，补上了今天才看清的变量：评估 agent 时，模型不是唯一变量，外层装置（harness：工具、上下文组装、权限、压缩策略）和模型权重同等重要。今天这篇《The Evolution of the Agent Harness》给了两组硬数据：Harness-Bench 上同一个模型只换 harness，分数从 52.4 到 76.2，差 23.8 分；GPT-5.6 Sol 在 ARC-AGI-3 上只加「保留推理 + 压缩」两种 harness 能力，分数从 13.3% 涨到 38.3%。也就是说，选 agent 产品（Claude Code vs Codex vs Cursor）本质是选 harness，不是选模型。"
+    ],
+    "new_capabilities": [
+      "已验证：为实际工作评估 agent 系统或框架时，把 harness 当作独立变量来测，而不是只比较模型。具体做法：拿同一任务、同一套提示词，至少跑两个不同 harness（同一模型）并比较差异；评估 agent 产品时先问它的 harness 层（工具调用、上下文组装、权限、压缩）做了什么，再问它用哪个模型。这是 08-13 自测探针规则从「模型」扩展到「模型 + 外层装置」的延伸。调用意图：比较 agent 工具时固定模型变量去比 harness，别把 harness 的功劳记在模型头上。"
+    ],
+    "learned_en": [
+      "Read the ledger. This extends 08-23's cost-aware evaluation rule with the variable it still missed: when evaluating an agent, the model isn't the only variable. The harness (tools, context assembly, permissions, compaction) matters as much as the weights. Today's 'The Evolution of the Agent Harness' supplies two hard numbers: on Harness-Bench the same model scores anywhere from 52.4 to 76.2 depending on the harness, a 23.8-point spread with zero model change; and GPT-5.6 Sol on ARC-AGI-3 tripled from 13.3% to 38.3% with only retained reasoning and compaction added. Choosing an agent product (Claude Code vs Codex vs Cursor) is really choosing a harness, not a model."
+    ],
+    "new_capabilities_en": [
+      "Verified: when evaluating an agent system or framework for real work, measure the harness as an independent variable instead of comparing models alone. Concretely: run the same task and prompt on at least two different harnesses with the same model and compare; when evaluating an agent product, ask first what its harness layer does (tool calling, context assembly, permissions, compaction), then which model it uses. Extends 08-13's self-probe rule from the model to the model-plus-harness. Invoke intent: when comparing agent tools, hold the model fixed and compare the harness; don't credit the harness's contribution to the model."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "Alishahryar1/free-claude-code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "description": "Use Claude Code, Codex, Pi, and OpenCode for free (1.3B+ free tokens) from your terminal, app, IDE, or phone like OpenClaw (voice supported + ToS friendly)",
+      "language": "Python",
+      "stars": 49091,
+      "stars_today": 891
+    },
+    {
+      "rank": 2,
+      "name": "openai/codex",
+      "url": "https://github.com/openai/codex",
+      "description": "Lightweight coding agent that runs in your terminal",
+      "language": "Rust",
+      "stars": 117220,
+      "stars_today": 1994
+    },
+    {
+      "rank": 3,
+      "name": "MadsLorentzen/ai-job-search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
+      "language": "Python",
+      "stars": 34157,
+      "stars_today": 434
+    },
+    {
+      "rank": 4,
+      "name": "multica-ai/andrej-karpathy-skills",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+      "language": null,
+      "stars": 206611,
+      "stars_today": 588
+    },
+    {
+      "rank": 5,
+      "name": "makeplane/plane",
+      "url": "https://github.com/makeplane/plane",
+      "description": "🔥🔥🔥 Open-source Jira, Linear, Monday, and ClickUp alternative. Plane is a modern project management platform to manage tasks, sprints, docs, and triage.",
+      "language": "TypeScript",
+      "stars": 57989,
+      "stars_today": 243
+    },
+    {
+      "rank": 6,
+      "name": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stars": 235876,
+      "stars_today": 896
+    },
+    {
+      "rank": 7,
+      "name": "anthropics/claude-plugins-community",
+      "url": "https://github.com/anthropics/claude-plugins-community",
+      "description": "Community plugin marketplace for Claude Cowork and Claude Code. Read-only mirror — submit plugins at clau.de/plugin-directory-submission.",
+      "language": "Python",
+      "stars": 1397,
+      "stars_today": 489
+    },
+    {
+      "rank": 8,
+      "name": "AprilNEA/OpenLogi",
+      "url": "https://github.com/AprilNEA/OpenLogi",
+      "description": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry.",
+      "language": "Rust",
+      "stars": 15940,
+      "stars_today": 1097
+    },
+    {
+      "rank": 9,
+      "name": "apache/maka",
+      "url": "https://github.com/apache/maka",
+      "description": "Apache Maka (Incubating) is a local-first AI agent workspace. Model messages, tool calls, tool results, permission decisions, and termination events are recorded as an append-only log.",
+      "language": "TypeScript",
+      "stars": 2958,
+      "stars_today": 411
+    },
+    {
+      "rank": 10,
+      "name": "PostHog/posthog",
+      "url": "https://github.com/PostHog/posthog",
+      "description": "🦔 PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP.",
+      "language": "Python",
+      "stars": 39022,
+      "stars_today": 83
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 40,
+      "items": [
+        {
+          "title": "AI 编码正在掐灭专家：新手越放任，越停在能力错觉",
+          "title_en": "AI coding is killing expertise: the more unguarded the novice, the deeper the illusion of competence",
+          "author": "Lars Faye · Hacker News",
+          "author_en": "Lars Faye · Hacker News",
+          "likes": 478,
+          "url": "https://larsfaye.com/articles/ai-coding-will-prevent-expertise",
+          "summary": "HN 今日 478 分热帖。作者上一篇文章讲「熟练编排者悖论」：管理 AI agent 所需的能力，正是被长期使用 AI 消磨掉的能力。这篇更进一步：新手处于最尴尬的位置，他们需要专家级技能才能用好这些工具，而工具恰恰在消除长出专家所需的那种摩擦。他引了 JetBrains 转述的一项研究：参与者以为 AI 像私人导师，实际却经常跳过关键规划阶段直接写码，最后带着「能力错觉」收场；表现最好的新手是大幅减少甚至无视 AI 辅助的那批。还有宾大 2025 年对约千名学生的研究《Generative AI without guardrails can harm learning》。他的结论：摩擦本身是特性（Friction is a Feature），开发者直觉只能靠失败和试错长出来，德语有个词叫 Fingerspitzengefühl（指尖手感）。",
+          "summary_en": "A 478-point Hacker News thread today. The author's previous piece framed the 'skilled orchestrator paradox': the skills you need to manage AI agents are the same skills sustained AI use erodes. This one pushes further: novices sit in the worst position, needing expert-level skills to wield the tools while the tools remove the friction that grows experts. He cites a study JetBrains surfaced: participants thought they had a personal tutor, but in practice often skipped critical planning stages and jumped straight to coding, finishing with an 'illusion of competence'; the best-performing novices were the ones who heavily limited or outright ignored the AI assistance. He also cites UPenn's 2025 study of roughly 1,000 students, 'Generative AI without guardrails can harm learning.' His conclusion: friction is a feature; developer intuition only forms through failure and trial and error, the German Fingerspitzengefühl.",
+          "why": "这条和头版社评是同一条线的另一面：模型再便宜，人也需要能判断输出好坏的「手感」，而手感只能靠摩擦长出来。对天天泡在 agent 里的人，这是反共识提醒。",
+          "why_en": "The flip side of today's lead commentary: however cheap the model, a human still needs the taste to judge its output, and taste only grows from friction. A counter-consensus reminder for anyone who lives inside agents."
+        },
+        {
+          "title": "OpenAI 给旗舰 Sol 临时降价：输入输出各打对折",
+          "title_en": "OpenAI temporarily cuts flagship Sol pricing: input and output both halved",
+          "author": "OpenAI API 定价页 · Hacker News",
+          "author_en": "OpenAI API pricing page · Hacker News",
+          "likes": 303,
+          "url": "https://developers.openai.com/api/docs/pricing",
+          "summary": "HN 热帖（303 分）。OpenAI 对 gpt-5.6-sol 的 API 定价临时下调：短上下文输入从每百万 token $4 降到 $2，输出从 $20 降到 $10；长上下文对应 $8→$4、$30→$15，至少持续到 11 月 21 日。评论区两派：一派叫好，说 Sol 现在比 Anthropic 的同类选项更有吸引力；另一派认为这是价格战打到旗舰的信号，还有人指出 5.6 家族 Sol/Terra/Luna 本质是同一模型的三种规模，Sol 仍是 Luna 的 20 倍。更深的讨论落在「模型可被蒸馏复制」：卖智能可能变成一场竞底。",
+          "summary_en": "A 303-point Hacker News thread. OpenAI has temporarily cut API pricing for gpt-5.6-sol: short-context input falls from $4 to $2 per million tokens and output from $20 to $10, with long-context at $8 to $4 and $30 to $15, good at least through November 21. The thread splits: one camp cheers that Sol now looks more attractive than Anthropic's comparable options; another reads it as the price war reaching the flagship tier; several point out that the 5.6 family (Sol/Terra/Luna) is one model in three sizes and Sol still costs 20x Luna. The deeper argument runs to distillation making models replicable: selling intelligence may become a race to the bottom.",
+          "why": "旗舰进入促销期，是「模型商品化」从口号变成定价单的信号。对按 token 付费的人，这直接改选型账本。详见今日行动第一条。",
+          "why_en": "A flagship on promo is the clearest sign yet that model commoditization has hit the pricing sheet. For anyone paying per token, this changes the selection math directly. See action 1."
+        },
+        {
+          "title": "恶意 token 串能攻陷承载模型的宿主机",
+          "title_en": "A malicious token stream can take over the host running the model",
+          "author": "Boyd Kane · Hacker News",
+          "author_en": "Boyd Kane · Hacker News",
+          "likes": 98,
+          "url": "https://boydkane.com/essays/llms-could-control-their-host-machines-by-exploiting-inference-engines",
+          "summary": "98 分 HN 帖。作者论证一个被忽略的攻击面：模型在 GPU 宿主机上算，输出 token 要经推理引擎（vLLM、SGLang）解析成响应。解析器只要有 bug，模型自己吐出的 token 串就可能被当成代码执行。真实案例：vLLM 的 Qwen3 Coder XML 工具解析器（CVE-2025-9141）几乎把每个工具参数都传给 eval()，让模型能在宿主机执行任意代码；Gemini 自动分析曾把引入该 bug 的 PR 标记为严重漏洞，vLLM 首席维护者仍强推合并，理由是解析任意 token 序列很难做对。另一个 vLLM issue：模型输出普通字符串 <mm:think>，被误当成推理块起点。作者指出，推理引擎要解析几十种聊天格式，出错空间很大，而宿主机是高价值目标：有足够算力、能接触权重、在数据中心里还有特权。",
+          "summary_en": "A 98-point HN post. The author argues for an overlooked attack surface: the model computes on a GPU host, and its output tokens get parsed by the inference engine (vLLM, SGLang) into a response. If the parser has a bug, the token stream the model itself emitted can be interpreted as code to execute. The concrete case: vLLM's XML tool parser for Qwen3 Coder (CVE-2025-9141) passed nearly every tool-call argument to eval(), letting the model execute arbitrary code on the host. Gemini's automated analysis flagged the introducing PR as a critical vulnerability, and the vLLM lead maintainer force-merged it anyway, arguing that parsing an arbitrary token sequence is genuinely hard to get right. In another vLLM issue, a model emitted the plain string <mm:think> and the engine misparsed it as the start of a reasoning block. The author notes modern engines parse dozens of chat formats, leaving plenty of room for bugs, and the host is a high-value target: enough compute to run a frontier model, access to the weights, and a privileged network position in the datacenter.",
+          "why": "给「护栏要长在 agent 够不着的地方」补了更底一层：不只是 agent 的工具要隔离，承载权重的宿主机本身也在攻击面里。本地跑模型的机器同样中招。",
+          "why_en": "Adds a lower layer to 'the guardrail must live where the agent can't reach': it's not just the agent's tools that need isolation, the host holding the weights is itself on the attack surface, and local model machines are exposed the same way."
+        },
+        {
+          "title": "微软 Paint 给本地生成图打进服务器下发的隐形水印",
+          "title_en": "Microsoft Paint embeds server-issued invisible watermarks into locally generated images",
+          "author": "Xusheng Li · Hacker News",
+          "author_en": "Xusheng Li · Hacker News",
+          "likes": 575,
+          "url": "https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/",
+          "summary": "575 分 HN 帖。逆向工程师 Xusheng Li 拆出微软 Paint 的 AI 生成链路：即便在 Copilot+ PC 上本地跑 Stable Diffusion，提示词也会先被送到远端审查端点（moderate-prompt），服务器返回 revisedPrompt 和一个 16 字节 GUID（watermarkId），这个 GUID 被一个 1.67MB 的 Watermarker.dll 以 SVD 风格的内容自适应算法隐形嵌进像素；水印写入失败，整张生成直接报错。还发现本地模型 .onnxe 是加密的 ONNX（密钥从 Microsoft_2023 换成了新串），Paint 把 AI 图保存格式限制为 PNG、JPEG、GIF、.paint，理由是 C2PA 元数据。作者用自己的会话实测：普通提示词返回 200 带 watermarkId，带「微笑的人」的提示词返回 containsHumanReference: true。",
+          "summary_en": "A 575-point HN thread. Reverse engineer Xusheng Li traced Microsoft Paint's AI image pipeline: even on Copilot+ PCs where Stable Diffusion runs locally, the prompt is first sent to a remote moderation endpoint (moderate-prompt), which returns a revisedPrompt and a 16-byte GUID (watermarkId). That GUID is invisibly embedded into the pixels by a 1.67MB Watermarker.dll using an SVD-style content-adaptive algorithm, and if watermark writing fails, the whole generation errors out. He also found the local .onnxe model files are encrypted ONNX (the key changed from 'Microsoft_2023' to a new string), and Paint restricts AI-image saves to C2PA-preserving formats: PNG, JPEG, GIF, and .paint. Using Paint's own authenticated session, a plain prompt returned 200 with a watermarkId, while a 'smiling person' prompt returned containsHumanReference: true.",
+          "why": "AI 出图平台把「出处」做成隐形默认，且本地生成也没豁免。对用 AI 做内容的人是新的合规现实，对做平台的人是 provenance 的参考实现。",
+          "why_en": "Image platforms are making provenance an invisible default, and local generation is not exempt. For anyone producing AI content it's a new compliance reality; for platform builders it's a reference implementation of provenance."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 45,
+      "items": [
+        {
+          "title": "Agent 的能力一半来自模型，一半来自外层装置",
+          "title_en": "An agent's capability is half model, half harness",
+          "author": "Dan McAteer · Latent Space",
+          "author_en": "Dan McAteer · Latent Space",
+          "likes": null,
+          "url": "https://www.latent.space/p/attention-interface",
+          "summary": "Dan McAteer（Attention Heads）长文论证，2025 年底 agent 能力的突进，来自模型与 harness 的共同演化。harness 指模型权重之外，让 agent 能工作的全部配套：环境、工具、上下文、权限。分三阶段：1.0 螺栓时代（ReAct、AutoGPT、Cursor/Copilot，Devin 在 Answer.AI 测试下成功率约 15%）；2.0 共同训练时代（Harness-Bench 显示，同一模型换 harness，分数从 52.4 升至 76.2，差 23.8 分；GPT-5.6 Sol 在 ARC-AGI-3 中仅加“保留推理与压缩”，即从 13.3% 涨到 38.3%；codex-1 在 harness 内做强化学习；Anthropic 的 Thariq Shihipar 称，团队删掉了 Claude Code 系统提示词的 80%）；3.0 注意力时代：harness 变成模型与人类注意力的接口，决定 agent 何时可打扰人、何时自主、哪些决定需审批。作者预测，一年内每个做 agentic AI 的公司都会发布“人类注意力政策”，类似 AGENTS.md。引 Ryan Lopopolo 的话：唯一真正稀缺的，是团队的同步人类注意力。",
+          "summary_en": "A long essay by Dan McAteer (Attention Heads) arguing that the late-2025 jump in agent capability comes from the co-evolution of models and their harness, everything besides the weights that makes an agent work: environment, tools, context, permissions. Three eras: 1.0 the bolt-on era (ReAct, AutoGPT, Cursor/Copilot; Devin around a 15% success rate per Answer.AI's testing); 2.0 the co-training era (Harness-Bench scores from 52.4 to 76.2 on the same model, a 23.8-point spread with zero model change; GPT-5.6 Sol on ARC-AGI-3 tripling from 13.3% to 38.3% with only retained reasoning and compaction added; codex-1 doing RL inside the harness; Anthropic's Thariq Shihipar noting the team deleted 80% of Claude Code's system prompt); 3.0 the attention era: the harness becomes the model's interface to human attention, governing when agents may interrupt, when they work autonomously, and which decisions need approval. The author predicts every company building agentic AI will ship a 'human attention policy' within a year, like AGENTS.md. Quote: Ryan Lopopolo, 'the only fundamentally scarce thing is the synchronous human attention of my team.'",
+          "why": "本期头版配图与社评的来源。它将“模型不再稀缺，外层装置才是”讲成带数据的论证，也是今日 OTA 的出处。",
+          "why_en": "The source of this issue's lead image and commentary. It turns 'the model is no longer scarce, the harness is' into an argument with data, and is where today's OTA comes from."
+        },
+        {
+          "title": "Hugging Face 传出寻求出售，估值 130 亿美元",
+          "title_en": "Hugging Face explores a sale at a reported $13B valuation",
+          "author": "RuntimeWire（据 Business Insider）· 文摘",
+          "author_en": "RuntimeWire (citing Business Insider) · Digest",
+          "likes": null,
+          "url": "https://runtimewire.com/article/hugging-face-explores-13-billion-sale",
+          "summary": "Business Insider 8 月 23 日报道，Hugging Face 正与一家银行合作，评估潜在买家兴趣，交易可能价值 130 亿美元以上，约为 2023 年公开融资估值 45 亿美元的 2.9 倍。溢价约 85 亿美元，买的是分发渠道、开发者关系，以及围绕别人家模型建起来的技术基础设施。截至 2026 年 8 月，HF 模型目录列有超过 300 万个公开模型、100 万个数据集。潜在买家（云厂商、芯片商、企业软件商）能借此直接进入开发者选型的工作流，但要继承 HF 的中立问题：竞争对手不愿在对手控制的平台上构建。这跟在 Stripe 收购 OpenRouter 之后，AI 分发层成为独立收购标的，是同一逻辑。",
+          "summary_en": "Business Insider reported on August 23 that Hugging Face is working with a bank to gauge buyer interest, in a deal that could value the platform at $13 billion or more, roughly 2.9x the $4.5 billion valuation from its last public funding round. The roughly $8.5 billion premium buys distribution, developer relationships, and the technical infrastructure built around other organizations' models. As of August 2026, HF's model directory listed over 3 million public models and its dataset catalog over 1 million datasets. A buyer (cloud provider, chipmaker, or enterprise software vendor) gains a direct route into developer selection workflows, but inherits the neutrality problem: rivals may resist building on a platform controlled by a competitor. It's the same logic as Stripe buying OpenRouter: the AI distribution layer is now its own acquisition target.",
+          "why": "在 Stripe 70 亿买 OpenRouter 之后，AI 的分发与开发者入口成了独立收购标的。对依赖中立公共层的产品团队，这是换主风险的提醒。",
+          "why_en": "After Stripe's $7B+ OpenRouter deal, AI distribution and the developer doorway are now standalone acquisition targets. For teams building on neutral public layers, it's a reminder of ownership-change risk."
+        },
+        {
+          "title": "Anthropic 把 Mythos 5 的能力给防御者，但不给模型本身",
+          "title_en": "Anthropic gives defenders what Mythos 5 can do, but not the model itself",
+          "author": "TNW · 文摘",
+          "author_en": "TNW · Digest",
+          "likes": null,
+          "url": "https://thenextweb.com/news/anthropic-mythos-5-defenders-open-source-fund",
+          "summary": "8 月 21 日。Claude Mythos 5 现在在 Claude Security 里跑代码扫描，并集成进合作方防御产品。用户拿到的是具体产物（带 CWE 分类、严重度和置信度评级的发现，以及建议补丁），无法直接提示模型去写漏洞利用。每个补丁必须人工审核批准，按普通 token 用量计费。第二件事是钱：Anthropic 投入 3500 万美元额度，成立 Defender Advantage Fund，资助开源安全项目，方向是给流行项目打补丁、把扫描和打补丁自动化，以及封堵整类攻击的设计。背景是 TNW 早前报道，Glasswing 的模型一个月发现 1 万个严重漏洞，打补丁跟不上。对欧洲维护者，Cyber Resilience Act 的漏洞报告义务 9 月 11 日生效。文章点出限制：信用额度不是维护者，这笔钱只帮得了已经有人的项目。",
+          "summary_en": "August 21. Claude Mythos 5 now runs code scans inside Claude Security and is being integrated into partners' defensive products; users receive artifacts (findings tagged with a CWE category, severity, and confidence rating, plus a suggested patch) and have no way to prompt the model to write an exploit instead. Every patch has to be reviewed and approved by a human, billed as ordinary token usage. The second announcement is money: Anthropic is putting $35M in credits into a Defender Advantage Fund for open-source security, aimed at patching live vulnerabilities in widely used projects, automating scan-and-patch so others can copy it, and pursuing designs that close whole classes of attack. The backdrop: TNW reported Glasswing's models found 10,000 critical vulnerabilities in a month and patching couldn't keep pace. For European maintainers, the Cyber Resilience Act's vulnerability-reporting obligations start September 11. The article flags the limit: credits are not maintainers, and the fund only helps projects that already have people to run it.",
+          "why": "安全能力分发的新范式：给结果不给模型。对在评估 AI 安全合规边界的团队，这是可以直接抄的形态。",
+          "why_en": "A new distribution model for security capability: give away the results, not the model. For teams drawing their own AI-security compliance boundary, it's a shape worth copying."
+        }
+      ]
+    }
+  ]
+}
