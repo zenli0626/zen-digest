@@ -1,0 +1,243 @@
+{
+  "date": "2026-08-25",
+  "partial": false,
+  "banner": "推理芯片开战，护城河搬进硅片",
+  "banner_en": "The chip war begins; the moat moves into silicon",
+  "image": {
+    "src": "digests/img/2026-08-25.jpg",
+    "caption": "本期头版配图：SemiAnalysis 报道 OpenAI 自研推理芯片 Jalapeño 所用题图。文章记录编辑赴 OpenAI 实验室实测芯片性能的过程，芯片于 Hot Chips 2026 发布。题图无官方配注。（图：SemiAnalysis）",
+    "caption_en": "This issue's lead image: the header art for SemiAnalysis's report on OpenAI's self-designed inference chip Jalapeño. The piece documents the editors benchmarking the chip in OpenAI's labs after it was announced at Hot Chips 2026. The art carries no official caption. (Image: SemiAnalysis)"
+  },
+  "actions": [
+    {
+      "text": "今晚花二十分钟，把吴恩达今天列的四项 AI 工程技能抄成一张自我评估表，逐条写下你现在的水平一行、下个月能补的一个具体动作一行。算做完的标准：你能说出自己最弱的一项，以及下周要做的那个补法。背景一句：吴恩达发布 AI 工程技能地图，依据是分析 1 万份以上招聘启事和几十场访谈。",
+      "source": "Andrew Ng · DeepLearning.AI",
+      "source_url": "https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map",
+      "text_en": "Tonight, spend twenty minutes turning Andrew Ng's four AI-engineering skills into a self-assessment sheet: one line on where you are today for each skill, and one concrete action to improve next month. You're done when you can name your weakest skill and the specific thing you'll do next week about it. One line of background: Ng published an AI-engineering skills map today, based on an analysis of 10,000+ job postings and dozens of interviews.",
+      "source_en": "Andrew Ng · DeepLearning.AI"
+    },
+    {
+      "text": "今晚花十分钟，把你合入 AI 生成代码前的检查写成一页清单：验证项（能编译、测试通过、安全扫描无新增高危）、治理项（谁批准、上下文从哪来）、回滚项（出问题怎么退）。算做完的标准：清单存在，并拿一条真实的 PR 或 agent 产出跑了一遍。背景一句：GitLab 今天的长文说代码不再稀缺，信任代码的环境才是稀缺品。",
+      "source": "GitLab · 文摘",
+      "source_url": "https://about.gitlab.com/blog/when-code-is-abundant/",
+      "text_en": "Tonight, spend ten minutes writing a one-page checklist for merging AI-generated code: verification items (it compiles, tests pass, no new high-severity findings from the security scan), governance items (who approves, where the context came from), and rollback items (how you revert if something breaks). You're done when the checklist exists and you've run one real PR or agent output through it. One line of background: GitLab's essay today argues code is no longer scarce, the environment that makes code trustworthy is.",
+      "source_en": "GitLab · Digest"
+    },
+    {
+      "text": "今晚花十分钟，用 OpenCode 的免费匿名模型 Ox Alpha 跑一个你手头真实的编码任务，体验它的速度与 1M 上下文，并把「带工具定义的请求会失败」这条已知坑记下来。算做完的标准：你能说出它在你任务上的实际表现，并决定值不值得纳入后续选型。背景一句：这个制造方不明的模型四天吃掉 26 万亿 token，刷新了 OpenRouter 首发纪录。",
+      "source": "RuntimeWire · 文摘",
+      "source_url": "https://runtimewire.com/article/anonymous-ox-alpha-processes-26t-tokens-on-opencode-breaks-openrouter-launch-rec",
+      "text_en": "Tonight, spend ten minutes running a real coding task through Ox Alpha, the free anonymous model on OpenCode, to feel its speed and 1M-token context, and note the known gotcha that requests with tool definitions fail. You're done when you can say how it actually performed on your task and whether it's worth keeping in your evaluation rotation. One line of background: this model with no known maker consumed 26 trillion tokens in four days, breaking OpenRouter's launch record.",
+      "source_en": "RuntimeWire · Digest"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚把 Obsidian 仓库交给 Claude：装 claude-obsidian",
+    "why": "GitHub 热榜今天第 6 名（今日 +813 星）是 claude-obsidian，一个本地优先的 Claude Code 知识系统：把来源资料变成带引用的 Obsidian 页面，再从库里已有的证据回答问题。它跟你已用的「来源先于摘要」是同一套纪律，仓库本身就是普通 Markdown，不上云。今晚装一次，让 AI 开始积累属于你自己的知识图。",
+    "time": "约 30 分钟",
+    "steps": [
+      "git clone https://github.com/AgriciDaniel/claude-obsidian.git",
+      "cd claude-obsidian，按 README 初始化一个独立 vault（仓库不是你的知识库，另建一个目录）",
+      "把一篇你常用的资料丢进 inbox，让 Claude 按它的流程收录成带引用的笔记",
+      "从库里向 Claude 问一个只有你知道答案的问题，看它是否用库内证据作答",
+      "验收：30 分钟内完成一次「收录+问答」闭环"
+    ],
+    "source": "claude-obsidian · GitHub 热榜",
+    "source_url": "https://github.com/AgriciDaniel/claude-obsidian",
+    "title_en": "Tonight: hand your Obsidian vault to Claude with claude-obsidian",
+    "why_en": "Rank 6 on today's GitHub trending (+813 stars) is claude-obsidian, a local-first knowledge system for Claude Code: it turns source material into cited Obsidian pages and answers questions from evidence already in the vault. It follows the same source-before-summary discipline you already use, keeps everything as plain Markdown, and never uploads to the cloud. Install it once tonight and let an AI start building a knowledge graph that's yours.",
+    "time_en": "~30 min",
+    "steps_en": [
+      "git clone https://github.com/AgriciDaniel/claude-obsidian.git",
+      "cd claude-obsidian and initialize a separate vault per the README (the checkout is the product, not your knowledge vault)",
+      "Drop a document you use often into the inbox and have Claude ingest it into a source-cited note",
+      "Ask Claude a question only you can answer from the vault, and check whether it answers from vault evidence",
+      "Done when you've completed one ingest-plus-query loop within 30 minutes"
+    ],
+    "source_en": "claude-obsidian · GitHub trending"
+  },
+  "meta_read": "今天的版面拆开是芯片、端侧、分发、技能四件事，合起来是一件事：模型能力的价格正在被物理层重新定价。上一期我们说护城河搬出了模型，这一期证据更硬了。OpenAI 自己设计、自己流片，连「最快推理」都可能变成自研者的特权；同一天，匿名模型靠免费拿下史上最大首发。模型层降价打得再狠，也只是这一轮的表层，底下真正在动的是两处稀缺：每瓦 token 的物理成本，和把代码变成可信产物的组织能力。给做应用的人一个判断：这一周起，别再按「模型多强」选型，改按「每份可用产物的总成本」算账。这不只是省钱，是下一轮产品分层的分水岭。",
+  "meta_read_en": "Today's paper reads as four separate stories, chip, edge, distribution, and skills, but they are one: the price of model capability is being repriced at the physical layer. Last issue we said the moat had left the model; this issue the evidence is harder. OpenAI designed and taped out its own inference chip, so even 'fastest inference' can become the privilege of the people who build the silicon. The same week, an anonymous model took the biggest launch in history by giving tokens away. However hard the price war cuts at the model layer, that is only the surface; what is actually moving underneath are two scarcities: the physical cost of a token per watt, and the organizational capability to turn code into something trustworthy. A judgment for anyone building applications: starting this week, stop choosing by 'how strong is the model' and start calculating 'total cost per unit of usable output.' This is not just saving money, it is the dividing line of the next product cycle.",
+  "ota": {
+    "learned": [
+      "读台账。这条延续 08-24 的「把 harness 当独立变量」规则，补上了今天才看清的评估方法：判断一个 skill、MCP server 或 agent 工具值不值得留，不能看它的自我介绍，也不能看一次顺手的好结果。NVIDIA 今天放出的评估研究给了一个可复制的做法：同一任务、相同条件下，带工具与不带工具各跑一遍，比较完成的有效工作量之差，叫 Skill Lift。数据说光看 skill 的结构化扫描分几乎预测不了真实有用性，扫描分与人工质量评分的 Spearman ρ 只有 0.14。也就是说，08-13 的自测探针和 08-24 的 harness 变量，落到工具评估上就是这一条：同任务双跑对照。"
+    ],
+    "new_capabilities": [
+      "已验证：评估任何新增 skill、MCP server 或 agent 工具时，用同任务双跑对照测它的 Skill Lift：同一任务、相同提示词，带工具与不带工具各跑一遍，只比较完成的有效工作量之差，并附上两次各消耗的 token 与时间（延续 08-23 的成本轴）。别用工具自己的介绍或一次顺手的结果下结论。调用意图：「判断一个新工具或新技能值不值得留，同任务带与不带各跑一遍，比有效产出之差，别听宣传。」"
+    ],
+    "learned_en": [
+      "Read the ledger. This extends 08-24's measure-the-harness rule with the evaluation method today made clear: when judging whether a skill, MCP server, or agent tool is worth keeping, you can't trust its own description or one convenient good run. NVIDIA's evaluation research released today offers a repeatable method: run the same task under identical conditions with and without the tool and score the delta in completed work, what it calls Skill Lift. The data shows structural scan scores barely predict real usefulness, Spearman ρ = 0.14 against human-judged quality. In other words, 08-13's self-probe and 08-24's harness-as-variable collapse into one operational rule for tool evaluation: a same-task with-and-without comparison."
+    ],
+    "new_capabilities_en": [
+      "Verified: when evaluating any new skill, MCP server, or agent tool, measure its Skill Lift with a same-task with-and-without comparison: the same task and prompt, run once with the tool and once without, compare only the delta in completed useful work, and note the tokens and time each run consumed (continuing 08-23's cost axis). Never conclude from the tool's own marketing or a single convenient run. Invoke intent: 'to decide whether a new tool or skill is worth keeping, run the same task with and without it and compare the delta in useful output, don't listen to the pitch.'"
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "freestylefly/awesome-gpt-image-2",
+      "url": "https://github.com/freestylefly/awesome-gpt-image-2",
+      "description": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 个案例逆向工程，20+ 套工业级模板，并提炼出 Skills，持续更新中",
+      "language": "JavaScript",
+      "stars": 18412,
+      "stars_today": 1698
+    },
+    {
+      "rank": 2,
+      "name": "anthropics/claude-plugins-community",
+      "url": "https://github.com/anthropics/claude-plugins-community",
+      "description": "Community plugin marketplace for Claude Cowork and Claude Code. Read-only mirror — submit plugins at clau.de/plugin-directory-submission.",
+      "language": "Python",
+      "stars": 1813,
+      "stars_today": 351
+    },
+    {
+      "rank": 3,
+      "name": "MadsLorentzen/ai-job-search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
+      "language": "Python",
+      "stars": 35419,
+      "stars_today": 1265
+    },
+    {
+      "rank": 4,
+      "name": "apache/maka",
+      "url": "https://github.com/apache/maka",
+      "description": "Apache Maka (Incubating) is a local-first AI agent workspace. Model messages, tool calls, tool results, permission decisions, and termination events are recorded as an append-only log.",
+      "language": "TypeScript",
+      "stars": 3396,
+      "stars_today": 543
+    },
+    {
+      "rank": 5,
+      "name": "TauricResearch/TradingAgents",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "language": "Python",
+      "stars": 100328,
+      "stars_today": 218
+    },
+    {
+      "rank": 6,
+      "name": "AgriciDaniel/claude-obsidian",
+      "url": "https://github.com/AgriciDaniel/claude-obsidian",
+      "description": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
+      "language": "Python",
+      "stars": 12804,
+      "stars_today": 813
+    },
+    {
+      "rank": 7,
+      "name": "rohitg00/ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "description": "Learn it. Build it. Ship it for others.",
+      "language": "Python",
+      "stars": 49085,
+      "stars_today": 569
+    },
+    {
+      "rank": 8,
+      "name": "tinyhumansai/openhuman",
+      "url": "https://github.com/tinyhumansai/openhuman",
+      "description": "Your Personal AI super intelligence. A brain that builds a local-first memory of your life, a fantastic orchestrator of agent fleets and workflows, and a deep researcher.",
+      "language": "Rust",
+      "stars": 37820,
+      "stars_today": 542
+    },
+    {
+      "rank": 9,
+      "name": "basecamp/omarchy",
+      "url": "https://github.com/basecamp/omarchy",
+      "description": "Beautiful, Modern &amp; Opinionated Linux",
+      "language": "Shell",
+      "stars": 31365,
+      "stars_today": 1083
+    },
+    {
+      "rank": 10,
+      "name": "Shubhamsaboo/awesome-llm-apps",
+      "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+      "description": "100+ AI Agents, Agent Skills and RAG Apps - Free and Open Source.",
+      "language": "Python",
+      "stars": 134284,
+      "stars_today": 161
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 45,
+      "items": [
+        {
+          "title": "OpenAI 自研推理芯片 Jalapeño：单位功率吞吐压过 Blackwell",
+          "title_en": "OpenAI's self-designed inference chip Jalapeño beats Blackwell on throughput per watt",
+          "author": "SemiAnalysis · Hacker News",
+          "author_en": "SemiAnalysis · Hacker News",
+          "likes": 352,
+          "url": "https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia",
+          "summary": "HN 热帖，352 分。SemiAnalysis 受邀进入 OpenAI 实验室实测，称其自研推理芯片 Jalapeño 在多个开源模型上的单位功率吞吐超过英伟达、AMD、谷歌各家可测芯片。该芯片 2024 年中开始设计，16 个月完成流片（2025 年 11 月 CoWoS tapeout），随后 3 个月 bring-up。B0 步进在 TSMC N3P 上单 die 达 13.4 PFLOPs MXFP4，TDP 700W，配 HBM4（15.4TB/s 带宽）。不用投机解码，不分离 prefill/decode，单 token 预测下 DeepSeek R1 并发 1 时每用户 700+ tok/s；与 Vera Rubin 在每美元输出 token 上打平，但 Rubin 用了投机解码，而投机解码本身能再降 3 到 5 倍每 token 成本。SemiAnalysis 提醒：这是 8k1k 短上下文结果，尚无 AgentX 长上下文多轮结果；软件栈由 Codex 写内核加 Gluon 语言，9 个月从零拉起 DeepSeek R1、Kimi K2.5、GPT-OSS。量产 2027 年逐步爬坡。",
+          "summary_en": "A 352-point Hacker News thread. SemiAnalysis was invited into OpenAI's labs to benchmark, and reports that the self-designed inference chip Jalapeño beats every Nvidia, AMD, and Google chip it could test on throughput per watt across several open models. Design work began mid-2024; the CoWoS tapeout landed in November 2025, roughly 16 months in, with just 3 months of bring-up. The B0 stepping delivers 13.4 PFLOPs of MXFP4 on a single reticle-sized die on TSMC N3P at a 700W TDP, with HBM4 at 15.4TB/s. It uses no speculative decoding and no prefill/decode disaggregation, yet reaches 700+ tokens/sec per user at concurrency 1 on DeepSeek R1 with single-token prediction; it ties Vera Rubin on output tokens per dollar, while Rubin's number uses speculative decoding, which itself cuts per-token cost another 3-5x. SemiAnalysis flags two caveats: these are 8k1k short-context results with no AgentX long-context multi-turn runs yet, and the software stack was brought up in 9 months from zero by Codex-written kernels in the Gluon language (DeepSeek R1, Kimi K2.5, GPT-OSS). Production ramps through 2027.",
+          "why": "模型商品化已推进到物理层：推理芯片成为新护城河，OpenAI 自己设计、自己流片，还顺带验证了 Codex 写内核的路径。对做应用的人，这意味着推理成本曲线会比预想更快下探。",
+          "why_en": "Model commoditization has reached the physical layer: the inference chip is the new moat, OpenAI designs and tapes out its own, and in the process validated a Codex-writes-kernels pipeline. For anyone building on top of models, it means the inference-cost curve falls faster than expected."
+        },
+        {
+          "title": "苹果发 M6 与 M5 Ultra：本地跑百亿级参数模型",
+          "title_en": "Apple ships M6 and M5 Ultra: hundreds of billions of parameters run locally",
+          "author": "Apple Newsroom · Hacker News",
+          "author_en": "Apple Newsroom · Hacker News",
+          "likes": 984,
+          "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/",
+          "summary": "HN 今日第一热帖，984 分。苹果发布 M6（首款 2nm 芯片，进入 Mac mini）与 M5 Ultra（进入 Mac Studio）。M6 双 16 核神经引擎，峰值算力较上代翻倍；M5 Ultra 是苹果首款四 die 封装 SoC（UltraFusion，die 间带宽 4.4TB/s 以上），GPU AI 算力比 M3 Ultra 高 4.5 倍，支持最多 512GB 统一内存，官方称可在本地运行数百亿参数的 LLM，并称 M6 支持在设备端跑 LLM 做私密 agentic 任务。CPU 方面苹果称单线程世界最快，多线程比 M5 快 1.2 倍、比 M1 快 2.4 倍。发布稿没有公布神经引擎的绝对 TOPS 数字。",
+          "summary_en": "Today's top Hacker News thread at 984 points. Apple unveiled the M6, its first 2nm chip in the new Mac mini, and the M5 Ultra in the new Mac Studio. The M6 carries a dual 16-core Neural Engine with up to 2x peak compute over the prior generation; the M5 Ultra is Apple's first quad-die M-series SoC (UltraFusion with 4.4TB/s+ inter-die bandwidth), with GPU AI compute up to 4.5x the M3 Ultra and up to 512GB of unified memory, and Apple says it can run LLMs with hundreds of billions of parameters locally, with M6 supporting on-device LLM workloads for 'secure and private agentic tasks.' Apple claims the world's fastest single-threaded CPU, with multithreaded performance 1.2x the M5 and 2.4x the M1. The release does not disclose Neural Engine TOPS figures.",
+          "why": "云端推理打成价格战的同时，端侧这条线被巨头重新铺宽：本地跑大模型成为苹果设备的默认能力。对做本地优先应用的团队，这是平台级信号。",
+          "why_en": "While cloud inference turns into a price war, the edge line is being repaved by a giant: running large models locally becomes a default capability of Apple's devices. For teams building local-first applications, that is a platform-level signal."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 60,
+      "items": [
+        {
+          "title": "吴恩达把「AI 工程师」定义成四项技能",
+          "title_en": "Andrew Ng defines the 'AI engineer' as four skills",
+          "author": "Andrew Ng · DeepLearning.AI",
+          "author_en": "Andrew Ng · DeepLearning.AI",
+          "likes": null,
+          "url": "https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map",
+          "summary": "Latent Space AINews 今日专题。DeepLearning.AI 以 AI 工程为主题重启，吴恩达发文给出 AI 工程核心技能清单，依据是对 1 万份以上招聘启事的分析、几十场与 AI 专家、招聘经理、猎头的访谈。四项技能：一、构建与部署 AI 应用，关键在会用统计方法做严谨评测与错误分析循环；二、软件工程基础，理解权衡才能给 coding agent 正确的上下文；三、会用编码 agent，懂其局限、知道何时干预何时放手；四、塑造构建方向，即产品感与业务上下文，知道何时快速做 MVP、何时放慢。Latent Space 点评：这份清单把“AI 工程师”从写提示词的人扩成了懂评测、懂工程、懂产品的人。",
+          "summary_en": "The subject of today's Latent Space AINews feature. DeepLearning.AI is relaunching around AI engineering, and Andrew Ng posted a skills map for the field, based on an analysis of 10,000+ job postings, dozens of structured interviews with AI experts, hiring managers, and recruiters, plus survey data. The four skills: one, building and deploying AI applications, where the key is using statistical methods to run disciplined evals and error-analysis loops; two, software engineering fundamentals, because understanding tradeoffs is what lets you hand a coding agent the right context; three, using coding agents well, knowing their limits and when to intervene versus when to leave them alone; four, shaping the build, product sense and business context, knowing when to ship a fast MVP and when to slow down. Latent Space's take: the map turns 'AI engineer' from someone who writes prompts into someone who understands evals, engineering, and product.",
+          "why": "为“AI 工程师”这个岗位画了官方能力地图。对做 AI 应用与 GTM 的人，这是自我评估与招人标准的现成清单。详见今日行动第一条。",
+          "why_en": "An official capability map for the 'AI engineer' role. For anyone doing AI application and GTM work, it is a ready-made self-assessment and hiring rubric. See action 1."
+        },
+        {
+          "title": "匿名模型 Ox Alpha 四天吃掉 26 万亿 token，刷新 OpenRouter 首发纪录",
+          "title_en": "Anonymous model Ox Alpha burns 26 trillion tokens in four days, breaking OpenRouter's launch record",
+          "author": "RuntimeWire · 文摘",
+          "author_en": "RuntimeWire · Digest",
+          "likes": null,
+          "url": "https://runtimewire.com/article/anonymous-ox-alpha-processes-26t-tokens-on-opencode-breaks-openrouter-launch-rec",
+          "summary": "8 月 20 日，OpenCode 以隐秘方式上线匿名模型 Ox Alpha：1M 上下文、多模态、免费、零数据留存，模型页面上制造方标注“Unknown”，没有发布时间、知识截止、输出上限等元数据。OpenCode 8 月 24 日披露：头四天处理 26 万亿 token，32.7 万独立用户，832.8 万次完整会话，93% 输入 token 走缓存；在 OpenRouter 头三天吃掉 11.6 万亿 token，超过此前最大首发（4.4 万亿）纪录。OpenRouter 称其由“第三方匿名开发并运营”。已知问题：8 月 23 日的 issue 显示，带工具定义的请求在 OpenCode 的 Zen 和 Go 端点会失败，普通聊天正常，而工具调用对编码 agent 是核心。",
+          "summary_en": "On August 20, OpenCode stealth-launched an anonymous model, Ox Alpha: 1M context, multimodal, free, zero data retention, with the maker listed as 'Unknown' on the model page and no release date, knowledge cutoff, or output-limit metadata. OpenCode disclosed on August 24 that in the first four days it processed 26 trillion tokens across 327,000 unique users and 8,328,244 completed sessions, with 93% of input tokens served from cache; on OpenRouter it consumed 11.6 trillion tokens in its first three full days, beating the previous largest launch of 4.4 trillion. OpenRouter says a third-party provider developed and operates it while remaining anonymous. Known issue: an August 23 report shows requests with tool definitions fail through OpenCode's Zen and Go endpoints while plain chat works, and tool use is central to coding agents.",
+          "why": "一个没有身份、没有元数据的模型靠免费拿下最大首发，说明分发能力正在成为比模型本身更稀缺的东西。对做产品的人，这是“能力白送、入口收费”的活案例。",
+          "why_en": "A model with no identity and no metadata takes the largest launch ever by giving itself away, which says distribution is becoming scarcer than the model itself. For product builders it is a live case of giving away the capability and charging at the entry point."
+        },
+        {
+          "title": "代码不再稀缺，信任变成新瓶颈",
+          "title_en": "Code is no longer scarce; trust is the new bottleneck",
+          "author": "GitLab · 文摘",
+          "author_en": "GitLab · Digest",
+          "likes": null,
+          "url": "https://about.gitlab.com/blog/when-code-is-abundant/",
+          "summary": "GitLab 长文：LLM 让代码生产又快又便宜，软件开发瓶颈从“写出代码”移到“信任代码”。信任取决于模型周围的环境：上下文、验证、治理。文章提出新经济单位从“每行代码成本”变成“每次被接受的变更成本”；Stripe、Spotify、Amplitude 的经验是 AI agent 暴露而非消除原有的工程约束，验证、上下文、治理这些既有瓶颈在代码变快后成为决定性环节。企业采用会分三档共存：人工主导的传统开发、agent 加速开发、机器自主开发，人在关键决策点把关。GitLab 展示了机器级并发架构与机器可读的规划。",
+          "summary_en": "A GitLab long-read: LLMs make code production fast and cheap, so software development's bottleneck shifts from writing code to trusting it. Trust depends on the environment around the model, context, verification, and governance. The essay proposes the economic unit shifts from cost per line of code to cost per accepted change; Stripe, Spotify, and Amplitude's experience is that AI agents expose rather than eliminate existing engineering constraints, and those pre-existing bottlenecks in verification, context, and governance become decisive once code gets faster. Adoption will come in three coexisting modes: human-controlled legacy development, agentically accelerated development, and autonomous development with humans checking key decisions. GitLab demonstrates machine-scale concurrency and machine-readable planning.",
+          "why": "把“验证与治理成为新护城河”讲成可执行的工程形态。对在团队里推 AI 编码的人，这是要抄的验收机制设计。详见今日行动第二条。",
+          "why_en": "Turns 'verification and governance are the new moat' into an executable engineering shape. For anyone pushing AI coding inside a team, this is the acceptance-mechanism design worth copying. See action 2."
+        }
+      ]
+    }
+  ]
+}
