@@ -1,0 +1,279 @@
+{
+  "date": "2026-08-28",
+  "partial": false,
+  "banner": "对话框接管企业软件",
+  "banner_en": "Chat takes over enterprise software",
+  "image": {
+    "src": "digests/img/2026-08-28.jpg",
+    "caption": "本期头版配图：CNBC 报道 Salesforce 与 Anthropic 扩大战略合作时使用的题图，图为两家 CEO 在旧金山 Salesforce Tower 接受 CNBC 联合采访的画面，两人当天宣布了插件 Claudeforce。Salesforce 同一天公布超预期财季，盘后股价一度涨 12%。（图：CNBC）",
+    "caption_en": "This issue's lead image: the photo CNBC used for its story on Salesforce and Anthropic expanding their strategic partnership, showing the two CEOs in a joint interview at Salesforce Tower in San Francisco, where they unveiled the Claudeforce plugin. Salesforce reported a beat on the same day and its shares rose as much as 12% in extended trading. (Image: CNBC)"
+  },
+  "actions": [
+    {
+      "text": "今晚十分钟，挑你产品里用户最常点的三个界面操作，评估该不该开放成 agent 能直接调的接口。做法：把三个操作各写成一句话，想清楚数据权限怎么设、要不要人工确认。算做完：你拿到一页「哪个功能先暴露、权限怎么卡」的清单。背景一句：Salesforce 把 37 个销售动作打包成插件装进 Claude，Benioff 说未来企业系统都这么跑。",
+      "source": "CNBC · 文摘",
+      "source_url": "https://www.cnbc.com/2026/08/26/salesforce-anthropic-partnership-claudeforce.html",
+      "text_en": "Tonight, ten minutes: pick the three most-clicked UI actions in your product and judge whether each should be exposed as an agent-callable interface. Write each action as one line, decide the data permissions, and whether a human confirm is required. Done when you have a one-page list of which feature to expose first and how to gate permissions. One line of background: Salesforce packaged 37 sales actions into a plugin inside Claude, and Benioff says this is how all enterprise systems will run.",
+      "source_en": "CNBC · Digest"
+    },
+    {
+      "text": "今晚五分钟，翻一条你业务里「以安全为由」的规则、封禁或限制，问一句它有没有可验证的事实依据。做法：写下这条限制要防的具体事故，再写下能证明它会发生的证据，写不出来就标待复查。算做完：你找出一到两条「说不出依据」的限制并标了待复查。背景一句：联邦法官判五角大楼把 Anthropic 列为供应链风险违法，理由就一条，空洞地搬出国家安全不是空白支票。",
+      "source": "Reuters · 文摘",
+      "source_url": "https://www.reuters.com/legal/government/us-judge-blocks-pentagons-anthropic-blacklisting-2026-08-28/",
+      "text_en": "Tonight, five minutes: pick one security-justified rule, block, or restriction in your work and ask whether it has a verifiable factual basis. Write the specific incident it is meant to prevent, then the evidence that it happens or would happen; if you can't write evidence, mark it for review. Done when you've flagged one or two restrictions with no stated basis. One line of background: a federal judge ruled the Pentagon's supply-chain-risk designation of Anthropic unlawful, on the single ground that an empty invocation of national security is not a blank check.",
+      "source_en": "Reuters · Digest"
+    },
+    {
+      "text": "今晚十分钟，给你最长跑的 agent 流程做一次「压缩包演练」。做法：在临时目录放一个含 struct.py 的恶意 zip，让 agent 解压并执行，看它会不会被带偏；顺手确认运行环境没挂载家目录、SSH 密钥和云凭据。算做完：你验证了当前环境的边界，并决定无人值守任务要不要搬进容器或沙箱。背景一句：安全研究员今天公开一个对 Claude Code 自动模式成功率约 80% 的攻击，自动模式还会拦下模型自己的清理命令。",
+      "source": "Simon Willison · 文摘",
+      "source_url": "https://simonwillison.net/2026/Aug/27/breaking-claude-code-opus-5-auto-mode/",
+      "text_en": "Tonight, ten minutes: run a zip-archive drill on your longest-running agent flow. Drop a malicious zip containing struct.py into a temp directory, have the agent unzip and execute it, and see whether it gets derailed; also confirm the runtime doesn't mount your home directory, SSH keys, or cloud credentials. Done when you've verified your environment's boundaries and decided whether unattended tasks should move into a container or sandbox. One line of background: a security researcher published an attack with an ~80% claimed success rate against Claude Code's auto mode, which in some runs even blocked the model's own cleanup command.",
+      "source_en": "Simon Willison · Digest"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚 20 分钟：用 Gemini 3.5 Transcribe 转写一段自己的录音",
+    "why": "谷歌今天发布的语音转文字模型，把「转写」做成了能分说话人、能清填充词、能认行业黑话的 API，流式词错率 4.0%、非流式 2.6%。今晚拿一段自己的真实录音试它，比看 benchmark 数字更有感觉，也能顺手测它认不认识你行业的术语。",
+    "time": "约 20 分钟",
+    "steps": [
+      "打开 aistudio.google.com，新建一个 prompt，把模型选成 gemini-3.5-transcribe（实时流式用 gemini-3.5-transcribe-live）",
+      "传一段你自己的录音，会议片段或播客都行，让它转写",
+      "对照原文核两件事：um、啊这类填充词有没有清干净，邮编号、订单号这类字符有没有记错",
+      "如果走 API，在请求里加 custom vocabulary，把你行业的专有名词放进去再转一次，看错字差多少",
+      "用 Interactions API 跑同一段预录音频，看 speaker attribution 和词级时间戳"
+    ],
+    "source": "Google AI Studio · 文摘",
+    "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/",
+    "title_en": "Tonight, 20 minutes: transcribe one of your own recordings with Gemini 3.5 Transcribe",
+    "why_en": "Google's speech-to-text model released today turns transcription into an API that separates speakers, strips filler words, and learns custom vocabulary, at a 4.0% streaming and 2.6% non-streaming word error rate. Running it on a real recording of your own beats reading benchmark numbers, and it will also show whether it knows your industry's jargon.",
+    "time_en": "~20 min",
+    "steps_en": [
+      "Open aistudio.google.com, create a new prompt, and pick gemini-3.5-transcribe as the model (use gemini-3.5-transcribe-live for real-time streaming)",
+      "Upload one of your own recordings, a meeting clip or a podcast, and let it transcribe",
+      "Check two things against the original: whether filler words like um and uh are gone, and whether alphanumerics like postal codes and order IDs are accurate",
+      "If you're using the API, add a custom vocabulary parameter with your industry's terms, transcribe again, and compare error rate",
+      "Run the same pre-recorded audio through the Interactions API and inspect speaker attribution and word-level timestamps"
+    ],
+    "source_en": "Google AI Studio · Digest"
+  },
+  "meta_read": "今天版面上最重的一笔生意不在模型层，在入口层。Salesforce 把 37 个销售动作装进 Claude，等于把企业数据的钥匙递给对话框；法院判五角大楼封禁 Anthropic 违法，是行政权第一次在证据面前对 AI 公司收手；英伟达用放贷换需求，把控制权写进资产负债表。上周我们说控制权搬出了模型，这周看见它的去向：散落在界面、合同、法条和护栏里，而且每个载体都在被压力测试，败诉的败诉、失灵的失灵。Claude Code 自动模式那桩事里，最刺眼的不是恶意命令放行了，是护栏拦下了模型自己的清理命令。控制装置以不同方式失效，信号却一致：谁握住入口，谁拿到定价权，风险也跟着走。",
+  "meta_read_en": "The biggest deal on today's page isn't at the model layer, it's at the entry layer. Salesforce packed 37 sales actions into Claude, handing the keys to enterprise data to a chat interface; a federal court ruled the Pentagon's blacklisting of Anthropic unlawful, the first time executive power has retreated before an AI company on the evidence; Nvidia is buying demand with financing, writing control into its balance sheet. Last week we said the moat had left the model; this week shows where it went: scattered across interfaces, contracts, statutes, and guardrails, and every one of those carriers is being stress-tested, some losing in court, some failing internally. The most striking part of the Claude Code auto-mode breach wasn't that a malicious command got through, it was that the guardrail blocked the model's own cleanup command. The control devices fail in different ways, but the signal is uniform: whoever holds the entry point gets the pricing power, and the risk follows.",
+  "ota": {
+    "learned": [
+      "读台账。这条延续 08-24 到 08-27 的「护栏是独立变量」线，补上今天才看清的一个反直觉事实：护栏不仅能漏放恶意动作，还会锁死补救动作。安全研究员 Johann Rehberger 对 Claude Code 自动模式（auto mode）发起的压缩包攻击，声称成功率约 80%，靠的是让模型解压并执行一个含 struct.py 的 zip；最反直觉的是，模型自己发现被攻破、试图终止恶意进程时，自动模式反而拦下了清理命令。把「能拦恶意动作」当护栏的验收标准是片面的，还要验证「不挡 agent 自己的补救」。这接上 08-27 的「护栏是否在场要核实」，今天补的是：在场还不够，护栏的否决权不能覆盖 agent 的自我修复。"
+    ],
+    "new_capabilities": [
+      "已验证：评估任何自动审批或护栏配置（auto mode、自动 review、自动放行）时，验收标准从一条变成两条：拦得住恶意动作，且不锁死 agent 自己的补救动作（清理、回滚、终止进程）。调用意图：给长时 agent 或无人值守流程上自动护栏前，先做一次「恶意压缩包 + 补救命令」演练，确认护栏不会拦下模型自己的清理命令。"
+    ],
+    "learned_en": [
+      "Read the ledger. This continues the 08-24-to-08-27 'guardrail as an independent variable' line, and adds a counterintuitive fact today made clear: a guardrail can not only let a malicious action through, it can lock out the remedy. Security researcher Johann Rehberger's zip attack against Claude Code's auto mode, claimed at ~80% success, works by tricking the model into unzipping and executing a struct.py planted in an archive; the most counterintuitive part is that when the model itself detected the compromise and tried to terminate the malicious process, auto mode blocked the cleanup command. Judging a guardrail solely on 'can it block malicious actions' is incomplete; you must also verify it doesn't block the agent's own remediation. This connects to 08-27's 'verify whether the guardrails are present'; today adds that presence isn't enough, the guardrail's veto must not override the agent's self-repair."
+    ],
+    "new_capabilities_en": [
+      "Verified: when evaluating any auto-approval or guardrail configuration (auto mode, auto-review, auto-allow), the acceptance bar becomes two checks instead of one: it blocks malicious actions, and it does not lock out the agent's own remediation actions (cleanup, rollback, process termination). Invoke intent: before putting an automatic guardrail on long-running or unattended agent flows, run a 'malicious zip plus remedy command' drill and confirm the guardrail won't block the model's own cleanup command."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "tt-a1i/archify",
+      "url": "https://github.com/tt-a1i/archify",
+      "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
+      "language": "JavaScript",
+      "stars": 25681,
+      "stars_today": 4561
+    },
+    {
+      "rank": 2,
+      "name": "K-Dense-AI/scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 175,000+ scientists worldwide. 163 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "language": "Python",
+      "stars": 35846,
+      "stars_today": 720
+    },
+    {
+      "rank": 3,
+      "name": "anthropics/claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "language": "Python",
+      "stars": 34870,
+      "stars_today": 457
+    },
+    {
+      "rank": 4,
+      "name": "bilawalsidhu/gods-eye-view",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+      "language": "JavaScript",
+      "stars": 10123,
+      "stars_today": 1984
+    },
+    {
+      "rank": 5,
+      "name": "abhigyanpatwari/GitNexus",
+      "url": "https://github.com/abhigyanpatwari/GitNexus",
+      "description": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a git repository (Github, Gitlab, Azure, Local) or ZIP file, and get an interactive knowledge graph with a built in Graph RAG Agent. Perfect for code exploration",
+      "language": "TypeScript",
+      "stars": 46042,
+      "stars_today": 189
+    },
+    {
+      "rank": 6,
+      "name": "JetBrains/go-modern-guidelines",
+      "url": "https://github.com/JetBrains/go-modern-guidelines",
+      "description": "Help AI coding agents write modern Go",
+      "language": "Go",
+      "stars": 2449,
+      "stars_today": 574
+    },
+    {
+      "rank": 7,
+      "name": "calesthio/OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+      "language": "Python",
+      "stars": 52951,
+      "stars_today": 1144
+    },
+    {
+      "rank": 8,
+      "name": "abi/screenshot-to-code",
+      "url": "https://github.com/abi/screenshot-to-code",
+      "description": "Drop in a screenshot and convert it to clean code (HTML/Tailwind/React/Vue)",
+      "language": "Python",
+      "stars": 75306,
+      "stars_today": 309
+    },
+    {
+      "rank": 9,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 5839,
+      "stars_today": 257
+    },
+    {
+      "rank": 10,
+      "name": "freestylefly/awesome-gpt-image-2",
+      "url": "https://github.com/freestylefly/awesome-gpt-image-2",
+      "description": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 个案例逆向工程，20+ 套工业级模板，并提炼出 Skills，持续更新中",
+      "language": "JavaScript",
+      "stars": 23997,
+      "stars_today": 1687
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 40,
+      "items": [
+        {
+          "title": "开源 399 美元双足鸭：Pollen 和 Hugging Face 想众包具身智能",
+          "title_en": "A $399 open-source bipedal duck: Pollen and Hugging Face want to crowdsource embodied AI",
+          "author": "Pollen Robotics · Hacker News",
+          "author_en": "Pollen Robotics · Hacker News",
+          "likes": 713,
+          "url": "https://pollen-robotics.com/microduck/",
+          "summary": "HN 今日热帖，713 分。Pollen Robotics（2025 年 4 月被 Hugging Face 收购，总部波尔多）发布 Microduck：25 厘米、约 800 克的双足机器人鸭，399 美元，已开预购，预计圣诞前发货。规格：15 个执行器，前置摄像头加 LiDAR，1GB 内存、32GB 存储，机载 50Hz 策略循环，摔倒能自己站起来，还能加装轮子滑冰。技能先在开源物理模拟器里训练再迁移到真机，模拟器已公开在 Hugging Face Space。团队在 X 上称开售初期约每 5 秒卖出一台、累计销售额破百万美元（该数字未经独立核实）。选它的技术点：低到可以买回家训策略的价格，加上开放的模拟器，第一次把「社区训练、真机部署」这条闭环铺开。",
+          "summary_en": "Today's hot HN thread at 713 points. Pollen Robotics (acquired by Hugging Face in April 2025, based in Bordeaux) released Microduck: a 25cm, ~800g bipedal robot duck, priced at $399, pre-orders open, expected to ship before Christmas. Specs: 15 actuators, front camera plus LiDAR, 1GB RAM, 32GB storage, a 50Hz onboard policy loop, can right itself after falling, and can add wheeled feet for skating. Skills are trained in an open-source physics simulator and transferred to the real robot (sim-to-real), with the simulator published as a public Hugging Face Space. The team said on X that early sales ran about one duck every five seconds with cumulative sales past $1 million (that figure is not independently verified). The point: a price low enough to buy and train policies at home, plus an open simulator, is the first time the closed loop of community-trained, real-world-deployed policies has been laid out.",
+          "why": "把「在真机上训练策略」的成本从研究级砸到 399 美元，靠开放模拟器把训练闭环分发给了社区。对做硬件或具身智能的人，这是卖硬件走量、靠社区贡献技能形成生态的销售模式样本。",
+          "why_en": "It drops the cost of training policies on real hardware from research-grade to $399, and uses an open simulator to distribute the training loop to the community. For anyone in hardware or embodied AI, it's a sample of a sales model where hardware sells in volume and the community's skills form the ecosystem."
+        },
+        {
+          "title": "小型模型已就位：消费级 AI 应用的算账逻辑变了",
+          "title_en": "Small models have arrived: the unit economics of consumer AI apps just changed",
+          "author": "Calvin French-Owen · Hacker News",
+          "author_en": "Calvin French-Owen · Hacker News",
+          "likes": 705,
+          "url": "https://calv.info/small-models-have-arrived",
+          "summary": "HN 热帖，705 分。Calvin French-Owen（Segment 联合创始人）写他这几周用 gpt-5.6-luna 的体会：常跑到 100 token/秒，一条很重的调研线索跑完 API 成本也就几十美分，GLM-5.3 还在帕累托前沿上加了个新选项。他给消费级 AI 应用算了笔账：上一代模型做一次个性化任务要 1 美元量级，订阅定价撑不住；用 luna 这类模型成本落到 0.10 美元量级，他开始觉得有得做。他还区分了两种工作：IQ 180 的突破性工作，和批量推进型工作（token spewer）；他那位同时管多家公司的合伙人，时间大概 95% 落在第二种。有投资人问他为什么消费级 AI 公司这么少，答案就是 token 成本。",
+          "summary_en": "A 705-point HN thread. Calvin French-Owen (Segment co-founder) writes about his weeks using gpt-5.6-luna: it routinely hits ~100 tokens/second, and even a heavy research thread costs tens of cents in API spend, with GLM-5.3 adding a new point on the Pareto frontier. He runs the numbers for consumer AI apps: a previous-generation model costs on the order of $1 per personalized task, which subscription pricing can't support; with a luna-class model the cost drops to the $0.10 range, which starts to work. He also distinguishes two kinds of work, IQ-180 breakthrough work and high-throughput 'token spewer' work; his partner who runs multiple companies spends roughly 95% of his time in the second bucket. Investors keep asking why there are so few consumer AI companies, and the answer is token cost.",
+          "why": "把「AI 功能贵，所以没有消费级应用」这条行业共识拆成了具体账目，并给了新的价格点。对做产品定价的人，0.1 美元和 1 美元之间的差距，决定订阅制能不能成立。",
+          "why_en": "It breaks the consensus that AI features are too expensive for consumer apps into concrete ledgers, and supplies a new price point. For anyone pricing products, the gap between $0.10 and $1 per task is what decides whether a subscription model can hold."
+        },
+        {
+          "title": "AI 腔从 0.7% 涨到 39%：PR 描述里的「负载词」分析",
+          "title_en": "AI-voice went from 0.7% to 39%: a load-bearing-vocabulary analysis of PR descriptions",
+          "author": "Louis Abraham · Hacker News",
+          "author_en": "Louis Abraham · Hacker News",
+          "likes": 595,
+          "url": "https://louisabraham.github.io/load-bearing/",
+          "summary": "Show HN，595 分。Louis Abraham 做了一个聚类分析，把 GitHub PR 描述按「用什么词写」而不是「写了什么」分组。数据源：每天用 GitHub 搜索 API 抽 10 个五分钟窗口，共收集 461,121 条 PR 描述、5100 万词次，覆盖 2025 年 1 月到 2026 年 8 月。模型分出十种写法，其中一种在 2025 年初只占语料 0.7%，到 2026 年年中占到 39%。评论区在补它漏掉的 Claude 高频词：vacuous、latch、wedged。项目的数据方法本身也可抄：纯标准库抓取、靠 created: 时间戳做窗口采样、语料按日期提交进 git，历史即样本历史。",
+          "summary_en": "Show HN at 595 points. Louis Abraham built a clustering analysis that groups GitHub PR descriptions by the words they're written with, not what they say. Data: ten five-minute windows per day pulled from GitHub's search API, 461,121 PR descriptions and 51,079,244 word appearances collected, spanning January 2025 to August 2026. The model separates ten ways of writing; one of them was 0.7% of the corpus in early 2025 and 39% by mid-2026. Commenters add words they say it missed, vacuous, latch, wedged. The data method is copyable too: standard-library scraping, window sampling via created: timestamps, corpus committed by date so history is the sample's history.",
+          "why": "把「AI 腔」从体感变成可测量的语料占比，18 个月从 0.7% 涨到 39%。对写文档、做内容的人，这是 AI 渗透率的量化样本，这套数据收集方法本身也能抄走。",
+          "why_en": "It turns 'AI voice' from a feeling into a measurable share of the corpus, up from 0.7% to 39% in 18 months. For anyone who writes docs or content, it's a quantified sample of AI penetration, and the data-collection method is portable."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 60,
+      "items": [
+        {
+          "title": "Salesforce 把 37 个销售动作装进 Claude",
+          "title_en": "Salesforce packs 37 sales actions into Claude",
+          "author": "CNBC · 文摘",
+          "author_en": "CNBC · Digest",
+          "likes": null,
+          "url": "https://www.cnbc.com/2026/08/26/salesforce-anthropic-partnership-claudeforce.html",
+          "summary": "Salesforce 与 Anthropic 8 月 26 日宣布扩大战略合作，发布插件 Claudeforce：Claude 用户可直接在聊天里调用 Salesforce 数据，插件带 37 个预置销售技能，写邮件、更新记录都能做，未来计划扩展到 Slack。这是 Salesforce 第一次把「force」后缀放在别家产品名上。Benioff 对 CNBC 说这是行业首例，未来所有企业系统都会这样运行。背景是投资者对 AI 公司会不会取代企业软件公司的担忧，Salesforce 股价今年跌约 22%（2025 年跌 20%），发布当天公布超预期财季后盘后涨 12%。Anthropic 上月末向投资者披露年化收入 650 亿美元，一年增长七倍。",
+          "summary_en": "On August 26, Salesforce and Anthropic announced an expanded strategic partnership and unveiled Claudeforce, a plugin that lets Claude users work with Salesforce data directly in chat, with 37 pre-built sales skills for composing emails, updating records, and more, with future Slack integrations planned. It's the first time Salesforce has put its 'force' suffix on another company's product. Benioff told CNBC it's a first in the industry and that this is how all enterprise systems will run in the future. The backdrop is investor worry that AI companies will replace enterprise software vendors; Salesforce shares are down ~22% this year (after -20% in 2025), and rose 12% in extended trading on the announcement and a beat in its fiscal Q2. Anthropic told investors at the end of last month that its annualized revenue run rate hit $65 billion, up sevenfold in a year.",
+          "why": "企业软件龙头第一次把自己最大的数据源直接交给对话界面，还是主动做的。对做 B2B 产品的人，「把业务能力暴露给 agent」从概念变成了头部厂商的默认路线。详见今日行动第一条。",
+          "why_en": "For the first time an enterprise-software leader hands its biggest data source directly to a chat interface, and it's doing so willingly. For anyone building B2B products, exposing business capabilities to agents just became the default path at the top vendors. See action 1."
+        },
+        {
+          "title": "英伟达下季收入指引首破千亿美元",
+          "title_en": "Nvidia guides past $100B in a single quarter for the first time",
+          "author": "Tomasz Tunguz · 文摘",
+          "author_en": "Tomasz Tunguz · Digest",
+          "likes": null,
+          "url": "https://tomtunguz.com/nvidia-q2-fy27-earnings",
+          "summary": "英伟达 8 月 26 日发布 FY27 Q2 财报：季收入 960 亿美元，同比增 106%、环比增 18%；下季指引 1080 亿美元（±2%），单季收入首次冲千亿，年化约 4320 亿，按营收排进全球第六，毛利率 75%。钱的来源在变：超大规模云厂商收入环比只增 13%，其余买家（AI 原生公司、企业、主权客户）带动 ACIE 收入同比增 138%，新增数据中心收入的大头第一次来自 neocloud 这类非巨头。为撑住需求，英伟达把应收账期从 45 天拉到 60 天，应收账款冲到 630 亿美元，等于开始给买家放贷。分析师提醒盯 DSO：继续涨，就是英伟达在用资产负债表换需求。",
+          "summary_en": "Nvidia reported FY27 Q2 earnings on August 26: $96B revenue, up 106% year over year and 18% quarter over quarter; next-quarter guidance of $108B (±2%), the first time a single quarter crosses $100B, annualized ~$432B, sixth largest company in the world by revenue, at 75% gross margin. Where the money comes from is shifting: hyperscaler revenue grew only 13% sequentially, while ACIE revenue (AI natives, enterprises, sovereign customers) grew 138% year over year, and for the first time neoclouds contributed the majority of net-new data center revenue. To keep demand up, Nvidia stretched days sales outstanding from 45 to 60 days, pushing receivables to $63B, effectively financing its buyers. Analysts say to watch DSO: if it keeps climbing, Nvidia is buying demand with its balance sheet.",
+          "why": "芯片巨头开始给客户放贷换需求，应收账期一个季度拉长 15 天。这改写了对 AI 资本开支周期的判断：需求不一定真，信用在兜底。对做 Infra 和融资的人，这是算力金融化的第一份公开账本。",
+          "why_en": "The chip giant has started financing its customers to buy demand, stretching receivables 15 days in a single quarter. That changes how the AI capex cycle reads: the demand may not be real, the credit is what backstops it. For anyone in infrastructure or financing, it's the first public ledger of compute financialization."
+        },
+        {
+          "title": "法院判五角大楼封禁 Anthropic 违法",
+          "title_en": "A court rules the Pentagon's blacklisting of Anthropic unlawful",
+          "author": "Reuters · 文摘",
+          "author_en": "Reuters · Digest",
+          "likes": null,
+          "url": "https://www.reuters.com/legal/government/us-judge-blocks-pentagons-anthropic-blacklisting-2026-08-28/",
+          "summary": "加州北区联邦法院法官 Rita Lin 近日裁定，五角大楼将 Anthropic 列为“供应链风险”的决定违法。此前，双方围绕 2 亿美元机密军事系统 AI 合同谈判破裂，Anthropic 拒绝将技术用于大规模监控美国人和自主杀伤武器，国防部长 Pete Hegseth 随后做出该认定，导致国防承包商不得与 Anthropic 交易。法官在 59 页判决中认定，这构成对受宪法保护言论的报复，并写道：“空洞地援引国家安全，不是一张惩罚和报复政府批评者的空白支票。”庭审中，她表示政府无法证明“战时能关掉模型”的说法。Anthropic 于 3 月 9 日提起两起诉讼，本案为第一起，另一起在华盛顿特区巡回法院审理中。",
+          "summary_en": "A federal judge, Rita Lin of the Northern District of California, has ruled that the Pentagon's designation of Anthropic as a 'supply chain risk' was unlawful. Background: talks over a $200 million contract for AI for classified military systems broke down after Anthropic declined to use its tech for mass surveillance of Americans or autonomous lethal weapons, and Defense Secretary Pete Hegseth made the designation, barring defense contractors from doing business with Anthropic. In the 59-page ruling the judge found it amounted to retaliation for constitutionally protected speech, writing that 'the empty invocation of national security is not a blank check to punish and retaliate against government critics'; during the hearing she said the government produced no evidence for its claim that the models could be switched off in wartime. Anthropic filed two lawsuits on March 9; this ruling covers the first, and a second case in the DC Circuit continues.",
+          "why": "行政权以供应链安全为名封禁 AI 公司，首次在证据标准前败诉。对政企市场从业者，此判例意味着“安全理由”将受法院实质审查，合同谈判的底气已不同。",
+          "why_en": "Executive power tried to bar an AI company on supply-chain-security grounds and lost, for the first time, on the evidence standard. For anyone selling into government or enterprise, it's a precedent that security justifications get substantive judicial review, which changes the leverage in contract talks."
+        },
+        {
+          "title": "Claude Code 自动模式被攻破：护栏拦下清理命令",
+          "title_en": "Claude Code's auto mode broken: the guardrail blocked the cleanup command",
+          "author": "Simon Willison · 文摘",
+          "author_en": "Simon Willison · Digest",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Aug/27/breaking-claude-code-opus-5-auto-mode/",
+          "summary": "Simon Willison 转述安全研究员 Johann Rehberger 对 Claude Code 自动模式的攻击：通过一个 zip 压缩包，诱使模型解压并执行其中改写的 struct.py，再在代码中 import base64，实际触发本地 struct.py，攻击成功率约 80%。更反直觉的是，有几次模型自行发现被攻破并试图终止恶意进程，反而被自动模式拦下清理命令。Willison 结论：只要可能遭遇对抗性攻击，无人值守 agent 必须放入沙箱，在容器或虚拟机中运行，限制网络出口，不暴露家目录、SSH 密钥、云凭据。此观点连接 08-18 的 Copilot 自动修复漏洞及 08-27 的护栏话题：自动审批这层护栏，现已成为攻击面和故障点。",
+          "summary_en": "Simon Willison relays security researcher Johann Rehberger's attack against Claude Code's auto mode: a zip archive tricks the model into unzipping and executing a rewritten struct.py, so that importing base64 in code actually triggers the local struct.py; Rehberger claims roughly 80% success. More counterintuitively, in several runs the model itself detected the compromise and tried to terminate the malicious process, and auto mode blocked the cleanup command. Willison's conclusion: whenever an adversarial attack is possible, unattended agents should run only in a sandbox, a container or VM, with restricted network egress, and home directories, SSH keys, and cloud credentials kept out of the runtime. This connects to 08-18's Copilot auto-fix vulnerability and 08-27's guardrail thread: the auto-approval guardrail itself is now both an attack surface and a failure point.",
+          "why": "自动审批作为当前 agent 产品的主推护栏，同时成为攻击面和故障点。对运行无人值守 agent 者，此条直接影响部署决策：是否将任务移入沙箱。详见今日行动第三条。",
+          "why_en": "Auto-approval is the flagship guardrail of today's agent products, and it has become both an attack surface and a failure point. For anyone running unattended agents, this changes deployment decisions directly: whether tasks should move into a sandbox. See action 3."
+        },
+        {
+          "title": "谷歌发 Gemini 3.5 Transcribe：转写带说话人、清填充词",
+          "title_en": "Google ships Gemini 3.5 Transcribe: speaker-attributed, disfluency-cleaning transcription",
+          "author": "Google · 文摘",
+          "author_en": "Google · Digest",
+          "likes": null,
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/",
+          "summary": "谷歌 8 月 26 日发布 Gemini 3.5 Transcribe。据 Artificial Analysis 数据，流式词错率 4.0%，非流式 2.6%，端到端时间至最终转写比上代 Chirp 3 快 70%；FLEURS 多语基准流式 5.50%，非流式 5.04%。该模型可处理自纠与填充词（如“周二，不，周三”整理为干净文本），自动添加格式，支持 85 多种语言，可自定义词汇表，预录音频带说话人标注及词级时间戳（最多 3 人，3 人以上为实验性）。提供两条 API：Live API（gemini-3.5-transcribe-live）用于实时双向流式、亚秒级延迟，Interactions API 处理预录音频。已集成至 Gemini 应用、Android 的 Rambler、Gboard 及 macOS 版，开发者可在 Google AI Studio 与 Gemini Enterprise Agent Platform 调用。",
+          "summary_en": "Google released Gemini 3.5 Transcribe on August 26. Numbers (per Artificial Analysis): 4.0% word error rate streaming and 2.6% non-streaming, with time-to-final-transcription 70% faster than the prior Chirp 3; on FLEURS it scores 5.50% streaming and 5.04% non-streaming across languages. It handles self-corrections and filler words (turning 'let's meet Tuesday, no, Wednesday' into clean text), auto-formats, supports 85+ languages, accepts a custom vocabulary, and attributes speakers with word-level timestamps on pre-recorded audio (up to three speakers; 3+ is experimental). Two APIs: the Live API (gemini-3.5-transcribe-live) for real-time bidirectional streaming at sub-second latency, and the Interactions API for pre-recorded audio. It's already in the Gemini app, Android's Rambler, Gboard, and the macOS app; developers can use it via Google AI Studio and the Gemini Enterprise Agent Platform.",
+          "why": "语音入口的转写质量已达产品级，且具备说话人分离和词级时间戳。对语音应用开发者，ASR 从“自行搭建”变为“调用即得”，又多一个可直接使用的选择。",
+          "why_en": "Transcription quality for voice entry points has reached sellable levels, with speaker separation and word-level timestamps included. For anyone building voice apps, ASR shifts from 'assemble it yourself' to 'call an API and it's done', adding another directly usable option."
+        }
+      ]
+    }
+  ]
+}
