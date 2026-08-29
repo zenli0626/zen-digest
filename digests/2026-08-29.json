@@ -1,0 +1,279 @@
+{
+  "date": "2026-08-29",
+  "partial": false,
+  "banner": "模型断供，战火烧到入口",
+  "banner_en": "Models cut off, the war moves to the gate",
+  "image": {
+    "src": "digests/img/2026-08-29.jpg",
+    "caption": "头版配图：Anthropic 8 月 27 日「Model Hardware Standard 研究预览」发布稿题图，站方标注为 Anthropic 标识。公告介绍 MHS，一套让 AI agent 安全操作显微镜、移液工作站、机械臂等物理设备的规范，该公司本周把「agent 接硬件」从论文变成标准草案。（图：Anthropic）",
+    "caption_en": "This issue's lead image: the header graphic from Anthropic's Aug 27 'Model Hardware Standard research preview' (og image, tagged by the site as the Anthropic logo). The announcement introduces MHS, a spec for AI agents to safely operate microscopes, liquid handlers, and robotic arms, moving 'agents on hardware' from papers to a draft standard this week. (Image: Anthropic)"
+  },
+  "actions": [
+    {
+      "text": "今晚十分钟，给正在用的 AI 工具列一张「单一供应商清单」：模型、插件、数据接口各来自谁。做法：只写一行，标出哪些环节被一家卡住，哪天断供你会先丢什么。算做完：你拿到一页纸，标出至少一处「换不掉」的依赖。背景：OpenAI 昨天宣布 11 月 12 日停掉 Cursor 对自家模型的直接访问，一个日活主流编辑器因被 SpaceX 收购而被掐供应。",
+      "source": "OpenAI · Hacker News",
+      "source_url": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/",
+      "text_en": "Tonight, ten minutes: make a single-vendor list for the AI tools you rely on, mapping which models, plugins, and data interfaces each one depends on and on whom. Write one line per tool, marking which link is held by a single provider and what you'd lose first if supply were cut. Done when you have a one-page sheet with at least one dependency flagged as can't-swap. One line of background: OpenAI announced yesterday it will end Cursor's direct access to its models on November 12, cutting off a mainstream daily editor because it was acquired by SpaceX.",
+      "source_en": "OpenAI · Hacker News"
+    },
+    {
+      "text": "今晚二十分钟，给最长跑的 prompt 链加一层「知识维护」：每改一个前提，列出其下所有结论并删掉失效的。做法：拿反复让 agent 跑的调研或代码任务，把「已知事实 + 由它推出的结论」写成小依赖树，试跑一次，看模型是否引用已被推翻的旧结论。算做完：判断当前记忆方式够不够用，值不值得换成 Datalog 这类结构化记忆。背景：安全研究员 Jordy Zomer 发现漏洞研究中模型反复用被推翻的假设推理，给 LLM 写了个 Datalog 引擎，让失效结论自动作废。",
+      "source": "Jordy Zomer · Hacker News",
+      "source_url": "https://pwning.systems/posts/llm-memory-program-analysis/",
+      "text_en": "Tonight, twenty minutes: add a knowledge-maintenance pass to your longest prompt chain, listing every conclusion that hangs under a premise whenever one changes and deleting the stale ones. Take a research or coding task you run through an agent repeatedly, write 'known facts plus derived conclusions' as a small dependency tree, and run it once to see whether the model cites conclusions you've already overturned. Done when you can judge whether your current memory approach suffices or whether structured memory like Datalog would pay off. One line of background: security researcher Jordy Zomer found his models kept reasoning from assumptions already disproved during vulnerability work, so he built a Datalog engine that invalidates stale conclusions automatically.",
+      "source_en": "Jordy Zomer · Hacker News"
+    },
+    {
+      "text": "今晚五分钟，测一遍你维护的开源或内部依赖的补丁流程：从发布公告到第一次被扫描或被打，隔多久。做法：翻最近一次安全修复的公告时间，查仓库 issue、Hacker News 或公开扫描记录里首次出现时间，两相减。算做完：得到「补丁曝光窗口」数字，决定是否收紧 embargo 或提前补丁。背景：剑桥教授 Anil Madhavapeddy 记录 OCaml 项目补丁公开十分钟内招来漏洞探测，rclone 维护者确认项目一个月收四十多份安全披露。",
+      "source": "Anil Madhavapeddy · Hacker News",
+      "source_url": "https://anil.recoil.org/notes/rumour-is-the-exploit",
+      "text_en": "Tonight, five minutes: measure the speed of your patch pipeline on an open-source or internal dependency you maintain, from announcement to first scan or exploit attempt. Find the announcement time of your most recent security fix, then look up when it first appeared in repo issues, Hacker News, or public scan records, and subtract. Done when you have a patch-exposure-window number for your line and a decision on whether to tighten the embargo or patch earlier. One line of background: Cambridge professor Anil Madhavapeddy documents OCaml projects drawing exploit probes within ten minutes of a patch being shared, and the rclone maintainer confirms 40+ security disclosures in the last month.",
+      "source_en": "Anil Madhavapeddy · Hacker News"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚 20 分钟：拿一份自己的票据 PDF 试 Cohere Parse",
+    "why": "Cohere 8 月 27 日发的文档解析模型 Parse，宣称每 1000 页 1.5 美元，把表格、表单、图都转成干净 Markdown，带空间边界框。今晚拿真实业务票据试它，比看 ParseBench 79.2 分更有感觉，顺便看认不认行业里扫描件、盖章件。",
+    "time": "约 20 分钟",
+    "steps": [
+      "打开 Cohere 官方免费试用入口，CohereLabs 的 Hugging Face Space（huggingface.co/spaces/CohereLabs/cohere-parse），登录即用，不用配 API key",
+      "准备一张真实的票据或表单 PDF，扫描件、盖章件、带表格的均可",
+      "上传并解析，等输出 Markdown",
+      "对照原件核三件事：表格是否错位、金额和日期等数字有无记错、盖章和手写怎么处理",
+      "若走 API，看 docs.cohere.com/docs/parse 调用示例，算每月文档量的成本"
+    ],
+    "source": "Cohere · 文摘",
+    "source_url": "https://cohere.com/blog/parse",
+    "title_en": "Tonight, 20 minutes: run one of your own receipts through Cohere Parse",
+    "why_en": "Cohere's document parsing model Parse, released Aug 27, is priced at $1.50 per 1,000 pages and turns tables, forms, and figures into clean Markdown with spatial bounding boxes. Running a real business receipt through it tonight beats reading its ParseBench 79.2 score, and will show whether it handles the scans and stamped documents common in your industry.",
+    "time_en": "~20 min",
+    "steps_en": [
+      "Open Cohere's official free trial, the CohereLabs Hugging Face Space (huggingface.co/spaces/CohereLabs/cohere-parse); sign in and use it directly, no API key needed",
+      "Prepare one real receipt or form PDF, ideally a scan, a stamped document, or one with tables",
+      "Upload it and let Parse produce Markdown",
+      "Check three things against the original: whether tables misalign, whether figures like amounts and dates are right, and how it handles stamps and handwriting",
+      "If you go the API route, read the example at docs.cohere.com/docs/parse and estimate the monthly cost for your document volume"
+    ],
+    "source_en": "Cohere · Digest"
+  },
+  "meta_read": "两桩事同周发生，指向同一结论：AI 供应已非「模型」问题，而是「入口」问题。OpenAI 停供 Cursor，用手里那条 API 管道；Anthropic 推 Model Hardware Standard，抢物理设备那个没人定义的入口。上周英伟达用应收账期放贷换需求，本质也是用资产负债表卡算力入口。四家共同点不是谁对谁错，而是都意识到：模型快速商品化，谁握入口，谁握下一轮议价权。对做产品的人，本周最该重读的不是哪家发布的模型，而是自己手里供应链：哪些环节卡在别人家的入口上。",
+  "meta_read_en": "Two events in the same week point to the same conclusion: AI supply is no longer a problem of the model, it's a problem of the entry. OpenAI cutting off Cursor is it wielding the API pipeline it controls; Anthropic pushing the Model Hardware Standard is a bid to define the physical-device entry before anyone else does. Last week Nvidia financing demand through receivables was the same playbook, using its balance sheet to hold the compute entry. What these four have in common isn't who is right, it's that they all realize the model itself is commoditizing fast and whoever holds the entry holds the next round of pricing power. For product people, the most important thing to reread this week isn't any lab's release, it's your own supply chain and which links sit on someone else's entry.",
+  "ota": {
+    "learned": [
+      "读台账。这条把 08-14 自证规则往前推一步：它说向 Zen 报告完成前要拿新鲜证据跑真行为，今天补上它没覆盖的场景——重复读取同一份来源。Anil Madhavapeddy 记录 OCaml 项目补丁公开十分钟内招来漏洞探测，rclone 维护者 Nick Craig-Wood 确认项目十年收约二十份安全披露、最近一个月四十多份，还说「AI 时代前 GitHub 分配 CVE 要两三天，现在要三四星期」。今天这条连上 08-24 的 harness 变量和 08-27 的护栏在场检查：漏洞情报已成为高时效商品，谁拿披露谁先动，护栏和披露流程都得按分钟计。"
+    ],
+    "new_capabilities": [
+      "已验证：向 Zen 报告任何涉及「时间窗」的结论前（漏洞披露、补丁窗口、模型上线、合同期限），把来源发布时间和我的阅读时间都写出来，避免把旧来源当新事实。调用意图：「这条信息发布于几号？距现在多久？引用时带上时间戳。」"
+    ],
+    "learned_en": [
+      "Read the ledger. This pushes 08-14's self-verification rule one step further: that entry said to verify completion claims against fresh evidence; today adds a scenario it didn't cover, re-reading the same source. Anil Madhavapeddy documents OCaml projects drawing exploit probes within ten minutes of a patch being shared, and rclone maintainer Nick Craig-Wood confirms his project saw about twenty disclosures in its first ten years and 40+ in the last month, adding that GitHub CVE assignment went from 2-3 days before the AI era to 3-4 weeks now. This connects to 08-24's harness variable and 08-27's guardrails-present check: vulnerability intelligence itself is now a time-sensitive commodity, whoever gets the disclosure moves first, and both guardrails and disclosure processes now run on a per-minute clock."
+    ],
+    "new_capabilities_en": [
+      "Verified: before reporting any conclusion that depends on a time window (disclosure, patch window, model release, contract deadline), state both when the source was published and when I read it, so a stale source is never presented as today's fact. Invoke intent: 'when was this published, how long ago did I read it, and does the claim carry its timestamp when I cite it?'"
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "tt-a1i/archify",
+      "url": "https://github.com/tt-a1i/archify",
+      "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
+      "language": "JavaScript",
+      "stars": 28685,
+      "stars_today": 4562
+    },
+    {
+      "rank": 2,
+      "name": "K-Dense-AI/scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 175,000+ scientists worldwide. 163 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "language": "Python",
+      "stars": 37055,
+      "stars_today": 720
+    },
+    {
+      "rank": 3,
+      "name": "anthropics/claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "language": "Python",
+      "stars": 35139,
+      "stars_today": 457
+    },
+    {
+      "rank": 4,
+      "name": "bilawalsidhu/gods-eye-view",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+      "language": "JavaScript",
+      "stars": 11533,
+      "stars_today": 3829
+    },
+    {
+      "rank": 5,
+      "name": "abhigyanpatwari/GitNexus",
+      "url": "https://github.com/abhigyanpatwari/GitNexus",
+      "description": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a git repository (Github, Gitlab, Azure, Local) or ZIP file, and get an interactive knowledge graph with a built in Graph RAG Agent. Perfect for code exploration",
+      "language": "TypeScript",
+      "stars": 46239,
+      "stars_today": 202
+    },
+    {
+      "rank": 6,
+      "name": "JetBrains/go-modern-guidelines",
+      "url": "https://github.com/JetBrains/go-modern-guidelines",
+      "description": "Help AI coding agents write modern Go",
+      "language": "Go",
+      "stars": 2682,
+      "stars_today": 574
+    },
+    {
+      "rank": 7,
+      "name": "calesthio/OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+      "language": "Python",
+      "stars": 53529,
+      "stars_today": 1144
+    },
+    {
+      "rank": 8,
+      "name": "abi/screenshot-to-code",
+      "url": "https://github.com/abi/screenshot-to-code",
+      "description": "Drop in a screenshot and convert it to clean code (HTML/Tailwind/React/Vue)",
+      "language": "Python",
+      "stars": 75722,
+      "stars_today": 326
+    },
+    {
+      "rank": 9,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 6034,
+      "stars_today": 246
+    },
+    {
+      "rank": 10,
+      "name": "freestylefly/awesome-gpt-image-2",
+      "url": "https://github.com/freestylefly/awesome-gpt-image-2",
+      "description": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 案例逆向工程，20+ 套工业级模板，提炼出 Skills，持续更新中",
+      "language": "JavaScript",
+      "stars": 24525,
+      "stars_today": 1687
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 40,
+      "items": [
+        {
+          "title": "OpenAI 11 月 12 日停掉 Cursor 对自家模型的直接访问",
+          "title_en": "OpenAI ends Cursor's direct access to its models on November 12",
+          "author": "OpenAI · Hacker News",
+          "author_en": "OpenAI · Hacker News",
+          "likes": 473,
+          "url": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/",
+          "summary": "HN 今日热帖，473 分。OpenAI 8 月 29 日凌晨宣布，因 Cursor 被 SpaceX 收购，将终止其直接访问 OpenAI 模型的合作，限期 11 月 12 日。官方博客给出的理由是「根据我们与马斯克旗下公司违约的经验，无法确信 SpaceX 会在我们的服务条款内使用技术」。HN 评论里两条主线：一是都觉得是迟早的事，因为 Sam Altman 和马斯克的旧怨（马斯克曾宣誓作证称蒸馏别家模型），二是都指向商业结构，Cursor 的商业模式本质是转售别人家的 API，Anthropic 今年早些时候也以类似的违约理由停掉 xAI。Cursor 联合创始人回应说 OpenAI 模型只占 Cursor 流量的约 5%，正在谈。评论猜测 OpenAI 九月会发布自己的 Cursor 竞品（Codex 的扩展），用自家模型补贴挤掉中间商。",
+          "summary_en": "Today's hot HN thread at 473 points. Early on Aug 29 OpenAI announced that because Cursor was acquired by SpaceX, it will end Cursor's direct access to OpenAI models, effective November 12. The official blog post cites 'our experience with Elon Musk's companies violating contracts' as the reason it can't be confident SpaceX will use its tech within its terms. Two main threads in the HN comments: it was only a matter of time given the bad blood between Sam Altman and Musk (Musk testified under oath about distilling other companies' models), and the structural point that Cursor's business is essentially reselling someone else's API, with Anthropic having cut off xAI on similar ToS grounds earlier this year. Cursor's co-founder responded that OpenAI models serve about 5% of Cursor traffic and they're talking. Commenters expect OpenAI to ship its own Cursor competitor (an expanded Codex) in September and subsidize it to squeeze out the middleman.",
+          "why": "第一次有大模型厂公开按合同掐掉一个主流 IDE 的供应。对用 Cursor 这类工具的人，这是「供应商风险」第一次落在编辑器这一层；对做 AI 工具的人，这是「平台抽梯」的标准样本。详见今日行动第一条。",
+          "why_en": "The first time a major model vendor has publicly cut off a mainstream IDE on contract grounds. For anyone using tools like Cursor, supplier risk just landed at the editor layer; for anyone building AI tools, it's a canonical sample of the platform pulling the ladder. See action 1."
+        },
+        {
+          "title": "LLM 记忆失控，作者干脆写了套 Datalog 引擎",
+          "title_en": "LLM memory kept breaking, so the author wrote a Datalog engine",
+          "author": "Jordy Zomer · Hacker News",
+          "author_en": "Jordy Zomer · Hacker News",
+          "likes": 411,
+          "url": "https://pwning.systems/posts/llm-memory-program-analysis/",
+          "summary": "HN 今日热帖，411 分。安全研究员 Jordy Zomer 在做漏洞研究时发现，模型跑几小时后会慢慢丢掉「我们到底确认了什么」：会建议一个已被排除的方向，或继续从一条早已失效的观察往下推理。他试了常规记忆系统，发现它们能存「事实」却处理不了「结论依赖」，一个前提被推翻时，模型不知道哪些结论该作废。于是他转了个思路，把记忆当程序分析做：用 Datalog（声明式逻辑编程）维护事实与推导规则，事实变了就自动失效受影响结论，而不让模型反复从对话记录里重建整个推理。他把这个工具开源为 Lemmalog。评论区聊到点子：模型负责模糊部分（看懂语言、代码、调试器输出），Datalog 负责确定部分（推导与失效），各干各的。",
+          "summary_en": "A 411-point HN thread. Security researcher Jordy Zomer found during vulnerability research that after a few hours his model slowly lost track of what had been established, suggesting directions already ruled out and reasoning from observations no longer valid. He tried conventional memory systems and found they store facts but can't handle conclusion dependencies: when a premise is overturned, the model can't tell which conclusions should die. So he flipped the approach and treated memory as program analysis, using Datalog (declarative logic programming) to maintain facts and derivation rules, so that when a fact changes the affected conclusions invalidate automatically, instead of asking the model to rebuild its whole reasoning from a transcript each time. He open-sourced it as Lemmalog. The comment thread's best point: the model handles the fuzzy part (understanding language, code, debugger output) and Datalog handles the deterministic part (derivation and invalidation), each doing its own job.",
+          "why": "把「给模型记忆」从存对话记录升级为维护依赖关系。对做 agent 工具或长流程的人，这是处理模型自我矛盾的一个具体解法，也解释了为什么光靠塞上下文压不住这类错误。详见今日行动第二条。",
+          "why_en": "It upgrades 'giving a model memory' from storing transcripts to maintaining dependencies. For anyone building agent tools or long-running flows, it's a concrete fix for self-contradiction and explains why just stuffing more context won't suppress this class of error. See action 2."
+        },
+        {
+          "title": "一条假消息也能当漏洞用：补丁十分钟内招来扫描",
+          "title_en": "A mere rumour of a bug is now enough to find an exploit",
+          "author": "Anil Madhavapeddy · Hacker News",
+          "author_en": "Anil Madhavapeddy · Hacker News",
+          "likes": 304,
+          "url": "https://anil.recoil.org/notes/rumour-is-the-exploit",
+          "summary": "HN 热帖，304 分，Simon Willison 转发。剑桥大学计算机系教授、OCaml 编译器核心维护者 Anil Madhavapeddy 记录：OCaml 项目的安全补丁公开分享后，约十分钟内网站就收到针对百分号编码遍历序列的探测，说明有自动化程序在盯着公共仓库。他说现代编码 agent 找漏洞的能力已经强到，「只需一点点 bug 的暗示」就足以让它们找到并利用。rclone 维护者 Nick Craig-Wood 在评论区确认：rclone 前十年从 GitHub 收到约 20 份安全披露，最近一个月就收到 40 多份；命中率还不低，约 75% 都有需要看的内容。他还说 AI 时代之前 GitHub 分配 CVE 要两三天，现在要三四星期，只能带着 CVE-PENDING 发版本。",
+          "summary_en": "A 304-point HN thread, relayed by Simon Willison. Anil Madhavapeddy, a Cambridge CS professor and core OCaml compiler maintainer, records that within about ten minutes of OCaml security patches being shared for discussion, his website fielded probes for percent-encoded traversal sequences, indicating automated watchers are watching public repos. Modern coding agents have become so effective at finding flaws that the slightest hint of a bug is enough for them to find and exploit it. rclone maintainer Nick Craig-Wood confirms in the comments: about 20 security disclosures through GitHub in rclone's first ten years, and 40+ in the last month, with a good hit rate, roughly 75% having something worth looking at. He adds that before the AI era GitHub assigned CVEs in 2-3 days, now it's 3-4 weeks, so he ships point releases with CVE-PENDING in the changelog.",
+          "why": "把「AI 让漏洞变便宜」从感受变成了维护者的时间账单。对做开源或内部依赖的人，这是供应链安全的新时钟：公开即探测。详见今日行动第三条。",
+          "why_en": "It turns 'AI made bugs cheaper' from a feeling into a maintainer's time bill. For anyone running open source or internal dependencies, it's the new clock of supply-chain security: public means probed. See action 3."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 60,
+      "items": [
+        {
+          "title": "OpenAI 折扣后的 token 用量涨了 13.8 倍",
+          "title_en": "OpenAI's discounts lifted token usage 13.8x",
+          "author": "OpenRouter · 文摘",
+          "author_en": "OpenRouter · Digest",
+          "likes": null,
+          "url": "https://openrouter.ai/blog/insights/gpt-5-6-discounts-jevons-paradox/",
+          "summary": "OpenRouter 8 月 25 日发布的数据分析：OpenAI 在 7 月 27 日到 8 月 14 日给 Terra 和 Luna 大幅折扣，期间 Luna 日 token 用量涨 13.8 倍，Terra 涨 5.6 倍；没降价的 Sol 只涨 1.1 倍。份额增量约四分之三来自其他实验室，不是自家模型内卷。折扣结束后的 6 天里，32% 试过折扣模型的客户仍有使用，18% 达到或超过折扣期水平，日 token 量是折扣期的 1.38 倍，说明留存下来的账户比一般用户大得多。7 月 30 日 OpenAI 又下调了官方价（Luna 降 80%、Terra 降 20%），叠加后 Luna 实际折扣达 90%。",
+          "summary_en": "OpenRouter's Aug 25 data analysis: during OpenAI's big discounts on Terra and Luna from July 27 to August 14, daily Luna token usage jumped 13.8x and Terra 5.6x, while Sol, which stayed at list price, rose just 1.1x. Roughly three quarters of the share gain came from other labs, not from cannibalization within OpenAI's own family. In the six days after the discounts ended, 32% of customers who tried a discounted model still had some usage and 18% ran at or above their program pace, with daily token volume at 1.38x the discount period, implying the retained accounts are far larger than the median user. On July 30 OpenAI also cut list prices (Luna -80%, Terra -20%), making the effective Luna discount 90%.",
+          "why": "第一份把「AI 降价反而不减收」的 Jevons 悖论落到真实账单上的数据。对做定价和做产品的人，折扣带来的不是一次性冲量，而是留存和更大的用量账户，这是订阅和用量计价的直接参考。",
+          "why_en": "The first data set that puts the Jevons paradox, cheaper AI increases rather than decreases spend, on real bills. For anyone pricing products or setting usage plans, discounts here aren't a one-time spike but retention and larger usage accounts, a direct reference for subscription and metered pricing."
+        },
+        {
+          "title": "Anthropic 发布 Model Hardware Standard，让 agent 操作物理设备",
+          "title_en": "Anthropic previews a Model Hardware Standard for agents operating physical devices",
+          "author": "Anthropic · 文摘",
+          "author_en": "Anthropic · Digest",
+          "likes": null,
+          "url": "https://www.anthropic.com/news/model-hardware-standard-research-preview",
+          "summary": "Anthropic 8 月 27 日开放 Model Hardware Standard（MHS）研究预览，一个与模型无关的规范，让 AI agent 安全操作显微镜、移液工作站、机械臂等物理设备，能并行操作多台仪器、做从常规药物发现实验到量子计算机激光校准的任务。MHS 起于 Anthropic 与 HHMI Janelia 研究园区的合作。它提供标准化的驱动层：用 read/write 这类简单原语让设备互通、可被发现，并带自然语言标签，把设备重量这类代码里看不出来的特性写进去，agent 第一次见到设备也能知道怎么安全操作。官方称把实验室或工厂的硬件集成从数周压缩到几分钟，同时先不开放完整标准，只与科研、机器人、电子、制造伙伴协作建立安全评估，未来再开源。HN 评论区有质疑「这是不是给 AI 造了蓝牙」，也有人认可它对非 AI 自动化也有价值。",
+          "summary_en": "On Aug 27 Anthropic opened a research preview of the Model Hardware Standard (MHS), a model-agnostic spec for AI agents to safely operate microscopes, liquid handlers, robotic arms, and other physical devices, running multiple instruments in parallel and handling tasks from routine drug-discovery experiments to laser calibration on a quantum computer. MHS began as a collaboration between Anthropic and HHMI Janelia Research Campus. It provides a standardized driver layer, primitives like read and write that any device can act on, device discoverability, and natural-language tags that capture machine characteristics invisible in code, such as a robot arm's weight, so an agent encountering a device for the first time can operate it safely. Anthropic says it compresses hardware integration from weeks to minutes, and is sharing an early version with partners across science, robotics, electronics, and manufacturing to build safety evaluations before open-sourcing it. HN commenters ask whether this is 'bluetooth for AI' and note its value beyond AI for automating lab processes.",
+          "why": "模型商品化之后，头部厂开始抢物理世界的入口标准。对做硬件的团队，MHS 值得当作一个还没定稿的协议提前看，因为它可能像 MCP 一样成为 agent 接设备的默认接口。",
+          "why_en": "As models commoditize, the top labs are racing to define the standard for the physical world's entry point. For hardware teams, MHS is worth watching as an unfinalized protocol, because it could become the default interface for agents connecting to devices the way MCP did."
+        },
+        {
+          "title": "OpenAI 副总裁口风：AGI 门槛年内可达",
+          "title_en": "OpenAI brass: AGI bar within reach by year's end",
+          "author": "Latent Space · 文摘",
+          "author_en": "Latent Space · Digest",
+          "likes": null,
+          "url": "https://www.latent.space/p/ainews-openai-to-reach-agi-bar-by",
+          "summary": "Latent Space AINews 8 月 28 日梳理了 OpenAI 高层关于 AGI 时间表的表态。首席科学家 Jakub Pachocki 说，未发布的 Astra 模型就是他在 9 月目标里提到的“自动化 AI 研究实习生”；Sam Altman 接受 TIME 采访时估计，OpenAI 会在 2026 年 12 月前内部认定达成 AGI 门槛；Mark Chen 认为已到 80%。同一篇文章还汇总了本周开源模型动态：GLM-5.3 系列转为开放权重、腾讯 Hy4-preview（770B 总参/49B 激活）被 Code Arena 放到约第五名、Qwen3.8-Flash 主打便宜长上下文，以及 Google 的 wiki 技能进化论文等。本文为付费文章，本站只取了公开可见部分的要点，AGI 断言均为高层口风，并非已验证事实。",
+          "summary_en": "Latent Space AINews on Aug 28 rounds up OpenAI leadership's AGI-timeline statements: Chief Scientist Jakub Pachocki says the unreleased Astra model is the 'Automated AI Research Intern' he had aimed for by September; Sam Altman tells TIME he estimates OpenAI will have an internal system that qualifies as AGI by December 2026; Mark Chen thinks it's 80% of the way. The same article also rounds up this week's open-model news: GLM-5.3 family going open-weight, Tencent's Hy4-preview (770B total / 49B active) placed around #5 on Code Arena, Qwen3.8-Flash targeting cheap long context, and Google's wiki skill-evolution paper. This is a paid article; we only take points from the publicly visible part, and the AGI claims are leadership statements, not verified facts.",
+          "why": "头部实验室首次把“AGI 何时达成”从口号变成带日期的内部时间表。对于做长期产品规划的人，这条口风影响的是你在 roadmap 中对“模型能力天花板”的假设。",
+          "why_en": "The top lab has moved 'when AGI' from slogan to a dated internal timeline. For anyone doing long-range product planning, this estimate changes the assumptions you're allowed to make about where model capability tops out."
+        },
+        {
+          "title": "DeepSeek 拟融资 74 亿美元，估值冲 740 亿",
+          "title_en": "DeepSeek seeks $7.4B raise at a $74B valuation",
+          "author": "TLDR AI · 文摘",
+          "author_en": "TLDR AI · Digest",
+          "likes": null,
+          "url": "https://tldr.tech/ai/2026-08-28",
+          "summary": "据 TLDR AI 转述《华尔街日报》8 月 28 日报道，DeepSeek 正寻求融资 74 亿美元，估值约 740 亿美元，资金用于研发和算力基础设施扩建。上一期版面里我们反复说开放权重把模型价格打下来，这轮融资是同一故事的另一面：靠开放权重打市场的公司，反而在资本市场上拿到头部估值。原始报道在 WSJ 付费墙后，本站只转述了 TLDR 的公开摘要。",
+          "summary_en": "Per TLDR AI relaying a Wall Street Journal report from Aug 28, DeepSeek is seeking to raise $7.4 billion at a roughly $74 billion valuation, to bankroll R&D and computing-infrastructure buildout. Recent issues have kept saying open weights are commoditizing model prices; this round is the other side of the same story, a company that gained share on open weights now raising at a frontier valuation. The original report sits behind the WSJ paywall; we relay only TLDR's public summary.",
+          "why": "开放权重公司首次在私募市场拿到头部估值，这和“模型便宜到没人付费”的叙事形成对照。对看 AI 格局的人，这是“靠开源打市场”商业模式的融资样本，值得和 Jevons 那条数据一起读。",
+          "why_en": "An open-weights company is raising at a frontier valuation for the first time in private markets, which sits against the narrative that cheap models can't command revenue. For anyone tracking the AI landscape, it's a financing sample of the 'win share on open weights' model, worth reading next to the Jevons data."
+        },
+        {
+          "title": "Cohere 发 Parse，文档解析千页 1.5 美元",
+          "title_en": "Cohere ships Parse, document parsing at $1.50 per thousand pages",
+          "author": "Cohere · 文摘",
+          "author_en": "Cohere · Digest",
+          "likes": null,
+          "url": "https://cohere.com/blog/parse",
+          "summary": "Cohere 8 月 27 日发布 Parse，一个面向企业文档的视觉语言模型，把复杂的多模态文件（扫描件、表格、表单、图）转成结构化、机器可读的数据，输出干净的 Markdown 并带空间边界框。定价每 1000 页 1.5 美元，支持九种主流商用语言，可部署在私有云或本地（Model Vault）。官方称它在 ParseBench 上得 79.2，把价格性能比做成帕累托前沿上最强的一档。它也能跑在 agent 工作流里做 RAG 的文档索引，公司把它和 Embed、Rerank 一起放进 Compass 检索栈。",
+          "summary_en": "On Aug 27 Cohere released Parse, a vision language model for enterprise documents that turns complex multimodal files, scans, tables, forms, and figures, into structured, machine-readable data, outputting clean Markdown with spatial bounding boxes. Pricing is $1.50 per 1,000 pages and it supports nine major commercial languages, deployable in private cloud or on-prem (Model Vault). Cohere says it scores 79.2 on ParseBench, putting it on the strongest price-performance frontier it measured. It can also run inside agent workflows for RAG document indexing, and the company bundles it with Embed and Rerank in its Compass retrieval stack.",
+          "why": "文档解析从“自己搭 OCR 流水线”变成 1.5 美元每千页的现成 API。对做企业软件和 RAG 应用的人，这是文档进 agent 的成本线，值得今晚花二十分钟亲手试一次。",
+          "why_en": "Document parsing just moved from 'build your own OCR pipeline' to a $1.50-per-1,000-pages API. For anyone building enterprise software or RAG apps, it's the new cost line for getting documents into agents, worth twenty minutes tonight to try by hand."
+        }
+      ]
+    }
+  ]
+}
