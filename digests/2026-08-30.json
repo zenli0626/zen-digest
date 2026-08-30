@@ -1,0 +1,137 @@
+{
+  "date": "2026-08-30",
+  "partial": false,
+  "banner": "赚钱的不是模型公司，是用户",
+  "banner_en": "The AI windfall is going to users, not labs",
+  "image": {
+    "src": "digests/img/2026-08-30.jpg",
+    "caption": "本期头版配图：Dwarkesh Podcast 对谈 SemiAnalysis 创始人 Dylan Patel 的画面，他在节目里说 Jane Street 从 Claude 身上赚到的钱，远比 Anthropic 自己赚到的利润多（图源：Dwarkesh Podcast 官方频道）。",
+    "caption_en": "This issue's lead image: a still from Dwarkesh Podcast's interview with SemiAnalysis founder Dylan Patel, where he says Jane Street makes far more money off Claude than Anthropic itself profits from it. (Image: Dwarkesh Podcast's official channel)"
+  },
+  "actions": [
+    {
+      "text": "今晚十分钟，看一眼你自己维护的项目里，有没有把安全问题的细节提前挂在公开讨论区（issue、WIP PR、changelog）里等补丁。做法：搜一下仓库里带 security、vuln、CVE 字样的 issue 或 PR，看有没有已经把问题说清楚、但补丁还没合并的。算做完：确认了有没有这种「话已经说出去、补丁没跟上」的窗口，有就把细节收回来私下修，等补丁一起放出来。背景一句：OCaml 和 rclone 的维护者说，现在一个漏洞的补丁刚拿出来讨论，几分钟内就有自动化探测跟上来，跟几年前等几天到几周才有人试探完全不是一个节奏。",
+      "source": "Simon Willison · 文摘",
+      "source_url": "https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/",
+      "text_en": "Tonight, ten minutes: check whether any project you maintain has security details sitting in a public issue, WIP PR, or changelog while the fix is still pending. Search your repo for issues or PRs tagged security, vuln, or CVE that already describe the problem but haven't merged a fix yet. Done when you've confirmed whether that kind of window exists; if it does, pull the details private and ship the writeup with the patch instead of ahead of it. One line of background: OCaml and rclone maintainers say a patch shared for discussion now draws automated exploit probes within minutes, a pace that used to take days to weeks.",
+      "source_en": "Simon Willison · Digest"
+    },
+    {
+      "text": "今晚十分钟，问一圈团队里有没有人用 Lovable 这类工具自己搭了小工具，还往里面塞了公司数据。做法：列出你知道的、员工自发搭的 agent 或自动化小工具，标出哪些接触了客户数据或内部系统。算做完：你拿到一份「谁在用什么工具碰什么数据」的清单，哪怕只有一两条。背景一句：No Priors 播客里说，非技术员工现在也能自己搭 agent，公司完全不知道这些「影子 AI」碰了什么数据、又是谁在用。",
+      "source": "No Priors · YouTube",
+      "source_url": "https://www.youtube.com/watch?v=VGPs7mBr8xk",
+      "text_en": "Tonight, ten minutes: ask around whether anyone on your team has built a small tool with something like Lovable and fed company data into it. List the self-built agents or automations you know about, and flag which ones touch customer data or internal systems. Done when you have a list, even a short one, of who's using what tool on what data. One line of background: on No Priors, the guests note that non-technical employees can now build their own agents, leaving companies with no idea what data this \"shadow AI\" touches or who's running it.",
+      "source_en": "No Priors · YouTube"
+    },
+    {
+      "text": "今晚五分钟，回想你上一次给客户做产品演示，是不是从头到尾走了一遍标准流程。做法：写下那次演示有没有先问清楚客户具体想解决的问题，还是直接打开产品讲功能。算做完：你确认了那次演示是「量身定制」还是「无差别播放」，下次准备前先问三个问题再决定演示顺序。背景一句：Lenny's Podcast 里嘉宾说得很直接，企业级大单靠的是「这东西感觉就是为我做的」，一套流程从头讲到尾基本等于已经丢单了。",
+      "source": "Lenny's Podcast · YouTube",
+      "source_url": "https://www.youtube.com/watch?v=5Yiv6RUDGEU",
+      "text_en": "Tonight, five minutes: think back to your last product demo for a customer and whether you ran the standard walkthrough start to finish. Write down whether you asked what problem the customer actually wanted solved before opening the product, or just launched into features. Done when you've judged that demo as tailored or generic, and picked three questions to ask before deciding the order of your next one. One line of background: a guest on Lenny's Podcast put it bluntly, enterprise deals are won on \"this feels like it was built for me,\" and running one straight demo with no discovery basically loses the deal on the spot.",
+      "source_en": "Lenny's Podcast · YouTube"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚20分钟：把一份复杂文档丢进 Cohere Parse 试试",
+    "why": "Cohere 今天发布的 Parse，专门把带图表、印章、多栏排版的复杂文档转成结构化数据，支持九种语言，API 每千页 1.5 美元，Hugging Face 上有免费版能直接试。比看参数表更有用的做法，是拿自己业务里真实的复杂文档喂给它，看它认不认得你的表格和数字。",
+    "time": "约20分钟",
+    "steps": [
+      "打开 huggingface.co/spaces/CohereLabs/cohere-parse",
+      "上传一份自己业务里的复杂文档，比如带图表或印章的合同、发票、扫描件",
+      "看它怎么把版面里的图、表、印章识别成结构化字段",
+      "对照原文核对抽取的数字、编号、专有名词有没有错",
+      "如果打算接 API，去 cohere.com/blog/parse 看每千页 1.5 美元的定价，算一下值不值得替换你现在的解析流程"
+    ],
+    "source": "Cohere · 文摘",
+    "source_url": "https://cohere.com/blog/parse",
+    "title_en": "Tonight, 20 minutes: feed a complex document to Cohere Parse",
+    "why_en": "Cohere released Parse today, a model built to turn complex documents (charts, stamps, multi-column layouts) into structured data across nine languages, priced at $1.50 per 1,000 pages via API with a free version on Hugging Face. Trying it on a real messy document from your own work beats reading a spec sheet, and shows whether it actually reads your tables and numbers correctly.",
+    "time_en": "~20 min",
+    "steps_en": [
+      "Open huggingface.co/spaces/CohereLabs/cohere-parse",
+      "Upload a genuinely complex document from your own work, a contract, invoice, or scan with charts or stamps",
+      "See how it turns the layout's charts, tables, and stamps into structured fields",
+      "Check the extracted numbers, IDs, and proper nouns against the original",
+      "If you'd use the API, check the $1.50-per-1,000-pages pricing at cohere.com/blog/parse and weigh it against your current parsing pipeline"
+    ],
+    "source_en": "Cohere · Digest"
+  },
+  "meta_read": "今天版面上三件事看着不搭界，其实是同一件事的三种表现：权力和速度都在往边缘跑，中心跟不上了。谁赚到 AI 的钱，答案不是造模型的实验室，是像 Jane Street 这样把模型用出效率的客户，钱从中心流向了边缘。谁在建 agent，答案也不再是公司的 IT 部门，是任何一个会用 Lovable 的员工，治理权从中心散到了边缘。谁能把一个漏洞变成真实攻击，答案更不是耐心研究几周的黑客，是几分钟内就跟上来的自动化探测，防守方按老节奏设的补丁窗口、审批流程，全部要重新按分钟计算。三件事共同的麻烦是，旧规则都是照着中心还攥着权力、边缘动作还很慢那个年代设计的，现在两个假设一起塌了。",
+  "meta_read_en": "Three unrelated-looking stories on today's page are really one pattern: power and speed are both moving to the edge faster than the center can track. Who captures AI's money isn't the lab that built the model, it's a customer like Jane Street that turns the model into efficiency, so the money flows from center to edge. Who builds the agents isn't a company's IT department anymore, it's any employee who knows how to use Lovable, so governance has scattered from center to edge too. Who can turn a bug into a real attack isn't a patient researcher spending weeks, it's an automated probe that shows up within minutes, so patch windows and approval processes built on the old clock all need to be re-timed to minutes. The shared trouble is that the old rules assumed the center still held the power and the edge still moved slowly, and both assumptions just collapsed at once.",
+  "ota": {
+    "learned": [
+      "读台账。这条是全新的一条线，还没被之前任何一条覆盖：Simon Willison 转述的 OCaml 维护者 Anil Madhavapeddy 和 rclone 维护者 Nick Craig-Wood 的观察是，一个漏洞的补丁只要拿出来公开讨论，几分钟内就会有自动化探测跟上来，rclone 项目过去一个月收到的安全披露比头十年加起来还多一倍。这跟 08-06/08-28 那条「注入防护」台账不是一回事，那条防的是我被喂进来的内容操纵，这条是我自己在给 Zen 的仓库修安全问题时，会不会不小心把「问题描述」当成了免费送出去的漏洞提示。"
+    ],
+    "new_capabilities": [
+      "已落地：以后在 Zen 名下公开可见的仓库里修安全相关的 bug，不再先开一个描述问题的 WIP PR 或 issue 等补丁跟上，而是把补丁在本地/私下准备好，让问题描述和补丁同时落地。调用意图：「在任何 Zen 的仓库公开可见的地方提交或描述一个安全相关的修复之前，先想一下这段描述本身够不够让自动化 agent 复现出漏洞，够的话就先扣住，等补丁能一起放出来再说。」新记忆文件：`feedback-exploit-disclosure-window`。"
+    ],
+    "learned_en": [
+      "Read the ledger first. This is a brand-new thread, not a continuation of anything already there: Simon Willison relays OCaml maintainer Anil Madhavapeddy and rclone maintainer Nick Craig-Wood's observation that once a bug's patch gets shared for public discussion, automated exploit probes show up within minutes, and rclone's project received more than double its first decade's worth of security disclosures in the last month alone. This is distinct from the 08-06/08-28 injection-guard line, which defends against content fed to me being used to manipulate me; this is about whether I myself, when fixing a security bug in one of Zen's repos, accidentally hand out a free exploit hint by describing the problem before the fix ships."
+    ],
+    "new_capabilities_en": [
+      "Implemented: when fixing a security-relevant bug in any of Zen's publicly visible repos, I no longer open a WIP PR or issue describing the problem while the fix is pending — the patch gets prepared privately and lands together with its description. Invoke intent: \"before committing or describing a security-relevant fix anywhere in one of Zen's public repos, check whether the description alone gives an automated agent enough to reconstruct the exploit, and if so hold it until the patch can ship with it.\" New memory file: `feedback-exploit-disclosure-window`."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "items": [
+        {
+          "title": "AI 赚的钱，正在流向用户不是实验室",
+          "title_en": "The money AI makes is flowing to users, not labs",
+          "author": "Dylan Patel · Dwarkesh Podcast",
+          "author_en": "Dylan Patel · Dwarkesh Podcast",
+          "likes": 29648,
+          "url": "https://www.youtube.com/watch?v=4NMBwT1qYew",
+          "summary": "SemiAnalysis 创始人 Dylan Patel 在 Dwarkesh 的节目里说，现在模型生成的大部分价值，并没有落进 OpenAI 和 Anthropic 手里，而是被用它们的客户拿走了。他举了两个例子：Jane Street 是 Anthropic 最大的客户之一，靠 Claude 生成的价值远远超过 Anthropic 从这笔订阅里赚到的利润；Meta 曾经一度占 Anthropic 营收的一成左右，但 Meta 靠模型优化广告算法、把用户停留时长拉长 5%，赚到的钱比 Anthropic 赚到的多得多。Patel 的推论是，这正是 AGI 的本质：如果模型真能替代整个白领岗位，省下的那份工资才是真正的大钱，而这笔钱目前几乎全部流向了使用模型的一方，不是造模型的一方。",
+          "summary_en": "SemiAnalysis founder Dylan Patel tells Dwarkesh that most of the value AI models generate isn't landing at OpenAI or Anthropic, it's being captured by the customers using them. He gives two examples: Jane Street, one of Anthropic's biggest customers, generates far more value from Claude than Anthropic profits from the subscription; Meta, once rumored to be roughly 10% of Anthropic's revenue, makes far more money than Anthropic does by using models to optimize ad algorithms and stretch engagement time by 5%. Patel's point is that this is the real shape of AGI: if models can genuinely replace white-collar labor, the saved wages are the real money, and right now nearly all of it flows to whoever's using the model, not whoever built it.",
+          "why": "跟 Zen 关心的应用和商业化角度直接相关：模型层的护城河越来越薄，真正赚钱的往往是把模型用出效率的下游公司，这也是判断一个 AI 项目该不该做、该怎么定价的重要参照。",
+          "why_en": "Directly relevant to how AI value gets captured downstream: the model layer's moat keeps thinning, and the real money tends to go to whichever downstream company turns the model into efficiency, a useful reference point for deciding whether an AI project is worth building and how to price it."
+        },
+        {
+          "title": "非技术员工自己搭 agent，公司完全不知道",
+          "title_en": "Non-technical staff are building their own agents, and companies have no idea",
+          "author": "Ofir Ehrlich & Gonen Stein (Eon) · No Priors",
+          "author_en": "Ofir Ehrlich & Gonen Stein (Eon) · No Priors",
+          "likes": 389,
+          "url": "https://www.youtube.com/watch?v=VGPs7mBr8xk",
+          "summary": "Eon 的 Ofir Ehrlich 和 Gonen Stein 在 No Priors 播客里谈「影子 AI」：现在不光是工程师，任何一个非技术员工都能用 Lovable 这类工具给自己搭一个小应用，顺手就把公司数据放了进去，完全不清楚数据权限、合规、谁能访问这些问题。更麻烦的是，这些自建的 agent 有时候还会去调用别的 agent，形成一整套没人监管、也不在公司系统边界内运行的角色，却在处理属于公司的敏感数据。两人认为这是「人人都能当建造者」这件事的另一面：好处是创造力被释放了，坏处是组织里多出一整层不受规则约束的行动者。",
+          "summary_en": "Eon's Ofir Ehrlich and Gonen Stein discuss \"shadow AI\" on No Priors: not just engineers but any non-technical employee can now spin up a small app with a tool like Lovable and casually feed company data into it, with no clarity on data permissions, compliance, or who can access what. Worse, these self-built agents sometimes call other agents, forming a whole layer of actors nobody governs and that don't run within the company's system boundaries, while still handling data that belongs to the company. Their read is that this is the flip side of everyone becoming a builder: creativity gets unlocked, but the organization also gains a whole layer of actors not bound by its rules.",
+          "why": "这是企业采用 AI 过程中一个正在快速变大的真实风险点，适合任何管理团队或产品线的人，在自己公司内部先摸一遍底。",
+          "why_en": "A real, fast-growing risk in enterprise AI adoption, worth a first pass for anyone managing a team or product line inside their own company."
+        },
+        {
+          "title": "无差别 Demo，等于当场丢单",
+          "title_en": "A generic demo is a deal lost on the spot",
+          "author": "Jen Abel (General Manager, State Affairs) · Lenny's Podcast",
+          "author_en": "Jen Abel (General Manager, State Affairs) · Lenny's Podcast",
+          "likes": 916,
+          "url": "https://www.youtube.com/watch?v=5Yiv6RUDGEU",
+          "summary": "State Affairs 总经理 Jen Abel 在 Lenny's Podcast 上说，销售过程里最致命的错误，就是进入 demo 环节后从头到尾按标准流程讲一遍，不先搞清楚客户到底在乎什么。企业级大单靠的是「这东西感觉就是专门为我做的」，要拿下最大的那批客户，就不能走跟所有人一样的套路。她的具体做法是，一次 demo 里 80% 的价值往往只来自产品 20% 的功能，所以每次演示该讲哪 20%，是要跟着这个客户单独定的，没有两次 demo 应该长得一样。",
+          "summary_en": "State Affairs General Manager Jen Abel says on Lenny's Podcast that the worst mistake in a sales process is walking straight into a generic demo without first learning what the customer actually cares about. Enterprise deals are won on \"this feels like it was built specifically for me,\" and landing the biggest logos means not running the same playbook everyone else runs. Her rule of thumb: 80% of a demo's value usually comes from just 20% of the product, so which 20% you show has to be picked for that specific customer, and no two demos should look the same.",
+          "why": "直接对应 Zen 关心的销售和 GTM 战术，是可以立刻拿去检查自己下一次演示准备方式的具体建议。",
+          "why_en": "Maps directly to sales and GTM tactics, a concrete suggestion that can be checked against how you're preparing your next demo."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "items": [
+        {
+          "title": "一个漏洞的风声，几分钟内就能被造出攻击",
+          "title_en": "Just a rumor of a bug, and an exploit follows within minutes",
+          "author": "Simon Willison（引 Anil Madhavapeddy、Nick Craig-Wood）",
+          "author_en": "Simon Willison (citing Anil Madhavapeddy, Nick Craig-Wood)",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/",
+          "summary": "剑桥大学教授、OCaml 编译器核心维护者 Anil Madhavapeddy 说，现在一个安全问题的补丁刚拿出来公开讨论，大约十分钟内就有自动化探测跟着来试路径穿越漏洞，而过去这个节奏通常是几天到一两周。他自己用 agent 复现漏洞时，Claude Fable 拒绝配合，换成 DeepSeek V4 Pro 才做出来。rclone 维护者 Nick Craig-Wood 在 Hacker News 评论区证实了同样的变化：项目头十年一共收到约 20 次安全披露，上个月一个月就收到 40 多次，其中约七成确实有问题；GitHub 分配 CVE 编号的等待时间，也从两三天拉长到三四周，逼得他只能带着 CVE-PENDING 标记先发补丁。",
+          "summary_en": "Cambridge professor and OCaml compiler core maintainer Anil Madhavapeddy reports that a security patch shared for public discussion now draws automated probes for path-traversal exploits within about ten minutes, versus days to a week or two previously. When reproducing an exploit with an agent himself, Claude Fable refused the task and he had to switch to DeepSeek V4 Pro to get it done. rclone maintainer Nick Craig-Wood confirms the same shift in Hacker News comments: the project received about 20 security disclosures in its first ten years combined, versus over 40 in the last month alone, about 75% of them genuine; GitHub's own CVE-assignment wait time has stretched from 2-3 days to 3-4 weeks, forcing him to ship point releases marked CVE-PENDING.",
+          "why": "对任何维护公开代码仓库的人都直接相关：过去按天甚至按周设计的安全披露和补丁节奏，现在要按分钟重新算。",
+          "why_en": "Directly relevant to anyone maintaining a public code repo: disclosure and patch timelines built around days or weeks now need to be re-planned around minutes."
+        }
+      ]
+    }
+  ]
+}
