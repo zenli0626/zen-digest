@@ -1,7 +1,7 @@
 {
   "date": "2026-08-30",
   "partial": false,
-  "banner": "两实验室，吞下全球新增算力一半",
+  "banner": "两家实验室，吞下全球新增算力一半",
   "banner_en": "Two labs are about to own half the world's new compute",
   "image": {
     "src": "digests/img/2026-08-30.jpg",
@@ -24,7 +24,7 @@
       "source_en": "Lenny's Podcast · YouTube"
     },
     {
-      "text": "今晚花五分钟，翻看近期 Claude Code 生成的 commit message 或 PR 描述，看底部是否自动帶有 session URL 链接。做法：用 git log 查看最近提交，或到 GitHub 看近期 PR，找到后去 Claude Code 设置确认是否默认开启、能否关闭。完成标志：你清楚自己提交历史是否被悄悄塞入这类链接，以及是否需要关闭。背景：一条获 182 赞、203 条评论的 GitHub issue 指出，许多人提交后才首次注意该链接入史，非自选。",
+      "text": "今晚花五分钟，翻看近期 Claude Code 生成的 commit message 或 PR 描述，看底部是否自动带有 session URL 链接。做法：用 git log 查看最近提交，或到 GitHub 看近期 PR，找到后去 Claude Code 设置确认是否默认开启、能否关闭。完成标志：你清楚自己提交历史是否被悄悄塞入这类链接，以及是否需要关闭。背景：一条获 182 赞、203 条评论的 GitHub issue 指出，许多人提交后才首次注意到这条链接已经进了历史记录，并非自己选择加入。",
       "source": "GitHub · anthropics/claude-code",
       "source_url": "https://github.com/anthropics/claude-code/issues/66504",
       "text_en": "Tonight, five minutes: check a few of your recent Claude Code commit messages or PR descriptions for a session URL link auto-appended at the bottom. Run git log on recent commits, or check a recent PR on GitHub, and if you find one, check Claude Code's settings for whether it's on by default and how to turn it off. Done when you know whether this has been quietly added to your commit history, and whether you want it gone. One line of background: a GitHub issue with 182 points and 203 comments says most people only notice this link after it's already in their history, not because they chose it.",
