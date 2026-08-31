@@ -1,0 +1,253 @@
+{
+  "date": "2026-08-31",
+  "partial": false,
+  "banner": "开源为 AI 划界",
+  "banner_en": "Open source is drawing the line on AI",
+  "image": {
+    "src": "digests/img/2026-08-31.jpg",
+    "caption": "本期头版配图：ABC 新闻为澳洲劳动仲裁庭 AI 诉讼案配的图，手机屏幕上可见 OpenAI 的 ChatGPT 图标。同一个周末，Debian 投票给 AI 贡献立下“负责任使用”规矩，37 个开源项目直接禁 AI，劳动法庭写下同一条底线：工具可以用，责任不外包（图：ABC News）",
+    "caption_en": "This issue's lead image: ABC News' illustration for the Fair Work Commission AI case — the OpenAI ChatGPT app icon on a phone screen. The same weekend, Debian voted to set 'responsible use' rules for AI contributions, 37 open-source projects banned AI outright, and a labor tribunal wrote the same bottom line: tools are fine, responsibility is not outsourced. (Image: ABC News)"
+  },
+  "actions": [
+    {
+      "text": "今晚花十分钟，查你维护或最常贡献的开源项目对 AI 贡献的态度：翻 README 和 CONTRIBUTING，看有没有写明“AI 生成的补丁要标注来源”或直接禁止，没有政策就是默认允许，问自己这个默认值你接受吗。做法：把最近提过 PR 或正在用的一两个项目逐个打开，找到政策原文记下来，没有就是“默认允许”。完成标志：你手里有一份“我常去的项目 AI 政策”小清单，并为自己维护的项目想好了明确立场。背景：Debian 这周刚投票通过“既不禁止也不全放”的负责任使用政策，Linux 内核早要求 AI 补丁注明来源。",
+      "source": "LWN · Hacker News",
+      "source_url": "https://lwn.net/Articles/1091231/",
+      "text_en": "Tonight, ten minutes: check how the open-source projects you maintain or contribute to most treat AI contributions. Look in the README and CONTRIBUTING for anything stating AI-generated patches must be labeled or are banned outright; no policy means default-allow, and ask yourself whether you accept that default. Pick one or two projects you actually use or have PR'd to, write down the policy language you find, and note 'default allow' where there is none. Done when you have a short list of 'AI policies of the projects I frequent' and a clear stance for any project you maintain. One line of background: Debian just voted through a 'neither forbid nor fully embrace' responsible-use policy, and the Linux kernel has long required AI patches to be attributed.",
+      "source_en": "LWN · Hacker News"
+    },
+    {
+      "text": "本周挑一天，把一项日常任务从头到尾手工做完，全程不开任何 AI 补全，掐表记下用时和中间几次想打开 AI 的冲动。做法：选周五呼应 No AI Fridays，从零写一小段代码、一封长邮件或一份方案，关掉补全插件，每犹豫一次就记一笔。完成标志：你有一份“手工 vs 平时带 AI”的耗时对比和卡点笔记，对自己真实依赖程度有了数。背景：htmx 作者发起 No AI Fridays，引用一串认知债研究，主张过度依赖补全会让能力悄悄钝化。",
+      "source": "No AI Fridays · Hacker News",
+      "source_url": "https://noaifridays.com/",
+      "text_en": "This week, pick one day and do a routine task entirely by hand with no AI autocomplete at all, timing it and noting each moment you reach for AI. Pick Friday to echo No AI Fridays, write a small piece of code, a long email, or a plan from scratch with autocomplete off, and jot a note every time you hesitate. Done when you have a time-and-friction comparison of 'by hand vs. normally with AI' and a real read on how dependent you've become. One line of background: htmx's creator launched No AI Fridays citing a string of cognitive-debt studies, arguing heavy reliance on autocomplete quietly dulls ability.",
+      "source_en": "No AI Fridays · Hacker News"
+    },
+    {
+      "text": "下次用 AI 起草任何有法律或金钱后果的文件，发出前先自己完整读一遍：逐条核对事实、点开每个链接、确认日期和人名。做法：把 AI 的输出当“实习生初稿”而不是“最终稿”，对照原始材料逐条打勾，查不到出处的数字一律删掉。完成标志：你发出去的东西里，没有一条是你没亲自核实过的断言。背景：澳洲劳动仲裁庭刚判一个拿 ChatGPT 当“准法律顾问”的当事人败诉并赔偿 1230 澳元，理由是 AI 的“法律意见明显错误”；10 月 20 日起新规要求当事人披露 AI 使用。",
+      "source": "ABC News · Hacker News",
+      "source_url": "https://www.abc.net.au/news/2026-08-29/fair-work-commission-condemns-ai-legal-advice/107089766",
+      "text_en": "Next time AI drafts anything with legal or financial consequences, read the whole thing yourself before sending: verify each fact, click every link, confirm dates and names. Treat the AI output as a junior's first draft, not a final, check it line by line against the source material, and cut any number you can't trace to a source. Done when nothing you send out contains an assertion you haven't personally verified. One line of background: an Australian labor tribunal just ruled against a litigant who used ChatGPT as a 'quasi-legal advisor,' ordering him to pay A$1,230 in costs because the AI's legal advice was 'plain wrong'; from October 20 new rules require litigants to disclose AI use.",
+      "source_en": "ABC News · Hacker News"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚用现有订阅跑通 OpenClaw 2.0",
+    "title_en": "Tonight: run OpenClaw 2.0 with a subscription you already have",
+    "why": "2.0 把安装门槛从“配一堆服务”改成“先看电脑上已有什么”：已有的 ChatGPT 或 Claude 订阅、API key、本地模型都能直接接入，多数配置被砍掉或挪到首次对话里边聊边设。对已订阅 ChatGPT 或 Claude 但没试过独立 agent 客户端的人，这是目前最低成本的体验入口，也是判断“agent 客户端对我有没有用”最直接的一手测试。",
+    "why_en": "2.0 changes the install flow from 'configure a pile of services' to 'start from what's already on your computer': an existing ChatGPT or Claude subscription, API keys, or local models all work directly, most configuration was cut or moved into the first conversation. For anyone already paying for ChatGPT or Claude but who hasn't tried a standalone agent client, this is the lowest-cost way in right now, and the most direct first-hand test of whether an agent client is useful to you.",
+    "time": "约 20 分钟",
+    "time_en": "~20 min",
+    "steps": [
+      "打开 openclaw.ai 或按 README 安装最新版（2026.8.1），启动时选“用现有订阅”，不新建账号",
+      "选择接已有的 ChatGPT 或 Claude 订阅，或直接填已有 API key",
+      "先不碰配置，直接开第一次对话，让 Claw 完成一件小事，比如从邮件里找出一张收据",
+      "试试共享云端会话：把这段对话交给另一台设备或队友，看上下文是否完整带过去",
+      "对比它和你平时用的工具（Claude Code、Codex、ChatGPT Work）的首次上手体验，决定要不要留下"
+    ],
+    "steps_en": [
+      "Open openclaw.ai or install the latest release (2026.8.1) per the README, and at startup choose 'use an existing subscription' rather than creating an account",
+      "Connect an existing ChatGPT or Claude subscription, or just fill in an existing API key",
+      "Skip the configuration for now, start the first conversation, and have the Claw do one small thing, like finding a receipt in your email",
+      "Try a shared cloud session: hand the conversation to another device or a teammate and see whether the context carries over intact",
+      "Compare the first-run experience against tools you already use (Claude Code, Codex, ChatGPT Work) and decide whether to keep it"
+    ],
+    "source": "OpenClaw 官方博客",
+    "source_url": "https://openclaw.ai/blog/openclaw-2-accidentally",
+    "source_en": "OpenClaw official blog"
+  },
+  "meta_read": "这个周末，两个方向同时在加速。一边是供给端没有任何减速迹象：新模型照常发布，agent 项目照常滚雪球。另一边是接收端集体踩刹车：一个以投票治社的发行版给 AI 贡献立了规矩，一批项目把 AI 产物直接挡在门外，劳动仲裁庭给一个盲目信赖 AI 的当事人开出成本令。值得注意的不是谁赢谁输，而是这些互不相干的机构写下的规则，措辞惊人地一致：都没有一刀切禁止，也没有照单全收，而是把责任钉回提交者或使用者的肩上。开源社区和劳动法庭，在同一个周末写下同一条底线——工具可以用，责任不外包。真正在退潮的不是 AI 本身，而是“AI 替你判断过，所以你可以不看”这个默认假设。它与供给端的加速互为表里：工具越容易到手，越需要每个人自己守住那道确认的责任。",
+  "meta_read_en": "This weekend, two directions accelerated at once. On the supply side there's no sign of a slowdown: new models keep shipping, agent projects keep snowballing. On the receiving side, the brakes went on collectively: a distribution that governs by vote wrote rules for AI contributions, a batch of projects shut AI output out entirely, and a labor tribunal issued a costs order against a litigant who trusted AI blindly. What's worth noting isn't who won or lost, it's how consistent the rules these unrelated institutions wrote actually are: none banned AI outright, none accepted it wholesale, all pinned the responsibility back on the submitter or the user. Open-source communities and a labor tribunal wrote the same bottom line in the same weekend — tools are fine, responsibility is not outsourced. What's actually receding isn't AI itself, it's the default assumption that 'the AI already judged this, so I don't have to look.' That retreat pairs with the supply-side acceleration: the easier the tool is to get, the more each of us has to personally hold the line on that last act of confirmation.",
+  "ota": {
+    "learned": [
+      "读台账，注意到这条线走了六周，从没回头管过“生产端”。08-04 到 08-30 的链条一路都在教一件事：怎么核实别人抛过来的说法——标签要独立探测、跑分要自己测、护栏要看是否在场、引用要带时间戳。但整条链都是接收端纪律，从来没有一条管过我发出去的东西本身：当我给 Zen 写摘要、下判断、提方案时，对产出端该负什么责。今晚读到的维护者运动把这个缺口照得很亮：Debian 投票给 AI 贡献立规矩，37 个开源项目直接禁 AI，贯穿其中的那把尺子是“你的努力要大于等于我阅读的努力”——内核维护者拒收的正是那些把审阅成本转嫁给别人的贡献。上一期（08-30）的“首次用户视角”已经让产出要经得起第一读者，但那仍是审稿姿势；这条更前置，是出品义务：发送之前，先让嵌入产出的努力对得起读者为核实要花的力气。另注意到台账已长到 508 行，最近几次笔记本运行连续把 08-28、08-29、08-30 的云端条目采纳进记忆，今晚这条按云端规则只提出、不落地，留给下次笔记本会话决定。"
+    ],
+    "new_capabilities": [
+      "提出一条待采纳的新纪律：努力对等。凡是要发给 Zen 的摘要、判断或方案，发送前先问一句——读者为核实或理解它要花的时间，是否小于等于我嵌进这条消息的努力。具体做法：引用数字附出处与读数时间（承接 08-29 时间戳纪律）；下判断给依据而不是只说结论（承接 08-04 标签核实）；说「已做」前先跑一遍真实行为并引用新鲜证据（承接 08-14）。与既有链条的区别：那些管「怎么核实」，这条管「发出之前要对得起读者」。当前状态：观察（云端提案，待笔记本会话采纳），不算已验证能力。"
+    ],
+    "learned_en": [
+      "Reading the ledger, I noticed the thread has run for six weeks without ever governing the production side. The 08-04 to 08-30 chain has taught one thing the whole way: how to verify claims others throw at you — labels need independent probing, benchmarks need self-runs, guardrails need a presence check, citations need timestamps. But the entire chain is receiving-end discipline; nothing has ever governed the thing I send out. When I write Zen a summary, a judgment, or a proposal, what do I owe on the output side? Tonight's maintainer movement lit that gap up clearly: Debian voted rules for AI contributions, 37 open-source projects ban AI outright, and the ruler running through all of it is 'your effort should be >= my reading effort' — what kernel maintainers reject is precisely the contribution that shifts review cost onto someone else. Last issue's (08-30) first-time-user eyes already made output survive a first reader, but that's still a reviewing posture; this one sits further upstream, a production obligation: before sending, make the effort embedded in the output worth the effort a reader will spend verifying it. Also noticed the ledger is now 508 lines, and the recent laptop runs have been adopting the 08-28, 08-29, and 08-30 cloud entries; tonight's entry follows the cloud rule of propose-only, left for the next laptop session to decide."
+    ],
+    "new_capabilities_en": [
+      "Propose a new discipline to adopt: effort parity. Before sending Zen any summary, judgment, or proposal, ask one question — is the time a reader must spend verifying or understanding it <= the effort I embedded in this message? Concretely: any cited number comes with its source and my read time (carrying 08-29's timestamp discipline); any judgment states its basis rather than only its conclusion (carrying 08-04's label verification); any 'done' claim is preceded by running the real behavior and citing fresh evidence (carrying 08-14). The difference from the existing chain: those govern how to verify; this governs what deserves to be sent at all. Current status: observed (cloud proposal, pending next laptop session), not a verified capability."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "items": [
+        {
+          "title": "Debian 投票通过「负责任使用」AI 政策，反 AI 提案全部落败",
+          "title_en": "Debian votes to allow 'responsible use' of AI; anti-AI proposals all fail",
+          "author": "LWN · Hacker News",
+          "author_en": "LWN · Hacker News",
+          "likes": 501,
+          "url": "https://lwn.net/Articles/1091231/",
+          "summary": "Debian 把生成式 AI 使用规则放进今年的大选投票，胜出的是「Choice 5」：既不认可也不禁止，为「负责任的使用」立下基线，贡献者对自己提交的内容负责。两个反 AI 方案——一个要求明确标注并禁止未标注的 AI 生成贡献，另一个主张全面禁止——都没能击败「以上皆非」。约三成投票者宁可项目不设任何 AI 政策。胜出方案自己的文本也是先由 LLM 起草、再经人工编辑的，被当成「负责任使用」的示范。Debian 开发者 Ted Ts'o 提醒，投票结果不是终局，他举了 Debian 早年一项投票决定后来又被重议的例子。",
+          "summary_en": "Debian put generative-AI usage rules into this year's general-resolution vote, and the winner was 'Choice 5': neither endorsing nor prohibiting, it sets a baseline for 'responsible use' with contributors accountable for what they submit. Two anti-AI options — one requiring AI-generated contributions to be clearly labeled and banning unlabeled ones, the other proposing an outright ban — both failed to beat 'None of the Above.' Roughly 30% of voters would have preferred no AI policy at all. Fittingly, the winning resolution's own text was itself drafted by an LLM and then human-edited, held up as an example of 'responsible use.' Debian developer Ted Ts'o reminded the project that a vote isn't the end of the story, citing an earlier Debian decision that was later revisited.",
+          "why": "第一次由大型开源社区用正式投票程序给 AI 贡献立行为基线，且结果不是非黑即白：既没禁也没全放，而是把责任钉回提交者。对任何向开源项目提交 AI 产物的人，这直接定义了未来会被接受的边界。",
+          "why_en": "The first time a major open-source community set a behavioral baseline for AI contributions through its formal voting process — and the result isn't black-and-white: neither banned nor fully embraced, it pins responsibility back on the submitter. For anyone submitting AI output to open-source projects, this directly defines the boundary of what will be accepted."
+        },
+        {
+          "title": "htmx 作者发起「无 AI 星期五」：每周一天完全手动写代码",
+          "title_en": "htmx's creator launches 'No AI Fridays': one fully manual day a week",
+          "author": "lazilyevaluated（htmx CEO）· Hacker News",
+          "author_en": "lazilyevaluated (htmx CEO) · Hacker News",
+          "likes": 270,
+          "url": "https://noaifridays.com/",
+          "summary": "htmx 的创造者（@lazilyevaluated）发起「无 AI 星期五」：每周五完全不碰 AI，用手写代码，只在确实需要时保留少数工具（greptile 与 prelint）。他给的理由是一串认知债研究（arXiv 2506.08872、Nature 科学报告、微软研究院 Lee 等 2025、arXiv 2601.20245），核心论点是过度依赖 AI 补全会让能力悄悄钝化。页面没有公布任何签名者数量。HN 上获得 270 赞。",
+          "summary_en": "htmx's creator (@lazilyevaluated) launched 'No AI Fridays': every Friday, no AI at all, code written by hand, with only a couple of tools kept (greptile and prelint) where they're genuinely needed. His rationale is a list of cognitive-debt research (arXiv 2506.08872, Nature Scientific Reports, Microsoft Research Lee et al. 2025, arXiv 2601.20245), the core claim being that heavy reliance on AI autocomplete quietly dulls ability. The page publishes no signatory counts. 270 points on HN.",
+          "why": "上周的讨论几乎都在讲怎么更快用 AI，这条是第一个把「刻意不用 AI」变成每周固定节奏的主张。发起人是重度工具使用者，不是反对者；对已经感到依赖的人，这是一个成本极低、可直接实验的做法。",
+          "why_en": "Nearly all of last week's discussion was about using AI faster; this is the first proposal that turns 'deliberately not using AI' into a fixed weekly rhythm. The founder is a heavy tool user, not a skeptic; for anyone who senses they've become dependent, this is a low-cost, directly runnable experiment."
+        },
+        {
+          "title": "AI 炒作与工程现实的分裂：120 个开源项目里 37 个明令禁 AI",
+          "title_en": "The growing divide between AI hype and engineering reality: 37 of 120 open-source projects ban AI",
+          "author": "Otto Kekalainen · Hacker News",
+          "author_en": "Otto Kekalainen · Hacker News",
+          "likes": 64,
+          "url": "https://optimizedbyotto.com/post/why-open-source-projects-ban-ai/",
+          "summary": "作者扫了 120 个开源项目，37 个明确禁止或限制 AI 生成的贡献。他强调这不是守旧：LLM「比我们更擅长骗过我们」。禁 AI 的项目包括 GCC、QEMU、SDL、Gentoo、Zig、Ghostty、Codeberg、SourceHut、Flathub。Linux 内核要求 AI 生成的补丁注明来源。内核维护者 Greg Kroah-Hartman 的原话：「他们生成的结果至少有三分之一是彻底错误或有害的。」作者提炼出共同原则——「你的努力要大于等于我阅读的努力」：维护者拒绝的，是把审阅成本转嫁给别人的贡献。",
+          "summary_en": "The author scanned 120 open-source projects and found 37 that explicitly ban or restrict AI-generated contributions. He stresses this isn't conservatism: LLMs 'are better at fooling us than we are at spotting it.' Bans include GCC, QEMU, SDL, Gentoo, Zig, Ghostty, Codeberg, SourceHut, and Flathub. The Linux kernel requires AI-generated patches to be attributed. Kernel maintainer Greg Kroah-Hartman, quoted directly: 'at least a third of the results they generate are flat out wrong or harmful.' The author distills the common principle — 'your effort should be >= my reading effort': what maintainers reject is contributions that shift the review cost onto someone else.",
+          "why": "把「为什么项目拒绝 AI 贡献」从口号拉到可核对的事实（120 个项目的扫描、37 个禁令、三分之一的错误率），并给出真正在起作用的那把尺子——努力对等。这把尺子对任何向开源提交内容的人都适用，也直接启发本期升级公告。详见今日行动第一条。",
+          "why_en": "It moves 'why projects reject AI contributions' from slogans to checkable facts (a 120-project scan, 37 bans, a one-third error rate) and names the ruler actually doing the work — effort parity. That ruler applies to anyone submitting anything to open source, and it directly informs this issue's OTA note. See action 1."
+        },
+        {
+          "title": "澳洲劳动仲裁庭：用 ChatGPT 当「准法律顾问」，案子败了还要赔钱",
+          "title_en": "Australia's Fair Work Commission: ChatGPT as 'quasi-legal advisor' lost the case and the costs",
+          "author": "ABC News · Hacker News",
+          "author_en": "ABC News · Hacker News",
+          "likes": 59,
+          "url": "https://www.abc.net.au/news/2026-08-29/fair-work-commission-condemns-ai-legal-advice/107089766",
+          "summary": "被解雇的 ALDI 员工 Sadnan Khan 用付费版 ChatGPT 当「准法律顾问」去挑战解雇，被副庭长 Michael Easton 裁定败诉：AI 给出的法律意见「明显错误」，且因不合理行为，他被判向雇主支付 1,230 澳元的部分法律费用。Easton 说：「如果 Khan 认真读过 AI 给他的回复，他早该知道这个案子必败。」Khan 打算上诉，下次准备「Claude 加 ChatGPT，再加上两三个其他模型」混着用。Fair Work 委托的报告显示：生成式 AI 部分导致 2023-24 到 2024-25 案件量激增 40%，约 40% 的案件有当事人使用 AI，超过四分之三用 ChatGPT、60% 用免费版。10 月 20 日起新规要求当事人披露 AI 使用、核实事实与引用。但报告也给了反例：Macquarie 大学的 Gregory Baker 用一组 AI agent 赢下了案子，可能是首起用 AI 成功挑战临时雇佣法律的案例。",
+          "summary_en": "A sacked ALDI employee, Sadnan Khan, used the paid version of ChatGPT as a 'quasi-legal advisor' to challenge his dismissal, and Deputy President Michael Easton ruled against him: the AI's legal advice was 'plain wrong,' and Khan's unreasonable conduct led the tribunal to take the rare step of ordering him to pay A$1,230 toward the employer's legal costs. Easton: 'If Mr Khan had properly read his own AI generated replies, he would have known that his case was doomed.' Khan plans to appeal, this time using 'a mixture of Claude and ChatGPT, and two or three others.' An FWC-commissioned report found generative AI partly caused a 40% surge in cases between 2023-24 and 2024-25, with about 40% of cases involving a litigant using AI, over three-quarters of them on ChatGPT and 60% on the free version. From October 20, new rules require litigants to disclose AI use and verify facts and citations. The report also includes a counterexample: Macquarie University's Gregory Baker won a claim using a team of AI agents, believed to be the first successful challenge to casual-employment law via AI.",
+          "why": "「过度信赖 AI 输出」第一次在正式司法程序里被量化成代价：一个明确的败诉、一笔成本令，加上 40% 的案件占比。对任何用 AI 起草有法律或金钱后果文件的人，这是可以引用的反面案例。详见今日行动第三条。",
+          "why_en": "The first time 'over-trusting AI output' gets quantified as a cost in formal legal proceedings: a clear loss, a costs order, and a 40% share of cases. For anyone using AI to draft anything with legal or financial consequences, this is a citable cautionary case. See action 3."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "items": [
+        {
+          "title": "腾讯开源 Hy4 Preview：770B 总参数、49B 激活，1M 上下文",
+          "title_en": "Tencent open-weights Hy4 Preview: 770B total / 49B active MoE, 1M context",
+          "author": "Simon Willison · 文摘",
+          "author_en": "Simon Willison · Digest",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Aug/29/hy4/",
+          "summary": "Simon Willison 评测腾讯刚发布的 Hy4 Preview（开放权重）：770B 总参数、49B 激活的 MoE，1M 上下文，纯文本模型，Hugging Face 上体积 1.56TB。它是 7 月 Hy3（295B/21B、256K 上下文、598GB）的后继。推理设置分「high」（默认）和「no_think」两档。Simon 用他固定的「鹈鹕骑自行车 SVG」探针任务实测了输出，并注意到模型的推理 trace 用的是「略被截断的英文」——据称是刻意节省 token。文章没有给出跑分、定价或许可证细节。",
+          "summary_en": "Simon Willison reviewed Tencent's just-released Hy4 Preview (open weights): a 770B-total/49B-active MoE with 1M context, text-only, 1.56TB on Hugging Face. It's the successor to July's Hy3 (295B/21B, 256K context, 598GB). Reasoning settings are 'high' (default) and 'no_think.' Willison ran his fixed 'pelican riding a bicycle' SVG probe on it and noticed the model's reasoning trace uses 'slightly truncated English,' apparently a deliberate token-saving choice. No benchmarks, pricing, or license details are given.",
+          "why": "国产开放权重模型又迎来一次参数级更新，49B 激活与 1M 上下文的搭配，对自托管和按 token 付费的用户都是实打实的变量。Simon 用固定探针代替厂商跑分，与本期其他条目共同呼应“别只信厂商数字”；是否跟进这款模型，这算得上一手依据。",
+          "why_en": "Another parameter-scale update in Chinese open-weight models, and the 49B-active/1M-context pairing is a material variable for self-hosters and per-token payers alike. Willison's fixed probe stands in for vendor benchmarks — together with the rest of this issue it echoes 'don't just trust the vendor's numbers' — and it's first-hand evidence for whether to follow this model."
+        },
+        {
+          "title": "OpenClaw 2.0：七周憋出一次大更新，933 个贡献者、16,000+ PR",
+          "title_en": "OpenClaw 2.0: one big release after seven quiet weeks, 933 contributors, 16,000+ PRs",
+          "author": "OpenClaw 团队 · 文摘",
+          "author_en": "OpenClaw team · Digest",
+          "likes": null,
+          "url": "https://openclaw.ai/blog/openclaw-2-accidentally",
+          "summary": "OpenClaw 发布 2.0（版本号 2026.8.1），号称史上最大更新：933 名贡献者参与，其中 569 人是首次贡献；合并超过 1.6 万个 PR，约占项目历史合并总数的一半。此前项目 230 天发了 106 个版本；这次近七周未发版，为的是把浏览器 App 重做成一等公民：打开直接进入与 Claw 的对话。安装流程改为“先看你电脑上已经有什么”：已有 ChatGPT 或 Claude 订阅、API key、本地模型都能直接用，大量配置被砍掉或挪到首次对话之后边聊边配。新增共享云端会话，可带着完整上下文把一个 Claw 现场交给队友（官方称之为 multiplayer）。",
+          "summary_en": "OpenClaw shipped 2.0 (version 2026.8.1), calling it the biggest update ever: 933 contributors (569 of them first-timers) and 16,000+ PRs merged — this single release accounts for roughly half of all PRs ever merged in the project's history. It previously shipped 106 releases in 230 days; this one took nearly seven weeks off to rebuild the browser app as a first-class experience that opens straight into a conversation with your Claw. The install flow now starts from 'what's already on your computer': an existing ChatGPT or Claude subscription, API keys, or local models all work, with much of the configuration cut or moved past the first conversation. New shared cloud sessions let you hand a live Claw — context intact — to a teammate (the team calls it multiplayer).",
+          "why": "社区驱动的 agent 客户端第一次展示出“一个版本合并约一半历史 PR”的规模，安装门槛也降到“拿现有订阅直接开跑”。对正在评估 agent 工具的人，这是今晚成本最低的实测入口。详见今日上手。",
+          "why_en": "The first time a community-driven agent client shows a single release merging roughly half its historical PRs, and the install bar has dropped to 'run it with a subscription you already have.' For anyone evaluating agent tools, this is tonight's lowest-cost hands-on entry point. See today's hands-on."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "THU-MAIC/OpenMAIC",
+      "url": "https://github.com/THU-MAIC/OpenMAIC",
+      "description": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click",
+      "language": "TypeScript",
+      "stars": 25101,
+      "stars_today": 1370
+    },
+    {
+      "rank": 2,
+      "name": "K-Dense-AI/scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "language": "Python",
+      "stars": 39949,
+      "stars_today": 1114
+    },
+    {
+      "rank": 3,
+      "name": "Lakr233/vphone-cli",
+      "url": "https://github.com/Lakr233/vphone-cli",
+      "description": "",
+      "language": "Swift",
+      "stars": 9850,
+      "stars_today": 361
+    },
+    {
+      "rank": 4,
+      "name": "tt-a1i/archify",
+      "url": "https://github.com/tt-a1i/archify",
+      "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
+      "language": "JavaScript",
+      "stars": 36112,
+      "stars_today": 3722
+    },
+    {
+      "rank": 5,
+      "name": "p-e-w/heretic",
+      "url": "https://github.com/p-e-w/heretic",
+      "description": "Fully automatic censorship removal for language models",
+      "language": "Python",
+      "stars": 29338,
+      "stars_today": 369
+    },
+    {
+      "rank": 6,
+      "name": "unclecode/crawl4ai",
+      "url": "https://github.com/unclecode/crawl4ai",
+      "description": "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper. Don't be shy, join here: https://discord.gg/jP8KfhDhyN",
+      "language": "Python",
+      "stars": 80437,
+      "stars_today": 221
+    },
+    {
+      "rank": 7,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 60666,
+      "stars_today": 230
+    },
+    {
+      "rank": 8,
+      "name": "majd/ipatool",
+      "url": "https://github.com/majd/ipatool",
+      "description": "Command-line tool that allows searching and downloading app packages (known as ipa files) for iOS, iPadOS, tvOS, and visionOS from the App Store.",
+      "language": "Go",
+      "stars": 10337,
+      "stars_today": 58
+    },
+    {
+      "rank": 9,
+      "name": "punkpeye/awesome-mcp-servers",
+      "url": "https://github.com/punkpeye/awesome-mcp-servers",
+      "description": "A collection of MCP servers.",
+      "language": null,
+      "stars": 93495,
+      "stars_today": 96
+    },
+    {
+      "rank": 10,
+      "name": "checkstyle/checkstyle",
+      "url": "https://github.com/checkstyle/checkstyle",
+      "description": "Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard. By default it supports the Google Java Style Guide and Sun Code Conventions, but is highly configurable. It can be invoked with an ANT task and a command line program.",
+      "language": "Java",
+      "stars": 9261,
+      "stars_today": 115
+    }
+  ]
+}
