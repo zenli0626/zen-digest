@@ -1,0 +1,154 @@
+{
+  "date": "2026-08-31",
+  "partial": false,
+  "banner": "AI 工具半衰期，缩到只剩几个月",
+  "banner_en": "AI tooling's half-life is down to months",
+  "image": {
+    "src": "digests/img/2026-08-31.jpg",
+    "caption": "本期头版配图：Box CTO Ben Kus 在 AI Engineer 大会讲“agent 基础设施半衰期”时的画面。他说一年前在同一个讲台推荐的架构，如今已经被至少五代新做法取代（图：AI Engineer 大会）",
+    "caption_en": "This issue's lead image: a still from Box CTO Ben Kus's AI Engineer World's Fair talk on agent infrastructure's half-life. He says the architecture he recommended from this same stage a year ago has already been replaced by at least five newer approaches. (Image: AI Engineer World's Fair)"
+  },
+  "actions": [
+    {
+      "text": "今晚做一件事之前，先写清楚“什么信号能告诉我这件事做得对不对”，再动手，不要反过来。挑一件你打算靠 AI 加速完成的具体任务（写方案、做原型、发内容），花两分钟写下 1-2 个具体的验证信号（比如点击率、某个人的反馈、某项指标变化），再开始执行，做完后真的回去核对这个信号。完成标志：你能说出这次做得对不对的依据，而不是“感觉挺快挺顺”。背景：Lenny's Podcast 一段短片指出，AI 让执行几乎不冒风险，真正稀缺的反而是想法本身和验证想法的数据，建得快但没有数据支撑，只是更快地走错方向。",
+      "source": "Lenny's Podcast",
+      "source_url": "https://www.youtube.com/watch?v=KmhuMFcKAzw",
+      "text_en": "Tonight, before you start a task, write down what signal will tell you whether you did it right, then start, not the other way around. Pick something you're planning to speed up with AI (a proposal, a prototype, a piece of content), spend two minutes writing 1-2 concrete signals you'll check afterward (click-through rate, a specific person's feedback, a metric moving), then execute, and actually go check that signal once you're done. Done when you can point to real evidence for whether it worked, not just a feeling that it went fast and smooth. Background: a Lenny's Podcast clip argues AI has made execution nearly risk-free, so what's scarce now is the idea itself and the data to validate it, building fast without that data just means going off course faster.",
+      "source_en": "Lenny's Podcast"
+    },
+    {
+      "text": "如果你维护着一个内部工具、技能库或小型开源项目，今晚看一眼它现在“第一次上手”的门槛有多高。假装自己是第一次用的人，从零走一遍安装/配置流程，记下卡壳的每一步，挑其中最简单的一处降低门槛（比如加一条默认配置、减少一个必填参数）。完成标志：你写下了至少一处具体可以简化的步骤，不必今晚就改完。背景：开源 agent 平台 OpenClaw 这次意外升级到 2.0，933 位贡献者里 569 人是第一次提交，团队认为门槛降低本身就在直接拉新贡献者。",
+      "source": "OpenClaw 官方博客",
+      "source_url": "https://openclaw.ai/blog/openclaw-2-accidentally",
+      "text_en": "If you maintain an internal tool, skill library, or small open-source project, spend tonight looking at how high its first-time onboarding barrier actually is. Pretend you're a brand-new user and walk through the install/setup process from zero, note every point you get stuck, and pick the single easiest one to lower (a better default config, one fewer required parameter). Done when you've written down at least one concrete simplification, you don't have to ship it tonight. Background: 569 of the 933 contributors to OpenClaw's accidental 2.0 release were first-timers, and the team credits lowering the barrier itself with directly pulling in new contributors.",
+      "source_en": "OpenClaw blog"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚用 Promptfoo 给你常用的一个 AI 功能做一次真测速+测准",
+    "title_en": "Tonight: benchmark one of your AI workflows for real with Promptfoo",
+    "why": "这是 Adobe 团队在今天的演讲里选型时真正用的方法：不是凭感觉挑模型，而是用固定一批 prompt 同时跑多个候选，比较准确率和延迟，最后选出跑在 Cerebras 上的 Gemma 4，平均 1.1 秒生成一页、每秒 2200 多 token。Promptfoo 是开源命令行工具，不需要写代码，今晚就能照这个思路给自己常依赖的一个 AI 功能做一次真实测试，而不是继续凭“感觉好用”做判断。",
+    "why_en": "This is the actual method Adobe's team used to pick a model in today's talk, not a gut call, but running a fixed batch of prompts across several candidates and comparing accuracy against latency, which is how they landed on Gemma 4 on Cerebras hardware, averaging 1.1 seconds per page at over 2,200 tokens/second. Promptfoo is open-source and command-line, no code required, and tonight you can run the same method against one AI workflow you actually rely on instead of continuing to judge it by feel.",
+    "time": "约 20-30 分钟",
+    "time_en": "~20-30 min",
+    "steps": [
+      "终端运行 npx promptfoo@latest init，生成一个新的测试项目",
+      "打开生成的 promptfooconfig.yaml，填入你实际在用的 prompt，以及 2-3 个候选 provider/model（比如同一提示词分别跑你现在用的模型和一两个备选）",
+      "运行 npx promptfoo@latest eval，等待跑完",
+      "运行 npx promptfoo@latest view 打开网页看结果表格，对比每个候选的通过率与响应耗时",
+      "把这份配置留着，下次想换模型或工具时直接重新跑一遍，而不是凭印象判断"
+    ],
+    "steps_en": [
+      "Run npx promptfoo@latest init in your terminal to scaffold a new test project",
+      "Open the generated promptfooconfig.yaml and fill in a prompt you actually use, plus 2-3 candidate providers/models (e.g. run the same prompt against what you use now and one or two alternatives)",
+      "Run npx promptfoo@latest eval and let it finish",
+      "Run npx promptfoo@latest view to open the results table in your browser, comparing pass rate and latency across candidates",
+      "Keep the config file, the next time you're considering switching models or tools, just re-run it instead of judging from memory"
+    ],
+    "source": "AI Engineer 大会 · Carlos Sanchez, Adobe",
+    "source_url": "https://www.youtube.com/watch?v=jebp4V0vh30",
+    "source_en": "AI Engineer World's Fair · Carlos Sanchez, Adobe"
+  },
+  "meta_read": "今晚几条新闻放在一起看，只有一个共同点：“最优选择”的保质期正在肉眼可见地缩短。Box 的 Ben Kus 把这种感受讲得很具体：一年前他在同一个讲台上推荐的 agent 架构，如今已经被至少五代新做法取代，每一代推出时都被当成终点。当晚剩下的几条新闻，其实都是同一条规律的不同切面。OpenClaw 没打算做 2.0，清理工作自己滚成了 2.0。腾讯的开源旗舰模型一个月出一版，新一代参数直接翻了一倍多。连 2023 年被判过效率死刑的扩散语言模型，今年也被两篇新论文翻了案。真正值钱的不再是押中哪个方案，而是 Kus 给出的具体做法：建一层可替换的抽象，定周期复查，只用自己的评测集决定换不换，不是看到论文标题就跟风。",
+  "meta_read_en": "Tonight's stories share exactly one thing: how fast the shelf life of 'the best choice' is shrinking. Box's Ben Kus put a number on the feeling. The agent architecture he recommended from the same stage a year ago has already been replaced by at least five newer approaches, each one treated as the final answer when it shipped. Everything else tonight is a different angle on the same pattern. OpenClaw never set out to build a 2.0, the cleanup work just snowballed into one. Tencent's open flagship model ships roughly once a month, and the new version's parameter count more than doubled the last one. Even continuous diffusion language models, given an efficiency death sentence back in 2023, got their verdict reversed by two new papers this year. What's actually worth having isn't picking the right option, it's Kus's concrete practice: build a swappable abstraction layer, review on a fixed schedule, and let your own eval set decide whether to switch, not a paper's headline.",
+  "ota": {
+    "learned": [
+      "今晚读到 Box CTO Ben Kus 那场“agent 基础设施半衰期”的演讲，他给了一个具体做法：定期（半年）复查已经在用的工具，只用自己的评测集判断要不要换，而不是看到新论文就跟风，并提前给团队打好预防针，让大家知道“被换掉不是你的错”。这条思路补全了这份台账 8 月 25 日那条“先用同一任务跑一次有无对照来决定要不要采用新工具”规则的一个明显缺口：那条规则只管要不要采用一个新东西，从没规定已经在用的东西要不要定期回头检查。为了不空谈，顺手拿这份技能自己的 YouTube 抓取工具做了次实测：8 月 15 日那条记录写过的 yt-dlp android client 回退方案，今晚确认对 anthropic-ai 这个频道仍然管用，能正常抓到该频道最新三条视频；但同一频道的 RSS 订阅链接今晚直接返回 404，不是空列表，是一种比当时设计这套回退方案时设想的更严重的失效方式。"
+    ],
+    "new_capabilities": [
+      "把这条“半衰期复检”的规则写进了 feedback-high-signal-evals.md，以后要判断一个已经用了一段时间的工具或来源是否还可信，会先问“它的验收信号多久没重新跑过了”，而不是默认“一直没人抱怨就还在正常工作”。台账里也记了一笔：YouTube RSS 订阅这条路径本身会在单个频道上整个失效（404 而非空列表），已经确认这份技能原有的 yt-dlp 回退设计能接住这种失效、不需要额外改动，但值得记录下来，避免以后重新排查一遍。"
+    ],
+    "learned_en": [
+      "Tonight's read was Box CTO Ben Kus's talk on agent infrastructure's half-life. His concrete practice: review tools already in place on a fixed six-month cadence, decide whether to switch using your own eval set rather than reacting to a new paper, and warn your team in advance that getting replaced isn't their fault. This fills an actual gap in the ledger's 08-25 rule (run a same-task with-and-without comparison before adopting a new tool): that rule only ever covered the moment of adoption, never revisiting something already in place. To avoid just noting the idea, I tested it against this skill's own YouTube-fetching tooling tonight: the yt-dlp android-client fallback documented on 08-15 still works fine for the anthropic-ai channel, correctly pulling its three latest videos, but that same channel's RSS feed returned a hard 404 tonight, not an empty list, a harder failure mode than the fallback design originally anticipated."
+    ],
+    "new_capabilities_en": [
+      "Wrote the half-life review rule into feedback-high-signal-evals.md, so judging whether an already-adopted tool or source is still trustworthy now starts with 'how long since its acceptance signal was last re-checked,' instead of defaulting to 'nobody's complained, so it's fine.' Also logged that the YouTube RSS path can fail outright per-channel (a 404, not an empty feed), confirmed this skill's existing yt-dlp fallback already absorbs that failure without changes, and recorded it so a future run doesn't have to re-diagnose it from scratch."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "items": [
+        {
+          "title": "Box CTO：AI 基础设施半衰期已缩短到几个月",
+          "title_en": "Box CTO: agent infrastructure's half-life is now measured in months",
+          "author": "Ben Kus（Box CTO）· AI Engineer 大会",
+          "author_en": "Ben Kus (Box CTO) · AI Engineer World's Fair",
+          "likes": 4841,
+          "url": "https://www.youtube.com/watch?v=sM1iYgz93HI",
+          "summary": "Box 的技术数据规模很大：超过一艾字节数据，几千亿份文件，token 用量已到万亿级别，很快奔十万亿。Ben Kus 说，过去三十年“选定一项技术、深耕、少换”是对的建议，因为迁移成本高。但 AI 基础设施打破了这条规律：一年前他在同一场大会讲“基于图的 agent 架构”，当时听众觉得是终极答案，如今这套思路已经被至少五代新方法取代，从图架构到循环式深度 agent，再到给 agent 配沙箱直接写代码执行，每一代都被下一代认为不是错、只是有了更好的做法。他给团队的具体建议：告诉工程师改变不是你的错，把心态准备好；能做抽象层就做，让底层可替换而不影响客户体验；每半年固定复查一次技术选型，不管当时用得多顺手；判断是否该换的唯一标准是能不能在你的评测集上跑得更好，而不是看到论文就换。他说选供应商时，除了看现在的功能，更要看对方过去半年到一年遇到变化时的应对方式，能反复重塑自己的供应商更值得信任。",
+          "summary_en": "Box operates at serious scale: over an exabyte of data, hundreds of billions of files, and token usage already in the trillions, heading toward ten trillion. Ben Kus says the old advice, pick a technology, go deep, switch rarely, held for thirty years because migration is always expensive. AI infrastructure breaks that rule. A year ago at the same conference he pitched a graph-based agent architecture as the answer; today it's already been superseded by at least five newer approaches, from graph structures to looping deep agents to giving agents a sandbox to write and run their own code, each one judged not wrong but simply outdated by the next. His concrete advice: tell engineers upfront that change isn't their fault, so they're mentally prepared; build a swappable abstraction layer wherever possible so customers never see the churn; review every technology choice on a fixed six-month cadence regardless of how well it's working; and the only valid reason to switch is that the new approach beats your own eval set, not that a new paper came out. When picking a vendor, he says, look less at what they can do today and more at how they've handled change over the past six to twelve months, a vendor that keeps reinventing itself is the one worth trusting.",
+          "why": "这场演讲把“AI 工具太快过时”从一句抱怨变成了可操作的流程：准备人、建抽象层、定周期、用自己的评测集当唯一开关。今晚的自我升级就直接验证了这套方法，详见文末升级公告。",
+          "why_en": "This talk turns 'AI tools go stale too fast' from a complaint into an actual process: prepare your people, build an abstraction layer, set a fixed review cadence, and let your own eval set be the only switch. Tonight's self-upgrade note at the bottom verified this exact method against real tooling."
+        },
+        {
+          "title": "Adobe 演示：给每个访客单独生成一个网页，1.1 秒一次",
+          "title_en": "Adobe demo: a uniquely generated webpage per visitor, in 1.1 seconds",
+          "author": "Carlos Sanchez（Adobe）· AI Engineer 大会",
+          "author_en": "Carlos Sanchez (Adobe) · AI Engineer World's Fair",
+          "likes": 6850,
+          "url": "https://www.youtube.com/watch?v=jebp4V0vh30",
+          "summary": "Adobe Experience Manager 的首席科学家 Carlos Sanchez 现场演示了他们内部称为“千人千面”（audience of one）的项目：根据用户在网站上的浏览行为（停留页面、停留时长、搜索词）实时判断意图，只重写页面里的特定区块（标题文案、推荐商品、导航）而不是整页重来，并把整站内容当作检索库，让生成结果始终扣着真实商品信息，避免品牌方最担心的胡编。技术选型上他们没有直接上大模型，而是用 Promptfoo 跑了一批固定 prompt，同时比较准确率和速度，发现在 Cerebras 芯片上跑 Google 新发的 Gemma 4，平均延迟只要 1.1 秒、每秒 2200 多 token，比第二快的方案快四倍。团队还做了个内部工具 OfOneLabs，输入任意网址，一小时内就能生成一个带搜索、能按意图重排内容的“agentic 站点”，他现场用 AI Engineer 大会官网做了演示。他认为这套思路的终点不止是网页，还能接进语音助手，用户不需要打开任何界面，直接说出需求就能拿到一份为自己量身生成的结果。",
+          "summary_en": "Carlos Sanchez, a principal scientist at Adobe Experience Manager, live-demoed what his team internally calls 'audience of one': read a visitor's real-time behavior on a site (pages viewed, time spent, search terms) to infer intent, then rewrite only specific blocks of the page (headline copy, recommended products, navigation) instead of regenerating the whole thing, grounding every generation in the site's own content as a retrieval corpus so it never invents facts a brand would object to. Rather than defaulting to one big model, the team ran a fixed set of prompts through Promptfoo across many providers, scoring both accuracy and speed, and found Google's freshly released Gemma 4 running on Cerebras hardware averaged 1.1-second page generation at over 2,200 tokens/second, four times faster than the next-best option. They also built an internal tool, OfOneLabs, that takes any URL and produces a searchable, intent-reordering 'agentic site' for it within an hour, demoed live against the AI Engineer conference's own website. Sanchez thinks the endpoint isn't the webpage at all, it extends to voice assistants, where a user never opens an interface and instead just states what they want and gets a result generated specifically for them.",
+          "why": "这是少见的、把“实时个性化”落到具体延迟和成本数字上的案例，而不是停在“未来会怎样”的概念演示。选型方法本身（先用固定 prompt 批量测速测准，再挑模型）比结论更值得抄，今晚的上手环节就是照这个思路来的。",
+          "why_en": "This is a rare case that pins 'real-time personalization' to actual latency and cost numbers instead of stopping at a concept demo about the future. The selection method itself, run a fixed prompt set to measure speed and accuracy before picking a model, is more worth copying than the conclusion, and tonight's hands-on section follows exactly that method."
+        },
+        {
+          "title": "一句话点破：没有数据支撑的“快”，只是更快地走错路",
+          "title_en": "One line: speed without data is just faster failure",
+          "author": "Lenny's Podcast",
+          "author_en": "Lenny's Podcast",
+          "likes": 1307,
+          "url": "https://www.youtube.com/watch?v=KmhuMFcKAzw",
+          "summary": "一段来自 Lenny's Podcast 的短片段：建东西比以前快太多了，但这件事本身没那么重要，真正重要的是你在建什么、有没有人真的用、用了以后到底有没有效果。建得快带来的真正礼物是能更快迭代，但前提是你同步在收集能告诉你“对不对”的数据，否则只会更快地偏离方向。她的结论是：AI 让执行变得几乎不冒风险，真正稀缺、变得更重要的，反而是想法本身、提出假设、以及验证假设这几件事。",
+          "summary_en": "A short clip from Lenny's Podcast: building has gotten dramatically faster, but that alone doesn't matter much, what matters is what you're building, whether anyone actually uses it, and whether it works. Building fast is a genuine gift because it lets you iterate faster, but only if you're simultaneously gathering the data that tells you whether you're on course, otherwise you just go off course faster. Her conclusion: AI has made execution nearly risk-free, so what's actually scarce and more important now is the idea itself, forming the hypothesis, and testing it.",
+          "why": "和上面 Adobe 的演示合看正好互补：一个讲怎么把执行做快，这条讲执行快了之后要靠什么判断对不对，两条放在一起才是完整的建议。详见今日行动第一条。",
+          "why_en": "Read alongside the Adobe demo above, it's the missing half: that one shows how to make execution fast, this one says what you need once execution is fast, a way to judge whether you're right. Together they're the complete piece of advice. See action 1."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "items": [
+        {
+          "title": "OpenClaw 2.0 意外发布：停更七周，合并一万六千个 PR",
+          "title_en": "OpenClaw 2.0 ships by accident: seven weeks quiet, 16,000+ PRs merged",
+          "author": "OpenClaw 官方博客 · Hacker News",
+          "author_en": "OpenClaw blog · Hacker News",
+          "likes": 28,
+          "url": "https://openclaw.ai/blog/openclaw-2-accidentally",
+          "summary": "OpenClaw 是一个开源 AI agent 平台，过去 230 天发布过 106 个版本。团队原本只想简化安装流程、把浏览器版做成主入口，结果这次清理越做越大，最后牵动了安装、消息、记忆、技能、模型、自动化、浏览器与原生应用、插件、安全几乎每一块，团队索性把它定为 2.0，8 月 30 日发布。这次改动累计有 933 位贡献者参与，其中 569 人是第一次提交，合并了超过 1.6 万个 PR，期间团队罕见地停更了将近七周。新版主打三件事：降低安装门槛，让新用户能直接用已有的订阅或 API key 开始对话；支持云端共享会话，团队协作时不会互相打断上下文；从单一工作流场景平滑扩展到跨服务的复杂自动化，不需要一开始就想清楚全部架构。",
+          "summary_en": "OpenClaw is an open-source AI agent platform that had shipped 106 releases over 230 days. The team set out only to simplify installation and rebuild the browser app as the primary entry point, but the cleanup kept growing until it touched nearly every layer, installation, messaging, memory, skills, models, automations, the browser and native apps, plugins, security, and they decided to just call it 2.0, released August 30. The release involved 933 contributors total, 569 of them first-timers, merged more than 16,000 pull requests, and came after a nearly seven-week quiet stretch that's unusual for a team used to shipping constantly. The new version leads with three things: lower installation friction, so new users can start a conversation with an existing subscription or API key immediately; shared cloud sessions, so teams can collaborate without losing each other's context; and a system that scales smoothly from one simple workflow up to complex multi-service automation, without requiring the whole architecture to be planned upfront.",
+          "why": "这是“版本号意外变大”的一个真实样本：不是先立项做 2.0，而是清理工作自然滚雪球，933 位贡献者里六成是第一次提交，说明门槛降低本身就在拉新贡献者。详见今日行动第二条。",
+          "why_en": "This is a real sample of a major version bump happening by accident rather than by plan, the cleanup snowballed on its own, and with 569 of 933 contributors being first-timers, lowering the install barrier itself pulled in new contributors. See action 2."
+        },
+        {
+          "title": "腾讯开源 Hy4 Preview：7700 亿参数，推理过程会自己纠结要不要加头盔",
+          "title_en": "Tencent open-sources Hy4 Preview: 770B params, and its reasoning debates whether to add a helmet",
+          "author": "Simon Willison · 文摘",
+          "author_en": "Simon Willison · Digest",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Aug/29/hy4/",
+          "summary": "腾讯发布开源文本模型 Hy4 Preview，总参数 7700 亿、激活参数 490 亿，上下文窗口到 100 万 token，在 Hugging Face 上模型文件有 1.56TB，只支持文本、不支持图像。相比 7 月发布的上一代 Hy3（总参数 2950 亿、激活 210 亿、上下文 25.6 万），这次是明显的整体升级，并新增两档推理强度：默认的“high”和不思考的“no_think”。Simon Willison 用他固定的测试题（画一只骑自行车的鹈鹕 SVG）试了一遍，顺手把模型的推理过程贴了出来：模型会在内部自言自语要不要给鹈鹕加头盔、加不加墨镜，他注意到这段“内心独白”用词经常缩写、不太符合语法，像是模型为了省 token 而牺牲了推理过程本身的可读性。",
+          "summary_en": "Tencent released an open-weight text model, Hy4 Preview, 770B total parameters with 49B active, a context window up to 1 million tokens, and a 1.56TB download on Hugging Face, text-only with no vision support. Compared to July's Hy3 (295B total, 21B active, 256K context), this is a clear across-the-board upgrade, and it adds two reasoning-effort levels, the default 'high' and a non-reasoning 'no_think.' Simon Willison ran his standard test prompt (an SVG of a pelican riding a bicycle) and posted the model's reasoning trace along with the result: internally, the model debates with itself whether to give the pelican a helmet, whether to add sunglasses, and Willison noticed the internal monologue itself reads in clipped, slightly ungrammatical English, as if the model is sacrificing readability of its own reasoning to save tokens.",
+          "why": "一个月一次的旗舰级开源升级，已经是这个赛道的常态节奏，和今晚 Ben Kus 那条“AI 基础设施半衰期以月计”的说法正好互相印证。",
+          "why_en": "A flagship open-weight upgrade roughly once a month is now the normal cadence in this space, and it directly corroborates tonight's other read, Ben Kus's point that agent infrastructure's half-life is now measured in months."
+        },
+        {
+          "title": "扩散语言模型卷土重来：曾比自回归慢 64 倍，现在开始追平",
+          "title_en": "Diffusion language models are back: once 64x less efficient, now closing the gap",
+          "author": "Sander Dieleman · Hacker News",
+          "author_en": "Sander Dieleman · Hacker News",
+          "likes": 74,
+          "url": "https://sander.ai/2026/08/24/continuous-dlms.html",
+          "summary": "在 HN 上获得 74 个赞、30 条评论。研究者 Sander Dieleman 梳理了“连续扩散语言模型”（CDLM）这条曾被判定没前途的路线为什么重新热起来。和逐词生成的自回归模型不同，CDLM 把整段文字先嵌入连续向量空间，再统一加噪声、统一去噪，理论上能把生成压缩到一步或几步完成。这条路线 2023 年的一篇论文测出训练效率比自回归基线低 64 倍，几乎被判死刑，但今年新出的 LangFlow、RePlaid 等工作声称已经能在效率上追平离散扩散方案，推翻了此前的结论。Dieleman 强调的关键优势是“可蒸馏性”：这类模型能更彻底地压缩成单步或少步版本，离散方案因为假设同时生成的 token 互相独立，天然更难做这种压缩。目前应用集中在可控文本生成、后训练阶段的引导微调，多模态方向仍有明显限制，业内对具体该用哪种技术方案还没有共识。",
+          "summary_en": "74 points, 30 comments on HN. Researcher Sander Dieleman surveys why continuous diffusion language models (CDLMs), a line of work once written off as a dead end, are resurging. Unlike autoregressive models that generate token by token, CDLMs embed a whole sequence into continuous vector space, then apply and remove noise across the whole thing at once, which in theory lets generation collapse to one or a few steps. A 2023 paper measured this approach as 64x less training-efficient than an autoregressive baseline, nearly killing the line of research, but newer 2026 work like LangFlow and RePlaid claims to now match discrete diffusion's efficiency, reversing that earlier verdict. Dieleman's key point is distillability: these models compress more cleanly into single-step or few-step versions, since discrete approaches assume simultaneously generated tokens are independent of each other, which makes that kind of compression structurally harder. Current applications concentrate on controllable text generation and post-training/steering, multimodal integration still has real limits, and there's no consensus yet on which specific recipe wins.",
+          "why": "如果这条路线真能把推理压到一步，对成本和速度的意义不亚于今晚 Adobe 演示里换一块芯片带来的四倍提速，只是这次改的是模型本身的生成方式，而不是硬件。",
+          "why_en": "If this line of work really collapses inference to one step, the cost and speed implications rival the four-times speedup Adobe got tonight just from switching chips, except this time the change is to the model's own generation mechanism, not the hardware underneath it."
+        }
+      ]
+    }
+  ]
+}
