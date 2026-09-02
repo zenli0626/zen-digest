@@ -1,0 +1,269 @@
+{
+  "date": "2026-09-02",
+  "partial": false,
+  "banner": "模型降价两成五，先验证再部署",
+  "banner_en": "A 25% price cut, and 'prove it works' becomes policy",
+  "image": {
+    "src": "digests/img/2026-09-02.jpg",
+    "caption": "本期头版配图：Anthropic 为 Claude Fable 5.1 / Mythos 5.1 发布公告配的封面图。公告记录同一模型按安全防护分两档：Fable 5.1 面向普通可用，估价比 Fable 5 低约 25%（高智能体负载省近 45%），Mythos 5.1 只经受信访问项目发放；文内一并披露了企业级隐私方案 Enterprise Frontier Safeguards 与各行业早期测试伙伴的评价。（图：Anthropic）",
+    "caption_en": "This issue's lead image: the cover of Anthropic's announcement of Claude Fable 5.1 / Claude Mythos 5.1. The announcement describes one model split into two safeguard tiers — Fable 5.1 generally available at an estimated ~25% lower cost than Fable 5 (up to ~45% on heavily agentic workloads), and Mythos 5.1 limited to trusted-access programs — and also details the Enterprise Frontier Safeguards privacy scheme and quotes from early testing partners across industries. (Image: Anthropic)"
+  },
+  "actions": [
+    {
+      "text": "今晚用十五分钟，把两个「验收」动作各做一遍：先给手头某个 agent 自动跑、但结果没人复核的任务设一条「完成判据」（可勾选的测试/样例/输出字段），再挑一个你正用来评判模型或工具的厂商榜单，在它页面里找一句对该榜单局限性的原文说明。做法：判据要具体到能被一条命令或一个检查清单验证；榜单局限可以藏在「方法」「附录」「我们没测什么」里，找不到就换一家找。完成标志：你能说清那条判据如果被刷，会绕过你哪个本意，以及那家厂商自己承认没覆盖哪种场景。背景：今天 Anthropic 发新模型、OpenAI 传按效果收费，两件事指向同一个方向。模型方开始主动承接「验收」环节，但验收的定义权还没定。",
+      "source": "Anthropic · OpenAI（经 The Information/TNW）",
+      "source_url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "text_en": "Tonight, fifteen minutes: run both halves of an 'acceptance' drill. Pick a task your agent already runs unattended whose output nobody reviews, and write one 'done criterion' for it (a checkable test, sample, or output field). Then pick a vendor benchmark you use to judge models or tools, and find one sentence in the benchmark's own page that states a limitation of that benchmark. The criterion must be specific enough to verify with one command or checklist; the benchmark limitation usually hides under 'Methodology,' 'Appendix,' or 'What we didn't test' — if you can't find one, try a different vendor. Done when you can say which of your intentions that criterion could be gamed around, and which scenario that vendor admits it didn't cover. One line of background: Anthropic's new-model launch and OpenAI's reported success-based pricing both point the same way — the model vendors are starting to take the acceptance step on themselves, but who defines what counts as done is still up for grabs.",
+      "source_en": "Anthropic · OpenAI (via The Information/TNW)"
+    },
+    {
+      "text": "花十分钟，把「按结果计费」的成本账套到你自己的 AI 花销上。做法：选过去 30 天一个跑过多次的 agent 任务，把 token 账单除以「真正成功、能被你直接用」的次数，算出单次有效成功的真实成本；再估一下如果改成「成功才计费」，这个数字会怎么变。完成标志：你能说出自己哪类任务最该按结果计费（成功容易定义且成本集中在重试上），哪类不适合（开放任务难定义成功）。背景：OpenAI 被曝在小范围大客户里测试「只有 AI 完成工作时才收费」，客服业已验证一年，Intercom 每条解决 $0.99、Zendesk 五月改成只对「经 LLM 复核的解决」计费；按 token 计费时，成本跟着尝试次数走，不跟结果走。",
+      "source": "OpenAI（经 The Information · TNW 报道）",
+      "source_url": "https://thenextweb.com/news/openai-outcome-based-pricing-enterprise",
+      "text_en": "Ten minutes: run the outcome-pricing math against your own AI spend. Pick an agent task you've run several times in the last 30 days, divide the token bill by the number of runs that genuinely succeeded and were usable as-is, and get the real cost per successful outcome; then estimate how that number changes under 'pay only when it works.' Done when you can name which of your tasks best fits outcome billing (success is easy to define and cost concentrates in retries) and which doesn't (open-ended tasks where success is a judgment call). One line of background: OpenAI was reported to be testing 'pay only when the AI completes the job' with a limited set of large customers; customer support has run this way for a year — Intercom at $0.99 per resolved conversation, Zendesk since May billing only LLM-verified resolutions — and per-token billing makes cost scale with attempts rather than results.",
+      "source_en": "OpenAI (via The Information · reported by TNW)"
+    },
+    {
+      "text": "今晚花十分钟，挑一条你今天在信息流里看到、带着具体数字的 AI 论断，只做一步核实：找到它引用的第一个数字对应的原始出处，看原始来源是否真的支撑那个说法。做法：数字若出自财报、公告或榜单，直接打开原文找那一行；若出自二手转述，看转述者有没有贴可点击的一手链接，点进去看上下文。完成标志：你能给那条论断贴一个「经得起查」或「用数字装饰」的标签，并说出判断依据。背景：Dan Luu 今天把最多被引用的 AI 怀疑论者 Ed Zitron 的预测逐年核对了一遍，发现多数论断的链条接不上（用 Similarweb 的第三方流量数反驳官方 MAU），但引用者仍把他当「看过数字的人」。",
+      "source": "Dan Luu · Hacker News",
+      "source_url": "https://danluu.com/zitron/",
+      "text_en": "Tonight, ten minutes: pick one AI claim with specific numbers that crossed your feed today and run a single verification step — find the original source behind the first number it cites and check whether the source actually supports the claim. If the number comes from financials, an announcement, or a leaderboard, open the original and find that row; if it's secondhand, check whether the relayer linked a clickable primary source, then read it in context. Done when you can tag the claim 'survives a check' or 'decorated with numbers,' with the reason. One line of background: Dan Luu went through the predictions of the most-cited AI skeptic, Ed Zitron, year by year, and found most of the reasoning doesn't hold together (third-party Similarweb traffic figures used against official MAU) — yet people still cite him as 'the guy who looked at the numbers.'",
+      "source_en": "Dan Luu · Hacker News"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试 World Labs 刚发布的 Atlas：拿一张照片，生成一段带镜头运动的视频",
+    "title_en": "Tonight: try World Labs' new Atlas — hand it a photo and generate a camera-moving video from it",
+    "why": "World Labs 9 月 1 日发布 Atlas，一个原生同时处理文本、图像、视频和 3D 的自回归扩散 Transformer，最直观的能力是「相机可控生成」：给一张或多张图，它能生成带像素级相机运动的视频，最长 1 分钟、1440p。这是「空间智能」这条线第一次以可上手的产品形态出现，也正是今天模型扎堆降价/按效果收费之外，另一个值得亲手确认的方向。图生视频的相机控制现在能做到什么程度。",
+    "why_en": "World Labs released Atlas on September 1, an autoregressive diffusion transformer pretrained from scratch to natively handle text, images, video, and 3D. Its most tangible capability is camera-controlled generation: from one or more images it produces video with pixel-level camera motion, up to one minute at 1440p. It's the first time the 'spatial intelligence' line has had a hands-on product shape — and alongside today's flood of model price cuts and outcome-based pricing, it's a different direction worth confirming with your own eyes: how far camera control in image-to-video has actually come.",
+    "time": "约 20 分钟",
+    "time_en": "~20 min",
+    "steps": [
+      "打开 World Labs 的 Atlas 页面（worldlabs.ai/blog/atlas），点申请早期访问，确认你的账号在候补名单",
+      "若你已能用 Marble，直接在 Marble 里导入一张自己的照片，找「相机运动 / Camera Motion」类预设，生成一段 5-10 秒、镜头明显在动的视频",
+      "同一张照片再试两次：一次镜头运动幅度大，一次贴近静止，看 3D 一致性在哪里开始崩（物体变形、穿帮）",
+      "回到自己的工作：想一个素材场景（商品展示、场景参考、短片分镜），判断「从一张图长出带运镜的视频」能不能替代你现在约拍或建模的某一步"
+    ],
+    "steps_en": [
+      "Open World Labs' Atlas page (worldlabs.ai/blog/atlas) and request early access so your account is on the list",
+      "If you already have Marble access, import one of your own photos, find the Camera Motion presets, and generate a 5-10 second clip where the camera clearly moves",
+      "Run the same photo twice more — once with aggressive camera motion, once near-static — and watch where 3D consistency starts to break (warping, artifacts)",
+      "Back to your own work: pick a media scenario (product showcase, scene reference, short-film storyboard) and judge whether 'grow a camera-move video from one image' can replace a step you currently shoot or model"
+    ],
+    "source": "World Labs · Atlas",
+    "source_url": "https://www.worldlabs.ai/blog/atlas",
+    "source_en": "World Labs · Atlas"
+  },
+  "meta_read": "今天两家实验室把「验收」这件本属于下游的工序，各自往上游挪了一格。Anthropic 给同一颗模型装了两套防护，再按防护分档定价，把「该信多少能力」变成一个可购买的分档开关；OpenAI 则传说在让客户按结果付费，等于把「任务是否真的完成」这道判定的风险，从买家账本挪到卖家账本。两件事放一起看，共同点不是能力又涨了多少，而是模型的边际成本叙事换了一个锚点：不再是「每个 token 多少钱」，而是「每个成功的结局多少钱」。但「成功」这个词谁来定义，两家的答案都还没落笔。客服场景里它是一张关单，好办；推到多步 agent 任务，完成与否是判断不是字段，这正是今天最难定价的地方，也是最先会被刷的地方。真正的稀缺品正在从生成能力转移到验收能力：谁能为「做完了」下一个机器可查、人可复核的定义，谁就握住了下一轮定价权。",
+  "meta_read_en": "Today two labs each moved the acceptance step, normally a downstream job, one notch upstream. Anthropic put two safeguard suites on the same underlying model and priced by tier, turning 'how much of this capability should you trust' into a purchasable switch; OpenAI was reported to be letting customers pay by outcome, which moves the risk of deciding whether a task actually completed from the buyer's ledger to the seller's. Read together, the common thread is not that capability jumped again, it's that the marginal-cost story has a new anchor: not 'how much per token' but 'how much per successful outcome.' But neither lab has written down who defines 'success.' In customer support it's a closed ticket, easy; carried over to multi-step agent work, completion is a judgment rather than a database field — the hardest thing to price today, and the first thing that will get gamed. The genuinely scarce good is migrating from generation to acceptance: whoever can produce a machine-checkable, human-reviewable definition of 'done' holds the next round of pricing power.",
+  "ota": {
+    "learned": [
+      "翻看台账时发现，08-04 至 09-01 那条“别只信标签，要独立探针”的主线，漏了一种标签：厂商自己给出的“能力-防护分档”。08-04 讲“隔离”标签要探连通性，08-27 讲护栏要在场，08-28 讲护栏不能挡补救，09-01 讲评估本身可被刷。今天 Anthropic 把同一个模型拆成 Fable 5.1 / Mythos 5.1 两档定价，等于把“模型能力边界”本身商品化成可购买属性。发布页数据表里那些“关键任务得零分”的格子，明确标注是安全防护介入所致，OSWorld 2.0 上 Fable 5.1 和 Fable 5 都因此得过零分。这意味着，读任何模型分数时，得先问一句：这个分数是在“带防护”还是“去防护”条件下测的？厂商把防护变成可调旋钮之后，分数与真实可用能力之间就多了一层需要剥离的变量。",
+      "另一条是“客服是按结果计费的标准场景，但 agent 场景的‘成功’还没人定义”。Intercom 按关单 0.99 美元收费，Zendesk 只对经 LLM 复核的解决计费，两者都有明确判据。OpenAI 若真把按结果计费推给多步 agent 任务，就得先解决“怎么算完成”，而这恰恰是 09-01 那条“评估本身可被刷”最脆弱的地方。两条合起来，让我有了一个更完整的检查习惯：凡是“按结果/按验收”的机制，先问结果由谁判定、判定标准能否被绕过。"
+    ],
+    "new_capabilities": [
+      "读任何模型能力分或厂商战报前，先确定它是在哪一档防护下测的：发布页数据表里被标注“安全防护介入导致得零分”的格子，不能代表该模型无防护条件下的真实能力。今后遇到带分档（如普通版/受信版、防护开关）的模型发布，把“防护条件”当作独立变量记录，不把某一档的分数当成整颗模型的能力。调用方式：对照模型时，先查发布页有没有防护介入/零分标注，再决定该拿哪个数字去比。",
+      "评估任何“按结果/按成功计费”的合作前，先列一条机器可查的完成判据并测试它能否被刷。这一条把 09-01 的奖励探针延伸到定价与采购决策：对方说“成功才收费”时，先问“成功谁定义、如何验证、绕过它会怎样”，再把这类产品与按 token 计费的产品在同任务上各跑一遍对照。"
+    ],
+    "learned_en": [
+      "Re-reading the ledger tonight, I saw that the 08-04→09-01 'don't trust the label / use an independent probe' thread never covered one kind of label: a vendor's own 'capability vs safeguard' tiering. 08-04 said probe the 'isolated' label by checking connectivity, 08-27 said verify guardrails are present, 08-28 said guardrails must not block recovery, and 09-01 said the evaluation itself can be gamed. Today Anthropic split the same model into Fable 5.1 and Mythos 5.1 tiers and priced them separately, which commoditys 'where the model's capability boundary sits' into a purchasable attribute — and the release page's own benchmark table flags that some critical-task scores were zero because safeguards intervened: both Fable 5.1 and Fable 5 scored zero on OSWorld 2.0 that way. So when reading any model score I now need to ask first: was this measured with safeguards on or off? Once vendors treat safeguards as an adjustable dial, scores carry an extra variable that has to be stripped out before they describe usable capability.",
+      "The other thread: customer support is the canonical outcome-pricing scenario because success is a definable artifact — Intercom at $0.99 per resolved conversation, Zendesk since May billing only LLM-verified resolutions — while agentic work's 'success' has no definition yet. If OpenAI really pushes outcome pricing onto multi-step agent tasks, it first has to solve 'what counts as done,' which is exactly the spot 09-01 flagged as most gameable. Together these give me a more complete habit: whenever a mechanism is priced or gated by 'outcome' or 'acceptance,' ask who judges the outcome and whether that judgment can be bypassed."
+    ],
+    "new_capabilities_en": [
+      "Before reading any model capability score or vendor win report, determine which safeguard tier it was measured under: cells in a release-page benchmark flagged as 'scored zero because safeguards intervened' are not the model's real capability with safeguards off. Going forward, when a model ships in tiers (general vs trusted-access, a safeguard toggle), record the safeguard condition as an independent variable and never take one tier's score as the capability of the whole model. Invoke intent: when comparing models, first check the release page for safeguard-intervention or zero-score notes, then decide which number is fair to compare.",
+      "Before any 'pay by outcome / pay by success' arrangement, write one machine-checkable done-criterion and test whether it can be gamed. This extends 09-01's reward probe into pricing and procurement: when a vendor says 'you only pay when it works,' ask who defines success, how it's verified, and what happens when the criterion is bypassed — then run that product against a per-token alternative on the same task."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "Gitlawb/openclaude",
+      "url": "https://github.com/Gitlawb/openclaude",
+      "description": "runs anywhere. uses anything",
+      "language": "TypeScript",
+      "stars": 31548,
+      "stars_today": 80
+    },
+    {
+      "rank": 2,
+      "name": "Imbad0202/academic-research-skills",
+      "url": "https://github.com/Imbad0202/academic-research-skills",
+      "description": "Academic Research Skills for Claude Code: research → write → review → revise → finalize",
+      "language": "Python",
+      "stars": 45151,
+      "stars_today": 193
+    },
+    {
+      "rank": 3,
+      "name": "THU-MAIC/OpenMAIC",
+      "url": "https://github.com/THU-MAIC/OpenMAIC",
+      "description": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click",
+      "language": "TypeScript",
+      "stars": 29872,
+      "stars_today": 3128
+    },
+    {
+      "rank": 4,
+      "name": "iv-org/invidious",
+      "url": "https://github.com/iv-org/invidious",
+      "description": "Invidious is an alternative front-end to YouTube",
+      "language": "Crystal",
+      "stars": 23863,
+      "stars_today": 577
+    },
+    {
+      "rank": 5,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "🧠 Train a 64M-parameter LLM from scratch in just 2h!",
+      "language": "Python",
+      "stars": 57357,
+      "stars_today": 1005
+    },
+    {
+      "rank": 6,
+      "name": "3b1b/manim",
+      "url": "https://github.com/3b1b/manim",
+      "description": "Animation engine for explanatory math videos",
+      "language": "Python",
+      "stars": 92682,
+      "stars_today": 86
+    },
+    {
+      "rank": 7,
+      "name": "firecrawl/pdf-inspector",
+      "url": "https://github.com/firecrawl/pdf-inspector",
+      "description": "Fast Rust library for PDF inspection, classification, and text extraction. Intelligently detects scanned vs text-based PDFs to enable smart routing decisions.",
+      "language": "Rust",
+      "stars": 18113,
+      "stars_today": 541
+    },
+    {
+      "rank": 8,
+      "name": "browser-use/video-use",
+      "url": "https://github.com/browser-use/video-use",
+      "description": "Edit videos with coding agents",
+      "language": "Python",
+      "stars": 23164,
+      "stars_today": 472
+    },
+    {
+      "rank": 9,
+      "name": "K-Dense-AI/scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "language": "Python",
+      "stars": 41760,
+      "stars_today": 912
+    },
+    {
+      "rank": 10,
+      "name": "handsomestWei/patent-disclosure-skill",
+      "url": "https://github.com/handsomestWei/patent-disclosure-skill",
+      "description": "中国专利.skill：专利点挖掘、交底书（发明/实用/外观）编写，通俗解读专利，嗅探政策动向，辅助审查答复。",
+      "language": "Python",
+      "stars": 6888,
+      "stars_today": 501
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 30,
+      "items": [
+        {
+          "title": "Anthropic 发布 Fable 5.1 / Mythos 5.1：同一模型按防护分两档，估价比 Fable 5 低 25%",
+          "title_en": "Anthropic ships Fable 5.1 / Mythos 5.1: one model in two safeguard tiers, estimated 25% cheaper than Fable 5",
+          "author": "Anthropic · Hacker News",
+          "author_en": "Anthropic · Hacker News",
+          "likes": 1111,
+          "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+          "summary": "该文在 HN 上获得 1111 分（137 条评论）。Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1，两者是同一模型，只是防护等级不同。Fable 5.1 公开可用，估价比 Fable 5 低约 25%（按 token 计费的典型负载），高智能体负载下省得更多，接近 45%；在 Claude Code 中默认使用 High effort，在 Claude Cowork 和 claude.ai 上默认 Medium。Mythos 5.1 只经受信访问项目发放，防护专为网络安全和生命科学设计，生物学能力配合美国政府设立的准入项目。数据方面：Terminal-Bench 4.0 上 Fable 5.1 得 55.8%（Fable 5 为 42.0%），CursorBench 3.2.0 为 73.4%（Fable 5 为 70.5%），OSWorld 2.0 部分计分 77.9%，但严格计分只有 41.7%。表格备注写明：Fable 5.1 和 Fable 5 在 OSWorld 2.0 上、Fable 5 在 AutomationBench 上都因安全防护介入而得了零分，其余安全防护介入的网络安全任务由 Opus 4.8 代做、生物学任务由 Opus 5 代做。非代码卖点：让模型自己给七个开源深度学习模型写 GPU kernel 并缓存中间结果，最高提速 2.5 倍（输出不变），把全基因组分析类任务的预估 GPU 成本砍掉 30% 到 60%；用 30 多年前 NASA 麦哲伦任务的雷达图做出金星三分之一表面的新高程图，分辨率从 10 到 20 公里细化到 2 到 3 公里，以知识共享协议放出。企业隐私侧新增 Enterprise Frontier Safeguards（EFS）：客户数据存进客户自己的云上、默认由客户而非 Anthropic 做人工审查，今秋分阶段上线，覆盖 Claude Code、Claude Enterprise、AWS Bedrock、Google Agent Platform、微软 Foundry。早期测试伙伴引语包括 Millennium（找出了一个团队几年没解释的罕见崩溃根因）、Cognition（上线当天把 Devin 里的 Opus 5 流量迁到 Fable 5.1）、Jane Street、Shopify、Block、MongoDB 等共 22 家。反蒸馏方面，新 API 账号（今天起创建）不再允许在多轮对话里手动编辑 Claude 先前上下文并保留其思考记录，官方明说是堵一个公开的蒸馏手法。HN 评论区多在聊配额重置、5 小时窗口与“对齐检查太敏感、老把我弹回 Opus”等日常体感，而非基准数字。",
+          "summary_en": "1,111 points on HN (137 comments). Anthropic released Claude Fable 5.1 and Claude Mythos 5.1, which are the same model under different safeguard levels. Fable 5.1 is generally available at an estimated ~25% lower cost than Fable 5 for typical token-billed workloads, up to ~45% on heavily agentic work; it defaults to High effort in Claude Code and Medium in Claude Cowork and on claude.ai. Mythos 5.1 goes only through trusted-access programs, with safeguards built for cybersecurity and life sciences; its biology capabilities ship through an access program developed with the US government. On the numbers: Terminal-Bench 4.0 55.8% (Fable 5 at 42.0%), CursorBench 3.2.0 73.4% (Fable 5 at 70.5%), OSWorld 2.0 partial 77.9% but strict only 41.7%. The table's own footnotes say both Fable 5.1 and Fable 5 scored zero on OSWorld 2.0 and Fable 5 scored zero on AutomationBench where safeguards intervened; other safeguard-intervened cybersecurity tasks were completed by Opus 4.8 and biology tasks by Opus 5. Non-coding highlights: having the model write custom GPU kernels for seven open-source deep learning models and cache intermediates sped them up up to 2.5x with identical outputs, cutting estimated GPU costs on genome-wide analyses by 30-60%; and a new high-resolution elevation map of a third of Venus from 30-year-old Magellan radar data, resolving details down to 2-3km instead of 10-20km, released under Creative Commons. For enterprise privacy there's Enterprise Frontier Safeguards (EFS): customer data stored on the customer's own cloud, with any human review done by the customer by default rather than Anthropic, rolling out in phases starting this fall across Claude Code, Claude Enterprise, AWS Bedrock, Google Agent Platform, and Microsoft Foundry. Early testing partners quoted include Millennium (it found the root cause of a rare crash the team hadn't explained for years), Cognition (moving Devin's Opus 5 traffic to Fable 5.1 on launch day), Jane Street, Shopify, Block, and MongoDB, 22 in total. On anti-distillation: new API accounts (created from today) can no longer manually edit Claude's prior context in a multi-turn conversation while keeping its transcript of prior thinking, explicitly closing a publicly documented distillation technique. The HN thread mostly discussed quota resets, the 5-hour window, and day-to-day feel ('alignment checks so sensitive it kept throwing me back to Opus') rather than the benchmarks.",
+          "why": "这是主流模型厂商首次将能力与防护的分档直接做成两档定价：同一模型，防护较弱的一档作为普惠版，防护较强的一档仅通过受信渠道提供。对产品开发者而言，“该信任多少能力”从此成为一个可购买的选项，同时意味着在解读任何模型分数前，需先确认其测试时的防护级别。",
+          "why_en": "This is the first time a major lab has turned 'capability vs safeguard tiering' directly into two price points: the same model, weaker safeguards as the general tier, stronger safeguards through trusted access only. For product builders, 'how much of this capability can you trust' just became a purchasable switch, which also means asking which safeguard tier a score was measured under before reading anything into it."
+        },
+        {
+          "title": "Dan Luu 复盘 Ed Zitron 的 AI 预测：论据链经不起查，但情绪驱动的高赞停不下来",
+          "title_en": "Dan Luu scores Ed Zitron's AI predictions: the reasoning never survives a fact check, but the anger keeps the engagement machine going",
+          "author": "Dan Luu · Hacker News",
+          "author_en": "Dan Luu · Hacker News",
+          "likes": 587,
+          "url": "https://danluu.com/zitron/",
+          "summary": "该内容在 HN 上获得 587 分（670 条评论）。Dan Luu 逐条核对了常被引用的 AI 怀疑论者 Ed Zitron 的预测：从 2024 年 2 月“我们正接近生成式 AI 的能力上限”、3 月“已到峰值 AI”，到反复宣称“没有更多数据、模型无法再进步”，再到 2024 年 11 月称 Meta、Google、微软等大厂正在衰亡，只是靠硬塞 AI 续命。Luu 用各家财报逐年对照：Meta 营收从 2023 年 1350 亿美元增至 2025 年 2010 亿美元（营业利润从 470 亿增至 830 亿），Alphabet 从 3070 亿增至 4030 亿，微软从 2280 亿增至 3050 亿，2026 上半年继续两位数增长。Luu 的结论是：Zitron 的引用者把他视为“看过数字的人”，但其文章中的数字大多无法串联成连贯论证，有时还用第三方流量数据（Similarweb）支撑本可用官方 MAU 反驳的论点；2025 年 2 月他称 Anthropic 2027 年实现 345 亿美元营收很可笑，理由 OpenAI 2024 年 API 收入仅十亿美元出头，而 Anthropic 2026 年的 ARR 已远超此量级。Zitron 还预测 Cursor 会死，卖不到 10 亿美元，结果以 600 亿美元被 SpaceXAI 收购（8 月已见报）。文末附有 Juho Snellman、Timothy B. Lee、lcamtuf 的批评：Snellman 称其文章“基本全是编的或曲解的”，并指出其电子表格漏掉 2 月 1 日至 10 日，却将 3 月 1 日至 10 日数了两遍。",
+          "summary_en": "587 points on HN (670 comments). Dan Luu went through the predictions of the most-cited AI skeptic he could find, Ed Zitron, one by one: from 'we're reaching the upper limits of generative AI' (Feb 2024), 'Have We Reached Peak AI?' (Mar 2024), repeated claims that models can't improve because there's no more data, to Nov 2024's claim that Meta, Google, and Microsoft are dying companies thrashing on AI because they don't know how to grow. Luu lines up the financials year by year: Meta revenue from $135B in 2023 to $201B in 2025 (operating profit $47B to $83B), Alphabet $307B to $403B, Microsoft $228B to $305B, with first-half 2026 still growing double digits. His read: Zitron gets cited as 'the guy who looked at the numbers,' but the numbers in his posts mostly don't connect into a coherent argument, and he reaches for third-party tracking data (Similarweb) to support claims his own cited MAU would refute; in Feb 2025 he called Anthropic's $34.5B-2027-revenue projection laughable on the reasoning that OpenAI barely made $1B from API calls in 2024 — while Anthropic's 2026 ARR already far exceeds that scale. Zitron also predicted Cursor would die and couldn't be worth $10B; it sold to SpaceXAI for $60B (reported in August). The piece closes with criticisms from Juho Snellman ('basically everything is made up or misrepresented'), Timothy B. Lee (the spreadsheet omits Feb 1-10, counts March 1-10 twice), and lcamtuf.",
+          "why": "这不是“又一个唱衰者被打脸”的爽文。它对产品开发者有一个直接可用的提醒：当某个观点因“立场鲜明、数字很多”而持续获得高赞时，数字本身可能只是修辞。真正需关注的不是情绪，而是如何快速识别“用数字装饰的断言”与“经得起查的断言”的差别。",
+          "why_en": "This isn't just a schadenfreude piece about a doomsayer being wrong. It carries a directly usable reminder for product people: when a take keeps earning upvotes for being crisp, angry, and full of numbers, the numbers may be doing rhetorical work rather than evidentiary work. What matters isn't the emotion, it's learning to tell 'a claim decorated with numbers' apart from 'a claim that survives a fact check.'"
+        },
+        {
+          "title": "OpenAI 的 Codex/ChatGPT 桌面应用捆了一个完整 LibreOffice：agent 运行时正在吞进整条桌面软件栈",
+          "title_en": "OpenAI's Codex/ChatGPT desktop app ships a full LibreOffice: agent runtimes are absorbing the entire desktop software stack",
+          "author": "Simon Willison · Hacker News",
+          "author_en": "Simon Willison · Hacker News",
+          "likes": 336,
+          "url": "https://simonwillison.net/2026/Sep/1/codex-libreoffice/",
+          "summary": "Simon Willison 在自己的 ~/.cache 中发现 OpenAI Codex 桌面应用（现已更名为 ChatGPT）的 codex-primary-runtime 文件夹占用 1.7GB，内含一整套 Python、一整套 Node.js，以及 Poppler、git、LibreOffice 的本地二进制（LibreOffice 是 2010 年从 OpenOffice.org 分叉的开源办公套件）。对应的 skills 文档教 Codex 如何找到并使用这些二进制。HN 上获 336 分。这条观察的潜台词：为了让 agent 能处理“文档”这类真实交付物，OpenAI 将整条桌面生产力软件栈直接打包进 agent 运行时，而非让模型调用云端服务或等待 API。",
+          "summary_en": "Simon Willison was poking around his ~/.cache and found that the OpenAI Codex desktop app (since rebranded to ChatGPT) has a codex-primary-runtime folder taking up 1.7GB — a full Python install, a full Node.js install, plus local binaries for Poppler, git, and LibreOffice (the open-source office suite forked from OpenOffice.org in 2010). Companion skills documents tell Codex how to find and use those binaries. 336 points on HN. The subtext: to let an agent handle real deliverables like documents, OpenAI shipped the whole desktop productivity stack into the agent runtime itself, rather than having the model call some cloud service or wait on an API.",
+          "why": "这是“agent 运行时形态”的物理证据：桌面应用将办公软件作为依赖内置，说明下一批 agent 能力的边界由“本地捆绑了什么”决定，而非由模型上下文决定。对工具开发者而言，这是一个值得借鉴的架构信号，也是思考你的 agent 需要纳入哪条软件栈的起点。",
+          "why_en": "Physical evidence of the agent-runtime pattern: a desktop app bundling an office suite as a dependency suggests the next set of agent capabilities is bounded by what's bundled locally, not by model context. For anyone building tools, it's an architectural signal worth copying, and a starting point for asking which software stack your own agent needs to swallow."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 7,
+      "items": [
+        {
+          "title": "OpenAI 开始小范围测试「按结果付费」：AI 真把活干完才收钱",
+          "title_en": "OpenAI quietly tests outcome-based pricing: customers pay only when the AI finishes the job",
+          "author": "OpenAI（经 The Information · TNW 报道）",
+          "author_en": "OpenAI (via The Information · reported by TNW)",
+          "likes": null,
+          "url": "https://thenextweb.com/news/openai-outcome-based-pricing-enterprise",
+          "summary": "The Information 报道，OpenAI 已开始让一小批大客户仅在 AI 真正完成工作时付费，举例为一个客服工单被端到端处理完毕。但条款、客户、价格均未公开，OpenAI 也尚未正式宣布，TNW 未能独立核实。这条路线在客服业已试行一年：Intercom 对 Fin agent 解决的每个对话收取 0.99 美元，未解决则免费；Zendesk 自五月起仅对经 LLM 复核、72 小时内确认的“Verified Resolution”计费，帮助转接和受控解决免费，按承诺量计费约 1.20 至 1.50 美元。Salesforce 的 Agentforce 原本每个对话收 2 美元，每 24 小时会话无论是否解决均计费，因客户嫌贵且难以预测，遂推出 Flex Credits，由按会话改为按动作计费，每次约 10 美分，但仍是消耗计费而非结果计费，失败动作照常计费。Futurum Group 五月调查显示，43% 的买家偏好消耗制，27% 偏好结果制。对 OpenAI 而言，这标志着从按 token 出售算力转向替客户承担“活未干完”的风险，并将“一次失败尝试”的成本从买家转移至卖家。",
+          "summary_en": "The Information reported that OpenAI has started letting a small set of large customers pay only when its AI actually completes the job, citing the example of a customer-support interaction handled end-to-end. The terms, customers, and prices are all undisclosed, OpenAI hasn't announced it, and TNW couldn't independently verify the report. The model is already a year old in customer support: Intercom charges $0.99 for each conversation its Fin agent resolves and nothing for the ones it doesn't; Zendesk since May bills only 'Verified Resolutions,' confirmed by an LLM evaluation within 72 hours, with assisted escalations and contained resolutions free, at roughly $1.20-$1.50 on committed volume. Salesforce's Agentforce launched at $2 per conversation billed for every 24-hour session whether or not anything was resolved, which customers found expensive and impossible to forecast; Flex Credits moved the meter from conversations to individual actions at about $0.10 each, but that's still consumption pricing rather than outcome pricing — a failed action still bills. Futurum Group's May survey found 43% of buyers prefer consumption-based and 27% outcome-based. For OpenAI this marks a shift from selling capacity by the token to absorbing the risk that the work doesn't complete, moving the cost of a failed attempt from the buyer to the seller.",
+          "why": "最大的模型厂商从按 token 转向按结果收费，等于承认“算力”不再是其真正出售的商品，“完成的活”才是。对采购和定价决策者，这直接改变成本模型：按结果计费将“失败尝试”的成本转给卖方，前提是有人先定义清楚何为“完成”。",
+          "why_en": "The largest model vendor moving from per-token to per-outcome pricing is an admission that raw compute isn't what it's really selling anymore — completed work is. For anyone making purchasing or pricing decisions this changes the cost model directly: outcome pricing shifts the cost of failed attempts to the seller, but only if someone first defines what counts as done."
+        },
+        {
+          "title": "ChatGPT 广告业务 200 天做到 10 亿美元年化收入",
+          "title_en": "ChatGPT's ad business hits a $1B annualized run rate in 200 days",
+          "author": "OpenAI · CNBC",
+          "author_en": "OpenAI · CNBC",
+          "likes": null,
+          "url": "https://www.cnbc.com/2026/08/31/open-ai-chatgpt-ads-revenue.html",
+          "summary": "OpenAI 周一（8 月 31 日）宣布，其广告业务年化收入运行率突破 10 亿美元，从开始测试算起约 200 天。该公司称此为“业务模式多元化”的证据，为预计规模巨大的 IPO 造势，其估值达 8520 亿美元。OpenAI 今年 2 月在美国的 ChatGPT 内测广告，招致对手 Anthropic 用其第一条超级碗广告嘲讽。目前 ChatGPT Ads 覆盖 40 多个国家，8 月 31 日起在印度、欧洲、中东和北非开放自助服务；广告出现在 Go 订阅层和免费层的对话中，免费层占每周 10 亿活跃用户的大头。OpenAI 称广告有明确标注、不影响回答，广告主无法接触用户私人对话。",
+          "summary_en": "OpenAI said Monday (August 31) that its advertising business has hit a $1 billion annualized revenue run rate, roughly 200 days after it started testing. The company is framing it as proof of a 'diversified business model' ahead of an expected massive IPO, at a valuation of $852 billion. OpenAI began testing ads inside ChatGPT in the US in February, a decision Anthropic mocked in its first Super Bowl ad. ChatGPT Ads now reach 40+ countries, and self-serve access opened August 31 across India, Europe, the Middle East, and North Africa; ads appear for Go subscribers and the free tier, which makes up the bulk of its 1 billion weekly active users. OpenAI says ads are clearly labeled, don't influence answers, and advertisers can't access users' private conversations.",
+          "why": "对于做 GTM 的人，这是一条关于“分发即商业模式”的速写：OpenAI 把搜索广告那套搬到对话里，200 天跑出十亿年化，说明对话界面的广告位远比许多人预期的值钱。它也表明 AI 公司不只想靠 token 赚钱。",
+          "why_en": "For anyone in GTM, this is a fast sketch of distribution-as-business-model: OpenAI ported the search-ad playbook into chat and hit a billion annualized in 200 days, which suggests conversational ad inventory is far more valuable than many expected. It's another data point that AI companies don't only intend to make money on tokens."
+        },
+        {
+          "title": "World Labs 发布 Atlas：一个从零训练、原生处理文本/图像/视频/3D 的世界模型",
+          "title_en": "World Labs unveils Atlas: an omni world model pretrained from scratch on text, images, video, and 3D",
+          "author": "World Labs",
+          "author_en": "World Labs",
+          "likes": 199,
+          "url": "https://www.worldlabs.ai/blog/atlas",
+          "summary": "World Labs 9 月 1 日发布 Atlas：一个自回归扩散 Transformer，从零预训练，原生同时处理文本、图像、视频与 3D，所有输入汇入一个共享的空间上下文，再生成接下来会发生什么。可做相机可控生成（由一张或数张图生成带像素级相机运动的视频，最长 1 分钟、1440p）、空间重建（从一至几十张图重建真实场景，同时输出新视角图像与显式 3D 结果）、时空模拟（输入视频后建模空间与时间，支持 Real-to-Sim 机器人工作流）、文生图与 360 全景。官方称 Atlas 将驱动未来版本的 Marble 及其他产品，现已开放早期访问申请。HN 上获 199 分。评论区有 World Labs 工程师回帖，澄清两点：时间并非总是冻结的，示例里纽约糖果城那段有车辆在动、1 分钟示例末尾波浪有细微运动，但时间一致性确实是下一步要改进的方向；Atlas 并非只押注显式 3D，多数结果是无显式 3D 表示直接生成的帧，需要时才输出显式 3D。机器人方向被反复提及：评论者最看重的是它从稀疏图像重建 3D 空间的能力（有人设想用手机拍十几张图重建整栋房子），以及把 RGB 和深度数据一并生成、用于机器人数据飞轮的前景；另一条讨论是“世界模型”一词被过度使用，评论区围绕“能预测并渲染 3D 世界内部模型的系统”这一概念展开拉锯。",
+          "summary_en": "On September 1, World Labs released Atlas: an autoregressive diffusion transformer, pretrained from scratch, that natively handles text, images, video, and 3D, merging all inputs into a shared spatial context and generating what comes next. Capabilities include camera-controlled generation (video with pixel-perfect camera motion from one or more images, up to one minute at 1440p), spatial reconstruction (real-world scenes from one to dozens of images, outputting both novel-view frames and explicit 3D), space-time simulation (modeling space and time from input videos, enabling Real-to-Sim robotics workflows), and text-to-image with 360 panoramas. World Labs says Atlas will power future versions of Marble and other products, and early access is open for request. 199 points on HN. World Labs engineers answered in the thread, clarifying that time isn't always frozen — cars move in the NYC candy scene and there's subtle wave motion at the end of the one-minute example — but temporal consistency is a known area to improve; and that Atlas isn't betting only on explicit 3D, since most results are generated frames without any underlying explicit 3D, outputting explicit 3D on demand. Robotics came up repeatedly: commenters were most struck by reconstructing 3D space from sparse images (one imagined scanning a whole house from a dozen phone photos) and by generating RGB plus depth data to feed a robotics data flywheel; a parallel thread debated the overused term 'world model,' converging loosely on 'a system that can reason about and render the inside of a 3D world it models.'",
+          "why": "世界模型从研究演示走向可申请的产品，第一次让“给一张图就能长出带运镜的视频”变得可以亲手试。对做内容工具和视频工作流的人，这延续了上周“视频生成快过播放”的趋势，但重点转向生成的可控性，包括相机与 3D。",
+          "why_en": "World models just moved from research demos to a product you can request access to — the first time 'give it one image, grow a camera-moving video' is hands-on. For people building content tools and video workflows, it's another point on the same trend as last week's 'video generation faster than playback': the controllability of generation (camera, 3D) is catching up to its speed."
+        },
+        {
+          "title": "Latent Space：顶级 AI 开源项目开始关闭外部 PR，用自家 agent「软件工厂」接住社区请求",
+          "title_en": "Latent Space: top AI open-source projects are closing external PRs and absorbing community requests into in-house agent 'software factories'",
+          "author": "Latent Space（Richard MacManus）",
+          "author_en": "Latent Space (Richard MacManus)",
+          "likes": null,
+          "url": "https://www.latent.space/p/pr-not-welcome",
+          "summary": "Latent Space 9 月 1 日报道，一批 AI 原生开源项目正关闭外部 PR，转而用自家 agent 管理贡献。Vercel 的 AI SDK（每周 npm 下载超 2000 万）在 6 月底积压了超 1000 个 open issue 和近 800 个 PR，于是搭了一套“软件工厂”：一种 agent 复现 bug、一种应用修复、一种审查修复。上线四周后，官方称工厂写出了合入 PR 的 25% 到 35%，并关掉了 70% 到 80% 的 issue。工程师 Lars Grammel 解释为何不信任社区 agent：“如果你有一个非常具体、针对某类 bug 调优过的 agent，历史上成功率很高，你就会信任那个特定配置。”Astro（6.2 万星）用同样思路做自动分诊，创始人 Fred Schott 说“五年来 issue 进来的速度一直快过我们处理的速度”，现在靠 agent 处理分诊、复现，并在维护者看之前让用户先验证 bot 给的修复。Schott 把这条路推到极致，做了个叫 Flue 的新 agent 框架，贡献指南写明“不接受你的 PR”，外部 PR 一律自动关闭、转成 issue 或 discussion，理由是防止“Drive-by AI slop PR”。tldraw（5 万星）从 1 月起自动关闭外部 PR，作者 Steve Ruiz 说“如果 issue 写得够清楚、代码又可由 agent 写，让人来贡献代码就没意义了”，贡献转向“报告、讨论、视角、关心”。Mitchell Hashimoto 说得更远：大项目终将完全关闭代码贡献。",
+          "summary_en": "Latent Space reported September 1 that a set of AI-native open-source projects are shutting off external PRs and managing contributions with their own agents. Vercel's AI SDK (20M+ npm downloads/week) had over 1,000 open issues and nearly 800 PRs by late June, so it built a 'software factory': one agent reproduces the bug, one applies the fix, one reviews the fix — four weeks in, the factory 'authors 25-35% of the PRs we merge and closes 70-80% of issues.' Engineer Lars Grammel explains the trust calculus: 'If we have a very specific agent with a very specific prompt that we optimized, and we know that over history it was very successful at fixing a certain category of bugs, then we develop trust in that particular agent configuration.' Astro (62k stars) applied the same idea to triage; founder Fred Schott says 'for five years issues came in faster than we could handle them,' and agents now triage, reproduce, and get the user to verify a bot-suggested fix before a maintainer even looks. Schott pushed the idea to its extreme in a new agent framework, Flue, whose contributor guide says 'we don't accept your PR' — every external PR is auto-closed and converted to an issue or discussion to prevent 'drive-by AI slop PRs.' tldraw (50k stars) has auto-closed external PRs since January; creator Steve Ruiz: 'it just makes less sense to have people contributing code if the issue is decently well-specified and the code can be written by agents,' steering contributions toward 'reporting, discussion, perspective, and care.' Mitchell Hashimoto goes further: large open-source projects will eventually close code contributions entirely.",
+          "why": "这是继 08-31 的 DoltLite（2000 个 agent PR）之后，开源协作模式翻转的又一硬信号：维护者不再信任外部 PR，转而信任自家调优过的 agent 配置。它把“社区贡献”的价值从写代码重新定位到报告与讨论，对做开源或靠开源获客的产品是个需要提前想清楚的路线选择。",
+          "why_en": "After 08-31's DoltLite (~2,000 agent PRs), this is another hard signal that open-source collaboration is flipping: maintainers no longer trust outside PRs, they trust their own tuned agent configurations. It repositions the value of community contribution from writing code to reporting and discussing — a route choice anyone running an open-source or open-source-led product should think through in advance."
+        }
+      ]
+    }
+  ]
+}
