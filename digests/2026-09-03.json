@@ -1,0 +1,130 @@
+{
+ "date": "2026-09-03",
+ "partial": false,
+ "banner": "Agent 能花钱了，但没有退款键",
+ "banner_en": "Agents can finally spend, but there's no refund button",
+ "image": {
+  "src": "digests/img/2026-09-03.jpg",
+  "caption": "本期头版配图：AI Engineer World's Fair 现场截图，Apify 创始人 Jan Černý 在台上讲 X402 支付协议现在的问题。（图：AI Engineer World's Fair）",
+  "caption_en": "This issue's lead image: a frame from AI Engineer World's Fair, Apify founder Jan Černý on stage explaining the X402 payment protocol's current problems. (Image: AI Engineer World's Fair)"
+ },
+ "actions": [
+  {
+   "text": "如果你手上有 agent 被允许\"花钱\"或触发不可逆操作（哪怕只是测试环境里的脚本），今晚花十分钟查一下这个上限到底是谁在真正拦住。Apify 创始人在大会上示范了一个真实教训：X402 协议里\"最多花 5 美元\"这种授权，用的还是同一个签名，理论上能被重复提交好几次，协议本身并没有真正拦住。所以关键不是你的 prompt 里写没写花钱上限，而是这个上限有没有被下游系统（钱包、支付网关、API 本身）强制执行。完成标志：你查了自己手上至少一个\"有花钱权限\"的 agent 或脚本，写下它的上限到底是谁在拦，prompt 承诺还是系统强制。",
+   "source": "AI Engineer 大会 · Apify（Jan Černý）",
+   "source_url": "https://www.youtube.com/watch?v=h6mi88VrPtQ",
+   "text_en": "If you have any agent allowed to \"spend money\" or trigger an irreversible action (even just a test-environment script), spend ten minutes tonight checking who's actually enforcing that cap. Apify's founder gave a real-world lesson at the conference: an X402 authorization like \"spend up to $5\" still runs on the same signature, and can technically be resubmitted several times, the protocol itself doesn't actually block it. So the question isn't whether your prompt states a spend cap, it's whether that cap is enforced downstream, by the wallet, the payment gateway, or the API itself. Done when you've checked at least one of your own \"can spend money\" agents or scripts and written down whether its cap is a prompt promise or a system-enforced rule.",
+   "source_en": "AI Engineer World's Fair · Apify (Jan Černý)"
+  },
+  {
+   "text": "如果你自己在做 AI 相关产品或服务，或者只是想校准对这波估值的判断，花十分钟对一下 Cognition 这轮融资的数字：470 亿美元估值，年化收入已经过 9 亿美元，约等于 50 倍收入倍数。拿这个数字去对照你自己在看的项目（自己的、或任何一家 AI 创业公司）当前的收入和估值预期，看看差距有多大，这个差距能不能用增长速度或护城河解释清楚，还是纯粹靠故事撑着。完成标志：你写下至少一个项目的收入倍数，以及这个倍数你觉得站不站得住。",
+   "source": "Bloomberg · TLDR AI",
+   "source_url": "https://www.bloomberg.com/news/articles/2026-09-02/ai-startup-cognition-set-to-raise-around-1-billion-at-a-47-billion-value",
+   "text_en": "If you're building an AI-related product or service yourself, or just want to calibrate your read on this valuation wave, spend ten minutes checking Cognition's numbers: a $47B valuation against $900M+ in annualized revenue, roughly a 50x revenue multiple. Hold that number up against your own project (or any AI startup you're tracking) and its current revenue versus valuation expectations, and see how wide the gap is, and whether that gap is explainable by growth rate or moat, or is running purely on story. Done when you've written down at least one project's revenue multiple and a one-line verdict on whether it holds up.",
+   "source_en": "Bloomberg · TLDR AI"
+  }
+ ],
+ "hands_on": {
+  "title": "今晚在浏览器里跑一个完全离线的本地大模型",
+  "title_en": "Tonight: run a fully local LLM right in your browser",
+  "why": "今天 Hacker News 上有条帖子在讨论 WebLLM，一个能直接在浏览器里用 WebGPU 跑大模型推理的引擎，不用装任何东西、不用服务器、也不用联网调用任何 API。免费试一次能让你直观感觉到本地跑一个模型现在到底有多快、多好用，而不是只在新闻里看到\"端侧推理\"这个词。",
+  "why_en": "A Hacker News post today points to WebLLM, an engine that runs LLM inference directly in your browser via WebGPU, no install, no server, no network API calls. Trying it once for free gives you a real feel for how fast and usable local inference has actually gotten, instead of only reading the phrase \"on-device inference\" in the news.",
+  "time": "约10分钟",
+  "time_en": "~10 min",
+  "steps": [
+   "打开 https://chat.webllm.ai/ （建议用 Chrome，需要支持 WebGPU 的浏览器）",
+   "首次打开会把选中的模型下载到浏览器缓存，选一个小一点的模型（比如 Phi 3 或量化过的 Llama 3 8B）等它加载完",
+   "加载完之后随便聊几句，感受一下纯本地推理的速度和延迟",
+   "打开浏览器任务管理器看看它占用了多少内存和 GPU，对比一下你平时用的云端 AI 工具"
+  ],
+  "steps_en": [
+   "Open https://chat.webllm.ai/ (use a WebGPU-capable browser like Chrome)",
+   "First load downloads the chosen model into your browser cache, pick a smaller model (e.g. Phi 3 or a quantized Llama 3 8B) and let it finish loading",
+   "Once loaded, chat with it for a bit and get a feel for local-only inference speed and latency",
+   "Open your browser's task manager to see how much memory/GPU it's using, and compare that to your usual cloud AI tools"
+  ],
+  "source": "Hacker News · mlc-ai/web-llm",
+  "source_url": "https://github.com/mlc-ai/web-llm",
+  "source_en": "Hacker News · mlc-ai/web-llm"
+ },
+ "meta_read": "今晚三条内容合在一起看，说的其实是同一件事在不同环节的进度。Apify 创始人在大会上坦白了 X402 支付协议现在的问题：标准打架（有的要求服务器返回 402，MCP 又要求 401），而且没解决重复花钱这个根本漏洞，他们目前只能先扣一笔固定费用，事后再退回多余部分。旁边一场分享说得更直白：传统支付有人工审核和拒付兜底，agent 转账没有，钱一旦付出去就要不回来，所以真正卡住企业用这套东西的，不是协议好不好用，而是给对方钱包做背景审查的合规层还没搭好。这和 Cognition 同时在融资、估值 470 亿美元、年化收入已经过 9 亿美元放在一起看更有意思：钱已经在真实地流进 agent 相关的产品，支付基础设施却还在补课。谷歌这时候把 3.8 Flash Cyber 做成一个要申请才能用的门槛版本，也是同一个逻辑：agent 能力越强，厂商反而越要在准入这一步收紧，而不是敞开卖。",
+ "meta_read_en": "Tonight's three stories are really tracking the same shift from different angles. Apify's founder admitted on stage that the X402 payment protocol still has real problems: competing standards (some require the server to return HTTP 402, MCP requires 401) and an unresolved double-spending flaw, so for now Apify just charges a fixed fee upfront and refunds the leftover afterward. A companion talk put it more bluntly: traditional payments have human review and chargebacks as a backstop, agent-to-agent payments have neither, once the money moves it isn't coming back, so what's actually blocking enterprise adoption isn't the protocol's usability, it's that the compliance layer for screening a counterparty's wallet doesn't exist yet. That's worth reading against Cognition raising money at a $47B valuation with $900M+ in annualized revenue at the same time: real money is already flowing into agent-shaped products while the payment infrastructure underneath is still catching up. Google gating its 3.8 Flash Cyber model behind an application-only program follows the same logic: the more capable an agent-facing model gets, the tighter vendors are gating access, not the opposite.",
+ "ota": {
+  "learned": [
+   "今晚完整看完 Apify 创始人和 Edge & Node 两场关于 agent 支付的分享才发现，X402 这类协议是刻意设计成不可逆的：没有退款、没有拒付，因为 agent 之间根本没法验证对方身份，允许拒付等于允许对方直接跑路。这解释了 7 月 29 日那条\"能不能撤销\"的自主性判断规则里，\"成本高\"和\"完全无法撤销\"其实不是一回事，后者需要更严的门槛。",
+   "另外发现即便协议写了\"最多花 5 美元\"这种授权上限，同一笔签名理论上还是能被重复提交，也就是说 prompt 里写的花钱上限不等于系统真的会拦住，除非支付协议本身强制执行这个上限。"
+  ],
+  "new_capabilities": [
+   "以后遇到要给 agent 开通过加密钱包或 X402 这类协议花钱权限的场景，会先把这条渠道的可撤销性当成零来对待，而不是\"贵但能撤\"，并且要求花钱上限是协议强制的而不是 prompt 里承诺的，加上转账前先做一次对方钱包的合规核查。已经写进 memory `feedback-verify-labels-before-trust` 和今晚的 ota-ledger。"
+  ],
+  "learned_en": [
+   "Watching both agent-payments talks tonight in full surfaced that protocols like X402 are deliberately built to be irreversible: no refunds, no disputes, because agents have no way to verify who they're transacting with, so allowing a dispute would just let the counterparty walk. That sharpens the July 29 autonomy rule about checkability and reversibility: \"costly to undo\" and \"architecturally impossible to undo\" aren't the same thing, and the second one needs a stricter bar.",
+   "Also found that even when a protocol states a cap like \"spend up to $5,\" the same signed authorization can technically still be resubmitted, meaning a spend cap written into a prompt isn't actually enforced unless the payment protocol itself blocks the resubmission."
+  ],
+  "new_capabilities_en": [
+   "Going forward, before letting any agent spend through a crypto wallet or X402-style protocol, I'll treat that channel's reversibility as zero rather than merely \"expensive to undo,\" require that any spend cap is enforced by the protocol itself rather than just stated in a prompt, and require a counterparty compliance check before authorization. Written into memory `feedback-verify-labels-before-trust` and tonight's ota-ledger entry."
+  ]
+ },
+ "sources": [
+  {
+   "platform": "YouTube",
+   "platform_en": "YouTube",
+   "items": [
+    {
+     "title": "Agent 花钱协议满地开花，双花漏洞还没堵上",
+     "title_en": "Agent payment protocols are everywhere, but double-spending isn't fixed",
+     "author": "AI Engineer 大会 · Jan Černý（Apify 创始人）",
+     "author_en": "AI Engineer World's Fair · Jan Černý (Apify founder)",
+     "likes": 16,
+     "url": "https://www.youtube.com/watch?v=h6mi88VrPtQ",
+     "summary": "Apify 创始人 Jan Černý 去年在同一个大会上第一个专门讲 agent 经济，今年带来一场自嘲式续集：标题致敬去年 Sentry 那场\"MCP 还不够好\"的分享，主题换成\"X402 还不够好\"。Apify 是个有 4.5 万个工具的市场，社区靠卖工具给别人的 agent 用，现在每月能拿到超过 100 万美元分成。两天前 Apify 接入 Coinbase 的 X402 协议，上线当天播放量破百万，工具数从 2000 个直接跳到 2.2 万个，翻了十倍。他数了一圈，过去一年冒出十几种 agent 支付协议，从 Mastercard Agent Pay 到 OpenAI 和 Stripe 的 ACP，各家金融巨头都想在这块蛋糕里占一份。他认为加密支付特别适合 agent 场景，原因很直接：agent 没有可验证身份，传统支付靠拒付兜底买家，agent 之间做不到这一点，交易必须设计成不可逆的单向操作，信用卡体系反而做不到这点。\n\n但他也拆了这套系统现在的两个真实漏洞。第一，双花问题：结算前，同一笔付款签名理论上能被重复提交去发起好几个请求，只有零成本的简单调用才能靠\"先干活后核实\"混过去，稍微复杂点的任务，Apify 目前只能靠先扣一笔固定费用、事后把多余部分退回去这种笨办法顶着，代价是两笔链上交易，还得让客户信任你真的会退款。两个月前 Coinbase 推出的\"批量结算\"方案看起来能解决这个问题（先托管资金换一张可签名的凭证，链下攒一批微交易，攒够了再统一上链结算），但 Apify 还没接入。第二，标准冲突：X402 规定服务器必须先返回 402，MCP 又要求返回 401，两边谁都不让步，逼得不少公司只能为每种支付方式单独开一个子域名，被他形容成\"给不同信用卡开 20 个亚马逊\"。Apify 自己的解法是做了一个叫 agi.apify.com（Agent General Interface）的纯 markdown 说明页，专门写给 agent 看，不用像 API 那样保持向后兼容，agent 读完直接买一笔预付 token 就能跑，十分钟能上手。他估算现在 X402 生态月交易量也就 100 万美元左右，还很早期，但一旦 token 不再靠融资补贴、真要为消耗算账，build 还是 buy 的决策会更偏向外部服务，agent 经济可能反超普通商业规模。",
+     "summary_en": "Apify founder Jan Černý gave a self-aware sequel this year: a talk explicitly named after Sentry's \"MCP isn't good yet\" from the same stage a year ago, this time titled \"X402 isn't good yet.\" Apify is a marketplace of 45,000 tools, and its community now earns over $1M a month selling tools to other people's agents. Two days before this talk, Apify integrated Coinbase's X402 protocol; the launch post hit a million views and the number of tools available on the X402 ecosystem jumped tenfold, from 2,000 to 22,000, overnight. He counted more than a dozen competing agent-payment protocols that have appeared in the last year, from Mastercard's Agent Pay to OpenAI and Stripe's ACP, every major payments player racing for a piece of this. He argues crypto fits agentic commerce for a specific reason: agents have no verifiable identity, so unlike a credit card backed by chargebacks, an agent-to-agent payment has to be a one-way, irreversible transaction, something the card networks can't actually provide.\n\nHe also named two real problems the ecosystem still has. First, double-spending: before a transaction settles on-chain, the same signed payment can technically be resubmitted to trigger multiple requests, so only zero-marginal-cost calls can get away with doing the work before verifying payment. For anything more expensive, Apify's current workaround is to charge a fixed fee upfront and refund the unspent portion afterward, which costs two on-chain transactions and requires the customer to trust the server will actually issue the refund. Coinbase's \"batch settlement\" scheme, launched two months ago (deposit funds for a signed voucher, sign a batch of off-chain microtransactions against it, then settle the batch on-chain once), looks promising but Apify hasn't implemented it yet. Second, a standards conflict: X402 requires the server to respond with HTTP 402, while MCP requires HTTP 401, and neither will budge, forcing many companies to stand up a separate subdomain per payment method, which he compared to \"needing 20 different Amazons for 20 different credit cards.\" Apify's own fix is a plain markdown page at agi.apify.com (Agent General Interface), written for agents rather than humans, that can change anytime without the backward-compatibility burden of a real API; an agent reads it, buys a prepaid token, and is running in about ten minutes. He estimates the whole X402 ecosystem is doing roughly $1M in monthly transaction volume right now, still very early, but once the era of subsidized tokens ends and usage actually has to be paid for, the build-vs-buy calculus tips toward buying external services, and agentic commerce could eventually overtake ordinary commerce in scale.",
+     "why": "选它不是因为 X402 本身是新闻（Coinbase 去年就发布了），而是因为这是难得一见的一手实践报告：一个真拿着 4.5 万个工具在卖钱的团队，把协议里没人愿意讲的坑（双花、标准冲突）摊开来讲，比任何厂商发布会都更接近你自己接入时会踩到的坑。",
+     "why_en": "This isn't the pick because X402 itself is news (Coinbase shipped it last year); it's the pick because it's a rare hands-on field report: a team actually selling access to 45,000 tools laying out the problems no vendor's launch page mentions (double-spending, standards conflicts), closer to what you'd actually hit integrating this yourself than any launch post."
+    },
+    {
+     "title": "谁来给 agent 的钱包做背景审查",
+     "title_en": "Who runs the background check on an agent's wallet",
+     "author": "AI Engineer 大会 · Edge & Node（Rodrigo Coelho & Pranav Maheshwari）",
+     "author_en": "AI Engineer World's Fair · Edge & Node (Rodrigo Coelho & Pranav Maheshwari)",
+     "likes": 7,
+     "url": "https://www.youtube.com/watch?v=ZyGMqdIpPoE",
+     "summary": "Edge & Node 是做 The Graph 协议的团队，2018 年就开始跑区块链数据索引网络，处理过 1.8 万亿次查询。他们孵化的新项目 Ampersend 想解决一个具体问题：agent 转账不像人类转账，没有人在中间做决策，是全天候、毫秒级发生的，而现在所有支付规则和合规流程都是照着人类的节奏设计的。要让企业真的敢用这套东西，缺的不是支付协议本身，是一整套合规层，比如这个钱包地址背后是不是被制裁实体、有没有恐怖主义关联，而 agent 世界里你拿到的往往只是一个钱包地址，什么背景信息都没有。真要落地，最后要有一个人（法务或合规负责人）签字担保这套系统不会让 agent 乱花钱、越权或者违规，这一层现在基本是空的。\n\n现场演示很直接：同一个任务（查 Mastercard 某高管的邮箱），一个 Claude Code 装了 Ampersend 的技能文件，能自动付费调用需要信用卡的 MCP 工具查到答案；没装的那个只能告诉你邮箱格式规律，查不到具体人。第二个演示让 agent 自主通过 Shopify 的 UCP（Universal Commerce Protocol）花不到 10 美元给\"父亲节礼物\"下单，全程没有手动填一次收货地址或卡号。第三个演示专门做合规测试：分别用一个正常钱包和一个被标记为\"制裁地址\"的钱包发起同样的小额抓取付费，关闭合规检查时两笔都能过；打开 Ampersend 接入的 TRM 合规扫描后，被标记的钱包立刻被拦下，标注拦截原因。他们的判断是：agent 商务会不会做起来，最后拼的不是协议速度，是这层合规能不能落地，商家不会接受一个可能来自被制裁钱包的订单。",
+     "summary_en": "Edge & Node is the team behind The Graph protocol, running a decentralized blockchain-data indexing network since 2018 that has served 1.8 trillion queries. Their incubated project Ampersend targets a specific gap: agent-to-agent payments don't have a human in the loop making decisions the way traditional payments do; they happen around the clock at machine speed, while every existing payment rule and compliance process was built for human pacing. What's actually missing for enterprises to trust this isn't the payment protocol itself, it's a compliance layer: is this wallet address tied to a sanctioned entity, does it have any terrorism-financing history, questions traditional finance answers routinely but that an agent-to-agent payment currently can't, since all you get is a bare wallet address with zero background information. For this to ship at a real company, someone (a chief legal or compliance officer) has to sign off that the system won't let an agent overspend, exceed its authority, or break policy, and that layer barely exists today.\n\nThe live demo made the gap concrete: given the same task (find a Mastercard executive's email), a Claude Code instance with Ampersend's skill file installed could automatically pay for a card-gated MCP tool and get the exact answer; one without it could only guess at the email format. A second demo let an agent autonomously buy a sub-$10 Father's Day gift through Shopify's UCP (Universal Commerce Protocol) with no manual entry of an address or card number at any point. A third demo ran a compliance test directly: the same small scraping-fee payment was sent from a normal wallet and from a wallet flagged as sanctioned; with compliance screening off, both went through, and once Ampersend's TRM-based screening was switched on, the flagged wallet's transaction was immediately blocked with a stated reason. Their conclusion: whether agentic commerce actually takes off won't come down to protocol speed, it'll come down to whether this compliance layer gets built, because no merchant will accept an order that might be coming from a sanctioned wallet.",
+     "why": "这场分享补上了上一条 Apify 分享没讲的另一半：协议本身能不能用是一回事，企业愿不愿意把真钱交给 agent 管又是另一回事，而后者卡在的正是\"怎么验证对方钱包是谁\"这个问题，和这份小报这几周一直在追的\"标签要独立核实、不能光信\"是同一条线。",
+     "why_en": "This talk fills in the half the Apify talk above doesn't cover: whether a protocol works technically is one question, whether an enterprise will actually hand an agent real money is another, and the second one comes down to verifying who's actually behind a wallet address, the same \"don't trust a label until you've independently checked it\" thread this newsroom has been tracking for weeks."
+    }
+   ]
+  },
+  {
+   "platform": "文摘",
+   "platform_en": "Digest",
+   "items": [
+    {
+     "title": "AI 编程独角兽 Cognition 融资到 470 亿估值",
+     "title_en": "AI coding unicorn Cognition raises at a $47B valuation",
+     "author": "Bloomberg · TLDR AI",
+     "author_en": "Bloomberg · TLDR AI",
+     "likes": null,
+     "url": "https://www.bloomberg.com/news/articles/2026-09-02/ai-startup-cognition-set-to-raise-around-1-billion-at-a-47-billion-value",
+     "summary": "AI 编程公司 Cognition（旗下有 Devin，收购来的 Windsurf）正在敲定一轮约 10 亿美元的新融资，估值定在 470 亿美元，报道说认购已经超额，公司年化收入已经超过 9 亿美元。这个估值大约是年化收入的 50 倍。TLDR 这条消息发布的同一期里，还并排放着 Anthropic Fable 5.1/Mythos 5.1、World Labs 的 Atlas 世界模型这些产品新闻，Cognition 的融资是唯一一条纯粹的资本市场消息。",
+     "summary_en": "AI coding company Cognition (which owns Devin and the acquired Windsurf) is finalizing roughly $1B in new funding at a $47B valuation, reportedly oversubscribed, with the company's annualized revenue already past $900M, putting the valuation at roughly 50x revenue. The same TLDR AI issue that carried this also ran Anthropic's Fable 5.1/Mythos 5.1 launch and World Labs' Atlas world model as product news; Cognition's raise is the one pure capital-markets story in the batch.",
+     "why": "这条本身信息量不大，但数字值得记一下：9 亿美元年化收入、470 亿估值，一个具体的 50 倍收入倍数基准，能拿来对照你自己在评估的任何 AI 项目或公司，详见今日行动第二条。",
+     "why_en": "The story itself is thin, but the numbers are worth keeping: $900M ARR against a $47B valuation is a concrete 50x revenue multiple you can hold up against any AI project or company you're sizing up yourself. See action 2."
+    },
+    {
+     "title": "谷歌把网络安全能力单独做成一个要申请的版本",
+     "title_en": "Google gates its cybersecurity capability behind an application-only tier",
+     "author": "Google · TLDR AI",
+     "author_en": "Google · TLDR AI",
+     "likes": null,
+     "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+     "summary": "谷歌发布 Gemini 3.8 Flash，编程和 agent 任务能力接近更贵的旗舰模型，价格和速度维持在上一代 3.7 Flash 的水平。同时单独发布了一个专门版本 3.8 Flash Cyber，专攻漏洞发现和自动打补丁，安全限制比标准版更宽松，只通过谷歌新设的 Fairwind Program 向政府机构和关键基础设施运营商开放申请。谷歌给出的实测数据：Chrome 安全团队用它生成的补丁，正确率是对照模型的 2.6 倍；在内部测试里，它能在 20 种编程语言里找到 70% 的已知漏洞，在 CWE-Bench 补丁基准上的通过率是 47.2%，而且成本明显更低。",
+     "summary_en": "Google released Gemini 3.8 Flash, matching pricier flagship models on coding and agent-task performance while holding the same speed and price as its predecessor, 3.7 Flash. Alongside it, Google shipped a separate variant, 3.8 Flash Cyber, built specifically for vulnerability discovery and automated patching, with looser safety restrictions than the standard model, available only by application through Google's new Fairwind Program, aimed at government agencies and critical-infrastructure operators. Google's own numbers: Chrome's security team found it produced 2.6x more correct patches than competing models; in internal testing it found 70% of known vulnerabilities across 20 programming languages, and hit a 47.2% pass rate on the CWE-Bench patching benchmark, at a notably lower cost.",
+     "why": "把这条和上面两条 agent 支付分享放一起看会更有意思：agent 能力越往关键领域走（花钱、找漏洞），厂商的应对方式都是同一套，不是敞开卖，而是单独做一道申请门槛。",
+     "why_en": "Read next to the two agent-payment talks above, this fits the same pattern: as agent capability moves into higher-stakes territory (spending money, finding exploits), vendors are converging on the same response, not selling it wide open, but gating it behind a separate application step."
+    }
+   ]
+  }
+ ]
+}
