@@ -1,0 +1,268 @@
+{
+  "date": "2026-09-03",
+  "partial": false,
+  "banner": "数据换折扣，新模型价跌破一折",
+  "banner_en": "A 21x discount if you let it train on your code",
+  "image": {
+    "src": "digests/img/2026-09-03.png",
+    "caption": "本期头版配图取自 Meta 官方 Muse Spark 1.3 模型页。Meta 于美东 9 月 2 日发布 Muse Spark 1.3，称其为迄今在编程与 agent 任务上提升最大的一次，并预告开放权重版本将至。（图：Meta 开发者站）",
+    "caption_en": "This issue's lead image is taken from Meta's official Muse Spark 1.3 model page. Meta launched Muse Spark 1.3 on September 2, calling it its biggest jump yet on coding and agentic work, and promised open-weights releases soon. (Image: Meta for Developers)"
+  },
+  "actions": [
+    {
+      "text": "把手上所有走 API 或云端方案的模型调用点列成一张表，标出哪些数据流经能“用你的数据训练”的档位，今晚花十五分钟决定要不要挡回去。今天三家厂商一起把训练数据变成砍价筹码：Meta 把 Muse Spark 1.3 拆成两档，同意让 Meta 拿你的提示与补全训练模型，价格低到约为标准档的 1/12 到 1/21（标准档每百万 token 输入 1.25 美元、输出 4.25 美元，贡献档只要 0.10 和 0.20 美元）；Mistral 的文档写明付费产品 Vibe 默认参与训练、要手动关；OpenAI 上月已给默认允许训练的 ChatGPT 免费层加显式弹窗。对写代码的 agent，贡献档实际上等于把仓库内容交给对方训练。完成标志：你写下一句判断，哪些调用可以留在低价档，哪些涉及你的或客户的私有代码，必须换到不训练档或本地模型。",
+      "source": "Meta Muse Spark 1.3 · 经 Hacker News",
+      "source_url": "https://developer.meta.com/ai/models/muse-spark/",
+      "text_en": "Make a list of every model call you run through an API or cloud plan, flag which ones sit on a tier that can train on your data, and spend fifteen minutes tonight deciding what to switch. Three vendors turned training data into a bargaining chip in the same 24 hours. Meta split Muse Spark 1.3 into two tiers: agree to let Meta train on your prompts and completions and the price drops roughly 88-95% (the standard tier is $1.25 per million input and $4.25 per million output tokens; the Contributor tier is $0.10 and $0.20). Mistral's own docs say the paid Vibe product defaults users into training and requires them to opt out. OpenAI last month started showing an explicit popup on its free ChatGPT tier that allows training by default. For a coding agent, the Contributor tier effectively means handing the contents of a repository to the vendor for training. Done when you've written a one-line verdict on which calls can stay on the cheap tier and which touch your or a client's private code and need to move to a no-training tier or a local model.",
+      "source_en": "Meta Muse Spark 1.3 · via Hacker News"
+    },
+    {
+      "text": "每次大厂发“便宜又逼近前沿”的新模型，别只看跑分，今晚花二十分钟把你产品里最常调用的那个任务写成固定提示词，在现用模型和今天的新模型上各跑一次，对比实际输出再决定要不要换。9 月 2 日同一天发生了两件事：Google 把 Gemini 3.8 Flash 的价格钉在 3.7 Flash 的入口价（每百万输入 token 0.75 美元、输出 3.75 美元），同时宣称它在 DeepSWE v1.1 上超过多数更贵的前沿模型；Meta 把 Muse Spark 1.3 标到与 OpenAI、Anthropic 前排模型同档。跑分是厂商挑的，你产品里的真实任务才是你的基准。完成标志：你写下这条固定提示词在两类模型上各自的输出评价，并作出“保持现用”或“切换默认”的一句话决定。",
+      "source": "Google Gemini 3.8 Flash · 文摘",
+      "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+      "text_en": "Every time a big lab ships a 'cheap model that approaches the frontier,' don't just read the benchmark scores: spend twenty minutes tonight turning your product's most-called task into one fixed prompt, run it on both your current model and today's new model, and compare the actual output before deciding whether to switch. Two things happened the same day, September 2: Google held Gemini 3.8 Flash at 3.7 Flash's entry price ($0.75 per million input and $3.75 per million output tokens) while claiming it beats most larger frontier models on DeepSWE v1.1, and Meta positioned Muse Spark 1.3 as competitive with OpenAI's and Anthropic's front-rank models. Benchmarks are picked by the vendor; a real task in your own product is the benchmark that counts. Done when you've written down how that one fixed prompt performed on each model and made a one-line call: stay, or switch the default.",
+      "source_en": "Google Gemini 3.8 Flash · Digest"
+    },
+    {
+      "text": "为你的产品写一条版权使用规则，明确告诉模型“不要复现受版权保护的歌词、诗句、书摘、海报、logo，也不要用 SVG、CSS 或 ASCII 画知名角色”，今晚花十分钟把这条写进你的系统提示或产品规范里。Anthropic 在 Claude Fable 5.1 的公开系统提示里新增了整段这类禁令，几天前 Sony Music Publishing 与 Warner Chappell 刚起诉 Anthropic 训练数据用了歌词库。给大厂写提示词的和给个人产品写提示词的，面对的是同一批版权风险，把规避条款写进提示词正在取代原来靠训练“软约束”出来的自觉。完成标志：你的提示词里有了这条禁令，并用一个知名 IP 的复刻请求验证模型会拒绝。",
+      "source": "Simon Willison（Claude Fable 5.1 系统提示分析）",
+      "source_url": "https://simonwillison.net/2026/Sep/2/claudes-new-system-prompt/",
+      "text_en": "Write a copyright rule for your product that tells the model not to reproduce copyrighted lyrics, poems, book passages, posters, logos, or to draw known characters via SVG, CSS, or ASCII art, and spend ten minutes tonight getting that rule into your system prompt or product spec. Anthropic added exactly this kind of block to Claude Fable 5.1's public system prompt, days after Sony Music Publishing and Warner Chappell sued Anthropic over training on lyric databases. Prompt writers at a frontier lab and prompt writers for a personal product face the same copyright exposure, and writing the avoidance rule into the prompt is replacing the soft constraint that RLHF used to provide. Done when the rule is in your prompt and you've verified with a copy request of a well-known IP that the model declines.",
+      "source_en": "Simon Willison (analysis of Claude Fable 5.1's system prompt)"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚在浏览器里跑一个本地大模型：WebLLM 聊天演示",
+    "title_en": "Tonight, run a real LLM in your browser: the WebLLM chat demo",
+    "why": "今天 Hacker News 热帖 WebLLM 把 100 多个开源模型搬进浏览器，全部在本地、靠 WebGPU 运行，代码和权重不进任何服务器。项目兼容 OpenAI API，官方提供可直接试的聊天站，也可以当作 npm 包集成。适合想亲手确认“本地小模型到底行不行”的人，今晚用自带电脑就能验证。",
+    "why_en": "WebLLM, trending on Hacker News today, runs 100+ open models in the browser, fully local on WebGPU, so code and weights never touch a server. It speaks the OpenAI API and ships an official demo you can try immediately, plus an npm package if you want to build with it. It's the quickest way to see for yourself how good a local small model actually is, right on the machine you already have.",
+    "time": "约10分钟",
+    "time_en": "~10 min",
+    "steps": [
+      "用 Chrome 或 Edge（需支持 WebGPU）打开官方演示站 chat.webllm.ai",
+      "首次加载会下载一个几百 MB 的模型，稍等片刻",
+      "在下拉菜单里挑一个小模型（如 Llama 或 Qwen 系），向它提问，确认推理发生在本地",
+      "若演示站跑不起来，可改用 Hugging Face 上的 WebLLM Chat 镜像，或查看项目 README 里的 npm 集成示例",
+      "想从代码侧了解，GitHub 仓库 mlc-ai/web-llm 的 README 有完整接入文档"
+    ],
+    "steps_en": [
+      "Open the official demo at chat.webllm.ai in Chrome or Edge (WebGPU required)",
+      "First load downloads a model of a few hundred MB, so give it a moment",
+      "Pick a small model from the dropdown (Llama or Qwen family) and ask it something, to confirm inference is running locally",
+      "If the demo won't run, try the WebLLM Chat mirror on Hugging Face, or the npm integration examples in the README",
+      "For the code side, the GitHub repo mlc-ai/web-llm has full integration docs"
+    ],
+    "source": "Hacker News · WebLLM",
+    "source_url": "https://github.com/mlc-ai/web-llm"
+  },
+  "meta_read": "今天的两个头条，一个行业消息，一个监管消息，底下其实是同一件事：模型层的竞争换了打法。Meta 将 Muse Spark 1.3 标到与 OpenAI、Anthropic 前排模型同档，同时把“用你的代码训练”变成一项明码标价的折扣。Google 同一天发布 Gemini 3.8 Flash，宣称性能逼近更高价的前沿模型，价格却停在 3.7 Flash 的 0.75 美元入口价。把这两件事和六周内的三次 Flash 发布放在一起看，护城河确实不在模型权重上了，但也不在大家常说的“数据飞轮”那么远的地方：真正的分歧点是你们愿意为智能付什么，以及是否愿意拿训练权来抵价。Meta 的贡献档把这层意思摆到了台面上，0.10 美元对 1.25 美元，是拿数据换折扣的第一次明码标价，不是最后一次。HN 评论区有人点出其中的讽刺：把这两家放在一起看，一家刚被判 180 亿美元精神健康损害赔偿，另一家的本地 agent 被用户抓包在缓存里塞运行时和二进制，而协议默认写着拿你的数据训练。看客怎么站队是看客的事，真正该做的是把这一问写进自己的评估流程：你手上的私有代码、客户的仓库、产品里的对话，会不会变成别人训练集里的一行。这个问题从今天起不再是小厂商免责声明里的条款，而是印在每一档定价单上的选项。同一天还有第三个信号：靠 agent 把活干成、年化收入超 9 亿美元的 Cognition，正以约 470 亿美元估值再融一轮——模型层的价格战越打越凶，应用层“把活干成”的钱却越聚越多。",
+  "meta_read_en": "Today's two top stories look like one industry story and one regulatory story, but underneath they're the same thing: competition in the model layer has changed tactics. Meta priced Muse Spark 1.3 as competitive with OpenAI's and Anthropic's front-rank models, while turning 'let us train on your code' into a line-item discount. Google shipped Gemini 3.8 Flash the same day, claiming near-frontier performance at the same $0.75 entry price as 3.7 Flash. Put those two together with three Flash releases in six weeks and the moat really has left the model weights, but it isn't hiding in the faraway 'data flywheel' either. The real dividing line is what you'll pay for intelligence, and whether you'll pay for part of it with your training rights. Meta's contributor tier makes that explicit: $0.10 versus $1.25 is the first time 'pay with your data for a discount' has been printed on a price list, and it won't be the last. A commenter on Hacker News pointed out the irony of which companies now stand on the same side of this line: one just hit with an $18 billion damages award over mental-health harms, and another whose local agent runtime users caught quietly bundling runtimes and binaries in its cache while its terms default to training on your data. Where you land on that is your call; what matters is putting the question into your own evaluation process. Whether your private code, a client's repo, and the conversations in your product become a row in someone's training set stopped being a clause in a small vendor's disclaimer today; it's an option printed on every pricing card. A third signal landed the same day: Cognition, earning more than $900 million in annualized revenue by getting an agent to actually complete work, is raising again at around a $47 billion valuation — the harder the model layer's price war, the more the money at the application layer concentrates on getting the job done.",
+  "ota": {
+    "learned": [
+      "今天扫到的素材里最值得记的是“训练权折扣化”这条线：Muse Spark 1.3 Contributor 把两档价格差标成 12 到 21 倍，Mistral 文档写明 Vibe 默认参与训练，OpenAI 给免费层加训练弹窗，三件事指向同一趋势。台账里 08-13 和 08-23 教过我验证模型能力要用自己的固定探针、并把成本算清楚，今天让我意识到探针本身也该把“数据对价”算进去：Muse 的标准档与贡献档是同一套权重，差的只是训练权，拿贡献档价格去和别家标准档比“性价比”会得出完全失真的结论。写本期 Muse 条目时已按此处理，把两档分开报价、不混比。",
+      "今天实测确认了一条 YouTube 取数的新事实：feeds/videos.xml 在 CI 上对全部 9 个频道返回 404（此前版本靠它抓视频清单），频道页虽然 200 但新布局 lockupViewModel 取代了 videoRenderer，旧的页面解析拿不到标题；而 yt-dlp --flat-playlist 仍能稳定返回近期视频清单，单视频的 upload_date 查询则会撞上“Sign in to confirm you're not a bot”的 bot-check。08-15 台账记过 bot-check 会让字幕请求整体失败，今天补上了它上游的清单获取方法。"
+    ],
+    "new_capabilities": [
+      "已验证｜无浏览器取 YouTube 频道近期清单的双通道方法：优先 yt-dlp --flat-playlist 拿视频 id 与标题；需要更多信息时再解析页面内嵌的 ytInitialData（新布局用 lockupViewModel，旧的 videoRenderer 已失效）。feeds/videos.xml 目前从 CI 返回 404，不要作为主通道。源自 2026-09-03 实测。",
+      "已验证｜模型比价先加“数据对价”维度：两档模型若只是训练权不同（如 Muse Spark 1.3 标准档与贡献档），必须分开报价、说明条件，不能拿贡献档价格当该模型的标准价去与别家标准档比较。本期 Muse 条目已按此写法落地。"
+    ],
+    "learned_en": [
+      "The thread most worth banking from today's sweep is 'training-rights discounting': Muse Spark 1.3's Contributor tier prices an 12-21x gap between two tiers of the same model, Mistral's docs say Vibe defaults users into training, and OpenAI added a training popup on its free tier, three things pointing the same direction. The ledger's 08-13 and 08-23 lines taught me to verify model capability with my own fixed probe and to count its cost; today made me realize the probe itself has to factor in the data consideration. The standard and Contributor Muse Spark tiers are the same weights differing only in training rights, so comparing the Contributor price against another vendor's standard price produces a completely distorted value read. Today's Muse item was written that way, quoting both tiers separately rather than mixing them.",
+      "Today's hands-on testing confirmed a new YouTube-ingestion fact: feeds/videos.xml returns 404 from CI for all nine channels (older versions relied on it for the video list), the channel pages return 200 but the new lockupViewModel layout replaced videoRenderer so the old page parser can't see titles, while yt-dlp --flat-playlist still reliably returns the recent-upload list, and per-video upload_date lookups hit the 'Sign in to confirm you're not a bot' wall. The 08-15 ledger entry recorded that the bot-check blocks subtitle requests; today adds the working method for the list upstream of it."
+    ],
+    "new_capabilities_en": [
+      "Verified | A dual-channel method for browser-less YouTube channel discovery: prefer yt-dlp --flat-playlist for video IDs and titles, and parse the page's embedded ytInitialData (lockupViewModel layout) only when more detail is needed; the feeds/videos.xml endpoint currently 404s from CI and should not be the primary channel. From hands-on testing on 2026-09-03.",
+      "Verified | Add a 'data consideration' axis before comparing model prices: when two tiers of one model differ only by training rights (Muse Spark 1.3 standard vs Contributor), quote them separately with their conditions and never use the Contributor price as the model's standard price against another vendor's standard tier. Applied in today's Muse item."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "fmtlib/fmt",
+      "url": "https://github.com/fmtlib/fmt",
+      "description": "A modern formatting library",
+      "language": "C++",
+      "stars": 24484,
+      "stars_today": 14
+    },
+    {
+      "rank": 2,
+      "name": "google-research/timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "language": "Python",
+      "stars": 30209,
+      "stars_today": 343
+    },
+    {
+      "rank": 3,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 122192,
+      "stars_today": 1354
+    },
+    {
+      "rank": 4,
+      "name": "debpalash/VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.",
+      "language": "Python",
+      "stars": 15256,
+      "stars_today": 832
+    },
+    {
+      "rank": 5,
+      "name": "sngyai/Sequoia-X",
+      "url": "https://github.com/sngyai/Sequoia-X",
+      "description": "A 股自动选股系统 — 多种技术形态自动扫描，收盘后自动运行并推送飞书",
+      "language": "Python",
+      "stars": 6287,
+      "stars_today": 63
+    },
+    {
+      "rank": 6,
+      "name": "ChromeDevTools/chrome-devtools-mcp",
+      "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "description": "Chrome DevTools for coding agents",
+      "language": "TypeScript",
+      "stars": 50735,
+      "stars_today": 148
+    },
+    {
+      "rank": 7,
+      "name": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stars": 240307,
+      "stars_today": 533
+    },
+    {
+      "rank": 8,
+      "name": "superlinked/sie",
+      "url": "https://github.com/superlinked/sie",
+      "description": "Open-source inference server and production cluster for all the models your agent needs.",
+      "language": "Python",
+      "stars": 3130,
+      "stars_today": 60
+    },
+    {
+      "rank": 9,
+      "name": "pacifio/atlas",
+      "url": "https://github.com/pacifio/atlas",
+      "description": "Source control for agents. Use multiple coding agents, track their changes and query them in one place",
+      "language": "Rust",
+      "stars": 3023,
+      "stars_today": 888
+    },
+    {
+      "rank": 10,
+      "name": "zyronon/TypeWords",
+      "url": "https://github.com/zyronon/TypeWords",
+      "description": "Practice English, one strike, one step forward; 练习英语，一次敲击，一点进步；",
+      "language": "Vue",
+      "stars": 9457,
+      "stars_today": 21
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "items": [
+        {
+          "title": "Meta 新模型价格打到一折两折，代价是让它拿你的代码训练",
+          "title_en": "Meta's new model is 88-95% cheaper, if you let it train on your code",
+          "author": "Meta Muse Spark 1.3 · Hacker News",
+          "author_en": "Meta Muse Spark 1.3 · Hacker News",
+          "likes": 504,
+          "url": "https://developer.meta.com/ai/models/muse-spark/",
+          "summary": "Meta 于美东 9 月 2 日发布 Muse Spark 1.3，拆成两个价格档。标准档每百万输入 token 1.25 美元、输出 4.25 美元；贡献档（Contributor）只要 0.10 与 0.20 美元，价差约 12 到 21 倍，条件是你的提示与补全可用于训练 Meta 模型，对写代码的 agent 而言基本等于把仓库内容交给 Meta。贡献档还附带更低的速率上限（每分钟 60 次请求，约为标准档 3000 次的五十分之一），并限制部分地区。Meta 自己报的跑分很高：Terminal-Bench 2.1 为 88.8，DeepSWE v1.1 为 75.4，称均达榜单最佳或 SOTA，但目前没有第三方独立复测；Meta 给上一代 1.2 报的 Terminal-Bench 82.9 就高于 Artificial Analysis 实测的约 80.1。Meta 同时宣布模型线将开放权重，Zuckerberg 在 X 上称这是迄今编程与 agent 任务上最大的一次跃升。HN 评论区态度分裂：有人算账说贡献档便宜得难以拒绝，有人直言不愿把代码喂给一家刚被判 180 亿美元精神健康损害赔偿的巨头，也有人问“几乎所有人都追上前沿”是不是意味着曲线进入平台期。",
+          "summary_en": "Meta launched Muse Spark 1.3 on September 2, split into two price tiers. The standard tier is $1.25 per million input and $4.25 per million output tokens; the Contributor tier is $0.10 and $0.20, a roughly 12-21x gap, in exchange for allowing Meta to train on your prompts and completions, which for a coding agent effectively means the contents of the repo it's pointed at. The Contributor tier also has far lower rate limits (60 requests/minute, about 1/50th of the standard tier's 3,000) and is restricted to certain regions. Meta's own reported scores are strong: 88.8 on Terminal-Bench 2.1 and 75.4 on DeepSWE v1.1, both claimed as best-on-board or SOTA, but no independent third-party run exists yet, and Meta's reported 82.9 for the previous 1.2 on Terminal-Bench ran above Artificial Analysis's measured ~80.1. Meta also said the model line will be open-weights, and Mark Zuckerberg called it the company's biggest jump yet on coding and agentic work. HN commenters split: some do the math and find the Contributor price hard to refuse, others balk at feeding code to a company just hit with an $18 billion mental-health damages award, and a few ask whether 'everyone nearly catching the frontier' means the curve is flattening.",
+          "why": "\"拿训练权换折扣\"首次写进价目表，直接影响所有用 API 做 AI 产品的人如何选档位、如何向客户交代数据去向。详见今日行动第一条与本报社评。",
+          "why_en": "This is the first time 'trade your training rights for a discount' has been printed on a price list, and it directly changes how anyone building an AI product on APIs picks a tier and explains data handling to customers. See action 1 and this issue's synthesis."
+        },
+        {
+          "title": "用训练数据当筹码的，不止 Meta 一家",
+          "title_en": "Meta isn't the only one using training data as a bargaining chip",
+          "author": "Mistral 帮助中心 · Hacker News",
+          "author_en": "Mistral Help Center · Hacker News",
+          "likes": 415,
+          "url": "https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training",
+          "summary": "Mistral 官方文档近期更新登上 HN 热榜：默认情况下，付费产品 Vibe 用户的输入输出数据可能用于训练 Mistral 模型，用户需自行在设置中关闭；Vibe 企业版默认不训练，由管理员控制。API 和 Studio 的\"匿名改进数据\"为独立开关，关闭 Vibe 不会连带关闭 API。文档更新前，不少用户反映页面描述与实际后台选项不符。评论区有人实测：一个因信任欧洲数据保护而选择 Mistral 的团队发现，团队档也默认参与训练，测试提示被用于训练，投诉后 Mistral 才删除。还有评论对比 Claude，称其组织版从 18 欧元档起默认不拿提示训练。HN 评论区普遍不满，但也有人提醒，Claude、Gemini 的付费层同样存在用于改进的默认设置，只是披露方式不同。",
+          "summary_en": "A recent update to an official Mistral help-doc page hit the HN front page: by default, input and output data from Vibe, a paid product, may be used to train Mistral's models, and users have to turn it off themselves in settings. Vibe Enterprise is opted out by default with an admin-controlled toggle. The API and Studio 'anonymous improvement data' setting is a separate switch, so opting out of Vibe training doesn't also cover the API. Before the docs were corrected, users reported the page contradicting what their admin panels actually showed. One commenter shared a real case: a team that chose Mistral trusting European data protection found the Team tier had silently become opt-in-by-default for training, had test prompts used for training, and only got them deleted after complaining. Another comment cited Claude as the contrast, saying its organization plans default to not training on prompts from the roughly 18-euro tier up. Many HN comments are unhappy; some note Claude and Gemini paid tiers similarly default to using data for product improvement, just disclosed differently.",
+          "why": "把这条与 Muse Spark 的贡献档对照看，\"数据默认参与训练\"正从需要专门阅读的隐私政策变为付费产品的默认设置。详见今日行动第一条。",
+          "why_en": "Read alongside Muse Spark's contributor tier, 'data trained on by default' is moving out of the fine-print privacy policy and into the default settings of paid products. See action 1."
+        },
+        {
+          "title": "一个让 100 多个开源模型在浏览器本地跑起来的引擎",
+          "title_en": "An engine that runs 100+ open models locally in your browser",
+          "author": "WebLLM（MLC 团队）· Hacker News",
+          "author_en": "WebLLM (MLC team) · Hacker News",
+          "likes": 105,
+          "url": "https://github.com/mlc-ai/web-llm",
+          "summary": "WebLLM 登上 HN 热榜，它利用 WebGPU 在浏览器中直接运行大模型推理，无需服务器，代码与权重均留在本地，兼容 OpenAI API，支持 Llama、Qwen、Gemma、Phi 等 100 多个开源模型。官方演示站 chat.webllm.ai 可即时试用，也可作为 npm 包集成。HN 评论区反馈不一：有人说项目\"事实上已死\"，自己多年后被迫移除；有人指出每开一个浏览器会话需重新下载 500MB 到 1GB 权重，面向用户的产品需提前说明；演示站在部分 Linux 浏览器上因 WebGPU 限制（如 maxStorageBuffersPerShaderStage 超限）无法运行。作为本期\"今日上手\"素材，本地小模型是否实用，需亲手验证。",
+          "summary_en": "WebLLM hit the HN front page: it runs LLM inference directly in the browser via WebGPU, no server needed, code and weights stay local, and it speaks the OpenAI API, with 100+ open models supported (Llama, Qwen, Gemma, Phi, and more), an official demo at chat.webllm.ai, and an npm package for integrating it into your own app. Real feedback in the HN comments is mixed: one long-time user says the project is 'de facto dead' and he had to rip it out six months ago; several note every new browser session re-downloads 500MB to 1GB of weights, which needs a disclaimer in any customer-facing site; and the demo fails on some Linux browsers due to WebGPU limits (e.g. maxStorageBuffersPerShaderStage exceeded). As tonight's hands-on subject, whether a local small model is actually usable is something you verify by hand.",
+          "why": "见今日上手。将模型拉回本地运行，是绕开\"数据默认参与训练\"最干净的办法，但能否行得通取决于你的电脑与浏览器。",
+          "why_en": "See tonight's hands-on. Running a model locally is the cleanest way out of the train-on-your-data default, but whether it works depends on your own machine and browser."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "items": [
+        {
+          "title": "Google 同一天也发新模型：Gemini 3.8 Flash，价格没涨",
+          "title_en": "Google shipped its own model the same day: Gemini 3.8 Flash, at the same price",
+          "author": "Google · 文摘",
+          "author_en": "Google · Digest",
+          "likes": null,
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+          "summary": "Google 于 9 月 2 日发布 Gemini 3.8 Flash，距 3.7 Flash 仅三周，是六周内第三次 Flash 更新。价格维持 3.7 Flash 水平：每百万输入 token 0.75 美元，输出 3.75 美元。Google 称 3.8 Flash 在 DeepSWE v1.1 长程软件工程上超过多数更大的前沿模型，HLE-Verified 得分 54.9，并在专业领域基准（Vals Finance Agent V2、Harvey 法律 agent 基准）上胜过 3.7 Flash。同日还发布 3.8 Flash Cyber，面向可信防御者，经新的 Fairwind 计划开放，主打漏洞发现与自动修补：CyberGym 上超过 3.5 Flash Cyber 与更大的前沿模型，内部跨 20 种语言的漏洞发现成功率超 70%，CWE-Bench pass@1 为 47.2%（对照某前沿模型 47.8%）。Google 称已内部使用：Chrome 安全团队实测 3.8 Flash Cyber 修复漏洞的正确补丁量是更大商业模型的 2.6 倍；云漏洞研究团队用它两小时内发现一个通常需数月才能发现的严重基础漏洞。HN 上此条目一度 404，评论区对\"又一款 Flash 逼近 Sol\"半信半疑，有人实测后认为它是不错的干活模型，但需频繁审批，不如 Claude 或 ChatGPT 的自动批准模式。",
+          "summary_en": "Google released Gemini 3.8 Flash on September 2, three weeks after 3.7 Flash and the third Flash release in six weeks. Pricing stays at 3.7 Flash's level: $0.75 per million input and $3.75 per million output tokens. Google claims 3.8 Flash beats most larger frontier models on DeepSWE v1.1 long-horizon software engineering, scores 54.9 on HLE-Verified, and tops 3.7 Flash on professional benchmarks (Vals Finance Agent V2, Harvey's legal agent benchmark). The same day it launched 3.8 Flash Cyber for trusted defenders through a new Fairwind program, focused on vulnerability discovery and automated patching: above 3.5 Flash Cyber and larger frontier models on CyberGym, over 70% success on an internal cross-20-languages vulnerability-discovery benchmark, and a 47.2% pass@1 on CWE-Bench versus a leading frontier model's 47.8%. Google says it is already in use internally: Chrome's security team measured 2.6x more correct patches to Chrome vulnerabilities than much larger commercial models, and the Cloud Vulnerability Research team found a critical foundational vulnerability in under two hours that normally takes months. The HN post briefly 404'd, and commenters are half-skeptical about 'another Flash approaching Sol'; one hands-on user calls it a decent workhorse model that needs frequent approvals, slower than Claude's or ChatGPT's auto-approve modes.",
+          "why": "将这条与 Muse Spark 1.3 对照阅读：\"低价模型逼近前沿跑分\"在 9 月 2 日同一天出现两次。详见本报社评：护城河正从模型权重转移至别处。",
+          "why_en": "Read alongside Muse Spark 1.3: 'a cheap model approaching frontier scores' happened twice on the same day. See this issue's synthesis: the moat is leaving the model weights."
+        },
+        {
+          "title": "美国法院判 Google 广告技术不拆分，但要整改",
+          "title_en": "Google keeps its ad-tech stack, but a judge orders changes",
+          "author": "美联社（AP）· 文摘",
+          "author_en": "Associated Press · Digest",
+          "likes": null,
+          "url": "https://abcnews.com/Business/wireStory/judge-orders-googles-digital-ads-business-spares-breakup-136150596",
+          "summary": "弗吉尼亚州联邦法官 Leonie Brinkema 9 月 2 日裁定，Google 必须整改支撑其数字广告\"定价过高垄断\"的系统，但驳回司法部拆分诉求。完整意见书含具体整改措施，将密封 14 天供双方审阅并删节。这是不到一年内 Google 第二次躲过司法部分拆提案——此前搜索案中另一法官驳回强制出售 Chrome 动议。Google 在法庭文件中称涉案广告交易技术每秒处理约 5500 万次请求，并警告该技术\"必须继续为消费者运转\"。Google 监管事务副总裁回应称，很高兴法院驳回\"拆散帮助小企业触达新客户工具\"的提案。批评方则指 Brinkema 与 Mehta 一样\"认定违法却无所作为\"。Google 广告业务年销售额近 400 亿美元，本案针对的仅是其中广告技术栈部分。",
+          "summary_en": "US District Judge Leonie Brinkema in Virginia ruled on September 2 that Google must retool the system powering its price-gouging monopoly in digital advertising, but rejected the Justice Department's push to break the company up. The full opinion, including the specific remedies, stays under seal for 14 days while the parties review it and propose redactions. It's the second time in under a year Google has escaped a DOJ breakup proposal, after a different judge in the search case rejected forcing a Chrome sale last September. Google said in court filings that the ad-exchange technology at the center of the case handles an estimated 55 million requests per second, and warned that it 'absolutely has to keep working for consumers.' Google's vice president for regulatory affairs said the company is pleased the court rejected a proposal to break apart tools that help small businesses reach new customers. Critics said Brinkema, like Judge Mehta, found an illegal monopoly and then did nothing about it. Google's advertising business generates close to $400 billion in annual sales; this case targets only the ad-tech stack within it.",
+          "why": "监管面背景参照：模型与广告两大块同日收到\"继续经营、但受约束\"的信号。对做 AI 应用的人而言，\"依赖单一平台分发\"的风险仍在累积，只是以更慢的方式。",
+          "why_en": "A regulatory backdrop: the model business and the ad business each got a 'keep operating, but under constraints' signal on the same day. For AI application builders it means the risk of depending on any one platform for distribution keeps accumulating, just more slowly."
+        },
+        {
+          "title": "Anthropic 连夜给 Claude 加版权禁令：歌词、诗句、海报、logo 全不许复刻",
+          "title_en": "Anthropic just hard-coded a copyright ban into Claude: no lyrics, poems, posters, or logos",
+          "author": "Simon Willison · 文摘",
+          "author_en": "Simon Willison · Digest",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Sep/2/claudes-new-system-prompt/",
+          "summary": "Simon Willison 持续追踪 Anthropic 公开的系统提示，用他自己的 claude-system-prompts 仓库做版本对比，发现 9 月 1 日发布的 Fable 5.1 系统提示新增了整段版权禁令：不得整体或部分复现歌词、诗句、书籍与文章段落，包括末行、副歌、逐音符记谱、以及用户逐行粘贴并声称是自己创作的句子。一旦拒绝，后续改写或缩窄的请求也会持续拒绝，转而提供描述与分析。1929 年以前首版的作品除外，但模型依据自己所知而非用户声称判断年份，不确定时倾向拒绝。另一段新禁令针对图像：不得复现特定艺术品、专辑或书籍封面、海报、logo，也不得用 SVG、canvas、CSS 或 ASCII art 画任何知名角色、吉祥物或品牌形象。时间点很难说是巧合：上周 Sony Music Publishing 与 Warner Chappell 起诉 Anthropic 用歌词数据库训练模型。这是 Anthropic 系统提示中首次出现非 Anthropic 的外部链接（三个减害类站点），并删掉了旧版“直接结束对话”的处理指引。",
+          "summary_en": "Simon Willison, who tracks Anthropic's published system prompts with his own claude-system-prompts repo and diffs the versions, found that the Fable 5.1 prompt released September 1 adds an entire copyright block: Claude must not reproduce song lyrics, poems, or passages from books and articles, in whole or in part, including the last line, a chorus or hook, note-by-note melody, or lines someone pastes in one at a time claiming as their own. Once it declines, it keeps declining narrower or reworded versions for the rest of the conversation and instead offers to describe or analyze the work. Works first published before 1929 are exempt, but Claude relies on what it knows of a work's date rather than the user's claim, and declines when unsure. A second new restriction covers images: no reproducing a specific artwork, album or book cover, poster, or logo, and no drawing any known character, mascot, or brand figure even through generated SVG, canvas, CSS, or ASCII art. The timing is unlikely to be coincidence: Sony Music Publishing and Warner Chappell sued Anthropic last week over training on lyric databases. The new prompt also contains the first non-Anthropic external links ever in a Claude system prompt (three harm-reduction sites), and drops the old instruction to simply end conversations with abusive users.",
+          "why": "续报有实质进展：距离本站前两次报道 Simon Willison 对 Claude 新版的一手实测只隔几天，这次他抓到了厂商为应对歌词诉讼而把版权规避写进提示词硬规则的动作。对做 AI 产品的人，这条规则可以直接抄。详见今日行动第三条。",
+          "why_en": "A running thread with a material new development: days after this paper's last two reports on Simon Willison's first-hand tests of the new Claude release, he caught the vendor turning copyright avoidance into a hard rule written into the prompt, in direct response to the music-publisher lawsuit. Anyone building an AI product can copy this rule directly. See action 3."
+        },
+        {
+          "title": "靠 Devin 赚到年化近 10 亿美元的 Cognition，正以约 470 亿美元估值再融一轮",
+          "title_en": "Cognition, pulling nearly $1B in annualized revenue off Devin, is raising again at roughly $47B",
+          "author": "Bloomberg（经 Yahoo Finance）· 文摘",
+          "author_en": "Bloomberg (via Yahoo Finance) · Digest",
+          "likes": null,
+          "url": "https://nz.finance.yahoo.com/news/ai-startup-cognition-set-raise-002937258.html",
+          "summary": "Bloomberg 于 9 月 1 日报道，AI 编程 agent Devin 背后的 Cognition 正洽谈以约 470 亿美元估值融资约 10 亿美元，最终规模可能超过这一数字；Cognition 称收到近 100 亿美元的投资兴趣。支撑估值的收入增长相当陡峭：年化收入已超过 9 亿美元，而 5 月下旬时才 4.92 亿美元；约三个月前 Cognition 以 260 亿美元估值完成一轮 10 亿美元融资，8 月初 Bloomberg 报道时谈判估值还是“至少 400 亿美元”。报道把投资热情部分归因于 8 月 SpaceX 以 600 亿美元收购其竞品 Cursor 提振了整类资产的信心。谈判仍在进行，细节可能变化。",
+          "summary_en": "Bloomberg reported on September 1 that Cognition, the company behind the AI coding agent Devin, is in talks to raise around $1 billion at a valuation of about $47 billion, a figure that may exceed that amount; Cognition says it received nearly $10 billion in investor interest. The revenue growth behind the valuation is steep: more than $900 million in annualized revenue, up from $492 million in late May, and roughly three months ago Cognition raised $1 billion at a $26 billion valuation, with talks reported at 'at least $40 billion' in early August. The report attributes part of the investor enthusiasm to SpaceX's $60 billion acquisition of rival Cursor in August lifting sentiment for the category. Negotiations are ongoing and details may still change.",
+          "why": "与今天的模型降价并读才完整：模型层在打价格战（Gemini 3.8 Flash 平价、Muse 拿数据换折扣），应用层把钱越聚越多——把 agent 真正干成活的 Devin，正以一年内近翻倍的收入撑起约 470 亿估值。护城河不在权重，在“把活干成”。详见本报社评。",
+          "why_en": "Read together with today's model-price story this completes the picture: while the model layer fights a price war (Gemini 3.8 Flash held at price, Muse trading discounts for data), the money at the application layer keeps concentrating — Devin, an agent that actually gets work done, is backing a roughly $47B valuation with revenue that nearly doubled within a year. The moat isn't in the weights, it's in getting the job done. See this issue's synthesis."
+        }
+      ]
+    }
+  ]
+}
