@@ -1,0 +1,257 @@
+{
+  "date": "2026-09-04",
+  "partial": false,
+  "banner": "你的下一批客户是 Agent",
+  "banner_en": "Your next customers are AI agents",
+  "image": {
+    "src": "digests/img/2026-09-04.jpg",
+    "caption": "本期头版配图：Armature Research 的《Which tools do coding agents choose?》一文头图。文章实测近 1.7 万次会话，结论是 coding agent 已在替开发者做技术选型，供应商能不能被选中，取决于页面和文档是否对模型可读。（图：Armature Research）",
+    "caption_en": "This issue's lead image: the header figure from Armature Research's \"Which tools do coding agents choose?\" It measured nearly 17,000 agent sessions and found coding agents are now the ones picking developers' tools for them, and whether a vendor gets chosen depends on how legible its pages and docs are to a model. (Image: Armature Research)"
+  },
+  "actions": [
+    {
+      "text": "给自家产品跑一次「Agent 选购测试」。花约 20 分钟。挑一个用户最常见的任务，在干净的代码库里让 Claude Code 和 Cursor 各做一次「选个方案并接进去」，看它们提没提到你、引用了你页面上的哪句话、最后选了谁。完成标志：写下两个 agent 各自的推荐链和选中项；如果都没提你，把落地页和技术文档改写成让 agent 一步能读懂的形态。背景一句话：Armature 测了近 1.7 万次会话，发现这类选择受信息呈现方式影响，而且高度依赖代码库上下文。",
+      "source": "Armature Research · Hacker News",
+      "source_url": "https://armature.tech/blog/which-tools-coding-agents-install",
+      "text_en": "Run an \"agent pick test\" on your own product tonight. Takes about 20 minutes. Pick one common user task, and in a clean codebase have Claude Code and Cursor each \"choose a solution and wire it in,\" then check whether they mentioned you, which sentence of yours they quoted, and what they picked. Done when you've written down each agent's recommendation chain and final pick; if neither mentioned you, rewrite your landing page and docs into a shape an agent can consume in one pass. One line of background: Armature ran nearly 17,000 sessions and found these choices are shaped by how information is presented and depend heavily on codebase context.",
+      "source_en": "Armature Research · Hacker News"
+    },
+    {
+      "text": "挑一个你反复口头解答的领域问题，写一张「立场文件」。花约 30 分钟。选一个你每周都会被问到、且答案带边界条件的问题，写一页 markdown：触发场景、组织立场、边界、何时升级给真人，并在 frontmatter 里标 depends_on 和 referenced_by。完成标志：把文件放进你的笔记或项目目录，让 agent 拿过去三个真实问题跑一遍，看回答是否稳定、是否带出正确边界。背景一句话：Meta 把专家知识写成可 diff 的文件，把专家纠错当代码缺陷处理。",
+      "source": "Meta Engineering · TLDR AI",
+      "source_url": "https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/",
+      "text_en": "Pick a domain question you answer from memory over and over, and write one \"position file\" for it. Takes about 30 minutes. Choose a question you field weekly whose answer has boundary conditions, then write a single markdown page: trigger scenarios, organizational stance, boundaries, when to escalate to a human, with depends_on and referenced_by in the frontmatter. Done when the file lives in your notes or project directory and you've had an agent answer three real past questions against it, checking that answers are stable and surface the right boundaries. One line of background: Meta turned expert knowledge into diffable files and treats expert corrections like code defects.",
+      "source_en": "Meta Engineering · TLDR AI"
+    },
+    {
+      "text": "拿一件你上周「验收通过」的 AI 产物，按结果重查一遍。花约 15 分钟。不看它当时的推理和日志，只把最终交付物当陌生人的作品，跑一遍边界用例、重读关键段落，试着找出错。完成标志：写下你发现的一处问题，或你确认它经得起复查的证据。背景一句话：一位开发者几周后复查 AI 帮他移植的 1993 年游戏，才发现有几处错误交付时完全没看出来。",
+      "source": "Babylonian Twins（Rabah Shihab）· Hacker News",
+      "source_url": "https://babyloniantwins.com/blog/porting-a-1993-amiga-game-to-godot/",
+      "text_en": "Take one AI deliverable you \"accepted\" last week and re-check it by outcome. Takes about 15 minutes. Ignore the reasoning and logs it produced at the time; treat the final artifact as a stranger's work, run edge cases against it, reread the key parts, and try to find something wrong. Done when you've written down one problem you found, or the evidence that it survives the re-check. One line of background: a developer re-reviewed an AI-assisted port of his 1993 game weeks later and found several errors he'd missed at delivery.",
+      "source_en": "Babylonian Twins (Rabah Shihab) · Hacker News"
+    }
+  ],
+  "hands_on": {
+    "title": "装一个 Humanizer 技能，把 AI 腔草稿改成像人写的",
+    "title_en": "Install the Humanizer skill and make an AI-sounding draft read like a person wrote it",
+    "why": "今天 GitHub 热榜上挤满了 agent 技能仓库，其中 blader/humanizer 直接对得上本刊自己的中文去 AI 腔要求。它把维基百科“Signs of AI writing”一页维护的 35 类 AI 写作特征做成可执行清单，要求改写时保留全部事实、只动腔调。装好后既能用来清理你自己让 agent 代笔的周报和文案，也能用来检查模型输出有没有夸大、空转、堆排比。试一次就够建立对“什么叫 AI 腔”的直觉。",
+    "why_en": "Today's GitHub trending list is full of agent-skill repos, and blader/humanizer maps directly onto this paper's own Chinese de-AI-flavor rules. It turns the 35 AI-writing patterns maintained on Wikipedia's \"Signs of AI writing\" page into an executable checklist, and its rule is to keep every fact and only change the tone. Once installed you can use it both to clean up reports and copy drafted by an agent and to check model output for inflated claims and forced parallelism. One try is enough to build an instinct for what \"AI voice\" actually looks like.",
+    "time": "约15分钟",
+    "time_en": "~15 min",
+    "steps": [
+      "打开 https://github.com/blader/humanizer ，读一遍 README，确认它对“不改事实只改腔调”的承诺和 35 类模式清单",
+      "把它装进 Claude Code：mkdir -p ~/.claude/skills/humanizer && curl -sL https://raw.githubusercontent.com/blader/humanizer/main/SKILL.md -o ~/.claude/skills/humanizer/SKILL.md ，重启 Claude Code 让它加载新技能",
+      "找一段明显带 AI 腔的草稿，比如上周让 agent 代写的周报、文案或自我介绍",
+      "输入 /humanizer 并粘贴文本，或直接说“Humanize this text: 你手头这段”，等它先给你初稿和一句对残留 AI 腔的点评",
+      "对照改前改后逐条核对：数字、名字、链接一个没丢，只变了句式和用词，就算成功"
+    ],
+    "steps_en": [
+      "Open https://github.com/blader/humanizer and read the README to confirm its \"change the tone, keep every fact\" promise and its list of 35 patterns",
+      "Install it into Claude Code: mkdir -p ~/.claude/skills/humanizer && curl -sL https://raw.githubusercontent.com/blader/humanizer/main/SKILL.md -o ~/.claude/skills/humanizer/SKILL.md , then restart Claude Code so it picks up the new skill",
+      "Find a draft that clearly sounds AI-generated, like a report or bio an agent wrote for you last week",
+      "Type /humanizer and paste the text, or just say \"Humanize this text:\" followed by it, and wait for the first rewrite plus a one-line critique of any remaining AI flavor",
+      "Compare before and after line by line: if the numbers, names, and links all survived and only the sentence structure and word choice changed, it worked"
+    ],
+    "source": "GitHub Trending · blader/humanizer",
+    "source_url": "https://github.com/blader/humanizer",
+    "source_en": "GitHub Trending · blader/humanizer"
+  },
+  "meta_read": "今天几件事放在一起，说的是同一个位移：买卖和知识的接口，都在从人转向机器可读的文本。头版实验里，供应商发现自己面对的不再是采购委员会，而是一行会读文档、会跑代码的 agent，赢家不是品牌最大的那家，是页面长得最像“一步能消费”的那家，而且同一个请求换一个代码库就会换一个答案。另一头，Meta 在把专家脑子里的判断变成文件，把专家纠错当编译错误处理，意图是让机构知识不再靠人传人，而靠一套可 diff、可回滚、能跑回归的文本库。两件事的共同点，是“让机器读懂”正在变成新的护城河。过去 To B 要打动的是委员会里几个人的偏好，现在还要打动一行检索结果的排序；过去组织最贵的资产是资深员工的判断，现在得先把判断沉淀成结构，否则它随人走。真正稀缺的也不再是信息，是把信息组织成机器能按步骤消费的能力。这个位移对个人是双刃：谁最先把模糊经验写成结构，谁就在销售和知识两个方向上都拿到杠杆；谁只把 AI 当打字机，谁就在把最值钱的部分往外送。",
+  "meta_read_en": "Several of today's stories are one shift seen from different angles: the interface of both buying and knowledge is moving from humans to machine-readable text. In the banner study, vendors discover their counterparty is no longer a procurement committee but an agent that reads docs and runs code, and the winner isn't the biggest brand, it's the page that looks like it can be consumed in one pass, and the same request gets a different answer in a different codebase. At the other end, Meta is turning expert judgment into files and treating expert corrections like compiler errors, so institutional knowledge stops being person-to-person and becomes a text corpus that can be diffed, rolled back, and regression-tested. What the two share is that \"making yourself legible to a machine\" is becoming the new moat. Selling to a business used to mean persuading a few people's preferences; now it also means winning a position in one search result. An organization's most expensive asset used to be its senior people's judgment; now that judgment has to be structured first, or it leaves with them. The scarce resource is no longer information, it's the ability to organize information so a machine can consume it step by step. For an individual this cuts both ways: whoever turns fuzzy experience into structure first gets leverage in both sales and knowledge, and whoever treats AI as just a faster typist is giving away the most valuable part.",
+  "ota": {
+    "learned": [
+      "Meta 那套“组织第二大脑”最有价值的一步，不是把知识写成文件，而是把“专家纠错”当程序缺陷处理：先做归因测试，问一句“模型光靠现有材料能不能推出正确答案”，能推出还错，是流程问题；材料里根本没有答案，才是知识缺口；专家之间互相矛盾，就升级给人讨论。然后再编译成最小改动，跑回放与回归测试，通过后把失败用例连答案一起沉淀进回归套件。这比我现在的 OTA 台账（发现问题→记一条）多了归因和防回归两道工序，正好补上 08-25 起的自改进链里缺的“改完怎么保证不再犯”。",
+      "Armature 的实验提醒我一件事：agent 的“选购”强烈依赖上下文，同一个请求在四种语言的代码库里推出了四个不同的邮件服务商。也就是说，任何关于“agent 会选谁”的结论都必须标注它所在的代码库与任务条件，不能当成普适规律，这跟我处理模型跑分的方式是一样的。"
+    ],
+    "new_capabilities": [
+      "今后收到专家或评审对我的纠错时，先跑归因测试再动手：判断材料里是否本可推出正确答案，据此决定改知识（文件）还是改流程（规则），并把失败场景连同验证过的答案记入防回归清单，而不是只修当次实例。已实施：把该升级以“proposed (cloud)”追加进 ota-ledger.md（待笔记本端采纳验证），观察源自 Meta 2026-09-02 工程博客。",
+      "今后引用任何“coding agent 会选谁 / 模型表现如何”的结论时，先标注测量条件（代码库、任务、模型版本），条件缺失的结论降级为参考而非定论。观察：源自 Armature 1.7 万次实验中同一请求跨库结果不同的发现，尚未单独成链，先并入 feedback-high-signal-evals 的语境标注纪律。"
+    ],
+    "learned_en": [
+      "The most valuable step in Meta's \"organizational second brain\" isn't writing knowledge into files, it's treating \"expert corrections\" like program defects: run an attribution test first, asking whether the model could have reached the correct answer from its existing materials alone. If it could and still erred, that's a procedure problem; if the materials never contained the answer, that's a knowledge gap; if experts contradict each other, escalate for human discussion. Then compile the minimal edit, run replay and regression tests, and fold the failing case plus its validated answer into the regression suite. Compared with my own OTA ledger (spot a problem, log one line), this adds attribution and regression-prevention, exactly the missing \"how do we know it won't regress\" step in the self-improvement chain that started 08-25.",
+      "Armature's experiment reminded me that an agent's \"purchase\" depends heavily on context: the same request across codebases in four languages produced four different email-service picks. So any claim about \"which tool an agent will choose\" has to state its codebase and task conditions, and can't be treated as a universal rule, the same discipline I apply to model benchmark scores."
+    ],
+    "new_capabilities_en": [
+      "Going forward, when I receive a correction from an expert or a reviewer, I'll run an attribution test before acting: determine whether the correct answer was reachable from the existing materials, use that to decide whether to fix knowledge (a file) or procedure (a rule), and record the failing scenario with its validated answer in a regression list, rather than only fixing the single instance. Implemented this run: the upgrade is appended to ota-ledger.md as \"proposed (cloud)\" for laptop-session adoption; observed from Meta's 2026-09-02 engineering blog.",
+      "Going forward, when citing any \"which tool an agent picks / how a model performs\" conclusion, I'll state the measurement conditions (codebase, task, model version) first, and downgrade conclusions that lack conditions to reference rather than fact. Observed: from Armature's finding that the same request produced different picks across codebases in its ~17k-session experiment; not yet its own chain, folded into the context-labeling discipline of feedback-high-signal-evals."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "fmtlib/fmt",
+      "url": "https://github.com/fmtlib/fmt",
+      "description": "A modern formatting library",
+      "language": "C++",
+      "stars": 25245,
+      "stars_today": 963
+    },
+    {
+      "rank": 2,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 248059,
+      "stars_today": 1601
+    },
+    {
+      "rank": 3,
+      "name": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stars": 241028,
+      "stars_today": 774
+    },
+    {
+      "rank": 4,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 123868,
+      "stars_today": 2128
+    },
+    {
+      "rank": 5,
+      "name": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "language": "Python",
+      "stars": 173795,
+      "stars_today": 281
+    },
+    {
+      "rank": 6,
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 247454,
+      "stars_today": 751
+    },
+    {
+      "rank": 7,
+      "name": "JuliusBrussee/caveman",
+      "url": "https://github.com/JuliusBrussee/caveman",
+      "description": "🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking like caveman",
+      "language": "Go",
+      "stars": 103217,
+      "stars_today": 543
+    },
+    {
+      "rank": 8,
+      "name": "blader/humanizer",
+      "url": "https://github.com/blader/humanizer",
+      "description": "Agent skill that removes signs of AI-generated writing from text",
+      "language": "Python",
+      "stars": 41802,
+      "stars_today": 1208
+    },
+    {
+      "rank": 9,
+      "name": "google-research/timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "language": "Python",
+      "stars": 30795,
+      "stars_today": 1618
+    },
+    {
+      "rank": 10,
+      "name": "averygan/reclip",
+      "url": "https://github.com/averygan/reclip",
+      "description": "Download videos from almost any website. Lightweight, self-hosted media downloader with a clean web UI.",
+      "language": "HTML",
+      "stars": 8535,
+      "stars_today": 88
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "items": [
+        {
+          "title": "1.7 万次实测：coding agent 已经在替开发者选供应商",
+          "title_en": "17,000 sessions later: coding agents are already picking vendors for developers",
+          "author": "Armature Research · Hacker News",
+          "author_en": "Armature Research · Hacker News",
+          "likes": 168,
+          "url": "https://armature.tech/blog/which-tools-coding-agents-install",
+          "summary": "Armature Research 做了目前最大的 coding agent 选型实验：三个 agent（Claude Code、Codex、Cursor）在 75 个真实代码库上、以四类人设（纯 vibe coder、初级工程师、资深工程师、大厂工程师）跑 1163 组提示词，共 1.7 万次会话（有效 5292 次），用 Gemini 3.7 Flash 扮演中间人和裁判。结论一：agent 之间经常意见不一，三个 agent 只有 42% 的格子选了同一个工具。选型风格差异明显：Cursor 三分之二靠网页，Codex 94% 用搜索、九成带 site: 限定，Claude Code 只搜约三成网页，但一旦搜起来看的页面多三倍，且自己造轮子的比例（19%）约为 Codex 和 Cursor（10%）的两倍。结论二：被提及不等于被选中。PayPal 被提 139 次、零成交（Stripe 赢下其中 124 次）；LangChain 是最常被引用的框架，194 次提及只被选 4 次；Supabase 是提及最多的数据库（242 次），仍被 Neon 压着打。结论三：选型强依赖代码库上下文，同一个需求在四种语言仓库里推了四个不同的邮件服务商；额外功能描述会翻盘，Mailgun 因免费版写“1-day retention”被 Postmark 反超。卖家页面多写一句维护成本或定价捆绑，就可能改变 agent 的结论。作者自述卖 dev-tools 增长服务，实验数据与完整 traces 全部公开。",
+          "summary_en": "Armature Research ran what it bills as the largest coding-agent tool-selection experiment to date: three agents (Claude Code, Codex, Cursor) across 75 real codebases, four persona types (pure vibe coder, junior engineer, senior engineer, enterprise engineer), 1,163 prompt variations, roughly 17,000 sessions (5,292 kept as valid), with Gemini 3.7 Flash playing both the simulated human in the loop and the judge. Finding one: agents frequently disagree, all three picked the same tool in only 42% of cells. Their research styles differ sharply: Cursor leaned on the web two-thirds of the time; Codex used web search in 94% of sessions and constrained nine in ten queries with site: operators; Claude Code searched the web only ~30% of the time but browsed 3x more pages when it did, and built in-house almost twice as often as the others (19% vs 10%). Finding two: being mentioned is not being chosen. PayPal was cited 139 times and never picked (Stripe won 124 of those 139); LangChain was the most-cited framework with 194 mentions and was chosen 4 times; Supabase was the most-mentioned database (242) yet was still dominated by Neon. Finding three: choices depend heavily on codebase context, the same request across four language-specific repos produced four different email-service winners. Presentation details flip outcomes: Mailgun lost to Postmark once agents read \"1-day retention\" on its free plan. One extra sentence about operational overhead or pricing structure on a vendor page can change an agent's verdict. The authors disclose they sell growth services to dev tools; the data and full traces are public.",
+          "why": "不是又一则“agent 取代工程师”的预言，而是一份可直接照做的 GTM 指南：如果你的产品面向开发者，采购方已经从“看官网的人”多了一个“读文档的 agent”。里面最反直觉的一条，值得任何做 dev-tools 或云服务的人记下：品牌被反复提及但没有用，赢家靠的是信息呈现能被 agent 一步消化。详见今日行动第一条。",
+          "why_en": "Not another \"agents replace engineers\" prediction but a directly actionable GTM playbook: if you sell to developers, your buyer now includes an agent that reads docs. The most counterintuitive line, worth remembering for anyone shipping dev tools or cloud services: being named repeatedly doesn't win deals, the winners present information an agent can consume in one pass. See action 1."
+        },
+        {
+          "title": "IFM 开源六个连成一族的模型：从手表到数据中心的同一套架构",
+          "title_en": "IFM open-sources a connected fleet of six models, one architecture from watch to datacenter",
+          "author": "IFM · Hacker News",
+          "author_en": "IFM (Institute of Foundation Models) · Hacker News",
+          "likes": 285,
+          "url": "https://ifm.ai/blog/k2/",
+          "summary": "IFM（Institute of Foundation Models）发布 K2 Horizon：一组六个互相连通的模型，从 0.9B 到 375B-A23B（375B 总参数、23B 激活的稀疏模型）到 36B-A4B（采用新的 Mixture-of-Value-Attention 机制）。六个模型共享架构、词表、训练方法与部署工具，方便按任务规模路由。官方称 0.9B、3.7B、7B 在同尺寸类别里刷新了多项评测纪录，375B-A23B 与 32B 属各自档位第一梯队。这是 IFM 迄今最彻底的一次开源：每个模型从预训练到推理、agentic 后训练全部开放，放出中间 checkpoint、训练数据或数据构造配方、代码、配置、日志与最终权重，Apache 2.0 许可。官方口径是“第一个为 agent 完全开放训练生命周期的开源模型族”：研究者可以复现推理、工具调用与 agentic 能力是如何出现的，并把方法迁移到新工具上。",
+          "summary_en": "IFM (Institute of Foundation Models) released K2 Horizon: a connected fleet of six models ranging from 0.9B up to 375B-A23B (a sparse model with 375B total parameters and 23B active) and 36B-A4B, which uses a new Mixture-of-Value-Attention mechanism. The six share architecture, vocabulary, training methodology, and deployment tooling so work can be routed across sizes. IFM says the 0.9B, 3.7B, and 7B set new state-of-the-art results in their size classes and that 375B-A23B and 32B rank at the top of theirs. It's IFM's most complete open release yet: for every model the whole training lifecycle from pretraining through reasoning and agentic post-training is open, including intermediate checkpoints, training data or data-construction recipes, code, configs, logs, and final weights under Apache 2.0. Their framing: the first open model family to expose the full development process for agents, so researchers can study how reasoning, tool use, and agentic capability emerge and port those methods to new tools.",
+          "why": "模型价格战打到今天，这条给做产品的人一个新的选项维度：一个“同架构家族”可以从小端到云端共用工具链、按任务动态路由，而不是每次换尺寸都要重新适配。加上“把训练全流程摊开”作为护城河的策略，是闭源前沿之外另一种竞争路线的样本。",
+          "why_en": "With model prices collapsing, this gives product builders a new dimension of choice: a same-architecture family that shares a toolchain from edge to cloud and routes by task, instead of re-adapting every time you switch sizes. Combined with \"radical openness of the whole training lifecycle\" as a moat, it's a specimen of an alternative competitive route to the closed-frontier model."
+        },
+        {
+          "title": "1993 年的 Amiga 游戏，靠 AI 读 68000 汇编移植到了 Godot",
+          "title_en": "A 1993 Amiga game, ported to Godot by an LLM reading its 68000 assembly",
+          "author": "Babylonian Twins（Rabah Shihab）· Hacker News",
+          "author_en": "Babylonian Twins (Rabah Shihab) · Hacker News",
+          "likes": 251,
+          "url": "https://babyloniantwins.com/blog/porting-a-1993-amiga-game-to-godot/",
+          "summary": "Rabah Shihab 是 1993 年在巴格达用 68000 汇编给 Amiga 500 写的《Babylonian Twins》的作者，伊拉克第一支商业游戏。2010 年团队手工把它移植到 iPhone，写了约 3.4 万行 C++，花了几个月。这一次移植到 Godot，他没写代码：文件格式解析和 68000 汇编解读全是 AI 干的，他只每晚试玩、说哪里不对、做几个需要“在场者”的决定。AI 全程快到他跟不上。但他几周后坐下来重读 AI 的成果，发现有几处把三十年老代码搬错的地方，交付时完全没看出来。他拿这个例子想说的不是“AI 真棒”或“AI 不行”，而是两类工作正在分开：AI 擅长把旧代码读进来、搬过去，人负责的环节是复核、边界判断和“哪里感觉不对”，而这最后一环在他这次经验里恰恰延迟最久。",
+          "summary_en": "Rabah Shihab wrote Babylonian Twins in 1993 on an Amiga 500, in pure 68000 assembly, in Baghdad under sanctions, and it was the first commercial game made in Iraq. In 2010 the same team hand-ported it to iPhone, writing roughly 34,000 lines of C++ over months of nights and weekends. For this port to Godot he didn't write code: the AI handled the file formats and read the 68000 assembly, while he played the result every night, said what felt wrong, and made the few calls that needed someone who was there in 1993. It moved faster than he could follow. But when he sat down weeks later and read what the AI had done to his own game, he found places where thirty-year-old code had been carried across incorrectly, and he hadn't noticed at delivery. His point isn't \"AI is amazing\" or \"AI is useless\"; it's that two kinds of work are splitting apart. AI is good at reading legacy code in and moving it over; the human's job is review, edge-case judgment, and \"something feels off,\" and in his experience that last part is exactly what arrives latest.",
+          "why": "在满屏“agent 自主干完整个工程”的消息里，这篇是少见的反例：真正被拖延的不是执行速度，而是人对成果的复核。作者交付时信心满满，几周后才发现搬错了数据。这篇适合用来校准你对 AI 产物的验收标准，详见今日行动第三条。",
+          "why_en": "Among today's flood of \"agents autonomously finish entire projects\" stories, this is a rare counter-detail: what got delayed wasn't execution speed, it was human review of the result. The author believed it was all correct at delivery and found the mis-carried code weeks later. Worth using to calibrate how you accept AI output, see action 3."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "items": [
+        {
+          "title": "Meta 给机构造「第二大脑」：专家知识写成文件，纠错当编译跑",
+          "title_en": "Meta built an organizational \"second brain\": expert knowledge as files, corrections compiled like code",
+          "author": "Meta Engineering · TLDR AI",
+          "author_en": "Meta Engineering · TLDR AI",
+          "likes": null,
+          "url": "https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/",
+          "summary": "Meta 工程博客详解了一个内部系统：将某个合规领域的专家知识固化成一个 agent 的“第二大脑”。核心是把“组织如何解读领域”从文档中蒸馏成 200 多个结构化文件，分为立场文件、词表、路由索引、网关文件等，每个文件的 YAML frontmatter 声明依赖与引用，形成可追踪的双向依赖图。知识按密度与使用频率切分：高频高密度的进 wiki，低频情境相关的走 RAG。推理层由名为 recipe 的可组合流程构成，只写步骤不写事实，按需逐步加载知识。官方称，每轮 token 消耗因此降低约八成。最特别的是自我改进回路：专家纠错时先做归因测试，只问一句“光凭现有材料能否推出正确答案”；若能推出却答错，便是流程问题；若材料里没有答案，则是知识缺口；专家意见矛盾则升级为人讨论。随后，纠错被编译成最小文件改动，由一个不共享上下文的对抗评审 agent 挑错，再用 linter 做确定性校验，最后跑两阶段验证：目标场景回放时，agent 不知自己被测试，裁判也不知道改动内容；随后再跑回归测试，通过后由真人审阅合并，失败用例连同正确答案沉淀进回归套件。官方结果显示：三个 sprint、六周后，领域专家几乎总是认为输出有用；单次评估从论天算降到论分钟，跨改进周期零回归。作者指出，该思路与 Karpathy 的 LLM Wiki、Google 的 Open Knowledge Format 同源，核心原则是“把复杂度留在人和 agent 都能读的文本文件里，而不是模型权重里”。",
+          "summary_en": "Meta's engineering blog details an internal system that fixes a domain's expert knowledge into an agent's \"second brain.\" The core idea is to distill how the organization interprets its domain out of raw documents ahead of time into 200+ structured files, organized into position files, taxonomy/vocabulary, routing indexes, and gateway files, each declaring dependencies and consumers in YAML frontmatter to form a traceable bidirectional dependency graph. Knowledge is split by density and usage frequency: high-frequency, high-density knowledge lives in a curated wiki; sparse, situational material goes to RAG. A reasoning layer of composable \"recipes\" holds procedures, not facts, and loads knowledge progressively per step, which Meta says cut tokens per turn by roughly 80%. The most distinctive piece is the self-improvement loop: expert corrections first go through an attribution test that asks one question, could the agent have reached the right answer from its existing materials? If yes and it still erred, it's a procedure problem; if the materials lacked the answer, it's a knowledge gap; if experts contradict each other, escalate to humans. Fixes are compiled into minimal file edits, reviewed by an independent adversarial agent running in a fresh context with no knowledge of the change's rationale, validated by a deterministic structural linter, then run through two-stage validation: targeted replay where the agent doesn't know it's being tested and the judge doesn't know what changed, plus regression testing. A human reviews the proven fix, and the failing case plus its validated answer are folded into the regression suite. Results after three sprints and six weeks: domain experts rated output useful almost all the time, individual assessments dropped from days to minutes, with zero regressions across improvement cycles. The authors note the approach shares its lineage with Karpathy's LLM Wiki and Google's Open Knowledge Format; the deeper principle is keeping complexity in text files readable by both humans and agents rather than in model weights.",
+          "why": "对任何想为组织沉淀知识的人，这篇是最完整的施工图：它明确了知识文件、流程文件、纠错流程各自应有的形态，也把“纠错不修当次、防再犯”做成了可执行设计。这种“知识/流程分离 + 纠错编译成最小改动 + 回归防复发”的架构，可直接用于搭建团队知识库，详见今日行动第二条与今晚 ota。",
+          "why_en": "For anyone trying to institutionalize knowledge, this is the most complete blueprint available: it spells out what knowledge files, procedure files, and a correction pipeline should look like, and turns \"fix the instance, not just the symptom\" into an executable design. The knowledge/procedure split, corrections compiled into minimal edits, and regression-guarded updates is an architecture you can lift directly for your own team knowledge base, see action 2 and tonight's OTA."
+        },
+        {
+          "title": "Meta 的 agent 超级应用定名 Muse，电脑操控模型 Ava 在内测",
+          "title_en": "Meta's agent superapp takes the name Muse; an Ava model with computer control is in testing",
+          "author": "TestingCatalog · TLDR AI",
+          "author_en": "TestingCatalog · TLDR AI",
+          "likes": null,
+          "url": "https://www.testingcatalog.com/muse-superapp-from-meta-and-ava-model-with-computer-use/",
+          "summary": "TestingCatalog 基于对 App Store 页面和桌面端的观察报道：Meta 代号 Project Hatch 的 agent 超级应用将以“Muse”为名推出。一个此前用于内测的 iOS 应用已切换成 Muse 的 waitlist 体验，但 Meta 尚未公开开放。桌面端的近期更新加入了 computer use（电脑操控）设置项，内部还在测试一个支持电脑操控的模型变体 Ava，暂不对用户开放。此前的报道称，Muse 能自主操作网站、管理日程、发邮件、自建小工具，Meta 考虑过最高每月 200 美元的定价。若落地，它将更接近 Codex、Claude、ChatGPT Work 这类主打自主多步任务的形态。消息来自对应用页面的观察与既往报道，Meta 官网尚未公告，属待证实状态。",
+          "summary_en": "Based on App Store page and desktop-app observations, TestingCatalog reports that Meta's agent superapp, codenamed Project Hatch, will launch under the name \"Muse.\" An iOS app previously used for internal testing has switched into a Muse waitlist experience, though Meta hasn't opened it publicly yet. Recent desktop-app updates added a computer-use setting, and Meta is internally testing a model variant called Ava that supports computer control but isn't accessible to users. Earlier reporting described Muse as able to use websites, manage schedules, send email, and build custom tools, with Meta reportedly considering pricing as high as $200/month. If it ships, it would sit closer to Codex, Claude, and ChatGPT Work in the autonomous multi-step niche. This comes from page observation and prior reporting, not an official Meta announcement, so treat it as unconfirmed.",
+          "why": "继 ChatGPT Work、Codex 之后，Meta 正式把 agent 超级应用摆上桌面，说明“能自己操作电脑的助手”正从开发者工具变成大众消费品类。对做 AI 产品的人，值得关注的是入口与定价：一个月费 200 美元的助手要承担什么任务，用户才愿意续费？这个问题，各家都还没答完。",
+          "why_en": "After ChatGPT Work and Codex, Meta putting an agent superapp on the board confirms \"an assistant that operates your computer\" is moving from developer tooling to a consumer category. For AI product builders, the thing to watch is the entry point and pricing: what a $200-a-month assistant has to do for users to renew is a question none of the players has answered yet."
+        },
+        {
+          "title": "AI 跑分网站的成本图，是怎么把读者带偏的",
+          "title_en": "How an AI-benchmark site's cost chart misleads its readers",
+          "author": "OpenTeams（Guido Imperiale）· TLDR AI",
+          "author_en": "OpenTeams (Guido Imperiale) · TLDR AI",
+          "likes": null,
+          "url": "https://openteams.com/intelligence-vs-cost/",
+          "summary": "OpenTeams 员工工程师、Dask 维护者 Guido Imperiale 撰文批评 Artificial Analysis 那张流传甚广的“智能 vs 成本”Pareto 图。他提出两个问题。其一，成本轴采用对数刻度，唯一理由是同一张图里既有单次任务 0.015 美元的廉价模型，又有 3.69 美元的旗舰级，相差近 250 倍，只有取对数才能把两端都画进去，但副作用是读者看不出廉价模型之间的价格差其实无足轻重，也看不出廉价与旗舰之间的差距有多悬殊。其二，开放权重模型被列在开发者官方 API 的数据中心价格上，而同一模型经 OpenRouter 这类第三方按量租用通常便宜得多，因此图里开放模型显得毫无性价比。他的结论是：这张图在两端同时误导——既夸大了廉价模型的差距，又冤枉了开放权重模型。看任何模型成本对比前，先确认坐标刻度与价格口径。",
+          "summary_en": "Guido Imperiale, a staff engineer at OpenTeams and a Dask maintainer, criticizes Artificial Analysis's widely shared \"intelligence vs. cost\" Pareto plot. Two problems. First, the cost axis is logarithmic, solely so the chart can fit both a $0.015-per-task cheap model and a $3.69 flagship (a ~250x spread) on the same page, but the side effect is that readers can neither see how inconsequential the differences among cheap models are nor appreciate how vast the gap to the expensive tier is. Second, open-weight models are priced at the developer's own datacenter/API rate, while the same model rented by volume through third parties like OpenRouter is usually far cheaper, so open models look uncompetitive on the chart. His conclusion: the chart misleads at both ends, exaggerating the cheap tier's differences and doing a disservice to open-weight models. Before trusting any model cost comparison, check the axis scale and whose price you're reading.",
+          "why": "接昨天 Cognition 50 倍收入倍数的“算账”主题，这条治的是另一层：看模型成本对比图前，先查坐标轴和价格口径。对数刻度会把 250 倍价差压成视觉上的一小段，开放权重按官方数据中心价列又会高估实际成本。做模型选型和成本估算时，这是两个高频踩坑点。",
+          "why_en": "Continuing yesterday's \"do the math\" thread from Cognition's 50x revenue multiple, this one fixes a different layer: before trusting any model cost comparison, check the axis scale and whose list price you're reading. A log axis compresses a 250x price spread into a visually small gap, and listing open weights at official datacenter prices overstates their real cost. Two high-frequency traps for anyone doing model selection and cost estimation."
+        }
+      ]
+    }
+  ]
+}
