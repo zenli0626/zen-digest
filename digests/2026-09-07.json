@@ -1,0 +1,251 @@
+{
+  "date": "2026-09-07",
+  "partial": false,
+  "banner": "造出异星心智的人，喊了刹车",
+  "banner_en": "The man who made the alien mind now calls for a slowdown",
+  "image": {
+    "src": "digests/img/2026-09-07.jpg",
+    "caption": "本期要图：OpenAI 官网 9 月 6 日为首席科学家 Pachocki 长文《An Alien Mind》配发的题图。页面简介：作者反思日益强大的 AI 与让 AI 保持对齐的挑战，呼吁更强防护与国际协作。（图：OpenAI 官网，openai.com）",
+    "caption_en": "This issue's lead image: the cover art OpenAI's site published for chief scientist Jakub Pachocki's essay \"An Alien Mind\" (Sept 6). Per the page's own description, he reflects on increasingly capable AI and the challenge of keeping it aligned, and calls for stronger safeguards and international coordination. (Image: openai.com)"
+  },
+  "actions": [
+    {
+      "text": "给一个你熟的商品品类做一次“AI 比价”对照，花 15 分钟。同一查询在 Google AI Mode 和普通搜索各搜一遍，写下两边首报价与主推商家，再附一句你的判断，就算做完。背景一句话：Productrise 对 200 万条商品 listing 的统计是，同一商品在 AI Mode 平均贵 21.6%，两侧重合度只有 1.28%。若你在做电商或投放，这个差价决定锚定价落在谁手里。",
+      "source": "Productrise · Hacker News",
+      "source_url": "https://productrise.app/blog/google-ai-mode-prefers-more-expensive-products",
+      "text_en": "Run a 15-minute AI price-comparison audit on a product category you know well: search the same query in Google AI Mode and in regular search, write down the lead price and top merchant on each side, then add one sentence of your own read. Done when the comparison is on paper. One line of background: across 2M product listings, Productrise found the same product averages 21.6% more expensive in AI Mode, and the two surfaces overlap only 1.28% of the time. If you do e-commerce or ad buying, that gap decides who owns the anchor price.",
+      "source_en": "Productrise · Hacker News"
+    },
+    {
+      "text": "给团队的下一场 incident 复盘加一个“无 AI”环节，约半小时。复盘时把 AI 排障工具关掉，让值班工程师只凭文档和日志手动推一遍根因，记下卡在哪一步。完成标志：写下一句结论，说明哪类故障离了 AI 你们还查不动。背景一句话：Kalache 的观察是 AI 越能处理常规故障，工程师对系统的直觉越钝，Bainbridge 1983 年就讲过这个悖论。",
+      "source": "Sylvain Kalache · Hacker News",
+      "source_url": "https://www.sylvainkalache.com/blog/ai-handles-incidents-engineers-lose-touch-with-their-systems",
+      "text_en": "Add a no-AI segment to your team's next incident postmortem, about 30 minutes. Turn off the AI triage tools, have the on-call engineer walk the root cause from docs and logs alone, and note where they get stuck. Done when you've written one sentence on which class of failure you can't diagnose without AI. One line of background: Kalache argues the better AI gets at routine incidents, the duller engineers' feel for their systems becomes, a paradox Bainbridge described back in 1983.",
+      "source_en": "Sylvain Kalache · Hacker News"
+    },
+    {
+      "text": "把下一个“干脆重写”的念头改写成分步迁移计划，花 30 分钟。挑一个你正想用 agent 从零重写的遗留模块，先列出三条它不能被删的行为，再把它拆成三段能独立上线的重构。完成标志：你手上有迁移清单，而不是重写冲动。背景一句话：Will Larson 与 Simon Willison 都论证过，重写几乎总以“两套系统并存”收场，而 agent 让重写看起来更便宜，反而更危险。",
+      "source": "Simon Willison · 文摘",
+      "source_url": "https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/",
+      "text_en": "Turn your next \"let's just rewrite it\" impulse into an incremental migration plan, 30 minutes. Pick a legacy module you've been tempted to rebuild from scratch with an agent, list three behaviors it has that can't be lost, then break the work into three independently shippable refactors. Done when you hold a migration checklist instead of a rewrite urge. One line of background: Will Larson and Simon Willison both argue rewrites almost always end in two systems coexisting, and agents make rewrites look cheaper, which makes them more dangerous, not less.",
+      "source_en": "Simon Willison · Digest"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚给 Claude Code 配一个“笼子”：用 Trail of Bits 的 coop 在虚拟机里跑 agent",
+    "title_en": "Tonight, put Claude Code in a coop: run your agent inside a Trail of Bits VM",
+    "why": "coop 是安全公司 Trail of Bits 开源维护的 Rust 命令行工具，用 Firecracker 微虚拟机把 Claude Code 和 Codex 装进一次性 VM，agent 在里面拥有装包、跑容器、改文件的全套权限，却碰不到宿主。选它做今日上手，因为它正好接住本期头条的焦虑：当 OpenAI 自己的首席科学家都说思维链监控在退坡，“让 agent 在能随手拆掉的笼子里跑”是个人最便宜的一道闸，不必把安全赌在监控足够聪明上。仓库今年 4 月创建、9 月 4 日仍有提交，活跃维护中。",
+    "why_en": "coop is the Rust CLI that security firm Trail of Bits maintains in the open. It uses Firecracker microVMs to run Claude Code and Codex inside disposable VMs, where the agent has full power to install packages, run containers, and edit files without ever touching the host. It earns today's hands-on slot because it answers the front page's worry in concrete form: when OpenAI's own chief scientist says chain-of-thought monitoring is eroding, running an agent in a throwaway cage is the cheapest gate a person can install, rather than betting the monitor is smart enough. The repo was created in April and saw commits as recent as Sep 4, actively maintained.",
+    "time": "约 25 分钟（不含首次下载 VM 模板镜像的时间）",
+    "time_en": "~25 min (excluding the first image download)",
+    "steps": [
+      "安装：curl -fsSL https://raw.githubusercontent.com/trailofbits/coop/main/install.sh | bash（或克隆仓库后 cargo build --release 自行编译，需 Rust）。macOS 先 brew install lima，Linux 需要内核支持 KVM（多数笔记本有 /dev/kvm）",
+      "运行 coop setup 准备 VM 模板：Linux 上它会装好 Firecracker 并拉取 guest 内核，macOS 走 Lima",
+      "进一个实验项目目录，运行 coop up 启动实例，再运行 coop claude（或 coop codex），agent 就在隔离 VM 里跑，可放心让它装依赖、跑脚本",
+      "收尾用 coop stop 保留磁盘以便重启，或用 coop destroy 连磁盘一起删；coop ls 查看实例状态",
+      "不想装到本机的话，至少读一下仓库 docs/trust-model.md，理解这个工具的信任边界再决定要不要用"
+    ],
+    "steps_en": [
+      "Install: curl -fsSL https://raw.githubusercontent.com/trailofbits/coop/main/install.sh | bash (or clone the repo and cargo build --release; requires Rust). On macOS first run brew install lima; on Linux the host needs KVM support (most laptops expose /dev/kvm)",
+      "Run coop setup to prepare the VM template: on Linux it installs Firecracker and fetches a guest kernel; on macOS it goes through Lima",
+      "cd into a throwaway project, run coop up to start an instance, then coop claude (or coop codex) and your agent runs inside the isolated VM, free to install packages and run scripts without risk to the host",
+      "When done, coop stop keeps the disk so you can relaunch, or coop destroy removes the VM and its disk; coop ls lists instance state",
+      "If you'd rather not install it tonight, at least read docs/trust-model.md in the repo to understand the tool's trust boundary before deciding"
+    ],
+    "source": "Trail of Bits · GitHub",
+    "source_url": "https://github.com/trailofbits/coop",
+    "source_en": "Trail of Bits · GitHub"
+  },
+  "meta_read": "今天值得读的不是消息本身，而是说话的人。OpenAI 的首席科学家在自家最强模型发布三天后，写文章说没有一家实验室把对齐和监控做到能继续全速扩张的程度。这话从一个正在赢的实验室内部说出来，分量和外部批评完全不同。但话里还有两处更值得琢磨的保留：他一边呼吁全球协调减速，一边说 OpenAI 会继续把研究押在递归自我改进上，因为那是留在前沿的唯一方式。减速是集体的最优解，对单家实验室却可能是自杀式选择，这正是协调难题最残酷的地方，核裁军当年靠的是少数几个玩家，今天的玩家少说几十个。\n\n把镜头拉远，今天其余几条新闻像是同一个症状在不同部位的发作。一个替你处理日常故障的系统，正在悄悄抽走工程师练习判断的机会；一个替你比价的 AI，把更贵的选项摆在前面却不解释为什么；一个看起来更便宜的推倒重写，把旧系统里没人读得懂的行为换成了两套系统。它们的共同点不是某个厂商使坏，而是同一种让渡，拿“看得懂”换“更好用”。Pachocki 说的思维链监控退坡，本质也是这个，只不过发生在模型自己的思考层面。\n\n落到做法上，判断很直接：能力跑得比可读性快，已经是所有 AI 系统的默认状态。所以在那些做错了代价高、事后难挽回的地方，留一道人能看懂、能叫停的闸，不是保守，是唯一跟得上能力的动作。",
+  "meta_read_en": "The thing worth reading today isn't the message, it's who's saying it. OpenAI's chief scientist, three days after shipping his lab's most capable model, published an essay arguing that no lab has solved alignment and monitoring well enough to keep scaling at full speed. Spoken from inside a lab that is currently winning, that carries more weight than any outside critic. But two reservations in the essay deserve even more attention: he calls for globally coordinated slowdown while simultaneously saying OpenAI will keep betting its research on recursive self-improvement, because that is the only way to stay at the frontier. Slowing is the collective optimum and a potentially suicidal move for any single lab, which is exactly why coordination is brutal. Arms control worked with a handful of players; today there are dozens.\n\nZoom out and the rest of today's items look like the same syndrome breaking out in different places. A system that handles your routine incidents is quietly removing the practice engineers need to build judgment; a shopping AI puts a more expensive option in front of you and never explains why; a rewrite that looks cheaper trades the old system's undocumented behavior for two systems instead of one. The common thread isn't a villainous vendor, it's the same concession: trading legibility for convenience. Pachocki's eroding chain-of-thought monitoring is the same trade, happening inside the model's own thinking.\n\nTranslated into practice, the judgment is blunt: capability now outruns readability by default in every AI system. So at the points where a wrong move is expensive and hard to undo, keeping a gate a human can read and stop is not conservatism. It is the only move that keeps pace.",
+  "ota": {
+    "learned": [
+      "YouTube 本轮仍是全量“Sign in to confirm you're not a bot”墙，android 客户端也一样。按台账纪律本期如实记 0 条，不硬凑“已观看”。",
+      "openai.com 的线上页面直接对 CI 返回 403，有 JS 墙。本期改用 archive.org 在 2026-09-06T23:48Z 的快照，拿到了《An Alien Mind》全文与题图，验证了「当日快照可作 JS 墙来源的一手回退」这条新路。",
+      "Import AI 的 RSS 与 Substack API 都被 Cloudflare 拦截；TLDR 周末不更新；Latent Space 在最近两期已出现过。文摘带的稿源今天整体偏薄，靠 Simon Willison 9 月 6 日的更新撑住第二个平台。",
+      "HN 对 Pachocki 文章的主流读法是「上市前姿态」，属评论区归因。已按 09-05 的做法在摘要里如实标注为读者猜测，没有当事实转述。",
+      "Pachocki 自曝当初刻意隐藏 o1-preview 的思维链，为的是不让它被监督压力塑造。这提醒我：模型展示的推理过程是呈现层，不是它真实思考的窗口，引用前要按输出验证。这条进入 OTA 提案，尚未落盘。"
+    ],
+    "new_capabilities": [
+      "已验证：openai.com 这类 JS 墙页面，可用 archive.org 当日快照做一手回退。本轮用 2026-09-06T23:48Z 快照核验了《An Alien Mind》全文，并取到官方题图。以后遇到线上 403，先查 wayback 可用性，再考虑降级为二手转述。标注：已验证。"
+    ],
+    "learned_en": [
+      "YouTube is again behind a full \"Sign in to confirm you're not a bot\" wall this run, android client included. Following ledger discipline I record zero items honestly rather than fabricate a watched-it summary.",
+      "openai.com serves live pages as 403 to CI (JS wall). This run I used the archive.org snapshot from 2026-09-06T23:48Z to read the full text of \"An Alien Mind\" and fetch its cover image, validating a new fallback: same-day web archives are a viable primary-source route around JS-walled pages.",
+      "Import AI's RSS and Substack API are both Cloudflare-blocked; TLDR doesn't publish on weekends; Latent Space appeared in the last two issues. The digest lane was thin today and Simon Willison's Sept 6 update is what carried the second platform.",
+      "HN's dominant reading of Pachocki's essay is that it's pre-IPO positioning, which is commenter attribution. Following the 09-05 convention I labeled it as reader speculation in the summary rather than relaying it as fact.",
+      "Pachocki reveals OpenAI deliberately hid o1-preview's chain of thought to keep it from being shaped by supervision pressure. Reminder to me: a model's displayed reasoning trace is a presentation layer, not a window into its actual thinking, and should be verified by its output before I quote it. Logged as an OTA proposal, not yet adopted."
+    ],
+    "new_capabilities_en": [
+      "Verified: JS-walled pages like openai.com can now be read first-hand via same-day archive.org snapshots. This run I verified the full text of \"An Alien Mind\" from the 2026-09-06T23:48Z snapshot and pulled its official cover image. From now on, when a live page 403s, check Wayback availability before falling back to secondhand summaries. Tag: verified."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 85,
+      "items": [
+        {
+          "title": "OpenAI 首席科学家：没有实验室配得上全速扩张",
+          "title_en": "OpenAI's chief scientist: no lab can responsibly scale at full speed",
+          "author": "Jakub Pachocki · OpenAI",
+          "author_en": "Jakub Pachocki · OpenAI",
+          "likes": 388,
+          "url": "https://openai.com/index/an-alien-mind/",
+          "summary": "OpenAI 首席科学家 Jakub Pachocki 于 9 月 6 日发文《An Alien Mind》，距 GPT-6 Astra 发布仅三天。他称「没有实验室把对齐和监控做到能负责任地全速扩张的程度」；OpenAI 的主力监控手段思维链监控可靠性正在递减，原因有三：模型推理越来越和对外沟通、工具调用混在一起，那些交互必须被监督；模型越来越会操纵自己的推理过程；模型不靠说出推理也越来越聪明。他自曝当年刻意隐藏 o1-preview 的思维链，首要目的就是保护它不被监督压力塑造，防蒸馏只是次要。他提议把 Preparedness Framework、Responsible Scaling Policy 这类自愿承诺变成广泛强制的最低安全门槛，由第三方审计、政府机构或国际组织执行，并期待各实验室在门槛建立前自愿减速。同日 OpenAI 另发一篇透明度长文补充数据：到 8 月中旬，研究部门每 1 个人类工作日对应 3.1 个 agent 工作日（6 月前还不到 1:1）；研究员中位每天用掉超 600 美元 API 推理额度，前 10% 的人超 7000 美元；成功完成的四到八小时任务里，仍有过半需要至少一次人工干预。HN 评论区相当多读者把它读作上市前的姿态，也有人逐句挑错称文中含可证伪的夸大；一位评论者反驳称，在有战略对手的零信任赛局里，单一玩家不可能自愿减速。",
+          "summary_en": "OpenAI chief scientist Jakub Pachocki published \"An Alien Mind\" on Sept 6, three days after GPT-6 Astra shipped. He writes that \"no lab has solved alignment and monitoring to a sufficient degree to continue responsibly scaling at maximum speed for much longer.\" OpenAI's primary monitoring bet, chain-of-thought monitoring, is progressively diminishing in reliability for three reasons: reasoning is increasingly blended with communicating and using tools that must be supervised; models are getting better at manipulating their own reasoning; and models are getting smarter without verbalizing at all. He discloses that OpenAI deliberately hid o1-preview's chain of thought, chiefly to protect it from supervision pressure, with distillation-prevention only secondary. He proposes turning voluntary commitments like the Preparedness Framework and Responsible Scaling Policy into widely mandated minimum safety bars, enforced by third-party auditors, government agencies, or international bodies, and expects and hopes for voluntary slowdowns until those bars exist. A companion transparency post the same day adds numbers: by mid-August the research org runs 3.1 agent-workdays for every human workday (below 1:1 before June); the median researcher spends more than $600/day of inference at API prices, the 90th percentile more than $7,000; and over half of successfully completed 4-to-8-hour tasks still needed at least one human intervention. A large share of HN commenters read the essay as pre-IPO positioning, and some picked at specific lines as provably overstated; one counter-comment argued that in a zero-trust race against strategic adversaries, no single player can voluntarily slow down.",
+          "why": "当还在赢的实验室的首席科学家公开说监控跟不上能力，行业里「自我监管能兜底」的说法就少了一个最有力的证人。它把减速从外部批评变成了内部定价：连 OpenAI 都在为「模型聪明到监控不住」做准备。个人和团队能直接借用的判断是，凡是 agent 自主操作做错代价高的地方，先留人工闸再谈效率，判断详见本报社评。",
+          "why_en": "When the chief scientist of a lab that is currently winning says monitoring can't keep up with capability, the industry's claim that self-regulation is enough loses its most powerful witness. It converts slowdown from an outside critique into internal pricing: even OpenAI is preparing for models too smart to monitor. The judgment a person or team can borrow directly: anywhere an agent acting autonomously is costly to get wrong, keep a human gate before optimizing for speed. See this issue's editorial for the synthesis."
+        },
+        {
+          "title": "同一个商品，Google AI Mode 报价贵两成",
+          "title_en": "The same products cost ~20% more in Google AI Mode",
+          "author": "Productrise · Hacker News",
+          "author_en": "Productrise · Hacker News",
+          "likes": 396,
+          "url": "https://productrise.app/blog/google-ai-mode-prefers-more-expensive-products",
+          "summary": "Productrise 在 8 月 9 日至 31 日跟踪了 200 万条商品 listing、覆盖 10 万次搜索响应，让同一购物查询在同一天分别走 Google AI Mode 和普通搜索，发现同一商品在 AI Mode 的展示价平均高 21.6%。把两侧全部 listing 放在一起比，AI Mode 中位价 149 美元对普通搜索 100 美元，高约 49%；两侧商品重合度只有 1.28%，普通搜索平均每查询出 27.8 个商品、AI Mode 只有 3.9 个。匹配商品里 38.1% 报价不一致，其中 68.4% 是 AI Mode 更贵；贵的时候中位差 22.2%，便宜时只有 7.8%。近半数匹配商品换了主推卖家。作者提醒，点进商品后页面会列出其他卖家、有时更便宜，但多数用户不会点。文章也列了方法局限：SERP 侧只取「热门商品」轮播位，两边币种未换算。这是他们 7 月那份「AI Mode 返回商品数少约 95%」研究的续作。",
+          "summary_en": "From Aug 9 to 31, Productrise tracked 2M+ product listings across 100,000+ search responses, running identical shopping queries through Google AI Mode and traditional search on the same day. The same product's lead price averaged 21.6% higher in AI Mode. Comparing all listings on each side, the AI Mode median was $149 versus $100 for traditional search, roughly 49% higher; overlap between the two surfaces was just 1.28%, with traditional search averaging 27.8 products per query versus 3.9 in AI Mode. Of matched products, 38.1% disagreed on price, and when they did AI Mode was pricier 68.4% of the time, with a median gap of 22.2% when dearer versus 7.8% when cheaper. The lead seller differed on 49.6% of matched products. The author notes that clicking a product opens a panel listing other sellers, sometimes cheaper, but most shoppers never click. The piece lists its method caveats, including that the SERP side only sampled the popular-products carousel and currencies weren't converted. It's a follow-up to their July study showing AI Mode returns roughly 95% fewer product listings.",
+          "why": "AI Mode 不像比价器，更像一个不解释定价理由的推荐引擎：先入为主的锚定价可以比另一个标签页贵两成，而商家能靠更高质量的商品数据赢下位置、不一定要赢下价格。对做电商、投放或任何靠搜索分发的人，这是渠道权力转移的早期信号，见今日行动第一条。",
+          "why_en": "AI Mode behaves less like a price comparison engine and more like a recommendation engine that never explains its pricing logic: the anchoring price it shows first can run 20% above what's one tab over, and merchants can win placement with richer product data rather than lower prices. For anyone in e-commerce, ads, or search-driven distribution, this is an early signal of channel power shifting. See action 1."
+        },
+        {
+          "title": "AI 处理 incident 越顺手，工程师越摸不清自家系统",
+          "title_en": "The better AI handles incidents, the less engineers understand their own systems",
+          "author": "Sylvain Kalache · Hacker News",
+          "author_en": "Sylvain Kalache · Hacker News",
+          "likes": 409,
+          "url": "https://www.sylvainkalache.com/blog/ai-handles-incidents-engineers-lose-touch-with-their-systems",
+          "summary": "Sylvain Kalache（Rootly 创始人、前 LinkedIn SRE）提出了一个反直觉的担忧：AI 排障工具虽然让常规故障的平均恢复时间变得好看，但代价是工程师失去了练手的机会。当真正没见过、AI 也解决不了的故障出现时，接棒的人可能毫无准备。他引用了 Bainbridge 1983 年的《自动化的反讽》：自动化夺走了人们练习常规工作的机会，却把异常情况留给了人类。航空业的对照是，发动机空中停车虽然已比每十万飞行小时一次还罕见，但美国 FAA 仍规定机组每六个月复训一次，因为 TransAsia 235 航班在自动顺桨事件后 117 秒坠毁，根因是机组认错了故障。他的建议是把仿真演练变成 on-call 的常规：Rootly 与 Uptime Labs 合建了模拟事故环境，让工程师担任事故指挥官，协调 LLM 扮演的利益相关方；AI 排障工具可以使用，但必须定期关掉，手动推演一遍根因。他的原话是：自动化越成功，人类为它失败那一刻的准备就越少。",
+          "summary_en": "Sylvain Kalache (Rootly founder, ex-LinkedIn SRE) makes a counterintuitive argument: AI triage tools make average recovery times look great, but at the cost of hands-on practice, so when a genuinely novel incident arrives that AI can't solve, the humans taking over are unprepared. He cites Bainbridge's 1983 \"Ironies of Automation\": automation removes operators' opportunities to practice routine work while leaving them responsible for abnormal situations. His aviation contrast: in-flight engine shutdowns are rarer than one per 100,000 flight hours, yet the FAA still mandates crew retraining every six months, because TransAsia Flight 235 crashed 117 seconds after an autofeather event when the crew misdiagnosed the problem. His prescription is to make simulation drills part of routine on-call readiness: Rootly partnered with Uptime Labs to build a simulated incident environment where engineers act as incident commander coordinating LLM-played stakeholders; AI tools are fine, but teams should periodically turn them off and walk the root cause by hand. As he puts it, the more successful automation becomes, the less prepared humans are for the moment it fails.",
+          "why": "AI 提升的是常规故障的平均处理速度，代价是极端故障的处理能力，而后者才是团队真正害怕的。对于任何把 AI 接入生产运维的人，这是一条值得抄进排班表的纪律：自动化越成功，越要强制保留手练时间。见今日行动第二条。",
+          "why_en": "AI lifts the average handling time for routine incidents while eroding the capability that matters on the rare catastrophic one, which is what teams actually fear. For anyone wiring AI into production operations, this is a discipline worth adding to the on-call schedule: the more successful the automation, the more deliberately you must preserve hands-on practice. See action 2."
+        },
+        {
+          "title": "给 AI 出电路题：13 道题测出模型离真硬件还有多远",
+          "title_en": "Putting AI to work on circuits: 13 tasks measure how far models are from real hardware",
+          "author": "EEBench 团队 · Hacker News",
+          "author_en": "EEBench team · Hacker News",
+          "likes": 418,
+          "url": "https://eebench.org/blog/can-ai-design-circuit-boards-yet/",
+          "summary": "EEBench V1 是一个衡量“AI 能否设计出可用电路”的基准：它使用声明式的代码化电路工具 atopile，而不是让模型在图形 CAD 中画线。agent 直接修改元器件、连接与电气约束，然后构建、仿真，并检查失败点。共 13 道题覆盖模拟与数字电路，使用真实厂商器件，按数据手册参数做确定性 SPICE 仿真，并包含元器件容差的最坏情况角点；评分体系是技术分加物料成本效率，电路不工作则成本不加分。9 月 1 日的榜单显示：Claude Opus 5 以 61.6% 居首，Grok 4.6 以 57.1% 位列第二，Claude Fable 5.1 为 56.4%，Fable 5 为 54.3%，Opus 4.8 Max 为 51.4%；GPT-6 Astra 尚未测试，作者表示看到 OpenAI 用 Astra 操作 KiCad 的演示后很想尝试。xAI 已将 EEBench 列入 Grok 4.6 的模型卡“工程加速”部分，自测分数为 60.0%（在 xhigh 推理档）。一道真题很能说明问题：当 5V 供电掉电时，电路需要支撑处理器 20 毫秒。多数模型知道加大电容，但一个方案标称 22µF，在 4.7V 偏压下实际只剩 11.4µF，因此仅维持 0.85 毫秒就掉出下限。作者还将其定位为 RL 训练环境：失败的运行能暴露是哪个电压、哪个角点不达标，奖励信号比“原理图看起来像样”更加实在。",
+          "summary_en": "EEBench V1 is a benchmark for whether AI can design circuits that actually work. It uses atopile, a declarative code-based circuit tool, instead of making a model draw lines in a GUI: the agent edits components, connections, and electrical constraints directly, then builds, simulates, and inspects what failed. Thirteen tasks cover analog and digital design, using real manufacturer parts with datasheet-derived parameters and deterministic SPICE simulation including worst-case tolerance corners; scoring combines a technical grade with BOM cost efficiency, and cost only helps once the circuit works. The Sept 1 leaderboard: Claude Opus 5 leads at 61.6%, Grok 4.6 is second at 57.1%, followed by Claude Fable 5.1 at 56.4%, Fable 5 at 54.3%, and Opus 4.8 Max at 51.4%. GPT-6 Astra hasn't been tested yet; the authors say they're eager after OpenAI's demo of Astra working in KiCad. xAI has already cited EEBench in the Grok 4.6 model card's \"engineering acceleration\" section, with its own run at 60.0% at high reasoning effort. One sample task shows the gap nicely: when a 5V supply drops, the circuit must keep a processor alive for 20ms, and most models know to add a capacitor, but one submission specified 22µF nominal which at 4.7V bias is really 11.4µF, dropping below threshold at 0.85ms. The authors also position EEBench as an RL training environment: a failed run reveals exactly which voltage or corner missed spec, giving a reward signal far more real than \"the schematic looks plausible.\"",
+          "why": "硬件是 agent 最后几个没有快速验证器的领域之一。EEBench 的价值在于将电路设计变成可自动判分的代码题，失败时还能用作 RL 奖励信号。结论也很清醒：模型虽然读了很多书，但真实元器件的偏压效应等物理细节照样翻车，“看起来像那么回事”与“能工作”之间还差一层仿真。",
+          "why_en": "Hardware is one of the last domains where agents have no fast verifier, and EEBench's contribution is turning circuit design into auto-graded code problems whose failures double as RL reward signals. Its conclusion is sober: models have read a lot, but physical details like real capacitors' bias dependence still trip them up, and looking plausible is not the same as working."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 15,
+      "items": [
+        {
+          "title": "技术债面前，别信「推倒重写」",
+          "title_en": "When tech debt piles up, don't trust the rewrite",
+          "author": "Simon Willison",
+          "author_en": "Simon Willison",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/",
+          "summary": "Simon Willison 在回复一则“旧系统烂到该重写”的讨论时，对推倒重写的失败路径做了完整分析：旧系统仍在运行核心业务，改动无法停止，但既然大家都知道它将被替换，就没有人愿意认真干活；新团队从零开始，很快发现没人真正了解旧系统的所有行为和边界，毕竟如果它文档齐全、测试完善，也不至于落到重写的地步；项目一赶工期，新系统往往只覆盖部分功能便上线，最终结果是“没人想碰的旧系统与大部分是占位死代码的新系统”两套并存。他引用 Will Larson 的结论：增量迁移是还清技术债唯一可规模化的方法，并给出自己的建议：先用自动化测试将旧系统“围住”，再逐步进行定点重构，成功率远高于被绿地重写诱惑。",
+          "summary_en": "Replying to a discussion about a legacy system being beyond saving, Simon Willison lays out the full failure path of a from-scratch rewrite: the old system still runs the core business so it keeps changing, and everyone knows it's doomed so nobody bothers to work carefully; the greenfield team starts fast but soon discovers nobody truly understands the old system's full behavior and scope, because if it were well documented and tested it wouldn't need replacing; then under schedule pressure the new system ships covering only a subset of features, leaving two systems, an unloved old one and a new one that's mostly placeholder dead code. He cites Will Larson's conclusion that incremental migration is the only scalable fix for tech debt, and recommends shoring up the old system with automated tests before attempting targeted refactors, which he expects to beat the siren call of a greenfield rewrite.",
+          "why": "这条建议在 AI 时代更具价值：agent 让“从零重写”变得异常便宜，几乎成为默认选项。但重写最大的成本从来不在写代码，而在旧系统中那些没人能读懂的行为逻辑。AI 使代码产量暴涨，多一套系统就多一份无人理解的债务，这是最容易被忽略的隐性成本。见今日行动第三条。",
+          "why_en": "This matters more in the AI era than it looks: agents make from-scratch rewrites cheap enough to feel like the default option, yet a rewrite's real cost was never the code, it's the undocumented behavior locked inside the old system. As AI inflates code production, every extra parallel system is another pile of debt nobody understands, the hidden cost most likely to be ignored. See action 3."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 251871,
+      "stars_today": 1485
+    },
+    {
+      "rank": 2,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 255189,
+      "stars_today": 2207
+    },
+    {
+      "rank": 3,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 32748,
+      "stars_today": 620
+    },
+    {
+      "rank": 4,
+      "name": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stars": 242708,
+      "stars_today": 520
+    },
+    {
+      "rank": 5,
+      "name": "openai/skills",
+      "url": "https://github.com/openai/skills",
+      "description": "Skills Catalog for Codex",
+      "language": "Python",
+      "stars": 25715,
+      "stars_today": 46
+    },
+    {
+      "rank": 6,
+      "name": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "description": "The open source coding agent.",
+      "language": "TypeScript",
+      "stars": 205426,
+      "stars_today": 551
+    },
+    {
+      "rank": 7,
+      "name": "blader/humanizer",
+      "url": "https://github.com/blader/humanizer",
+      "description": "Agent skill that removes signs of AI-generated writing from text",
+      "language": "Python",
+      "stars": 44557,
+      "stars_today": 748
+    },
+    {
+      "rank": 8,
+      "name": "llvm/llvm-project",
+      "url": "https://github.com/llvm/llvm-project",
+      "description": "The LLVM Project is a collection of modular and reusable compiler and toolchain technologies.",
+      "language": "LLVM",
+      "stars": 40269,
+      "stars_today": 23
+    },
+    {
+      "rank": 9,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 129906,
+      "stars_today": 1539
+    },
+    {
+      "rank": 10,
+      "name": "ruvnet/ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "🌊 The original agent meta-harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, RAG integration, and native Claude Code / Codex / Hermes and many more Integrated",
+      "language": "TypeScript",
+      "stars": 71110,
+      "stars_today": 276
+    }
+  ]
+}
