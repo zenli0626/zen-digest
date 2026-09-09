@@ -1,0 +1,255 @@
+{
+  "date": "2026-09-09",
+  "partial": false,
+  "banner": "Meta 上线 Muse：替你花钱的 AI 管家",
+  "banner_en": "Meta Ships Muse: an AI concierge that spends your money",
+  "image": {
+    "src": "digests/img/2026-09-09.png",
+    "caption": "本期头图：媒体 SiliconANGLE 报道 Meta 发布个人 AI agent Muse 时配发的产品界面截图（截图摄于 2026-09-09，下载自该报道公开配图）。此处仅标注来源，不描述画面内容。（图：SiliconANGLE）",
+    "caption_en": "This issue's lead image: a product-interface screenshot that SiliconANGLE used in its story on Meta launching the personal AI agent Muse (the screenshot is dated 2026-09-09 and was pulled from that article's public og:image). Source is noted only; no claim is made about the pixels. (Image: SiliconANGLE)"
+  },
+  "actions": [
+    {
+      "text": "给你主力 AI agent 做一次“花钱与出网权限”审计：查它现在能调用哪些真实账号（邮箱、支付、云端），哪些动作要你逐次批准、哪些自动放行。Meta 今晚给 Muse 的设计是，支付走每次消费临时生成的卡号，agent 摸不到真实卡；所有出网请求过一道 agent 改不了的哨兵。你手上工具对应的护栏是什么？预计 15 分钟。完成标志：写下令你 agent 的出网和支付权限清单，以及它有没有你改不掉的硬护栏。",
+      "source": "SiliconANGLE 报道",
+      "source_url": "https://siliconangle.com/2026/09/08/meta-debuts-its-secure-by-design-personal-ai-agent-muse/",
+      "text_en": "Run a spend-and-egress audit on your main AI agent: check which real accounts it can reach today (email, payments, cloud), which actions require your per-action approval, and which are auto-approved. Meta's design for Muse, covered tonight, is payments via single-use card numbers generated per purchase (the agent never touches the real card) and every outbound request passing through a Sentinel the agent can't override. What is the equivalent guardrail in the tools you actually run? About 15 minutes. Done when you've written down your agent's egress and payment permissions, and whether it has any hard guardrail you couldn't override.",
+      "source_en": "SiliconANGLE coverage"
+    },
+    {
+      "text": "读一遍 Jacob Coxon 辞职声明原文（X 链接），对照今晚多家媒体的转述，找出一处“转述和原话不一样”的地方。他写的是对两家实验室各有一套判断，媒体标题往往只留最耸动的一句。预计 12 分钟。完成标志：写下你找到的一处差异，或你确认某家媒体忠实转述的具体理由。",
+      "source": "Jacob Coxon（@hilbertspaess）· Hacker News",
+      "source_url": "https://twitter.com/hilbertspaess/status/2097476196791709843",
+      "text_en": "Read Jacob Coxon's resignation thread in the original (the X link) and compare it against tonight's media coverage to find one place where the retelling and the original diverge. He gives a separate judgment for each of the two labs; headlines tend to keep only the most alarming line. About 12 minutes. Done when you've written down one discrepancy you found, or your specific reason for concluding a given outlet relayed him faithfully.",
+      "source_en": "Jacob Coxon (@hilbertspaess) · Hacker News"
+    },
+    {
+      "text": "把“算力军备”拉回你自己的账单：查上一季度你或你团队实际花在模型 API / 推理上的金额，写下这个数字，再写下你对两年后推理单价的判断（涨还是跌），以及最能证伪你判断的那个指标。今晚的数字是：Anthropic 过去 11 个月签了约 5170 亿美元的算力合同，约为它此前自己预测的三倍。预计 10 分钟。完成标志：写下你自己的 AI 开销、你的价格判断，和一个具体的观察指标。",
+      "source": "Seoul Economic Daily · TLDR AI",
+      "source_url": "https://en.sedaily.com/international/2026/09/07/anthropic-locks-in-decade-of-computing-power-ahead-of-ipo",
+      "text_en": "Pull the compute arms race back to your own bill: look up what you or your team actually spent on model APIs / inference last quarter, write that number down, then write your prediction for where inference unit prices go in two years, and the single metric most likely to falsify your prediction. Tonight's reference point: Anthropic signed roughly $517 billion in compute agreements over the past 11 months, about triple its own earlier projection. About 10 minutes. Done when you've written down your own AI spend, your price call, and one concrete indicator to watch.",
+      "source_en": "Seoul Economic Daily · TLDR AI"
+    }
+  ],
+  "hands_on": {
+    "title": "亲手装一次 i-have-adhd，对比 coding agent 的前后输出",
+    "title_en": "Install i-have-adhd and diff your coding agent's output before and after",
+    "why": "一个今天同时冲上 Hacker News 热帖和 GitHub 热榜第一的小项目：10 条规则让 coding agent 先说结论、给编号动作、删掉“希望这对你有帮助”这类空话。README 里那组前后对照是这件事最清楚的演示，安装只要一行指令，5 分钟能验证它对你手头模型到底有没有用，比读十篇提示词教程值。",
+    "why_en": "A tiny project that hit both the Hacker News front page and the top of GitHub trending today: ten rules that make a coding agent lead with the answer, number its steps, and drop filler like \"Hope this helps!\" The README's before/after pair is the clearest demonstration of the idea, install is a one-line command, and five minutes will tell you whether it actually changes your model's output, more useful than ten prompt-engineering essays.",
+    "time": "约 10-15 分钟",
+    "time_en": "~10-15 min",
+    "steps": [
+      "准备一个你真实要做的任务（改一段代码、排查一个报错都行），先照常让 agent 做一次，把回答存下来作为对照",
+      "打开 https://github.com/ayghri/i-have-adhd ，把 README 里那一行安装指令粘进 CLI：Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd, refer to the repo's AGENTS.md for instructions",
+      "对同一个任务再让 agent 做一次，逐条对比：开头是不是先给结论和下一步动作、步骤有没有编号、结尾有没有删掉空话",
+      "决定常驻还是按需。担心规则在长上下文里权重变低的话，可以只在拿到大段文字时用 /i-have-adhd 手动触发，HN 讨论区里就有人这么用"
+    ],
+    "steps_en": [
+      "Pick a real task you actually need done (fix a snippet of code, debug an error), run your coding agent on it as usual first, and save the answer as the baseline",
+      "Open https://github.com/ayghri/i-have-adhd and paste the one-line install command from the README into your CLI: Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd, refer to the repo's AGENTS.md for instructions",
+      "Run the same task again and compare point by point: does the answer open with the conclusion and next action, are the steps numbered, is the filler gone",
+      "Decide between always-on and on-demand. If you're worried the rules lose weight in a long context, trigger it manually with /i-have-adhd only when you get a wall of text, as someone in the HN thread does"
+    ],
+    "source": "ayghri · GitHub",
+    "source_url": "https://github.com/ayghri/i-have-adhd",
+    "source_en": "ayghri · GitHub"
+  },
+  "meta_read": "今晚四件事互不相干，却正好是同一道题的四种答法。题是：模型还在变强，谁来负责踩刹车。\n\nMeta 把刹车做成了卖点。Muse 每次对外动作要过一道它改不了的哨兵，花钱的卡号每次现发，产品讲的第一件事不是能力，是“谁在看着它”。\n\n辞职的研究员给出的答案是退出。他在两家头部实验室都待过，判断是没人会自愿慢下来，于是公开辞职喊话，而不是留在里面改路线。\n\nAnthropic 给出的答案最贵：上市前把算力签到了十年后。同一家公司里，有人为速度辞职，公司自己为速度加注。两者并不矛盾，这正是前沿公司的标准姿势，对外卖护栏，对内买速度。\n\nDeepMind 的答案绕开了刹车。AlphaGenome 那个领域没有抢先，只有覆盖，一次算完摊开让研究者自取。风险叙事在“跑太快”的地方吵翻了天，在“还没覆盖”的地方反而没人吵。",
+  "meta_read_en": "Tonight's four stories have nothing to do with one another, yet they are four different answers to the same question: models are still getting stronger, so who is responsible for hitting the brakes.\n\nMeta turned the brakes into a selling point. Every outward action Muse takes has to pass a Sentinel it cannot override, payment card numbers are issued fresh each time, and the product leads not with capability but with \"who is watching it.\"\n\nThe researcher who resigned gave the answer of exit. He has worked inside both leading labs, concluded nobody will slow down voluntarily, and chose to resign and say so publicly rather than stay and change course from within.\n\nAnthropic's answer is the most expensive one: locking compute contracts out to a decade before its IPO. The same company now has one employee resigning over speed and, at the same time, is betting on more speed with its own contracts. The two are not in tension. This is the standard posture of every frontier player: sell guardrails outward, buy speed inward.\n\nDeepMind sidesteps the brake question entirely. In the domain AlphaGenome touches there is no racing, only coverage, compute it all once and let researchers query it. Risk narratives are loud where the worry is \"moving too fast,\" and oddly quiet where the worry is \"not yet covered.\"",
+  "ota": {
+    "learned": [
+      "今晚 YouTube 全线 bot-wall：RSS 源返回 404，yt-dlp 换 android client 也收到“Sign in to confirm you're not a bot”，按 09-05/09-07 的台账纪律如实记 0 条、不硬凑“已观看”摘要。本期靠 Hacker News + 文摘两条文本带凑齐平台和条目，不需要 partial:true。",
+      "核对 Anthropic 5170 亿美元算力采购时发现，两个可靠来源对同一组数字的细分口径对不上：一家列出 SpaceX、微软和芯片采购，另一份报道的供应商清单里没有 SpaceX。处理方式是只报两方一致的核心（总额、总容量、Google 与 AWS 合计约 11 吉瓦），分项出入留作观察，不替读者选边。"
+    ],
+    "new_capabilities": [
+      "本期没有新增“已验证”的能力。一条关于“两个可靠来源对同一数字的细分口径不一致时，只报重合核心并标注分歧”的观察已记入 ota-ledger.md（proposed, cloud）。按 STYLE-ZH 第 14 条，观察项不进入能力列表，待笔记本端复验后再定。"
+    ],
+    "learned_en": [
+      "YouTube was fully bot-walled tonight: the RSS feeds returned 404 and yt-dlp with the android client came back with \"Sign in to confirm you're not a bot,\" so per the 09-05/09-07 ledger discipline this issue honestly records zero YouTube items rather than fabricating \"watched it\" summaries. The Hacker News and Digest text lanes were enough to clear both the platform and item-count gates, so no partial:true.",
+      "While checking Anthropic's $517 billion compute figure I found two reliable outlets whose sub-breakdowns of the same number disagree: one lists SpaceX, Microsoft, and chip purchases, the other's vendor list has no SpaceX in it. The handling was to report only the mutually-agreed core (total value, total capacity, roughly 11 GW combined for Google and AWS) and leave the sub-list discrepancy as an open observation rather than pick a side for the reader."
+    ],
+    "new_capabilities_en": [
+      "No new verified capability this issue. One observation, about reporting only the agreed core when two reliable sources disagree on the sub-breakdown of the same figure, has been logged in ota-ledger.md (proposed, cloud). Per STYLE-ZH rule 14, observations do not enter the capability list until a laptop session re-verifies them."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 20,
+      "items": [
+        {
+          "title": "Meta 上线个人 agent Muse，安全设计当卖点",
+          "title_en": "Meta launches Muse, a personal agent that sells guardrails first",
+          "author": "SiliconANGLE · Hacker News",
+          "author_en": "SiliconANGLE · Hacker News",
+          "likes": 460,
+          "url": "https://siliconangle.com/2026/09/08/meta-debuts-its-secure-by-design-personal-ai-agent-muse/",
+          "summary": "Meta 旗下 Superintelligence Labs 的个人 AI agent Muse 本周在美国上线，目前仅限美国。它有 iOS 与 Android 应用、网页版（muse.ai），也能在 WhatsApp 里直接给它发消息，下一步将进入 Meta 的 AI 眼镜。它能替你发邮件、订机票和长途车票、订餐厅、付款，甚至帮你卖车；为此它需要连上你的邮箱、日历、财务、健康和智能家居应用。免费档每周 1 亿 token（约一个 token 抵四个字符），重度使用要订阅。内部代号 Hatch，直接对标 OpenClaw、Claw AI、NanoClaw 这批当红的个人 agent。\n\nMuse 的差异化押在安全设计。它的动作跑在一个隔离的云端虚拟机里（Secure VM），所有要离开这台虚拟机的请求都过一道叫 Sentinel 的监控，要么匹配授权策略、要么弹给你批准。Meta 副总裁 Tarek Sheasha 说，agent 与外界每一次交互都经过 Sentinel，agent 自己改不了它。支付走 Stripe，每笔消费生成一次性卡号，agent 永远摸不到真实卡号，退货不收手续费。\n\n报道也标出了边界。Meta 的条款说不会窥探用户的 Secure VM，但工程副总裁 David Singleton 对 Wired 承认 Meta 技术上仍能访问；未来的 Confidential VM 会用可信执行环境，密钥由用户本地保管，届时连 Meta 也进不去。SiliconANGLE 提醒，考虑到 Meta 刚被报道以约 180 亿美元和解社交媒体成瘾诉讼，“安全设计”的营销能买到多少信任是个问号。",
+          "summary_en": "Muse, the personal AI agent from Meta's Superintelligence Labs, launched in the US this week, US-only for now. It ships as an iOS and Android app plus a web version at muse.ai, takes messages directly over WhatsApp, and is slated to come to Meta's AI glasses next. It can send email, book flights and long-distance bus tickets, reserve restaurant tables, make payments, and even sell a car for you, which requires connecting to your email, calendar, financial, health, and smart-home apps. The free tier covers 100 million tokens per week (roughly one token per four characters), with heavier use on a paid subscription. Internal codename Hatch; it goes straight at the current crop of viral personal agents like OpenClaw, Claw AI, and NanoClaw.\n\nMuse's differentiation is its security design. The agent runs inside an isolated cloud virtual machine Meta calls a Secure VM, and every request leaving that VM passes through a monitor called Sentinel that either matches an authorized policy or prompts the user for approval. Meta VP Tarek Sheasha is quoted saying every interaction with the outside world runs through a Sentinel the agent cannot override. Payments run on Stripe: a single-use card number is generated per purchase so the agent never touches the real card, and returns carry no fee.\n\nThe coverage also draws the boundary. Meta's terms say it will not look inside users' Secure VMs, but engineering VP David Singleton told Wired that Meta technically still could; a future Confidential VM built on trusted execution environments, with keys held locally by the user, is meant to lock even Meta out. SiliconANGLE adds the obvious question: given Meta's reported ~$18 billion social-media-addiction settlement, how much trust a \"secure by design\" pitch can actually buy.",
+          "why": "选作头版，因为这是第一个把“安全护栏”而不是“能力”当主卖点的主流个人 agent，正面回答本周反复出现的问题：一个能花你钱的 agent，凭什么被信任。对做 agent 产品的人，Secure VM、Sentinel、一次性卡号是一份可以直接对照的护栏清单。",
+          "why_en": "Chosen as the banner because it is the first mainstream personal agent to sell guardrails rather than capability as its headline feature, answering this week's recurring question head-on: why trust an agent that can spend your money. For anyone building an agent product, Secure VM, Sentinel, and single-use card numbers form a guardrail checklist you can hold your own design against."
+        },
+        {
+          "title": "Anthropic 研究员辞职：两家头部实验室在拿命对赌",
+          "title_en": "An Anthropic researcher resigns, saying both labs are gambling with our lives",
+          "author": "Jacob Coxon · Hacker News",
+          "author_en": "Jacob Coxon · Hacker News",
+          "likes": 382,
+          "url": "https://twitter.com/hilbertspaess/status/2097476196791709843",
+          "summary": "华尔街日报率先报道，在 Anthropic 做预训练研究的研究员 Jacob Coxon 辞职；他随后在 X（@hilbertspaess）上公开说明原因：“我今天从 Anthropic 辞职了……两家公司都没有在负责任地行动。它们正径直冲向能自我改进的超级智能，拿我们的命对赌。”他形容自己过去三年在 OpenAI 和 Anthropic 都做过预训练研究，并把这项技术描述为“很快会变成能黑进任何东西、一夜之间颠覆任何领域、获得真实权力和资源的超人类系统”。他还写道：“认认真真在造 AI 的人都相信，它可能在这十年内杀死我们所有人。这不是营销噱头。”\n\n他对两家公司的判断不一样。在 OpenAI，很多人“没有真正内化文明的利害关系”；在 Anthropic，大家清楚利害，但公司“锁死在抢先的竞赛里，相信别人不会负责任，所以必须自己来，尽管有风险”。他说同事们把通向自我改进模型的过程叫作“crunchtime（决战时刻）”和“endgame（终局）”。他呼吁“暂时禁止提升模型能力”，并反问同行：“你想在一台你还不严格理解其心智的系统上启动一轮超级智能 RL 吗？”\n\nWSJ 称这是首批 Anthropic 员工因 AI 安全担忧离职的案例之一。他告诉 WSJ，不想参与全行业“造出能自我改进、可能失控并摧毁人类”的竞赛。他也是联名呼吁全球政府协调、在需要时能踩下刹车的上千名 AI 研究者之一。",
+          "summary_en": "The Wall Street Journal first reported that Jacob Coxon, a pretraining researcher at Anthropic, had resigned; he then explained publicly on X (@hilbertspaess): \"I resigned from Anthropic today... Neither company is acting responsibly. They are racing straight to self-improving superintelligence and gambling with our lives.\" He describes himself as having spent the last three years doing pretraining research at both OpenAI and Anthropic, and calls the technology something that \"will soon be superhuman systems that can hack anything, revolutionize any field overnight, and acquire real power and resources.\" He adds: \"The people building AI earnestly believe that it could kill us all by the end of the decade. This is not a marketing stunt.\"\n\nHe draws a sharp distinction between the two labs. At OpenAI, many \"have not deeply internalised the civilisational stakes.\" At Anthropic, he says, the stakes are well understood but the company is \"locked in a race to get there first,\" believing no one else will act responsibly and therefore it must, despite the risk. Colleagues, he says, now describe the road to self-improving models with words like \"crunchtime\" and \"endgame.\" He calls for \"a temporary ban on improving model capabilities\" and asks fellow researchers: \"Do you want to kick off a superintelligent RL run without a rigorous understanding of its mind?\"\n\nWSJ frames this as one of the first cases of an Anthropic employee leaving over AI-safety fears. He told the Journal he does not want to take part in an industrywide rush to build self-improving systems that could spiral out of control and destroy humanity. He is also among the more than a thousand AI researchers who signed a statement urging governments to coordinate a \"brake pedal\" mechanism to slow AI development if needed.",
+          "why": "选它，因为它把本周从 agent 失控、监测失灵一路累积的安全叙事落到了具体的人身上：不是外部批评者，而是亲手训练这些模型、在两家头部实验室都待过的研究者用辞职投票。它给本期社评提供了“卖护栏”与“买速度”这枚硬币的人头那一面。",
+          "why_en": "The pick because it brings this week's accumulating safety narrative, agent blowups and failing monitors, down to a specific person: not an outside critic, but a researcher who helped train these models and worked inside both leading labs, voting with his resignation. It gives the editorial its human half of the \"sell guardrails, buy speed\" coin."
+        },
+        {
+          "title": "AlphaGenome Atlas：把 90 亿种单点变异一次算完",
+          "title_en": "AlphaGenome Atlas: all ~9 billion single-letter genome variants, precomputed",
+          "author": "Google DeepMind 研究团队 · Hacker News",
+          "author_en": "Google DeepMind research team · Hacker News",
+          "likes": 539,
+          "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/alphagenome-atlas/",
+          "summary": "Google DeepMind 于 9 月 8 日发布 AlphaGenome Atlas，一张预测人类基因组“每一种可能的单核苷酸变异效应”的高分辨率图谱。研究者用 AlphaGenome 模型，在参考基因组的每个位置试遍其余三种碱基，把约 90 亿种单字母变化的调控、剪接、蛋白质生产等分子后果预先算完，产物是 1 PB（拍字节）的数据集，重点覆盖过去理解很差的约 98% 非编码区。文章由 DeepMind 科学副总裁 Pushmeet Kohli 与基因组学计划负责人 Žiga Avsec 联名发布。\n\n配套工具叫 AlphaGenome Variant Impact（AVI）分数，把编码区和非编码区的预测合并成一个分数。文章给出两个落地案例：Broad 研究所 Laura Covill 团队用 AVI 分数为未确诊罕见病排序，一个 DNM1 基因上被预测会制造错误剪接位点的变异，成为解开一例未确诊罕见病的关键证据；Gareth Hawkes 博士把它用于 5.4 万名英国生物库参与者的数据，多找到 22% 的非编码区遗传关联，并定位了 19 个与 BMI 相关的基因组区域。\n\n数据已通过 alphagenome.google/atlas 门户开放，不需要写代码，目标用户是全球临床研究者与生物学家。",
+          "summary_en": "Google DeepMind published the AlphaGenome Atlas on September 8, a high-resolution map that predicts the effect of every possible single-nucleotide variant in the human genome. Using the AlphaGenome model, the team tried each of the three alternative bases at every position of the reference genome and precomputed the molecular consequences of all ~9 billion single-letter changes, covering regulatory effects, splicing, and protein production, in a 1-petabyte dataset, with emphasis on the ~98% of the genome that is non-coding and was previously poorly understood. The post is co-authored by DeepMind VP of Science Pushmeet Kohli and Genomics Initiative lead Žiga Avsec.\n\nThe companion tool is the AlphaGenome Variant Impact (AVI) score, which folds coding and non-coding predictions into a single number. Two applied cases anchor the post: at the Broad Institute, Laura Covill's team used AVI scores to prioritize unsolved rare-disease cases, and a variant in the DNM1 gene predicted to create an incorrect splice site became the key evidence in resolving one; and Gareth Hawkes applied the atlas to more than 54,000 UK Biobank participants, finding 22% more non-coding genetic associations and pinning down 19 genomic regions linked to BMI.\n\nThe data is now queryable through the alphagenome.google/atlas portal with no coding required, aimed at clinical researchers and biologists worldwide.",
+          "why": "这条与其他几条不在一个维度。当 AI 头条都在争论跑得太快时，它展现的是覆盖面还太窄的一面，将基因组 98% 的暗区一次摊开。风险不在于竞赛，而在于漏算。对做 AI 应用的人，这也是用模型将大而模糊的问题一次算完的正面案例。",
+          "why_en": "The pick because it sits on a different axis from everything else in this issue: while AI headlines argue about moving too fast, this is the not-yet-covered side, one full pass over the 98% of the genome that used to be dark, where the risk is omission rather than racing. For application builders it is also a clean example of using a model to precompute a large, fuzzy problem once and let people query it."
+        },
+        {
+          "title": "一个叫“我有 ADHD”的技能，教 coding agent 先说答案",
+          "title_en": "A skill called \"I-have-ADHD\" that stops coding agents from burying the answer",
+          "author": "ayghri · Hacker News",
+          "author_en": "ayghri · Hacker News",
+          "likes": 401,
+          "url": "https://github.com/ayghri/i-have-adhd",
+          "summary": "开源项目 i-have-adhd 今日同时登上 Hacker News 热帖（401 分）和 GitHub 热榜首位（31,555 星）。它为 coding agent 规定了 10 条输出规则：先讲结论和下一步动作，步骤编号，删掉“希望这对你有帮助！”这类废话。README 提供了一组前后对照：同样的认证问题，改造前 agent 先兜圈子说“好问题，让我们想想”，再铺垫背景；改造后直接给“运行 npm install jsonwebtoken@latest，然后改 src/auth.ts:42”，再列三步操作。该项目适配 Claude Code、Codex 等多个平台，安装只需在 CLI 粘贴一行指令，让 agent 去读仓库的 AGENTS.md。\n\nHN 讨论区以共鸣与怀疑为主。不少人表示自己早就在 CLAUDE.md 里写过类似指令，例如要求“每条总结结尾给出 TLDR：你发现了什么、建议什么、需要我做什么”，效果不错；也有人认为这类技能本质是往上下文塞提示词，规则权重有限，模型该啰嗦还是会啰嗦，因此做成按需触发（如“/i-have-adhd”）比常驻更划算。另有评论提醒，这些工具对没有 ADHD 的人同样好用，不必把诊断当门槛。",
+          "summary_en": "The open-source project i-have-adhd hit both the Hacker News front page (401 points) and the top of GitHub trending today (31,555 stars). It defines ten output rules for a coding agent: lead with the conclusion and the next action, number the steps, and drop filler like \"Hope this helps!\" The README shows a before/after pair: on the same authentication question, the agent first opened with a paragraph of \"Great question, let me think about this\" throat-clearing and background, then after the rules went straight to \"Run npm install jsonwebtoken@latest, then edit src/auth.ts:42,\" followed by three numbered steps. The project ships adapters for Claude Code, Codex, and other platforms, and installing is a single line pasted into the CLI telling the agent to read the repo's AGENTS.md.\n\nThe HN thread is equal parts resonance and skepticism. Several commenters say they already wrote similar instructions into their CLAUDE.md, like requiring every summary to end with a TLDR of what you found, recommend, and need, and it works well. Others argue the skill is essentially one more block of context with limited weight, and that a chatty model will still be chatty, so triggering \"/i-have-adhd\" on demand beats keeping it always on. A few note these tools work just as well for people without ADHD and that a diagnosis shouldn't be a prerequisite.",
+          "why": "选中它，因为它展现了当前 agent 工具圈的一个清晰切片：输出太啰嗦是真实痛点，而市场的解法正从“写更好的提示词”转向“将规则做成可装卸、跨平台共享的技能”。今天 GitHub 热榜前十名中七个是这类 skills 或 agent 记忆库，此项目是其中典型，详见今日上手。",
+          "why_en": "The pick because it is a clean slice of the current agent-tooling moment: verbose output is a real pain point, and the market's answer is shifting from \"write a better prompt\" to \"package the rules as an installable, cross-platform skill.\" Seven of today's top-ten GitHub trending repos are skills or agent-memory projects of this kind, and this is the most representative one, see tonight's hands-on."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 30,
+      "items": [
+        {
+          "title": "IPO 前锁定 5170 亿美元算力，Anthropic 把筹码押满",
+          "title_en": "Anthropic locks in $517B of compute ahead of its IPO",
+          "author": "Seoul Economic Daily · TLDR AI",
+          "author_en": "Seoul Economic Daily · TLDR AI",
+          "likes": null,
+          "url": "https://en.sedaily.com/international/2026/09/07/anthropic-locks-in-decade-of-computing-power-ahead-of-ipo",
+          "summary": "过去约 11 个月（大致从 2025 年 10 月起），Anthropic 签下总计约 5170 亿美元、14.8 吉瓦的算力协议。按韩国媒体的口径，这笔开支分摊在约十年里，规模约为先前向投资者披露数字的三倍：2025 年 12 月预计到 2029 年服务器租赁成本约为 1800 亿美元。2025 年 10 月之前，Anthropic 手上仅约 1 到 2 吉瓦。\n\n最大一笔押在 Google 与 AWS 两家（合计约 11 吉瓦、3000 亿美元以上），其余包括微软 2025 年 11 月签署的约 1 吉瓦、300 亿美元，Fluidstack 约 500 亿美元，以及 SpaceX 至多约 450 亿美元的协议（2026 年 5 月）。它还直接向 Broadcom/Google 购买 TPU（2026 年 4 月）、向 AMD 购买芯片（2026 年 7 月），并披露与三星、SK 海力士的供应协议。不同报道对供应商清单的罗列并不一致，此处只取交叉核对过的大项。市场普遍将这一轮采购与 Anthropic 定于 10 月底、11 月初的 IPO 相联系，逻辑是算力决定模型竞争力。对比之下，OpenAI 计划到 2030 年投入至多 7500 亿美元、30 吉瓦。",
+          "summary_en": "Over the past roughly 11 months (since about October 2025), Anthropic has signed compute agreements totaling about $517 billion and 14.8 gigawatts. On the Seoul Economic Daily's accounting the spending is spread over roughly a decade and is about triple what the company had previously told investors: in December 2025 it projected server-leasing costs of about $180 billion through 2029. Before October 2025 Anthropic held only about 1-2 GW of capacity.\n\nThe largest share is concentrated with Google and AWS (about 11 GW combined, $300 billion-plus), with the rest including Microsoft (about 1 GW / $30 billion, November 2025), Fluidstack (about $50 billion), and SpaceX (up to about $45 billion, May 2026). Anthropic has also moved to buy chips directly, a TPU purchase agreement with Broadcom and Google (April 2026) and a chip agreement with AMD (July 2026), and disclosed supply agreements with Samsung and SK hynix. Reports do not agree on the complete vendor list, so only cross-checked line items are stated here. The market reads the spree against an IPO expected in late October or early November, on the logic that compute capacity determines model competitiveness. For comparison, OpenAI plans to spend up to $750 billion for 30 GW by 2030.",
+          "why": "选中它，因为它把 AI 行业的“信心”直接换算成十年期合同：一家公司 IPO 前押注 5170 亿美元，既是看好模型能力的再上台阶，也是对算力产业链的一份长期订单。与辞职的 Coxon 那条并列，恰好构成“人怕速度、钱追速度”的对照。",
+          "why_en": "The pick because it converts the AI industry's confidence directly into ten-year contracts: a company locking in $517 billion of compute for the decade ahead of its IPO is both a hard-money bet that models still have another order of magnitude to go and a ten-year order book for the compute supply chain. Read beside Coxon's resignation, it frames the contrast of people fearing the speed while capital chases it."
+        },
+        {
+          "title": "hip-agent：200 行代码的 agent 框架，让模型读源码当说明书",
+          "title_en": "hip-agent: a 200-line agent harness where the source code is the docs",
+          "author": "Jonathan Chang · TLDR AI",
+          "author_en": "Jonathan Chang · TLDR AI",
+          "likes": null,
+          "url": "https://jonathanc.net/blog/hip-agent",
+          "summary": "Jonathan Chang 发布 hip-agent（harness in prompt），一个极简 agent 框架：核心循环约 200 行 Python，加一个接 Codex API 的模块。它针对的问题是，现有 coding harness 都是给人设计的，agent 想当 subagent 去调 codex exec，要花很多轮去猜 CLI 参数、解析输出；厂商 harness 还经常变，会悄悄压低模型表现，作者引用 Anthropic 四月的事后复盘和 ARC-AGI-3 的发现，后者里 harness 设置曾让分数翻三倍。hip-agent 把思路反过来：只给模型两个工具（sh 和 view_image），让模型自己读 harness 源码搞清它怎么工作，代码即文档。\n\n三个设计：harness 放进 prompt；操作系统当运行时（配置走环境变量、动作是 shell 命令、subagent 就是子进程）；其余全部复用现有协议，插件走 Agent Plugins 规范，hook 用 Claude Code 的 hook 契约，对话存成 Codex CLI 会话文件，可以用 codex resume 接着跑。subagent 只是从 sh 里再调一次 agent，继承环境、各有各的会话，父进程默认只看最终输出，需要时读会话文件看中间状态。\n\n作者在 DeepSWE（113 个任务）上跟 Codex CLI 0.147.0 比了一次：解决率 73/113（64.6%）对 72/113（63.7%），每任务模型调用 187 对 208，agent 耗时 58 分钟对 52 分钟，单次运行、无误差棒。他建议每家模型厂商都出一个独立于用户产品的极简参考 harness，像 chat template 或工具解析器一样，说明模型被训练成如何与外界交互。仓库在 github.com/changjonathanc/hip-agent，正文由 Claude Fable 5.1 与 GPT-5.6 Sol 协助写作。",
+          "summary_en": "Jonathan Chang released hip-agent (\"harness in prompt\"), a minimal agent harness: a core loop of about 200 lines of Python plus one module for the Codex API. Its target problem is that existing coding harnesses are designed for humans; an agent trying to drive codex exec as a subagent burns many turns guessing CLI flags and parsing output, and vendor harnesses change often and can silently degrade model performance, the author cites Anthropic's April postmortem and ARC-AGI-3 findings where harness settings tripled scores. hip-agent inverts the approach: the model gets just two tools, sh and view_image, and is told to read the harness source to learn how it works, code as documentation.\n\nThree design moves: the harness fits in the prompt; the OS is the runtime (configuration via environment variables, actions are shell commands, a subagent is a child process); everything else reuses existing protocols, plugins follow the Agent Plugins spec, hooks use Claude Code's hook contract, and the conversation is a Codex CLI session file you can resume with codex resume. A subagent is just agent invoked from sh, inheriting the environment with its own conversation; the parent sees only final output by default and can read the session file for intermediate state.\n\nThe author benchmarked it against Codex CLI 0.147.0 on DeepSWE (113 tasks): 73/113 resolved (64.6%) versus 72/113 (63.7%), 187 model calls per task versus 208, and 58 minutes of agent time per task versus 52, a single run with no error bars. He closes by arguing every model provider should ship a minimal native reference harness separate from its user-facing product, analogous to a chat template or tool parser, documenting how the model was trained to interact with the world. Code is at github.com/changjonathanc/hip-agent; the post notes it was written with help from Claude Fable 5.1 and GPT-5.6 Sol.",
+          "why": "选它，因为它给“harness 是被忽略的变量”这条本周主线提供了一个极简解法：把框架做到模型能读懂，让模型按需读源码、改自己的工具。对做 agent 工具链的人，这是一份可以直接抄的极简参考实现，也呼应了上一期对评测框架与适配层的讨论。",
+          "why_en": "The pick because it offers a minimal answer to this week's running thread that the harness is the ignored variable: make the harness small enough for the model to read, then let the model use the source as its own spec and adapt its tools. For anyone building agent tooling it is a directly copyable minimal reference, and it echoes last issue's discussion of eval harnesses versus adapter layers."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "ayghri/i-have-adhd",
+      "url": "https://github.com/ayghri/i-have-adhd",
+      "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
+      "language": "Python",
+      "stars": 31555,
+      "stars_today": 656
+    },
+    {
+      "rank": 2,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 35453,
+      "stars_today": 710
+    },
+    {
+      "rank": 3,
+      "name": "openai/skills",
+      "url": "https://github.com/openai/skills",
+      "description": "Skills Catalog for Codex",
+      "language": "Python",
+      "stars": 26648,
+      "stars_today": 490
+    },
+    {
+      "rank": 4,
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 254557,
+      "stars_today": 1427
+    },
+    {
+      "rank": 5,
+      "name": "heygen-com/hyperframes",
+      "url": "https://github.com/heygen-com/hyperframes",
+      "description": "Write HTML. Render video. Built for agents.",
+      "language": "TypeScript",
+      "stars": 48012,
+      "stars_today": 2627
+    },
+    {
+      "rank": 6,
+      "name": "coreyhaines31/marketingskills",
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+      "language": "JavaScript",
+      "stars": 48990,
+      "stars_today": 666
+    },
+    {
+      "rank": 7,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework &amp; software development methodology that works.",
+      "language": "Shell",
+      "stars": 283535,
+      "stars_today": 452
+    },
+    {
+      "rank": 8,
+      "name": "multica-ai/andrej-karpathy-skills",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+      "language": null,
+      "stars": 211629,
+      "stars_today": 333
+    },
+    {
+      "rank": 9,
+      "name": "microsoft/markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
+      "language": "Python",
+      "stars": 181920,
+      "stars_today": 2047
+    },
+    {
+      "rank": 10,
+      "name": "jo-inc/camofox-browser",
+      "url": "https://github.com/jo-inc/camofox-browser",
+      "description": "Stealth headless browser for AI agents — bypass Cloudflare, bot detection, and anti-scraping. Drop-in Puppeteer/Playwright replacement.",
+      "language": "JavaScript",
+      "stars": 10680,
+      "stars_today": 871
+    }
+  ]
+}
