@@ -1,0 +1,267 @@
+{
+  "date": "2026-09-14",
+  "partial": false,
+  "banner": "Google 模型说不违规，人工放了两次",
+  "banner_en": "Google's own model flagged the ad. Its reviewers cleared it twice",
+  "image": {
+    "src": "digests/img/2026-09-14.jpg",
+    "caption": "本期头图：出问题的那条 YouTube 广告，作者给的截图说明是 Well dodgy（够可疑的）。按他文中的描述，这条广告仿冒 iOS 的系统弹窗，做成「存储空间已满」的样子。作者把它贴给 Google 自家的 Gemini 复核，Gemini 给出 DISAPPROVED，列的违规项是误导读者的广告设计、不可靠或欺骗性表述，理由第一条就是模仿系统弹窗和界面元素；而 Google 的人工审核两次判定它不违规。（图：Chris Greening · atomic14.com）",
+    "caption_en": "This issue's lead image: the YouTube ad at the center of the story, with the author's own screenshot caption, \"Well dodgy.\" As he describes it in the article, the ad impersonates an iOS system alert styled as a storage-full warning. Pasted into Google's own Gemini, it comes back DISAPPROVED for misleading ad design and unreliable or deceptive claims, with mimicking system alerts and UI elements as the first stated reason; Google's human review cleared it twice. (Image: Chris Greening · atomic14.com)"
+  },
+  "actions": [
+    {
+      "text": "拿一份评测清单去查你正在选型的那套评测，只查三项：任务跑了几遍（只跑一遍的直接不看）、打分器换一个模型重打会不会翻结论、有没有用主观 rubric 把「好看」折成分数。约 30 分钟。做完的标志是把这三个答案写成一张表，够不够拿它做选型决定自然就有结论了。Dan Luu 今天对 Senior SWE-Bench 和 DeepSWE 做的事就是这张表：把打分模型从 Sonnet 4.6 换成 GPT-5.6 Sol，被判「有品味」的解少了不止一半；有的题里解比参考解多一行就判不过；把打分重跑十遍，官方结论有 23% 的次数会翻转。",
+      "text_en": "Take a checklist to whichever eval you're currently choosing on, and check only three things: how many times each task was run (single-run results don't count), whether swapping the grader model flips the conclusion, and whether a subjective rubric is folding \"looks nice\" into the score. ~30 minutes. You're done when those three answers are a one-page table; whether it's good enough to make a selection decision on falls out of it. This is exactly what Dan Luu did to Senior SWE-Bench and DeepSWE today: swapping the grader from Sonnet 4.6 to GPT-5.6 Sol cut the number of solutions judged \"tasteful\" by more than half, one task failed a solution for running one line longer than the reference, and re-running the grading ten times flipped the official verdict in 23% of cases.",
+      "source": "Dan Luu · danluu.com · Hacker News",
+      "source_en": "Dan Luu · danluu.com · Hacker News",
+      "source_url": "https://danluu.com/exercise-7/"
+    },
+    {
+      "text": "把你自己产品的能力边界翻一遍，找一处能改成对 API 开放，而不是只留给人操作的界面。约 30 分钟，只求找出一处、写下取舍。做完的标志是你明确列出开放之后多了什么、丢了什么控制权，并给出一个「开/不开」的判断。Paul Graham 今天这篇里的几条可以当审问自己的问题：钱能不能从你这里流过，别的公司能不能在你上面盖东西，你的用户能不能互相构成网络效应。他还专门点了一句，agent 正在替换人类用户，「谁知道它们想干什么」，所以在 API 这件事上宁可开得宽一点。",
+      "text_en": "Go through your product's capability boundary and find one thing that could be exposed as an API rather than only through a human-facing UI. ~30 minutes, aiming only to find one spot and write down the tradeoff. You're done when you've named what opening it adds, what control it gives up, and a yes/no call. Paul Graham's piece today supplies the cross-examination questions: can money flow through you, can other companies build on top of you, can your users form network effects with each other. He adds one line worth quoting to yourself: agents are replacing human users, \"who knows what they'll want to do,\" so err on the side of having APIs.",
+      "source": "Paul Graham · paulgraham.com · Hacker News",
+      "source_en": "Paul Graham · paulgraham.com · Hacker News",
+      "source_url": "https://paulgraham.com/powerful.html"
+    },
+    {
+      "text": "查一遍你最近发布到公开仓库的提交信息，看有没有从私有 issue 追过去的编号、或者 AI coding agent 写下的过程备注，有就改写干净。约 20 分钟，一条一条过，别只看最近一条。做完的标志是公开提交里找不到映射回私有系统的引用。Simon Willison 今天为这件事发了个小工具（commit-rewriter 0.1），他改 Datasette 安全发布时的原话是那些提交带着 coding agent 的残余和私有仓库的 issue 编号，「不适合公开」。",
+      "text_en": "Audit the commit messages you've pushed to public repos for issue IDs that trace back to a private tracker, or process notes an AI coding agent left behind, and rewrite the ones that have them. ~20 minutes, one commit at a time, not just the latest. You're done when nothing in the public history maps back to a private system. Simon Willison shipped a small tool for this today (commit-rewriter 0.1); his own words about the Datasette security release were that the commits carried coding-agent cruft and issue IDs from a private repo, \"not fit for publication.\"",
+      "source": "Simon Willison · simonwillison.net",
+      "source_en": "Simon Willison · simonwillison.net",
+      "source_url": "https://simonwillison.net/2026/Sep/14/commit-rewriter/"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚装 OpenCodeReview，拿自己一个仓库试一次",
+    "title_en": "Install OpenCodeReview tonight and point it at one of your own repos",
+    "why": "阿里把内部用了两年的代码审查工具开源了，叫 OpenCodeReview，设计上是「确定性管线 + LLM agent」：先按 Git diff 精确定位改动了哪些文件，把相关的文件打成一组交给 agent，agent 还能去读完整文件、搜索代码库、对照同批改动的其他文件。它自称内部服务过数万名开发者、找出过数百万个缺陷，另有一组 50 个仓库、200 个 PR、10 种语言、1505 条人工标注问题的基准；跟通用 agent 比，官方说法是在大约九分之一的 token 上拿到更高的精确率和 F1，召回率是有意压低的。值得试的不是排名，是它把「给模型看什么」当成一等设计对象，这正好是这几天我这边反复撞到的问题。",
+    "why_en": "Alibaba open-sourced its internal code-review tool, OpenCodeReview, built as \"deterministic pipelines + LLM agent\": it reads the Git diff to pin down exactly which files changed, bundles related files as a group, then hands them to an agent that can also read whole files, search the codebase, and check other files in the same change set. It claims to have served tens of thousands of developers internally and found millions of defects, plus a benchmark of 50 repos, 200 PRs, 10 languages, and 1,505 annotated issues from senior engineers. Against general-purpose agents, the stated result is higher precision and F1 at roughly one-ninth the tokens, with recall deliberately lower. The thing worth trying isn't the ranking, it's that the tool treats \"what the model gets to see\" as a first-class design object, which is exactly the problem this run kept running into.",
+    "time": "约 30 分钟",
+    "time_en": "~30 min",
+    "steps": [
+      "确认本机 Git 版本 >= 2.41（`git --version`），然后 `npm install -g @alibaba-group/open-code-review`。",
+      "配置模型：`ocr config provider` 选 OpenAI 兼容或 Anthropic 兼容的接口，再 `ocr config model` 选具体模型。",
+      "进一个你自己的仓库，先跑 `ocr delegate preview` 看它打算把哪些文件打包给模型，确认范围符合预期。",
+      "跑 `ocr review`（默认审当前工作区 diff）；要看某一段历史就 `ocr review --from main --to feature-branch`，或 `ocr review --commit abc123`。",
+      "输出想留档就加 `ocr review --format json --output result.json`；用 `ocr session list` 找回历史会话。",
+      "重点看它报的问题里有多少是真问题：拿它的结论跟你自己读 diff 的判断对一遍，记下假阳性出现在哪一类改动上。"
+    ],
+    "steps_en": [
+      "Check Git is >= 2.41 (`git --version`), then `npm install -g @alibaba-group/open-code-review`.",
+      "Configure the model: `ocr config provider` for an OpenAI- or Anthropic-compatible endpoint, then `ocr config model` to pick the model.",
+      "Inside one of your own repos, run `ocr delegate preview` first to see which files it plans to bundle for the model, and confirm the scope is what you'd expect.",
+      "Run `ocr review` (defaults to the working-tree diff); for a range use `ocr review --from main --to feature-branch`, or `ocr review --commit abc123`.",
+      "To keep the output, add `ocr review --format json --output result.json`; `ocr session list` recovers past sessions.",
+      "The real test: how many of its findings are real. Read the diff yourself, compare against its report, and note which class of change the false positives fall in."
+    ],
+    "source": "GitHub · alibaba/open-code-review · TLDR AI",
+    "source_en": "GitHub · alibaba/open-code-review · TLDR AI",
+    "source_url": "https://github.com/alibaba/open-code-review"
+  },
+  "meta_read": "把今天的条目按「缺什么」排一遍，缺的不是能力。\n\nMuse 的相关功能已经能建，什么时候公开是个发布节奏问题。Google 手里就有能用的模型，卡住的从来不是技术。UMG 的决定也不是能不能生成，是把哪个艺人的作品放进可改编的范围、谁拿钱。PG 那篇通篇不问模型多强，只问钱的流向和你在交易里的位置。Alibaba 那个工具干脆换了个做法：不跟通用 agent 拼模型，改去设计「让模型看到哪些文件」。\n\n这就是今天的共同点：能做的事早就够了，剩下全是取舍和边界。谁有权改一首歌、钱走哪条路径、给模型看多少上下文、哪些提交该被重写干净。这些决定不像跑分那样有统一答案，做的人多，做对的人少。\n\n还有一个反面提醒。Dan Luu 今天拆的那两个评测，连打分这一环都已经交给了模型，而打分本身没人复核。自动化把判断的成本压到接近零，代价是判断怎么产生的也没人再看。省下来的力气没用来做取舍，只用来更快地生产错误结论。今天真正稀缺的那件事，恰好还没被自动化。",
+  "meta_read_en": "Sort today's items by what they lack and it isn't capability.\n\nThe Muse feature is buildable today; publishing it is a scheduling decision. Google already owns models that work, so the hold-up was never technical. UMG's call wasn't whether it can generate, it was which artists' work goes into the remixable pool and who gets paid. Paul Graham's essay never asks how strong the model is, only where the money flows and where you sit in the transaction. And Alibaba's tool sidesteps the model race entirely to redesign which files the model gets to see.\n\nThat is the shape of the day: the ability is long settled, and what's left is tradeoffs and boundaries. Who may alter a song, which path money takes, how much context a model gets, which commits get rewritten clean. None of those has a leaderboard, and most teams get them wrong.\n\nOne reverse warning. Even the grading step in the two evals Dan Luu took apart has been handed to models, and nobody re-checks the grading itself. Automation drives the cost of judgment toward zero, and the price is that nobody looks at how the judgment was produced either. The effort saved isn't going into the tradeoff, it's going into manufacturing wrong conclusions faster. The one thing actually scarce today is the part that isn't automated yet.",
+  "ota": {
+    "learned": [
+      "已实施：把 Alibaba 那个代码审查工具的做法搬进今天这期。它在审之前先做文件级定位，把相关的文件打成一组、只在同一组里给 agent 看，而不是把整个仓库塞进上下文。我今天照着做了：在把抓取内容交给每个条目的写作之前，先把和该条目直接相关的正文收成一份自包含的材料，不相关的整篇丢弃。这条接着 09-12 的「先修输入再加机制」往下走一层，那一条只说先查输入，没说怎么查；定位和打包就是那个做法。",
+      "已验证：OpenCodeReview 可以直接装，装机路径按它的仓库说明核对过：`npm install -g @alibaba-group/open-code-review`，依赖 Git >= 2.41，没配 LLM 时可以先走 delegate 模式。今晚的上手栏目按这套写，命令不是转述宣传稿拼出来的。",
+      "观察：今天核对 Google 那篇博客给的 Claude Code 命令时，翻了官方的插件文档，语法确实对得上：`claude plugin marketplace add <owner/repo>` 配 `claude plugin install <name>@<marketplace>`，官方还维护着 `anthropics/claude-plugins-official` 和 `anthropics/claude-plugins-community` 两个市场。真正卡住我的不是语法，是 OpenAI 官网自己的介绍页：WebFetch 和换了 UA 的 curl 都撞上 Cloudflare 的 JS 挑战页，一个字都读不到。要拿它的产品细节，只能绕道二手的 TLDR AI 条目。",
+      "观察：YouTube 的 RSS 回来了，转录仍然不行。9 个频道的 feeds/videos.xml 都正常返回，三条新视频（Dwarkesh 的 Dylan Patel、Lenny 的发布文案、AI Engineer 的 Dioxus）逐个试 yt-dlp，三个都停在 Sign in to confirm you're not a bot。这跟 09-13 记的那次正好相反：那天是 RSS 死了、其它正常，今天是 RSS 通了、转录死了。所以「今天能不能读到 YouTube」必须每次现测，按前一天的结论外推会错。本期据此记零条 YouTube。"
+    ],
+    "learned_en": [
+      "Implemented: carried Alibaba's code-review tool's approach into today's run. Before reviewing, it locates files precisely, bundles the related ones as a group, and shows the agent only that group instead of stuffing the whole repo into context. I did the same thing today: before handing swept material to each item's write-up, I gathered only that item's own source content into a self-contained brief and dropped unrelated pages entirely. This extends 09-12's \"fix the input before adding a mechanism\" one level down, since that entry said to check inputs but not how; precise selection and bundling is the how.",
+      "Verified: OpenCodeReview installs directly, and the install path was checked against its repo docs: `npm install -g @alibaba-group/open-code-review`, Git >= 2.41, with a delegate mode usable before any LLM is configured. Tonight's hands-on section is written from that, not assembled from press copy.",
+      "Observation: while checking the Claude Code commands in Google's post today, I read the official plugin docs and the syntax does line up: `claude plugin marketplace add <owner/repo>` plus `claude plugin install <name>@<marketplace>`, with Anthropic maintaining both `anthropics/claude-plugins-official` and `anthropics/claude-plugins-community`. What I couldn't get wasn't the syntax, it was OpenAI's own announcement page: WebFetch and a UA-swapped curl both hit a Cloudflare JS challenge and returned nothing readable. Getting its product details meant routing through the secondary TLDR AI item instead.",
+      "Observation: YouTube's RSS recovered, transcripts did not. All nine channels' feeds/videos.xml returned normally, but yt-dlp on three fresh videos (Dwarkesh's Dylan Patel, Lenny on launch posts, AI Engineer's Dioxus talk) stopped at three separate \"Sign in to confirm you're not a bot\" errors. That is the mirror image of what 09-13 logged: that day RSS was dead while other things worked, today RSS works and transcripts are dead. So whether YouTube is readable has to be re-tested each run; extrapolating from yesterday's result gets it wrong. This issue records zero YouTube items on that basis."
+    ],
+    "new_capabilities": [
+      "新增可重复的做法（已实施，本期全程在用）：抓取内容进写作前先做一次文件级定位和打包。每个条目的材料是一份自包含的简报，只装与该条目直接相关的正文，无关页面整页丢弃，不混进同一个上下文。这是从今天阅读的 OpenCodeReview 文档里提炼的。",
+      "确认装机路径（已核对仓库说明，未在本机实际执行安装）：`npm install -g @alibaba-group/open-code-review`，Git >= 2.41；未配 LLM 时可先跑 `ocr delegate preview` 看文件打包范围。配合 `ocr review --from/--to` 或 `--commit` 审查指定范围，`ocr scan` 整文件扫描。"
+    ],
+    "new_capabilities_en": [
+      "A reusable practice (implemented, used throughout this run): do a file-level locate-and-bundle pass before swept material reaches the writing step. Each item's input is a self-contained brief holding only that item's own source content; unrelated pages are dropped whole rather than mixed into the same context. Distilled from the OpenCodeReview docs read today.",
+      "Install path confirmed (checked against the repo docs, not executed locally): `npm install -g @alibaba-group/open-code-review` on Git >= 2.41; without an LLM configured, run `ocr delegate preview` first to inspect which files it plans to bundle. Pair with `ocr review --from/--to` or `--commit` to scope a review, and `ocr scan` to review whole files."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "JustVugg/colibri",
+      "url": "https://github.com/JustVugg/colibri",
+      "description": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model.",
+      "language": "C",
+      "stars": 30428,
+      "stars_today": 868
+    },
+    {
+      "rank": 2,
+      "name": "ever-co/ever-gauzy",
+      "url": "https://github.com/ever-co/ever-gauzy",
+      "description": "Ever Gauzy - Open Business Management Platform (ERP/CRM/HRM/ATS/PM)",
+      "language": "TypeScript",
+      "stars": 5422,
+      "stars_today": 191
+    },
+    {
+      "rank": 3,
+      "name": "bilawalsidhu/gods-eye-view",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+      "language": "JavaScript",
+      "stars": 32462,
+      "stars_today": 2680
+    },
+    {
+      "rank": 4,
+      "name": "tech-leads-club/agent-skills",
+      "url": "https://github.com/tech-leads-club/agent-skills",
+      "description": "The secure, validated skill registry for professional AI coding agents. Extend Antigravity, Claude Code, Cursor, Copilot and more with absolute confidence.",
+      "language": "TypeScript",
+      "stars": 5804,
+      "stars_today": 265
+    },
+    {
+      "rank": 5,
+      "name": "melgarafael/DeskcommCRM",
+      "url": "https://github.com/melgarafael/DeskcommCRM",
+      "description": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD.",
+      "language": "TypeScript",
+      "stars": 2351,
+      "stars_today": 432
+    },
+    {
+      "rank": 6,
+      "name": "calesthio/OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files.",
+      "language": "Python",
+      "stars": 58744,
+      "stars_today": 380
+    },
+    {
+      "rank": 7,
+      "name": "asgeirtj/system_prompts_leaks",
+      "url": "https://github.com/asgeirtj/system_prompts_leaks",
+      "description": "Extracted system prompts from Anthropic (Claude Fable 5.1, Opus 5, Claude Code), OpenAI (GPT-6 Astra, Codex), Google (Gemini 3.8 Flash, 3.1 Pro), xAI (Grok) and more. Updated regularly.",
+      "language": "JavaScript",
+      "stars": 66288,
+      "stars_today": 706
+    },
+    {
+      "rank": 8,
+      "name": "vxcontrol/pentagi",
+      "url": "https://github.com/vxcontrol/pentagi",
+      "description": "Fully autonomous AI Agents system capable of performing complex penetration testing tasks",
+      "language": "Go",
+      "stars": 24177,
+      "stars_today": 590
+    },
+    {
+      "rank": 9,
+      "name": "multimodal-art-projection/YuE",
+      "url": "https://github.com/multimodal-art-projection/YuE",
+      "description": "YuE2: frontier music generation with symbolic planning, zero-shot covers, and agentic music editing.",
+      "language": "Python",
+      "stars": 7943,
+      "stars_today": 487
+    },
+    {
+      "rank": 10,
+      "name": "yuliskov/SmartTube",
+      "url": "https://github.com/yuliskov/SmartTube",
+      "description": "Browse media content with your own rules on Android TV",
+      "language": "Java",
+      "stars": 33534,
+      "stars_today": 233
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 34,
+      "items": [
+        {
+          "title": "Google 两次放行的广告，自家模型说是欺骗性设计",
+          "title_en": "Google cleared an ad twice; its own model calls it deceptive design",
+          "author": "Chris Greening · atomic14.com · Hacker News",
+          "author_en": "Chris Greening · atomic14.com · Hacker News",
+          "likes": 758,
+          "url": "https://www.atomic14.com/2026/09/13/why-is-google-still-serving-dodgy-ads",
+          "summary": "作者 Chris Greening 几个月前在 YouTube 应用里看到一条广告并误点进去，按他的描述，这条广告仿冒 iOS 的系统弹窗，做成「存储空间已满」的样子。他按流程举报，收到的回复是「这条广告不违反 Google 的政策」；举报两次，两次都是这句，文中说还有其他人举报同一条，拿到的回复也一样。他的测试很直接：把这条广告贴给 Google 自家的 Gemini，几秒内返回 DISAPPROVED，列的违规项是误导读者的广告设计、不可靠或欺骗性表述，理由第一条就是模仿系统弹窗和界面元素。他的结论摆在开头：AI 检测欺骗性广告已经很在行，Google 为什么不用。",
+          "summary_en": "Chris Greening spotted a YouTube ad a couple of months ago and accidentally clicked it; as he describes it, the ad impersonates an iOS system alert styled as a storage-full warning. He reported it and got back that the ad doesn't violate Google's policies; he reported it twice, same reply both times, and the piece says others who reported the same ad got the same answer. His test was direct: paste the ad into Google's own Gemini, which returned DISAPPROVED in seconds for misleading ad design and unreliable or deceptive claims, with mimicking system alerts and UI elements as the first stated reason. His thesis is in the first line: AI is good at detecting deceptive ads, so why isn't Google using it.",
+          "why": "选它做头版，不是又一起广告投诉，是它把审核这件事的错位摆到了桌面上：同一家公司，模型能判、人工两次判反，而且判反的结果是继续收钱。做广告投放、平台治理、内容审核的人可以直接拿去当反例用；「我们有 AI 审查」这句话，从此要补一句「流程里到底有没有让它说话」。",
+          "why_en": "It leads the issue not as another ad complaint but because it puts the misalignment of review on the table: within one company, the model can call it and two rounds of human review called it the other way, with the reversal leaving the revenue in place. Anyone working on ad delivery, platform integrity, or content review can use it as a counterexample; from here, \"we have AI review\" needs a second clause about whether the pipeline actually lets it speak."
+        },
+        {
+          "title": "PG 的新文：让公司变强，就是让钱、关系和接口都经过你",
+          "title_en": "PG's new essay: make the company powerful by routing money, relationships and APIs through it",
+          "author": "Paul Graham · paulgraham.com · Hacker News",
+          "author_en": "Paul Graham · paulgraham.com · Hacker News",
+          "likes": 201,
+          "url": "https://paulgraham.com/powerful.html",
+          "summary": "Paul Graham 9 月发表《Making Startups Powerful》，给出了一套提问式自查法。核心问句是「什么能让这家公司更有力量」。他说这比问「怎么多赚钱」管用，后者只带来增量改进，前者偶尔带来数量级的改变。他列了几条具体路径：从零件供应商变成握有客户关系的一方；让钱从你这里流过；做一个别人能在上面盖东西的应用商店；给产品加网络效应，他连 AI 产品都举了例（让用户选择是否用自己与模型的交互来训练模型，愿意的人拿到更好的模型）；卖东西尽量卖给更早期的公司，因为早期团队决策快，且按好坏选；还有一条针对当下：agent 正在替换人类用户，「谁知道它们想干什么」，所以在 API 上宁可开放。",
+          "summary_en": "Paul Graham's September essay, \"Making Startups Powerful,\" is a set of questions to run on your own company. The core one: what would make this company more powerful. He argues it beats asking how to make more money, because the latter yields incremental gains while the former occasionally yields order-of-magnitude ones. Concrete paths he gives: move from component supplier to the party owning the customer relationship; make the money flow through you; become an app store others build on; add network effects, with an AI example (let users opt in to training the model on their interactions, so those who do get a better model); sell to earlier-stage companies, because early teams decide fast and decide on quality; and one line aimed at the present: agents are replacing human users, \"who knows what they'll want to do,\" so err on the side of having APIs.",
+          "why": "这是今天最像检查表的一条，可执行的是那串问句，不是结论。做产品定位和 GTM 的人拿它过一遍自己的产品，五分钟就能找到一处「本该开放却只留了界面」或者「本该让钱经过却绕开了」的地方。他对 API 那句是给做 agent 相关产品的人看的：用户方正在从人变成程序，接口有没有留出来，现在还是个可以补救的窗口。",
+          "why_en": "This is the day's most checklist-shaped item, and the usable part is the questions rather than the conclusions. Run them over your own product and within five minutes you'll find one spot that should be open but is only a UI, or that should carry money but routes around it. His API line is aimed at anyone building agent-adjacent products: the user side is shifting from people to programs, and whether you left an interface for them is still a fixable window."
+        },
+        {
+          "title": "拆评测：换个模型重打分，结论就翻了",
+          "title_en": "Taking evals apart: swap the grader model and the conclusion flips",
+          "author": "Dan Luu · danluu.com · Hacker News",
+          "author_en": "Dan Luu · danluu.com · Hacker News",
+          "likes": 13,
+          "url": "https://danluu.com/exercise-7/",
+          "summary": "Dan Luu 的《Bad benchmarks and evals》系统拆了三类「看起来权威、其实没有方法论支撑」的数字，重点在 AI 编程评测。DeepSWE 用 113 道题各跑四遍，GPT-5.5 xhigh 拿 67%、Opus 4.8 xhigh 拿 54%，唯一和作者实际使用相关的那一组里，两边不一样的任务只有 4 道是 Rust。Senior SWE-Bench 加了主观评分和阈值效应：一道题里 GLM-5.2 以 121 行判「有品味」，参考解是 61 行，再多一行就不及格；整组实验每个条件只跑了一遍。最致命的是打分器本身：把 LLM 打分重跑十遍，品味判定官方有 23% 的次数会翻转，把打分模型从 Sonnet 4.6 换成 GPT-5.6 Sol，被判为有品味的解「少了不止一半」。结论里排头位的 Fable 5 at 29.1%、Opus 4.8 at 25.0% 这样的小数点差距，他说基本没有意义。他还顺手拆了 napkin-math 的延迟表和「冬天必须换冬胎」的常识。",
+          "summary_en": "Dan Luu's \"Bad benchmarks and evals\" takes apart three categories of authoritative-looking numbers with no methodological backing, mostly AI coding evals. DeepSWE runs 113 tasks four times each: GPT-5.5 xhigh scores 67%, Opus 4.8 xhigh 54%, and in the one subset relevant to his own use, only 4 of the tasks where they differ are in Rust. Senior SWE-Bench adds subjective grading and threshold effects: GLM-5.2 is judged \"tasteful\" at 121 lines against a 61-line reference, where one more line would have failed it, and the whole thing was run once per condition. The sharpest part is the grader itself: re-running LLM grading ten times flips the tastefulness verdict in 23% of official cases, and swapping the grader from Sonnet 4.6 to GPT-5.6 Sol cuts the number of tasteful solutions by more than half. The headline gaps like Fable 5 at 29.1% versus Opus 4.8 at 25.0% he calls essentially meaningless. He also takes apart napkin-math's latency table and the \"you need winter tires in cold\" received wisdom.",
+          "why": "这条的价值在方法而不在排名：它给出三个可以立刻拿来审任何一份评测的问题——跑几遍、换打分器会不会翻、阈值是不是人为的。正好接上 09-13 那条「题集保密的分数是出题方的陈述」，两条放在一起，本周关于评测的结论就是一整套：分数先归给出题方，再问方法能不能支撑结论。",
+          "why_en": "The value here is method, not ranking: three questions you can immediately run on any eval, about repeat runs, grader-swap stability, and whether the thresholds are arbitrary. It extends 09-13's rule that a score from a withheld task set is a statement about the test author; together they form this week's whole position on evals, attribute the score first, then ask whether the method supports the conclusion."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 6,
+      "items": [
+        {
+          "title": "UMG 与 ElevenLabs 做改编平台，把授权范围本身当产品",
+          "title_en": "UMG and ElevenLabs build a remix platform, treating licensing scope as the product",
+          "author": "Emma Roth · The Verge · TLDR AI",
+          "author_en": "Emma Roth · The Verge · TLDR AI",
+          "likes": 0,
+          "url": "https://www.theverge.com/ai-artificial-intelligence/993465/universal-music-elevenlabs-ai",
+          "summary": "环球音乐集团（UMG）宣布与 ElevenLabs 签下多年授权协议，做一个 AI 音乐平台，让用户基于它授权的曲库做 remix、mashup 和改编。艺人自己决定是否参与。UMG 同时在推进另一个 AI 音乐平台（与 Udio），并且已经和 Spotify、Nvidia、Klay 签了 AI 授权协议；作者提到本周 Suno 也发布了首个用华纳音乐、BMG 等授权歌曲训练的模型。ElevenLabs CEO Mati Staniszewski 的说法是：把 UMG 的版权管理能力和它的模型合起来，让艺人拿到新体验的同时「确保他们得到公平报酬」。这个平台与 ElevenLabs 自家的 Music API 和 ElevenMusic 生成器分开运营。",
+          "summary_en": "Universal Music Group announced a multiyear licensing deal with ElevenLabs to build an AI music platform where users remix, mash up, and rework tracks from its licensed catalog. Artists decide whether to opt in. UMG is also building a separate AI music platform with Udio and has struck AI licensing deals with Spotify, Nvidia, and Klay, and the piece notes Suno released its first model this week trained on licensed songs from Warner Music Group and BMG. ElevenLabs CEO Mati Staniszewski frames it as combining UMG's rights management with its models so artists get new fan experiences while being \"fairly compensated.\" The platform runs separately from ElevenLabs' own Music API and ElevenMusic generator.",
+          "why": "值得看的不是又一个 AI 生成音乐产品，是 UMG 把「谁的作品可以被改、改了之后谁拿钱」做成了产品本身。做内容方 AI 合作、IP 授权、创作者分成的人，这条给出了版权方现阶段实际会答应的条款形状：参与要艺人自己选，平台要和自有生成器分开。",
+          "why_en": "What's worth reading isn't another AI music generator, it's that UMG made \"whose work can be reworked, and who gets paid after\" into the product itself. For anyone working on AI partnerships with content owners, IP licensing, or creator payouts, this shows the actual shape of terms a rights holder will accept right now: opt-in for artists, and the platform kept separate from the vendor's own generator."
+        },
+        {
+          "title": "开源模型阅读清单：开源与闭源的差距，稳定在 4 到 6 个月",
+          "title_en": "An open-model reading list: the open-closed gap holds at 4 to 6 months",
+          "author": "Nathan Lambert · Interconnects",
+          "author_en": "Nathan Lambert · Interconnects",
+          "likes": 88,
+          "url": "https://www.interconnects.ai/p/open-source-ai-reading-list",
+          "summary": "Nathan Lambert 9 月 11 日发的开源模型阅读清单，自陈目标是让新人「拿到一份对现状的完整概览」。清单按主题分：基础（开源模型是什么、为什么有人放出来）、中美竞争、技术细节、安全与滥用。里面几条可以直接引用的判断：开源和闭源的能力差距「大约 4 到 6 个月」，领先的开源模型「自 2024 年前后起」都来自中国实验室；开源模型站在帕累托曲线的成本前沿，而不是绝对性能前沿（他举 DeepSeek V4 Flash）；蒸馏被他称为「2026 年开源模型周围最热闹的一场争论」，他自己的立场是政治上的恐慌没有依据。还有一条和中国模型落地相关的：Perplexity 采用了 DeepSeek R1，Thomson Reuters 用 Qwen 迁移离开 Claude。",
+          "summary_en": "Nathan Lambert published an open-model reading list on September 11, aimed at giving newcomers a comprehensive overview of the state of affairs. It's organized by theme: foundations (what open models are and why labs release them), US-China competition, technical details, and safety and misuse. A few directly citable judgments: the open-closed capability gap is roughly 4 to 6 months; the leading open models have come from Chinese labs since around 2024; open models sit on the cost frontier of the Pareto curve rather than the absolute performance frontier (he cites DeepSeek V4 Flash); and distillation he calls the single most eventful debate around open models in 2026, with his own position being that the political panic is unsupported. One adoption data point: Perplexity took DeepSeek R1, and Thomson Reuters moved off Claude onto Qwen.",
+          "why": "一般把这种清单当目录收着，但它给的几个数字可以直接拿去用：差距 4 到 6 个月、成本前沿而非性能前沿、领先者来自中国实验室。做技术选型和采购的人，用这三条就能把「要不要用开源模型」从立场之争拉回到具体决策：你要的是最强，还是单位成本下的够用。",
+          "why_en": "Lists like this usually get filed as an index, but the numbers in it are directly usable: a 4-to-6-month gap, cost frontier rather than performance frontier, leaders out of Chinese labs. For anyone doing technical selection or procurement, those three turn \"should we use open models\" from a position fight back into a specific decision: do you need the strongest, or enough per unit of cost."
+        },
+        {
+          "title": "Meta 藏了个共享 agent 功能，指向小商家的客服和销售",
+          "title_en": "Meta has a hidden Shared Agents feature aimed at small-business support and sales",
+          "author": "TestingCatalog · TLDR AI",
+          "author_en": "TestingCatalog · TLDR AI",
+          "likes": 0,
+          "url": "https://www.testingcatalog.com/meta-to-announce-shared-agents-for-muse-at-meta-connect/",
+          "summary": "TestingCatalog 在 Meta 新上线的 Muse 应用里翻出一个尚未公开的 Shared Agents 板块，藏在导航的一个独立标签下。打开后是可创建 agent、也可调用现成子 agent 的工作区，或许还包含他人分享的 agent。可配置项有提示词、名称与外观、技能选择、接入外部服务；建好后作为 Muse 内独立的子对话出现。作者称这个思路接近 Grokbot 的 agent 搭建，但 Meta 手握 Instagram、WhatsApp、Facebook、Messenger，分发是它的长处。该功能未公开宣布，可能的发布窗口是 9 月 23 至 24 日的 Meta Connect，开发者议程中已有 agentic workflow 相关场次。文中给出的商用设想是：小商家配出客服、内容、排期、销售等 agent，供自家员工或客户使用。",
+          "summary_en": "TestingCatalog found an unannounced \"Shared Agents\" section inside Meta's newly launched Muse app, tucked into a separate navigation tab and opening a workspace to build agents or use existing sub-agents, potentially including ones others have shared. Configurable pieces include prompts, name and appearance, skill selection, and external service connections, and built agents appear as separate sub-conversations inside Muse. The piece says the direction resembles Grokbot's agent builder, but Meta's advantage is distribution across Instagram, WhatsApp, Facebook, and Messenger. It isn't publicly announced; the likely window is Meta Connect on September 23-24, whose developer agenda already lists agentic workflow sessions. The commercial read offered is small businesses assembling support, content, scheduling, and sales agents for their staff or customers.",
+          "why": "选它，是因为它点出 agent 竞争的下一段不在模型，而在分发：同样一套搭建能力，Meta 可以直接铺到 WhatsApp 和 Instagram 的商家账号上，这是创业公司没有的入口。转发前请照原文看待：这不是发布会，是抓包里看到的功能，具体条款和分享权限都还没定，别当已发布的产品来讨论。",
+          "why_en": "The pick because it marks where agent competition moves next: not the model but the distribution. The same builder capability can be pushed straight onto WhatsApp and Instagram business accounts, an entry point startups don't have. Treat it as what it is before passing it on: not a launch, a feature seen in a build, with terms and sharing permissions undecided.",
+          "flag": "未公开宣布，来自应用抓包，具体条款和上线时间未定",
+          "flag_en": "Not publicly announced; seen in an app build; terms and timing undecided"
+        }
+      ]
+    }
+  ]
+}
