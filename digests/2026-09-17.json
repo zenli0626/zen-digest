@@ -1,0 +1,261 @@
+{
+  "date": "2026-09-17",
+  "partial": false,
+  "banner": "小模型配私有数据,反超前沿",
+  "banner_en": "Small models on private data beat the frontier",
+  "image": {
+    "src": "digests/img/2026-09-17.png",
+    "caption": "本期头图:Periodic Labs 发布文《Nature Is Our Learning Environment》里那张「XRD 分析表现与成本」的图 (Periodic Labs,2026-09-15 发布,图片 2026-09-17 下载)。该文正文写明,这是自家模型在 FrontierXRD 上的成功率与每次分析成本的对照:自家模型按 H200 每小时 2.5 美元的系统吞吐折算,外部模型按标准 API 价格估算,并假定多轮 agent 调用全部命中缓存。图本身的替代文本标注为「Periodic Neon XRD analysis performance versus cost」。(图:Periodic Labs)",
+    "caption_en": "This issue's lead image: the \"XRD analysis performance versus cost\" figure from Periodic Labs' post \"Nature Is Our Learning Environment\" (Periodic Labs, published 2026-09-15, image downloaded 2026-09-17). The post's text states this plots success rate on FrontierXRD against cost per analysis: its own model costed from system throughput per H200-hour at $2.50/hour, the external models estimated from standard API prices assuming perfect caching across agent turns. The figure's own alt text reads \"Periodic Neon XRD analysis performance versus cost.\" (Image: Periodic Labs)"
+  },
+  "actions": [
+    {
+      "text": "挑一个你手上有标准答案、却一直靠人肉判断的重复环节 (慢查询、排序规则、定价区间、字段抽取都算),先只做一件事:把「什么算对的」写成一个能自动打分的脚本。预计 40 分钟,今天不用碰模型。完成标志:拿 20 条历史样本喂进去,脚本判出的对错和你手工判断的重合度能报出一个具体百分比;如果报不出来,说明这个环节的判定标准本身还没写清楚,这才是要先解决的那一步。背景一句话:有人用 4B 小模型把 Postgres 的查询计划做快了 1.81 倍,靠的不是模型大,是那个「跑一遍就知道快慢」的单一优化轴。",
+      "text_en": "Pick one recurring step where you have ground truth but still judge it by hand (slow queries, ranking rules, pricing bands, field extraction all count), and do only one thing first: write the definition of \"correct\" as a script that can grade automatically. About 40 minutes, and no model work today. Done when you can feed in 20 historical samples and state a concrete percentage for how often the script's verdict matches your own; if you can't produce that number, the grading criteria were never written down, and that is the real thing to fix first. One sentence of background: someone used a 4B model to make Postgres query plans 1.81x faster, and the lever wasn't model size, it was having a single axis that says, on one run, whether the plan was fast.",
+      "source": "Rohan Bansal",
+      "source_en": "Rohan Bansal",
+      "source_url": "https://rohanbansal.com/qorl"
+    },
+    {
+      "text": "挑一个你已经敢交出去的 agent 任务,用同一个输入连着跑五遍,把五遍结果并排列出来,而不是只看其中一次是否通过。预计 20 分钟。完成标志:你能报出这个任务「五次全对」的比例,而不只是平均通过率;只要五遍里出现过不一致,就把那次输入原样存下来,以后它就是你回归测试的第一条用例。背景一句话:IBM Research 今天给的数据是,一个平均通过率 77.4% 的 agent 任务集,五次全对的只有 53.0%。",
+      "text_en": "Take one agent task you already trust enough to hand off, run it five times on the exact same input, and lay the five results side by side instead of checking whether a single run passed. About 20 minutes. Done when you can report the share of tasks that succeed on all five runs, not just the average pass rate; and if any of the five disagreed, save that input as-is, because it becomes the first case in your regression set. One sentence of background: IBM Research reported today that on a task set where an agent averages 77.4% success, only 53.0% of tasks succeed on all five runs.",
+      "source": "IBM Research",
+      "source_en": "IBM Research",
+      "source_url": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency"
+    },
+    {
+      "text": "给手上任何一个依赖外部平台的 AI 工具或流程,写一句「如果平台方明天把它做进主产品,我这边还剩下什么」;答不上来的,把它从「长期投入」降级成「先用着」,并写明降级的判断依据。预计 15 分钟。完成标志:你有一份两栏的短名单,一栏是值得继续投入的,一栏是暂时用着的,每一行后面跟着一句为什么。背景一句话:TechCrunch 本周整理了一份 AI 死亡名单,关掉的 Relay 正是被 OpenAI 和 Google 把同类自动化做进自家产品之后,失去了作为独立产品存在的理由。",
+      "text_en": "For any AI tool or workflow of yours that depends on an outside platform, write one sentence answering \"if the platform ships this as a built-in feature tomorrow, what do I still have?\"; anything you can't answer for gets downgraded from a long-term investment to a temporary convenience, with the reason written down. About 15 minutes. Done when you have a two-column shortlist, one for things worth continuing to invest in and one for things you're merely using for now, each row followed by a one-line why. One sentence of background: TechCrunch compiled a running AI graveyard this week, and the shutdown that led it, Relay, lost its reason to exist as a standalone product once OpenAI and Google built comparable automation into their own tools.",
+      "source": "TechCrunch",
+      "source_en": "TechCrunch",
+      "source_url": "https://techcrunch.com/2026/09/15/the-ai-graveyard-a-running-list-of-projects-and-startups-that-didnt-make-it/"
+    }
+  ],
+  "hands_on": {
+    "title": "用 OpenSpec 先把想法写成规格,再让 agent 动手",
+    "title_en": "Write the spec with OpenSpec before letting an agent touch the code",
+    "why": "多数人用编码 agent 的顺序是先让它写,写歪了再回头补需求,返工全花在这上面。OpenSpec 把顺序倒过来:先把你想做的东西落成一份规格文件,agent 照规格实现,最后再拿规格去核对实现。官网称已有 68.0k 星、每月 26.5 万开发者使用、平均每两秒新建一份规格。今晚花二十几分钟走一遍 explore 到 propose 这段,感受一下「先写下来」和「边写边想」的差别,比读任何方法论都直接。",
+    "why_en": "The usual order with a coding agent is to let it write first and patch the requirements afterward, which is where all the rework comes from. OpenSpec inverts it: turn what you want into a spec file first, have the agent implement against the spec, then check the implementation against it. The project's site claims 68.0k stars, 265,000 developers a month, and a new spec created every two seconds. Spending twenty-odd minutes tonight walking just the explore-to-propose stretch shows you the difference between writing it down first and thinking as you go, faster than reading any methodology post.",
+    "time": "约 25 分钟",
+    "time_en": "~25 min",
+    "steps": [
+      "装 CLI:npm install -g @fission-ai/openspec@latest(npm 上当前版本 1.13.1)",
+      "进到一个你熟悉的小项目目录,跑 openspec init,按提示选你常用的编码工具;init 会打印出你这个工具该用的命令写法 (Claude Code 里是 /opsx:propose 这种斜杠形式,Cursor 和 Copilot 可能写成 /opsx-propose)",
+      "在编码 agent 里敲 /opsx:explore,让它先读代码、把问题和可选方案聊清楚,这一步不写任何代码",
+      "想清楚之后再敲 /opsx:propose <你想做的东西>,看它生成哪几个文件 (文档里列的是 proposal.md、specs/、design.md、tasks.md),逐个扫一遍,重点看它有没有替你补上你没说过的需求",
+      "完成标志:你能说出这份规格里哪一条是你原本没想到的,以及如果直接让 agent 动手、它多半会在哪一条上跑偏"
+    ],
+    "steps_en": [
+      "Install the CLI: npm install -g @fission-ai/openspec@latest (current version on npm is 1.13.1)",
+      "cd into a small project you know well and run openspec init, picking your usual coding tool when prompted; init prints the command form your tool expects (a slash command like /opsx:propose in Claude Code, possibly /opsx-propose in Cursor or Copilot)",
+      "In your coding agent, type /opsx:explore and let it read the code and talk through the problem and the options; nothing gets written at this step",
+      "Once it's clear, type /opsx:propose <what you want to build> and look at which files it generates (the docs list proposal.md, specs/, design.md, tasks.md); skim each one, watching for requirements it added that you never said",
+      "Done when you can name the one line in that spec you hadn't thought of, and say which line an agent would most likely have gotten wrong if you'd just told it to start coding"
+    ],
+    "source": "OpenSpec",
+    "source_en": "OpenSpec",
+    "source_url": "https://openspec.dev/"
+  },
+  "meta_read": "今晚这几条连起来看,能反超前沿的那条路和会被平台吞掉的那条路,起点是同一个动作:把范围收窄到能被验证为止。\n\n两条模型结果走的正是这条路。它们没有去比谁的参数多,而是先把问题削到只剩一个可测量的方向,再把自己手里别人没有的那份数据灌进去。评分口径一清楚,小模型就能追上来;数据是自家的,成本曲线就压得下去。反过来看另外两条,翻车的机制是对称的:一份被平台做进主产品的工具,一个只在平均分上好看的能力,守的都是那个大的说法,而大的说法恰好是最容易被拿走、也最经不起重跑的那部分。\n\n所以今晚值钱的不是权重。是那个能自动判对错的口径,和不在公开语料里的样本。这两样都不在任何排行榜上,也买不到。\n\n落到做产品的人身上,这句话就是一个问题:手上这件事,有没有一个能自动打分的环境。有,再谈要不要训模型;没有,那个环节换多强的模型都还是在赌。",
+  "meta_read_en": "Taken together, tonight's stories show that the path to beating the frontier and the path to getting absorbed by a platform start from the same move: narrow the scope until it can be verified.\n\nBoth model results took exactly that route. Neither competed on parameter count; each first shrank the problem down to a single measurable direction, then poured in the data only it had. Once the grading criteria are clear, a small model can catch up; when the data is your own, the cost curve bends down. The other two stories fail by the mirror image of the same mechanism: a tool a platform folded into its own product, and a capability that only looks good on an average, both defended the bigger claim, and the bigger claim is precisely the part easiest to take away and least able to survive a rerun.\n\nSo what's worth money tonight isn't the weights. It's the criteria that can grade right and wrong automatically, and the samples that aren't in any public corpus. Neither shows up on a leaderboard, and neither is for sale.\n\nFor anyone building product, that compresses to one question: does this thing have an environment that can score it automatically? If yes, then argue about whether to train a model. If no, then no matter how strong the model at that step, you're still gambling.",
+  "ota": {
+    "learned": [
+      "已验证（本期实际执行）：把今天读到的 Pass^k 指标放到自己这套 harness 上跑了一遍。8 条边界算术判断，每条用同样的输入问 5 次，结果 Mean@5 = 82.5%，Pass^5 = 62.5%，差 20.0 个百分点；8 条里有 3 条的 5 次回答互相矛盾（比如「7 件 3.99 打 12% 折扣是否超过 24.50」，五次答案是 YES/NO/YES/NO/YES，而正确答案唯一）。平时报的跑通只是单次结果，单次结果不承载重跑还对不对这条信息。",
+      "观察：今天这条新闻线（IBM Research 的 Consistency Analyzer，把 Mean@5 77.4% 与 Pass^5 53.0% 的 24.4 个百分点差叫一致性缺口）和 09-13 那条任务集不公开的评测，分数只能归给出题方是同一条链的两端：那条管的是别人给的分数能不能信，这条管的是自己跑出来的分数该怎么读。先记着，等独立验证够两次再合成一条记忆规则。",
+      "观察：YouTube 的 feeds 今天九个频道全部返回 404，和 09-16 凌晨那次一致，但 09-16 晚间同一天内又是九个全部 200。这堵墙没有可预测的开关周期，这条结论今天第三次自证，已够稳定，不再单独记。",
+      "观察：Periodic Labs 的同一条模型结果给了个反例佐证，值得和 08-24 那条把 harness 当独立变量对照。他们写明自家 55.3% 的成功率是在自己的 Periodic Harness 上测的，并且说这个壳在他们自己的任务上强过 Claude Code 和 Codex；也就是说这个分数里，模型和壳是缠在一起报出来的，拆不开。"
+    ],
+    "new_capabilities": [
+      "已验证（本期实际执行并成立）：现在可以对自己的任何 agent 步骤做一次重复性探测，报出 Pass^k 和它与 Mean@k 的差，而不只报单次是否通过。今天这套方法实际跑出了 20 个百分点的缺口，说明它在这套 harness 上确实有信号，不是空转。做法已写入 ota-ledger，标记为待笔记本端采纳。"
+    ],
+    "learned_en": [
+      "Verified (executed this run): ran today's Pass^k metric against my own harness. Eight borderline arithmetic judgments, each asked five times on the exact same input: Mean@5 came out at 82.5%, Pass^5 at 62.5%, a 20.0-point gap, and on 3 of the 8 items the five answers contradicted each other (for example, \"does a 7-item cart at 3.99 each with a 12% discount exceed 24.50,\" answered YES/NO/YES/NO/YES when there is exactly one right answer). That means the \"it worked\" I normally report is a single-pass result, and a single pass carries no information about whether a rerun still works.",
+      "Observation: today's story (IBM Research's Consistency Analyzer, naming the 24.4-point spread between Mean@5 at 77.4% and Pass^5 at 53.0% a \"consistency gap\") and the 09-13 rule that a benchmark withholding its task set can only be attributed to the test author are two ends of one chain: that one governs whether someone else's score is trustworthy, this one governs how to read a score I produced myself. Logged for now; merge into a memory rule once it has a second independent confirmation.",
+      "Observation: YouTube's feeds returned 404 on all nine channels today, matching the 09-16 early-morning run, while the 09-16 evening run got 200 on all nine inside the same calendar day. The wall has no predictable schedule; this is its third self-confirmation, stable enough that it no longer needs its own note.",
+      "Observation: the same Periodic Labs result offers a counterexample worth setting beside the 08-24 rule about treating the harness as an independent variable. They state that their 55.3% success rate was measured on their own Periodic Harness, and say that harness beats Claude Code and Codex on their tasks; so the model and the shell are reported fused, and the score can't be split between them."
+    ],
+    "new_capabilities_en": [
+      "Verified (executed and held this run): I can now run a repeatability probe on any of my own agent steps and report Pass^k alongside its gap from Mean@k, instead of only whether one pass succeeded. Today's run produced a real 20-point gap, so the method carries signal on this harness rather than spinning empty. The procedure is written into ota-ledger, flagged for adoption on the next laptop session."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "alibaba/open-code-review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "description": "Fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+      "language": "Go",
+      "stars": 32766,
+      "stars_today": 3231
+    },
+    {
+      "rank": 2,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 7969,
+      "stars_today": 927
+    },
+    {
+      "rank": 3,
+      "name": "JustVugg/colibri",
+      "url": "https://github.com/JustVugg/colibri",
+      "description": "Run frontier MoE models on hardware you already own. Pure C, zero deps, experts streamed from disk.",
+      "language": "C",
+      "stars": 35210,
+      "stars_today": 1546
+    },
+    {
+      "rank": 4,
+      "name": "abue-ammar/tinycast",
+      "url": "https://github.com/abue-ammar/tinycast",
+      "description": "Tinycast: a tiny, fully native macOS launcher, hotkeys, and clipboard history.",
+      "language": "Swift",
+      "stars": 5780,
+      "stars_today": 1179
+    },
+    {
+      "rank": 5,
+      "name": "jamiepine/voicebox",
+      "url": "https://github.com/jamiepine/voicebox",
+      "description": "The open-source AI voice studio. Clone, dictate, create.",
+      "language": "TypeScript",
+      "stars": 54559,
+      "stars_today": 417
+    },
+    {
+      "rank": 6,
+      "name": "Lakr233/vphone-cli",
+      "url": "https://github.com/Lakr233/vphone-cli",
+      "description": "",
+      "language": "Swift",
+      "stars": 13469,
+      "stars_today": 547
+    },
+    {
+      "rank": 7,
+      "name": "anthropics/knowledge-work-plugins",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "language": "Python",
+      "stars": 24367,
+      "stars_today": 110
+    },
+    {
+      "rank": 8,
+      "name": "ever-co/ever-gauzy",
+      "url": "https://github.com/ever-co/ever-gauzy",
+      "description": "Ever Gauzy: Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
+      "language": "TypeScript",
+      "stars": 7431,
+      "stars_today": 778
+    },
+    {
+      "rank": 9,
+      "name": "ankitects/anki",
+      "url": "https://github.com/ankitects/anki",
+      "description": "Anki is a smart spaced repetition flashcard program",
+      "language": "Rust",
+      "stars": 30968,
+      "stars_today": 58
+    },
+    {
+      "rank": 10,
+      "name": "NationalSecurityAgency/ghidra",
+      "url": "https://github.com/NationalSecurityAgency/ghidra",
+      "description": "Ghidra is a software reverse engineering (SRE) framework",
+      "language": "Java",
+      "stars": 78024,
+      "stars_today": 1059
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 32,
+      "items": [
+        {
+          "title": "教 4B 小模型改写查询计划，跑得比 Postgres 默认还快",
+          "title_en": "Training a 4B model to beat Postgres's own query plans",
+          "author": "Rohan Bansal · Hacker News",
+          "author_en": "Rohan Bansal · Hacker News",
+          "likes": 493,
+          "url": "https://rohanbansal.com/qorl",
+          "summary": "Rohan Bansal 于 2026-09-16 发文，报告一次后训练实验：把 Qwen 4B 这样的小开放权重模型，用监督微调加智能体强化学习，训到能给 Postgres 写查询计划。索引是 pg_hint_plan 的提示，只改先连哪张表、用哪种连接方式，不改 SQL 本身，结果正确性仍由 Postgres 保证。评测用 JOB 数据集，113 条 join 密集查询、33 个模板。起点很惨：未训练的 4B 模型在 113 条里有 99 条压根产不出一个合法计划。最终检查点在 1,200 次 RL 更新后，每条查询采三次取最好，几何平均加速 1.81 倍（标题里的快 81% 就是它），113 条查询合计延迟下降 44.7%；600 次更新那个检查点是 1.16 倍、34 胜 0 负。成本花了约 800 美元租 2 张 H100 SXM（约 95 小时）加约 400 美元 API 费，用来跑五百条 GPT-6 Astra 的智能体轨迹做离策略蒸馏。文章还写了一个容易被忽略的细节：113 条查询的总运行时间从 95 秒降到 60 秒这一段，只是把数据常驻缓存带来的，跟模型无关，所以测量夹具本身要单独设计。评论区补了两条关键限定：一是这些提示是提前 95 小时批量生成的，数据统计或负载一变，这套东西就没用；二是模型不改查询语义，只是换个拆解顺序，所以计划是否合法这件事仍然可验证、可回滚。",
+          "summary_en": "Rohan Bansal published a post-training experiment on 2026-09-16: take a small open-weights model like Qwen 4B and train it, with supervised fine-tuning plus agentic reinforcement learning, to produce Postgres query plans. The interventions are pg_hint_plan hints that change only join order and join method, not the SQL itself, so Postgres still guarantees the results are correct. Evaluation used the JOB dataset: 113 join-heavy queries across 33 templates. The starting point was dire, with the untrained 4B model unable to produce a valid plan at all for 99 of the 113. After 1,200 RL updates the final checkpoint, sampling three rollouts per query and taking the best, reached a 1.81x geometric mean speedup (the \"81% faster\" in the title) and a 44.7% summed latency reduction across the workload; the 600-update checkpoint was 1.16x with 34 wins and 0 losses. Cost was roughly $800 for a 2x H100 SXM node for about 95 hours plus around $400 in API fees to generate 500 GPT-6 Astra agent trajectories for off-policy distillation. The post flags an easily missed detail: the workload's summed runtime falling from 95 to 60 seconds came purely from keeping data resident in cache, nothing to do with the model, which is why the measurement rig had to be designed separately. Two key caveats came from the comments: the hints are generated ahead of time in a 95-hour batch, so a change in statistics or workload makes the whole thing useless; and the model never changes query semantics, only the order things are broken into, so whether a plan is valid stays verifiable and reversible.",
+          "why": "选它，因为它是今天最清楚的一次小模型靠可验证的单一目标追上前沿的完整拆解，而且每一笔账都能自己复算：一张 H100 约 95 小时 800 美元、API 400 美元、113 条查询、1.81 倍。更重要的是它给了一条可迁移的顺序：先有跑一遍就知道好坏的评分环境，再谈要不要训模型；反过来做，这 1,200 次更新就无从优化。评论区那条提示提前生成、负载一变就失效也是真约束，用它之前先确认自己的负载够稳。详见今日行动第一条。",
+          "why_en": "Chosen because it's the clearest end-to-end breakdown today of a small model catching up to the frontier by having one verifiable objective, and every line item can be recomputed: about $800 for 95 hours on one H100, $400 in API fees, 113 queries, 1.81x. More useful is the order of operations it implies and that transfers: build the environment that tells you on one run whether the output was good, and only then argue about training a model; do it the other way and those 1,200 updates have nothing to optimize against. The comment thread's constraint, hints generated ahead of time that go stale when the workload shifts, is a real one to confirm against your own stability before copying this. See today's first action."
+        },
+        {
+          "title": "厨房窗台上的电子墨水屏，用声音认出窗外来了哪只鸟",
+          "title_en": "An e-ink frame on the kitchen sill that names the birds it hears",
+          "author": "arnegiacomo · Hacker News",
+          "author_en": "arnegiacomo · Hacker News",
+          "likes": 2133,
+          "url": "https://github.com/arnegiacomo/fugleramme",
+          "summary": "fugleramme 是一个跑在树莓派上的电子墨水屏相框，2026-09-15 登上 Hacker News 首页第一（2,133 分、241 条评论），仓库已有 2,599 星。它用麦克风听院子里的鸟叫，做实时识别，全部计算在本地完成，然后把认出的鸟画成十九世纪手绘插图的样子显示出来。分工很干净：BirdNET-Go 负责分类器，相框轮询它的接口，把每个物种对上插图，拼成一页，只在鸟的种类变化时重画，屏幕用的是 Inky Impression。作者在挪威卑尔根，把一个活着的实例挂在自家厨房窗台上（fugleramme.arnegiacomo.dev），页面显示的就是他此刻院子里听到的鸟，配文还自嘲窗户脏是因为松鼠在偷鸟食。仓库说明现在仍是早期开发，代码 MIT、插画 CC-BY-SA 4.0。",
+          "summary_en": "fugleramme is an e-ink frame running on a Raspberry Pi that hit the top of Hacker News on 2026-09-15 with 2,133 points and 241 comments; the repo has 2,599 stars. It listens to birdsong through a microphone, identifies species in real time with everything computed locally, and renders the results as nineteenth-century hand-cut bird illustrations. The division of labor is clean: BirdNET-Go handles the classifier, the frame polls its API, matches each species to an illustration, packs them onto a page, and redraws only when the species change, on an Inky Impression display. The author is in Bergen, Norway, and runs a live instance on his kitchen windowsill (fugleramme.arnegiacomo.dev) showing the birds being heard in his garden at that moment, with a caption joking that the window is dirty because squirrels keep stealing the bird food. The repo notes it is still in early development, with code under MIT and artwork under CC-BY-SA 4.0.",
+          "why": "选它有两个理由。其一，它是真在跑的东西，不是演示视频，打开页面就是此刻院子里的鸟。其二，它的工程决策对做端侧产品的人直接有用:分类器单独跑成一个服务,屏幕只在有变化时重画,这两条一并解决了功耗和刷新寿命,比堆模型更重要。它不依赖云端接口,也不需要账号。这种本地跑完、只留一个结果的形态,正是今天另一条新闻里小模型反超那条路的民用版。",
+          "why_en": "Chosen because it's a thing that actually runs rather than a demo video, and opening the page shows the birds being heard in the garden right now; and because two of its engineering decisions transfer directly to anyone building on-device products: run the classifier as a separate service, and only let the screen redraw when something changed, which solves power draw and panel lifetime in one move and matters more than model choice. It depends on no cloud endpoint and needs no account, and this shape, everything computed locally with only a result exposed, is the consumer version of the same path that let a small model win in today's other story."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 24,
+      "items": [
+        {
+          "title": "自家实验室数据喂出来的小模型，成功率从 2.7% 拉到 55.3%",
+          "title_en": "Lab data takes a small model from 2.7% to 55.3%",
+          "author": "Periodic Labs · TLDR AI",
+          "author_en": "Periodic Labs · TLDR AI",
+          "url": "https://periodic.com/news/nature-is-our-learning-environment",
+          "summary": "Periodic Labs 于 2026-09-15 发布研究文,称用自家实验室产生的数据,通过中训练和强化学习后训练开放权重模型 Kimi K2.6,做出 Periodic Neon。在其自建的最难评测集 FrontierXRD 上,Neon 成功率 55.3%,而所基于的 Kimi K2.6 起点只有 2.7%,提升 20 倍。他们同时声称 Neon 在每次分析成本更低的前提下超过了 GPT-6 Astra 和 Claude Fable 5.1。评测集是自家实验室的 134 个样本,专家人工判读要花数小时。成功率由 Opus 5 与 GPT-5.6-Sol 组成的大模型评审团判定,并对照专家评分做过校准。成本口径值得留意:自家模型按每 H200 小时 2.5 美元的系统吞吐折算,外部模型按标准 API 价格估算,且假定多轮 agent 调用全部命中缓存。他们还写明,所有模型都跑在自家的 Periodic Harness 上,并称这个壳在他们的任务上强过 Claude Code 和 Codex 这类现成工具。Neon 已部署进实验室,用来分析寻找超导体和磁体的实验。",
+          "summary_en": "Periodic Labs published a research post on 2026-09-15 describing how they took the open-weights model Kimi K2.6 and post-trained it with midtraining and reinforcement learning on data from their own labs to produce Periodic Neon. On FrontierXRD, their hardest internal evaluation set, Neon reaches a 55.3% success rate against the 2.7% starting point of the Kimi K2.6 it was built from, a 20x improvement, and they claim it surpasses GPT-6 Astra and Claude Fable 5.1 while costing less per analysis. The eval set is 134 samples from their own labs that human experts take hours to resolve. Success is scored by an LLM-judge ensemble of Opus 5 and GPT-5.6-Sol, calibrated against expert ratings. The cost basis is worth noting: their own model is costed from system throughput per H200-hour at $2.50/hour, while external models are estimated from standard API prices assuming perfect caching across agent turns. They also state that all models ran on their own Periodic Harness, which they say beats off-the-shelf tools like Claude Code and Codex on their tasks. Neon is already deployed in their labs, analyzing experiments in the search for better superconductors and magnets.",
+          "why": "选它,因为它和上面那条小模型改查询计划构成同一天的两次独立印证:追上来的路径不是把模型做大,是把别人拿不到的数据灌进去,再把评分口径定死。对做应用的人来说,可操作的是那个评分口径和那 134 个样本,而不是 55.3% 这个数字本身。详见今日行动第一条。",
+          "why_en": "Chosen because it and the small-model query-planning result above are two independent confirmations on the same day: the way to catch up is not a bigger model, it's pouring in data nobody else has and pinning the grading criteria down hard. For anyone building applications, the operational parts are that grading setup and those 134 samples, not the 55.3% figure itself. See today's first action.",
+          "flag": "55.3% 这个数字来自该公司自建自评的评测集,成功率由大模型评审团判定而非人工逐条判读,成本也是按 H200 单价的折算值而非实际账单;且模型与自研外壳是绑定测量的,文中没有单独的模型裸分。这是一次自测自评,尚无第三方复现。",
+          "flag_en": "The 55.3% figure comes from an evaluation set this company built and scored itself, success is judged by an LLM ensemble rather than per-item human review, and the cost is a derivation from an H200 hourly rate rather than an actual bill. The model was also measured bound to their in-house harness, with no separate bare-model number reported. This is a self-run, self-scored measurement with no third-party replication yet."
+        },
+        {
+          "title": "平均通过率 77.4% 的 agent，五次全对只剩 53.0%",
+          "title_en": "An agent averaging 77.4% succeeds on all five runs only 53% of the time",
+          "author": "IBM Research · TLDR AI",
+          "author_en": "IBM Research · TLDR AI",
+          "url": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
+          "summary": "IBM Research 发布 ALTK-Evolve,指出 agent 评测里一个几乎没人报的指标。用 GPT-4.1 驱动的一个 ReAct 智能体,在 AppWorld 的 test_normal 上平均通过率 Mean@5 是 77.4%,看着不错;但五次全部成功的任务只有 53.0%,中间差了 24.4 个百分点,作者叫它一致性缺口。难任务上这个差能到 30 个百分点。文章强调 Pass^k 和常见那个 Pass@k 方向相反:Pass@k 问 k 次里有没有一次成,是乐观口径,适合可以重试的场景;Pass^k 要求 k 次全成,是悲观口径。原因被拆到 token 分布的形状上:分布尖锐的决策点,重复采样结果稳定;分布平坦的决策点,几个候选分数接近,平台侧的浮点误差、请求批处理之类的微小扰动就足以改变结果。他们做了个诊断工具 Consistency Analyzer,办法不是把任务端到端重跑,而是拿一条已经录下来的轨迹,对里面每个决策点单独重采样五次,找出差一次采样就会做出不同选择的位置,不需要标准答案。据此写出准则后,把这批 agent 的缺口从 24.4 个百分点压到 12.0 个百分点 (同任务 Pass⁵ 提升 16.0 个百分点,相似任务 13.0 个百分点),而平均准确率没有下降。",
+          "summary_en": "IBM Research released ALTK-Evolve, pointing at a metric almost nobody reports in agent evaluation. A ReAct agent backed by GPT-4.1 posts a Mean@5 of 77.4% on AppWorld's test_normal, which looks strong; but only 53.0% of tasks succeed on all five runs, a 24.4-point spread the authors call the consistency gap, reaching 30 points on hard tasks. The post stresses that Pass^k runs opposite to the familiar Pass@k: Pass@k asks whether at least one of k attempts succeeded, an optimistic reading suited to retry-able settings, while Pass^k demands every attempt succeed, the pessimistic mirror. The cause is traced to the shape of the token distribution: decisions whose distribution is sharp reproduce run after run, while flat ones with several near-tied candidates can be flipped by tiny platform-side perturbations like floating-point non-associativity or request batching. Their diagnostic, the Consistency Analyzer, does not rerun tasks end to end; it takes one recorded trajectory, resamples each decision point five times in a single call, and finds the points where one more sample would have changed the choice, needing no ground truth. Writing guidelines from that diagnosis cut the gap from 24.4 points to 12.0 (same-task Pass^5 up 16.0 points, similar-task up 13.0) with no loss in average accuracy.",
+          "why": "选它,因为它是今天唯一一条直接改变怎么读数字的:团队报通过率 77% 时,真正决定能不能交出去的是那个更小的一位数,而多数评测根本不报。它给的做法也便宜得反常,不用重跑任务,只用一条已有轨迹就能定位到会翻车的那几个决策点,任何自己搭过 agent 评测的人今晚就能照着做一次。详见今日行动第二条。",
+          "why_en": "Chosen because it's the one story today that changes how to read a number: when a team reports 77% pass rate, what actually determines whether you can ship it is the smaller figure almost no eval reports. The method it hands over is also cheap to a surprising degree, locating the flip-prone decision points from a single existing trace rather than rerunning tasks, so anyone who has built their own agent eval can try it tonight. See today's second action."
+        },
+        {
+          "title": "AI 死亡名单：42% 的企业 AI 项目最后被自己人砍掉",
+          "title_en": "The AI graveyard: 42% of corporate AI initiatives get killed by their own parent",
+          "author": "Lauren Forristal · TechCrunch · TLDR AI",
+          "author_en": "Lauren Forristal · TechCrunch · TLDR AI",
+          "url": "https://techcrunch.com/2026/09/15/the-ai-graveyard-a-running-list-of-projects-and-startups-that-didnt-make-it/",
+          "summary": "TechCrunch 的 Lauren Forristal 于 2026-09-15 发布一份持续更新的 AI 项目死亡名单。开篇是本週一彻底关停的 Relay:一个用 AI 智能体自动处理邮件和任务流的工具,定位是 Zapier 的替代品,做了五年;随着 OpenAI、Google 等大平台把同类自动化直接做进自家产品,它越来越难说清自己作为独立产品还有什么存在理由。文章引用 S&P Global Market Intelligence 的数据,约 42% 的企业 AI 项目最终被母体放弃,原因包括资金不足、技术问题、竞争、难以扩展,以及需求本身就不强。作者强调这份名单不是失败者记分牌,而是一份记录,看这些尝试能留下什么教训;列表里也包括大公司自身的失败项目,OpenAI 中过好几枪。",
+          "summary_en": "TechCrunch's Lauren Forristal published a running AI graveyard on 2026-09-15. It opens with Relay, which shut down entirely this Monday: an AI-powered workflow automation tool positioned as a Zapier alternative, five years old, that lost its reason to exist as a standalone product as OpenAI, Google, and other large platforms built comparable automation straight into their own tools. The piece cites S&P Global Market Intelligence's finding that about 42% of corporate AI initiatives are ultimately abandoned by their parent companies, for reasons including insufficient funding, technical challenges, competition, difficulty scaling, and weak demand to begin with. The author frames the list not as a scorecard of flops but as a record of what these attempts can teach; it includes failures inside large companies too, with OpenAI taking several hits.",
+          "why": "选它,因为它是今天唯一一条讲失败机制而非能力上限的,而且机制很具体:不是做得不好,是被上游平台把功能吸收掉之后,独立产品失去了定价权。对任何在做 AI 工作流、插件、或者夹在大平台和用户之间那一层的人来说,这条比任何模型新闻都更该对着自己的项目过一遍。详见今日行动第三条。",
+          "why_en": "Chosen because it's the one story today about a failure mechanism rather than a capability ceiling, and the mechanism is specific: the product wasn't badly made, it lost pricing power as an upstream platform absorbed the feature. For anyone building an AI workflow, a plugin, or anything that sits between a big platform and its users, this deserves a pass against your own project more than any model announcement. See today's third action."
+        },
+        {
+          "title": "MIT CSAIL 分出的公司拿了 1400 万，要把自然语言做成源码",
+          "title_en": "An MIT CSAIL spinout raises $14M to make natural language the source code",
+          "author": "G5 Labs · TLDR AI",
+          "author_en": "G5 Labs · TLDR AI",
+          "url": "https://g5labs.ai/press",
+          "summary": "G5 Labs 于 2026-09-15 发布新闻稿，宣布以 1400 万美元种子轮走出隐身，领投方为 Pillar VC 和 Battery Ventures，Omega Venture Partners 与 Encoded Ventures 参投，天使投资人包括 Jeff Dean（现任 Discovery Loop CEO、前 Google 首席科学家）。公司主张做一层新的抽象：把自然语言按结构化的意图图（本体图）组织起来，使其本身成为源码，由一套自学习的双向编译器在自然语言与代码之间来回转换。据此列出的能力包括：跨整个公司管理意图；把合并冲突放到语义层而非代码层解决；每一行代码都能回溯到其背后的意图；在 token 花出去之前就做成本控制；把 GDPR 和安全要求这类组织级策略同时施加到新旧系统上。CEO Tim Kraska 是 MIT CSAIL 教授，他在新闻稿中判断，问题出在把 AI 硬贴到为人类设计的开发流程上，导致单个开发者一天产出几万行、维护者被 AI 垃圾代码淹没、企业每月烧掉六位数 AI 账单却看不到产出。新闻稿还提到，一个金融服务业遗留系统改造项目中，本体层的比对发现了结构性问题。",
+          "summary_en": "G5 Labs put out a press release on 2026-09-15 announcing a $14 million seed round and its exit from stealth, co-led by Pillar VC and Battery Ventures with participation from Omega Venture Partners and Encoded Ventures, plus angels including Jeff Dean, now CEO of Discovery Loop and formerly Google's Chief Scientist. Their thesis is a new abstraction layer: organize natural language as a structured graph of intent, an ontology graph, and let that itself be the source code, with a self-learning bi-directional compiler converting between natural language and code. The capabilities they list follow from it: managing intent across an entire company; resolving merge conflicts at the semantic level rather than the code level; tracing every line of code back to the intent behind it; controlling cost before tokens are spent; and enforcing organization-wide policies like GDPR and security requirements across old and new systems alike. CEO Tim Kraska, a professor at MIT CSAIL, argues in the release that the problem is bolting AI onto development processes designed for humans, producing tens of thousands of lines a day from a single developer, maintainers overwhelmed by AI slop, and six-figure monthly AI bills with little to show. The release also cites a financial-services legacy modernization project where an ontology-level comparison surfaced structural problems.",
+          "why": "选它，一半是因为这条思路本身：从让模型写代码往上退一层，去管意图和约束；另一半是它的卖法值得看：主推的不是代码生成，而是冲突解决、可追溯、成本控制和合规，全是采购和治理部门会签字的词。对做 AI 产品的人来说，这是一份同一个技术能力怎么定价的样本。",
+          "why_en": "Chosen half for the idea itself, stepping up a level from making a model write code to governing intent and constraints, and half for how it's sold: the pitch isn't code generation, it's conflict resolution, traceability, cost control, and compliance, all words that procurement and governance sign off on. For anyone building an AI product, it's a sample of how the same technical capability gets priced.",
+          "flag": "这是一份种子轮新闻稿，文中所有效果描述（发现结构性问题的改造项目、成本控制、语义层合并）均由公司自己给出，没有数字、没有第三方复现，属未经验证的商业宣称，其中自然语言成为源码也只是该公司的路线图，而非已交付能力。",
+          "flag_en": "This is a seed-round press release, and every claim of effect in it (the modernization project that surfaced structural problems, cost control, semantic-level merging) is self-reported, with no figures and no third-party replication, making it unverified commercial marketing; \"natural language becomes the source code\" is that company's roadmap, not a delivered capability."
+        }
+      ]
+    }
+  ]
+}
