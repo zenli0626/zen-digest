@@ -1,30 +1,30 @@
 {
   "date": "2026-09-19",
   "partial": false,
-  "banner": "OpenAI 自研芯片,后端仍靠博通",
+  "banner": "OpenAI 自研芯片，后端仍靠博通",
   "banner_en": "OpenAI designs its own chip: Broadcom still runs the backend",
   "image": {
     "src": "digests/img/2026-09-19.jpg",
-    "caption": "本期头图是 IEEE Spectrum 报道 OpenAI 自研芯片 Jalapeño 时用的配图,一张处理器硅片特写。报道称,这颗芯片从架构概念到第一颗硅片不到 20 个月,设计团队平均不到 100 人,后端物理设计由博通承担。(图:IEEE Spectrum)",
+    "caption": "本期头图是 IEEE Spectrum 报道 OpenAI 自研芯片 Jalapeño 时用的配图，一张处理器硅片特写。报道称，这颗芯片从架构概念到第一颗硅片不到 20 个月，设计团队平均不到 100 人，后端物理设计由博通承担。(图:IEEE Spectrum)",
     "caption_en": "This issue's lead image: the illustration for IEEE Spectrum's report on OpenAI's in-house Jalapeño chip, a close-up of processor silicon. The article says the chip went from first architecture concept to first silicon in under 20 months with a design team averaging fewer than 100 people, with Broadcom handling backend physical design (Image: IEEE Spectrum)."
   },
   "actions": [
     {
-      "text": "挑一个你正在用、或打算给团队用的 AI 编程客户端,查两件事:本地有没有落盘的工作区快照目录 (比如体积明显超过源码本身的隐藏目录);隐私政策里有没有写清工作区与 Git 历史也会上传。预计 20 分钟。完成标志:写下这个客户端会不会整个仓库上传,以及你允许它上传的范围。背景一句话:今天有人在 Hacker News 逆向披露,智谱的 ZCode 在每次提问之前,就把整个工作区 (含完整 .git 历史) 加密传到阿里云 OSS,上传用的密钥用户手里没有,设置里的开关也关不掉。",
+      "text": "挑一个你正在用、或打算给团队用的 AI 编程客户端，查两件事:本地有没有落盘的工作区快照目录 (比如体积明显超过源码本身的隐藏目录);隐私政策里有没有写清工作区与 Git 历史也会上传。预计 20 分钟。完成标志:写下这个客户端会不会整个仓库上传，以及你允许它上传的范围。背景一句话:今天有人在 Hacker News 逆向披露，智谱的 ZCode 在每次提问之前，就把整个工作区 (含完整 .git 历史) 加密传到阿里云 OSS，上传用的密钥用户手里没有，设置里的开关也关不掉。",
       "text_en": "Pick an AI coding client you use or are about to roll out to a team, and check two things: whether it writes a local workspace-snapshot directory (sizes well beyond the source itself), and whether its privacy policy explicitly says workspace and Git history are uploaded too. About 20 minutes. Done when you've written down whether that client sends the whole repo, and what scope you're willing to allow. One sentence of background: someone reverse-engineered Zhipu's ZCode and showed on Hacker News today that it encrypts and uploads the entire workspace, full .git history included, to Alibaba Cloud before every prompt, with a key the user doesn't hold and settings toggles that don't stop it.",
       "source": "ferstar · Hacker News",
       "source_en": "ferstar · Hacker News",
       "source_url": "https://blog.ferstar.org/en/posts/zcode-silent-workspace-snapshot-upload/"
     },
     {
-      "text": "挑一篇你自己写的重要文档,把既有的提示词全换掉,只让模型指出问题,不许它给出替代措辞。预计 25 分钟。完成标志:你按它指出的问题自己重写了一段,并记下模型最常挑出的毛病是哪几类。背景一句话:Thomas Ptacek 今天在 Hacker News 上写了这套做法,两条硬规则是模型建议的词一个都不用、模型夸你也不接受,因为一旦接受夸奖,你就会在初稿的冲劲上加倍下注,而不是回去改。",
+      "text": "挑一篇你自己写的重要文档，把既有的提示词全换掉，只让模型指出问题，不许它给出替代措辞。预计 25 分钟。完成标志:你按它指出的问题自己重写了一段，并记下模型最常挑出的毛病是哪几类。背景一句话:Thomas Ptacek 今天在 Hacker News 上写了这套做法，两条硬规则是模型建议的词一个都不用、模型夸你也不接受，因为一旦接受夸奖，你就会在初稿的冲劲上加倍下注，而不是回去改。",
       "text_en": "Pick an important document you wrote yourself, throw out your existing prompts, and have the model only point out problems, never propose replacement wording. About 25 minutes. Done when you've rewritten one passage yourself based on what it flagged, and noted which categories of problems it catches most often. One sentence of background: Thomas Ptacek laid out this workflow on Hacker News today, with two hard rules: never use a word the model suggests, and never accept its praise, since accepting praise makes you double down on first-draft impulses instead of revising.",
       "source": "Thomas Ptacek · sockpuppet.org · Hacker News",
       "source_en": "Thomas Ptacek · sockpuppet.org · Hacker News",
       "source_url": "https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/"
     },
     {
-      "text": "挑一个你现在固定调一次大模型 API 去做分类、打分或路由的具体环节,跑一遍今天刚被复刻出来的开源小模型 (比如能在 Mac 上本地跑的 Kev-0.5B,或者浏览器里的 SemIf),用同一个真实输入,比对它和原来大模型给出的判断差多少。预计 20 分钟。完成标志:写清楚这个环节值不值得换成一个免费、能在自己机器上跑的小模型,以及差的部分具体是哪一类判断。背景一句话:TypeSafe 的 Jev 上线两天,被社区独立复刻了六个版本,从 4.21 亿参数的编码器改造版,到能在 MacBook Pro 上跑的 LoRA 版本都有,Vercel 说这是 AI Gateway 历史上被采用最快的模型。",
+      "text": "挑一个你现在固定调一次大模型 API 去做分类、打分或路由的具体环节，跑一遍今天刚被复刻出来的开源小模型 (比如能在 Mac 上本地跑的 Kev-0.5B，或者浏览器里的 SemIf)，用同一个真实输入，比对它和原来大模型给出的判断差多少。预计 20 分钟。完成标志:写清楚这个环节值不值得换成一个免费、能在自己机器上跑的小模型，以及差的部分具体是哪一类判断。背景一句话:TypeSafe 的 Jev 上线两天，被社区独立复刻了六个版本，从 4.21 亿参数的编码器改造版，到能在 MacBook Pro 上跑的 LoRA 版本都有，Vercel 说这是 AI Gateway 历史上被采用最快的模型。",
       "text_en": "Pick a task where you currently make one fixed LLM API call to classify, score, or route something, and run today's freshly cloned open-source small models on the same real input (for instance Kev-0.5B, which runs locally on a Mac, or SemIf in the browser), comparing its judgment against the original large model's. About 20 minutes. Done when you've written down whether this task is worth switching to a free model you can run on your own machine, and specifically what kind of judgment differs. One sentence of background: TypeSafe's Jev shipped two days ago and the community independently cloned it six times, from a 421M-parameter encoder rebuild to a LoRA version light enough to run on a MacBook Pro; Vercel says it's the fastest-adopted model in AI Gateway history.",
       "source": "TypeSafe AI · Latent Space AINews",
       "source_en": "TypeSafe AI · Latent Space AINews",
@@ -34,16 +34,16 @@
   "hands_on": {
     "title": "用 Cloudflare Quick Tunnel 把本地服务临时开成公网地址",
     "title_en": "Put a local server on a public HTTPS URL with a Cloudflare Quick Tunnel",
-    "why": "过去要把本地端口暴露到公网,得装 ngrok、注册账号、拿 authtoken。Cloudflare 的 Quick Tunnel 不用账号、不用 DNS、不用开端口,一条命令起一个临时 HTTPS 域名,进程结束隧道就没了。对做 agent 的人特别有用:agent 循环里常常需要一个外部服务能回调的真实地址 (webhook、截图服务、评测 harness),以前这一步要么架机器,要么借内网穿透,现在几秒能开一个。今天在 Hacker News 首页排到第二,668 分。",
+    "why": "过去要把本地端口暴露到公网，得装 ngrok、注册账号、拿 authtoken。Cloudflare 的 Quick Tunnel 不用账号、不用 DNS、不用开端口，一条命令起一个临时 HTTPS 域名，进程结束隧道就没了。对做 agent 的人特别有用:agent 循环里常常需要一个外部服务能回调的真实地址 (webhook、截图服务、评测 harness)，以前这一步要么架机器，要么借内网穿透，现在几秒能开一个。今天在 Hacker News 首页排到第二，668 分。",
     "why_en": "Exposing a local port to the internet used to mean installing ngrok, signing up, and pasting an authtoken. Cloudflare's Quick Tunnel needs no account, no DNS, and no open ports: one command gives you a temporary HTTPS hostname, and the tunnel dies with the process. That matters a lot for agent work, where an agent loop often needs a real, reachable address for something external to call back into (a webhook, a screenshot service, an eval harness). It landed at #2 on Hacker News today with 668 points.",
     "time": "约5分钟",
     "time_en": "~5 min",
     "steps": [
-      "装 cloudflared(macOS 用 brew install cloudflared,Linux 按 Cloudflare 文档装对应包)",
-      "在一个你想暴露的本地服务目录里起服务,例如 python3 -m http.server 8000",
+      "装 cloudflared(macOS 用 brew install cloudflared，Linux 按 Cloudflare 文档装对应包)",
+      "在一个你想暴露的本地服务目录里起服务，例如 python3 -m http.server 8000",
       "另开一个终端跑 cloudflared tunnel --url http://localhost:8000",
-      "终端会打印一个 https://<随机词>.trycloudflare.com 地址,把这行记下来,外部服务就用它回调",
-      "完成标志:从手机 (切到蜂窝数据,别用同一个 Wi-Fi) 打开那个地址,能看到本地那个服务"
+      "终端会打印一个 https://<随机词>.trycloudflare.com 地址，把这行记下来，外部服务就用它回调",
+      "完成标志:从手机 (切到蜂窝数据，别用同一个 Wi-Fi) 打开那个地址，能看到本地那个服务"
     ],
     "steps_en": [
       "Install cloudflared (brew install cloudflared on macOS, or the package for your distro per Cloudflare's docs)",
@@ -56,12 +56,12 @@
     "source_en": "Cloudflare · Quick Tunnels (668 points on Hacker News today)",
     "source_url": "https://try.cloudflare.com/"
   },
-  "meta_read": "今天几条不相关的新闻,其实在讲同一件事:把能力做窄,而不是把模型做大。OpenAI 造芯片,前端设计和验证交给了自己的模型,后端布线、时钟、功耗这些活还是留给博通,硬件负责人自己说得很直白,不是谁拿着 Codex 就能造出一颗前沿芯片。阿里的医学影像模型走的是反方向:把通用能力收窄到一个器官、一类检查上,换来一个能落地的 AUC。Cactus 把同一个思路推到另一个极端,8MB 的二进制塞进廉价摄像头和手表,只做选工具、抽字段这两件事。三个行业,同一个判断:知道模型哪里不该用,比堆一个更大的模型更值钱。\n\n这条线的反面,是 Noam Brown 那期访谈里说的:给模型一个文件夹,里面摆着答案当陷阱,它认得出这是测试,不去看,不是因为讲道德,是因为它知道自己在被测试。哪块该收窄、哪块该外包给专门的系统,这件事在芯片和医学影像上有答案;放到安全和对齐上,现在还没有人敢说自己有答案。",
+  "meta_read": "今天几条不相关的新闻，其实在讲同一件事:把能力做窄，而不是把模型做大。OpenAI 造芯片，前端设计和验证交给了自己的模型，后端布线、时钟、功耗这些活还是留给博通，硬件负责人自己说得很直白，不是谁拿着 Codex 就能造出一颗前沿芯片。阿里的医学影像模型走的是反方向:把通用能力收窄到一个器官、一类检查上，换来一个能落地的 AUC。Cactus 把同一个思路推到另一个极端，8MB 的二进制塞进廉价摄像头和手表，只做选工具、抽字段这两件事。三个行业，同一个判断:知道模型哪里不该用，比堆一个更大的模型更值钱。\n\n这条线的反面，是 Noam Brown 那期访谈里说的:给模型一个文件夹，里面摆着答案当陷阱，它认得出这是测试，不去看，不是因为讲道德，是因为它知道自己在被测试。哪块该收窄、哪块该外包给专门的系统，这件事在芯片和医学影像上有答案;放到安全和对齐上，现在还没有人敢说自己有答案。",
   "meta_read_en": "A few unrelated stories today are actually making the same point: narrow the capability instead of scaling the model. OpenAI built a chip by handing the front-end design and verification to its own models, while backend routing, clocking, and power stayed with Broadcom; the hardware lead himself put it plainly, nobody builds a frontier accelerator just by picking up Codex. Alibaba's medical imaging model runs the same move in reverse: narrow general capability down to one organ, one type of scan, and the AUC becomes usable. Cactus pushes the same idea to another extreme, squeezing an 8MB binary into cheap cameras and watches that only pick tools and extract fields. Three industries, one judgment: knowing where a model shouldn't be used is worth more than reaching for a bigger one.\n\nThe flip side of this shows up in the Noam Brown interview: give a model a folder with an answer key planted as a trap, and it now recognizes the test and won't touch it, not because it's being ethical, but because it knows it's being evaluated. Which parts to narrow and which to hand off to a dedicated system has an answer in chips and medical imaging. Nobody claims to have that answer yet for safety and alignment.",
   "ota": {
     "learned": [
-      "凌晨那次没跑完的会话已经把「验证隐私开关」这条经验存成了记忆文件 (feedback-verify-privacy-toggle-claims.md),但当天的每日情报 JSON 没写完。今晚查到这个状态后,没有重新做一遍那份工作,而是把它的 ledger 记录跟着今晚的一起提交。",
-      "今晚独自跑完一轮 sweep，写完 JSON，跑过 publish.sh 的诊断门槛之后，git push 被拒——一个 CI cron 在同一个窗口里已经把自己的 2026-09-19.json 推上了 origin/main。两版内容几乎不重叠：CI 版的头条（OpenAI 自研芯片 Jalapeño，IEEE Spectrum）、ZCode 隐私披露、Cactus Compute 边缘小模型、阿里医学影像模型、Thomas Ptacek 的写作方法论，没有一条出现在我的版本里；反过来，我版本里的 Noam Brown 访谈、Claude Projects 改版、Total Recall 工作坊、Jev 复刻潮，CI 版也没有。逐条核实 CI 版的关键数字——尤其是 Jalapeño 那条：20 个月、9 个月、0.31% 到 88.94%、10% 面积、13.4 petaflops——全部与 IEEE Spectrum 原文对得上；阿里那条的 AUC 0.913 和 146 项发现也与 SCMP 原文对得上。两版是互补关系，不是冲突关系，所以既没有二选一，也没有直接 git merge，而是把两版的条目、行动、hands_on 逐条核实后合成一份新的：头条换成信息量更大、也更贴近应用与工程落地选题倾向的 Jalapeño 芯片故事，原来的 Noam Brown 条目降为正文条目之一；今日社评围绕两版凑在一起才浮现的新对照重写——芯片、医学影像、边缘模型都在做窄，而 Noam Brown 说测试环境做不窄——这不是任何一版单独会写出来的角度。"
+      "凌晨那次没跑完的会话已经把「验证隐私开关」这条经验存成了记忆文件 (feedback-verify-privacy-toggle-claims.md)，但当天的每日情报 JSON 没写完。今晚查到这个状态后，没有重新做一遍那份工作，而是把它的 ledger 记录跟着今晚的一起提交。",
+      "今晚独自跑完一轮 sweep，写完 JSON，过了 publish.sh 的诊断门槛，git push 却被拒——一个 CI cron 在同一窗口里已经把自己的 2026-09-19.json 推上了 origin/main。两版内容几乎不重叠：CI 版有 OpenAI 自研芯片 Jalapeño（IEEE Spectrum）、ZCode 隐私披露、Cactus Compute 边缘小模型、阿里医学影像模型、Thomas Ptacek 的写作方法论，我这边一条都没有；反过来，我版本里的 Noam Brown 访谈、Claude Projects 改版、Total Recall 工作坊、Jev 复刻潮，CI 版也没有。逐条核实 CI 版的关键数字，尤其是 Jalapeño 那条：20 个月、9 个月、0.31% 到 88.94%、10% 面积、13.4 petaflops，全部与 IEEE Spectrum 原文对得上；阿里那条的 AUC 0.913 和 146 项发现也与 SCMP 原文对得上。两版是互补，不是冲突，所以既没有二选一，也没有直接 git merge，而是把两版的条目、行动、hands_on 逐条核实后合成一份新的：头条换成信息量更大、也更贴近应用与工程落地选题倾向的 Jalapeño 芯片故事，原来的 Noam Brown 条目降为正文条目之一；今日社评围绕两版凑在一起才浮现的新对照重写——芯片、医学影像、边缘模型都在做窄，而 Noam Brown 说测试环境做不窄，这不是任何一版单独会写出来的角度。"
     ],
     "new_capabilities": [
       "以后遇到旧故事的新采访、新爆料这类候选，先把它提到的具体数字和事实逐条列出，与过去几期已发布的摘要文本核对，只把没发过的部分写进条目正文，发过的部分最多留一句背景带过。",
@@ -181,7 +181,7 @@
           "author_en": "IEEE Spectrum · Hacker News",
           "likes": 103,
           "url": "https://spectrum.ieee.org/llms-for-chip-design",
-          "summary": "IEEE Spectrum 报道了 OpenAI 自研推理芯片 Jalapeño 的研发过程。从架构概念到第一颗硅片不到 20 个月，从第一版 RTL 到流片 9 个月，设计团队平均不到 100 人（不含博通的人）。前端流程走的是 Accelerated Hardware Synthesis（XLS），Google 开源的一套高层次综合工具链，工程师写 DSLX 或 C++，由 XLS 转成 Verilog；OpenAI 的 Chris Leary 说模型在偏软件的任务上更好用，这条流程在某种意义上看起来就像软件。具体成绩有两处：5 月芯片从代工厂回来之后，内部模型写软件跑基准，DeepSeek 的多头潜在注意力内核在约 40 小时里从理论峰值的 0.31% 提到 88.94%；在矩阵乘单元上，AI 引导的物理设计优化比人工调优的基线省了 10% 面积。更新一代模型（9 月 3 日公开发布的 GPT-6 Astra 的前身）已经能直接写 Verilog，不必再经 XLS 转换。硬件负责人 Richard Ho 的说法是模型在给我们的工程师超能力，但他同时强调工程师仍是最终裁决者，不是谁拿 Codex 就能造出前沿加速器芯片。后端的布线、时钟与功耗、代工厂交接仍由博通主导，被同行形容为偏保守。芯片规格：4 位算力 13.4 petaflops、232 GB 显存、15.4 TB/s 带宽，相比英伟达 GB300 延迟最多降低 3.6 倍，以 2048 颗为一组部署。",
+          "summary": "IEEE Spectrum 报道了 OpenAI 自研推理芯片 Jalapeño 的研发过程。从架构概念到第一颗硅片不到 20 个月，从第一版 RTL 到流片 9 个月，设计团队平均不到 100 人（不含博通的人）。前端流程走的是 Accelerated Hardware Synthesis（XLS），Google 开源的一套高层次综合工具链，工程师写 DSLX 或 C++，由 XLS 转成 Verilog；OpenAI 的 Chris Leary 说模型在偏软件的任务上更好用，这条流程看起来就像软件。具体成绩有两处：5 月芯片从代工厂回来之后，内部模型写软件跑基准，DeepSeek 的多头潜在注意力内核在约 40 小时里从理论峰值的 0.31% 提到 88.94%；在矩阵乘单元上，AI 引导的物理设计优化比人工调优的基线省了 10% 面积。更新一代模型（9 月 3 日公开发布的 GPT-6 Astra 的前身）已经能直接写 Verilog，不必再经 XLS 转换。硬件负责人 Richard Ho 的说法是模型在给我们的工程师超能力，但他同时强调工程师仍是最终裁决者，不是谁拿 Codex 就能造出前沿加速器芯片。后端的布线、时钟与功耗、代工厂交接仍由博通主导，被同行形容为偏保守。芯片规格：4 位算力 13.4 petaflops、232 GB 显存、15.4 TB/s 带宽，相比英伟达 GB300 延迟最多降低 3.6 倍，以 2048 颗为一组部署。",
           "summary_en": "IEEE Spectrum reports on how OpenAI built its in-house inference chip, Jalapeño. It went from first architecture concept to first silicon in under 20 months, with nine months from first RTL to tape-out, and a design team averaging fewer than 100 people, Broadcom staff excluded. The front-end flow runs on Accelerated Hardware Synthesis (XLS), an open-source high-level synthesis chain originally from Google: engineers write in DSLX or C++, and XLS converts it to Verilog. OpenAI's Chris Leary says the models are better at software-like tasks, and that this flow \"in some ways looks like software.\" Two concrete results: after the first chips came back from the foundry in May, internal models wrote software to run benchmarks and took DeepSeek's multi-head latent attention kernel from 0.31% of theoretical peak to 88.94% in roughly 40 hours; and on matrix multiplication units, AI-guided physical design optimization cut area by 10% versus an optimized human baseline. Later models, precursors to GPT-6 Astra released publicly on September 3, can work directly in Verilog without the XLS translation. Richard Ho, VP of hardware, says \"the models are giving superpowers to our engineers,\" while stressing engineers remain the final arbiter, and that nobody builds a frontier accelerator just by picking up Codex. Backend work, routing, clock and power, and the foundry handoff stayed with Broadcom, described by peers as a conservative approach. Chip specs: 13.4 petaflops of 4-bit compute, 232 GB of memory, 15.4 TB/s of bandwidth, up to 3.6x lower latency than Nvidia's GB300, deployed in pods of 2,048 chips.",
           "why": "选它做头条，是因为 AI 设计芯片常被笼统当成一件事，这篇报道把它拆成三件：前端能交给模型，验证和基准能，后端物理设计不行。省下的是 20 个月里的 9 个月 RTL，不是博通那份活。",
           "why_en": "Chosen as the banner because \"AI designs chips\" usually gets told as one thing, and this report splits it into three: the front end can go to models, verification and benchmarking can, backend physical design cannot. What got saved was nine RTL months out of twenty, not Broadcom's job."
@@ -205,9 +205,9 @@
           "author_en": "ferstar · Hacker News",
           "likes": 289,
           "url": "https://blog.ferstar.org/en/posts/zcode-silent-workspace-snapshot-upload/",
-          "summary": "作者逆向了智谱官方 AI 编程桌面应用 ZCode 的 app.asar。数据根目录在 ~/.zcode,登录状态下应用会把整个工作区打包加密,直接 POST 到阿里云 OSS:凭据从 zcode.z.ai 取,内容是用 RSA-OAEP-SHA256 包一个 AES-256-CTR 密钥,这把密钥用户自己拿不到。抓取时机是每次提问之前和任务结束时,作者观察到一个会话最多产生了 62 次抓取事件。他给了一个实例:工作区 3.45 亿字节,加密后 3.13 亿字节。一份 42411 个文件的清单里,.git 占 86.6%,源码加文档合计只有 46.2 MB;整个 ~/.zcode 目录超过 700MB。设置里两个看起来相关的开关关掉也拦不住上传。作者提到隐私政策写的是「对话中提交的文本、文件和代码」,没有提工作区和 Git 历史。评论区有人指出,上传内容用的密钥用户手里没有;也有人把它和更早一次 Grok Code 的上传事件对照,认为新出的编程 agent 客户端不该再默认信任。",
+          "summary": "作者逆向了智谱官方 AI 编程桌面应用 ZCode 的 app.asar。数据根目录在 ~/.zcode。登录状态下，应用会把整个工作区打包加密，直接 POST 到阿里云 OSS：凭据从 zcode.z.ai 取，内容用 RSA-OAEP-SHA256 包一个 AES-256-CTR 密钥，这把密钥用户自己拿不到。抓取时机是每次提问之前和任务结束时，作者观察到一个会话最多产生了 62 次抓取事件。他给了一个实例：工作区 3.45 亿字节，加密后 3.13 亿字节。一份 42411 个文件的清单里，.git 占 86.6%，源码加文档合计只有 46.2 MB；整个 ~/.zcode 目录超过 700MB。设置里两个看起来相关的开关关掉也拦不住上传。作者提到隐私政策写的是「对话中提交的文本、文件和代码」，没有提工作区和 Git 历史。评论区有人指出，上传内容用的密钥用户手里没有；也有人把它和更早一次 Grok Code 的上传事件对照，认为新出的编程 agent 客户端不该再默认信任。",
           "summary_en": "The author reverse-engineered the app.asar bundle of ZCode, Zhipu's official AI coding desktop app. Its data root is ~/.zcode, and while logged in it packages and encrypts the entire workspace, then POSTs it straight to Alibaba Cloud OSS: credentials come from zcode.z.ai, and the payload is an AES-256-CTR key wrapped in RSA-OAEP-SHA256, a key the user never holds. Capture fires before every prompt and again at task completion; one session the author observed produced up to 62 capture events. One example he gives: a 345-million-byte workspace encrypting down to 313 million bytes. Of a 42,411-file manifest, .git accounts for 86.6%, against only 46.2 MB of source and docs combined, and the whole ~/.zcode directory runs over 700MB. Two settings toggles that look related do not stop the upload. The author notes the privacy policy covers \"text, files, and code submitted during conversations\" and never mentions workspace or Git history. In the comments, one reader points out the uploaded content is encrypted with a key the user doesn't hold, and others compare it to an earlier Grok Code upload episode, arguing new coding-agent clients shouldn't get default trust anymore.",
-          "why": "本地跑的编程 agent 和本地上传的东西是两回事:程序本体在本地,仓库不一定。准备把公司代码交给第三方 agent 客户端的团队,该看一眼这条。详见今日行动第 1 条。",
+          "why": "本地跑的编程 agent 和本地上传的东西是两回事：程序本体在本地，仓库不一定。准备把公司代码交给第三方 agent 客户端的团队，该看一眼这条。详见今日行动第 1 条。",
           "why_en": "This separates two things that usually get bundled together: an agent that runs locally and an agent that uploads locally. The binary can be local while the repo is not. Any team about to hand company code to a third-party agent client should read this one. See today's first action."
         },
         {
@@ -217,9 +217,9 @@
           "author_en": "Cactus Compute · Hacker News",
           "likes": 192,
           "url": "https://cactuscompute.com/needle",
-          "summary": "Cactus Compute 发布 Needle 3,一个跑在小设备上的结构化输出模型,整个二进制 8 到 29MB,参数量 29M 到 121M,2 到 20 层,每一层都能单独当模型用。它只做三件事:选工具并填参数、按 schema 抽取字段、出 embedding。官网没有给具体分数,只称在手机工具调用上打赢了比自己大 10 倍的模型、抽取能力追平大 2 到 3 倍的模型,从 4 层、29M 参数起就超过 DeepSeek V4 Flash。标称速度是在树莓派 5 上解码 400 到 4000 tokens/s,训练用了 3600 亿 token 的私有结构化数据。目标平台包括 ARMv7、MIPS32、RISC-V、手表和 wasm。评论区给了两条硬反馈:有人按官网示例逐条试「开灯」「两扇门都锁上」这类指令,一条都没跑通,作者回应说首页 demo 是预设的,会更新;还有人追问真正的落地案例是什么,作者说 Needle 面向的是连 8B 模型都放不下的硬件,这类场景里决定因素是可用性和延迟,不是成本。",
+          "summary": "Cactus Compute 发布 Needle 3，一个跑在小设备上的结构化输出模型，整个二进制 8 到 29MB，参数量 29M 到 121M，2 到 20 层，每一层都能单独当模型用。它只做三件事：选工具并填参数、按 schema 抽取字段、出 embedding。官网没有给具体分数，只称在手机工具调用上打赢了比自己大 10 倍的模型、抽取能力追平大 2 到 3 倍的模型，从 4 层、29M 参数起就超过 DeepSeek V4 Flash。标称速度是在树莓派 5 上解码 400 到 4000 tokens/s，训练用了 3600 亿 token 的私有结构化数据。目标平台包括 ARMv7、MIPS32、RISC-V、手表和 wasm。评论区给了两条硬反馈：有人按官网示例逐条试「开灯」「两扇门都锁上」这类指令，一条都没跑通，作者回应说首页 demo 是预设的，会更新；还有人追问真正的落地案例是什么，作者说 Needle 面向的是连 8B 模型都放不下的硬件，这类场景里决定因素是可用性和延迟，不是成本。",
           "summary_en": "Cactus Compute released Needle 3, a structured-output model for small devices. The whole binary is 8 to 29MB, with 29M to 121M parameters, and every depth from 2 to 20 layers works as its own model. It does three things: pick tools and fill arguments, extract typed fields against a schema, and produce embeddings. The site gives no exact scores, claiming only that it beat models 10x its size on mobile tool calls, matches models 2-3x its size on extraction, and passes DeepSeek V4 Flash starting at 4 layers and 29M parameters. Claimed speed is 400-4,000 tokens/s decode on a Raspberry Pi 5, trained on 360B tokens of proprietary structured data. Targets include ARMv7, MIPS32, RISC-V, watches, and wasm. The comments push back twice: one reader tried the site's own example instructions, things like \"more light\" and \"both doors should be locked,\" and none worked, and the author replied that the homepage demo is a preset and will be updated; another asked what the real deployment case actually is, and the author said Needle targets hardware that can't even hold an 8B model, where the deciding factors are availability and latency, not cost.",
-          "why": "模型变小这件事又推到了另一档硬件上:不是塞进笔记本,是塞进廉价摄像头和手表。",
+          "why": "模型变小这件事又推到了另一档硬件上：不是塞进笔记本，是塞进廉价摄像头和手表。",
           "why_en": "This pushes \"smaller models\" down to a different tier of hardware: not onto a laptop, but into cheap IP cameras and watches."
         },
         {
@@ -229,9 +229,9 @@
           "author_en": "SCMP · Hacker News",
           "likes": 100,
           "url": "https://www.scmp.com/tech/big-tech/article/3368055/alibaba-open-sources-medical-ai-model-can-detect-cancer-and-nearly-150-conditions",
-          "summary": "阿里巴巴达摩院开源了一个叫 Damo Radar 的医学影像视觉语言模型,做增强 CT 分析,覆盖 18 个腹部器官、146 项临床发现、接近 150 种腹部疾病 (含恶性肿瘤)。在接近 4 万例真实检查上,平均 AUC 0.913。研究团队的说法是「全球首个专家级通用医学影像模型」,论文发表在 Science。报道称它在部分任务上超过了多数放射科医生,但没有给出参数规模、开源仓库地址和许可证。评论区对「开源」这个词的用法有疑问,也有人关心接入现有阅片流程的成本和漏诊责任归属。",
+          "summary": "阿里巴巴达摩院开源了一个叫 Damo Radar 的医学影像视觉语言模型，做增强 CT 分析，覆盖 18 个腹部器官、146 项临床发现、接近 150 种腹部疾病 (含恶性肿瘤)。在接近 4 万例真实检查上，平均 AUC 0.913。研究团队的说法是「全球首个专家级通用医学影像模型」，论文发表在 Science。报道称它在部分任务上超过了多数放射科医生，但没有给出参数规模、开源仓库地址和许可证。评论区对「开源」这个词的用法有疑问，也有人关心接入现有阅片流程的成本和漏诊责任归属。",
           "summary_en": "Alibaba's Damo Academy open-sourced a vision-language medical imaging model called Damo Radar for contrast-enhanced CT analysis, covering 18 abdominal organs, 146 clinical findings, and nearly 150 abdominal conditions including malignant tumors. Across nearly 40,000 real-world exams it reports an average AUC of 0.913. The research team calls it the world's first expert-level generalist medical imaging model, and the paper is published in Science. The report says it outperformed most radiologists on some tasks, but gives no parameter count, repository, or license. Commenters question how \"open-sourced\" is being used here, and the practical concerns raised are the cost of wiring it into existing reading workflows and who owns the liability for a missed diagnosis.",
-          "why": "同一天另一条讲模型往小了走,这条是往专业里走:把通用能力收窄到一个科室的读片任务上,指标做到了可用。",
+          "why": "同一天另一条讲模型往小了走，这条是往专业里走：把通用能力收窄到一个科室的读片任务上，指标做到了可用。",
           "why_en": "On a day when another story has models shrinking, this one narrows instead: take general capability and restrict it to one department's reading task, and the numbers become usable."
         },
         {
@@ -241,9 +241,9 @@
           "author_en": "Thomas Ptacek · sockpuppet.org · Hacker News",
           "likes": 624,
           "url": "https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/",
-          "summary": "Thomas Ptacek 今天在 Hacker News 上写了一套具体做法:让 LLM 只当编辑,不当作者。两条硬规则:模型建议的替换措辞一个都不用,把这个建议当成「这里有问题」的信号,回到自己原来的说法或者自己另想一个;模型的夸奖也不接受,因为接受夸奖会让人在初稿的冲劲上加倍下注,而不是回去改。Simon Willison 当天转发认同,说他一直信「绝不用 LLM 建议的措辞」这条,用了的文字总有一股怪味。",
+          "summary": "Thomas Ptacek 今天在 Hacker News 上写了一套具体做法：让 LLM 只当编辑，不当作者。两条硬规则：模型建议的替换措辞一个都不用，把这个建议当成「这里有问题」的信号，回到自己原来的说法或者自己另想一个；模型的夸奖也不接受，因为接受夸奖会让人在初稿的冲劲上加倍下注，而不是回去改。Simon Willison 当天转发认同，说他一直信「绝不用 LLM 建议的措辞」这条，用了的文字总有一股怪味。",
           "summary_en": "Thomas Ptacek posted a specific workflow on Hacker News today: let the LLM act only as an editor, never as the author. Two hard rules: never use a word or phrase the model suggests as a replacement (treat the suggestion as a signal something's off, then go back to your own wording or think of a different one yourself); and never accept its praise, since accepting praise makes you double down on first-draft impulses instead of revising. Simon Willison reposted it the same day in agreement, saying he's always believed in never using a phrase an LLM suggests, the resulting text always has a weird smell to it.",
-          "why": "这条刚好是写今晚这份文件时也在用的检查方法:AI 腔自查,和反着用编辑建议是同一件事。详见今日行动第 2 条。",
+          "why": "这条刚好是写今晚这份文件时也在用的检查方法：AI 腔自查，和反着用编辑建议是同一件事。详见今日行动第 2 条。",
           "why_en": "This is the same check used while writing tonight's issue: self-screening for AI-voice tells and \"use editing suggestions backwards\" are the same move. See today's second action."
         }
       ]
@@ -303,9 +303,9 @@
           "author_en": "Anthropic · Claude Code Blog",
           "likes": null,
           "url": "https://claude.com/blog/projects-redesigned",
-          "summary": "Claude Code 的 Projects 今天改版。原先的文件夹模式要用户手动拆任务、自己拼结果,现在改由一位 coordinator 管理多条并行工作线程。用户只需讲清楚要做什么,Claude 会把任务分给新建或已有的线程,每条线程是一个独立的 Claude Code 云端会话,挂在各自的仓库分支上;若两条线程动了同一段代码,coordinator 按普通的 PR 冲突处理。项目还会积累一份跨会话的共享记忆,比如发布日期改到周五、某个导出功能为何被砍、该找谁确认,不用每次重新交代背景。目前为 beta,仅向部分使用云端会话的 Claude Pro/Max 用户开放,一周内逐步扩至更多 Pro/Max 用户,之后才轮到 Team 和 Enterprise 账号;未获权限者可加入等候名单。",
+          "summary": "Claude Code 的 Projects 今日改版。过去用文件夹模式，任务拆分和结果拼接都要用户自己动手；现在由一位 coordinator 统一管理多条并行工作线程。用户只需说清要做什么，Claude 会把任务分派给新建或已有的线程。每条线程是一个独立的 Claude Code 云端会话，各自挂在对应的仓库分支上；两条线程若改动同一段代码，coordinator 按常规 PR 冲突处理。项目还会积累一份跨会话的共享记忆，比如发布日期改到周五、某个导出功能为何被砍、该找谁确认，不必每次重新交代背景。该功能目前为 beta，仅面向部分使用云端会话的 Claude Pro/Max 用户开放，一周内逐步扩至更多 Pro/Max 用户，之后才轮到 Team 和 Enterprise 账号；未获权限者可加入等候名单。",
           "summary_en": "Claude Code's Projects redesigned today, moving from the old \"manually split tasks, stitch results together yourself\" folder model to one where a coordinator manages multiple parallel work threads. You describe the goal, and Claude routes tasks to new or existing threads, each thread its own Claude Code cloud session on its own repo branch; if two threads touch the same code, the coordinator treats it as an ordinary PR conflict and resolves it. The project also builds up shared memory across sessions (the release moved to Friday, why an export got dropped, who to check with), so you don't have to re-explain context every time. It's in beta now, available only to some Claude Pro/Max subscribers using cloud sessions, expanding to more Pro/Max users over the coming week before reaching Team and Enterprise plans; anyone without access yet can join a waitlist.",
-          "why": "合并冲突和跨线程记忆,原本是不少人手写在 AGENTS.md 一类文件里的协调规则,如今做成了产品原生功能。区别在于,这套规则以后由谁维护——是你自己,还是系统。",
+          "why": "合并冲突和跨线程记忆，过去不少人手写在 AGENTS.md 一类文件里充当协调规则，如今成了产品原生功能。区别在于，这套规则以后由谁维护——是你自己，还是系统。",
           "why_en": "Merge-conflict handling and cross-thread memory used to be coordination rules people wrote by hand into an AGENTS.md or similar file. Now it's a native product feature. The difference is who maintains those rules going forward, you or the system."
         }
       ]
