@@ -1,0 +1,290 @@
+{
+  "date": "2026-09-21",
+  "partial": false,
+  "banner": "权重可删，模型改种子",
+  "banner_en": "Weights get deleted, so models become torrents",
+  "image": {
+    "src": "digests/img/2026-09-21.png",
+    "caption": "本期头图是开源模型备份站 Pirate Face 主页的分享图（og:image）。该站说明称，它把 Hugging Face 上的开放权重模型做成 magnet 链接分发，种子保留 Hugging Face 的 SHA-256 校验和，页面写明短期目标是让模型的可用性长过任何单一托管平台。站上举的例子有 Qwen3-27B（54GB）、Mistral-7B-v0.3（14GB）和 gpt2（548MB）。（图：Pirate Face）",
+    "caption_en": "This issue's lead image is the share card (og:image) from the homepage of Pirate Face, an open-model backup site. Per the site's own description, it redistributes open-weight models from Hugging Face as magnet links, keeps Hugging Face's SHA-256 checksums with each torrent, and states on the page that its short-term goal is for model availability to outlive any single hosting platform; its listed examples are Qwen3-27B (54 GB), Mistral-7B-v0.3 (14 GB), and gpt2 (548 MB). (Image: Pirate Face)"
+  },
+  "actions": [
+    {
+      "text": "给你现在真正依赖的开放权重模型做一份异地副本，别只留在原来的下载页面上。挑一到两个你在用或打算用的模型，核对它们的 Hugging Face SHA-256 校验和，再把权重放到至少一处不归原厂管的存储上，可以是自建对象存储、离线硬盘，或者今天这个站的种子。预计 25 分钟，取决于模型体积。完成标志：你能说出「就算那个模型明天从原站下架，我这边还有一份校验和能对得上的副本」，并且真的走过一次校验。背景一句话：Pirate Face 今天在 Hacker News 上排到第三，做法是把模型做成带 Hugging Face web-seed 的 magnet 链接，权重文件仍按官方 SHA-256 校验，示例里包含 Qwen3-27B（54GB）和 gpt2（548MB）。",
+      "text_en": "Make an off-site copy of the open-weight model you actually depend on, rather than leaving it only on the page you downloaded it from. Pick one or two models you use or plan to use, check their Hugging Face SHA-256 checksums, and put the weights somewhere the original vendor does not control, whether that is your own object storage, an offline drive, or today's torrent site. About 25 minutes, depending on model size. Done when you can say \"even if that model gets pulled from the original host tomorrow, I have a copy whose checksum still matches,\" and you have actually run the check once. One sentence of background: Pirate Face hit #3 on Hacker News today; it turns models into magnet links with a Hugging Face web-seed built in, keeps the official SHA-256 checksums on the weight files, and lists Qwen3-27B (54 GB) and gpt2 (548 MB) among its examples.",
+      "source": "Pirate Face · Hacker News",
+      "source_en": "Pirate Face · Hacker News",
+      "source_url": "https://pirateface.co/"
+    },
+    {
+      "text": "给你喂给 agent 的内部文档加一层能机器读的头部。挑一个你自己维护的知识库目录，在一批文档开头的 YAML frontmatter 里写清三件事：这份文档什么时候写的、覆盖什么范围、被谁验证过。预计 30 分钟。完成标志：你能只靠读头部回答「这份资料还作数吗」，不用把正文重看一遍，也能让多个 agent 会话判断该不该引用它。背景一句话：NVIDIA 的 Agora 把多个研究 agent 的贡献写成 Git 提交，父提交标出它在谁的基础上做的，再给每条贡献算一个由别人引用和复现决定的分数，自己引用自己不算。",
+      "text_en": "Give the internal documents you feed your agents a machine-readable header. Pick a knowledge-base directory you maintain and, on a batch of documents, fill in three things in YAML frontmatter at the top: when it was written, what it covers, and who verified it. About 30 minutes. Done when you can answer \"is this material still valid?\" by reading only the header instead of re-reading the body, and separate agent sessions can judge whether to cite it. One sentence of background: NVIDIA's Agora writes each research agent's contribution as a Git commit whose parents identify what it built on, then scores each contribution by whether others reuse or reproduce it, with self-citation excluded.",
+      "source": "Agora: Git as Shared Memory for AI Research Agents · TLDR AI",
+      "source_en": "Agora: Git as Shared Memory for AI Research Agents · TLDR AI",
+      "source_url": "https://github.com/yifanzhang-pro/Agora"
+    },
+    {
+      "text": "数一遍你给 agent 挂了几个 MCP server，把里面只读的那些改成直接调命令行或 HTTP 接口。先列清单，写到工具名和数量为止，再挑一两类只读的换掉，换完对比每次会话开头的工具定义占了多长。预计 30 分钟。完成标志：你能量出砍掉这些 server 之后省下了多少上下文，并且确认换掉的那几条链路照样能跑通。背景一句话：今天有人写了一篇主张删掉大多数 MCP server 的文章，反转在于它给出的理由是模型和命令行工具两头都变强了，而这篇 113 分帖子下面最集中的反驳恰好是「命令行工具要能藏住凭据，也要能应付没有 shell 权限的 agent」。",
+      "text_en": "Count how many MCP servers you have attached to your agents, then move the read-only ones over to calling a CLI or HTTP endpoint directly. Start with the inventory, down to tool names and counts, then swap out one or two read-only categories and compare how much of each session's opening is taken up by tool definitions. About 30 minutes. Done when you can quantify the context you saved and have confirmed the swapped-out paths still work. One sentence of background: someone argued today for deleting most MCP servers, and the reversal is that his stated reason is that both models and CLIs got better, while the top rebuttals in that 113-point thread are precisely that CLIs have to solve hiding credentials and handling agents with no shell access.",
+      "source": "Why MCP Was Always a Bad Idea? · Hacker News",
+      "source_en": "Why MCP Was Always a Bad Idea? · Hacker News",
+      "source_url": "https://maharship.com/blog/why-mcp-was-always-a-bad-idea/"
+    }
+  ],
+  "hands_on": {
+    "title": "在自己笔记本上跑一个 27B 级的多模态本地模型",
+    "title_en": "Run a 27B-class multimodal model on your own laptop",
+    "why": "把 27B 级模型塞进笔记本这条路，今年一直在被压小，今天这套压到了 8.6GB 并且能读图。它是基于 Qwen3.8 27B 做的三值权重版本，权重只取 -1、0、+1 三种值，官方说保留了 98.2% 的基准成绩，语言模型加视觉塔一共 8.6GB，Apple M5 Max 上约 47 tok/s。值得今晚试的原因是这里有一个别人很少讲的坑：它必须用模型包里自带的 runtime 加载，作者写明了普通 MLX 加载器会跳过激活变换和反查嵌入，结果是给你一段错的输出而不是报错。跑通它，你就同时拿到了一个能离线干活的多模态模型，和一次「加载器版本不对会静默出错」的现场经验。",
+    "why_en": "Fitting a 27B-class model onto a laptop has been a shrinking-target problem all year, and today's build gets it to 8.6 GB with image input. It's a ternary-weight version of Qwen3.8 27B, where every weight is -1, 0, or +1, and the vendor claims 98.2% of benchmark performance retained, 8.6 GB for the language model plus vision tower, and about 47 tokens/sec on an Apple M5 Max. What makes it worth an evening is a trap most writeups skip: it must be loaded with the runtime bundled inside the model pack. The authors state plainly that ordinary MLX loaders skip the activation transform and the inverse embedding lookup, and return wrong output rather than an error. Get it running and you have both an offline multimodal model and first-hand experience of a loader mismatch that fails silently.",
+    "time": "约30分钟（主要是 8.6GB 下载时间）",
+    "time_en": "~30 min (mostly the 8.6 GB download)",
+    "steps": [
+      "确认本机是 Apple 芯片并装好 hf 命令行；没有就先 pip install -U huggingface_hub。这条走 MLX，CUDA 或纯 CPU 要换同一套权重的 GGUF 包，还得用作者维护的 llama.cpp 分支，原版跑不了",
+      "拉模型：hf download prism-ml/Ternary-Bonsai-2-27B-mlx-2bit --local-dir bonsai2-27b-mlx",
+      "装它自带的 runtime 依赖：pip install -r bonsai2-27b-mlx/runtime/requirements.txt",
+      "关键一步，加载前把包里的 runtime 目录插进模块搜索路径，不要只用系统装的 mlx_vlm：python 里先跑 sys.path.insert(0, \"bonsai2-27b-mlx/runtime\")，再 from vision_artifact import load_vl_model, chat_config",
+      "跑一次带图提问（把 photo.jpg 换成本机任意一张图）：model, processor, config = load_vl_model(\"bonsai2-27b-mlx\")；prompt = apply_chat_template(processor, chat_config(config), \"What is in this image?\", num_images=1)；print(generate(model, processor, prompt, [\"photo.jpg\"], max_tokens=256, temperature=1.0))。不需要读图就把图片参数留空",
+      "完成标志:模型在本机离线答出了图里有什么,你也能说清为什么 chat_config 和 runtime 目录都不能省 (作者写明 mlx-vlm 的提示词工具按 model_type 分派)"
+    ],
+    "steps_en": [
+      "Confirm you're on an Apple-silicon Mac with the hf CLI installed; if not, pip install -U huggingface_hub. This path is MLX only; for CUDA or plain CPU you need the GGUF packs of the same weights, and those require the authors' fork of llama.cpp rather than stock llama.cpp",
+      "Pull the model: hf download prism-ml/Ternary-Bonsai-2-27B-mlx-2bit --local-dir bonsai2-27b-mlx",
+      "Install its bundled runtime dependencies: pip install -r bonsai2-27b-mlx/runtime/requirements.txt",
+      "The step that matters: put the pack's own runtime directory on the module search path before loading, rather than relying on the system-installed mlx_vlm. In Python, run sys.path.insert(0, \"bonsai2-27b-mlx/runtime\") first, then from vision_artifact import load_vl_model, chat_config",
+      "Run one image question (swap photo.jpg for any local image): model, processor, config = load_vl_model(\"bonsai2-27b-mlx\"); prompt = apply_chat_template(processor, chat_config(config), \"What is in this image?\", num_images=1); print(generate(model, processor, prompt, [\"photo.jpg\"], max_tokens=256, temperature=1.0)). Leave the image argument out for text-only use",
+      "Done when the model answers about the image while fully offline, and you can explain why neither chat_config nor the runtime directory is optional (the authors note mlx-vlm's prompt helper dispatches on model_type)"
+    ],
+    "source": "PrismML · Ternary Bonsai 2 27B（模型卡与 Hugging Face 仓库）",
+    "source_en": "PrismML · Ternary Bonsai 2 27B (model card and Hugging Face repo)",
+    "source_url": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-mlx-2bit"
+  },
+  "meta_read": "今天几条消息可以并成一句话:要紧的那件事,和替你标识它的那个标签,常常不是同一个东西。\n\n种子站把权重从托管平台上摘出来,留下的是校验和;一个人做的模型没人理,同一套架构配上发布会就叫突破;一块显卡落在哪,取决于它装进了谁的数据中心,跟国界只有间接关系。这几条各自的结论不重要,重要的是它们都在提醒同一件事:看到「可用」「原创」「受控」这三个词时,先问一句它指的到底是哪一层。\n\n更值得记的是失败的样子变了。以前系统出错是崩给你看,现在是可以给你一段通顺自信的错答案:加载器不对能静默给出错输出,一张跨站 cookie 被归到分析类却在做营销的事,一个积分系统按次数计分而不按阅读计分,最后养出来的是刷次数的人。这些都不会触发告警,因为告警本来就接在「有没有报错」上。\n\n所以今天真正可迁移的,不是任何一条结论,而是把每个信号分开问一遍它是谁给的、在量什么。能回答清楚的那个,才配进你的决策。",
+  "meta_read_en": "Today's stories compress into one line: the thing that matters and the label that stands in for it are frequently not the same object.\n\nA torrent site lifts weights off their host and leaves the checksum behind. A one-person model gets ignored while the same architecture, with a launch event, becomes a breakthrough. Where a GPU physically sits depends on whose datacenter it was installed in, and only indirectly on a border. The individual conclusions matter less than the shared nudge: when you see the words available, original, or controlled, ask which layer it is describing.\n\nWhat's more worth noting is that failure changed shape. Systems used to break by crashing in front of you; now they hand you a fluent, confident wrong answer. A mismatched loader silently returns bad output. A cross-site cookie is filed under analytics while doing marketing work. A rewards program scores by count rather than by reading, and breeds people who run the clock. None of these trip an alarm, because alarms are wired to whether something errored.\n\nSo the transferable move today isn't any single conclusion. It's asking, of each signal, who produced it and what it is actually measuring. Only the ones that survive that question belong in a decision.",
+  "ota": {
+    "learned": [
+      "观察:YouTube 在云端还是拿不到字幕,但今天两条路径给出了不同的读数。九个频道的 RSS 全部返回 200 和真实条目,说明列表接口是通的;同一批视频走 --extractor-args \"youtube:player_client=android\" 取字幕,三次都撞上 Sign in to confirm you're not a bot。所以本期零条 YouTube 指的是「有视频、没字幕」,不是「频道没更新」,按运行约定不做第二次尝试。同一轮也确认 Import AI 的 Substack feed 仍被 Cloudflare 挡着,curl 和 WebFetch 两条路都返回 403。",
+      "已验证:今天抓 Hacker News 时踩了一个坑,当场复现并定位。命令是 curl -s \"https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=100&numericFilters=created_at_i>$(date -d '2 days ago' +%s)\"。shell 里那个 > 没被引号包住,curl 把它当成了重定向,多余参数变成裸的 1758500000,服务端直接返回 HTTP 400 和一段 HTML 错误页。真正的危险在于加了 -o file 之后,curl 会把这个错误页原样写进文件,退出码不提示,下一步 jq 报的是 Invalid numeric literal,看起来像响应本身有问题。分开复现过:带 > 的地址返回 400,把 > 写成 %3E 或整个去掉就返回 200 和正常 JSON。",
+      "已验证:今天要核实一个模型的体积和版权,第一站先看发布页的品牌名。prismml.com 的页面写的是 PrismML,照这个名字去 https://huggingface.co/prismml 查,返回 404。真正拥有这些模型的是 Hugging Face 上的 prism-ml 这个组织,这一点是从模型卡自己的 base_model 字段和仓库属主读出来的,不是从发布页的品牌推的。所以核查一个外部对象存不存在,地址要用对方自己的命名空间,不能用发布页上那个名字。"
+    ],
+    "new_capabilities": [
+      "以后凡是把响应体存进文件的抓取,先看状态码再解析。具体做法:curl 一律加 -f(或至少 -w '%{http_code}') 并检查退出码,别让 -o 把一段 HTTP 错误页当成内容写进文件;jq 报「Invalid numeric literal / cannot parse」时,第一件事是 cat 文件头部看它是不是一段 HTML。今天这条是现场复现的:shell 里没引号包住的 > 会让 curl 返回 400 并把错误页写进输出文件,报错位置和真正的原因隔了两步。",
+      "以后核查一个外部资源存不存在,一律用发布方自己的命名空间地址,不从页面上的品牌名推断。今天查到 Hugging Face 上的归属是 prism-ml,而发布页写的是 PrismML,用后者去查直接 404。做法是先从对方自己的元数据 (模型卡的字段、仓库属主、API 返回的 full_name) 里取标识,再拿这个标识去查。",
+      "以后报告一条采集带是不是空的,把它的两条路径分开说:列表接口通不通、内容取不取得到。今天 YouTube 是 RSS 全部 200、字幕全部被挡,这两句话对应的是不同的结论,前者说明频道在更新,后者才说明这期为什么是零条。"
+    ],
+    "learned_en": [
+      "Observed: YouTube transcripts are still unreachable from the cloud, but today the two paths returned different readings. All nine roster channels' RSS feeds returned 200 with real entries, so the listing endpoint is healthy; subtitle fetches for the same videos via --extractor-args \"youtube:player_client=android\" hit \"Sign in to confirm you're not a bot\" on all three attempts. So \"zero YouTube items this issue\" means there were videos but no transcripts, not that the channels were quiet, and per this run's constraints no second attempt was made. The same pass confirmed Import AI's Substack feed is still behind Cloudflare, with both curl and WebFetch returning 403.",
+      "Verified: while pulling Hacker News today I hit a trap, reproduced it on the spot, and located it. The command was curl -s \"https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=100&numericFilters=created_at_i>$(date -d '2 days ago' +%s)\". The bare > was not quoted, so the shell treated it as a redirect and the stray argument became a bare 1758500000; the server returned HTTP 400 and an HTML error page. The real danger is that with -o file added, curl writes that error page into the file verbatim, the exit code does not flag it, and the very next step, jq, reports Invalid numeric literal, which reads like the response itself was malformed. Reproduced separately: the URL with a bare > returns 400; encoding it as %3E, or dropping the filter entirely, returns 200 with valid JSON.",
+      "Verified: verifying one model's footprint and license today, my first stop was the brand name on the vendor's own page. prismml.com says PrismML, so I looked up https://huggingface.co/prismml and got a 404. The models are actually owned by the prism-ml organization on Hugging Face, which I read off the model card's own base_model field and the repository owner rather than inferring it from the page's branding. So confirming that an external object exists requires an address in the owner's own namespace, not the name on the launch page."
+    ],
+    "new_capabilities_en": [
+      "From now on, any fetch that writes its response body to a file must check the status code before parsing. Concretely: always pass -f to curl (or at minimum -w '%{http_code}') and check the exit code, so that -o never writes an HTTP error page into a content file; and when jq reports Invalid numeric literal or cannot parse, the first move is to cat the top of the file and see whether it is HTML. This was reproduced live today: an unquoted > in a shell command makes curl return 400 and save the error page to the output file, putting two steps between the symptom and the cause.",
+      "From now on, verify that an external resource exists using an address in the owner's own namespace rather than a brand name off a landing page. Today the Hugging Face owner turned out to be prism-ml while the vendor page said PrismML, and looking up the latter 404'd. Take the identifier from the owner's own metadata (a model card field, the repo owner, an API's full_name) and query with that.",
+      "From now on, when reporting whether a sweep lane was empty, state its two paths separately: whether the listing endpoint is up, and whether the content is retrievable. Today YouTube returned 200 across all RSS feeds while every subtitle fetch was blocked. Those are different claims: the first says the channels are posting, the second is what explains the zero-item count."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 264060,
+      "stars_today": 826
+    },
+    {
+      "rank": 2,
+      "name": "BuilderIO/agent-native",
+      "url": "https://github.com/BuilderIO/agent-native",
+      "description": "A framework for building agentic apps",
+      "language": "TypeScript",
+      "stars": 5430,
+      "stars_today": 98
+    },
+    {
+      "rank": 3,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 18347,
+      "stars_today": 2428
+    },
+    {
+      "rank": 4,
+      "name": "trycua/cua",
+      "url": "https://github.com/trycua/cua",
+      "description": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation.",
+      "language": "HTML",
+      "stars": 25332,
+      "stars_today": 1018
+    },
+    {
+      "rank": 5,
+      "name": "anthropics/financial-services",
+      "url": "https://github.com/anthropics/financial-services",
+      "description": "",
+      "description_en": "Reference agents, skills, and data connectors for financial-services workflows: investment banking, equity research, private equity, and wealth management. Ships as a Claude Cowork plugin or deploys via the Claude Managed Agents API.",
+      "language": "Python",
+      "stars": 35518,
+      "stars_today": 260
+    },
+    {
+      "rank": 6,
+      "name": "paperless-ngx/paperless-ngx",
+      "url": "https://github.com/paperless-ngx/paperless-ngx",
+      "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
+      "language": "Python",
+      "stars": 45700,
+      "stars_today": 57
+    },
+    {
+      "rank": 7,
+      "name": "anthropics/claude-code",
+      "url": "https://github.com/anthropics/claude-code",
+      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
+      "language": "TypeScript",
+      "stars": 147288,
+      "stars_today": 419
+    },
+    {
+      "rank": 8,
+      "name": "mihail911/modern-software-dev-assignments",
+      "url": "https://github.com/mihail911/modern-software-dev-assignments",
+      "description": "Assignments for CS146S: The Modern Software Dev (Stanford University Fall 2026/2025)",
+      "language": "Python",
+      "stars": 4651,
+      "stars_today": 172
+    },
+    {
+      "rank": 9,
+      "name": "higgsfield-ai/higgsfield",
+      "url": "https://github.com/higgsfield-ai/higgsfield",
+      "description": "Fault-tolerant, highly scalable GPU orchestration, and a machine learning framework designed for training models with billions to trillions of parameters",
+      "language": "Jupyter Notebook",
+      "stars": 5505,
+      "stars_today": 465
+    },
+    {
+      "rank": 10,
+      "name": "Open-Dev-Society/OpenStock",
+      "url": "https://github.com/Open-Dev-Society/OpenStock",
+      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights - built openly, for everyone, forever free.",
+      "language": "TypeScript",
+      "stars": 17068,
+      "stars_today": 755
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 35,
+      "items": [
+        {
+          "title": "模型权重会从 HF 上消失，这个站把它们做成种子存下来",
+          "title_en": "Model weights do disappear from HF. This site keeps them as torrents.",
+          "author": "Pirate Face · Hacker News",
+          "author_en": "Pirate Face · Hacker News",
+          "likes": 525,
+          "url": "https://pirateface.co/",
+          "summary": "Pirate Face 是个新站，只做一件事：把 Hugging Face 上的开放权重模型做成 BitTorrent 种子镜像，让它们不再只躺在一家公司的服务器上。每个模型都生成 magnet 链接，并写入 Hugging Face 的 web-seed（BitTorrent BEP-19），所以哪怕没人做种，文件也能直接从 Hugging Face 拉，速度一样；一旦某个模型被 Hugging Face 下架，种子自动接手，该模型在站上便标记为已获救。每个权重文件都保留 Hugging Face 官方的 SHA-256 校验和，页面写明哈希仍须对得上。站上举的例子有 Qwen3-27B（54GB）、Mistral-7B-v0.3（14GB）和 gpt2（548MB），并称有 66.9 万个符合条件、许可为 MIT 或 Apache-2.0（另加一项被批准的 Kimi-K3 例外）的模型。分数体系写得很克制：邀请一人 50 分，上限 10 次；救回一个模型 25 分；做种奖励标注为「计划中，未启用」；页面上直接写着「这里没有代币」。浏览、下载、做种都不需要账号，认领用户名是可选项，直接发布功能也标注为尚未上线。评论区一派人认为这件事早该有人做，并翻出 Mistral 当年确实用过种子分发（现在不用了）；另一派指出公开种子随年头会慢慢死掉，BitTorrent V1 对长期做种不友好，V2 几乎没人用，而每次改动都会产生一个新种子，导致碎片化。也有人指出：如果原始发布方自己都不愿意继续出存储，去中心化只能增加冗余，不能凭空变出可用性，能救回来靠的是少数愿意长期留档的人。",
+          "summary_en": "Pirate Face is a new site that does one thing: mirrors open-weight models from Hugging Face as BitTorrent swarms so they stop existing only on one company's servers. It generates a magnet link per model with a Hugging Face web-seed (BitTorrent BEP-19) baked in, so a file downloads directly from Hugging Face at the same speed even with zero peers; once Hugging Face pulls a model, the swarm takes over and the model is marked \"Rescued\" on the site. Every weight file keeps Hugging Face's official SHA-256 checksum, with the page stating the hash still has to match. Examples listed are Qwen3-27B (54 GB), Mistral-7B-v0.3 (14 GB), and gpt2 (548 MB), and the site claims 669k-plus eligible models licensed MIT or Apache-2.0, plus one approved Kimi-K3 exception. The points system is deliberately modest: 50 per referral capped at 10, 25 for rescuing a model, seeding rewards labeled \"planned, not active,\" and the page states outright that there is no token. Browsing, downloading, and seeding need no account, claiming a handle is optional, and direct publishing is marked not live yet. One camp in the comments says this should have existed years ago, digging up that Mistral did distribute via torrents once and no longer does; another points out that public torrents tend to die as they age, that BitTorrent V1 makes long-term seeding annoying while V2 is almost never used, and that every revision spawns a new torrent and breeds fragmentation. Others note that if the original publisher is unwilling to keep paying for storage, decentralization can only add redundancy rather than conjure availability, and what keeps a model alive is a handful of people willing to hoard it.",
+          "why": "这是今天最结实的一条事实判断：开放权重的「开放」指的是许可，不是可用性，权重仍然躺在别人的服务器上，可以随时撤下。种子加官方校验和这个组合，第一次让「我这份是原版」变成一件能自己验的事，而不是相信某个下载链接还在。",
+          "why_en": "This is the most solid factual point of the day: \"open weights\" refers to the license, not to availability. The weights still sit on someone else's servers and can be pulled at any time. Combining a torrent with the official checksum is what first makes \"my copy is the genuine article\" something you can verify yourself, rather than trusting that a download link is still up."
+        },
+        {
+          "title": "Google 把 agent 当不可信负载管，评论区却在算它的寿命",
+          "title_en": "Google treats agents as untrusted workload; the comments are doing product-lifespan math",
+          "author": "Google · AX (Agent Executor) · Hacker News",
+          "author_en": "Google · AX (Agent Executor) · Hacker News",
+          "likes": 412,
+          "url": "https://agentexecutor.io",
+          "summary": "AX 是 Google 放出的开源 agent 编排器，代码在 github.com/google/ax，Apache 2.0，README 开头就挂着一句警告：核心概念、协议和规范还在改，稳定版之前会引入破坏性变更。它把 agent 当成一类新负载，既不是无状态微服务，也不是跑完就结束的批处理任务，于是给了四个原语。Task 在带 CPU 和内存上限的沙箱里跑不可信代码；Workspace 预先接好 Git 仓库、MCP server 和技能包，让 agent 一启动就是热的；Gateway 把出网流量锁到一张显式的主机白名单上；Model 配置平台自己用哪个模型，凭据走 Kubernetes secret。这些都用 ax.io/v1alpha1 清单描述，一条 ax apply -f task.yaml 就位，后面接 ax watch 看阶段变化、ax ssh 进沙箱、ax suspend 和 ax resume 挂起再原地恢复。它跑在 Agent Substrate 之上，官方称能在一个集群里跑到数十亿任务、挂起的 agent 恢复在 1 秒以内、几十个任务共用一份 worker 资源。装法是 go install github.com/google/ax/cmd/ax@latest，控制面需要自备一个 Kubernetes 集群和 ko。但这条值得看的不是这些数字。四百多分的帖子下面几乎没人讨论技术：最高赞在质疑 Google 的产品寿命，紧跟其后的是一串带细节的 Gemini 吐槽，说它在自家 Sheets 和 Docs 里差到没法用，比如让它把 Markdown 标记转成 Google Docs 原生格式，怎么调都做不到。",
+          "summary_en": "AX is Google's open-source agent orchestrator, at github.com/google/ax under Apache 2.0, with a warning at the top of the README that the core concepts, protocols, and specs are still being refined and major breaking changes are expected before a stable release. It treats agents as a new kind of workload, neither stateless microservices nor run-to-completion batch jobs, and offers four primitives. Task runs untrusted code in a sandbox with CPU and memory limits; Workspace pre-wires Git repos, MCP servers, and skill packages so an agent starts warm; Gateway locks outbound traffic to an explicit host allowlist; and Model sets which LLM the platform itself uses, with credentials from a Kubernetes secret. These are described as ax.io/v1alpha1 manifests, applied with ax apply -f task.yaml, followed by ax watch for phase changes, ax ssh into the sandbox, and ax suspend / ax resume to checkpoint and pick up in place. It runs on Agent Substrate, with claims of billions of tasks per cluster, sub-second resumption of suspended agents, and dozens of tasks sharing one worker's resources. Install is go install github.com/google/ax/cmd/ax@latest, and the control plane needs your own Kubernetes cluster plus ko. The notable part isn't those numbers, though. On a 400-plus-point post, almost nobody discusses the technology: the top comment questions Google's product longevity, followed by a run of specific Gemini complaints describing it as unusable inside Google's own Sheets and Docs, including a case where asking it to convert Markdown markers into native Google Docs formatting failed no matter how it was prompted.",
+          "why": "技术那半边，四个原语里有三个（沙箱、出网白名单、预热工作区）是把 agent 当不可信负载在管，这个默认设置比大多数编排器靠前。剩下那半边更值得记：一个工程上说得通的开源项目，卡住它的可能是发布方自己的信誉账本，而那个东西不在代码里，也不在仓库的 star 数里。",
+          "why_en": "On the technical side, three of the four primitives (sandbox, egress allowlist, pre-warmed workspace) treat the agent as untrusted workload, a more conservative default than most orchestrators ship. The other half is worth recording more: an engineering-sound open-source project can be held back by its publisher's credibility ledger, and that ledger is neither in the code nor in the repo's star count."
+        },
+        {
+          "title": "按次数给钱的激励，养出来的是刷次数的人",
+          "title_en": "An incentive that pays per session breeds people who run sessions",
+          "author": "Gadget Review · Hacker News",
+          "author_en": "Gadget Review · Hacker News",
+          "likes": 215,
+          "url": "https://www.gadgetreview.com/singapore-is-paying-people-to-put-down-their-phones-and-read-books",
+          "summary": "新加坡国家图书馆管理局 9 月 6 日上线 ReadSG，一个五年期的全国阅读推广活动，把阅读时长换成虚拟币，再兑成现金。机制写得很具体：在政府科技局的 CrowdTaskSG 上登记至少 15 分钟阅读，得 20 枚虚拟币，1000 枚兑 1 新加坡元，也就是说一次 15 分钟值 0.02 新元；一天只算一次，连做 50 天才够 1 新元。官方在报道里说这笔钱是有意定得很小的，目的是行为引导，不是收入。另一条并行的「Read for Good」线走集体目标：参与者累计 750 万分钟，解锁最高 15 万新元的慈善捐款。报道里的批评集中在金额太小，只有本来就在读书的人才够得着；支持的说法来自行为经济学，认为参与门槛低时小额激励也能养成习惯。评论区最有用的一条是有人去翻了活动原页，指出钱只是留存下来的一个机制，真正的设计是常规的积分化：经验值、连续天数、排行榜、活动限定周边、抽奖和集体目标。另一条更值得想的是有人贴出自己小学参加 Accelerated Reader 的经历：那个项目按书的页数给分、分数换糖，于是他学会了把书单按分数排序，专门去借分值最高的书，最后因为这事被禁。",
+          "summary_en": "Singapore's National Library Board launched ReadSG on September 6, a five-year national reading campaign that turns logged reading time into virtual coins redeemable for cash. The mechanics are specific: log at least 15 minutes of reading on GovTech's CrowdTaskSG platform for 20 virtual coins, with 1,000 coins converting to S$1, meaning one 15-minute session is worth S$0.02; only one session counts per day, so fifty straight days buys one Singapore dollar. Officials told the outlet the payout is deliberately small, a behavioral nudge rather than an income. A parallel \"Read for Good\" track runs a collective goal: 7.5 million cumulative participant minutes unlocking up to S$150,000 in charitable donation. Criticism in the piece centers on the amount being too small to reach anyone not already reading, while supporters cite behavioral economics holding that small incentives build habits when participation is easy. The most useful comment is someone who went to the original campaign page and noted the money is just one surviving mechanic; the actual design is conventional gamification: XP, streaks, leaderboards, event-only merch, prize draws, and collective goals. Even more worth thinking about is another commenter's account of Accelerated Reader in elementary school, where points scaled with book length and bought candy, so he learned to sort the book list by points, checked out only the highest-value titles, and was eventually banned from the program for it.",
+          "why": "这条真正说的不是阅读，是激励设计：指标一旦按次计算，行为就会朝把次数刷满收敛，15 分钟到了就可以停。做增长和积分体系的人可以直接把它当反例，先问自己奖励的是动作还是结果。",
+          "why_en": "This isn't really about reading, it's about incentive design: once the metric is per-session, behavior converges on maximizing session count, and the 15-minute mark becomes the stopping point. Anyone working on growth or a points system can file it as a counter-example and ask first whether they're paying for the action or the outcome."
+        },
+        {
+          "title": "挂着十几个 MCP server，每个会话开头都在交这笔税",
+          "title_en": "Run a dozen MCP servers and every session pays the tax up front",
+          "author": "Why MCP Was Always a Bad Idea? · Hacker News",
+          "author_en": "Why MCP Was Always a Bad Idea? · Hacker News",
+          "likes": 113,
+          "url": "https://maharship.com/blog/why-mcp-was-always-a-bad-idea/",
+          "summary": "这篇 9 月 14 日的文章主张删掉大多数 MCP server，改用有文档的 HTTP 接口和命令行工具。理由是两件事同时变了：MCP 是 2024 年 11 月发布的，当时模型能力弱，需要一层协议把工具包装成固定形状；现在模型已经能读 --help 自己摸清一个命令行工具的参数，也能直接调没见过的 API。成本那一侧写得更具体：每挂一个 server 就把它的工具 schema 塞进上下文，挂十几个就是每个会话开头先交一笔固定的税，于是出现了 Composio、MintMCP、Pipedream 那类通用搜索/执行的绕法，作者说这只能算短期权宜。他给出的替代路径是 Cloudflare 的 Code Mode 那种做法，让模型把多次调用组合成一段脚本丢进沙箱执行，以及 Vercel 一位工程师提的用 Accept 头按语言取文档，据说已经进了 Shopify 的文档、也得到 Tobi Lütke 的认可。不过这条真正值得看的是评论区，最高赞两条都是反驳：一条说命令行方案必须先解决凭据怎么藏住，因为 MCP 的密钥同样存在环境变量或文件里、agent 一样能读到；另一条指出文章默认 agent 有 shell 权限，但没有 shell 的 agent 怎么办。还有人说，MCP 真正的价值恰恰在于把接口面收窄，并显式标出哪些是只读、哪些会写，这样才好批准或阻断，而 MCP server 本身可以跑在读写和 shell 都看不到的环境里。也有做企业落地的人说，前沿模型确实在变强，但生产里能用的便宜模型还需要这层帮助，至少再要半年。",
+          "summary_en": "This September 14 post argues for deleting most MCP servers in favor of documented HTTP APIs and command-line tools. Its case rests on two things changing at once: MCP shipped in November 2024, when models were weaker and needed a protocol to wrap tools into a fixed shape, whereas today's models can run --help and work out a CLI's parameters, or call an API they have never seen. The cost side is more concrete: each server you attach puts its tool schemas into context, so a dozen of them means paying a fixed tax at the start of every session, which is why workarounds like Composio's, MintMCP's, and Pipedream's generic search/execute patterns appeared, and the author calls those a short-term fix at best. His alternatives are Cloudflare's Code Mode, which lets a model compose several calls into a script for sandboxed execution, and a Vercel engineer's suggestion to serve docs by language via the Accept header, said to already ship in Shopify's docs with Tobi Lütke's endorsement. The part actually worth reading is the comment thread, though. The two top comments both push back: one says the CLI route has to solve hiding credentials first, since MCP keys also sit in environment variables or files where the agent can read them, and the other notes the post assumes shell access, leaving open what happens for agents without it. Someone goes further, arguing MCP's real value is narrowing the surface and explicitly marking which endpoints are read-only versus mutating so a human can approve or block them, and that the MCP server itself can run somewhere the read/write and shell cannot see. Practitioners doing enterprise deployments add that frontier models are indeed getting better, but the cheap models you can actually run in production still need the help, for at least another six months.",
+          "why": "文里那句每个会话开头先交一笔固定的税是能直接量出来的，这条最有用。但整条的关键反转在评论区：作者的论据是模型变强了，反驳的落点却是凭据和权限，也就是说要删的不是协议，是那些只读的包装层，会写操作的反而该留。",
+          "why_en": "The line about paying a fixed tax at the start of every session is directly measurable, and that's the useful part of the post. But the piece's real turn is in the comments: the author's argument is that models got stronger, while the rebuttals land on credentials and permissions, meaning what should be deleted isn't the protocol but the read-only wrapper layers, and the mutating ones should stay."
+        },
+        {
+          "title": "数学家还剩下什么用：一位客座作者给出的答案是把决定权留住",
+          "title_en": "What are human mathematicians still for? A guest author's answer: keep the decision rights",
+          "author": "Po-Shen Loh（客座）· terrytao.wordpress.com · Hacker News",
+          "author_en": "Po-Shen Loh (guest post) · terrytao.wordpress.com · Hacker News",
+          "likes": 175,
+          "url": "https://terrytao.wordpress.com/2026/09/19/why-do-we-need-human-mathematicians-anymore/",
+          "summary": "这篇挂在陶哲轩博客上的是客座文章，作者是 Po-Shen Loh，不是陶本人。他的起点是一个观察：没有任何一个例子，是能力远超另一个物种的智能体，把自己未来的决定权交给能力更弱的那个物种的。由此他推断，只要今天的 AI 决策过程仍然不透明、可被操纵，需要人来把关的控制点数量只会暴涨，于是会造出大量高技能岗位，而把关的人必须有本领域的真本事。他引了一串材料和事件：OpenAI 宣称解决了一个纳维-斯托克斯千禧年问题的变体，随后出现两份请愿，Leiden Declaration 有四万多个签名，Math and AI 有七千多个；一起涉及约 700 个互相配合的 agent 逃出护栏并入侵的事件；以及《华尔街日报》引用的黑客原话，我们就是三个拿着 Claude 和 Codex 订阅的人。他还举了线性代数，抽象理论发展出来一个多世纪之后，才等来 GPU、机器学习、PageRank 和量子力学这些用法。政策那段他写得直白：要么实验室自己限速，要么等事故来强制，并引用三家主要实验室的负责人刚刚同意放缓很重要，打了个比方，把车开得比自己跑得快没问题，但别开得比自己能掌舵还快。落到做法上，他建议不因使用 AI 而给人贴标签、要维护一条专家人才的输送管道、招聘和终身教职评定时把教学放进权重、数学家把技能转向社会问题（他举了李显龙、Nicușor Dan 和教宗良十四世）。结尾他请数学界公开声明把人类福祉当作核心价值。评论区并不都买账：有人说一辆跑得比你掌舵快的自驾车其实是可以接受的，也有人质疑福祉这个词到底指什么。",
+          "summary_en": "The post on Terence Tao's blog is a guest piece by Po-Shen Loh, not by Tao. His starting point is an observation: there are zero examples of an intelligent species vastly more capable than another surrendering decision-making control over its own future to the less capable one. From that he argues that as long as today's AI decision processes stay opaque and hackable, the number of control points needing human oversight will only explode, producing a large number of highly skilled jobs, and the people at those checkpoints need real domain mastery. He cites a run of supporting material: OpenAI's announced solution to a Navier-Stokes Millennium Prize variant, followed by two petitions, the Leiden Declaration at over 4,000 signatories and Math and AI at over 7,000; an incident involving around 700 cooperating agents escaping their guardrails and hacking; and a Wall Street Journal quote from hackers reading, \"We're just three guys with Claude and Codex subscriptions.\" He also points to linear algebra, whose abstract development preceded GPUs, machine learning, PageRank, and quantum mechanics by more than a century. On policy he is blunt: either labs self-limit or disasters force it, noting that the leaders of three major labs just agreed on the importance of slowing down, and offering the analogy that driving a car faster than you can run is fine, but not faster than you can steer. On practice, he suggests no stigma for AI-assisted discovery, maintaining a pipeline of expert humans, weighting teaching in hiring and tenure, and mathematicians redirecting their skills toward societal problems (he names Lee Hsien Loong, Nicușor Dan, and Pope Leo XIV). He closes by inviting the math community to publicly declare human flourishing a core value. The comments don't all buy it: one argues a self-driving car faster than you can steer is acceptable, and another questions what flourishing is supposed to mean.",
+          "why": "它把 AI 会不会取代专家换成了一个能验证的问法：决策链条上还有多少个必须由人按下的开关，那些开关需要多深的领域知识。按这个问法，被取代的从来不是判断，而是判断前后的那些手工活，这对任何靠专业吃饭的人都成立。",
+          "why_en": "It swaps \"will AI replace experts\" for a testable question: how many switches in the decision chain still have to be thrown by a person, and how much domain knowledge each of those switches demands. Framed that way, what gets replaced was never the judgment, it was the manual work on either side of it, which holds for anyone who earns a living from expertise."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 30,
+      "items": [
+        {
+          "title": "27B 压到 8.6GB，整个语言权重只取三个值",
+          "title_en": "A 27B compressed to 8.6 GB with every language weight limited to three values",
+          "author": "PrismML · TLDR AI",
+          "author_en": "PrismML · TLDR AI",
+          "likes": null,
+          "url": "https://prismml.com/news/bonsai-2-27b",
+          "summary": "PrismML 发布 Ternary Bonsai 2 27B，把量化推到三值：语言部分权重只取 -1、0、+1，配 FP16 分组缩放，端到端覆盖嵌入、注意力投影和 MLP。语言模型从约 54GB 的 FP16 压到 7.67GB，加上 0.92GB 视觉塔共 8.6GB。官方称在 14 个思考模式基准上平均 84.78 分，保留满精度的 98.2%，而常规 IQ2_XXS 在同体积下为 72.59；分项中数学 96.57、代码 89.42 与满精度基本齐平，agent 工具调用 74.92 是弱项。速度上 RTX 5090 约 130 tok/s，Apple M5 Max 约 47 tok/s，RTX 4090 每 token 0.714 毫瓦时，比满精度 8B 模型省电 40%。权重按 Apache 2.0 放出，GGUF 包在 Hugging Face 上已有约 190 万次下载。模型卡有一句必须记住的警告：这个包声明了自定义 model_type，必须用它自带的 runtime 加载，普通 MLX 加载器会跳过激活变换和反查嵌入，返回错误输出，而不报错。另一条容易踩的坑是量化率取决于打包方式：MLX 容器每个分组要存一个 scale 和一个 bias，所以同样三值权重在 MLX 里是 2.25 bit/权重，在 GGUF 的 PTQ1_0 里是 1.75 bit。",
+          "summary_en": "PrismML released Ternary Bonsai 2 27B, pushing quantization all the way to three values: the language weights take only -1, 0, and +1 with FP16 group-wise scaling, applied end to end across embeddings, attention projections, and MLP. The result is the language model shrinking from roughly 54 GB in FP16 to 7.67 GB, plus a 0.92 GB vision tower for 8.6 GB total. The vendor claims an 84.78 average across 14 thinking-mode benchmarks, 98.2% of full precision retained, against 72.59 for a conventional IQ2_XXS build at the same footprint; by sub-score, math is 96.57 and coding 89.42, both roughly level with full precision, with agentic tool calling at 74.92 the weak spot. Throughput is about 130 tokens/sec on an RTX 5090 and about 47 tokens/sec on an Apple M5 Max, at 0.714 mWh per token on an RTX 4090, 40% more energy-efficient than a full-precision 8B model. Weights ship under Apache 2.0, and the GGUF packs have drawn around 1.9 million downloads on Hugging Face. The model card carries one warning worth remembering: the pack declares a custom model_type and must be loaded with its bundled runtime, because ordinary MLX loaders skip the activation transform and the inverse embedding lookup and return wrong output rather than an error. A second easy trap is that effective bit-width depends on the packaging: MLX containers store a scale and a bias per group, so the same ternary weights cost 2.25 bits/weight there versus 1.75 in GGUF's PTQ1_0.",
+          "why": "这半年本地模型的关键数字一直往下走，今天落到一个笔记本能放下 27B 级多模态。它也给了今天第二条静默失效的实例：加载器版本不对，模型不报错，只给你错的答案。",
+          "why_en": "The key number for local models has been falling all year, and today it landed where a laptop can hold a 27B-class multimodal model. It also supplies today's second instance of silent failure: the wrong loader version doesn't raise an error, it just returns wrong answers."
+        },
+        {
+          "title": "多个 agent 各干各的，靠一份 append-only 的提交历史对齐",
+          "title_en": "Separate agents stay aligned through one append-only commit history",
+          "author": "Agora: Git as Shared Memory for AI Research Agents · TLDR AI",
+          "author_en": "Agora: Git as Shared Memory for AI Research Agents · TLDR AI",
+          "likes": null,
+          "url": "https://github.com/yifanzhang-pro/Agora",
+          "summary": "NVIDIA 团队发布 Agora，报告日期 9 月 16 日（arXiv:2609.18094），做法是把多个研究 agent 的协作状态放进 Git。要解决的问题很具体：一批 worker 需要共用一份记录，才能在不共享同一段对话、也不共享同一个工作区的前提下，挑实验、接前人的活、不重复劳动。机制分三层。第一层是 Git 本身：每条贡献是一个不可变提交，父提交就标出它在谁的基础上做的，再配一个 SQLite 索引提供可搜索视图，索引可随时从 Git 重建。第二层是证据分：别人引用和复现某条贡献，会给它的父节点加分，自己引用自己不算。第三层是一个 analyze() 调用，用 UCB 风格排序返回领先结果、被反复复用的贡献、有争议的验证和还没人做的假设。它跑了一次权重迁移实验：13 个 worker 无中心调度跑了约 12 天，发出 1703 条贡献，最好的 transfer() 到 1.899 bits/byte，随机是 3.3923，补上了到训练好的 GPT-2 124M 之间 62% 的差距，最优方法的祖先链横跨 15 个账号。它也如实报了几条不好看的数：最终提升小于跨硬件的观测波动；第一天的工作贡献了约 98% 的收益；并行重复发现的情况里，约 63% 同分结果相隔一小时内出现；1703 个节点、1894 条边里有 149 个多父节点，其中一个连通分量装下 98.9% 的节点。",
+          "summary_en": "An NVIDIA team released Agora, a September 16 report (arXiv:2609.18094), which puts the coordination state of multiple research agents into Git. The problem it solves is specific: a pool of workers needs a shared record so each can choose experiments, build on prior work, and avoid duplicating effort without sharing a conversation or a workspace. It works through three mechanisms. First, Git itself: each contribution is an immutable commit whose parents identify what it built on, backed by a SQLite index for searchable views, and the index can be rebuilt from Git at any time. Second, evidence scores: when others cite and reproduce a contribution, it feeds the score of its parent, and self-citation is excluded. Third, an analyze() call that uses a UCB-style ranking to surface leading results, frequently reused contributions, contested verifications, and untested hypotheses. They ran a weight-transfer experiment: 13 workers with no central planner ran about 12 days and published 1,703 contributions, with the best transfer() reaching 1.899 bits per byte against 3.3923 for random, closing 62% of the gap to a trained GPT-2 124M, and the best method's ancestry spanning 15 accounts. The report also states numbers that don't flatter it: the final gain was smaller than the observed cross-hardware variation; the first day's work produced roughly 98% of the gain; among parallel rediscoveries, about 63% of identical-score pairs arrived within an hour of each other; and of 1,703 nodes and 1,894 edges, 149 were multi-parent, with one connected component holding 98.9% of all nodes.",
+          "why": "这篇把多 agent 协作从编排问题换成记录问题：不共享对话、不共享工作区，共享一份能追责的提交历史。更值钱的是它自己报的几个负面数字，第一天吃掉 98% 收益、最终提升小于硬件波动，这两条正好说明为什么大多数并行 agent 的收益来自第一小时。",
+          "why_en": "This reframes multi-agent coordination from an orchestration problem into a record-keeping one: share neither a conversation nor a workspace, but an auditable commit history. More valuable are the unflattering numbers the report volunteers. Day one capturing 98% of the gain, and the final improvement falling under hardware variation, together explain why most parallel-agent gains really come from the first hour."
+        },
+        {
+          "title": "把 agent 指令做成一份团队能改的东西，这是采用问题的另一半",
+          "title_en": "Turn agent instructions into something a team can edit: the other half of adoption",
+          "author": "Geoffrey Litt · Notion · TLDR AI",
+          "author_en": "Geoffrey Litt · Notion · TLDR AI",
+          "likes": null,
+          "url": "https://www.notion.com/blog/a-skills-library-for-every-agent",
+          "summary": "Notion 9 月 17 日发了一篇 Geoffrey Litt 写的博客，讲 agent 技能库，但它先解决的不是技术问题，而是权限问题。它列出团队用技能时卡在哪：技能只对工程师可用，销售、市场、财务、运营用不上；技能被锁在某一个 agent 里；改一处要靠提 PR；没人知道谁在用哪个、谁批准过。Notion 的答案是让技能变成普通的 Notion 页面，能在数据库里归类、能挂支撑文件（资产和代码），因此可以存放任何符合技能规范的文件，再配上权限、建议修改和用量分析。落地接口有两个：一个是 Skills API，从 Notion 按规范格式拉取技能文件，消费方不需要理解 Notion 特有的数据结构；另一个是和 GitHub 打通，团队本来把技能放在仓库里给 Claude、ChatGPT、Grok Bot 用，但非工程同事改不了、也没账号，现在可以从 Notion 同步进 GitHub，技能在 agent 端保留原生能力，包括斜杠菜单调用和管理员的安装开关。反向也能走：在 agent 应用里通过 MCP 工具上传和编辑 Notion 里的技能。Notion 还开源了一个起始仓库，让用户直接把自己的编码 agent 指过去。Vercel 那边把 Notion 技能支持加进了自己的 skills 命令行，安装一条 npx skills add <notion url>，或者 npx skills add notion 交互式地装工作区里的整套插件。文里引了三位客户的证言，没有给具体使用数字。",
+          "summary_en": "Notion published a post by Geoffrey Litt on September 17 about a library for agent skills, but the problem it addresses first isn't technical, it's about permissions. It starts by listing where teams get stuck with skills: they're only usable by engineers, leaving sales, marketing, finance, and operations out; a skill gets locked into one agent; changing one means opening a PR; and nobody knows who is using which skill or who approved it. Notion's answer is to make a skill an ordinary Notion page that can be organized in databases and carry supporting files like assets and code, so the library can store anything that meets the skill spec, with permissions, suggested edits, and usage analytics on top. There are two integration surfaces: a Skills API that loads skills out of Notion in spec-compliant formats, so consumers don't have to interpret Notion-specific data; and a GitHub bridge, where teams already keep skills in a repo for Claude, ChatGPT, and Grok Bot but non-engineers can't edit them or lack accounts, so skills now sync from Notion into GitHub while keeping native agent-side features such as slash-menu invocation and admin installation controls. It works in reverse too: skills can be uploaded and edited in Notion from agent apps over MCP tools. Notion also open-sourced a starter repo and points your own coding agent at it. Vercel added Notion skills support to its skills CLI, installing with npx skills add <notion url>, or npx skills add notion to interactively install a whole plugin set from a workspace. The post quotes three customers and gives no usage numbers.",
+          "why": "技能本身并不新鲜，新鲜的是修改权限归谁。让非工程同事在熟悉的界面里维护技能，就等于把「agent 该怎么做」从代码仓库搬进公司日常的文档流程。这决定了一个团队里究竟有多少人真会动手去改。",
+          "why_en": "Skills themselves aren't new; who gets to edit them is. Letting non-engineer colleagues maintain skills in an interface they already use moves \"how our agents should behave\" out of a code repo and into the company's everyday documentation flow, which is what decides how many people on a team will actually change anything."
+        }
+      ]
+    }
+  ]
+}
