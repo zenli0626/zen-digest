@@ -1,0 +1,305 @@
+{
+  "date": "2026-09-22",
+  "partial": false,
+  "banner": "小米公开训练，开源榜易主",
+  "banner_en": "Xiaomi streams its training, open weights get a new No. 1",
+  "image": {
+    "src": "digests/img/2026-09-22.jpg",
+    "caption": "本期头图来自 Forkast 报道小米 MiMo-V2.6 时所用的页面 og:image。该报道称，小米把 MiMo-V2.6 的强化学习训练做成了公开仪表盘，实时公布成本、token 吞吐和跑分，报道给出的开销是每天约 43.2 万美元。（图：Forkast）",
+    "caption_en": "This issue's lead image is the featured image (og:image) from Forkast's report on Xiaomi's MiMo-V2.6. Per that report, Xiaomi ran the model's reinforcement-learning training behind a public dashboard publishing cost, token throughput and benchmark scores in real time, with the report putting the burn at roughly $432,000 a day. (Image: Forkast)"
+  },
+  "actions": [
+    {
+      "text": "挑一份你最近用 AI 生成的文档，重写成先给判断、再给证据。先写三句：这份东西要对方做什么决定、你的建议是什么、为什么。写完把原来的开头删掉，让读者第一句话就看到立场。约 20 分钟。完成标志：第一段里有一句是判断而不是背景，对方读完第一段就知道该干什么。背景一句：78% 的读者一旦怀疑文章是 AI 写的就不读了。",
+      "text_en": "Take one document you recently generated with AI and rewrite it as judgement first, evidence second. Write three sentences up front: what decision you need from the reader, what you recommend, and why. Then delete the original opening so the reader hits a position on the first line. About 20 minutes. You are done when the first paragraph contains a judgement rather than background, and a reader knows what to do after reading only that paragraph. One sentence of context: 78% of readers stop reading the moment they suspect an article was AI-written.",
+      "source": "Colin Breck · Hacker News",
+      "source_en": "Colin Breck · Hacker News",
+      "source_url": "https://blog.colinbreck.com/i-dont-want-to-read-what-you-didnt-write/"
+    },
+    {
+      "text": "把来源说明加进你对外发布前的检查项，不是只剥元数据。拿三份你最近发出去的文件，每份补一句：谁生成、用什么工具、有没有水印；EXIF 和 ID3 这类标准字段顺手用 exiftool -all= 清掉。约 15 分钟。完成标志：三份文件都能一句话说清来源，且这句说明写在正文或发布说明里，不依赖文件自身携带的元数据。背景一句：标准元数据可以剥，嵌进像素或词句选择里的追踪信号剥不掉。",
+      "text_en": "Add a provenance line to your pre-publish checklist, rather than just stripping metadata. Take three files you recently sent out and write one sentence for each: who generated it, with what tool, and whether a watermark is present. Strip the standard fields with exiftool -all= while you are in there. About 15 minutes. You are done when all three have a one-sentence provenance note that lives in the body or the release notes, not in metadata carried by the file. One sentence of context: standard metadata strips cleanly, tracking signals embedded in pixels or word choices do not.",
+      "source": "Brandon Thomas · brand.io · Hacker News",
+      "source_en": "Brandon Thomas · brand.io · Hacker News",
+      "source_url": "https://brand.io/article/spymarks/"
+    },
+    {
+      "text": "给你现在最依赖的三个供应商，各写一条两周不回消息就换谁。做法是把三个名字列出来，每个写出备选方案的名字、迁移大概要多久、会卡在哪一步。约 20 分钟。完成标志：三个供应商都有具名的备选和迁移成本估算，没有一个是空的；写不出备选的那个，就是你眼下最该补的洞。背景一句：Cantrill 那篇复盘里，Sun 当年的战略是对的，输在客户拿着钱上门时没人接电话。",
+      "text_en": "For the three vendors you depend on most, write one line each: if they go quiet for two weeks, who replaces them. List the three names, then note for each the named alternative, roughly how long a migration takes, and where it would stall. About 20 minutes. You are done when all three have a named alternative and a migration estimate, with none left blank; the one you cannot fill in is the gap to close first. One sentence of context: in Cantrill's retrospective, Sun's strategy was right, and it still lost because nobody picked up the phone when a customer showed up with money.",
+      "source": "Bryan Cantrill · bcantrill.dtrace.org · Hacker News",
+      "source_en": "Bryan Cantrill · bcantrill.dtrace.org · Hacker News",
+      "source_url": "https://bcantrill.dtrace.org/2026/09/20/what-sun-got-wrong/"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚花十分钟，数数依赖树里几个包带安装脚本",
+    "title_en": "Tonight, spend ten minutes counting how many packages in your dependency tree ship install scripts",
+    "why": "今天披露的那个 npm 后门，最值得记的一点是它躲开了所有人的默认检查：整份 package.json 里没有任何安装脚本，装的时候一行代码都不跑，扫包工具第一步就放它过去了。它把真正的加载器藏在解方程的调用路径上，只有参数传对了才解密落盘。这种藏法对安装时有没有跑代码这类判断免疫，所以能筛掉它的只剩一个更笨的问题：我的依赖树里，到底有多少包被允许在安装阶段执行代码。数一遍只要十分钟，而且数出来的东西跟今天是哪个包出事无关。",
+    "why_en": "The npm backdoor disclosed today is worth remembering for one specific reason: it dodged every default check. There is no install script anywhere in the package, no code runs at install time, and package scanners wave it through at step one. The real loader sits on the code path of a linear solver and only decrypts to disk when the caller passes the right parameters. That shape is immune to 'did code run at install time', which leaves one duller question that does catch it: how many packages in my dependency tree are even allowed to execute code during install. Counting takes ten minutes, and the number is useful regardless of which package broke today.",
+    "time": "约 10 分钟",
+    "time_en": "About 10 minutes",
+    "steps": [
+      "打开任意一个你装过依赖的项目目录（有 package-lock.json 就行）。",
+      "把带安装脚本的包全部列出来：jq -r '.packages | to_entries[] | select(.value.hasInstallScript==true) | .key' package-lock.json | sort",
+      "没装 jq 就用 node 等价版本：node -e \"const p=require('./package-lock.json').packages||{};for(const[k,v]of Object.entries(p))if(v.hasInstallScript)console.log(k)\"",
+      "数一下一共几个，把名字抄下来。每个名字问一句：这个包为什么需要安装脚本，是不是我直接依赖的，最近一次发版是哪天。",
+      "如果其中有不认识的包，把它的路径往前看一级，找到是哪个直接依赖把它拉进来的。",
+      "从今天开始，装依赖默认加 --ignore-scripts，只在确认某个包确实需要本地编译时单独放行那一个。"
+    ],
+    "steps_en": [
+      "Open any project directory where you have installed dependencies (anything with a package-lock.json).",
+      "List every package that ships an install script: jq -r '.packages | to_entries[] | select(.value.hasInstallScript==true) | .key' package-lock.json | sort",
+      "No jq? Use the node equivalent: node -e \"const p=require('./package-lock.json').packages||{};for(const[k,v]of Object.entries(p))if(v.hasInstallScript)console.log(k)\"",
+      "Count them and write the names down. For each one ask: why does this package need an install script, is it something I depend on directly, and when did it last publish.",
+      "For any name you do not recognise, walk one level back up its path to find which direct dependency pulled it in.",
+      "From today, run installs with --ignore-scripts by default, and whitelist the individual package only when you have confirmed it genuinely needs a local build."
+    ],
+    "source": "SafeDep · 供应链披露",
+    "source_en": "SafeDep · supply-chain disclosure",
+    "source_url": "https://safedep.io/mathmain-encrypted-loader/"
+  },
+  "meta_read": "把今天的条目按热度排一下，排在前面的没有一条是在庆祝能力变便宜。最热的几条，讲的都是同一类东西：怎么让别人能验证你交出去的东西。这跟过去十年的默认是反的。过去的默认是产出稀缺，所以能写出来本身就是可信度；现在产出管够，判断这份产出能不能用的成本一分没降，于是它从流程里的一个环节变成了流程本身。照这个走法，下一轮拿到溢价的不是生成方，是那个愿意为判断结果签字的一方。\n\n顺带一提，今天三条最热的讨论都不是新模型的跑分，是一件训练过程被公开、一份文档被读不下去、一个仪表盘被挂到网上。能力发布已经不再是新闻，可信度才是。",
+  "meta_read_en": "Rank today's stories by attention and not one of them is celebrating that capability got cheaper. The most-read items are all about the same class of thing: how to let someone else verify what you handed them. That inverts the last decade's default. The old default was scarcity of output, so being able to produce the thing was itself the credential. Output is now abundant and the cost of judging whether it is any good has not moved at all, which turns judgement from a step in the pipeline into the pipeline itself. On this trajectory, the premium in the next round does not go to whoever generates. It goes to whoever is willing to sign their name to the judgement.\n\nOne aside: today's three most-discussed threads were not a new model's benchmark score. They were a training run published in the open, a document nobody could finish reading, and a dashboard put on the public internet. Shipping capability has stopped being news. Credibility is the news.",
+  "ota": {
+    "learned": [
+      "已验证：今天两条路各查了一次 YouTube，读数一致。九个 roster 频道的 feeds/videos.xml 全部返回 404（OpenAI 频道返回 500），连两个对照组频道（Google Developers US、Google DeepMind）也是同样的结果。这个一致性说明是请求被拒，不是频道安静。按运行约定不做第二次尝试，本期零条 YouTube，也没有生成任何我看过了的内容。",
+      "已验证：文摘带的五个订阅源里，三个正常返回 200 和干净 XML（Import AI 自建源、TLDR AI、Latent Space、Simon Willison 四个里，除 Simon 外都是原文），Ahead of AI 的 Substack 源返回 403。同一个出版方在 Substack 域名下被挡、在自己域名下能取到，这是第二次碰到这同一个模式，上一次是 Import AI。",
+      "已验证：本期把报道自己声明的事实、报道转述的第三方数字分开写。小米那条里，跑分、价格、参数量取自 Artificial Analysis 的模型页，是一手榜单数据；130 小时、75B token、260 万美元的 RL 开销来自 Latent Space 对 X 讨论的整理，属于二手转述，条目正文明确写成 Latent Space 整理的数字，没有升格成小米官方口径。",
+      "观察：本期零条 YouTube，文摘带两个条目，是文本带单独撑起多样性的一天（Hacker News 7 条 + 文摘 2 条）。三个被挡或重复的来源分别是：YouTube 全部 404、Ahead of AI 403、Latent Space 的头条与 Hacker News 头条是同一件事（小米，择强合一）。",
+      "已实施：把上述二手数字必须带转述者写进本期写作流程，凡是引用媒体整理的数据，条目正文必须出现转述者的名字，不能写成发布方的说法。"
+    ],
+    "new_capabilities": [
+      "核对一个数字到底是谁说的，先看它出现在哪一层：一手页面（榜单、模型卡、官方公告）还是二手转述（媒体、聚合简报）。二手数字在正文里必须带上转述者的名字，不能写成发布方的口径。今天小米那条的跑分和价格来自 Artificial Analysis 的模型页，RL 的时长和花费来自 Latent Space 对 X 讨论的整理，两者在条目里的写法不同。",
+      "报告一条采集带是不是空的，必须同时给出对照目标的读数。今天九个 roster 频道加两个对照组频道的 feeds/videos.xml 全部 404（一个 500），两组读数一致，才能把结论写成请求被拒而不是频道没更新。",
+      "订阅源在 Substack 域名下返回 403 时，去出版物自己的域名找同一份 feed，并且顺手确认一次。今天实测：aheadofai.substack.com/feed 返回 403，magazine.sebastianraschka.com/feed 返回 200 和完整条目列表。这条今天第二次应验，上一次是 Import AI 的 substack 源被挡、自建源可用。"
+    ],
+    "learned_en": [
+      "Verified: both lanes were tested once for YouTube today and the readings agree. All nine roster channels returned 404 from feeds/videos.xml (the OpenAI channel returned 500), and two control channels (Google Developers US, Google DeepMind) came back the same way. That agreement is what identifies a refused request rather than quiet channels. Per the run convention there was no second attempt, so the issue carries zero YouTube items and no 'I watched it' content of any kind.",
+      "Verified: of the five digest-lane feeds, four returned 200 with clean XML (Import AI's self-hosted feed, TLDR AI, Latent Space, Simon Willison) and Ahead of AI's Substack-hosted feed returned 403. The same publication being blocked on Substack and reachable on its own domain is the second occurrence of this pattern; the first was Import AI.",
+      "Verified: this issue separates facts a report states itself from third-party numbers it relays. In the Xiaomi item, the benchmark score, price and parameter counts come from Artificial Analysis's model page, which is first-party leaderboard data; the RL figures of 130 hours, 75B tokens and $2.6M come from Latent Space's roundup of discussion on X, which is second-hand, so the item body credits them as 'the numbers Latent Space assembled' rather than promoting them to Xiaomi's own account.",
+      "Observed: with zero YouTube items and two digest-lane items, the text lanes carry diversity on their own today (Hacker News 7, Digest 2). The three blocked or duplicate sources were YouTube (all 404), Ahead of AI (403), and Latent Space's lead story, which was the same event as Hacker News's lead story (Xiaomi, one treatment kept).",
+      "Implemented: the second-hand-number rule above now runs in this issue's writing pass. Any figure credited to a media roundup must carry the name of the party doing the relaying, and cannot be written as the source's own account."
+    ],
+    "new_capabilities_en": [
+      "Before trusting a number, check which layer it came from: a first-party page (leaderboard, model card, official announcement) or a second-hand relay (media, aggregation newsletter). Second-hand figures must carry the relay's name in the item body rather than being attributed to the original publisher. Today the Xiaomi benchmark score and pricing came from Artificial Analysis's model page, while the RL duration and spend came from Latent Space's roundup of discussion on X, and the item writes them differently for that reason.",
+      "When reporting that a sweep lane came up empty, give the control target's reading at the same time. Today all nine roster channels plus two control channels returned 404 from feeds/videos.xml (one returned 500); only matching readings across both groups justify the conclusion 'the request was refused' rather than 'the channels went quiet'.",
+      "When a feed returns 403 on a Substack domain, find the same feed on the publication's own domain and confirm it once. Measured today: aheadofai.substack.com/feed returns 403 while magazine.sebastianraschka.com/feed returns 200 with a full item list. This is the second time the rule has paid off; the first was Import AI's blocked Substack feed and working self-hosted one."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "BuilderIO/agent-native",
+      "url": "https://github.com/BuilderIO/agent-native",
+      "description": "A framework for building agentic apps",
+      "language": "TypeScript",
+      "stars": 6111,
+      "stars_today": 607
+    },
+    {
+      "rank": 2,
+      "name": "trycua/cua",
+      "url": "https://github.com/trycua/cua",
+      "description": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation.",
+      "language": "HTML",
+      "stars": 25817,
+      "stars_today": 609
+    },
+    {
+      "rank": 3,
+      "name": "Open-Dev-Society/OpenStock",
+      "url": "https://github.com/Open-Dev-Society/OpenStock",
+      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
+      "language": "TypeScript",
+      "stars": 18017,
+      "stars_today": 844
+    },
+    {
+      "rank": 4,
+      "name": "akitaonrails/ai-memory",
+      "url": "https://github.com/akitaonrails/ai-memory",
+      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
+      "language": "Rust",
+      "stars": 7841,
+      "stars_today": 167
+    },
+    {
+      "rank": 5,
+      "name": "coder/coder",
+      "url": "https://github.com/coder/coder",
+      "description": "Secure environments for developers and their agents",
+      "language": "Go",
+      "stars": 16514,
+      "stars_today": 460
+    },
+    {
+      "rank": 6,
+      "name": "anthropics/financial-services",
+      "url": "https://github.com/anthropics/financial-services",
+      "description": "",
+      "language": "Python",
+      "stars": 35938,
+      "stars_today": 424
+    },
+    {
+      "rank": 7,
+      "name": "cloudflare/quiche",
+      "url": "https://github.com/cloudflare/quiche",
+      "description": "🥧 Savoury implementation of the QUIC transport protocol and HTTP/3",
+      "language": "Rust",
+      "stars": 12422,
+      "stars_today": 32
+    },
+    {
+      "rank": 8,
+      "name": "mvt-project/mvt",
+      "url": "https://github.com/mvt-project/mvt",
+      "description": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise.",
+      "language": "Python",
+      "stars": 13708,
+      "stars_today": 169
+    },
+    {
+      "rank": 9,
+      "name": "zhouxiaoka/autoclip",
+      "url": "https://github.com/zhouxiaoka/autoclip",
+      "description": "AutoClip：AI 驱动的视频剪辑与高光生成工具，可用于智能提取高光并做二创剪辑",
+      "language": "Python",
+      "stars": 8466,
+      "stars_today": 250
+    },
+    {
+      "rank": 10,
+      "name": "ruanyf/weekly",
+      "url": "https://github.com/ruanyf/weekly",
+      "description": "科技爱好者周刊，每周五发布",
+      "language": null,
+      "stars": 104224,
+      "stars_today": 182
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 29,
+      "items": [
+        {
+          "title": "小米把 MiMo-V2.6 的训练直播出来，跑完只用 130 小时",
+          "title_en": "Xiaomi live-streamed MiMo-V2.6's training run: 130 hours, $2.6M",
+          "author": "MiMo · 小米 · Hacker News",
+          "author_en": "MiMo · Xiaomi · Hacker News",
+          "likes": 772,
+          "url": "https://mimo.xiaomi.com/mimo-v2-6",
+          "summary": "MiMo-V2.6 是小米做的开放权重模型，MIT 许可，分 Pro 和 Flash 两个版本，输入支持文本、图像、语音、视频。Artificial Analysis 的模型页上，MiMo-V2.6-Pro 以 46 分排开放权重第一，总参数 1.0T、每 token 激活 42B，输入每百万 token 0.435 美元、输出 0.87 美元，跑一个智能指数任务合 0.13 美元。比跑分更少见的是过程：团队把强化学习训练的仪表盘挂在网上实时更新，每步的 token 吞吐、跑分和成本都公开，连每次重启的原因都记了下来。Latent Space 整理的数字是这轮 RL 跑了 130 小时、75B token、花掉 260 万美元。上次说到这套仪表盘公开了训练过程，今天的进展是模型真正发布，权重、技术报告和训练代码一起放出，直接换了开源榜的第一名。",
+          "summary_en": "MiMo-V2.6 is Xiaomi's open-weights model line, MIT licensed, split into Pro and Flash, with text, image, speech and video inputs. On Artificial Analysis's model page, MiMo-V2.6-Pro ranks first among open-weights models at 46 on its Intelligence Index, with 1.0T total parameters and 42B active per token, priced at $0.435 per million input tokens and $0.87 output, or $0.13 per Intelligence Index task. Rarer than the scores is the process: the team put the reinforcement-learning run behind a live public dashboard showing per-step token throughput, benchmark scores and cost, including a logged reason for every restart. The numbers Latent Space assembled put the RL run at 130 hours, 75B tokens and $2.6M. Last time we covered the dashboard go live; today's development is that the model actually shipped, weights, tech report and training code together, taking the top open-weights slot outright.",
+          "why": "重点不在小米又刷了一个榜，在于它把训练过程本身变成了可以被外人检查的东西。开放权重到现在开放的只是结果，过程和失败都不公开；这次连每次重启的原因都写出来，研究者和竞争对手第一次能拿同一份数据说话。对做产品的人，这里可迁移的是做法本身：把内部过程公开，能直接抵掉一部分外部信任成本。",
+          "why_en": "The point is not that Xiaomi topped another leaderboard. It is that the training process itself became something an outsider can inspect. Open weights so far have meant opening the result while the process and the failures stay private; this run logs the reason for every restart, which lets researchers and competitors argue from the same data for the first time. For anyone shipping products, the transferable move is the method: publishing the internal process directly buys down some of the trust cost on the outside."
+        },
+        {
+          "title": "我不读你没写的东西：AI 写的文档，读者第一句就退出",
+          "title_en": "I don't read what you didn't write: AI documents lose readers at sentence one",
+          "author": "Colin Breck · Hacker News",
+          "author_en": "Colin Breck · Hacker News",
+          "likes": 551,
+          "url": "https://blog.colinbreck.com/i-dont-want-to-read-what-you-didnt-write/",
+          "summary": "软件工程师 Colin Breck 写了篇很多人有共鸣的文章。现象是：原本不怎么写东西的人，现在用 AI 批量产出设计文档、PR 说明、会议纪要，写得又长又全，却没有一句是作者的判断。更麻烦的是本人读不出来这有什么问题。你自己提示 AI 生成时，上下文是你给的，你能一眼挑出哪些有用；同样一段文字发给别人，对方没有你的上下文，只能逐行读完再自己拼，读完成本一下就上去了。他引用的调查里，78% 的读者一旦怀疑文章是 AI 写的就不读了，71% 会避开这个作者。他自己的用法是反过来的：论文一个字一个字写，AI 只负责核对代码、日志、指标，顺手补引用和 TikZ 图；整篇论文里唯一完全由 AI 写、他原样保留的，是摘要。",
+          "summary_en": "Software engineer Colin Breck wrote the piece a lot of people have been feeling. The pattern: people who rarely wrote anything are now mass-producing design docs, PR descriptions and meeting notes with AI. They are long and complete and contain not one judgement by the author. The harder problem is that the author cannot see what is wrong with them. When you prompt the model yourself you supplied the context, so you can skim and pick out what matters; send the same text to someone else and they lack your context, have to read every line and reassemble it themselves, and the cost of finishing it spikes. In the survey he cites, 78% of readers stop reading once they suspect an article is AI-written and 71% avoid the author afterwards. His own use runs the other way: he wrote the paper word by word and had AI check code, logs and metrics against his prose and fill in citations and TikZ diagrams. The only thing in the whole paper written entirely by AI and kept unchanged was the abstract.",
+          "why": "这是今天这批里唯一能立刻改工作方式的一条。AI 把写出一份文档的成本压到接近零，但没有把让另一个人读完并同意的成本压下来，甚至抬高了，因为读者现在要先花力气分辨哪句是判断、哪句是填充。产出的默认接收方是人，判断标准得从信息全不全改回对方读完知不知道该干什么。",
+          "why_en": "This is the one item today that changes how you work tomorrow. AI pushed the cost of producing a document to nearly zero without touching the cost of getting another person to finish reading it and agree, and it arguably raised that cost, because the reader now has to spend effort separating judgements from filler. Documents are read by people, so the bar moves back from 'is everything in here' to 'does the reader know what to do next'."
+        },
+        {
+          "title": "水印正在变成追踪器，有人提出给它换个名字",
+          "title_en": "Watermarks are becoming trackers, so someone gave them a new name",
+          "author": "Brandon Thomas · brand.io · Hacker News",
+          "author_en": "Brandon Thomas · brand.io · Hacker News",
+          "likes": 315,
+          "url": "https://brand.io/article/spymarks/",
+          "summary": "brand.io 一篇文章提出，把带追踪的隐形水印改叫 spymark，因为这东西已不只是标明出处。文中举例：Google 的 SynthID 把「人眼不可察觉」的信号嵌进图像、音频、文本和视频；SynthID-Image 的论文称，SynthID-O 能在 512×512 的图里编进 136 位载荷，够放一个 64 位数据库编号再加 72 位纠错；文本靠引导选词造出可检测的统计模式，示意是八个词位对应八位，二进制 10101101 得到编号 173（原文写明这是虚构示例，不是 SynthID 解码器）。开源工具 audiowmark 早在 2018 年就能在音频里藏 128 位并加 AES 密钥。文章也划了边界：EXIF、ID3 这类标准字段不算 spymark，因为可见、可查、可删；打印机追踪点这种从 1980 年代就在用的才算。",
+          "summary_en": "A piece on brand.io proposes renaming tracking watermarks as spymarks, on the grounds that they stopped being marks of origin. Examples it gives: Google's SynthID embeds signals 'imperceptible to humans' into images, audio, text and video, and the SynthID-Image paper reports that SynthID-O fits a 136-bit payload into a 512x512 image, enough for a 64-bit database identifier plus 72 bits of error correction. On text it steers word choices to create a detectable statistical pattern, illustrated as eight word positions carrying eight bits, with binary 10101101 yielding identifier 173 (the article states outright that these are fictional examples, not a SynthID decoder). The open-source tool audiowmark could hide 128 bits in audio behind an AES key back in 2018. The article also draws its own boundary: standard fields like EXIF and ID3 are not spymarks, because you can inspect, edit and strip them; printer tracking dots, in use since the 1980s, are.",
+          "why": "这是关于你手上文件的问题，不是关于别人的。可见水印、EXIF、ID3 你都能删，嵌进像素或选词里的信号不行，它会跟着文件走完全部中转。做内容发布或做产品的团队，需要提前想清楚：你生成并对外发出的东西里，有没有你自己都不掌握的一层信息，以及这件事要不要主动告诉用户。",
+          "why_en": "This concerns the files on your own disk, not someone else's. Visible watermarks, EXIF and ID3 all come off; a signal embedded in pixels or word choices does not, and it travels with the file through every handoff. Teams publishing content or shipping products need an answer in advance to one question: does what you generate and send out carry a layer of information you do not fully control, and are you going to tell users about it."
+        },
+        {
+          "title": "Sun 当年错在哪：对做生意这件事失去了兴趣",
+          "title_en": "What Sun got wrong: it got bored with running a business",
+          "author": "Bryan Cantrill · bcantrill.dtrace.org · Hacker News",
+          "author_en": "Bryan Cantrill · bcantrill.dtrace.org · Hacker News",
+          "likes": 559,
+          "url": "https://bcantrill.dtrace.org/2026/09/20/what-sun-got-wrong/",
+          "summary": "Bryan Cantrill 是 Oxide 的联合创始人，早年在 Sun 工作。今年 OxCon 做了一批致敬老牌计算机公司的 T 恤，Sun 那件反响最大，他借这个由头写了 Sun 到底错在哪。15 年后再总结，他的答案只有一句：Sun 对经营一家公司的日常已经不耐烦了。例子是 2005 年一家跑 OpenSolaris 的创业公司想大批买 Sun 的硬件，怎么都等不来 Sun 的电话，打过来还推销错了产品；同一家公司半夜填了 Dell 的网页表单，第二天早上本地销售就回了电话，不到两周服务器进了机房，还按公司财报做了分期，整个过程九成五是那个销售干的。他当时就记下了：战略上明明赢了，执行上输光了。",
+          "summary_en": "Bryan Cantrill co-founded Oxide and spent years at Sun. OxCon produced a run of t-shirts honouring defunct computer companies this year, the Sun one landed hardest, and he used it as the occasion to write up what Sun actually got wrong. Distilled 15 years on, his answer is one line: Sun had become bored with the mechanics of running a business. The example is a 2005 startup running its infrastructure on OpenSolaris that wanted to buy a lot of Sun hardware and could not get Sun to pick up the phone, and when Sun did call back it pitched the wrong product. The same company filled in a Dell web form in the middle of the night, had a local account executive on the phone the next morning, and inside two weeks had servers in the datacenter on a lease built purely on the company's financials, with roughly 95% of the work done by that one salesperson. He wrote it down at the time: strategical success, operational failure.",
+          "why": "做 GTM 的人可以直接拿它当检查项。战略正确救不了运营失灵，而且失灵最早出现在客户主动找上门这种最不该出问题的地方，等它出现在别处时已经晚了。Cantrill 那句话可以当一个自检问题：你所在的组织，对经营本身还有没有兴趣。",
+          "why_en": "Anyone working on GTM can lift this straight into a checklist. Being right about strategy does not save you from operational failure, and the failure surfaces first at the moment a customer reaches out on their own, which is the last place it should. By the time it shows up elsewhere it is late. Cantrill's line makes a usable self-check: does your organisation still find running the business interesting?"
+        },
+        {
+          "title": "一个数学包把后门加密了，只有传对矩阵才解开",
+          "title_en": "A math package encrypted its backdoor, and only the right matrix unlocks it",
+          "author": "SafeDep · Hacker News",
+          "author_en": "SafeDep · Hacker News",
+          "likes": 124,
+          "url": "https://safedep.io/mathmain-encrypted-loader/",
+          "summary": "安全公司 SafeDep 在 npm 上发现 mathmain 这个包，它是 popular 的 mathjs 的复制品，多处了一份加密的远程控制程序。藏法很讲究：CommonJS 版本的 lusolve() 结尾多了一次调用，把下三角矩阵的数据传进一个叫 isGraph 的函数；isGraph 把入参转成 JSON 字符串当密码，用 scrypt 派生 256 位密钥，再用 AES-256-GCM 解密出一个文件名，写到磁盘后用 require 加载。三个加密文件里最大的一个 1,179,416 字节。同样的加载器和触发代码在 mathsbase、math-universe 共五个版本里逐字相同。下载量方面，npm 统计 9 月 12 日到 18 日 mathmain 60 多万次、mathsbase 192 万次、math-universe 57 万次，但 npm 自己也报了 9 月 17 日全站下载为零，所以这组数字不可靠，这点原文写得很清楚。",
+          "summary_en": "SafeDep found an npm package called mathmain, a copy of the popular mathjs with one extra payload: an encrypted remote-access implant. The hiding is deliberate. In the CommonJS build, lusolve() ends with an extra call that passes lower-triangular matrix data into a function named isGraph; isGraph turns its argument into a JSON string, uses it as a password, derives a 256-bit key with scrypt, decrypts a filename with AES-256-GCM, writes the result to disk and require()s it. The largest of the three encrypted files is 1,179,416 bytes. The same loader and trigger code appear byte-for-byte across five versions of mathsbase and math-universe. On download counts, npm reported just over 600,000 for mathmain, 1.92 million for mathsbase and 570,000 for math-universe over 12-18 September, but npm also reported zero downloads registry-wide for 17 September, so the numbers are unreliable, a caveat the disclosure states plainly.",
+          "why": "大家判断一个依赖安不安全，默认看的第一个信号是安装时有没有跑脚本。这个包一个安装脚本都没有，清单干干净净，加载器要等到有人用特定参数调用解方程才解密落盘。也就是说，装的时候没跑代码不等于这个包不会跑代码，而这一步恰好是多数扫包工具的判断终点。",
+          "why_en": "The first signal people check on a dependency is whether it runs code at install time. This package has no install script at all, the manifest is clean, and the loader waits until someone calls the solver with the right parameters before decrypting to disk. So 'nothing ran during install' does not mean 'this package never runs anything', and that install-time check is exactly where most scanners stop."
+        },
+        {
+          "title": "Dettmers：研究的单位不再是论文，是生态",
+          "title_en": "Dettmers: the unit of research is no longer the paper, it's the ecosystem",
+          "author": "Tim Dettmers · Hacker News",
+          "author_en": "Tim Dettmers · Hacker News",
+          "likes": 140,
+          "url": "https://timdettmers.com/2026/09/21/dlab-open-source-week/",
+          "summary": "Tim Dettmers 的实验室这周开源了一整批东西，他先写了篇说明。他的判断是：近一年 agent 把单个研究项目的成本压了下来，以前要一年的工程和实验，现在几周甚至几天。难度没有消失，只是挪了位置，难的已不是发一篇论文，而是发一个各部分互相支撑的生态。他举的对比很直接：他问过一屋子 150 个学生谁担心毕业找不到工作，大约八成举手；另一边有博士生恨不得马上毕业，认定在学术界做研究没有意义。他认为两边都错，而且错在同一个假设，就是以为未来属于 GPU 最多的那家。这批开源里他愿意先说的有三样：能长时间无人值守跑下去的 agent harness、他见过效率最高的 test-time scaling、以及一套比 Claude Code 和 Codex 都更省 token 的自动压缩。做法是把 harness 指向仓库、给定优化目标就走人，中途不再给反馈，Mac 和 Metal 上那份量化推理实现就是这么出来的。",
+          "summary_en": "Tim Dettmers's lab open-sourced a whole batch of work this week and he wrote the framing note first. His read: over the past year agents pushed the cost of an individual research project down, so work that took a year of engineering and experimentation now takes weeks or days. The difficulty did not vanish, it moved. Publishing a paper is no longer hard; publishing an ecosystem whose parts reinforce each other is. The comparison he draws is blunt: he asked a room of 150 students who feared not finding a job after graduating and roughly 80% raised a hand, while other PhD students cannot wait to leave because they have concluded academic research is meaningless. He thinks both are wrong for the same reason, namely the assumption that the future belongs to whoever has the most GPUs. Three things from the release he is willing to preview: an agent harness that runs unattended for a long time, the most efficient test-time scaling he knows of, and auto-compaction far more efficient than what Claude Code or Codex implement. The method is to point the harness at a repository, give it an optimisation target, and leave; no feedback along the way, which is how the quantized inference implementation on Mac and Metal came out.",
+          "why": "对管研发的人是条可迁移的判断：当单个任务变便宜，稀缺的就从执行转成把一堆便宜任务串成一条能走通的路，实验室现在比的是这个。他也给了个反面视角，值得记着：多数人默认未来偏向资源最多的一方，他的论点是有限的资源反而逼出更好的系统设计。",
+          "why_en": "For anyone running R&D this is a transferable call: when individual tasks get cheap, the scarce thing moves from execution to stringing a pile of cheap tasks into a path that holds together, and that is what labs now compete on. He also offers the contrarian half, worth keeping: the default assumption is that the future favours whoever holds the most resources, and his argument is that limited resources are what force better system design."
+        },
+        {
+          "title": "Python 正式跑进 Cloudflare Workers，本地用 123MB 的 workerd 模拟",
+          "title_en": "Python lands in Cloudflare Workers, simulated locally by a 123MB workerd binary",
+          "author": "Cloudflare · Hacker News",
+          "author_en": "Cloudflare · Hacker News",
+          "likes": 210,
+          "url": "https://blog.cloudflare.com/python-workers-ga/",
+          "summary": "Cloudflare 的 Python Workers 结束两年预览，正式 GA，官方称 Python 已成为开发者平台上的一等语言。做法是把 Python 编译成 WebAssembly，用 Pyodide 跑在基于 V8 的 workerd 运行时里。文档写明的限制有两处要紧：多进程和线程在 WebAssembly 虚拟机里都不可用；直接网络访问在浏览器里做不到，在 Node 和 Cloudflare 上可以走真实 socket。本地开发工具叫 pywrangler（PyPI 上包名 workers-py），它用同一个 123MB 的 workerd 二进制在本地模拟整套栈。评论区讨论分两处：有人追问冷启动，官方回复是上一篇文章里有数据、后续继续优化，也有人翻出第三方基准说 Lambda 更快更稳；另一处是开源维护的钱怎么算，一位 urllib3 维护者指出，edX 这类上游适配的贡献是付给实现者的，不是付给之后要长期维护它的维护者。",
+          "summary_en": "Cloudflare's Python Workers left a two-year preview and went GA, with the company calling Python a first-class, fully supported language on its developer platform. It works by compiling Python to WebAssembly and running it through Pyodide inside the V8-based workerd runtime. The documented limits include two that matter: multiprocessing and threading are both non-functional in the WebAssembly VM, and direct network access is impossible in browsers though Node and Cloudflare can use real sockets. Local development runs through pywrangler (packaged on PyPI as workers-py), which simulates the whole stack using the same 123MB workerd binary. The comment thread split two ways: cold-start performance, where the team points at numbers in an earlier post and says more work is coming while a commenter cites a third-party benchmark showing Lambda faster and more consistent; and how upstream maintenance gets funded, where a urllib3 maintainer notes that large Pyodide/Requests contributions were paid to the person who implemented them rather than to the maintainers who support them afterwards.",
+          "why": "对写工具的人，现实意义在部署形态：一个 Python 写的定时任务、webhook 处理或代理层，可以不进容器、不碰 k8s，直接放到边缘。限制要提前算：没有线程和多进程，任何依赖本地并发的库在这个环境里直接失效，选型之前先确认你的代码不吃这两样。",
+          "why_en": "For anyone building tools, the practical change is deployment shape: a Python cron job, webhook handler or proxy layer can skip containers and Kubernetes and run at the edge instead. Budget for the limits up front, though. With no threads and no multiprocessing, any library that depends on local concurrency simply does not work here, so confirm your code does not lean on either before committing."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 6,
+      "items": [
+        {
+          "title": "Import AI：美国该不该把手里每个选项都留着",
+          "title_en": "Import AI: should the US keep every option open",
+          "author": "Jack Clark · Import AI",
+          "author_en": "Jack Clark · Import AI",
+          "likes": 0,
+          "url": "https://jack-clark.net/2026/09/21/import-ai-473-the-uss-superintelligence-strategy-human-brain-in-a-mouse-skull-and-machine-hermeneutics/",
+          "summary": "这一期头条是 RAND 那份关于美国该怎么应对超级智能的长报告。结论有点反直觉：因为下一阶段走向太不确定，最优解不是选一条路，而是先花钱保住行动自由，把七种策略都留在桌上。这七种分成三族，共存族里有主导、联合开发、预备；拒止族里有暂停、威慑，以及最极端的一种，当所有预防手段都失效时，退到地理分散、能自给自足的据点保住部分人类能动性；加速族只有一种，赌竞争本身能产出安全。报告还列了五个会改变结论的不确定性，比如危险离得多近、共存可不可行、能不能形成决定性的战略优势。Clark 的补刀是，美国现在的实际策略基本就是加速那一档，相当于把钱全花在让车更快，刹车和头灯一个没装。",
+          "summary_en": "The lead item is RAND's long report on how the US should approach superintelligence, and its conclusion runs against instinct: because the next phase is so uncertain, the best move is not to pick a path but to spend now to preserve freedom of action and keep seven strategies on the table. Those split into three families. Coexistence covers dominance, co-development and preparedness. Denial covers moratorium, deterrence and, at the far end, continuity of society, meaning geographically distributed self-sustaining settlements that preserve agency for some human populations once every preventive strategy has failed. Acceleration has one entry, betting that competition produces safety as a byproduct. The report also lists five uncertainties that would flip the answer, including how close the danger is, whether coexistence is feasible, and whether a decisive strategic advantage can be held. Clark's addition: current US strategy is basically the acceleration option, which he likens to spending everything on making the car go faster and nothing on seatbelts, headlights or brakes.",
+          "why": "这是今天唯一一条把能力放回预算和政策里看的。RAND 的结论不是选哪条，是先花钱保住选择的自由，这对做长期规划的人是现成的工具：把会改变结论的那几个不确定性列出来，先问清楚哪一个翻转了要不要现在就下注，再谈执行。",
+          "why_en": "This is the only item today that puts capability back inside budgets and policy. RAND's conclusion is not which path to pick but to spend now to keep the choice open, which makes it a ready-made tool for long-range planning: write down the uncertainties that would flip the answer, work out which one changing would force a bet today, and only then talk about execution."
+        },
+        {
+          "title": "Meta 开放 Muse 连接器：你出 API，agent 和浏览器归它",
+          "title_en": "Meta opens Muse connectors: you bring the API, it brings the agent and browser",
+          "author": "Meta · Muse 平台",
+          "author_en": "Meta · Muse Platform",
+          "likes": 0,
+          "url": "https://muse.ai/platform",
+          "summary": "Meta 开始接收第三方为 Muse 提交连接器，分工写得很直白：开发者出 API，Meta 出 agent、浏览器和用户的上下文，用户开口提要求，请求就落到你的服务上。流程是提交功能描述，过功能、安全、法务三关加端到端测试，通过后进目录，能不能上推荐位由它的编辑决定；支付接了 Stripe 的 Link。Muse 走的是个人 agent 路线，宣传口径是 24 小时替用户把事办完，数据放在一台独立的 Linux 虚拟机里，另有一个 Sentinel agent 逐条批准出网的动作。这套东西的分发量不小，上线一周后冲到美国 App Store 第一，不过美国以外还基本用不上。",
+          "summary_en": "Meta has opened submissions for third-party Muse connectors, and the division of labour is stated plainly: developers bring the API, Meta brings the agent, the browser and the user's context, and a request lands on your service when a user simply asks for it. The process is to describe what the connector does, clear functional, security and legal review plus end-to-end testing, and land in the directory, with featured placement decided by Meta's editors. Payments run through Stripe's Link. Muse is positioned as a personal agent that works on a user's behalf around the clock, with data and credentials on a separate Linux VM and a Sentinel agent approving every outbound action. Its distribution is real: it hit number one on the US App Store within a week of launch, though availability outside the US remains limited.",
+          "why": "这是住进别人的分发里这条老路的最新一版，但分工跟上一代平台不同：过去你既出 API 也出界面，现在 Meta 只要 API，交互和上下文它自己留下。对做产品的团队，值得算的是那个老问题的新变量，拿到别人的用户，代价是把自己降级成一个能力端点，用户关系始终在对方手里。",
+          "why_en": "This is the latest version of the old road of living inside someone else's distribution, but the split differs from the previous generation of platforms: you used to bring both the API and the interface, and now Meta wants only the API while keeping the interaction and the context. For a product team the arithmetic is the familiar question with a new variable. You get someone else's users, and the price is being demoted to a capability endpoint with the customer relationship staying on their side."
+        }
+      ]
+    }
+  ]
+}
