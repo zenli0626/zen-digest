@@ -1,34 +1,34 @@
 {
   "date": "2026-09-22",
   "partial": false,
-  "banner": "小米公开训练，开源榜易主",
-  "banner_en": "Xiaomi streams its training, open weights get a new No. 1",
+  "banner": "两大模型同日发布，价格再腰斩",
+  "banner_en": "Two flagship models launch same day, prices halved again",
   "image": {
     "src": "digests/img/2026-09-22.jpg",
-    "caption": "本期头图来自 Forkast 报道小米 MiMo-V2.6 时所用的页面 og:image。该报道称，小米把 MiMo-V2.6 的强化学习训练做成了公开仪表盘，实时公布成本、token 吞吐和跑分，报道给出的开销是每天约 43.2 万美元。（图：Forkast）",
-    "caption_en": "This issue's lead image is the featured image (og:image) from Forkast's report on Xiaomi's MiMo-V2.6. Per that report, Xiaomi ran the model's reinforcement-learning training behind a public dashboard publishing cost, token throughput and benchmark scores in real time, with the report putting the burn at roughly $432,000 a day. (Image: Forkast)"
+    "caption": "本期头图是 Simon Willison 制作的对比网格：同一句「画一只骑自行车的鹈鹕」SVG 提示词，分别喂给 GPT-6 Astra/Sol/Luna 和 GPT-5.6 Sol/Terra/Luna，在 max/xhigh/high/medium 四档思考强度下各跑一次，每格标出实际输入输出 token 数和本次生成的费用（美分）。例如 GPT-6 Astra 在 max 档花费 63.21 美分，GPT-6 Luna 在同一档只需 0.91 美分。（图：Simon Willison）",
+    "caption_en": "This issue's lead image is Simon Willison's own comparison grid: the same \"generate an SVG of a pelican riding a bicycle\" prompt run against GPT-6 Astra/Sol/Luna and GPT-5.6 Sol/Terra/Luna at four thinking-effort levels (max/xhigh/high/medium), with each cell labeled by actual input/output token counts and the cost in cents for that single generation. GPT-6 Astra at max cost 63.21 cents; GPT-6 Luna at the same effort level cost 0.91 cents. (Image: Simon Willison)"
   },
   "actions": [
     {
-      "text": "挑一份你最近用 AI 生成的文档，重写成先给判断、再给证据。先写三句：这份东西要对方做什么决定、你的建议是什么、为什么。写完把原来的开头删掉，让读者第一句话就看到立场。约 20 分钟。完成标志：第一段里有一句是判断而不是背景，对方读完第一段就知道该干什么。背景一句：78% 的读者一旦怀疑文章是 AI 写的就不读了。",
+      "text": "挑一份你最近用 AI 生成的文档，重写成先给判断、再给证据。先写三句：这份东西要对方做什么决定、你的建议是什么、为什么。写完删掉原来的开头，让读者第一句话就看到立场。约 20 分钟。完成标志：第一段里有一句是判断而非背景，对方读完第一段就知道该干什么。背景一句：78% 的读者一旦怀疑文章是 AI 写的就不读了。",
       "text_en": "Take one document you recently generated with AI and rewrite it as judgement first, evidence second. Write three sentences up front: what decision you need from the reader, what you recommend, and why. Then delete the original opening so the reader hits a position on the first line. About 20 minutes. You are done when the first paragraph contains a judgement rather than background, and a reader knows what to do after reading only that paragraph. One sentence of context: 78% of readers stop reading the moment they suspect an article was AI-written.",
       "source": "Colin Breck · Hacker News",
       "source_en": "Colin Breck · Hacker News",
       "source_url": "https://blog.colinbreck.com/i-dont-want-to-read-what-you-didnt-write/"
     },
     {
-      "text": "把来源说明加进你对外发布前的检查项，不是只剥元数据。拿三份你最近发出去的文件，每份补一句：谁生成、用什么工具、有没有水印；EXIF 和 ID3 这类标准字段顺手用 exiftool -all= 清掉。约 15 分钟。完成标志：三份文件都能一句话说清来源，且这句说明写在正文或发布说明里，不依赖文件自身携带的元数据。背景一句：标准元数据可以剥，嵌进像素或词句选择里的追踪信号剥不掉。",
-      "text_en": "Add a provenance line to your pre-publish checklist, rather than just stripping metadata. Take three files you recently sent out and write one sentence for each: who generated it, with what tool, and whether a watermark is present. Strip the standard fields with exiftool -all= while you are in there. About 15 minutes. You are done when all three have a one-sentence provenance note that lives in the body or the release notes, not in metadata carried by the file. One sentence of context: standard metadata strips cleanly, tracking signals embedded in pixels or word choices do not.",
-      "source": "Brandon Thomas · brand.io · Hacker News",
-      "source_en": "Brandon Thomas · brand.io · Hacker News",
-      "source_url": "https://brand.io/article/spymarks/"
-    },
-    {
-      "text": "给你现在最依赖的三个供应商，各写一条两周不回消息就换谁。做法是把三个名字列出来，每个写出备选方案的名字、迁移大概要多久、会卡在哪一步。约 20 分钟。完成标志：三个供应商都有具名的备选和迁移成本估算，没有一个是空的；写不出备选的那个，就是你眼下最该补的洞。背景一句：Cantrill 那篇复盘里，Sun 当年的战略是对的，输在客户拿着钱上门时没人接电话。",
+      "text": "给你现在最依赖的三个供应商，各写一条两周不回消息就换谁。做法是列出三个名字，每个写出备选方案的名字、迁移大概要多久、会卡在哪一步。约 20 分钟。完成标志：三个供应商都有具名的备选和迁移成本估算，没有一个是空的；写不出备选的那个，就是你眼下最该补的洞。背景一句：Cantrill 那篇复盘里，Sun 当年的战略是对的，输在客户拿着钱上门时没人接电话。",
       "text_en": "For the three vendors you depend on most, write one line each: if they go quiet for two weeks, who replaces them. List the three names, then note for each the named alternative, roughly how long a migration takes, and where it would stall. About 20 minutes. You are done when all three have a named alternative and a migration estimate, with none left blank; the one you cannot fill in is the gap to close first. One sentence of context: in Cantrill's retrospective, Sun's strategy was right, and it still lost because nobody picked up the phone when a customer showed up with money.",
       "source": "Bryan Cantrill · bcantrill.dtrace.org · Hacker News",
       "source_en": "Bryan Cantrill · bcantrill.dtrace.org · Hacker News",
       "source_url": "https://bcantrill.dtrace.org/2026/09/20/what-sun-got-wrong/"
+    },
+    {
+      "text": "挑一项你现在打包在别的保单或订阅套餐里买的、按年续费的东西（伞险、宽带加电视套餐、云服务打包价都算），单独去问一次不打包的报价，跟你现在实际付的价格比一比。预计 20 到 30 分钟。完成标志：写下两个数字，打包价和单独比价后的价格，以及哪个更便宜，而不是假设打包一定划算。背景一句话：今天一家做伞险经纪的创业公司在 Hacker News 上路演，创始人被追问时给出的判断是，很多人打包省下的钱，其实没有分开单独比价省下的多。",
+      "text_en": "Pick one item you currently buy bundled into another policy or subscription and renew annually (umbrella insurance, an internet-plus-TV bundle, a cloud service's package price all count), get a standalone quote for it unbundled, and compare that to what you're actually paying now. About 20 to 30 minutes. Done when you've written down both numbers, the bundled price and the unbundled comparison price, and which one actually wins, instead of assuming the bundle is the deal. One sentence of background: an umbrella-insurance brokerage pitched itself on Hacker News today, and when pressed, its founder's stated judgment was that what people save by bundling is often less than what they'd save by shopping the unbundled price.",
+      "source": "Coverage Cat (YC S22)",
+      "source_en": "Coverage Cat (YC S22)",
+      "source_url": "https://www.coveragecat.com/"
     }
   ],
   "hands_on": {
@@ -58,131 +58,125 @@
     "source_en": "SafeDep · supply-chain disclosure",
     "source_url": "https://safedep.io/mathmain-encrypted-loader/"
   },
-  "meta_read": "把今天的条目按热度排一下，排在前面的没有一条是在庆祝能力变便宜。最热的几条，讲的都是同一类东西：怎么让别人能验证你交出去的东西。这跟过去十年的默认是反的。过去的默认是产出稀缺，所以能写出来本身就是可信度；现在产出管够，判断这份产出能不能用的成本一分没降，于是它从流程里的一个环节变成了流程本身。照这个走法，下一轮拿到溢价的不是生成方，是那个愿意为判断结果签字的一方。\n\n顺带一提，今天三条最热的讨论都不是新模型的跑分，是一件训练过程被公开、一份文档被读不下去、一个仪表盘被挂到网上。能力发布已经不再是新闻，可信度才是。",
-  "meta_read_en": "Rank today's stories by attention and not one of them is celebrating that capability got cheaper. The most-read items are all about the same class of thing: how to let someone else verify what you handed them. That inverts the last decade's default. The old default was scarcity of output, so being able to produce the thing was itself the credential. Output is now abundant and the cost of judging whether it is any good has not moved at all, which turns judgement from a step in the pipeline into the pipeline itself. On this trajectory, the premium in the next round does not go to whoever generates. It goes to whoever is willing to sign their name to the judgement.\n\nOne aside: today's three most-discussed threads were not a new model's benchmark score. They were a training run published in the open, a document nobody could finish reading, and a dashboard put on the public internet. Shipping capability has stopped being news. Credibility is the news.",
+  "meta_read": "今天两条互不相干的线索指向了同一个判断：热度最高的几件事，没一件是在庆祝能力变便宜，讲的都是怎么让别人核实你交出去的东西。\n\n模型这边，Opus 5.5 那句「解决了你反馈的沟通问题」没人能替你验证，但价目表和一次真实撞上 128000 token 上限的失败，谁都能自己去核对。反过来，小米把 MiMo-V2.6 的强化学习训练全程挂在网上，每一步的花费、吞吐、跑分和每次重启的原因都公开，这是头一回有人把训练过程本身、而不只是结果交出来给人查。SlopShape 那篇论文附了流程、量表和代码，声称的 98% 识别准确率理论上谁都能重新跑一遍，可评论区一转手，拿作者自己的检测工具去测一条被标记的可疑评论，结果显示「80% 像人写的」，可见验证方法本身也得挑对了才管用。那个藏在数学库里的后门更彻底：它专门躲开了「安装时有没有跑脚本」这个大家默认的检查，真正接得住它的只有一个更笨的问题，依赖树里到底有几个包被允许在安装阶段执行代码。\n\n判断这件事本身也在变贵。Colin Breck 说得直接，AI 把写一份文档的成本压到接近零，却没压低让另一个人读完、认同、执行的成本，甚至因为读者要先分辨哪句是判断哪句是填充而抬高了它。伞险经纪商那条更朴素：创始人给出的不是营销话术，是一句能自己去验的判断，打包省的钱经常没有分开比价省的多。\n\n也有反例。今天那条恩尼格玛破译的争论卡在没法验证这一步，原文没放密文，没说花了多少钱、跑了多久，读者只能在值得夸和没什么之间靠感觉站队，直到有人自己把密文挖出来贴上，讨论才落地。兰德那份报告和 Cantrill 那篇复盘，说的其实是同一层意思换了个场景：兰德把该怎么选拆成五道能自己回答的问题，Cantrill 把战略对不对换成客户找上门时有没有人接电话，两者都是把一句大判断，还原成几个能自己核对的小问题。\n\n所以今晚真正能带走的不是任何一个数字，是一个习惯：遇到一句听起来很确定的话，先问它给没给你自己动手查一遍的入口。给了的，才配当依据；没给的，先当成一方的自述。",
+  "meta_read_en": "Two independent threads landed on the same conclusion tonight: the most-discussed stories aren't celebrating that capability got cheaper. They're all about how to let someone else verify what you handed them.\n\nOn the model side, nobody can verify Opus 5.5's line about fixing the communication problems people reported, but the pricing table and a real failure that hit an actual 128,000-token wall are both things anyone can check. Xiaomi went the other way, putting MiMo-V2.6's entire reinforcement-learning run behind a public dashboard, cost, throughput, benchmark scores and the reason for every restart, the first time anyone has handed over the training process itself rather than just the result. SlopShape's paper ships its pipeline, instrument and code, so its claimed 98% detection accuracy is in principle something anyone can rerun, and then the comment thread ran a flagged, suspect comment through that same author's own live detector, which came back \"80% human,\" proof that even a verification method has to be the right one to work. The backdoor hidden inside a math library went further still: it specifically dodged the one check everyone defaults to, whether code runs at install time, and the only question that actually catches it is duller, how many packages in your dependency tree are even allowed to execute code during install.\n\nJudgment itself is getting more expensive too. Colin Breck's point is blunt: AI pushed the cost of producing a document to nearly zero without touching the cost of getting someone else to read it, agree, and act, and arguably raised that cost, since the reader now has to separate judgement from filler first. The insurance broker's story is the plainest version: the founder didn't offer marketing copy, he offered a claim you can check yourself, that bundling often saves less than shopping the unbundled price would.\n\nThere's a counterexample too. Tonight's Enigma-decryption argument is stuck exactly where verification fails; the original piece never published the ciphertext or said what it cost or how long it ran, leaving readers to pick a side between impressive and no big deal on vibes alone, until someone dug up the ciphertext themselves. RAND's report and Cantrill's retrospective are really the same move in different settings: RAND turns which path to pick into five questions you can answer yourself, and Cantrill turns whether the strategy was right into whether anyone picked up the phone when the customer showed up, both reducing one big verdict into smaller, checkable ones.\n\nSo the thing worth carrying out of tonight isn't any single number. It's a habit: when a sentence sounds certain, ask first whether it hands you an entry point to check it yourself. If it does, it earns the right to be evidence. If it doesn't, treat it as one side's own account for now.",
   "ota": {
     "learned": [
-      "已验证：今天两条路各查了一次 YouTube，读数一致。九个 roster 频道的 feeds/videos.xml 全部返回 404（OpenAI 频道返回 500），连两个对照组频道（Google Developers US、Google DeepMind）也是同样的结果。这个一致性说明是请求被拒，不是频道安静。按运行约定不做第二次尝试，本期零条 YouTube，也没有生成任何我看过了的内容。",
-      "已验证：文摘带的五个订阅源里，三个正常返回 200 和干净 XML（Import AI 自建源、TLDR AI、Latent Space、Simon Willison 四个里，除 Simon 外都是原文），Ahead of AI 的 Substack 源返回 403。同一个出版方在 Substack 域名下被挡、在自己域名下能取到，这是第二次碰到这同一个模式，上一次是 Import AI。",
-      "已验证：本期把报道自己声明的事实、报道转述的第三方数字分开写。小米那条里，跑分、价格、参数量取自 Artificial Analysis 的模型页，是一手榜单数据；130 小时、75B token、260 万美元的 RL 开销来自 Latent Space 对 X 讨论的整理，属于二手转述，条目正文明确写成 Latent Space 整理的数字，没有升格成小米官方口径。",
-      "观察：本期零条 YouTube，文摘带两个条目，是文本带单独撑起多样性的一天（Hacker News 7 条 + 文摘 2 条）。三个被挡或重复的来源分别是：YouTube 全部 404、Ahead of AI 403、Latent Space 的头条与 Hacker News 头条是同一件事（小米，择强合一）。",
-      "已实施：把上述二手数字必须带转述者写进本期写作流程，凡是引用媒体整理的数据，条目正文必须出现转述者的名字，不能写成发布方的说法。"
+      "已实施：一次 7 天去重排查发现 digests/2026-09-19.json 和 digests/2026-09-20.json 的 github_top10 榜单顺序完全一致，这在 GitHub 每日 trending 这种活数据上几乎不可能自然发生，大概率是某次跑漏掉了 bin/fetch-github-trending.mjs、直接沿用了前一天的榜单。SKILL.md 之前从没写过这一步该怎么做，已经把命令和这条踩坑记录一起补进第 5 步。",
+      "复盘：今天 YouTube 的两次独立检查结果不一样，合在一起才说清楚事情的全貌。白天那次检查，九个 roster 频道加两个对照组频道的 feeds/videos.xml 全部返回 404（一个 500），判定成请求被拒；晚上 9 点这轮重新测，同样九个频道全部返回 200 和真实条目，字幕下载连续三条都成功，第四、五条才撞上按量限流的 HTTP 429（不是签到验证码）。同一天之内从全部拒绝到部分成功再到限流，再次证明拦截时长和形态都不固定，必须每次重新测，不能沿用哪怕是同一天早些时候的结论。",
+      "已验证：Import AI 的内容今天两条路都测出通。白天那次用它自建域名 jack-clark.net 拿到 200，晚上这次直接用 Substack 的 feed（importai.substack.com/feed）也拿到 200，此前记录过的 Cloudflare 403 今天没有再出现。",
+      "观察：今晚挑的一条 Show HN（SlopShape，做 AI 文案结构识别）评论区自己演了一遍发布前查 AI 腔这条规则该有多认真：一条被 HN 管理员 dang 标记为疑似 AI 生成的评论，被人拿去跑作者自己在 sitefire.ai 放出的实时检测工具，结果显示「80% 像人写的」。检测工具本身也可能测不准，不能把这件事外包给单一自动化工具，人工再过一遍仍然必要。",
+      "已实施：本期把报道自己声明的一手事实和转述来的二手数字分开写，凡是引用媒体整理的数据，正文里必须点出转述者的名字，不能升格成发布方自己的说法。小米那条的强化学习时长、token 数、花费来自 Latent Space 对 X 讨论的整理，跑分和定价则直接取自 Artificial Analysis 的模型页，两处写法不同。",
+      "复盘：Bloomberg 一条讲国防部把误炸校舍归因于「过度依赖 AI」的报道在 HN 拿到 388 分，但原文被机器人验证拦住抓不到全文，二手转述也只能拿到评论区的片段，题材本身偏军事政策，不在这份 skill 的应用/GTM/产品选题线上，本期判断不收录，没有为了凑条目硬塞一条读不到原文的新闻。"
     ],
     "new_capabilities": [
-      "核对一个数字到底是谁说的，先看它出现在哪一层：一手页面（榜单、模型卡、官方公告）还是二手转述（媒体、聚合简报）。二手数字在正文里必须带上转述者的名字，不能写成发布方的口径。今天小米那条的跑分和价格来自 Artificial Analysis 的模型页，RL 的时长和花费来自 Latent Space 对 X 讨论的整理，两者在条目里的写法不同。",
-      "报告一条采集带是不是空的，必须同时给出对照目标的读数。今天九个 roster 频道加两个对照组频道的 feeds/videos.xml 全部 404（一个 500），两组读数一致，才能把结论写成请求被拒而不是频道没更新。",
-      "订阅源在 Substack 域名下返回 403 时，去出版物自己的域名找同一份 feed，并且顺手确认一次。今天实测：aheadofai.substack.com/feed 返回 403，magazine.sebastianraschka.com/feed 返回 200 和完整条目列表。这条今天第二次应验，上一次是 Import AI 的 substack 源被挡、自建源可用。"
+      "今后每次跑到写 github_top10 这一步，一律现跑 node bin/fetch-github-trending.mjs 拿当天真实榜单，不能沿用记忆里或者前一天的列表。这条已经写进 SKILL.md 第 5 步。",
+      "今后同一天内多次检查同一个可能被拦截的源（YouTube、Substack 域名下的订阅源），每次检查的时间点和结果要分开记录，不能只留最后一次的结论。今天的教训是：同一天里 YouTube 从全部 404 变成全部 200，Import AI 从需要走自建域名变成 Substack 直连也通。",
+      "今后遇到一条二手转述的数字（媒体整理、聚合简报），写作时必须在正文里点出转述者是谁，跟一手页面（榜单、模型卡、官方公告）给出的数字分开处理，不能都写成发布方自己的说法。",
+      "今后连续用 yt-dlp 拉字幕，如果连续两次以上撞上 HTTP 429（不是签到验证码），就当成按量限流处理，不再对同一批视频重试，改用已经成功拿到的内容；这和签到墙的一次重试规矩是两套不同的信号，以后分开记录。"
     ],
     "learned_en": [
-      "Verified: both lanes were tested once for YouTube today and the readings agree. All nine roster channels returned 404 from feeds/videos.xml (the OpenAI channel returned 500), and two control channels (Google Developers US, Google DeepMind) came back the same way. That agreement is what identifies a refused request rather than quiet channels. Per the run convention there was no second attempt, so the issue carries zero YouTube items and no 'I watched it' content of any kind.",
-      "Verified: of the five digest-lane feeds, four returned 200 with clean XML (Import AI's self-hosted feed, TLDR AI, Latent Space, Simon Willison) and Ahead of AI's Substack-hosted feed returned 403. The same publication being blocked on Substack and reachable on its own domain is the second occurrence of this pattern; the first was Import AI.",
-      "Verified: this issue separates facts a report states itself from third-party numbers it relays. In the Xiaomi item, the benchmark score, price and parameter counts come from Artificial Analysis's model page, which is first-party leaderboard data; the RL figures of 130 hours, 75B tokens and $2.6M come from Latent Space's roundup of discussion on X, which is second-hand, so the item body credits them as 'the numbers Latent Space assembled' rather than promoting them to Xiaomi's own account.",
-      "Observed: with zero YouTube items and two digest-lane items, the text lanes carry diversity on their own today (Hacker News 7, Digest 2). The three blocked or duplicate sources were YouTube (all 404), Ahead of AI (403), and Latent Space's lead story, which was the same event as Hacker News's lead story (Xiaomi, one treatment kept).",
-      "Implemented: the second-hand-number rule above now runs in this issue's writing pass. Any figure credited to a media roundup must carry the name of the party doing the relaying, and cannot be written as the source's own account."
+      "Implemented: a 7-day dedup sweep found digests/2026-09-19.json and 2026-09-20.json had byte-identical github_top10 rankings, near-impossible for a live daily GitHub-trending scrape two days running. The likely cause is a prior run skipping bin/fetch-github-trending.mjs and reusing the previous day's list. SKILL.md never documented this step before; tonight added the command and this finding to step 5.",
+      "Reconstructed: two independent YouTube checks today disagreed, and only together do they tell the full story. A daytime check found all nine roster channels plus two control channels returning 404 from feeds/videos.xml (one returned 500), read as the request being refused; a 9pm retest found the same nine channels all returning 200 with real entries, with three sequential subtitle downloads succeeding before the fourth and fifth hit volume-based HTTP 429 (not the sign-in CAPTCHA). Going from fully refused to partly working to rate-limited within the same day confirms again that block duration and shape are unpredictable and must be retested every time, not carried over even from earlier the same day.",
+      "Verified: Import AI's content tested reachable via two paths today. The daytime check used its self-hosted domain (jack-clark.net) and got 200; tonight's check went straight through the Substack feed (importai.substack.com/feed) and also got 200. The Cloudflare 403 logged in prior runs didn't recur today.",
+      "Observed: the comment thread under tonight's chosen Show HN post (SlopShape, on structural AI-copy detection) staged a live demonstration of exactly how seriously this skill's pre-publish AI-tone check should be taken. A comment HN moderator dang flagged as likely AI-generated, run through the paper author's own live detector at sitefire.ai, came back \"80% human.\" A detection tool can itself be wrong, so this can't be outsourced to a single automated tool; a human pass still matters.",
+      "Implemented: this issue separates facts a report states itself from third-party numbers it relays. Any figure credited to a media roundup must carry the name of the party doing the relaying in the item body, rather than being promoted to the original publisher's own account. Xiaomi's RL duration, token count and spend come from Latent Space's roundup of X discussion, while its benchmark score and pricing are taken directly from Artificial Analysis's model page, and the two are written differently for that reason.",
+      "Reconstructed: a Bloomberg story tonight, on the Pentagon attributing a missile strike on an Iranian school partly to overreliance on AI, hit 388 points on HN, but the original piece was blocked by a bot-check and only fragmentary secondhand HN-comment retelling was reachable; the topic also sits outside this skill's applied-AI/GTM/product editorial lane. Decided tonight not to include it rather than pad the item count with a story never read in the original."
     ],
     "new_capabilities_en": [
-      "Before trusting a number, check which layer it came from: a first-party page (leaderboard, model card, official announcement) or a second-hand relay (media, aggregation newsletter). Second-hand figures must carry the relay's name in the item body rather than being attributed to the original publisher. Today the Xiaomi benchmark score and pricing came from Artificial Analysis's model page, while the RL duration and spend came from Latent Space's roundup of discussion on X, and the item writes them differently for that reason.",
-      "When reporting that a sweep lane came up empty, give the control target's reading at the same time. Today all nine roster channels plus two control channels returned 404 from feeds/videos.xml (one returned 500); only matching readings across both groups justify the conclusion 'the request was refused' rather than 'the channels went quiet'.",
-      "When a feed returns 403 on a Substack domain, find the same feed on the publication's own domain and confirm it once. Measured today: aheadofai.substack.com/feed returns 403 while magazine.sebastianraschka.com/feed returns 200 with a full item list. This is the second time the rule has paid off; the first was Import AI's blocked Substack feed and working self-hosted one."
+      "From now on, always run node bin/fetch-github-trending.mjs fresh for the github_top10 step to get the real list for today, never reuse a remembered or prior-day list. Added to SKILL.md step 5.",
+      "From now on, when checking the same potentially-blocked source (YouTube, a Substack-hosted feed) more than once in a single day, log each check's timestamp and result separately rather than keeping only the last verdict. Today's lesson: YouTube went from fully 404 to fully 200 within the same day, and Import AI went from needing its self-hosted domain to working over a direct Substack connection.",
+      "From now on, when a figure is a secondhand relay (a media roundup, an aggregation newsletter), the writing must name the relaying party in the item body and keep it separate from numbers taken from a first-party page (a leaderboard, a model card, an official announcement), rather than writing both as the publisher's own account.",
+      "From now on, when back-to-back yt-dlp subtitle fetches hit HTTP 429 (not the sign-in CAPTCHA) two or more times in a row, treat it as volume-based rate limiting, stop retrying that batch, and use whatever content is already in hand; this is a distinct signal from the sign-in wall's one-retry rule and should be logged separately."
     ]
   },
   "github_top10": [
     {
       "rank": 1,
-      "name": "BuilderIO/agent-native",
-      "url": "https://github.com/BuilderIO/agent-native",
-      "description": "A framework for building agentic apps",
-      "language": "TypeScript",
-      "stars": 6111,
-      "stars_today": 607
+      "name": "anthropics/financial-services",
+      "url": "https://github.com/anthropics/financial-services",
+      "description": "面向投行、股票研究、私募股权和财富管理场景的参考 agent、技能和数据连接器，可作为 Claude Cowork 插件使用，也能通过 Claude Managed Agents API 部署。",
+      "description_en": "Reference agents, skills, and data connectors for financial-services workflows: investment banking, equity research, private equity, and wealth management. Ships as a Claude Cowork plugin or deploys via the Claude Managed Agents API.",
+      "language": "Python",
+      "stars": 36341,
+      "stars_today": 438
     },
     {
       "rank": 2,
-      "name": "trycua/cua",
-      "url": "https://github.com/trycua/cua",
-      "description": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation.",
-      "language": "HTML",
-      "stars": 25817,
-      "stars_today": 609
+      "name": "google/ax",
+      "url": "https://github.com/google/ax",
+      "description": "Google 开源的 agent 编排运行时",
+      "description_en": "Google's open agentic orchestration runtime",
+      "language": "Go",
+      "stars": 7609,
+      "stars_today": 2305
     },
     {
       "rank": 3,
-      "name": "Open-Dev-Society/OpenStock",
-      "url": "https://github.com/Open-Dev-Society/OpenStock",
-      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
-      "language": "TypeScript",
-      "stars": 18017,
-      "stars_today": 844
+      "name": "browser-use/video-use",
+      "url": "https://github.com/browser-use/video-use",
+      "description": "用 coding agent 剪视频",
+      "description_en": "Edit videos with coding agents",
+      "language": "Python",
+      "stars": 25844,
+      "stars_today": 191
     },
     {
       "rank": 4,
-      "name": "akitaonrails/ai-memory",
-      "url": "https://github.com/akitaonrails/ai-memory",
-      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
-      "language": "Rust",
-      "stars": 7841,
-      "stars_today": 167
+      "name": "davila7/claude-code-templates",
+      "url": "https://github.com/davila7/claude-code-templates",
+      "description": "配置和监控 Claude Code 的命令行工具",
+      "description_en": "CLI tool for configuring and monitoring Claude Code",
+      "language": "Python",
+      "stars": 31128,
+      "stars_today": 64
     },
     {
       "rank": 5,
-      "name": "coder/coder",
-      "url": "https://github.com/coder/coder",
-      "description": "Secure environments for developers and their agents",
-      "language": "Go",
-      "stars": 16514,
-      "stars_today": 460
+      "name": "mvt-project/mvt",
+      "url": "https://github.com/mvt-project/mvt",
+      "description": "移动设备取证工具包，帮助排查手机是否被入侵",
+      "description_en": "Mobile Verification Toolkit helps with conducting forensics of mobile devices to find signs of a potential compromise.",
+      "language": "Python",
+      "stars": 14115,
+      "stars_today": 441
     },
     {
       "rank": 6,
-      "name": "anthropics/financial-services",
-      "url": "https://github.com/anthropics/financial-services",
-      "description": "",
-      "language": "Python",
-      "stars": 35938,
-      "stars_today": 424
+      "name": "dream-num/univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "给 AI agent 用的办公套件运行时，一个运行时里集成表格、文档、幻灯片、画布、关系型表格和 PDF",
+      "description_en": "The Office Harness for AI Agents: spreadsheets, docs, slides, canvas, relational tables, and PDF in one runtime.",
+      "language": "TypeScript",
+      "stars": 15406,
+      "stars_today": 255
     },
     {
       "rank": 7,
-      "name": "cloudflare/quiche",
-      "url": "https://github.com/cloudflare/quiche",
-      "description": "🥧 Savoury implementation of the QUIC transport protocol and HTTP/3",
-      "language": "Rust",
-      "stars": 12422,
-      "stars_today": 32
+      "name": "superdesigndev/treg",
+      "url": "https://github.com/superdesigndev/treg",
+      "description": "面向 agent 工具的 OpenRouter",
+      "description_en": "OpenRouter for agent tools.",
+      "language": "Python",
+      "stars": 2222,
+      "stars_today": 230
     },
     {
       "rank": 8,
-      "name": "mvt-project/mvt",
-      "url": "https://github.com/mvt-project/mvt",
-      "description": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise.",
-      "language": "Python",
-      "stars": 13708,
-      "stars_today": 169
-    },
-    {
-      "rank": 9,
-      "name": "zhouxiaoka/autoclip",
-      "url": "https://github.com/zhouxiaoka/autoclip",
-      "description": "AutoClip：AI 驱动的视频剪辑与高光生成工具，可用于智能提取高光并做二创剪辑",
-      "language": "Python",
-      "stars": 8466,
-      "stars_today": 250
-    },
-    {
-      "rank": 10,
-      "name": "ruanyf/weekly",
-      "url": "https://github.com/ruanyf/weekly",
-      "description": "科技爱好者周刊，每周五发布",
-      "language": null,
-      "stars": 104224,
-      "stars_today": 182
+      "name": "agent-substrate/substrate",
+      "url": "https://github.com/agent-substrate/substrate",
+      "description": "Agent Substrate 的核心系统",
+      "description_en": "Agent Substrate: the core system",
+      "language": "Go",
+      "stars": 2978,
+      "stars_today": 245
     }
   ],
   "sources": [
     {
       "platform": "Hacker News",
       "platform_en": "Hacker News",
-      "swept": 29,
+      "swept": 56,
       "items": [
         {
           "title": "小米把 MiMo-V2.6 的训练直播出来，跑完只用 130 小时",
@@ -192,9 +186,21 @@
           "likes": 772,
           "url": "https://mimo.xiaomi.com/mimo-v2-6",
           "summary": "MiMo-V2.6 是小米做的开放权重模型，MIT 许可，分 Pro 和 Flash 两个版本，输入支持文本、图像、语音、视频。Artificial Analysis 的模型页上，MiMo-V2.6-Pro 以 46 分排开放权重第一，总参数 1.0T、每 token 激活 42B，输入每百万 token 0.435 美元、输出 0.87 美元，跑一个智能指数任务合 0.13 美元。比跑分更少见的是过程：团队把强化学习训练的仪表盘挂在网上实时更新，每步的 token 吞吐、跑分和成本都公开，连每次重启的原因都记了下来。Latent Space 整理的数字是这轮 RL 跑了 130 小时、75B token、花掉 260 万美元。上次说到这套仪表盘公开了训练过程，今天的进展是模型真正发布，权重、技术报告和训练代码一起放出，直接换了开源榜的第一名。",
-          "summary_en": "MiMo-V2.6 is Xiaomi's open-weights model line, MIT licensed, split into Pro and Flash, with text, image, speech and video inputs. On Artificial Analysis's model page, MiMo-V2.6-Pro ranks first among open-weights models at 46 on its Intelligence Index, with 1.0T total parameters and 42B active per token, priced at $0.435 per million input tokens and $0.87 output, or $0.13 per Intelligence Index task. Rarer than the scores is the process: the team put the reinforcement-learning run behind a live public dashboard showing per-step token throughput, benchmark scores and cost, including a logged reason for every restart. The numbers Latent Space assembled put the RL run at 130 hours, 75B tokens and $2.6M. Last time we covered the dashboard go live; today's development is that the model actually shipped, weights, tech report and training code together, taking the top open-weights slot outright.",
+          "summary_en": "MiMo-V2.6 is Xiaomi's open-weights model line, MIT licensed, split into Pro and Flash, with text, image, speech and video inputs. On Artificial Analysis's model page, MiMo-V2.6-Pro ranks first among open-weights models at 46 on its Intelligence Index, with 1.0T total parameters and 42B active per token, priced at $0.435 per million input tokens and $0.87 output, or $0.13 per Intelligence Index task. Rarer than the scores is the process: the team put the reinforcement-learning run behind a live public dashboard showing per-step token throughput, benchmark scores and cost, including a logged reason for every restart. The numbers Latent Space assembled put the RL run at 130 hours, 75B tokens and $2.6M. Last time we covered the dashboard going live; today's development is that the model actually shipped, weights, tech report and training code together, taking the top open-weights slot outright.",
           "why": "重点不在小米又刷了一个榜，在于它把训练过程本身变成了可以被外人检查的东西。开放权重到现在开放的只是结果，过程和失败都不公开；这次连每次重启的原因都写出来，研究者和竞争对手第一次能拿同一份数据说话。对做产品的人，这里可迁移的是做法本身：把内部过程公开，能直接抵掉一部分外部信任成本。",
           "why_en": "The point is not that Xiaomi topped another leaderboard. It is that the training process itself became something an outsider can inspect. Open weights so far have meant opening the result while the process and the failures stay private; this run logs the reason for every restart, which lets researchers and competitors argue from the same data for the first time. For anyone shipping products, the transferable move is the method: publishing the internal process directly buys down some of the trust cost on the outside."
+        },
+        {
+          "title": "GPT-6 Astra 破译一份 2005 年就没人解开的恩尼格玛电报，评论区吵的是这算不算本事",
+          "title_en": "GPT-6 Astra cracks a 2005-era unsolved Enigma message; comments argue over whether that's skill",
+          "author": "cryptocellar.org · Hacker News",
+          "author_en": "cryptocellar.org · Hacker News",
+          "likes": 551,
+          "url": "https://www.cryptocellar.org/bgac/the-mvueh-break.html",
+          "summary": "cryptocellar.org 发文说，OpenAI 的 GPT-6 Astra 破解了一份从 2005 年就没能解开的二战恩尼格玛加密电报，编号 MVUEH。原文没有直接放出密文和明文，是评论区的人自己去挖出来贴上的：密文是「ICRVSORMCCWQTATYEVFXDBZGGSNXWLPSYWZYTCBSWULRTBZCVGODVJUSLSOOMJQJZSXSEBZPEYMDNXJYTC」，解出来大意是「请说明行军路线。我在罗森诺，罗森诺。立即回电。瓦施布施。」，背景是 1941 年 7 月党卫军骷髅师在巴巴罗萨行动初期穿过立陶宛、拉脱维亚，打穿塞贝日附近苏军边境防线时发的电报。评论区分歧很大：一派说这没什么了不起，不需要想象力，纯粹是找了个没人做过的冷门任务去刷存在感；另一派反驳说，历史上很多发明本来就是运气加上愿意去试，恩尼格玛这类电报没被解开，原因往往只是没人有精力去做，不是它有多难。也有人质疑原文为什么不把密文这种最关键的东西放进正文，怀疑这更像一次公关操作。",
+          "summary_en": "cryptocellar.org reports that OpenAI's GPT-6 Astra broke a World War II Enigma-encrypted message, catalogued as MVUEH, that had gone unsolved since 2005. The original piece didn't publish the ciphertext or plaintext; commenters dug those up themselves and posted them: the ciphertext is \"ICRVSORMCCWQTATYEVFXDBZGGSNXWLPSYWZYTCBSWULRTBZCVGODVJUSLSOOMJQJZSXSEBZPEYMDNXJYTC,\" and it decodes roughly to \"Please specify the route of march. I am in Rosenow, Rosenow. Immediate reply by radio. Waschbusch.\" The backdrop is the SS-Totenkopf Division advancing through Lithuania and Latvia in the opening weeks of Operation Barbarossa in July 1941, breaking through Soviet border defenses near Sebezh. The comment thread splits hard: one camp says this required no skill or imagination, just picking an obscure, unattempted task to grab attention; the other counters that plenty of real inventions came from luck plus a willingness to try, and that unsolved Enigma messages like this one usually stayed unsolved simply because nobody had spent the effort, not because they were especially hard. Others questioned why the original piece never included the ciphertext itself, suspecting the framing leans more toward PR than substance.",
+          "why": "今晚这条的价值不在「AI 破译了一份老密码」本身，在于评论区把这类新闻拆成了两半问：这件事需要的到底是运气还是能力，原文自己没有回答，是读者自己把原始材料挖出来才能判断。",
+          "why_en": "Tonight's value here isn't \"AI cracked an old cipher\" itself. It's that the comment thread split this kind of story into two separate questions, whether the achievement needed luck or skill, and the original piece answered neither, leaving readers to dig up the primary material themselves before they could judge."
         },
         {
           "title": "我不读你没写的东西：AI 写的文档，读者第一句就退出",
@@ -209,15 +215,27 @@
           "why_en": "This is the one item today that changes how you work tomorrow. AI pushed the cost of producing a document to nearly zero without touching the cost of getting another person to finish reading it and agree, and it arguably raised that cost, because the reader now has to spend effort separating judgements from filler. Documents are read by people, so the bar moves back from 'is everything in here' to 'does the reader know what to do next'."
         },
         {
+          "title": "结构比用词更难伪装：一篇论文把 AI 文案的识别率做到 98%",
+          "title_en": "Structure is harder to fake than wording: a paper pushes AI-copy detection to 98%",
+          "author": "Jochen Madler · Sitefire · Hacker News",
+          "author_en": "Jochen Madler · Sitefire · Hacker News",
+          "likes": 40,
+          "url": "https://arxiv.org/abs/2609.15369",
+          "summary": "一篇挂在 arXiv 上、题为 SlopShape 的论文指出,按用词识别 AI 生成文本的办法,对未经修改的文本几乎百发百中,但只要把文字改写一遍就容易失效;而且一个词级别的分数既说不清文章哪里像 AI,也认不出是哪个模型写的。作者 Jochen Madler(来自 Sitefire) 把同一批公司博客拆成两份:2250 篇 ChatGPT 出现之前的人类博客 (来自 268 个公司域名),和用五个前沿模型各自仿写出的 11250 篇 AI 版本,复现了此前在 AI 生成小说上做过的同类研究 StoryScope,这次换成商业文案。他们用一套 214 个特征的量表,由一个 LLM 打分,再用人工标注核对 (人和人之间的一致率 0.928,人和模型之间 0.946),结果只靠其中 187 个结构特征,在没见过的公司博客上就能达到 98.0 的宏平均 F1,哪怕每篇 AI 文章都被原模型自己重新改写过一遍,分数只掉到 98.1,几乎没变。这套方法还能反推出处:79.3% 的 AI 文章能被正确归到具体是哪个模型写的,随机蒙对的概率只有 16.7%。作者的结论是,AI 写的文案有一种工整、喜欢自我介绍的固定形状,人写的文章反而散落在很少见的结构组合里。评论区出现了一个现场反例:一条被 HN 管理员 dang 标为疑似 AI 生成而警告的评论,被人拿去跑作者自己在 sitefire.ai 放出的实时检测工具,结果显示「80% 像人写的」。",
+          "summary_en": "A paper on arXiv titled SlopShape argues that word-level detectors of AI-generated text catch unedited text almost perfectly but become brittle the moment the text gets reworded, and a word-level score neither characterizes what makes a piece read as AI nor identifies which model wrote it. Author Jochen Madler (of Sitefire) split a set of company blogs in two: 2,250 pre-ChatGPT human posts from 268 company domains, and 11,250 AI mirrors written by five frontier models, replicating an earlier study on AI-generated fiction (StoryScope) but on commercial copy this time. Using a 214-feature instrument scored by an LLM and validated in a human gold-annotation session (human-human agreement kappa 0.928, human-model 0.946), the 187 structural features alone detect AI posts at 98.0 macro-F1 on held-out companies, essentially unchanged (98.1) even when every AI post is reworded by its own model. The signal also attributes: 79.3% of AI posts are correctly matched to the specific model that wrote them, against a 16.7% chance rate. The author's conclusion is that AI copy shares a tidy, self-announcing shape, while human posts occupy rare, varied structural configurations. The comment thread produced a live counterexample: a comment HN moderator dang flagged and warned as likely AI-generated was run through the author's own live detector at sitefire.ai and came back \"80% human.\"",
+          "why": "这篇论文和评论区那个反例合在一起才完整。论文证明结构信号比用词信号更抗改写,但评论区当场证明,同一件事换一个更弱的工具去做,照样会出错。信不信一个检测结果,得先看清楚它测的是哪一层。",
+          "why_en": "The paper and the comment-thread counterexample only make sense together. The paper shows structural signals survive rewording better than word-level ones, but the comments proved on the spot that the same task, run through a weaker tool, still fails. Trusting a detection result requires first knowing which layer it's actually measuring."
+        },
+        {
           "title": "水印正在变成追踪器，有人提出给它换个名字",
           "title_en": "Watermarks are becoming trackers, so someone gave them a new name",
           "author": "Brandon Thomas · brand.io · Hacker News",
           "author_en": "Brandon Thomas · brand.io · Hacker News",
           "likes": 315,
           "url": "https://brand.io/article/spymarks/",
-          "summary": "brand.io 一篇文章提出，把带追踪的隐形水印改叫 spymark，因为这东西已不只是标明出处。文中举例：Google 的 SynthID 把「人眼不可察觉」的信号嵌进图像、音频、文本和视频；SynthID-Image 的论文称，SynthID-O 能在 512×512 的图里编进 136 位载荷，够放一个 64 位数据库编号再加 72 位纠错；文本靠引导选词造出可检测的统计模式，示意是八个词位对应八位，二进制 10101101 得到编号 173（原文写明这是虚构示例，不是 SynthID 解码器）。开源工具 audiowmark 早在 2018 年就能在音频里藏 128 位并加 AES 密钥。文章也划了边界：EXIF、ID3 这类标准字段不算 spymark，因为可见、可查、可删；打印机追踪点这种从 1980 年代就在用的才算。",
-          "summary_en": "A piece on brand.io proposes renaming tracking watermarks as spymarks, on the grounds that they stopped being marks of origin. Examples it gives: Google's SynthID embeds signals 'imperceptible to humans' into images, audio, text and video, and the SynthID-Image paper reports that SynthID-O fits a 136-bit payload into a 512x512 image, enough for a 64-bit database identifier plus 72 bits of error correction. On text it steers word choices to create a detectable statistical pattern, illustrated as eight word positions carrying eight bits, with binary 10101101 yielding identifier 173 (the article states outright that these are fictional examples, not a SynthID decoder). The open-source tool audiowmark could hide 128 bits in audio behind an AES key back in 2018. The article also draws its own boundary: standard fields like EXIF and ID3 are not spymarks, because you can inspect, edit and strip them; printer tracking dots, in use since the 1980s, are.",
-          "why": "这是关于你手上文件的问题，不是关于别人的。可见水印、EXIF、ID3 你都能删，嵌进像素或选词里的信号不行，它会跟着文件走完全部中转。做内容发布或做产品的团队，需要提前想清楚：你生成并对外发出的东西里，有没有你自己都不掌握的一层信息，以及这件事要不要主动告诉用户。",
+          "summary": "brand.io 一篇文章提出,把带追踪的隐形水印改叫 spymark,因为这东西已不只是标明出处。文中举例:Google 的 SynthID 把「人眼不可察觉」的信号嵌进图像、音频、文本和视频;SynthID-Image 的论文称,SynthID-O 能在 512×512 的图里编进 136 位载荷,够放一个 64 位数据库编号再加 72 位纠错;文本靠引导选词造出可检测的统计模式,示意是八个词位对应八位,二进制 10101101 得到编号 173(原文写明这是虚构示例,不是 SynthID 解码器)。开源工具 audiowmark 早在 2018 年就能在音频里藏 128 位并加 AES 密钥。文章也划了边界:EXIF、ID3 这类标准字段不算 spymark,因为可见、可查、可删;打印机追踪点这种从 1980 年代就在用的才算。",
+          "summary_en": "A piece on brand.io proposes renaming tracking watermarks as spymarks, on the grounds that they stopped being marks of origin. Examples it gives: Google's SynthID embeds signals \"imperceptible to humans\" into images, audio, text and video, and the SynthID-Image paper reports that SynthID-O fits a 136-bit payload into a 512x512 image, enough for a 64-bit database identifier plus 72 bits of error correction. On text it steers word choices to create a detectable statistical pattern, illustrated as eight word positions carrying eight bits, with binary 10101101 yielding identifier 173 (the article states outright that these are fictional examples, not a SynthID decoder). The open-source tool audiowmark could hide 128 bits in audio behind an AES key back in 2018. The article also draws its own boundary: standard fields like EXIF and ID3 are not spymarks, because you can inspect, edit and strip them; printer tracking dots, in use since the 1980s, are.",
+          "why": "这是关于你手上文件的问题,不是关于别人的。可见水印、EXIF、ID3 你都能删,嵌进像素或选词里的信号不行,它会跟着文件走完全部中转。做内容发布或做产品的团队,需要提前想清楚:你生成并对外发出的东西里,有没有你自己都不掌握的一层信息,以及这件事要不要主动告诉用户。",
           "why_en": "This concerns the files on your own disk, not someone else's. Visible watermarks, EXIF and ID3 all come off; a signal embedded in pixels or word choices does not, and it travels with the file through every handoff. Teams publishing content or shipping products need an answer in advance to one question: does what you generate and send out carry a layer of information you do not fully control, and are you going to tell users about it."
         },
         {
@@ -227,9 +245,9 @@
           "author_en": "Bryan Cantrill · bcantrill.dtrace.org · Hacker News",
           "likes": 559,
           "url": "https://bcantrill.dtrace.org/2026/09/20/what-sun-got-wrong/",
-          "summary": "Bryan Cantrill 是 Oxide 的联合创始人，早年在 Sun 工作。今年 OxCon 做了一批致敬老牌计算机公司的 T 恤，Sun 那件反响最大，他借这个由头写了 Sun 到底错在哪。15 年后再总结，他的答案只有一句：Sun 对经营一家公司的日常已经不耐烦了。例子是 2005 年一家跑 OpenSolaris 的创业公司想大批买 Sun 的硬件，怎么都等不来 Sun 的电话，打过来还推销错了产品；同一家公司半夜填了 Dell 的网页表单，第二天早上本地销售就回了电话，不到两周服务器进了机房，还按公司财报做了分期，整个过程九成五是那个销售干的。他当时就记下了：战略上明明赢了，执行上输光了。",
+          "summary": "Bryan Cantrill 是 Oxide 的联合创始人,早年在 Sun 工作。今年 OxCon 做了一批致敬老牌计算机公司的 T 恤,Sun 那件反响最大,他借这个由头写了 Sun 到底错在哪。15 年后再总结,他的答案只有一句:Sun 对经营一家公司的日常已经不耐烦了。例子是 2005 年一家跑 OpenSolaris 的创业公司想大批买 Sun 的硬件,怎么都等不来 Sun 的电话,打过来还推销错了产品;同一家公司半夜填了 Dell 的网页表单,第二天早上本地销售就回了电话,不到两周服务器进了机房,还按公司财报做了分期,整个过程九成五是那个销售干的。他当时就记下了:战略上明明赢了,执行上输光了。",
           "summary_en": "Bryan Cantrill co-founded Oxide and spent years at Sun. OxCon produced a run of t-shirts honouring defunct computer companies this year, the Sun one landed hardest, and he used it as the occasion to write up what Sun actually got wrong. Distilled 15 years on, his answer is one line: Sun had become bored with the mechanics of running a business. The example is a 2005 startup running its infrastructure on OpenSolaris that wanted to buy a lot of Sun hardware and could not get Sun to pick up the phone, and when Sun did call back it pitched the wrong product. The same company filled in a Dell web form in the middle of the night, had a local account executive on the phone the next morning, and inside two weeks had servers in the datacenter on a lease built purely on the company's financials, with roughly 95% of the work done by that one salesperson. He wrote it down at the time: strategical success, operational failure.",
-          "why": "做 GTM 的人可以直接拿它当检查项。战略正确救不了运营失灵，而且失灵最早出现在客户主动找上门这种最不该出问题的地方，等它出现在别处时已经晚了。Cantrill 那句话可以当一个自检问题：你所在的组织，对经营本身还有没有兴趣。",
+          "why": "做 GTM 的人可以直接拿它当检查项。战略正确救不了运营失灵,而且失灵最早出现在客户主动找上门这种最不该出问题的地方,等它出现在别处时已经晚了。Cantrill 那句话可以当一个自检问题:你所在的组织,对经营本身还有没有兴趣。",
           "why_en": "Anyone working on GTM can lift this straight into a checklist. Being right about strategy does not save you from operational failure, and the failure surfaces first at the moment a customer reaches out on their own, which is the last place it should. By the time it shows up elsewhere it is late. Cantrill's line makes a usable self-check: does your organisation still find running the business interesting?"
         },
         {
@@ -239,9 +257,9 @@
           "author_en": "SafeDep · Hacker News",
           "likes": 124,
           "url": "https://safedep.io/mathmain-encrypted-loader/",
-          "summary": "安全公司 SafeDep 在 npm 上发现 mathmain 这个包，它是 popular 的 mathjs 的复制品，多处了一份加密的远程控制程序。藏法很讲究：CommonJS 版本的 lusolve() 结尾多了一次调用，把下三角矩阵的数据传进一个叫 isGraph 的函数；isGraph 把入参转成 JSON 字符串当密码，用 scrypt 派生 256 位密钥，再用 AES-256-GCM 解密出一个文件名，写到磁盘后用 require 加载。三个加密文件里最大的一个 1,179,416 字节。同样的加载器和触发代码在 mathsbase、math-universe 共五个版本里逐字相同。下载量方面，npm 统计 9 月 12 日到 18 日 mathmain 60 多万次、mathsbase 192 万次、math-universe 57 万次，但 npm 自己也报了 9 月 17 日全站下载为零，所以这组数字不可靠，这点原文写得很清楚。",
+          "summary": "安全公司 SafeDep 在 npm 上发现 mathmain 这个包,它是 popular 的 mathjs 的复制品,多处了一份加密的远程控制程序。藏法很讲究:CommonJS 版本的 lusolve() 结尾多了一次调用,把下三角矩阵的数据传进一个叫 isGraph 的函数;isGraph 把入参转成 JSON 字符串当密码,用 scrypt 派生 256 位密钥,再用 AES-256-GCM 解密出一个文件名,写到磁盘后用 require 加载。三个加密文件里最大的一个 1,179,416 字节。同样的加载器和触发代码在 mathsbase、math-universe 共五个版本里逐字相同。下载量方面,npm 统计 9 月 12 日到 18 日 mathmain 60 多万次、mathsbase 192 万次、math-universe 57 万次,但 npm 自己也报了 9 月 17 日全站下载为零,所以这组数字不可靠,这点原文写得很清楚。",
           "summary_en": "SafeDep found an npm package called mathmain, a copy of the popular mathjs with one extra payload: an encrypted remote-access implant. The hiding is deliberate. In the CommonJS build, lusolve() ends with an extra call that passes lower-triangular matrix data into a function named isGraph; isGraph turns its argument into a JSON string, uses it as a password, derives a 256-bit key with scrypt, decrypts a filename with AES-256-GCM, writes the result to disk and require()s it. The largest of the three encrypted files is 1,179,416 bytes. The same loader and trigger code appear byte-for-byte across five versions of mathsbase and math-universe. On download counts, npm reported just over 600,000 for mathmain, 1.92 million for mathsbase and 570,000 for math-universe over 12-18 September, but npm also reported zero downloads registry-wide for 17 September, so the numbers are unreliable, a caveat the disclosure states plainly.",
-          "why": "大家判断一个依赖安不安全，默认看的第一个信号是安装时有没有跑脚本。这个包一个安装脚本都没有，清单干干净净，加载器要等到有人用特定参数调用解方程才解密落盘。也就是说，装的时候没跑代码不等于这个包不会跑代码，而这一步恰好是多数扫包工具的判断终点。",
+          "why": "大家判断一个依赖安不安全,默认看的第一个信号是安装时有没有跑脚本。这个包一个安装脚本都没有,清单干干净净,加载器要等到有人用特定参数调用解方程才解密落盘。也就是说,装的时候没跑代码不等于这个包不会跑代码,而这一步恰好是多数扫包工具的判断终点。",
           "why_en": "The first signal people check on a dependency is whether it runs code at install time. This package has no install script at all, the manifest is clean, and the loader waits until someone calls the solver with the right parameters before decrypting to disk. So 'nothing ran during install' does not mean 'this package never runs anything', and that install-time check is exactly where most scanners stop."
         },
         {
@@ -267,37 +285,79 @@
           "summary_en": "Cloudflare's Python Workers left a two-year preview and went GA, with the company calling Python a first-class, fully supported language on its developer platform. It works by compiling Python to WebAssembly and running it through Pyodide inside the V8-based workerd runtime. The documented limits include two that matter: multiprocessing and threading are both non-functional in the WebAssembly VM, and direct network access is impossible in browsers though Node and Cloudflare can use real sockets. Local development runs through pywrangler (packaged on PyPI as workers-py), which simulates the whole stack using the same 123MB workerd binary. The comment thread split two ways: cold-start performance, where the team points at numbers in an earlier post and says more work is coming while a commenter cites a third-party benchmark showing Lambda faster and more consistent; and how upstream maintenance gets funded, where a urllib3 maintainer notes that large Pyodide/Requests contributions were paid to the person who implemented them rather than to the maintainers who support them afterwards.",
           "why": "对写工具的人，现实意义在部署形态：一个 Python 写的定时任务、webhook 处理或代理层，可以不进容器、不碰 k8s，直接放到边缘。限制要提前算：没有线程和多进程，任何依赖本地并发的库在这个环境里直接失效，选型之前先确认你的代码不吃这两样。",
           "why_en": "For anyone building tools, the practical change is deployment shape: a Python cron job, webhook handler or proxy layer can skip containers and Kubernetes and run at the edge instead. Budget for the limits up front, though. With no threads and no multiprocessing, any library that depends on local concurrency simply does not work here, so confirm your code does not lean on either before committing."
+        },
+        {
+          "title": "伞险经纪商上线 Show HN，评论区替它把「打包便宜」这件事验了一遍",
+          "title_en": "An umbrella-insurance broker launches on Show HN; commenters fact-check its bundling claim",
+          "author": "Coverage Cat (YC S22) · Hacker News",
+          "author_en": "Coverage Cat (YC S22) · Hacker News",
+          "likes": 42,
+          "url": "https://www.coveragecat.com/",
+          "summary": "Coverage Cat 是一家拿到 YC S22 的持牌保险经纪商，在 Hacker News 上做 Launch HN，产品是用 AI 辅助问答加一个真人持牌经纪团队，帮用户在多家保险公司之间比较房屋、伞险、汽车和租客保险的报价。评论区先挑了介绍写得太长的毛病，创始人当场认了。真正有价值的对话在后面：一位用户说自己是通过 GEICO/Travelers 直接买的伞险，过程很顺畅，价格也没贵到值得费劲比价，创始人回应说，Coverage Cat 更适合那些想多比几家、承保细节让保费不便宜、又不想打电话跟销售磨的人。另一位用户提到伯克希尔哈撒韦股东在 GEICO 有折扣，创始人确认他们的报价系统会算进去，并说不少客户其实来自 GEICO，原因是很多人打包买保险省下的钱，往往没有分开单独比价省得多。还有用户指出伞险通常是附加在其他保单之上的产品，承保方一般会要求先买够别的保单的最低保额才给伞险，创始人确认这一点，并说计划年内或明年往全国扩张。",
+          "summary_en": "Coverage Cat, a licensed insurance brokerage backed by YC S22, did a Launch HN post. Its product pairs AI-assisted intake with a team of licensed human brokers to compare home, umbrella, auto, and renters insurance quotes across carriers. Commenters first flagged an overly long introduction, which the founder acknowledged on the spot. The more useful exchange came after: one user said they bought umbrella insurance directly through GEICO/Travelers, found it painless, and didn't see anything expensive enough to justify comparison shopping; the founder replied that Coverage Cat suits people who want to compare several carriers, whose underwriting details make their premium not-cheap, and who'd rather not deal with a salesperson on the phone. Another user asked about the Berkshire Hathaway shareholder discount on GEICO products; the founder confirmed their quoting system accounts for it, and said a good share of their customers actually come from GEICO, because what people save by bundling insurance often turns out to be less than what unbundled comparison shopping would save them. Another commenter noted umbrella coverage is typically layered on top of other policies, with carriers requiring minimum coverage on those other policies first; the founder confirmed this and said nationwide expansion is planned for later this year or next.",
+          "why": "这条真正有意思的不是这家创业公司，是评论区替它把「打包便宜」这个默认假设验了一遍：创始人给出的具体判断是，打包省下的钱经常没有分开比价省下的多。这个判断本身比这家公司做不做得成更值得记。",
+          "why_en": "What's actually interesting here isn't the startup itself, it's that the comment thread fact-checked the default assumption that bundling is cheaper. The founder's concrete judgment, that bundling savings often fall short of unbundled comparison-shopping savings, is worth remembering more than whether this particular company succeeds."
         }
       ]
     },
     {
       "platform": "文摘",
       "platform_en": "Digest",
-      "swept": 6,
+      "swept": 25,
       "items": [
         {
-          "title": "Import AI：美国该不该把手里每个选项都留着",
-          "title_en": "Import AI: should the US keep every option open",
+          "title": "Opus 5.5 与 GPT-6 同日发布，定价再腰斩一次",
+          "title_en": "Opus 5.5 and GPT-6 launch same day, prices halved again",
+          "author": "Simon Willison",
+          "author_en": "Simon Willison",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/",
+          "summary": "今天 Anthropic 发布 Claude Opus 5.5，约一小时后 OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna（昨天是 Grok 4.7 和 MiMo v2.6）。Simon Willison 把新旧定价列成一张表：GPT-6 Luna 每百万 token 输入 0.10 美元、缓存输入 0.01 美元、输出 0.50 美元，是 GPT-5.6 Luna（0.20/0.02/1.20）的一半；GPT-6 Sol 是 2/0.20/10 美元，也是 GPT-5.6 Sol（4/0.40/20）的一半。GPT-5.6 Terra 现在与 GPT-6 Sol 同价，他说继续用 Terra 的理由没了。Opus 5.5 输入价从 5 美元降到 4 美元，输出从 25 降到 20，降幅两成，缓存读取价格降了六成，这对长对话的 agent 场景很关键，因为这类场景里九成以上的输入 token 都走缓存价。Grok 4.7 昨天以 2/6 美元定价，本来比 GPT-5.6 Sol 便宜一半以上，一天之后输入价就被 GPT-6 Sol 追平。Anthropic 说 Opus 5.5 解决了 Opus 5 最被吐槽的沟通风格问题，写作更清楚。Willison 实测他多年来固定用的鹈鹕骑自行车测试：Opus 5.5 在 max 思考档位上直接失败了两次，它把这当成经典测试题，一路推理到检查链轮齿数、验证小腿长度这种细节，最后还没画完 SVG 就撞上 128000 token 的输出上限，两次各花掉 2.56 美元和将近 20 分钟。他因此怀疑 max 档位在真实任务上可能基本没法用。相比之下 Fable 5.1 用 max 档位没有过度思考，画出了他见过最好的一只鹈鹕。他现在把 GPT-6 Sol 和 Opus 5.5 设成 Codex 和 Claude Code 里的默认模型。HN 上两条官方公告帖各自破千赞，评论区分成两派：一派仍然觉得 Opus 的表达读起来还是难受，另一派说打开简洁输出模式后好了不少；GPT-6 那条帖子下，不少人把降价直接归因于 Qwen4、GLM 5.3 这些中国开源模型的压价，也有人质疑 OpenAI 现在还不盈利，这个价格是否反映真实成本。",
+          "summary_en": "Anthropic released Claude Opus 5.5 today, and about an hour later OpenAI released GPT-6 Sol and GPT-6 Luna (yesterday was Grok 4.7 and MiMo v2.6). Simon Willison laid the old and new pricing out in a table: GPT-6 Luna runs $0.10 input, $0.01 cached input, $0.50 output per million tokens, half of GPT-5.6 Luna's $0.20/$0.02/$1.20; GPT-6 Sol is $2/$0.20/$10, also half of GPT-5.6 Sol's $4/$0.40/$20. GPT-5.6 Terra now costs the same as GPT-6 Sol, and he says any remaining reason to use Terra just evaporated. Opus 5.5's input price dropped from $5 to $4 and output from $25 to $20, a 20% cut, with cache-read pricing down 60%, which matters for long agentic conversations since over 90% of input tokens there get processed at cached rates. Grok 4.7 launched yesterday at $2/$6, initially well under half of GPT-5.6 Sol's price; one day later GPT-6 Sol matched it on input. Anthropic says Opus 5.5 fixes the communication style people complained about most in Opus 5, writing more clearly. Willison ran the fixed test he's used for years, generate an SVG of a pelican riding a bicycle, and Opus 5.5 at \"max\" thinking failed it twice outright: it treated the prompt as \"a classic test request\" and kept reasoning through details like verifying chainring tooth count and shin length, hitting the 128,000-token output limit before finishing the SVG, costing $2.56 and nearly 20 minutes each time. He now suspects \"max\" may be effectively useless for anything nontrivial. Fable 5.1 on max, by contrast, didn't overthink and produced the best pelican he's seen from any Anthropic model. He's now defaulting to GPT-6 Sol and Opus 5.5 in Codex and Claude Code. Both official announcement threads on Hacker News broke a thousand points each; comments split between people who still find Opus's writing unbearable and others who say concise-output mode helped a lot, while several commenters on the GPT-6 thread trace the price cut directly to pressure from Chinese open models like Qwen4 and GLM 5.3, and others question whether OpenAI, still unprofitable, can sustain pricing this aggressive.",
+          "why": "今晚真正站得住的不是一句解决了你反馈的问题，而是两组能自己核对的东西：一张写清新旧对照的价目表，和一次真实跑出来、撞在 128000 token 上限上的失败。厂商的表述没人核实，价目表和失败复现都能自己去试。",
+          "why_en": "What actually holds up tonight isn't any line about \"addressing your feedback.\" It's two things anyone can check: a pricing table laying old against new, and a real, reproduced failure that hit an actual 128,000-token wall. Nobody has verified the vendor's language; the pricing table and the failure are both things you can go run yourself."
+        },
+        {
+          "title": "兰德给美国的超级智能战略：先别下注，把选项留住",
+          "title_en": "RAND's advice to the US on superintelligence: keep every option open",
           "author": "Jack Clark · Import AI",
           "author_en": "Jack Clark · Import AI",
-          "likes": 0,
-          "url": "https://jack-clark.net/2026/09/21/import-ai-473-the-uss-superintelligence-strategy-human-brain-in-a-mouse-skull-and-machine-hermeneutics/",
-          "summary": "这一期头条是 RAND 那份关于美国该怎么应对超级智能的长报告。结论有点反直觉：因为下一阶段走向太不确定，最优解不是选一条路，而是先花钱保住行动自由，把七种策略都留在桌上。这七种分成三族，共存族里有主导、联合开发、预备；拒止族里有暂停、威慑，以及最极端的一种，当所有预防手段都失效时，退到地理分散、能自给自足的据点保住部分人类能动性；加速族只有一种，赌竞争本身能产出安全。报告还列了五个会改变结论的不确定性，比如危险离得多近、共存可不可行、能不能形成决定性的战略优势。Clark 的补刀是，美国现在的实际策略基本就是加速那一档，相当于把钱全花在让车更快，刹车和头灯一个没装。",
-          "summary_en": "The lead item is RAND's long report on how the US should approach superintelligence, and its conclusion runs against instinct: because the next phase is so uncertain, the best move is not to pick a path but to spend now to preserve freedom of action and keep seven strategies on the table. Those split into three families. Coexistence covers dominance, co-development and preparedness. Denial covers moratorium, deterrence and, at the far end, continuity of society, meaning geographically distributed self-sustaining settlements that preserve agency for some human populations once every preventive strategy has failed. Acceleration has one entry, betting that competition produces safety as a byproduct. The report also lists five uncertainties that would flip the answer, including how close the danger is, whether coexistence is feasible, and whether a decisive strategic advantage can be held. Clark's addition: current US strategy is basically the acceleration option, which he likens to spending everything on making the car go faster and nothing on seatbelts, headlights or brakes.",
-          "why": "这是今天唯一一条把能力放回预算和政策里看的。RAND 的结论不是选哪条，是先花钱保住选择的自由，这对做长期规划的人是现成的工具：把会改变结论的那几个不确定性列出来，先问清楚哪一个翻转了要不要现在就下注，再谈执行。",
-          "why_en": "This is the only item today that puts capability back inside budgets and policy. RAND's conclusion is not which path to pick but to spend now to keep the choice open, which makes it a ready-made tool for long-range planning: write down the uncertainties that would flip the answer, work out which one changing would force a bet today, and only then talk about execution."
+          "likes": null,
+          "url": "https://importai.substack.com/p/import-ai-473-the-uss-superintelligence",
+          "summary": "兰德公司发了一份长报告，主题是美国面对通往超级智能的不确定路径该怎么办。核心结论是，下一阶段 AI 进展会怎样走目前说不清楚，最好的策略是花钱维持行动自由，不要现在就押注某一条路。报告把可能的国家战略归成三大类共七种原型。共存类下有三种：主导（美国领先发展并压制对手）、共同开发（美国牵头一个包含中国在内的联盟共同开发安全的超级智能，共享治理、算力和验证）、备战（美国靠自愿承诺、分阶段部署、独立评估、事故报告这些非正式协调手段推进共存）。拒绝类下也有三种：暂停（美国推动一个可核查的全球性阈值以上停摆）、威慑（美国自己也停在某个阈值以上，同时用国家力量的全部工具阻止乃至摧毁别国的项目）、社会存续（前面所有预防和共存策略都失败或不可行时退而求其次，在地理上分散、能自给自足、扛得住 AI 威胁的定居点里保住部分人类群体的自主性）。第三类只有一种，加速，它隐含的判断是限制 AI 发展比 AI 发展本身更危险，所以靠市场、竞争和快速迭代把安全当成有用 AI 的副产品。报告还列了五条决定该选哪种战略的不确定性：危险有多近、人机共存是否可行、限制是否能靠合作做到、是否有人能建立压倒性优势、压制对手的项目是否可行。作者 Jack Clark（Anthropic 联合创始人，也是这份 Import AI 通讯的作者）的判断很直白：现在美国的实际路线基本就是报告里说的加速，他把这比作一辆车，把所有资源都花在让车开得更快、给发动机升级上，却一分钱都不花在安全带、车灯或刹车上。",
+          "summary_en": "RAND published a lengthy report on what the US should do given deep uncertainty about the path to superintelligence. Its core conclusion: because how the next phase of AI progress unfolds is genuinely unclear, the best strategy is spending money to preserve \"Freedom of Action\" rather than committing to one path now. The report sorts possible national strategies into three families totaling seven archetypes. Under Coexistence: Dominance (the US leads development and suppresses rivals), Co-Development (the US leads a consortium including China to co-develop safe superintelligence with shared governance, compute, and verification), and Preparedness (the US advances coexistence through informal coordination, voluntary commitments, phased deployment, independent evaluation, and incident reporting). Under Denial: Moratorium (the US pursues a verifiable global halt above specified thresholds), Deterrence (the US halts its own frontier development above defined thresholds while using the full toolkit of national power to prevent or destroy foreign programs), and Continuity of Society (once every preventive and coexistence strategy has failed or proven infeasible, the fallback objective is survival, with geographically distributed, self-sustaining settlements hardened against AI-enabled threats preserving some human population's agency). The third family has one member, Acceleration, which implicitly holds that constraining AI development is more dangerous than AI development itself, relying on markets, competition, and rapid iteration to produce safety as a byproduct of useful AI. The report also lists five uncertainties that determine which strategy fits: how close danger is, whether coexistence is feasible, whether restraint can be achieved cooperatively, whether anyone can build a decisive strategic advantage, and whether a rival's program can actually be suppressed. Author Jack Clark, Anthropic's co-founder and this newsletter's writer, is blunt about his own read: the US's actual current path looks basically like the report's Acceleration archetype, which he compares to a car spending all its resources on going faster and upgrading the engine while spending nothing on seatbelts, headlights, or brakes.",
+          "why": "这份报告有用的地方不是七个名字，是它把该选哪条路拆成了五条可以自己回答的问题。一个人或一个团队现在对 AI 的实际做法，大概率也能按这五条去归类，而不是等着被归类。",
+          "why_en": "What's useful here isn't the seven names, it's that the report turns \"which path to pick\" into five questions anyone can answer about themselves. A person or a team's actual current behavior toward AI can probably be sorted along these same five axes instead of waiting to be sorted by someone else."
         },
         {
           "title": "Meta 开放 Muse 连接器：你出 API，agent 和浏览器归它",
           "title_en": "Meta opens Muse connectors: you bring the API, it brings the agent and browser",
           "author": "Meta · Muse 平台",
           "author_en": "Meta · Muse Platform",
-          "likes": 0,
+          "likes": null,
           "url": "https://muse.ai/platform",
           "summary": "Meta 开始接收第三方为 Muse 提交连接器，分工写得很直白：开发者出 API，Meta 出 agent、浏览器和用户的上下文，用户开口提要求，请求就落到你的服务上。流程是提交功能描述，过功能、安全、法务三关加端到端测试，通过后进目录，能不能上推荐位由它的编辑决定；支付接了 Stripe 的 Link。Muse 走的是个人 agent 路线，宣传口径是 24 小时替用户把事办完，数据放在一台独立的 Linux 虚拟机里，另有一个 Sentinel agent 逐条批准出网的动作。这套东西的分发量不小，上线一周后冲到美国 App Store 第一，不过美国以外还基本用不上。",
           "summary_en": "Meta has opened submissions for third-party Muse connectors, and the division of labour is stated plainly: developers bring the API, Meta brings the agent, the browser and the user's context, and a request lands on your service when a user simply asks for it. The process is to describe what the connector does, clear functional, security and legal review plus end-to-end testing, and land in the directory, with featured placement decided by Meta's editors. Payments run through Stripe's Link. Muse is positioned as a personal agent that works on a user's behalf around the clock, with data and credentials on a separate Linux VM and a Sentinel agent approving every outbound action. Its distribution is real: it hit number one on the US App Store within a week of launch, though availability outside the US remains limited.",
-          "why": "这是住进别人的分发里这条老路的最新一版，但分工跟上一代平台不同：过去你既出 API 也出界面，现在 Meta 只要 API，交互和上下文它自己留下。对做产品的团队，值得算的是那个老问题的新变量，拿到别人的用户，代价是把自己降级成一个能力端点，用户关系始终在对方手里。",
+          "why": "这是住进别人分发渠道那条老路的最新一版，但分工和上一代平台不同：过去 API 和界面都得自己出，如今 Meta 只要 API，交互和上下文它自己留下。做产品的团队要算的是老问题里的新变量——拿到别人的用户，代价是自己降级成一个能力端点，用户关系始终握在对方手里。",
           "why_en": "This is the latest version of the old road of living inside someone else's distribution, but the split differs from the previous generation of platforms: you used to bring both the API and the interface, and now Meta wants only the API while keeping the interaction and the context. For a product team the arithmetic is the familiar question with a new variable. You get someone else's users, and the price is being demoted to a capability endpoint with the customer relationship staying on their side."
+        }
+      ]
+    },
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "items": [
+        {
+          "title": "谷歌的 AI 科学家 ERA，最早只是想拿下 Kaggle 比赛",
+          "title_en": "Google's AI-for-science agent ERA started as a bid to win Kaggle",
+          "author": "John Platt · Google Research · Latent Space",
+          "author_en": "John Platt · Google Research · Latent Space",
+          "likes": null,
+          "url": "https://www.latent.space/p/john-platt",
+          "summary": "John Platt 是 Google Fellow。在 Latent Space 这期访谈里，他讲了 Google 做 AI for Science 十多年后，两年前转向用通用 LLM 做科学发现的经历。产品叫 ERA，最初其实叫 auto-Kaggle，因为 Kaggle 本身就是 Google 旗下。核心思路是把科学问题映射成可打分的任务：写一个能算出分数的函数，再让 Gemini 不断改写代码把分数往上推。机制上是蒙特卡洛树搜索配 UCB 算法，同时维护约 10 条并行分支，选的不是当前表现最好的那条，而是乐观上界最高的那条。分支之间共享上下文，所以每跑完一小批就能从彼此的尝试中学到东西，人每隔几小时回来检查一次、调整方向，属于人机协作，不是一次性甩手。他给了三个已经在用的真实案例：一是凝结尾流导致的全球变暖，团队发现只要让飞机在特定冰过饱和区域绕开、下降大约两个飞行高度层，就能便宜地避开约占全球人为变暖 1% 的这块，ERA 帮他们找到了一个卡了两年的反事实模型，一举解开；二是用一颗高精度、低分辨率的 CO2 卫星数据去校准另一颗高分辨率但测不了 CO2 的气象卫星，做出一种知情超分辨率，因为地球未来能吸收多少 CO2 目前的误差范围高达 300 ppm，这个方向能帮着缩小误差；三是 CDC 组织的流感和新冠病例预测比赛，ERA 表现很好，反倒是一些参数调到极致的专项 Kaggle 比赛里没能挤进前列，因为那需要有人肯磨最后 0.01 的精度。他也谈了很多边界和风险：过拟合是真实存在的动力工具会削到手指的风险，古哈特定律永远适用，必须留足没碰过的验证集；科学发现分预测型和描述型两种，ERA 目前更擅长前者；他仍然认为品味、严谨、哲学性的创造力是人类不可替代的部分。Google 内部还有个和这套工作相关的 FireSat 卫星星座项目，通过中红外传感器捕捉刚起火几分钟、只有几米见方的火点，目标是全球 15 到 20 分钟内发现，WHO 估计野火烟霾每年造成 30 万例超额死亡。他给团队保留 20% 自由探索时间，建议年轻科学家既要打好领域基础，又要放手去玩这些工具，结尾说如果能许一个愿，他想要一个什么实验都能做的自动化物理实验室，因为现在 ERA 完全是计算层面的，真实世界的数据还是得靠人去采。",
+          "summary_en": "John Platt, a Google Fellow, describes on this Latent Space episode how Google's decade-plus-old AI-for-science effort pivoted two years ago toward general LLMs for scientific discovery, in a system called ERA that actually started life as the \"auto-Kaggle\" project, since Kaggle itself is part of Google. The core idea maps a scientific problem into a \"scorable task\": write a function that produces a score, then have Gemini keep rewriting code to push that score up. Mechanically it's Monte Carlo tree search with an upper-confidence-bound (UCB) algorithm, keeping roughly 10 parallel branches at once and picking not the current best performer but the one with the highest optimistic bound, with branches sharing context so each finished batch lets them learn from each other's attempts; a human checks in every few hours to redirect, making it collaborative rather than one-shot. He gives three real, already-running applications: contrail-driven warming, where the team found that routing planes around specific ice-supersaturated regions (dropping roughly two flight levels) cheaply avoids about 1% of global anthropogenic warming, and ERA helped crack a counterfactual model the team had been stuck on for two years; fusing a high-precision, low-resolution CO2 satellite with a high-resolution weather satellite that can't measure CO2 directly, an \"informed super-resolution\" that matters because uncertainty in how much CO2 the biosphere will absorb decades out currently spans about 300 ppm; and a CDC competition forecasting weekly flu and COVID cases by state, where ERA did very well, in contrast to some heavily hand-tuned Kaggle competitions where it fell short of the last-mile precision that dedicated humans squeeze out. He's candid about the limits and risks: overfitting is a real \"power tool that can slice your fingers off\" danger, Goodhart's law always applies, and untouched holdout sets are essential; scientific models split into \"predictive\" and \"descriptive\" kinds, and ERA is currently better at the former; and he still thinks taste, rigor, and philosophical creativity remain irreplaceably human. A related Google effort, the FireSat satellite constellation, uses midwave-infrared sensors to catch fires just minutes old and only a few meters across, aiming for global detection within 15 to 20 minutes, motivated by WHO's estimate of 300,000 excess deaths a year from wildfire smoke. He protects 20% free-exploration time for his team, advises young scientists to build deep domain expertise while also playing freely with these tools, and closes by saying his one wish would be an automated \"everything lab\" that can run any physical experiment, since ERA today is purely computational and someone still has to go gather the real-world data.",
+          "why": "这条把 AI 帮科学家干活从抽象说法落到了具体机制和数字上：UCB 搜索怎么选下一步、一次并行几条、人多久检查一次，以及三个已经在跑的真实应用各自的效果量级。边界说得同样清楚：过拟合是真实风险，人类目前不可替代的是品味和严谨这两件事，这对任何想拿 agent 做严肃工作的人都成立，不只是科学家。",
+          "why_en": "This turns \"AI helps scientists work\" from an abstract claim into concrete mechanics and numbers: how the UCB search picks its next move, how many branches run in parallel, how often a human checks in, and the actual scale of three real applications already running. The limits are stated just as clearly: overfitting is a real risk, and taste plus rigor remain irreplaceably human for now, which holds for anyone trying to use agents for serious work, not just scientists."
         }
       ]
     }
