@@ -1,0 +1,287 @@
+{
+  "date": "2026-09-25",
+  "partial": false,
+  "banner": "英国索要后门，苹果撤下 ADP",
+  "banner_en": "UK wants a backdoor; Apple pulls ADP",
+  "image": {
+    "src": "digests/img/2026-09-25.png",
+    "caption": "本期头图来自 MacAnorak 文章《Two-Tier Encryption in the UK》（图：macanorak.com）。文章讲的是同一批英国用户、同一款 iPhone，能否打开苹果的高级数据保护（ADP），取决于在 2025 年 2 月苹果对新英国用户撤下该功能之前有没有打开它。",
+    "caption_en": "This issue's lead image is MacAnorak's own cover graphic for its article \"Two-Tier Encryption in the UK\" (Image: macanorak.com). The piece is about how two UK users with the same iPhone ended up with different protection: whether Apple's Advanced Data Protection (ADP) is on depends on whether they enabled it before Apple withdrew the option for new UK users in February 2025."
+  },
+  "actions": [
+    {
+      "text": "挑一个会把外部内容渲染成页面的界面（CI 日志、错误上报、告警详情都算），确认净化发生在渲染之前，而不是之后。预计 20 分钟。完成标志：你能指出具体哪一行代码做的净化，并用一个带超链接的构造输入试过，页面上不会执行它。背景一句：SourceHut 的构建日志渲染器把 OSC 8 超链接拼进了 a 标签，任何人只要能把一段字符写进日志，看过这条日志的人就会执行他挑的脚本。",
+      "source": "Hacker News · Arusekk",
+      "source_url": "https://blog.arusekk.pl/posts/srht-account-takeover/",
+      "text_en": "Pick one surface that renders outside content into a page (CI logs, error reporting, alert detail all count) and confirm sanitization happens before rendering, not after. About 20 minutes. Done when you can point at the exact line that does the sanitizing and have tried a crafted input containing a hyperlink against it, with nothing executing in the page. One sentence of background: SourceHut's build-log renderer stitched OSC 8 hyperlinks into anchor tags, so anyone who could get a string into a log got a script executed in every browser that viewed it.",
+      "source_en": "Hacker News · Arusekk"
+    },
+    {
+      "text": "挑一条你每天最贵的 agent 调用，把其中一步换成更便宜的同级模型，用同一批任务跑一次对比。预计 30 分钟。完成标志：你手里有一组能复现的数字，同一批任务下的 token 数、单项成本和通过率各是多少。背景一句：Fireworks 基于 Kimi K3 做了 Ember-1，官方说同等质量少 40% token，线上 A/B 显示每任务 token 少约 35%。",
+      "source": "文摘 · Fireworks Research · TLDR AI",
+      "source_url": "https://fireworks.ai/blog/ember-1",
+      "text_en": "Pick the most expensive agent call you make every day, swap one step in it for a cheaper model of the same tier, and run both over the same batch of tasks. About 30 minutes. Done when you have a set of reproducible numbers: tokens, per-item cost, and pass rate for the same tasks. One sentence of background: Fireworks built Ember-1 on top of Kimi K3 and claims the same quality with 40% fewer tokens; its live A/B showed about 35% fewer tokens per task.",
+      "source_en": "Digest · Fireworks Research · TLDR AI"
+    },
+    {
+      "text": "把模型调用的 provider 从代码里抽出来，做成一个配置参数，先用你现在最常用的那家跑通。预计 30 分钟。完成标志：换一家 provider 只需改一行配置，而且指定的 provider 不可用时请求会直接失败，不会被静默切到别家。背景一句：Comfy Router 把 fal、Runware、WaveSpeed、Higgsfield 收到一个 API 后面，官方明确写了不做静默替换。",
+      "source": "文摘 · ComfyUI · TLDR AI",
+      "source_url": "https://blog.comfy.org/p/introducing-comfy-router-one-api",
+      "text_en": "Pull the provider out of your model-calling code and make it a config parameter, starting with whichever provider you use most. About 30 minutes. Done when switching providers means changing one line, and a request for a named provider that is unavailable fails outright instead of silently falling through to another. One sentence of background: Comfy Router puts fal, Runware, WaveSpeed and Higgsfield behind one API and states explicitly that it does no silent substitution.",
+      "source_en": "Digest · ComfyUI · TLDR AI"
+    }
+  ],
+  "hands_on": {
+    "title": "用 commit-rewriter 批量改清楚最近的提交信息",
+    "title_en": "Clean up a stack of commit messages with commit-rewriter",
+    "why": "Simon Willison 9 月 24 日发布的 0.2 版，一个跑在本机的小网页应用，默认列出当前分支最新 100 条提交，可以按信息、作者、hash 搜索，边看 diff 边改，改完一次应用。改动前它会先建一个备份分支，所以只要不在已经推送、别人还在用的分支上动手就是安全的。0.2 这版加了 --branch，可以对非默认分支操作。",
+    "why_en": "Released on September 24 by Simon Willison, version 0.2 is a small web app that runs locally, lists the latest 100 commits on the current branch, and lets you search by message, author or hash and edit messages while looking at the full diff. It creates a backup branch before applying anything, so it is safe as long as you avoid branches that are already pushed and in use by others. Version 0.2 added a --branch flag for working on non-default branches.",
+    "time": "约 20 分钟",
+    "time_en": "About 20 minutes",
+    "steps": [
+      "在任意一个 git 仓库根目录运行 `uvx commit-rewriter`（没装 uv 就先 `pip install commit-rewriter`，然后直接运行 `commit-rewriter`）",
+      "浏览器打开 http://127.0.0.1:8000，左侧是提交列表，上方可按信息、作者、hash 搜索，勾选 Edited only 只看改过的",
+      "挑 5 到 10 条写得最差的，直接改文本框；不用一次改完，草稿会留着",
+      "点 Rewrite commit messages 应用，工具会先建一个备份分支再改写",
+      "只在还没推送、或者自己能接受改写的分支上做；走错了就切回那个备份分支",
+      "要改别的分支就重开：`uvx commit-rewriter --branch <分支名>`，换端口加 `-p 8002`"
+    ],
+    "steps_en": [
+      "From the root of any git repository, run `uvx commit-rewriter` (without uv, `pip install commit-rewriter` and run `commit-rewriter` directly)",
+      "Open http://127.0.0.1:8000 in a browser; the left sidebar lists commits, and the search box filters by message, author or hash, with an \"Edited only\" checkbox",
+      "Pick the 5 to 10 worst messages and edit them in place; drafts are kept, so you do not have to finish in one pass",
+      "Click Rewrite commit messages to apply; the tool creates a backup branch first",
+      "Only do this on branches that have not been pushed, or that you are willing to rewrite; if you go wrong, switch back to the backup branch",
+      "To work on a different branch, restart with `uvx commit-rewriter --branch <name>`; use `-p 8002` for a different port"
+    ],
+    "source": "Simon Willison · commit-rewriter 0.2",
+    "source_en": "Simon Willison · commit-rewriter 0.2",
+    "source_url": "https://simonwillison.net/2026/Sep/24/commit-rewriter/"
+  },
+  "meta_read": "今天这些条目分两拨，分界线是一句话：谁有资格替你确认一件事。\n\n一拨把确认的动作交出去，交到一个不受说法人控制的地方。苹果把 ADP 的开关放在用户设备上，服务器改不了，于是“我们没建后门”不再靠公司自觉成立。SourceHut 把净化放到渲染之前，一条链接点不点得开，就不再取决于写日志的人。\n\n另一拨在给可核实付账，付的都是减法：减掉一份工作，减掉生成式渲染的随机性，减掉多余的推理 token。\n\n真正的分歧不是“AI 会不会出事”，是愿不愿意为可核实先付代价。愿意的一方都在减，而且都先减自己。这种减法比口头承诺更接近长期优势，因为它不要求说话的人一直可信。",
+  "meta_read_en": "Today's items fall into two groups, and the line between them is one sentence: who is entitled to confirm a claim on your behalf.\n\nOne group hands the confirming over to somewhere the claimant does not control. Apple put the ADP switch on the user's own devices, where its servers cannot flip it, so \"we never built a backdoor\" stops depending on the company's good faith. SourceHut moved sanitization ahead of rendering, so whether a link fires no longer rests on whoever wrote the log line.\n\nThe other group pays for that verifiability, and every payment is a subtraction: a job, the randomness of generative rendering, redundant reasoning tokens.\n\nThe real disagreement is not whether AI will go wrong, it is whether anyone will pay up front to make a claim checkable. The ones who will are all subtracting, and all subtracting from themselves before anyone else. That kind of subtraction gets closer to a durable advantage than a verbal commitment, because it asks nothing of the speaker's continued trustworthiness.",
+  "ota": {
+    "learned": [
+      "观察：今晚九个 YouTube 频道连同三个已知活跃的控制频道，feeds/videos.xml 全部返回 404，和 09-24 那次表现一致。这意味着“YouTube 今天没内容”和“整条路断了”在这个环境里依然是同一个空结果，必须用控制组区分。",
+      "已验证：把这条判断从“记得要做”写成了命令，新增 bin/sweep-lanes.mjs，同时打九路频道加控制目标，逐条给出 LIVE / EMPTY / DOWN / BLOCKED / ERROR，并按配置里源自己声明的端点探测（Hacker News 走它的 Algolia API，而不是前端 HTML）。第一版把 RSS 的 <item> 当成空列表，已修正为同时识别 <entry> 与 <item>。今晚输出：YouTube 一条 DOWN，文摘一条 LIVE。",
+      "已验证：这台环境里 Substack 系域名一律读不到。importai.substack.com、forecastingresearch.substack.com、resobscura.substack.com 用 WebFetch 和带浏览器 UA 的 curl 都是 403 Cloudflare 挑战页，perplexity.ai 同样 403。今晚直接跳过这些源，没有一条内容是从挑战页里猜出来的。",
+      "已验证：macanorak.com 用 curl 加浏览器 UA 一次就拿到全文（200，约 10 万字节），WebFetch 也不拒绝。在这个环境里，自托管的独立博客比托管在 Substack 上的通讯更可靠。"
+    ],
+    "new_capabilities": [
+      "bin/sweep-lanes.mjs：一条命令给出每条采集带的判决，并用控制目标把「今天没内容」和「整条路断了」分开。退出码非 0 就意味着这一期不能把空结果当成没有新闻写出去。今晚实测正确判出 YouTube 为 DOWN、文摘为 LIVE。",
+      "已知哪些源在这个环境里读不到：Substack 系域名与 perplexity.ai 全程 403，选稿时直接跳过，不靠猜内容补位。今晚在三个 Substack 域名上各验证过一次。"
+    ],
+    "learned_en": [
+      "Observation: all nine YouTube channels plus three known-active control channels returned 404 from feeds/videos.xml tonight, matching what the 2026-09-24 run saw. In this environment an empty YouTube lane and a dead YouTube path still produce the same result, so a control group is required to tell them apart.",
+      "Verified: turning that habit into a command. New bin/sweep-lanes.mjs probes all nine channels plus control targets and returns LIVE / EMPTY / DOWN / BLOCKED / ERROR per target, using the endpoint each source actually declares in its config (Hacker News goes through its Algolia API, not the front-page HTML). The first version treated RSS <item> feeds as empty and was fixed to match both <entry> and <item>. Tonight's output: YouTube DOWN, text lane LIVE.",
+      "Verified: Substack-hosted domains are unreadable from this environment. importai.substack.com, forecastingresearch.substack.com and resobscura.substack.com all returned 403 Cloudflare challenge pages to both WebFetch and curl with a browser user agent, and perplexity.ai returned 403 as well. All of these were skipped tonight; nothing was written from guessing at a challenge page.",
+      "Verified: macanorak.com returned the full article on a single curl with a browser user agent (200, about 100 KB), and WebFetch did not refuse it either. Self-hosted independent blogs are more reliable here than newsletters hosted on Substack."
+    ],
+    "new_capabilities_en": [
+      "bin/sweep-lanes.mjs: one command returns a verdict per sweep lane and uses control targets to separate \"the source had nothing today\" from \"the whole path is down.\" A non-zero exit means the run must not write an empty result down as no-news. Confirmed correct tonight on YouTube (DOWN) and the text lane (LIVE).",
+      "A known list of sources unreadable from this environment: Substack-hosted domains and perplexity.ai return 403 throughout, so selection skips them outright instead of padding the issue on guesses. Verified on three separate Substack domains tonight."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "rohitg00/ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "description": "从零开始的 AI 工程教程：学会它，做出来，交付给别人用。",
+      "description_en": "Learn it. Build it. Ship it for others.",
+      "language": "Python",
+      "stars": 56829,
+      "stars_today": 347
+    },
+    {
+      "rank": 2,
+      "name": "vectorize-io/hindsight",
+      "url": "https://github.com/vectorize-io/hindsight",
+      "description": "Hindsight：一个会自己学习的 agent 记忆系统。",
+      "description_en": "Hindsight: Agent Memory That Learns",
+      "language": "Python",
+      "stars": 28203,
+      "stars_today": 1668
+    },
+    {
+      "rank": 3,
+      "name": "dream-num/univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "给 AI agent 用的办公套件：表格、文档、幻灯片、画布、关系表和 PDF 跑在同一套运行时里。",
+      "description_en": "The Office Harness for AI Agents: spreadsheets, docs, slides, canvas, relational tables and PDF in one runtime.",
+      "language": "TypeScript",
+      "stars": 17969,
+      "stars_today": 1082
+    },
+    {
+      "rank": 4,
+      "name": "google/ax",
+      "url": "https://github.com/google/ax",
+      "description": "Google 开源的 agent 编排运行时。",
+      "description_en": "Google's open agentic orchestration runtime",
+      "language": "Go",
+      "stars": 10754,
+      "stars_today": 1373
+    },
+    {
+      "rank": 5,
+      "name": "NVIDIA/Model-Optimizer",
+      "url": "https://github.com/NVIDIA/Model-Optimizer",
+      "description": "把量化、蒸馏、剪枝、神经架构搜索、投机解码等模型压缩技术收在一起的库，输出给 TensorRT-LLM、TensorRT、vLLM 等推理框架加速。",
+      "description_en": "A unified library of model optimization techniques including quantization, distillation, pruning, NAS and speculative decoding, targeting TensorRT-LLM, TensorRT and vLLM.",
+      "language": "Python",
+      "stars": 4161,
+      "stars_today": 44
+    },
+    {
+      "rank": 6,
+      "name": "FxEmbed/FxEmbed",
+      "url": "https://github.com/FxEmbed/FxEmbed",
+      "description": "修好 X/Twitter 和 Bluesky 的嵌入：在 Discord、Telegram 等平台上支持多图、视频、投票和翻译。",
+      "description_en": "Fix X/Twitter and Bluesky embeds, with multiple images, videos, polls and translations on Discord, Telegram and others.",
+      "language": "TypeScript",
+      "stars": 5405,
+      "stars_today": 182
+    },
+    {
+      "rank": 7,
+      "name": "anthropics/financial-services",
+      "url": "https://github.com/anthropics/financial-services",
+      "description": "面向投行、股票研究、私募股权和财富管理场景的参考 agent、技能与数据连接器。",
+      "description_en": "Reference agents, skills and data connectors for investment banking, equity research, private equity and wealth management.",
+      "language": "Python",
+      "stars": 37426,
+      "stars_today": 509
+    },
+    {
+      "rank": 8,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "让所有软件都变成 agent 可用的原生接口。",
+      "description_en": "Making all software agent-native.",
+      "language": "Python",
+      "stars": 50409,
+      "stars_today": 413
+    },
+    {
+      "rank": 9,
+      "name": "mvt-project/mvt",
+      "url": "https://github.com/mvt-project/mvt",
+      "description": "移动设备取证工具包，帮助排查手机是否遭到入侵。",
+      "description_en": "Mobile Verification Toolkit: forensics for checking whether a phone has been compromised.",
+      "language": "Python",
+      "stars": 14769,
+      "stars_today": 272
+    },
+    {
+      "rank": 10,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "给 Claude Code 用的 agent 技能框架和软件开发方法论。",
+      "description_en": "An agentic skills framework and software development methodology.",
+      "language": "Shell",
+      "stars": 291311,
+      "stars_today": 611
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 40,
+      "items": [
+        {
+          "title": "英国索要后门，同一批 iPhone 出现两种加密等级",
+          "title_en": "Two encryption tiers for the same iPhone after the UK's demand",
+          "author": "MacAnorak · Hacker News",
+          "author_en": "MacAnorak · Hacker News",
+          "likes": 415,
+          "url": "https://macanorak.com/two-tier-encryption-in-the-uk/",
+          "summary": "415 分、386 条评论的 HN 头帖。文章从一个对比讲起：Alice 和 Bill 都住在英国、用的是同款 iPhone、都付费买 iCloud，但 Alice 的高级数据保护（ADP）是开着的，Bill 打不开。英国政府 2025 年 1 月按《2016 年调查权力法》秘密发出一份技术能力通知，要求苹果保留「拿到搜查令时可以解密 ADP 数据」的能力，最初范围是全球用户。苹果没有照做，也做不到，照做就等于改掉 ADP 赖以成立的架构；它在 2 月 21 日宣布对新英国用户撤下 ADP，声明写得很直接：「我们从未为任何产品或服务建过后门或主密钥，将来也不会。」已开启的老用户不受影响，因为 ADP 的开关按设计只能由用户的受信设备改，苹果服务器改不了，也回滚不了。这份通知本身没有命令苹果撤下 ADP，它要的是让这种能力存在。纠纷后来收窄到英国用户，2026 年 7 月苹果向调查权力法庭提交新申诉，9 月 11 日美国参议员 Ron Wyden 与众议员 Warren Davidson 联名要求公开审理，9 月 17 日《每日电讯报》报道苹果请求解除禁止它确认该通知存在的封口令。",
+          "summary_en": "The top HN thread at 415 points and 386 comments. The article opens with a comparison: Alice and Bill both live in the UK, use the same model of iPhone and pay for iCloud, but Alice has Advanced Data Protection (ADP) switched on and Bill cannot switch his on at all. In January 2025 the UK government issued a secret Technical Capability Notice under the Investigatory Powers Act 2016, requiring Apple to retain the ability to decrypt ADP-protected data when a warrant demands it, initially covering users worldwide. Apple could not comply without gutting the architecture ADP rests on, so on February 21 it announced ADP would no longer be available to new UK users, stating plainly that it \"never built a backdoor or master key to any of our products or services and never will.\" Existing users kept the feature, because by design the ADP switch can only be changed from the user's trusted devices, not from Apple's servers. The notice did not order Apple to withdraw ADP; it required the capability to exist. The dispute was later narrowed to UK users, Apple filed a fresh complaint at the Investigatory Powers Tribunal in July 2026, Senator Ron Wyden and Congressman Warren Davidson called on the tribunal to open its proceedings on September 11, and on September 17 The Daily Telegraph reported Apple had asked the tribunal to lift the gag order preventing it from confirming the notice exists.",
+          "why": "对一个把用户数据放在云上的产品，这是定价之外的另一个变量：你的「加密」是服务商持钥还是用户持钥，决定了收到合法调取时你到底交不交得出东西。ADP 的开关放在设备上这个设计细节，比任何一份隐私承诺都硬。",
+          "why_en": "For any product that keeps user data in the cloud, this is a variable beyond pricing: whether your \"encryption\" means the provider holds the keys or the user does decides whether you have anything to hand over under a lawful order. That the ADP switch lives on the device is a harder guarantee than any privacy commitment."
+        },
+        {
+          "title": "Opus 5.5 做解说视频，不用视频模型，用代码逐帧渲染",
+          "title_en": "Opus 5.5 makes explainer videos by rendering frames in code, not with a video model",
+          "author": "launchvideo.io · Show HN · Hacker News",
+          "author_en": "launchvideo.io · Show HN · Hacker News",
+          "likes": 209,
+          "url": "https://launchvideo.io",
+          "summary": "Show HN，209 分、111 条评论。做法是：输入一个网址或一句描述，代理写一份 HTML「影片」，再由无头 Chromium 逐帧截图、用 ffmpeg 合成 MP4，全程没有生成式视频模型。模型走 claude-opus-5.5，经 OpenComputer 的网关调用，一条片子约 9 万输入加 1.5 万输出 token（页面另一处写「约 10 万 token 一条」），耗时约 4 分钟。为了让画面可复现，它把 requestAnimationFrame、定时器、Date、CSS 与 Web Animations 的时钟全换成虚拟时钟，于是每一帧都是一次确定的 seek。运行时是每个任务一台全新微虚拟机（Amazon Linux 2023、arm64、4 vCPU、8 GB 内存、Node 22），第一次工具调用装无头 Chromium 和静态 ffmpeg，约一分钟，任务结束虚拟机丢弃；输出 1920×1080、30fps，逐帧 JPEG 送 libx264，crf 18。整个产品是一个代理文件加三个工具（web_fetch、check_scene、render_video），存储用一个只对单个路径、三小时有效的 Vercel Blob 上传令牌，代理手里不存任何密钥。评论区吵的是它算不算「flashy slide deck」：有人说这就是把现成的幻灯片技能做成视频，也有人贴出自己用 Opus 5.5 花五小时重做 XKCD 第 505 格的过程，还有人报告把域名喂进去只得到「模型提供方拒绝了请求」。",
+          "summary_en": "A Show HN post at 209 points and 111 comments. You feed it a URL or a one-line description; an agent writes an HTML \"film,\" and a headless Chromium screenshots it frame by frame, with ffmpeg assembling an MP4. No generative video model is involved. The model is claude-opus-5.5 via OpenComputer's gateway, at roughly 90k input and 15k output tokens per film (the page elsewhere says about 100k tokens a video), taking about four minutes. To make the output reproducible it swaps requestAnimationFrame, timers, Date, and the CSS and Web Animations clocks for a virtual clock, so every frame is a deterministic seek. Each job runs in a fresh microVM (Amazon Linux 2023, arm64, 4 vCPU, 8 GB RAM, Node 22); the first tool call installs headless Chromium and static ffmpeg in about a minute, and the VM is discarded afterwards. Output is 1920x1080 at 30fps, JPEG frames piped to libx264 at crf 18. The whole product is one agent file and three tools (web_fetch, check_scene, render_video), with no secrets held by the agent: storage uses a per-job Vercel Blob token scoped to a single path for three hours. The comments argue over whether these are just flashy slide decks. One commenter says it is an existing slide-deck skill with a video wrapper; another describes spending five hours recreating XKCD comic 505 with Opus 5.5; a third reports that pointing it at their own domain returned \"the model provider rejected the request.\"",
+          "why": "价值不在视频好不好看，在它示范了一种反直觉的做法：需要画面时，把生成式模型换成确定性渲染。代价是丢掉随机性，换来每一帧都能重跑、能对照。评论区那条「做 SaaS 是不是只是给 LLM 套按钮」的焦虑，问的其实是同一件事。",
+          "why_en": "The value is not whether the videos look good but the counterintuitive move it demonstrates: when you need visuals, replace the generative model with deterministic rendering. You give up randomness and get frames that can be rerun and compared. The comment thread's anxiety about whether a SaaS is just buttons wrapped around an LLM is asking the same question."
+        },
+        {
+          "title": "构建日志里塞一个超链接，就能接管看过它的人",
+          "title_en": "One hyperlink in a build log can take over anyone who views it",
+          "author": "Arusekk · Hacker News",
+          "author_en": "Arusekk · Hacker News",
+          "likes": 96,
+          "url": "https://blog.arusekk.pl/posts/srht-account-takeover/",
+          "summary": "CVE-2026-92973,作者 Arusekk,96 分。漏洞出在 ansi2html.py,它的作用是把终端 ANSI 转义的构建日志转成 HTML。除了颜色,它还解析 OSC 8 超链接,于是形如 ESC]8;;https://example.com/\"/onfocus=\"alert`xss`ESC\\ 的输入会被解析成带 onfocus 的 a 标签。后果是,只要这段字符能进入构建日志,任何打开日志的人都会在自己的浏览器里执行攻击者指定的脚本。触发门槛比想象中低,不需要账号,往开了 CI 的公开邮件列表发一个补丁即可,或者控制任何会被打印进日志的远端资源。作者描述的升级路径是:日志页自带 CSRF token,管理员一旦浏览,攻击者就能给自己加权限,更严重的是能拿到该实例的所有部署密钥,而 builds.sr.ht 上就有 sr.ht 自己的部署密钥。SourceHut 的处理是让 builds.sr.ht 对 ansi2html 的输出自动净化,上游随后也收紧,代价是日志里的颜色没了。作者建议的深度防御第一条,是去掉 CSP 里的 unsafe-inline。",
+          "summary_en": "CVE-2026-92973, written up by Arusekk, 96 points. The flaw is in ansi2html.py, which converts ANSI-escaped build logs into HTML. Besides colors it parses OSC 8 hyperlinks, so input of the form ESC]8;;https://example.com/\"/onfocus=\"alert`xss`ESC\\ parses into an anchor tag carrying an onfocus handler. The consequence: get that string into a build log and every browser that opens the log executes an attacker-chosen script. The bar to trigger it is low, because you do not need an account. Sending a patch to a public mailing list with CI enabled is enough, as is controlling any remote resource that happens to get printed into the log. The writeup lays out the escalation path: the log page already carries the CSRF token, so once an admin views it an attacker can likely grant themselves admin rights, and worse, reach every deploy key on the instance, which on builds.sr.ht includes deploy keys for sr.ht itself. SourceHut responded by having builds.sr.ht auto-sanitize ansi2html output, and upstream tightened it too, at the cost of losing colors in the logs. The author's first recommendation for defense in depth is dropping unsafe-inline from the Content-Security-Policy.",
+          "why": "构建日志是典型的不受信任输入却被当成可信页面渲染,这类接口每个团队都有一两个,CI 日志、错误上报、告警内容都算。这条给的是一个能直接照搬的检查:在渲染之前把不可信输出净化掉,而不是指望写日志的人守规矩。",
+          "why_en": "Build logs are the classic case of untrusted input rendered as a trusted page, and every team has one or two such surfaces: CI logs, error reporting, alert bodies. What this offers is a check you can copy directly: sanitize untrusted output before rendering rather than trusting whoever writes the log."
+        },
+        {
+          "title": "O'Callahan 离开 Google：判断自己的工作在加速 AI",
+          "title_en": "O'Callahan leaves Google, judging his own work was accelerating AI",
+          "author": "Robert O'Callahan · Hacker News",
+          "author_en": "Robert O'Callahan · Hacker News",
+          "likes": 130,
+          "url": "https://robert.ocallahan.org/2026/09/goodbye-google.html",
+          "summary": "130 分、109 条评论。Robert O'Callahan 是 Mozilla 老将、rr 与 Pernosco 的作者,他在博客上贴出辞职邮件:所在团队的目标是让 AI 更便宜、延迟更低,他不认为这对当下的人是好事;又因为人在新西兰、Google 不愿在当地设工程岗,几乎没法换到一个不加速 AI 的项目,于是选择离开。他写得很克制,承认几百万人都在推动 AI 加速,我松开油门的影响很小,但不是零,我有些技能比较稀有。接下来他继续维护 rr 和 Pernosco,并打算研究今天的 AI 怎么调试代码、调试工具能帮上什么。评论区一部分质疑他的立场,另一部分是少见的克制:连反对他前提的人也承认,先把信念说清楚、再按信念改行为、还自己承担代价,这件事本身就少见。",
+          "summary_en": "130 points and 109 comments. Robert O'Callahan, a Mozilla veteran and the author of rr and Pernosco, posted his resignation email on his blog: his team's goal was to make AI cheaper with lower latency, and he does not think that is good for people right now; since he is based in New Zealand, where Google prefers not to do engineering, he could not realistically move to a project that does not accelerate AI, so he left. He is measured about it, conceding that millions of people are driving AI acceleration and that taking his foot off the accelerator has a very small impact, but not no impact, since some of his skills are rare. He will keep maintaining rr and Pernosco and plans to investigate how today's AI debugs code and how debugging tools could help. Part of the comment thread pushes back on his position; the other part is unusually restrained, with even people who reject his premise acknowledging that stating a belief, changing your behavior to match it, and absorbing the cost yourself is rare.",
+          "why": "这条对做产品的人有一个具体用处:它是一个内部影响力到底有多大的样本。当事人试过从内部影响方向,结论是效果不够强,于是把判断挪到公司外面。评估我在这里能不能改变这件事时,这份复盘比任何离职宣言都具体。",
+          "why_en": "For anyone building products, this is a concrete data point on how much influence you actually have from inside. The author tried to steer the direction internally, concluded the effect was not strong enough, and moved the judgment outside the company. When you are weighing whether you can change something from where you sit, this account is more specific than any resignation statement."
+        },
+        {
+          "title": "Google 要把 TPU 送上天：第一次发射就是去找哪里会坏",
+          "title_en": "Google is putting TPUs in orbit, and the first launch is a hunt for failure points",
+          "author": "Google · Hacker News",
+          "author_en": "Google · Hacker News",
+          "likes": 164,
+          "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/google-project-suncatcher-facts/",
+          "summary": "164 分、298 条评论。Google 的研究项目 Suncatcher 要把 TPU 放到低轨卫星上,理由是轨道上几乎一直有阳光,单位面积发电量最高可到地面的八倍。第一颗原型星搭 SpaceX 的 Transporter-18 拼车发射,与 Planet 合作开发。测试项包括:发射时约 10 分钟的过载 (整星约 10 g,单芯片可能到 50 到 100 g);在 UC Davis 的 Crocker 核实验室用质子束打总电离剂量,Trillium TPU 扛过了超过五年任务量的累计剂量;真空里没有气流,只能靠散热片和热管辐射散热;未来几十颗 TPU 之间要靠激光互联,官方形容精度相当于从几英里外打中一枚硬币,而且两端都在动。时间表是 2027 年两颗星入轨,官方自己写明这次发射的目的是找失效点,有些东西只能到天上才测得出来。评论区最集中的质疑是散热:按 Stefan-Boltzmann,一块 300K 的双面散热板每平方米只排几百瓦,而 TPU 的功率密度高两个数量级;也有人贴出至少贵 50 倍的估算,认为把算力放在掩体或海底更划算。",
+          "summary_en": "164 points and 298 comments. Suncatcher is a Google research project to put TPUs on satellites in low Earth orbit, on the grounds that satellites there see near-constant sunlight, generating up to eight times more solar power per unit area than on the ground. The first prototype satellite launches on a SpaceX Transporter-18 rideshare, developed with Planet. What it is testing: roughly 10 minutes of launch loads (about 10 g for the whole satellite, possibly 50 to 100 g on individual chips); total ionizing dose in a proton beam at UC Davis's Crocker Nuclear Laboratory, where the Trillium TPUs survived more than a five-year mission's cumulative exposure; cooling in vacuum, where there is no airflow and heat must leave through radiators and heat pipes; and, for future constellations carrying tens of TPUs per satellite, laser interconnects that Google describes as hitting a coin-sized target from miles away while both points are moving. The timeline is two satellites in orbit in 2027, and the post itself says the first launch is about identifying points of failure, because some things can only be tested in space. The densest criticism in the comments is about heat: by Stefan-Boltzmann, a double-sided radiator panel at 300 K rejects only a few hundred watts per square meter, while TPU power density is two orders of magnitude higher. Others estimate it costs at least 50 times more than ground compute and argue bunkers or undersea sites are the better buy.",
+          "why": "这条不是让你去关心卫星,是提醒先发一颗去找失效点这个顺序。把无法在地面验证的部分单独拎出来、用最小代价先测一遍,比在文档里论证它可行要诚实,也便宜。",
+          "why_en": "The point is not the satellites but the ordering: launch one first specifically to find failure points. Pulling out the part that cannot be validated on the ground and testing it cheaply and early is both more honest and cheaper than arguing in a document that it will work."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 35,
+      "items": [
+        {
+          "title": "同等质量少 40% token：Fireworks 基于 Kimi K3 做了 Ember-1",
+          "title_en": "Same quality, 40% fewer tokens: Fireworks builds Ember-1 on Kimi K3",
+          "author": "Fireworks Research · TLDR AI",
+          "author_en": "Fireworks Research · TLDR AI",
+          "likes": null,
+          "url": "https://fireworks.ai/blog/ember-1",
+          "summary": "Fireworks Research 基于 Kimi K3 训了一个专用模型 Ember-1,官方说法是保住 K3 的质量,少用 40% token,做法是把多余的推理砍掉。团队跑了 50 多组训练实验、200 多次评测。各家跑分上等于或接近 K3:Terminal Bench 2.1 是 82.0% 对 80.9%,SWE-bench Verified 92.2% 对 93.2%,SWE-Interact 20.0% 对 21.3%,DeepSWE 1.1 是 75.2% 对 66.4%,τ-2 Bench Airline 66% 对 64%。真正的数字在线上:两家客户的真实流量 A/B 显示每任务 token 少约 35%,其中推理 token 少 71.3%,总 token 少 39%。对照的 Kimi K3 官方价是未命中缓存输入每百万 3 美元、命中缓存 0.30 美元、输出 15 美元。Ember-1 自己走 Serverless 的研究预览,先开放两周,之后按需求决定是否转正式,同时开放训练支持。",
+          "summary_en": "Fireworks Research trained a specialized model, Ember-1, on top of Kimi K3, claiming Kimi K3's quality with 40% fewer tokens by cutting unnecessary reasoning. The team ran more than 50 training experiments and 200-plus evaluations. It matches or comes close to K3 on benchmarks: Terminal Bench 2.1 at 82.0% versus 80.9%, SWE-bench Verified at 92.2% versus 93.2%, SWE-Interact at 20.0% versus 21.3%, DeepSWE 1.1 at 75.2% versus 66.4%, and tau-2 Bench Airline at 66% versus 64%. The numbers that matter are in production: live A/B tests on two customers' real traffic showed about 35% fewer tokens per task, with reasoning tokens down 71.3% and total tokens down 39%. For comparison, Kimi K3's published pricing is $3 per million uncached input tokens, $0.30 cached, and $15 output. Ember-1 ships as a research preview on Serverless with two weeks of access, made permanent based on demand, with training support launching alongside it.",
+          "why": "这是把模型做小又一个可抄的版本:不改底座,只砍多余推理,省下的成本在客户真实流量上验证,而不是在跑分表上。对按 token 计费的 agent 产品,35% 到 39% 是能直接进毛利的数字。",
+          "why_en": "Another copyable version of making the model smaller: keep the base model, cut only the redundant reasoning, and validate the savings on real customer traffic rather than on a benchmark table. For any agent product billed by the token, 35% to 39% goes straight to gross margin."
+        },
+        {
+          "title": "把模型供应商变成一行参数：Comfy Router 上线",
+          "title_en": "Make the model provider a one-line parameter: Comfy Router launches",
+          "author": "ComfyUI · TLDR AI",
+          "author_en": "ComfyUI · TLDR AI",
+          "likes": null,
+          "url": "https://blog.comfy.org/p/introducing-comfy-router-one-api",
+          "summary": "ComfyUI 在开发者平台上线 Comfy Router，把前沿图像、视频、3D、音频模型统一到一个 API 后面，调用时靠两个字符串定位：模型名和 provider。首批可用的是 Seedance 2.5、MiniMax H3、Nano Banana Pro、GPT Image 2、Kling、Black Forest Labs，官方称这些模型与 300 万以上 ComfyUI 用户已在用的是同一批。同一个模型跑在 fal、Runware、WaveSpeed、Higgsfield 上，换一家只改一行。官方明确不做静默替换：指定了 provider 而它不可用，请求就直接失败，每个任务都会报告实际由谁执行。API key 和运行历史与平台共用一套账户。",
+          "summary_en": "ComfyUI launched Comfy Router on its developer platform, putting frontier image, video, 3D and audio models behind one API where a call is located by two strings: the model name and the provider. Day-one access covers Seedance 2.5, MiniMax H3, Nano Banana Pro, GPT Image 2, Kling and Black Forest Labs, which the post says are the same models more than three million ComfyUI users already work with. Where a model runs on more than one of fal, Runware, WaveSpeed and Higgsfield, switching between them is one line. The post is explicit that there is no silent substitution: name a provider and, if it is unavailable, the request fails there, and every job reports which provider actually ran it. API keys and run history share one account with the rest of the platform.",
+          "why": "这是把不锁死在一家供应商做成接口设计的一次示范：provider 作为参数、失败不静默降级、每个任务回报实际执行方。做多模型产品时，这三条可以直接搬进自己的调用层。",
+          "why_en": "A demonstration of turning avoid-vendor-lock-in into interface design: the provider is a parameter, failures do not silently degrade, and every job reports who actually executed it. If you are building a multi-model product, those three rules go straight into your calling layer."
+        }
+      ]
+    }
+  ]
+}
