@@ -33,7 +33,7 @@ DIGEST_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "dig
 # Mirrors bin/validate-digest.py: hosts where the domain is the venue, not the
 # author. github.com is platform-hosted here yet max-one-per-issue is still the
 # editorial rule, so --audit reports those collisions too.
-PLATFORM_HOSTS = {"youtube.com", "youtu.be", "x.com", "twitter.com", "xiaohongshu.com"}
+PLATFORM_HOSTS = {"youtube.com", "youtu.be", "x.com", "twitter.com", "xiaohongshu.com", "github.com"}
 
 
 def domain(url):
@@ -74,6 +74,8 @@ def audit(path, days):
     for s in d.get("sources", []):
         for it in s.get("items", []):
             dom = domain(it.get("url") or "")
+            if dom in PLATFORM_HOSTS:
+                continue
             seen = [(k, a, u, p) for k, rows in window for (h, a, u, p) in rows if h == dom]
             if seen:
                 problems += 1
@@ -81,7 +83,10 @@ def audit(path, days):
     counts = {}
     for s in d.get("sources", []):
         for it in s.get("items", []):
-            counts.setdefault(domain(it.get("url") or ""), []).append(s.get("platform"))
+            dom = domain(it.get("url") or "")
+            if dom in PLATFORM_HOSTS:
+                continue
+            counts.setdefault(dom, []).append(s.get("platform"))
     for dom, plats in counts.items():
         if len(plats) > 1:
             problems += 1
@@ -98,6 +103,9 @@ def lookup(urls, days):
     ok = True
     for u in urls:
         dom = domain(u)
+        if dom in PLATFORM_HOSTS:
+            print(f"  · {u}\n      {dom} is a platform host, exempt from domain-reuse dedup")
+            continue
         hits = [(k, a, p) for k, rows in prior.items()
                 if (date.fromisoformat(today) - date.fromisoformat(k)).days <= days
                 for (h, a, _, p) in rows if h == dom]
