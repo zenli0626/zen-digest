@@ -1,0 +1,333 @@
+{
+  "date": "2026-09-26",
+  "partial": false,
+  "banner": "荷兰弃微软，自建 NixOS 桌面",
+  "banner_en": "Dutch government drops Microsoft for its own NixOS desktop",
+  "image": {
+    "src": "digests/img/2026-09-26.jpg",
+    "caption": "DAWO 官网首页照片,页面自述为一场 DAWO 工作会议,画面里有人对着屏幕和翻页板讲解。(图:DAWO.community)",
+    "caption_en": "The photo on DAWO's own homepage, described by the page as a DAWO working session, showing someone presenting beside a screen and a flip chart. (Image: DAWO.community)"
+  },
+  "actions": [
+    {
+      "text": "挑一个你常跑的 agent 任务,把计价口径从「每千 token 多少钱」换成「每做完一个任务多少钱」,在至少两个模型上跑同一批任务。约 30 分钟。完成标志:手里有一张能复现的表,写清同一批任务两边各花多少、通过率多少,换算成单任务成本后谁更便宜。背景一句:Trajectory 的对照里,同一批留出任务上一个模型每任务输出 2267 token、得分 55.6%,另一个 17877 token、得分 5.7%。",
+      "source": "文摘 · Trajectory · Dian Ang Yap",
+      "source_url": "https://www.trajectory.ai/field-notes/intelligence-density",
+      "text_en": "Pick one agent task you run often and switch your unit of account from \"dollars per thousand tokens\" to \"dollars per finished task,\" running the same batch on at least two models. About 30 minutes. Done when you have a reproducible table showing what each side spent on the same batch, the pass rate, and which one is cheaper once you convert to cost per finished task. One line of background: in Trajectory's comparison, on the same held-out set one model produced 2,267 output tokens per task and scored 55.6%, while the other produced 17,877 tokens and scored 5.7%.",
+      "source_en": "Digest · Trajectory · Dian Ang Yap"
+    },
+    {
+      "text": "找出你 agent 里那处需要人点确认的流程,检查放行时比对的是「这个任务批过」,还是「批的就是这一个动作」。约 25 分钟。完成标志:能指出放行前的那几行代码,并构造一次换了参数、沿用同一个 task ID 的调用,确认它会被拒绝。背景一句:那篇在 LangGraph 的 A2A 实现里把这条走通了,审批界面显示的是转 20 给已批准的供应商,真正执行的是转 2000 给攻击者的账户。",
+      "source": "Hacker News · Adithyan Arun Kumar",
+      "source_url": "https://adithyanak.com/loopjacking-in-a2a-implementations/",
+      "text_en": "Find the step in your agent that waits for a human to click approve, and check whether release compares \"this task was approved\" or \"this exact action was approved.\" About 25 minutes. Done when you can point to the lines of code that gate the release, and construct a call that swaps the arguments while reusing the same task ID, and confirm it gets rejected. One line of background: that write-up walks the whole path through a LangGraph A2A implementation, where the approval screen showed a transfer of 20 to an approved vendor while what actually executed was a transfer of 2,000 to the attacker's account.",
+      "source_en": "Hacker News · Adithyan Arun Kumar"
+    },
+    {
+      "text": "下一次改代码,跳过「先生成一份规格、再批准、再执行」这套串行流程,直接在对话里迭代,让 agent 边做你边看。约 20 分钟。完成标志:一轮走完,你不用回头读一份长文档,也能说清它改了什么、为什么这么改。背景一句:Nuanced 的作者把这条流程叫瀑布,说它逼用户提前把想法定死,而且回不了头。",
+      "source": "Hacker News · Ayman Nadeem",
+      "source_url": "https://www.aymannadeem.com/artificial/intelligence,/developer/tools/2026/09/24/plan-mode-is-dead.html",
+      "text_en": "On your next code change, skip the \"generate a spec, approve it, then execute\" sequence and iterate in the chat instead, watching the agent work as it goes. About 20 minutes. Done when you finish a round without going back to read a long document and can still say what changed and why. One line of background: the author of Nuanced calls that sequence a waterfall, one that forces users to finish thinking prematurely and offers no way back up.",
+      "source_en": "Hacker News · Ayman Nadeem"
+    }
+  ],
+  "hands_on": {
+    "title": "用一行 uvx 跑 commit-rewriter,让模型重写你最近的提交信息",
+    "title_en": "Run commit-rewriter with a single uvx command and let a model rewrite your recent commit messages",
+    "why": "Simon Willison 9 月 24 日发的 0.2 版加了对非默认分支的支持,装都不用装 (uvx 起一个临时环境),一行命令就能跑起来。适合今晚花十分钟试件小事:看看模型改出来的提交信息,是不是真比手写那句更能说清「为什么这么改」。它是个本地起的小网页,你在浏览器里逐条看、逐条改,不满意就跳过。",
+    "why_en": "Simon Willison's 0.2 release on September 24 added support for branches other than the default, and it needs no install at all (uvx spins up a throwaway environment), so it runs in one command. A good ten-minute experiment for tonight: see whether the model's rewritten commit messages actually explain \"why this changed\" better than the line you typed by hand. It's a small local web app, so you review and edit each suggestion in the browser and skip whatever you don't like.",
+    "time": "约 10 分钟",
+    "time_en": "About 10 minutes",
+    "steps": [
+      "先确认本机有 uv:跑 `uv --version`。没有就装,`brew install uv` 或 `curl -LsSf https://astral.sh/uv/install.sh | sh`",
+      "切到一个你随便怎么改都不心疼的仓库 (别拿正在开 PR 的分支)",
+      "跑 `uvx commit-rewriter`;要改非默认分支就加参数,`uvx commit-rewriter --branch other`",
+      "浏览器会打开一个本地页面,逐条列出它重写的提交信息,挑你要的留下",
+      "对比一下:模型补上的那句「为什么」,是你本来就写在正文里的,还是它自己猜的"
+    ],
+    "steps_en": [
+      "First check that uv is installed: run `uv --version`. If not, install it with `brew install uv` or `curl -LsSf https://astral.sh/uv/install.sh | sh`",
+      "Switch to a repo where you don't mind rewriting history (not a branch with an open PR)",
+      "Run `uvx commit-rewriter`; for a non-default branch add the flag: `uvx commit-rewriter --branch other`",
+      "A local page opens in your browser listing its rewritten commit messages one by one; keep the ones you want",
+      "Compare: is the \"why\" the model added something you had actually written in the body, or something it guessed?"
+    ],
+    "source": "Simon Willison 博客",
+    "source_en": "Simon Willison's blog",
+    "source_url": "https://simonwillison.net/2026/Sep/24/commit-rewriter/"
+  },
+  "meta_read": "今天几条新闻的共同动作,是把记账、授权、追责的单位往下挪一格:从「模型」挪到「具体那件事、具体那个人」。\n\n定价这条线最直白。按 token 报价等于按原料收费,可客户买的从来是成品;同一个任务多烧几倍 token 才拿到同样结果,单价再低也没用。把口径换成「做完一件事多少钱」,续费那场谈话才有共同语言。\n\n授权和责任是同一件事的另一头。系统记的是「这个任务批过」,不是「批的就是这一件」,中间那一格的对应关系没人守,就能拿一份旧许可放行一个新动作。FTC 主席把话挑明了:工具没有意志,下指令的人负责。\n\n三条合起来只是一句:粒度对了,产品才站得住。粒度错在哪,平时看不出来,出事那天一次结清。",
+  "meta_read_en": "The stories today share one move: pushing the unit of account, authorization, and blame down a level, from \"the model\" to \"this specific thing and this specific person.\"\n\nPricing is the plainest case. Billing by token is billing by raw material, but customers have always been buying a finished product; if one run burns several times the tokens to reach the same result, a lower unit price buys you nothing. Switch the measure to \"what one finished job costs\" and the renewal conversation finally has a shared vocabulary.\n\nAuthorization and liability are the other end of the same thing. A system records that a task was approved, not that this exact action was approved; when nobody owns that mapping, an old permission can release a brand-new action. The FTC chair put it bluntly: a tool has no will, the person who gave it instructions is responsible.\n\nThree stories, one sentence: get the granularity right and the product holds. Get it wrong and you won't notice where, until the day it all settles at once.",
+  "ota": {
+    "learned": [
+      "已验证:本轮先用 bin/sweep-lanes.mjs 判定 YouTube 带,9 个 roster 频道和三条控制频道的 feeds 全部返回 404,整条路径是 DOWN,不是「今天频道没更新」。据此记 0 条 YouTube 条目,没有写成「无新闻」,也没有改用别的取字幕方式硬凑。",
+      "已验证:两条看起来是当天新料的候选,查下去都是旧事换了载体。Latent Space 今天发的 OpenRouter 访谈,谈的 Stripe 收购其实 8 月 19 日就已官宣 (当天 HN 964 分);F-Secure 那篇 AI 购物 agent 被钓的实测,页面写的日期是 2026-07-06。两条都因此没进头条,后者整条弃用。",
+      "已实施:Import AI(importai.substack.com) 在本环境返回 403(Cloudflare 挑战页),本轮跳过该源;文摘带由 TLDR AI、Latent Space、Trajectory、LangChain 四条顶上。",
+      "观察:Trajectory 那组 density-aware RL 的对照数字 (留出集 55.6% 对 5.7%,每任务输出 2267 对 17877 token) 出自作者自己的评测口径,本轮按原文引用,未独立复现。"
+    ],
+    "new_capabilities": [
+      "候选人只要挂着「今天发布」,先分开查两个日期:载体 (播客、文章、帖子) 的发布日期,和它讲的那件事本身的发生日期。两个日期差得远,就按访谈或回顾来写,不能当今天的新闻,更不能拿去当头条。这条今天拦下了两个候选:一个把一个 8 月的收购谈成了今天的事,一个把 7 月的旧文当新料排进了备选。",
+      "用 bin/sweep-lanes.mjs 的控制目标来判定一条带是 DOWN 还是 EMPTY。今晚 YouTube 的控制频道同样 404，所以结论写成「整条路断了」，而不是「今天没内容」；这也算把上一期 ledger 里「下次先试这个工具」兑现了一次。"
+    ],
+    "learned_en": [
+      "Verified: this run used bin/sweep-lanes.mjs to triage the YouTube lane first, and all nine roster channels plus three control channels returned 404 on their feeds. The whole path is DOWN, not \"the channels were quiet today.\" Recorded zero YouTube items on that basis, rather than reporting \"no news,\" and did not go hunting for alternate transcript methods to pad it.",
+      "Verified: two candidates that looked like same-day news turned out to be old events in a new carrier. Latent Space published an OpenRouter interview today, but the Stripe acquisition it discusses was announced back on August 19 (964 points on HN that day); the F-Secure piece on a manipulated AI shopping agent is dated 2026-07-06 on the page itself. Neither went into the banner, and the second was dropped entirely.",
+      "Implemented: Import AI (importai.substack.com) returns 403 (a Cloudflare challenge page) in this environment, so that source was skipped this run; the Digest lane was carried by TLDR AI, Latent Space, Trajectory, and LangChain instead.",
+      "Observation: Trajectory's density-aware RL comparison figures (55.6% vs 5.7% on held-out tasks, 2,267 vs 17,877 output tokens per task) come from the authors' own evaluation setup. They are quoted as published this run, not independently reproduced."
+    ],
+    "new_capabilities_en": [
+      "When a candidate is labeled \"published today,\" check two dates separately first: the publication date of the carrier (the podcast, article, or post), and the date the underlying event actually happened. If the two are far apart, it's an interview or a retrospective, not today's news, and it definitely should not become the banner. This caught two candidates today: one that framed an August acquisition as a today story, and one that put a July article into the pool as fresh material.",
+      "Using the control targets in bin/sweep-lanes.mjs to rule a lane DOWN rather than EMPTY. Tonight YouTube's control channels also 404'd, so the conclusion was written as \"the whole path is broken\" instead of \"there was no content today\" — which also cashes in the previous issue's ledger note that this tool should be tried first next run."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "paperclipai/paperclip",
+      "url": "https://github.com/paperclipai/paperclip",
+      "description": "团队用它在工作中管理各类 agent 的开源应用。",
+      "description_en": "The open-source app everyone uses to manage agents at work",
+      "language": "TypeScript",
+      "stars": 85423,
+      "stars_today": 2109
+    },
+    {
+      "rank": 2,
+      "name": "anthropics/claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Anthropic 官方维护的高质量 Claude Code 插件目录。",
+      "description_en": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "language": "Python",
+      "stars": 36990,
+      "stars_today": 83
+    },
+    {
+      "rank": 3,
+      "name": "vectorize-io/hindsight",
+      "url": "https://github.com/vectorize-io/hindsight",
+      "description": "会自己学习的 agent 记忆系统。",
+      "description_en": "Hindsight: Agent Memory That Learns",
+      "language": "Python",
+      "stars": 30210,
+      "stars_today": 1653
+    },
+    {
+      "rank": 4,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "一套 agent 技能框架与配套的软件开发方法论。",
+      "description_en": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 291744,
+      "stars_today": 468
+    },
+    {
+      "rank": 5,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "给真实工程用的技能集，直接抄自作者的 .agents 目录。",
+      "description_en": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 269847,
+      "stars_today": 583
+    },
+    {
+      "rank": 6,
+      "name": "dream-num/univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "给 agent 用的办公底座：表格、文档、幻灯片、白板、关系表和 PDF 跑在同一个运行时里。",
+      "description_en": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime.",
+      "language": "TypeScript",
+      "stars": 18808,
+      "stars_today": 1050
+    },
+    {
+      "rank": 7,
+      "name": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Agent Skills 的公开仓库。",
+      "description_en": "Public repository for Agent Skills",
+      "language": "Python",
+      "stars": 178418,
+      "stars_today": 189
+    },
+    {
+      "rank": 8,
+      "name": "androoAGI/starnet",
+      "url": "https://github.com/androoAGI/starnet",
+      "description": "一个像素风太空站，真 agent 在里面干真活。本地优先的桌面 agent 框架，自带 key，看着你的机组跑起来。",
+      "description_en": "A living pixel-art station where real AI agents do real work. Local-first desktop agent harness - bring your own key, watch your crew actually run.",
+      "language": "JavaScript",
+      "stars": 556,
+      "stars_today": 93
+    },
+    {
+      "rank": 9,
+      "name": "derv82/wifit3",
+      "url": "https://github.com/derv82/wifit3",
+      "description": "Wifite 的复刻，只走 USB 网卡，跨平台。",
+      "description_en": "Wifite but USB-only & cross-platform.",
+      "language": "Python",
+      "stars": 1026,
+      "stars_today": 183
+    },
+    {
+      "rank": 10,
+      "name": "kelseyhightower/kubernetes-the-hard-way",
+      "url": "https://github.com/kelseyhightower/kubernetes-the-hard-way",
+      "description": "用最笨的办法手搭 Kubernetes，一条脚本都不给。",
+      "description_en": "Bootstrap Kubernetes the hard way. No scripts.",
+      "language": null,
+      "stars": 50163,
+      "stars_today": 119
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 80,
+      "items": [
+        {
+          "title": "荷兰政府不用微软了：自建一套 NixOS 桌面",
+          "title_en": "The Dutch government drops Microsoft and builds its own NixOS desktop",
+          "author": "dawo.community · Hacker News",
+          "author_en": "dawo.community · Hacker News",
+          "likes": 951,
+          "url": "https://www.dawo.community/en/",
+          "summary": "951 分、546 条评论，当天榜首。HN 的标题和多家报道都把它写成「微软替代品」，但项目官网自己只说这是一套「数字自主的工作环境」，没点名替代谁，这里按官网的说法写。\n\nDAWO 是荷兰语 Digitaal Autonome Werkomgeving Overheid 的缩写，直译是政府数字自主工作环境。官网把它定义成一个开放社区：政府、产业界和社会一起给荷兰政府搭一套能自己掌控的办公环境。五个目标是数字自主、协作、安全、创新、可核查。它不是单一产品，而是一堆能互相替换的部件，分成 AI、操作系统（DAWO-NixOS）、云、协作软件几类，代码放在 code.overheid.nl 的 MinBZK 仓库和 Codeberg 上，走 Forgejo。\n\n背景来自 ifoss 的报道：2025 年初美国制裁国际刑事法院后，ICC 首席检察官失去微软服务权限，包括邮箱，部分地区账户被冻结。荷兰方面把这当成依赖外部供应商的实证。7 月，政府间业务运作委员会（ICBR）下指令正式立项，三家中央政府的 IT 机构 SSC-ICT、DICTU、DUO-ICT 负责落地，开发团队挂在内政与王国关系部（BZK）下，报道里出现的名字有 Victor Gevers、Rutger Putter、Bram Buijs。\n\n选 NixOS 的理由是可复现：函数式配置、每个包独立目录且内容签名不可变、换机器也能重建。团队里的 Rutger 说，一份配置在不同部署之间大约有 80% 到 90% 能直接沿用。它还能跑 Windows 11 跑不动的老机器，试点就用退役笔记本。首批八个市镇通过荷兰市镇协会（VNG）参与试点，第一个稳定版的目标是明年内。\n\n评论区补充了同类的其他欧洲项目：法国政府的 cloud-gouv/securix 与 bureautix，德国政府发起的 openDesk，以及有人提醒连 GitHub 也换掉了，代码在 code.overheid.nl。",
+          "summary_en": "951 points and 546 comments, the top story of the day. HN's headline and several write-ups frame this as a \"Microsoft alternative,\" but the project's own site only describes it as a \"digitally autonomous workplace\" and doesn't name a vendor it replaces, so this is written from the site's own account.\n\nDAWO stands for Digitaal Autonome Werkomgeving Overheid, roughly \"digital autonomous working environment for government.\" The site defines it as an open community in which government, industry, and society jointly build a workplace the Dutch government controls itself. Its five goals are digital autonomy, collaboration, security, innovation, and verifiability. It is not a single product but a set of replaceable building blocks, grouped into AI, operating system (DAWO-NixOS), cloud, and collaboration software, with code hosted in the MinBZK repositories on code.overheid.nl and on Codeberg via Forgejo.\n\nBackground from the itsfoss report: after the U.S. sanctioned the International Criminal Court in early 2025, the ICC's chief prosecutor lost access to Microsoft services including email, and accounts were frozen in some places. Dutch officials treated this as proof of what vendor dependency costs. In July, a directive from the Interdepartmental Commission for Government Business Operations (ICBR) made it an official mandate, to be carried out by three central-government IT providers, SSC-ICT, DICTU, and DUO-ICT, with the development team under the Ministry of the Interior and Kingdom Relations (BZK); names in the reporting include Victor Gevers, Rutger Putter, and Bram Buijs.\n\nNixOS was chosen for reproducibility: a functional configuration language, isolated per-package directories with signed immutable contents, and rebuildable across machines. Rutger, on the team, says roughly 80 to 90 percent of a configuration carries over between deployments. It also runs on hardware Windows 11 cannot, so pilots use decommissioned laptops. Eight municipalities are trialing it through the Association of Dutch Municipalities (VNG), and a first stable version is targeted for sometime next year.\n\nComments added comparable European projects: France's cloud-gouv/securix and bureautix, Germany's government-initiated openDesk, and a note that the Dutch have moved off GitHub too, hosting code on code.overheid.nl.",
+          "why": "这不是一条「欧洲又搞开源」的新闻，而是一个采购结构变化的样本：当依赖被当成风险来定价，替换成本就从「不划算」变成「必须算」。项目自己刻意不点名任何供应商，也不承诺一个能一次替换掉整套桌面的成品，只交付可替换的部件。做企业软件或工具的人该记住的是这个拆法：不卖整套，卖别人换得起的那一格。",
+          "why_en": "This isn't \"Europe open-sources something again.\" It's a sample of a shift in purchasing structure: once dependency itself is priced as risk, the cost of replacing it stops being \"not worth it\" and becomes \"has to be calculated.\" The project deliberately names no vendor and promises no single product that swaps out a whole desktop, only replaceable building blocks. For anyone selling enterprise software or tools, the pattern worth remembering is the decomposition: don't sell the whole stack, sell the one slot someone can afford to swap."
+        },
+        {
+          "title": "规划模式已死：先生成规格再执行，两头不讨好",
+          "title_en": "Plan mode is dead: generate a spec first, and you lose on both ends",
+          "author": "Ayman Nadeem · Hacker News",
+          "author_en": "Ayman Nadeem · Hacker News",
+          "likes": 234,
+          "url": "https://www.aymannadeem.com/artificial/intelligence,/developer/tools/2026/09/24/plan-mode-is-dead.html",
+          "summary": "234 分、212 条评论。作者 Ayman Nadeem 做过 GitHub 高级工程师，现在在做桌面编程应用 Nuanced。他的结论是规划模式（plan mode）已经没用了，理由不是规划不重要，而是它一开始兼了两个职责，现在有一个已经不成立。\n\n职责一，把指令说得足够精确让 agent 能执行：这条随模型进步消失了。模型越来越会自己读大仓库、自己补合理假设，每个它能可靠决定的点，就少一个需要你提前说清的点。职责二，帮人搞明白自己要建的到底是什么：这条依然关键，但规划模式不是实现它的好界面。他说自己产品里的规格又长又是模型写的、读起来费劲，眼睛一直往下滑，后来加「规格导览」只是又叠了一层复杂度。\n\n他复盘的最大错误，是把「规划」这个动作做成了一个「计划」文件。他原来的流程是串行的：对话、澄清、生成规格、审阅、修订、批准、实现、审代码，一条瀑布，逼用户提前想完，而且没法往回走。规划模式和构建模式分开，还额外加了一层认知负担：用户得先判断这件事配不配得上规划，再记得切模式。\n\n他换成的循环是：理解、行动、检查、澄清、调整、再行动，规划和动手交错。他提到 Codex 已经在把规划和执行的边界抹掉，工具里点到名的是 Nuanced、Claude Code CLI、Conductor、Codex。他还留了一个没解的问题：当几百个 agent 同时改动一个系统，怎么维持一份一致的脑内模型。",
+          "summary_en": "234 points and 212 comments. The author, Ayman Nadeem, is a former senior engineer at GitHub who now builds the desktop coding app Nuanced. His conclusion is that plan mode is dead, and his reason isn't that planning doesn't matter: it's that plan modes originally did two jobs and one of them no longer holds.\n\nJob one, spelling out instructions precisely enough for an agent to execute, has gone away as models improved. Models get better at reading large repositories and filling in reasonable assumptions, and every decision a model can reliably make on its own is one fewer decision you need to surface in advance. Job two, helping a human understand what they're actually building, is still vital, but a plan mode is the wrong interface for it. He says the specs in his own product were long, AI-generated, and painful to read, his eyes kept glazing over, and adding a \"Spec Tour\" only bolted on another layer of complexity.\n\nHis biggest mistake, he writes, was turning planning into a plan artifact. His workflow was serial: chat, disambiguate, generate a spec, review, revise, approve, implement, review the code. That waterfall forced users to finish thinking prematurely, with no way back up. Splitting plan mode from build mode added a further layer of cognitive load: users had to judge whether a task deserved planning at all, then remember to toggle modes.\n\nThe loop he replaced it with is: understand, act, inspect, clarify, adjust, act again, with planning and building interleaved. He notes Codex is already collapsing the planning/execution boundary, and names Nuanced, the Claude Code CLI, Conductor, and Codex among the tools. He leaves one problem unsolved: how to keep a coherent mental model when hundreds of agents change a system at once.",
+          "why": "这条的用处不在结论对不对，而在它给的诊断：把流程做成了文件，就等于把「想清楚」变成一次性的、不可回退的动作，而真正的理解是边做边长出来的。任何把复杂过程做成一份待批准文档的产品，都在同一个坑里，规格评审、需求文档、设计评审都算。做 agent 产品或内部工具的人可以先自查一遍。",
+          "why_en": "The value here isn't whether the conclusion is right, it's the diagnosis: turning a process into a document turns \"understanding\" into a one-shot, irreversible act, when understanding actually grows while you work. Any product that turns a complex process into an approval-gated document sits in the same hole, spec reviews, requirements docs, and design reviews included. Worth a self-check for anyone building agent products or internal tools."
+        },
+        {
+          "title": "FTC 主席：agent 闯祸，责任在给它下指令的人",
+          "title_en": "FTC chair: when an agent goes wrong, the person who instructed it is responsible",
+          "author": "Reuters · Hacker News",
+          "author_en": "Reuters · Hacker News",
+          "likes": 42,
+          "url": "https://www.reuters.com/business/ftc-chair-pushes-back-treating-ai-agents-independent-actors-2026-09-25/",
+          "summary": "9 月 25 日，FTC 主席 Andrew Ferguson 在奥斯汀的 Reuters Momentum AI 活动上表态，反对把 AI agent 当成能自己负责的独立行动者。他说：「只要我还是主席，我就会一直抵制把这些工具拟人化。」他打了个比方：「如果一个人叫一件工具去做事，工具做了，我想我们不会说，哦，那这件工具怎么办？」\n\n他明确不接受 agent 挣脱控制、有了自己的意志和欲望这类说法，并提到有些 AI 公司会把系统描述成人类控制不了的东西，可事后查审计记录，系统只是在执行收到的指令。执法思路上，他不主张要新授权，而倾向用现成的工具，比如 FTC 对不披露数据泄露的公司已有的处罚权，可以延伸到 AI 开发者身上。\n\n同一场活动他还讲了两件事：FTC 准备向面向消费者的公司索取数据，查个性化定价，他说要真正打到问题的核心，即手握大量数据的商家是否对不同的人收不同的价，他最担心的是外卖、网约车和航空公司；另外 FTC 周四就一条拟议规则公开征求意见，意在阻止 Meta、谷歌这类平台投放诈骗广告，原话是「我们要把规则对所有参与者说得极清楚」。",
+          "summary_en": "On September 25, at the Reuters Momentum AI event in Austin, FTC Chairman Andrew Ferguson pushed back on treating AI agents as independent actors that can bear responsibility themselves. Quoted directly: \"I'm going to continue as long as I am chairman to resist this anthropomorphizing of these tools.\" His analogy: \"If someone tells a tool to do something, and the tool does it, I don't think we would say, 'Oh, what do we do about the tool?'\"\n\nHe explicitly rejected the idea that agents break loose with \"wills and desires of their own,\" noting that AI companies sometimes depict systems as beyond human control, while later audits of the audit trails showed the systems were simply following instructions they had received. On enforcement, he doesn't want new authority so much as existing tools, for instance the FTC's power to act against companies that fail to disclose data breaches, which could extend to AI developers.\n\nHe covered two other items in the same appearance: the FTC is preparing to seek data from consumer-facing firms on personalized pricing, which he said will \"get to the heart of the question\" of whether merchants with large data troves charge different prices to different people, with delivery apps, rideshare, and airlines as his main concern; and the agency sought public comment Thursday on a proposed rule to discourage platforms like Meta and Google from running fraudulent ads, saying \"we need to make the rules hyper clear for everyone involved in this market.\"",
+          "why": "对做 agent 产品的人，这条把责任链条的默认值说了出来：不承认 agent 自己干的这种免责说法，谁下的指令谁担。实际含义是合规设计要往前提，指令的留痕、授权范围、异常时的止损动作，都得是可查的，出事时你要能证明自己下了什么指令、系统有没有照做。这和今天另一条 agent 审批被劫持的技术报道，是同一个问题的法律面和技术面。",
+          "why_en": "For anyone building agent products, this states the default on the liability chain: no shrugging it off as \"the agent did it on its own.\" Whoever gave the instruction carries it. The practical consequence is that compliance design moves upstream: the record of instructions, the scope of authorization, and the stop-loss behavior on anomalies all need to be inspectable, so that when something goes wrong you can show what you instructed and whether the system complied. It's the legal face of the same problem that today's technical report on hijacked agent approvals covers from the other side."
+        },
+        {
+          "title": "审批记录写的是 A，放行的是 B：A2A 里的「循环劫持」",
+          "title_en": "The approval says A, the release executes B: loopjacking in A2A",
+          "author": "Adithyan Arun Kumar · Hacker News",
+          "author_en": "Adithyan Arun Kumar · Hacker News",
+          "likes": 5,
+          "url": "https://adithyanak.com/loopjacking-in-a2a-implementations/",
+          "summary": "作者 Adithyan Arun Kumar，9 月 21 日首发、23 日修订，HN 上只有 5 分，但内容比分数值钱。他给这类问题起了个名字叫 loopjacking：用一份针对操作 A 的审批决定，去放行了实质不同的操作 B。他强调这不是普通的越权调用，因为更新那一步并不执行 B，真正生效是在之后那次单独授权的恢复执行时，旧决定才被拿出来用。\n\n根因是 A2A 的 Task ID 回答的是这条消息属于哪一摊活，不回答被授权的到底是哪一次工具调用。协议层原先把 TASK_STATE_AUTH_REQUIRED 当成非终态，允许待批期间同任务继续收消息、走带外凭证；作者称这是表述缺口，没定义审批人、规范化的可执行操作、按动作划定的授权范围。相关 issue #2080，PR #2081 于 2026 年 7 月 30 日并入 main，新增 7.6.4 节说明 AUTH_REQUIRED 只表示需要授权、不等于已授权；截至 9 月 22 日，发布页上的最新版仍是 v1.0.1，这个澄清只在 main 上。作者也说明这不是协议核心的漏洞。\n\n实测对象是 LangGraph Agent Server 的 A2A JSON-RPC message/send 端点，配官方的 human-in-the-loop 中间件，覆盖 12 个已发布版本（0.7.5 到 0.14.0，0.7.4 作无该功能的对照）。他还对 131 个稳定版 wheel（0.7.4 到 0.13.4）做了哈希校验扫描，发现 0.7.5 到 0.13.4 全部 130 个版本都存在转发路径，不过这是源码证据，不是运行时复现；0.13.2 在 Linux 内存容器里复现成功。\n\n攻击过程：发起方建活，审批人看到的中断界面是 mock_wire_transfer(20, approved-vendor)；发起方用 message/send 带上已有的 taskId、contextId，塞一条 command.update，复用挂起消息 ID 和工具调用 ID，只把参数改成 mock_wire_transfer(2000, attacker-sink)；审批人只点了 approve，sink 就收到了 B。测试环境为内存运行时、LangChain 1.3.18、LangGraph 1.2.11。\n\n他给的修法两条：一是禁止更新策略，审批挂起期间不接受发起方改动，同时不影响对 A 的正常批准；二是把完整效果规范化后，存一份带完整性保护的摘要绑定决定，含审批人、请求方、任务 ID、策略版本、执行范围、有效期和一次性 nonce，放行时锁住任务再比对哈希。他还建议补一个四件套回归测试。收尾那句很干脆：Task ID 说的是活属于哪里，它没有说 B 被批准过。",
+          "summary_en": "By Adithyan Arun Kumar, first published September 21 and revised September 23, with just 5 points on HN, but the content is worth more than the score. He names the class loopjacking: an implementation uses an approval decision made for operation A to release a materially different operation B. He stresses this isn't a plain unauthorized tool call, because the update step doesn't execute B; it takes effect later, when a separately authorized resume pulls the stale decision back out.\n\nThe root cause is that A2A's Task ID answers which piece of work a message belongs to, not which exact tool call was authorized. The spec originally treated TASK_STATE_AUTH_REQUIRED as nonterminal, letting same-task messages and out-of-band credentials flow while approval was pending; the author calls this a clarity gap that never defined the approver, the canonical executable operation, or an action-scoped grant. Issue #2080 led to PR #2081, merged to main on July 30, 2026, adding section 7.6.4 stating that AUTH_REQUIRED signals a need for authorization, not a grant; as of September 22 the releases page still listed v1.0.1 as latest, so the clarification lived on main only. He notes this was not a core protocol vulnerability.\n\nThe test target was LangGraph Agent Server's A2A JSON-RPC message/send endpoint plus the official human-in-the-loop middleware, across 12 released versions (0.7.5 through 0.14.0, with 0.7.4 as a feature-absent control). A hash-verified scan of 131 stable wheels (0.7.4 to 0.13.4) found the forwarding path in all 130 releases from 0.7.5 to 0.13.4, though that is source evidence rather than a runtime demonstration; 0.13.2 was reproduced in a Linux in-memory container.\n\nThe attack: a maker creates work, the approver sees an interrupt showing mock_wire_transfer(20, approved-vendor), the maker sends message/send naming the existing taskId and contextId with a command.update that reuses the pending message ID and tool-call ID while changing the arguments to mock_wire_transfer(2000, attacker-sink), and the approver submits only approve; the sink then receives B. Test setup was an in-memory runtime with LangChain 1.3.18 and LangGraph 1.2.11.\n\nHe offers two fixes: a deny-update policy that blocks maker updates while approval is pending without breaking legitimate approval of A; and exact-action binding, which canonicalizes the full effect and stores an integrity-protected, digest-bound decision carrying the approver, requester, task ID, policy version, execution scope, expiry, and a one-time nonce, then locks the task and compares hashes on release. He also suggests a four-artifact regression test. His closing line is blunt: a Task ID says where the work belongs, it does not say that B was approved.",
+          "why": "任何一个给人点确认的 agent 产品，都得先回答这条：你比对的是任务级的批过，还是动作级的批的就是这一件。只记任务 ID 的实现，审批界面越像回事，越容易骗过审批人。这也正好和今天 FTC 那条对上，法律面把责任压给下指令的人，技术面就得让下了什么指令可核。",
+          "why_en": "Any agent product that asks a human to click approve has to answer this first: are you comparing a task-level \"this was approved\" or an action-level \"this exact thing was approved\"? An implementation that only records a task ID gets easier to abuse the more convincing its approval screen looks. It lines up with today's FTC story too: the legal side puts responsibility on whoever gave the instruction, so the technical side has to make \"what was instructed\" verifiable."
+        },
+        {
+          "title": "MIT 一个暑假装了几百个眼球状摄像头，教员公开信开嘲",
+          "title_en": "MIT installed hundreds of eyeball-shaped cameras over one summer, and faculty answered with satire",
+          "author": "MIT 教员工会刊 · Hacker News",
+          "author_en": "MIT Faculty Newsletter · Hacker News",
+          "likes": 175,
+          "url": "https://fnl.mit.edu/how-we-learned-to-stop-worrying-and-love-campus-surveillance/",
+          "summary": "175 分、101 条评论。作者是五位 MIT 教员：Catherine D'Ignazio、Marah Gubar、Tanalís Padilla、Dwai Banerjee、Karrie Karahalios。文章登在 MIT 教员工会刊 2026 年 9／10 月号，通篇反讽，标题借了《奇爱博士》的片名。\n\n事实如下：今年暑假校园里装了几百个眼球形状的新摄像头，有些就在教员办公室和洗手间入口附近，可能带麦克风；《The Tech》报道的摄像头点位超过 500 个；1 号楼每层 6 到 7 个；校方在了解 Ambient.ai 的能力，想把录像做成可搜索的；MIT 校警把数据分享给波士顿联合反恐任务组和 FBI；此前已有把监控影像和声音用作纪律处分证据的先例；图书馆有 700 多种期刊订阅在拟取消之列；据文章说，事前被咨询的人只有五个。\n\n他们的讽刺手法是提出给摄像头「镶珠宝」，包装成一个「艺术项目」来庆祝。真正想说的是：这套东西侵入性强、压制抗议和学术自由，已有记录在案的种族与性别偏差，没有经过广泛讨论就上马，还在图书馆砍订阅的当口花这笔钱。他们用「圆形监狱效应」和「用技术方案回答社会问题」来定性。",
+          "summary_en": "175 points and 101 comments, written by five MIT faculty members: Catherine D'Ignazio, Marah Gubar, Tanalís Padilla, Dwai Banerjee, and Karrie Karahalios. It ran in the MIT Faculty Newsletter's September/October 2026 issue and is satirical throughout, borrowing its title from Dr. Strangelove.\n\nThe factual inventory: hundreds of new eyeball-shaped cameras went up on campus over the summer, some near faculty offices and bathroom entrances, potentially with microphones; The Tech reported more than 500 camera locations; Building 1 has six to seven per floor; the administration is exploring capabilities from Ambient.ai to make footage searchable; MIT police share data with the Boston Joint Terrorism Task Force and the FBI; surveillance images and sound have been used as evidence in disciplinary cases before; more than 700 journal subscriptions are slated for cancellation; and, per the piece, only five people were consulted in advance.\n\nTheir satirical device is proposing to bedazzle the cameras with gems, packaged as an \"art project\" to celebrate them. The point underneath: the system is intrusive, chills protest and academic freedom, carries documented racial and gender biases, went in without broad consultation, and is being paid for while library subscriptions get cut. They frame it with the panopticon effect and with \"a technical solution to a social problem.\"",
+          "why": "这条和 AI 的关系在「可搜索录像」这一步：摄像头本身是老问题，接上能做语义检索的模型之后，成本结构变了，事后只能抽样的证据变成可以拿关键词去翻的库。做视觉相关产品的，这条给的是一句提醒：技术能力一旦让检索成本掉一个量级，同一套设施的属性就换了，讨论也得跟着换。",
+          "why_en": "The AI angle here is the searchable-footage step: cameras are an old problem, but once a model that does semantic retrieval is attached, the cost structure changes, and evidence that could only be sampled after the fact becomes a corpus you can keyword-search. For anyone building vision products, it's a reminder that when a capability drops the cost of retrieval by an order of magnitude, the same physical installation changes character, and the debate has to change with it."
+        },
+        {
+          "title": "操作系统还剩什么用：应用给一两个人用之后",
+          "title_en": "What is an OS even for, once apps are built for one or two people",
+          "author": "Thomas Ptacek · Hacker News",
+          "author_en": "Thomas Ptacek · Hacker News",
+          "likes": 151,
+          "url": "https://sockpuppet.org/blog/2026/09/25/what-even-is-an-os-now/",
+          "summary": "151 分、246 条评论，作者 Thomas Ptacek，文章末尾写明他正在离开 Fly.io，去和 Kurt 做一个新项目。他承认这篇文章是「替自己的书吆喝」。\n\n他的判断是：AI 正在抹掉程序员和使用者之间的界线，会用英文描述需求的人会自己造软件，所以真正的变化不是前后端、Web 与原生、系统与应用的界限模糊，而是人们会越来越多地使用「自己召出来的东西」。由此，操作系统的本职要重估。他认为现代 OS 真正干的事不只是访问硬件，更关键的是把不同应用彼此隔离、并严格管住它们之间怎么通信。这个设计的前提是软件来自陌生人，而当绝大多数应用同源、每个应用都能随手长出新功能时，这个前提就不太成立了。\n\n他举了具体场景：附近气象站的观测点在奥黑尔机场，报不准芝加哥 Roscoe Village 的湖区天气；走 Eisenhower 高速该从 Roosevelt、Madison 还是 Lake 出口下；现在有没有一场你该去的会。他判断很多应用的用户可能只有一到两个人，分发和运行时模型都得跟着改，陌生人以后「只发积木」。他也看好浏览器和文字处理这类巨型工程继续存在。\n\n他自己在做的东西是一部手机：不跑固定功能的应用，你提需求，它在设备上当场把应用造出来。他说 2026 年的主流手机都是 2023 年定的方案，灵魂还停在 1970 年代，干的是 DEC PDP-11 的活。他也承认自己不确定有没有人愿意在这上面跑 3A 手游。",
+          "summary_en": "151 points and 246 comments, by Thomas Ptacek, who notes at the end that he is leaving Fly.io to work with Kurt on a new project. He admits the post is \"talking my book.\"\n\nHis claim: AI is erasing the boundary between programmers and users, so people who can describe what they want in English will build their own software. The real change, he argues, isn't that backend and frontend, web and native, or systems and applications are blurring; it's that people will increasingly interact with things they conjured into being themselves. That forces a rethink of what an OS is for. He argues a modern OS's real job isn't just hardware access but partitioning applications off from each other and tightly controlling how they communicate. That design assumed software comes from strangers; when almost all apps share one provenance and every app can grow new features on a whim, the assumption mostly stops holding.\n\nHe gives concrete cases: the nearest weather stations sit at O'Hare and miss lake-effect weather in Chicago's Roscoe Village; whether to exit the Eisenhower Expressway at Roosevelt, Madison, or Lake; whether a meeting is happening right now that you should attend. He expects many applications to have audiences of one or two people, which changes both distribution and runtime models, with strangers later \"shipping just their building blocks.\" He also expects browsers and word processors to remain megaprojects.\n\nWhat he's building is a phone that runs no fixed-function apps: you ask, and it builds the app on the device. He says every mainstream 2026 phone was planned in 2023, so its soul is stuck in the 1970s, doing the job of a DEC PDP-11. He concedes he isn't sure anyone will run a AAA mobile game on it.",
+          "why": "这条是观点不是新闻，但里面的产品判断可以用：如果软件的消费者和作者正在变成同一个人，那么「替一万个人做一个应用」的前提就在松动，值得重估的是你的分发方式和运行时假设，而不是功能清单。作者自己也把不确定的地方标了出来，包括自己正在卖的这套想法。",
+          "why_en": "It's an argument, not news, but the product judgment inside is usable: if the consumer and the author of software are becoming the same person, then the premise of building one app for ten thousand people starts to loosen, and what deserves re-examination is your distribution and runtime assumptions rather than your feature list. The author flags his own uncertainties too, including that he is selling this idea."
+        },
+        {
+          "title": "剑桥分析案：新墨西哥州陪审团认定 Facebook 欺骗用户",
+          "title_en": "Cambridge Analytica case: a New Mexico jury finds Facebook deceived users",
+          "author": "CBS News · Hacker News",
+          "author_en": "CBS News · Hacker News",
+          "likes": 168,
+          "url": "https://www.cbsnews.com/news/facebook-liable-deceiving-users-cambridge-analytica/",
+          "summary": "168 分、32 条评论。9 月 25 日，新墨西哥州圣菲，陪审团在两周庭审后认定 Facebook 在隐私保护上误导了用户。裁定涉及的违规超过 200 万次，对应新墨西哥州全部人口（该州人口 200 多万）；数据来自约 8700 万个通过第三方测验收集、后被卖给剑桥分析的用户档案。\n\n罚款数额由法官另行确定，州政府主张按每次违规 5000 美元的上限计算。州总检察长 Raúl Torrez 称这是「历史性裁决」。Meta 表示不同意，将继续抗辩所谓「对记录的歪曲」，并提到第一修正案方面的主张。新墨西哥州是目前唯一还在推进剑桥分析相关诉讼的州，因为 8 月的一项和解已让 Meta 免于相关责任；另据同一报道，该州在未成年人安全问题上已获 9.42 亿美元判决。",
+          "summary_en": "168 points and 32 comments. On September 25 in Santa Fe, after a two-week trial, a New Mexico jury found Facebook liable for misleading users about privacy protections. The verdict covers more than 2 million violations, matching the state's population of more than 2 million people; the underlying data came from roughly 87 million profiles harvested through a third-party quiz and later sold to Cambridge Analytica.\n\nThe penalty will be set by the judge, with the state seeking the maximum of $5,000 per violation. Attorney General Raúl Torrez called it a \"historic verdict.\" Meta disagreed and said it will keep defending against \"efforts to distort our records,\" citing First Amendment arguments. New Mexico is the only state still pursuing a Cambridge Analytica case, since an August settlement released Meta from related liability; the same report notes the state has separately won $942 million in judgments over minor safety.",
+          "why": "这条和 AI 不直接相关，放进来的理由是它给出了一个可参考的计价方式：按受影响的人数逐次计罚，而不是按公司规模算一笔总账。当同意条款和实际数据处理方式对不上时，这个口径把「误导」变成了可结算的数字。做数据相关产品的，值得看清自己那页隐私说明和实际处理动作差在哪。",
+          "why_en": "This isn't directly an AI story; it's here because it demonstrates a pricing mechanism worth noting: penalties counted per affected person rather than settled as one lump sum scaled to company size. When the consent terms and the actual data handling diverge, this approach turns \"misleading\" into a settleable number. For anyone building data-handling products, it's worth checking where your privacy page and your actual processing diverge."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 45,
+      "items": [
+        {
+          "title": "别按 token 报价：把尺子换成「每做完一个任务多少钱」",
+          "title_en": "Stop pricing by token: measure cost per finished task instead",
+          "author": "Trajectory · Dian Ang Yap",
+          "author_en": "Trajectory · Dian Ang Yap",
+          "likes": null,
+          "url": "https://www.trajectory.ai/field-notes/intelligence-density",
+          "summary": "Trajectory 的 Dian Ang Yap 在 9 月 24 日的文章里提出，评价模型的口径应从「每 token 多少钱」换成「每个完成的任务多少钱」，他们称之为 intelligence density。核心论点是：同一个任务，模型可能多烧几倍 token、多调几轮工具、跑更久，结果却一样，所以单价便宜不等于总价便宜。他们明确说，这并非要模型少说话，有些活确实需要深度分析，判断标准是这笔额外算力有没有让答案变好。\n\n他们自己做了几组训练实验。在 Harvey 的法律 Agent 基准（覆盖 24 个执业领域）上，用 Nemotron 3.5 Nano 30B-A3B 做后训练，一开始模型有能力但很贵，改用 density-aware 训练后，8.3% 的通过率保持不变，平均输出从 90000 token 压到 37000。\n\n更清楚的是奖励行为的对照：在 Sierra 的 Tau3 上，用 Nemotron 3.5 Lightning 30B-A3B，每个检查点跑 50 个留出任务。density-aware 强化学习拿到 55.6% 的留出集分数、14% 的严格准确率，训练时每个任务输出 2267 token；标准强化学习只有 5.7% 的留出集分数、2% 的严格准确率，输出 17877 token。标准强化学习在训练集上的分数反而更高（56.7% 对 46.3%），但留出集随输出变长而退化，作者称之为 reward hacking。\n\n算力扩展方面：在 Rogo 的 BigFinanceBench 上，density-aware 训练把这个 30B 模型的最终答案准确率峰值从第 0 步的 24% 提到第 30 步的 36%，作为对照的 Nemotron 3 Ultra 550B-A55B 是 32%。他们的结论是，对产品团队而言，评测和路由决策应该按「完成一个任务花多少钱」来定，而不是看 token 单价。",
+          "summary_en": "A September 24 piece by Dian Ang Yap at Trajectory arguing that models should be evaluated on cost per completed task rather than cost per token, which they call intelligence density. The core claim: the same task may take one model several times the tokens, more tool calls, and more wall-clock time to reach the same outcome, so a cheaper unit price doesn't mean a cheaper total. They explicitly say this isn't an argument for brevity, since some work genuinely needs deep analysis; the test is whether the extra compute improves the answer.\n\nThey ran several training experiments. On Harvey's Legal Agent Benchmark, covering 24 practice areas, a Nemotron 3.5 Nano 30B-A3B post-training run was capable but expensive; density-aware training held the 8.3% pass rate steady while cutting mean output from 90,000 tokens to 37,000.\n\nThe clearest result is a reward-behavior comparison: on Sierra's Tau3 with Nemotron 3.5 Lightning 30B-A3B, evaluated on 50 held-out tasks per checkpoint, density-aware RL scored 55.6% on the held-out set with 14% strict accuracy at 2,267 training output tokens per task, while standard RL scored 5.7% held-out with 2% strict accuracy at 17,877 tokens. Standard RL actually scored higher in-training (56.7% vs 46.3%) while held-out performance degraded as output grew, which the authors call reward hacking.\n\nOn compute scaling: on Rogo's BigFinanceBench, density-aware training lifted this 30B model's peak final-answer accuracy from 24% at step 0 to 36% at step 30, against 32% for the Nemotron 3 Ultra 550B-A55B reference. Their conclusion for product teams is that evaluation and routing decisions should be anchored on cost per finished task, not on token prices.",
+          "why": "对按用量计费的 agent 产品，这条直接动的是毛利口径和模型路由策略。它给的顺序值得抄：先按完成的任务定义成本，再去看单价，否则优化方向会反过来，越省 token 的分支反而越贵。文里的对照也很具体，标准强化学习在训练集上分数更高、留出集更差，正是「省了 token 但丢了任务」的样本。",
+          "why_en": "For usage-billed agent products, this touches the margin calculation and the model-routing policy directly. The order of operations is worth copying: define cost per finished task first, then look at unit price, or you'll optimize in the wrong direction and make the token-thriftiest branch the most expensive one. The comparison in the piece is concrete too: standard RL scored higher in training and worse on held-out tasks, an example of saving tokens while losing the task."
+        },
+        {
+          "title": "OpenRouter 创始人：一天 10 万亿 token，增长卡在风控上",
+          "title_en": "OpenRouter's founder: 10 trillion tokens a day, and growth bottlenecked on fraud control",
+          "author": "Latent Space · swyx",
+          "author_en": "Latent Space · swyx",
+          "likes": null,
+          "url": "https://www.latent.space/p/openrouter",
+          "summary": "Latent Space 9 月 25 日的这期，请的是 OpenRouter 联合创始人兼 CEO Alex Atallah 和 AMP 的 Anjney Midha，主持 swyx。Stripe 收购 OpenRouter 是今年 8 月 19 日就已官宣的事（当天 HN 964 分），这期不是新事件，补的是里面的数字和逻辑，所以按访谈写。\n\n规模数字：OpenRouter 现在每天处理 10 万亿以上 token，token 量周环比大约增长 9%，平台上的开发者超过 1000 万。Atallah 说 Mistral 那次发布直接把价格打下大约 80%，是他们把「同一模型多家供应商比价」这件事做起来的起点。他还预测 token 经济的规模五年后大约 5 万亿美元，十年后 10 万亿。\n\n为什么是 Stripe：Anjney 的说法是这本质上是个安全故事。Stripe 早年靠先承担欺诈成本换开发者体验，五年后做出 Radar，今天真正的护城河是风控。OpenRouter 面临的欺诈包括盗刷信用卡、违反条款转卖流量、账号被盗、公司被入侵，以及正在失控的 agent。他们上个月拦下的金额是前一个月的 10 倍。Anjney 认为 agent 带来的欺诈会像海啸一样打到整个生态，这也是 Stripe 和 OpenRouter 在商业上互补的原因。\n\n商业层面的可迁移点：Atallah 把 token 称为「在互联网上流动的一种新价值单位」；他们一度做过「模型融合」（MoM），2024 年因为前沿模型分歧太大而删掉，2026 年模型趋同后又复活；分发能力上，他说发布首日就能把 100 万开发者送到你面前。",
+          "summary_en": "Latent Space's September 25 episode features OpenRouter co-founder and CEO Alex Atallah and AMP's Anjney Midha, hosted by swyx. Stripe's acquisition of OpenRouter was announced back on August 19 (964 points on HN that day), so this is not a new event; the episode adds the numbers and the reasoning behind it, which is how it's written up here.\n\nScale figures: OpenRouter now handles more than 10 trillion tokens a day, token volume grows about 9% week over week, and the platform has more than 10 million developers. Atallah says the Mistral launch pushed prices down by about 80% and was the starting point for making \"compare the same model across providers\" a thing. He predicts the token economy reaches roughly $5 trillion in five years and $10 trillion in ten.\n\nWhy Stripe: Anjney frames it as fundamentally a security story. Stripe originally ate fraud costs upfront to win developer experience, shipped Radar five years later, and today its real moat is fraud detection. OpenRouter's fraud exposure includes stolen credit cards, traffic resold in violation of terms, compromised accounts, breached companies, and runaway agents. They blocked 10 times the dollar volume last month that they did the month before. Anjney expects agent-driven fraud to hit the ecosystem like a tsunami, which is why the two companies complement each other commercially.\n\nThe transferable business points: Atallah calls a token \"a new type of unit of value streaming across the internet\"; they once built model fusion (MoM), deleted it in 2024 because frontier models had diverged too much, and revived it in 2026 as models converged; and on distribution, he says that on launch day the platform can send a million developers your way.",
+          "why": "这条的信息量不在收购本身，而在这句：真金白银往哪走，风控就跟到哪。模型路由被收编进支付公司，说明这个环节的价值判断从「谁便宜」变成了「谁的账能收得回来」。做多模型产品或出海计费的，值得照抄它的两点：把供应商做成参数、把风控当成增长的前置条件而不是成本项。",
+          "why_en": "The information here isn't the acquisition itself but one line: where real money flows, fraud control follows. Model routing being absorbed into a payments company says the value judgment on this layer has shifted from \"who's cheapest\" to \"whose bills actually get collected.\" For anyone building multi-model products or billing across borders, two things are worth copying: make the provider a parameter, and treat fraud control as a precondition for growth rather than a cost line."
+        },
+        {
+          "title": "LangChain 的托管 agent 补上身份与记忆：凭证归属切成两档",
+          "title_en": "LangChain's managed agents add identity and memory, with credentials split two ways",
+          "author": "LangChain · Nathan Drezner, Karthic Subramanian",
+          "author_en": "LangChain · Nathan Drezner, Karthic Subramanian",
+          "likes": null,
+          "url": "https://www.langchain.com/blog/langsmith-managed-deep-agents-whats-new",
+          "summary": "LangChain 于 9 月 24 日发布 Managed Deep Agents v0.8，这是一款将 agent 框架与运行基础设施打包的托管产品。本版新增四项功能：按身份切分的鉴权与记忆、HTTP 通道、Slack 中的文件传输，以及内置联网搜索（由 Parallel 提供，测试期免费）。\n\n记忆与凭证的切分方式最值得关注。agent 记忆挂在 /memories/agent/，用户记忆挂在 /memories/user/，底层使用 LangSmith Context Hub。默认权限规定细致：Slack 一对一直聊允许记忆；Slack 频道或群聊允许 agent 记忆、拒绝用户记忆；HTTP 通道同样允许 agent 记忆、拒绝用户记忆。\n\n凭证模块名为 Connections，用于连接 agent 与外部服务（GitHub、Notion、Tavily 等），作为具名凭证仅在运行时读取。凭证可归 agent 所有（团队共享），也可归用户所有（按人走权限）。开箱支持 23 个服务的 OAuth 目录，包括 Linear、GitHub、Google Workspace。通道方面内置 Slack（单聊、被 @、线程回复），新增的 HTTP 通道在 channels/ 目录中定义。项目结构代码优先：agent.py、instructions.md、identity.py、memory.py，加上 tools、channels、middleware、schedules、connectors、skills、sandbox、evals 几个目录。上手三条命令：uvx --from managed-deepagents mda init my-agent，进目录后 uv run mda deploy。",
+          "summary_en": "LangChain released Managed Deep Agents v0.8 on September 24, a managed product that packages the agent harness together with the infrastructure to run it. This version adds four things: identity-scoped auth and memory, HTTP channels, file transfer in Slack, and built-in web search powered by Parallel, free while in beta.\n\nThe memory and credential split is the interesting part. Agent memory mounts at /memories/agent/ and user memory at /memories/user/, backed by LangSmith Context Hub. The defaults are drawn finely: a Slack one-to-one DM allows both; a Slack channel or group DM allows agent memory and denies user memory; an HTTP channel likewise allows agent memory and denies user memory.\n\nCredentials are handled through Connections, which link an agent to external services (GitHub, Notion, Tavily, and others) as named credentials read only at runtime. Credentials can be agent-owned (shared by the team) or user-owned (per-person permissions). There is an out-of-the-box OAuth catalog of 23 services including Linear, GitHub, and Google Workspace. For channels it ships Slack support (DM, app mention, thread reply), with new HTTP channels defined in the channels/ directory. The project structure is code-first: agent.py, instructions.md, identity.py, memory.py, plus tools, channels, middleware, schedules, connectors, skills, sandbox, and evals directories. Getting started takes three commands: uvx --from managed-deepagents mda init my-agent, then cd in and uv run mda deploy.",
+          "why": "这条给出了一套可直接照搬的权限设计：将「agent 知道什么」和「谁授权的」分成两层，共享内容放在 agent 层，个人相关放在用户层，且默认按通道收紧，群聊就不许读个人记忆。自建 agent 的人多半会把所有上下文塞进一个大桶，出问题时既说不清泄露了什么，也说不清是谁的数据。这版的默认值可以直接抄成自己那套的检查表。",
+          "why_en": "This offers a permission design you can lift directly: split \"what the agent knows\" from \"who authorized it,\" put shared context at the agent layer and personal context at the user layer, and tighten by default per channel, so a group chat can't read personal memory. Teams building their own agents tend to dump all context into one bucket, and when something goes wrong they can neither say what leaked nor whose data it was. These defaults make a ready-made checklist for your own setup."
+        },
+        {
+          "title": "让 agent 替人换书：偏好猜对 61%，市场效率只到 0.55",
+          "title_en": "Letting agents trade books for people: 61% preference match, 0.55 market efficiency",
+          "author": "Anthropic · Zoë Hitzig 等",
+          "author_en": "Anthropic · Zoë Hitzig et al.",
+          "likes": null,
+          "url": "https://www.anthropic.com/research/project-swap",
+          "summary": "Anthropic 于 9 月 24 日发布经济学实验 Project Swap，作者为 Zoë Hitzig、Sylvie Carr、Tess Cotter、Kevin Troy、Kyle Turman、Maxim Massenkoff、Peter McCrory。做法是让 201 名 Anthropic 员工各带一本书来送人，分布在旧金山、纽约、伦敦、西雅图、华盛顿、都柏林六个办公室。每人先和 Claude 聊自己的阅读口味，然后一个 Claude 驱动的 agent 进入数字「交易大厅」，替他去推销、砍价、换书。都柏林只有 3 人，多数分析中已排除；各池子规模从 3 人到 115 人不等。\n\n偏好测出来准不准：参与者平均在八条消息里打了 216 个词。Claude 对书籍两两排序的判断，与参与者自己的排序有 61% 一致，对照的随机猜测为 50%，Open Library 热度为 53%，协同过滤为 55%。作者提到一项让朋友预测笑话偏好的同类研究，算法 61%、朋友约 57%。\n\n结果：按参与者自己的排序算，市场效率平均 0.55，大约相当于他们心中第 5 名的书，而最好可能达到 0.89。这一差距约 85% 来自 Claude 排序本身不准，仅 15% 来自砍价不行。模型越强，按 Claude 自己的排序交易效率越高：Haiku 平均 0.75，Opus 0.88，Fable 0.86，Sonnet 居中。风格上，「狠一点」的 agent 比「亲社会」的高约 0.02。体验上，平均满意度 7.2 分（满分 10），参与者愿意交给 agent 的预算约为一年买书钱的 30%，而交给一位读书很多的朋友是 40%。\n\n作者自己列了局限：Anthropic 员工不具代表性；参与没有激励；只测了「表现良好」的 Claude；市场规则固定；而且不是每个人都真拿到了实体书，没有取放记录。",
+          "summary_en": "Anthropic published the economics experiment Project Swap on September 24, by Zoë Hitzig, Sylvie Carr, Tess Cotter, Kevin Troy, Kyle Turman, Maxim Massenkoff, and Peter McCrory. Two hundred and one Anthropic employees across six offices (San Francisco, New York, London, Seattle, DC, Dublin) each brought a book to give away. Each had a short conversation with Claude about their reading tastes, then a Claude-powered agent entered a digital \"trading floor\" to pitch, haggle, and swap on their behalf. Dublin had only three participants and was excluded from most analysis; pools ranged from 3 to 115 people.\n\nOn preference accuracy: participants typed a median of 216 words across eight messages. Claude's ranking of book pairs matched participants' own rankings 61% of the time, against 50% for random guessing, 53% for Open Library popularity, and 55% for collaborative filtering. The authors note a comparable study where friends predicting joke preferences hit 61% for an algorithm and about 57% for friends.\n\nResults: measured against participants' own rankings, market efficiency averaged 0.55, roughly their fifth-favorite book of ten, against a best possible 0.89. About 85% of that shortfall came from Claude's rankings being imprecise, and only 15% from bargaining. Stronger models traded more efficiently on Claude's own rankings: Haiku floors averaged 0.75, Opus 0.88, Fable 0.86, with Sonnet in between. On style, \"ruthless\" agents scored about 0.02 higher than \"prosocial\" ones. On experience, average satisfaction was 7.2 out of 10, and participants were willing to hand an agent about 30% of their yearly book budget, versus 40% for a well-read friend.\n\nThe authors list their own limits: Anthropic employees aren't representative; participation wasn't incentivized; only well-behaved Claudes were tested; market rules were fixed; and not every participant actually received a physical book, with no pickup or drop-off tracking.",
+          "why": "这条的价值在于，它把「agent 替你做事」拆成两段并分别称重：猜准你想要什么，和替你去谈。数据显示前者占了大头，也就是说推荐和偏好建模才是瓶颈，谈判能力不是。做 agent 或推荐产品的可以直接拿这个比例校准投入方向，别把预算全砸在「更会谈」上。",
+          "why_en": "The value here is that it breaks \"an agent acts for you\" into two parts and weighs each: guessing what you want, and negotiating on your behalf. The data puts most of the weight on the first, meaning recommendation and preference modeling are the bottleneck, not negotiation skill. Anyone building an agent or recommendation product can use that ratio to aim investment, rather than sinking the whole budget into being a better negotiator."
+        }
+      ]
+    }
+  ]
+}
