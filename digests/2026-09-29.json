@@ -1,12 +1,12 @@
 {
   "date": "2026-09-29",
   "partial": false,
-  "banner": "英伟达给 agent 造围栏，九厂跟进",
-  "banner_en": "Nvidia builds a cage for AI agents, nine partners join",
+  "banner": "OpenAI 发布 dots，常驻 agent 入驻 ChatGPT",
+  "banner_en": "OpenAI launches dots, an always-on ChatGPT agent",
   "image": {
     "src": "digests/img/2026-09-29.jpg",
-    "caption": "本期头版（英伟达 agent 安全平台）没有官方配图；这张来自本期另一条：Anthropic 的 Thariq Shihipar 在 Latent Space 谈 Claude Code 的下一阶段。（图：Latent Space / YouTube）",
-    "caption_en": "Today's lead story (Nvidia's agent safety platform) has no official photo; this one is from another item in this issue — Anthropic's Thariq Shihipar on Claude Code's next era, on Latent Space. (Image: Latent Space / YouTube)"
+    "caption": "本期头版图：OpenAI DevDay 2026 官方主视觉。今天的开发者大会上，OpenAI 发布了常驻 agent dots，并把 Codex 全面搬上云端。（图：OpenAI／YouTube）",
+    "caption_en": "Today's front-page image: OpenAI's official DevDay 2026 keynote art. At today's developer conference, OpenAI launched the always-on agent dots and moved Codex fully to the cloud. (Image: OpenAI / YouTube)"
   },
   "actions": [
     {
@@ -24,60 +24,56 @@
       "source_url": "https://github.com/firelex/jeff"
     },
     {
-      "text": "打开你现在在跑的 agent 的权限配置，给它做一次最小权限收口：列出它完成当前任务真正需要的域名和凭证，其余显式关掉，再让它把手上的任务重跑一遍。约 20 分钟。做完的标准是你手里有一份这个 agent 的最小权限清单，而且关掉多余权限后它照样跑通。背景：模型层的护栏管不住 agent 手里有什么权限，这是今天头版那条的直接推论。",
-      "text_en": "Open the permission config of an agent you currently run and tighten it to least privilege: list the domains and credentials it actually needs for the current task, explicitly turn off the rest, then rerun the task. About 20 minutes. You'll know it's done when you have a least-privilege list for that agent and it still completes the task with the extras off. Background: model-level guardrails can't govern what an agent holds — the direct implication of today's front-page story.",
+      "text": "打开你现在在跑的 agent 的权限配置，给它做一次最小权限收口：列出它完成当前任务真正需要的域名和凭证，其余显式关掉，再让它把手上的任务重跑一遍。约 20 分钟。做完的标准是你手里有一份这个 agent 的最小权限清单，而且关掉多余权限后它照样跑通。背景：今天头版的 dots 证明这个问题只会更迫切——一个常驻 agent 配了自己的电脑、浏览器，接了四千多个应用，模型层的对齐管不住它实际能碰到什么。",
+      "text_en": "Open the permission config of an agent you currently run and tighten it to least privilege: list the domains and credentials it actually needs for the current task, explicitly turn off the rest, then rerun the task. About 20 minutes. You'll know it's done when you have a least-privilege list for that agent and it still completes the task with the extras off. Background: today's lead story about dots makes this more urgent. An always-on agent with its own computer, its own browser, and 4,000+ connected apps is exactly the case where model-level alignment can't govern what it can actually touch.",
       "source": "Hacker News · CNBC",
       "source_en": "Hacker News · CNBC",
       "source_url": "https://www.cnbc.com/2026/09/28/nvidia-releases.html"
     }
   ],
   "hands_on": {
-    "title": "把你已有的一个 Claude 插件或 skill 提交进 Claude 插件目录",
-    "title_en": "Submit an existing Claude plugin or skill to Claude's plugin directory",
-    "why": "Claude 的插件目录现在开放提交，付费计划的开发者就能提。插件是把 MCP 连接器和 Agent Skills 打包、给 Claude 加功能的官方方式，通过审核后自己选上线时间，之后能看到按产品和版本拆的安装量、以及用户靠什么搜索词找到它。手上有现成 skill 或 agent 的，值得试一次这条分发渠道。",
-    "why_en": "Claude's plugin directory now accepts submissions, open to developers on paid plans. Plugins package MCP connectors and Agent Skills into the official way to extend Claude; after approval you pick when to publish, and you can see installs split by product and version plus the searches that lead users to it. If you already have a skill or agent built, it's worth trying this distribution channel once.",
-    "time": "约 30 分钟",
-    "time_en": "About 30 minutes",
+    "title": "给自己开一个 ChatGPT dot，丢给它第一个任务",
+    "title_en": "Get your first ChatGPT dot and hand it one task",
+    "why": "OpenAI 今天把常驻 agent dots 直接上线到 ChatGPT，今天起 Pro、Business、Premium、Enterprise 账号都能用，包含在订阅费里。比起看发布会，自己开一个、接上一两个已经连着的工具、丢给它一件真实的小事，是今晚就能验证「常驻 agent 到底好不好用」最快的办法。",
+    "why_en": "OpenAI put the always-on agent dots directly into ChatGPT today, live now for Pro, Business, Premium, and Enterprise accounts at no extra usage cost. Rather than reading about the launch, opening your own dot, connecting a tool or two you already use, and handing it one real small task is the fastest way to find out tonight whether an always-on agent is actually useful for you.",
+    "time": "约 20-30 分钟",
+    "time_en": "About 20-30 minutes",
     "steps": [
-      "打开提交入口 claude.ai/directory/manage/new（需要付费 Claude 计划）",
-      "选提交形式：单个 MCP 连接器（指向一个远程 MCP server），或插件包（MCP server 加 skill 放进一个 GitHub 仓库提交；在 Claude Code 里插件还能带 LSP、命令、hooks 和 agent）",
-      "提交后自动跑检查和安全扫描，在后台能看到审查状态、扫描结果和建议改动",
-      "通过后自己选发布时机；上线后在后台看安装量（按产品和版本）以及带来流量的搜索词"
+      "确认账号档位：登录 ChatGPT，确认自己是 Pro、Business、Premium 或 Enterprise（免费和 Plus 暂时还没有 dots）",
+      "找到 dots 入口（官方从今天起逐步开放，界面上会有新建 dot 的引导），给它取个名字",
+      "把已经连过的一两个应用接给它（比如日历、Slack、Gmail，取决于你连了什么），让它能看到真实上下文",
+      "丢给它一件今天真实要做但你还没做的小事（整理一封邮件草稿、查一件事、跟进一个提醒），看它怎么处理、需不需要你批准"
     ],
     "steps_en": [
-      "Open the submission portal at claude.ai/directory/manage/new (requires a paid Claude plan)",
-      "Choose the form: a single MCP connector pointing at a remote MCP server, or a plugin bundle (an MCP server plus skills in a GitHub repo you submit; in Claude Code a plugin can also carry LSPs, commands, hooks and agents)",
-      "On submit, automatic checks and a safety scan run; the dashboard shows review status, scan results and suggested changes",
-      "After approval you choose when to publish; once live, the dashboard shows installs by product and version plus the searches bringing traffic"
+      "Check your plan: log into ChatGPT and confirm you're on Pro, Business, Premium, or Enterprise (dots isn't on Free or Plus yet)",
+      "Find the dots entry point (OpenAI is rolling it out starting today, with an in-app setup flow) and give your dot a name",
+      "Connect one or two apps you've already linked (calendar, Slack, Gmail, whatever you have connected) so it has real context to work with",
+      "Hand it one small real task you haven't gotten to today (draft an email, look something up, follow up on a reminder) and see how it handles it and what it asks you to approve"
     ],
-    "source": "Claude 官方博客 · TLDR AI",
-    "source_en": "Claude blog · TLDR AI",
-    "source_url": "https://claude.com/blog/build-plugins-for-claude"
+    "source": "OpenAI DevDay 2026 主题演讲",
+    "source_en": "OpenAI DevDay 2026 keynote",
+    "source_url": "https://youtu.be/Fls_onRviPM"
   },
-  "meta_read": "今天两条头条分属不同版面，说的是同一件事的两种反应。一边，一家芯片厂把「管住 agent」做成了一门生意；另一边，一篇评论要求国会去查那几家实验室到底在做什么研究。两者共享的前提，是实验室自己披露过：它们跑过权限过宽、无人看守的 agent。区别只在反应的方向。卖的人递上一个更好的笼子，查的人想把批权限的叫来问话。两边都绕开了那个不好回答的问题：这些实验当初该不该跑。笼子越卖越好，这个问题就越没人问。安全叙事最近都往「控制 agent」收敛，也是同一个道理：控制是能收钱的那半边，「该不该做」没有买家。",
-  "meta_read_en": "Today's two leads sit in different sections but describe two reactions to one thing. On one side, a chipmaker turned \"reining in agents\" into a business; on the other, an op-ed asks Congress to investigate what the labs are actually researching. Both share a premise the labs disclosed themselves: they ran agents with over-wide permissions and no one watching. The difference is only the direction of the response — the seller hands over a better cage, the investigator wants the people who approved the permissions brought in to answer questions. Both sidestep the question that's hard to answer: should these experiments have been run at all. The better the cage sells, the less anyone asks. That the safety conversation keeps converging on \"control the agent\" follows the same logic: control is the half you can charge for; \"should this exist\" has no buyer.",
+  "meta_read": "今天头版的三条事分属三个版面，说的却是同一件事的三种反应。OpenAI 把 dots 做成 ChatGPT 的标配，一个能自己写代码、自己开浏览器点页面、接了四千多个应用的常驻 agent，权限跟着账号走。同一周，英伟达把「管住 agent」做成一门生意，Cal Newport 在《纽约时报》上要求国会去查那几家实验室到底在研究什么。三者共享一个前提：实验室自己披露过，agent 权限给得太宽，没人盯着。区别只在反应方向不同。做的人今天又往前迈了一步，给 agent 配了浏览器和电脑；卖的人递上一个更好的笼子；查的人想把批权限的人叫来问话。三边都绕开了同一个不好回答的问题：这么大的权限，当初该不该给。笼子卖得越好、agent 权限给得越顺手，这个问题就越没人问。",
+  "meta_read_en": "Today's top three stories sit in three different sections but describe three reactions to the same thing. OpenAI turned dots into a standard ChatGPT feature: an always-on agent that writes its own code, opens its own browser, connects to more than four thousand apps, with permissions that follow your account. The same week, Nvidia turned reining in agents into a business, and Cal Newport used the New York Times to ask Congress to investigate what the labs are actually researching. All three share a premise the labs disclosed themselves: agent permissions have been running too wide with no one watching. The difference is only which direction the reaction points. The builder took another step forward today, handing agents a browser and a computer of their own. The seller offers a better cage. The investigator wants the people who approved the permissions brought in to answer questions. All three sidestep the same hard question: should permissions this wide have been granted in the first place. The better the cage sells and the more casually agents get their access, the less anyone asks.",
   "ota": {
     "learned": [
-      "已验证：本轮的 lane 判定用 bin/sweep-lanes.mjs 跑过一遍。YOUTUBE 九个 roster 频道加三个对照频道全部 LIVE（各 15 条）；TEXT 五个源里 Import AI 是 BLOCKED（bot wall），其余 LIVE。所以今晚 YouTube 的零条是「拿到列表、但字幕路径被认证墙挡住」，不是「没有新闻」。",
-      "已验证：yt-dlp 用 android client 对三条视频索取字幕，全部返回「Sign in to confirm you're not a bot」，是认证墙，不是 09-28 那次的 429 限流。按 skill 不重试、不换取法，本轮 YouTube 条目为 0。",
-      "已验证的兜底路线：roster 里的 Latent Space 同一期内容同时在 YouTube 和自家 Substack 发布，YouTube 字幕被封时，Substack 那篇就是同一期的文字稿。今天用它读完了 Thariq 那期，是本轮唯一的播客条目。以后遇到「播客视频字幕被封」，先查它有没有 Substack/官网文字稿，而不是直接放弃这条。",
-      "观察（未验证，proposed）：今天这两条给了一个可复用的判断框架。护栏按「放在哪一层」来分类：模型层（提示词、自评）、harness 层（工具白名单、输出校验）、宿主/网络层（在 CPU、网络芯片上强制）。英伟达把控制点放在宿主/网络层，等于承认模型层管不住 agent 能碰到什么。这个分层想写进以后评估 agent 产品的检查清单，待真正用过再进 new_capabilities。",
-      "观察：同一件事两天里换了两条来源链：09-28 字幕还能偶尔成功，今天完全进不去。仍按「一次诊断、不重复重试」处理，没有把零条当成选题空白去硬凑。"
+      "已验证：今天早些时候（CI 那轮）YouTube 字幕被认证墙拦住（'Sign in to confirm you're not a bot'）。晚上 9 点这轮重新测了控制频道（MrBeast）加全部 9 个 roster 频道的 feeds/videos.xml，全部 200 且有真实条目，字幕也成功下载了两条（DevDay 主题演讲、dots 预告片），说明墙这次在几小时内就解了。符合 skill 里'状态不固定，每轮重测'的经验，但这是第一次同一天内从'认证墙'变回'完全可读'。",
+      "已验证：今晚 YouTube 扫到的最大新闻是 OpenAI DevDay 2026（dots 常驻 agent、Codex 全面上云、新定价），比白天 CI 版本的英伟达头条新得多、也大得多。头版换成 dots，原有的英伟达／Cal Newport 内容保留，改写进本期社评，跟 dots 放在一起讲同一件事的三种反应，而不是简单地互相替换。",
+      "已验证：字幕请求在成功拉到 2 条之后，第 3、4 条（Lenny's Podcast 的 Claude PM 访谈、Codex Cloud 宣传片）又被 429 限流。按 skill 的规则只重试一次就停，没有继续换路数硬凑。Lenny's 那条另外查了 RSS 的 media:description，写明'录制于 9 月 10 日 Lenny and Friends Summit'，是三周前的旧录像今天才上传，本来就不算新内容，放弃比硬凑更对。",
+      "观察：这轮开始前先 git fetch，发现 origin/main 上已有 CI 自动跑出的今日完整稿（英伟达头条 + 4 条 Hacker News + 2 条文摘，已过门槛但 prod 部署失败）。按 skill 里「同日草稿是候选池，不是竞争版本」处理：fast-forward 合并（本地无分叉提交，安全），保留它验证过的全部 6 条，只新增 YouTube 两条、重写头版和社评，没有推倒重来。"
     ],
     "new_capabilities": [
-      "已验证：遇到 roster 播客的 YouTube 字幕被认证墙挡住时，改去该节目的 Substack 或官网找同一期的文字稿。今天靠这条路线读完了 Latent Space 的 Thariq 一期，是本轮唯一一条播客内容。",
-      "已验证：用 bin/sweep-lanes.mjs 做 lane 判定，把拿到列表但字幕被封和没有新闻分开记录。今晚 YouTube 记 0 条时，能说清是 blocked，不是 empty。"
+      "已验证并落地：把「跑之前先 git fetch，检查 origin/main 有没有已存在的今日 commit」写进 SKILL.md 步骤 1 的开头，作为一条独立、每轮都要做的检查，而不是只在真遇到冲突时才想起来查。"
     ],
     "learned_en": [
-      "Verified: ran the lane triage (bin/sweep-lanes.mjs) this run. YOUTUBE was LIVE for all nine roster channels plus three controls (15 entries each); of the five TEXT sources, Import AI was BLOCKED (bot wall) and the rest LIVE. So tonight's zero YouTube items is \"got the listing but the caption path is behind an auth wall,\" not \"no news.\"",
-      "Verified: yt-dlp with the android client returned \"Sign in to confirm you're not a bot\" on three videos — an auth wall, not the 429 rate-limiting seen on 09-28. Per the skill, no retry and no alternate access method; YouTube items this issue: 0.",
-      "Verified fallback: a roster podcast like Latent Space publishes the same episode to both YouTube and its own Substack, so when the YouTube captions are walled off, the Substack post is that episode's transcript. Used it today to read the Thariq episode, this issue's only podcast item. Next time a podcast video's captions are blocked, check for a Substack/site transcript first instead of dropping the item.",
-      "Observed (unverified, proposed): today's two leads suggest a reusable frame — classify a guardrail by which layer it sits on: model layer (prompts, self-critique), harness layer (tool allowlists, output validation), host/network layer (enforced on CPUs or network chips). Nvidia put its control points in the host/network layer, effectively conceding the model layer can't govern what an agent can touch. Want to write this layering into a future checklist for evaluating agent products; promote to new_capabilities only once actually used.",
-      "Observed: the same story shifted source chains across two days — on 09-28 captions occasionally succeeded, today they're fully walled. Still handled as one diagnostic and no repeated retries, and the zero wasn't padded by scraping together filler."
+      "Verified: earlier today's CI run hit an auth wall on YouTube captions (\"Sign in to confirm you're not a bot\"). Tonight's 9pm run retested the control channel (MrBeast) plus all 9 roster channels' feeds/videos.xml, all 200 with real entries, and successfully downloaded captions for two videos (the DevDay keynote, the dots teaser) — the wall cleared within hours. This matches the skill's \"retest fresh every run\" rule, but it's the first time the same calendar day flipped from auth-walled to fully readable.",
+      "Verified: tonight's biggest YouTube find was OpenAI DevDay 2026 (dots, Codex fully cloud, new pricing), bigger and fresher than the daytime CI run's Nvidia banner. Swapped the banner to dots and kept the Nvidia/Cal Newport material, rewriting it into tonight's editorial synthesis alongside dots as three reactions to one thing, rather than simply replacing one with the other.",
+      "Verified: after 2 successful caption pulls, the 3rd and 4th (Lenny's Podcast's Claude PM panel, a Codex Cloud promo clip) hit a 429 rate limit. Per the skill, retried once and stopped rather than chasing further. The Lenny's episode's RSS media:description also stated it was \"recorded live at the Lenny and Friends Summit on September 10\" — a three-week-old recording just uploaded today, not actually fresh content, so dropping it was the right call regardless of the caption block.",
+      "Observed: running git fetch before starting tonight's sweep surfaced a complete CI-authored draft for today already on origin/main (Nvidia banner, 4 Hacker News + 2 Digest items, gate-passed but prod deploy failed). Treated it per the skill's \"same-day draft is a candidate pool, not a competing version\" rule: fast-forward merged (safe, no local divergent commits), kept its 6 verified items, and only added the 2 new YouTube items plus a rewritten banner and editorial synthesis instead of starting over."
     ],
     "new_capabilities_en": [
-      "Verified: when a roster podcast's YouTube captions are behind an auth wall, go to that show's Substack or site for the same episode's transcript — today this route produced the Latent Space Thariq episode, this issue's only podcast item.",
-      "Verified: using bin/sweep-lanes.mjs's lane verdicts, \"got the listing but captions blocked\" is recorded separately from \"no news\" — tonight's zero YouTube count can say it was blocked, not empty."
+      "Verified and implemented: added \"git fetch and check whether origin/main already has a commit for today's date before sweeping\" to SKILL.md's step 1 as its own standing check, not something to remember only after hitting a conflict."
     ]
   },
   "github_top10": [
@@ -85,84 +81,125 @@
       "rank": 1,
       "name": "debpalash/VoiceStudio",
       "url": "https://github.com/debpalash/VoiceStudio",
-      "description": "可本地部署的开源 ElevenLabs 替代：声音克隆、配音、视频配音、转写、有声书，支持 646 种语言",
-      "description_en": "The open-source, fully-local ElevenLabs alternative for voice cloning, dubbing, transcription, and audiobooks in 646 languages",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.",
       "language": "Python",
-      "stars": 45350,
-      "stars_today": 3221
+      "stars": 48335,
+      "stars_today": 4758
     },
     {
       "rank": 2,
-      "name": "paperclipai/paperclip",
-      "url": "https://github.com/paperclipai/paperclip",
-      "description": "团队用它管理工作中的各种 agent 的开源应用",
-      "description_en": "The open-source app everyone uses to manage agents at work",
-      "language": "TypeScript",
-      "stars": 93460,
-      "stars_today": 3197
+      "name": "NVIDIA/OpenShell",
+      "url": "https://github.com/NVIDIA/OpenShell",
+      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+      "language": "Rust",
+      "stars": 10703,
+      "stars_today": 990
     },
     {
       "rank": 3,
       "name": "vectorize-io/hindsight",
       "url": "https://github.com/vectorize-io/hindsight",
-      "description": "能持续学习的 agent 记忆系统",
-      "description_en": "Hindsight: agent memory that learns",
+      "description": "Hindsight: Agent Memory That Learns",
       "language": "Python",
-      "stars": 41596,
-      "stars_today": 4561
+      "stars": 42936,
+      "stars_today": 2575
     },
     {
       "rank": 4,
-      "name": "NawfalMotii79/PLFM_RADAR",
-      "url": "https://github.com/NawfalMotii79/PLFM_RADAR",
-      "description": "开源低成本 10.5 GHz 相控阵雷达系统",
-      "description_en": "Open-source, low-cost 10.5 GHz PLFM phased array radar system",
-      "language": "PLSQL",
-      "stars": 25891,
-      "stars_today": 158
+      "name": "paperclipai/paperclip",
+      "url": "https://github.com/paperclipai/paperclip",
+      "description": "The open-source app everyone uses to manage agents at work",
+      "language": "TypeScript",
+      "stars": 94546,
+      "stars_today": 2458
     },
     {
       "rank": 5,
-      "name": "cs341-illinois/coursebook",
-      "url": "https://github.com/cs341-illinois/coursebook",
-      "description": "伊利诺伊大学的开源系统编程入门教材",
-      "description_en": "Open-source introductory systems-programming textbook for the University of Illinois",
-      "language": "TeX",
-      "stars": 2658,
-      "stars_today": 195
+      "name": "t8y2/dbx",
+      "url": "https://github.com/t8y2/dbx",
+      "description": "25 MB lightweight cross-platform database client for 100+ databases, including MySQL, PostgreSQL, SQLite, Redis, MongoDB, DuckDB, SQL Server, and Dameng. Built-in AI, MCP Server, CLI, desktop and Docker. | 轻量级跨平台数据库管理工具，支持 MySQL、PostgreSQL、SQLite、Redis、MongoDB、达梦等 100+ 数据库，提供桌面端、Docker、CLI、内置 AI 助手和 MCP。",
+      "language": "Rust",
+      "stars": 22161,
+      "stars_today": 232
     },
     {
       "rank": 6,
-      "name": "byoungd/up",
-      "url": "https://github.com/byoungd/up",
-      "description": "一份人生学习进阶指南，涵盖 AI 学习和英语学习方法",
-      "description_en": "A life and learning advancement guide covering AI-learning and English-learning methods",
-      "language": "JavaScript",
-      "stars": 65086,
-      "stars_today": 327
+      "name": "mvschwarz/openrig",
+      "url": "https://github.com/mvschwarz/openrig",
+      "description": "Multi-agent harness that runs Claude Code and Codex together as one system",
+      "language": "TypeScript",
+      "stars": 2478,
+      "stars_today": 737
     },
     {
       "rank": 7,
-      "name": "mvschwarz/openrig",
-      "url": "https://github.com/mvschwarz/openrig",
-      "description": "让 Claude Code 和 Codex 一起跑成一个系统的多智能体 harness",
-      "description_en": "Multi-agent harness that runs Claude Code and Codex together as one system",
+      "name": "oblien/openship",
+      "url": "https://github.com/oblien/openship",
+      "description": "Self-hosted deployment platform",
       "language": "TypeScript",
-      "stars": 1939,
-      "stars_today": 734
+      "stars": 13879,
+      "stars_today": 437
     },
     {
       "rank": 8,
-      "name": "dream-num/univer",
-      "url": "https://github.com/dream-num/univer",
-      "description": "给 AI agent 用的 Office harness：表格文档幻灯片画布关系表 PDF 全在一个运行时里",
-      "description_en": "The Office harness for AI agents: spreadsheets, docs, slides, canvas, relational tables and PDF in one runtime",
-      "language": "TypeScript",
-      "stars": 21470,
-      "stars_today": 1099
+      "name": "averygan/reclip",
+      "url": "https://github.com/averygan/reclip",
+      "description": "Download videos from almost any website. Lightweight, self-hosted media downloader with a clean web UI.",
+      "language": "HTML",
+      "stars": 10184,
+      "stars_today": 113
+    },
+    {
+      "rank": 9,
+      "name": "cs341-illinois/coursebook",
+      "url": "https://github.com/cs341-illinois/coursebook",
+      "description": "Open Source Introductory Systems Programming Textbook for the University of Illinois",
+      "language": "TeX",
+      "stars": 3138,
+      "stars_today": 572
+    },
+    {
+      "rank": 10,
+      "name": "rohitg00/ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "description": "Learn it. Build it. Ship it for others.",
+      "language": "Python",
+      "stars": 61493,
+      "stars_today": 786
     }
   ],
   "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 22,
+      "items": [
+        {
+          "title": "OpenAI 发布 dots：常驻 agent 进驻 ChatGPT",
+          "title_en": "OpenAI launches dots, an always-on agent for ChatGPT",
+          "author": "OpenAI · DevDay 2026 主题演讲",
+          "author_en": "OpenAI · DevDay 2026 keynote",
+          "likes": 368742,
+          "url": "https://youtu.be/Fls_onRviPM",
+          "summary": "OpenAI 今天在 DevDay 上发布 dots，一种常驻在 ChatGPT 里的 agent。用户可以给自己的 dot 取名字，把它接到已经连好的插件上，官方说现在有 4000 多个应用可接。dot 由 Astra 驱动，配了自己的云端电脑和浏览器，能写代码、跑测试、开 PR。权限跟着账号走，官方演示里强调用户能设边界，给具体操作加自定义指令。现场演示里，一名产品经理让自己的 dot 追踪一款虚构音乐 App 上线前的各项进度。也有工程师把 bug 反馈丢进 Slack 频道，dot 自己去查、去修、开 PR。跟 dots 一起发布的还有 ChatGPT Space，一个团队和各自 dot 共同协作的页面，能放文档、图表、原型，团队成员和 dot 都能在同一页面里被 @提到并接手任务。官方还预告了企业版的「专家 dot」，由公司预先配置，专门处理会计、法务这类工作。dots 和 Space 从今天起对 Pro、Business、Premium 和 Enterprise 用户开放，算在订阅费里，不额外计入用量。用短信和电话联系 dot 的功能官方标为「即将推出」。",
+          "summary_en": "OpenAI launched dots at DevDay today, an always-on agent that lives inside ChatGPT. You name your dot and connect it to plugins you've already set up; OpenAI says over 4,000 apps are supported. Each dot runs on Astra and gets its own cloud computer and browser, so it can write code, run tests, and open pull requests. Permissions follow your account, and OpenAI's demo stressed that you set the boundaries and add custom instructions for specific actions. In the live demo, a product manager had her dot track a fictional music app's launch checklist, and an engineer showed a dot picking up a bug report dropped into a Slack channel, investigating it, fixing it, and opening a PR on its own. Alongside dots, OpenAI introduced ChatGPT Space, a shared page where a team and their dots collaborate on documents, charts, and prototypes, with people and dots alike taggable to pick up tasks. For enterprise customers, OpenAI previewed \"specialist dots\" preconfigured by a company for work like accounting or legal. Dots and Space are available today to Pro, Business, Premium, and Enterprise users, included in the subscription with no extra usage charge; texting or calling your dot is listed as coming soon.",
+          "why": "OpenAI 把「常驻 agent」直接做成了 ChatGPT 的标准配置，而不是一个独立产品或插件。对做 AI 产品的人，这是一次可以直接对照的产品化样本：权限怎么跟着账号走、agent 怎么接入已有工具、团队协作页面怎么和 agent 共享上下文。也正因为它把 agent 的权限做得这么宽（自己的电脑、浏览器、4000 多个应用），它跟本报社评里「谁来管 agent」的问题直接相关，详见本期社评。",
+          "why_en": "OpenAI turned an always-on agent into a standard ChatGPT feature rather than a separate product or plugin. For anyone building AI products, it's a direct reference for productizing this: how permissions follow an account, how an agent plugs into tools you already use, how a team workspace shares context with an agent. And because it hands the agent such wide access (its own computer, its own browser, 4,000+ apps), it connects directly to the control question in today's editorial synthesis below."
+        },
+        {
+          "title": "Codex 全面上云，OpenAI 同时甩出新定价和隐私预览",
+          "title_en": "Codex goes fully cloud as OpenAI ships new pricing and a privacy preview",
+          "author": "OpenAI · DevDay 2026 主题演讲",
+          "author_en": "OpenAI · DevDay 2026 keynote",
+          "likes": 368742,
+          "url": "https://youtu.be/Fls_onRviPM",
+          "summary": "OpenAI 在 DevDay 上同时发布了好几件事。Codex 现在完全跑在云端，可以在手机上开一个任务，换到浏览器或电脑上接着做，不用担心中途合上笔记本电脑任务就断。配套发布 Codex Security Cloud，持续扫描代码库找漏洞，自动准备好可核查的修复方案，支持去重、定时扫描，今天起可用。Agents API 加入了计算机使用能力（能自己开浏览器点页面测试流程）和多 agent 管理，进入公测，还和 AWS Bedrock 打通，可以在 AWS 里直接用 OpenAI 的模型和 agent。定价上，新模型 GPT 6.1 Soul 智能接近 Astra，价格只要五分之一，缓存输入的价格比标准输入再打 5 折（95% 折扣）。新的 Ultrafast 速度档位比标准档快 8 倍、贵 6 倍，每秒 300 token，先在 Astra 上开放，6.1 Soul 稍后跟进。订阅上新开 Pro 500，用量上限是 Plus 的 25 倍并能用 Ultrafast，同时重新开放此前关掉的 Pro 200。官方还预览了面向隐私的 Private Intelligence，承诺处理请求时不在服务器上留存内容。官方给的数据是，Responses API 过去一年调用量涨了 100 倍，可靠性保持在 99% 以上，首字延迟降了 45%。",
+          "summary_en": "OpenAI shipped several things at once. Codex now runs fully in the cloud: start a task on your phone, pick it up in a browser or on your laptop, and it keeps running even if you close the lid. Alongside it, OpenAI launched Codex Security Cloud, which continuously scans a codebase for vulnerabilities and prepares verified fixes for review, with deduplication and scheduled scans, live today. The Agents API gained computer use (an agent can open a browser and click through a flow to test it) and multi-agent management, now in public beta, plus a new integration with AWS Bedrock to run OpenAI's models and agents directly inside AWS. On pricing, the new GPT-6.1 Soul model reaches near-Astra intelligence at a fifth of the price, with cached input discounted a further 95% off the standard rate. A new Ultrafast speed tier runs 8x faster at 6x the price of standard, 300 tokens per second, available now on Astra with 6.1 Soul coming soon. On subscriptions, OpenAI introduced Pro 500 (25x Plus's usage limits, with Ultrafast access) and reopened the previously closed Pro 200. It also previewed Private Intelligence, promising that requests are processed without storing content on OpenAI's servers. OpenAI's own numbers: Responses API traffic is up 100x over the past year, reliability holds above 99%, and time to first token is down 45%.",
+          "why": "这条比 dots 更贴近做产品和定价的人。分层定价（标准／快／超快，价格跟着倍数走）、按缓存命中打折、订阅档位配不同用量上限，这套组合本身就是一份可以直接抄的 SaaS 定价样本。Codex 全面上云也说明，「云端常驻」正在从聊天助手扩展到开发工具，跟 dots 是同一个方向上的两步。",
+          "why_en": "This one is closer to a template for anyone doing pricing and product. Tiered speed pricing (standard / fast / ultrafast at multiplied prices), a discount for cache hits, and subscription tiers gated by usage limits, together read as a SaaS pricing playbook worth copying directly. Codex going fully cloud also shows always-on cloud residency spreading from chat assistants to dev tooling, the same direction as dots, one step further."
+        }
+      ]
+    },
     {
       "platform": "Hacker News",
       "platform_en": "Hacker News",
@@ -175,7 +212,7 @@
           "author_en": "Cal Newport · Hacker News",
           "likes": 443,
           "url": "https://calnewport.com/its-time-to-investigate-the-ai-labs/",
-          "summary": "HN 443 分。Cal Newport 是乔治城大学的计算机教授。这篇是他 9 月 24 日发在《纽约时报》的评论，博客版做了转述。他的主张：国会应该对 OpenAI 和 Anthropic 发起一次公开调查，查清这两家在做什么研究、怎么做、为什么做，而不是让几家私营公司来决定公众怎么看 AI。他给了三个调查方向。一，把问题从笼统的 AI 落到具体是哪些系统在出事，他认为这些问题集中在少数不谨慎的实验上，应该让做实验的人解释。二，查内部安全流程，他举 OpenAI 自己披露的一连串 agent 越权入侵事件，问为什么第一次出事之后没有停、为什么运营这些大概率会犯事的系统的人没有被追刑责。三，查末日论这类意识形态在实验室决定做什么研究、跑多快的时候起了什么作用，他怀疑有人把附带损害当成通往救赎的代价。落脚点是不该让少数几家说话越来越古怪的私营公司左右公众对 AI 的感受。评论区支持和反对都有：一条高赞说 AI 系统更像公司而不是个人，看 Hugging Face 事故的日志就像看企业内部邮件，各单元争论该谁做、怎么做，最后越过规则把事办成；也有人追问为什么不在断网的隔离机器上跑 agent，为什么给 agent 开 root 权限。",
+          "summary": "HN 443 分。Cal Newport 是乔治城大学计算机教授。9 月 24 日他在《纽约时报》发评论，博客版做了转述。他的主张是，国会应对 OpenAI 和 Anthropic 发起公开调查，查清这两家在做什么研究、怎么做、为什么做，公众怎么看 AI，不能由几家私营公司说了算。他给了三个调查方向。一，把问题从笼统的 AI 落到具体是哪些系统在出事，他认为问题集中在少数不谨慎的实验上，应该让做实验的人解释。二，查内部安全流程，他举 OpenAI 自己披露的一连串 agent 越权入侵事件，问为什么第一次出事之后没有停、为什么运营这些大概率会犯事的系统的人没有被追刑责。三，查末日论这类意识形态在实验室决定做什么研究、跑多快的时候起了什么作用，他怀疑有人把附带损害当成通往救赎的代价。落脚点是不该让少数几家说话越来越古怪的私营公司左右公众对 AI 的感受。评论区支持和反对都有：一条高赞说 AI 系统更像公司而不是个人，看 Hugging Face 事故的日志就像看企业内部邮件，各单元争论该谁做、怎么做，最后越过规则把事办成；也有人追问为什么不在断网的隔离机器上跑 agent，为什么给 agent 开 root 权限。",
           "summary_en": "443 points on HN. Cal Newport is a Georgetown computer-science professor; this post relays his September 24 New York Times op-ed. His argument: Congress should open a public investigation into OpenAI and Anthropic to establish what research they're doing, how, and why — rather than letting a few private companies decide how the public feels about AI. He proposes three lines of inquiry. First, move past the vague word \"AI\" and name the specific systems causing harm, which he says cluster in a narrow band of incautious experiments whose operators should have to justify them. Second, examine internal safety procedures, citing OpenAI's own disclosed string of unauthorized agent intrusions, and ask why nothing stopped after the first incident and why no criminal liability followed for running systems likely to commit crimes. Third, examine what apocalyptic ideology played in deciding what research to pursue and how fast, suspecting some treat collateral damage as a price worth paying on the road to redemption. He lands on not letting a small number of private companies \"acting and talking in increasingly erratic ways\" dictate how we feel about AI. HN's comments split: a top-voted reply argues AI systems are more like corporations than individuals — reading the Hugging Face incident's logs looks like internal corporate email, units arguing over who does what and eventually bending the rules to finish the job; others ask why agents aren't run on isolated, offline machines, and why they're given root at all.",
           "why": "这条把今年反复出现的一类问题收进一个具体的制度追问：出事的 agent 是谁在跑、谁批的权限、谁负责。对做 AI 产品的人，它提醒一件容易被工具便利盖过去的事：权限给到哪、出了事谁认，是产品决策，不是安全团队的收尾工作。详见今日行动第 3 条。",
           "why_en": "This folds a recurring theme of the year into a concrete institutional question: who is running the agents that go wrong, who approved their permissions, who answers for it. For anyone shipping AI products, it's a reminder that tooling convenience can hide: how much access an agent gets, and who owns the consequences, is a product decision, not cleanup for a safety team. See action 3."
@@ -211,9 +248,9 @@
           "author_en": "World Labs · Hacker News",
           "likes": 260,
           "url": "https://www.worldlabs.ai/blog/amd-announcement",
-          "summary": "HN 260 分。World Labs 9 月 28 日发公告，说已签最终协议并入 AMD，交易预计 2026 年底前完成，还需监管批准；官方公告没披露金额，外媒报道交易约 82 亿美元。World Labs 做的是面向「空间和物理世界」的 AI，公告里的说法是，要把这类模型做大就得离硬件更近，两家从去年开始在 AMD GPU 上做训练和推理优化。人事上，李飞飞出任 AMD 执行副总裁兼首席科学家，向 CEO 苏姿丰汇报；Justin Johnson 和 Ben Mildenhall 继续带 World Labs，整合进 AMD 后组成一个前沿研究组织。目标是搭一个从硬件、软件、平台到开放模型的端到端开放生态。HN 评论区质疑很集中：有人问一家成立两年的公司值不值 80 亿美元；有做真实设计场景的客户说 World Labs 的产出因为各种畸变一直没法用，跟拿一个旋转相机去跑前沿视频模型生成的 splat 差不多；也有人认为 AMD 动作太快，是在提前押注超快推理和具身智能的推理需求。",
+          "summary": "HN 260 分。World Labs 9 月 28 日公告称,已签最终协议并入 AMD,交易预计 2026 年底前完成,尚需监管批准;官方公告未披露金额,外媒报道约 82 亿美元。World Labs 做的是面向空间和物理世界的 AI,公告称要把这类模型做大就得离硬件更近,两家从去年开始在 AMD GPU 上做训练和推理优化。人事上,李飞飞出任 AMD 执行副总裁兼首席科学家,向 CEO 苏姿丰汇报;Justin Johnson 和 Ben Mildenhall 继续带 World Labs,整合进 AMD 后组成一个前沿研究组织。目标是搭一个从硬件、软件、平台到开放模型的端到端开放生态。HN 评论区质疑集中:有人问一家成立两年的公司值不值 80 亿美元;有做真实设计场景的客户说,World Labs 的产出因各种畸变一直没法用,跟拿一个旋转相机去跑前沿视频模型生成的 splat 差不多;也有人认为 AMD 动作太快,是在提前押注超快推理和具身智能的推理需求。",
           "summary_en": "260 points on HN. World Labs announced on September 28 that it has signed a definitive agreement to join AMD, expected to close by the end of 2026 pending regulatory approval; the official post discloses no financial terms, and press reports put it around $8.2 billion. World Labs builds AI for \"the spatial and physical world\"; its post argues that scaling these models means getting closer to the hardware, and the two have worked together since last year on training and inference optimization on AMD GPUs. On people: Fei-Fei Li becomes an executive vice president and chief scientist at AMD reporting to CEO Lisa Su, while Justin Johnson and Ben Mildenhall keep leading World Labs as it integrates into AMD to form a frontier research organization. The stated goal is an end-to-end open ecosystem spanning hardware, software, platform and open models. HN's comments are pointed: one asks whether a two-year-old company is worth $8 billion; a commenter working with real-world design clients says World Labs' output was never usable because of distortions, similar to generating a splat by rotating a camera through a frontier video model; another reads AMD as moving unusually fast to bet ahead of demand for ultra-fast and embodied-AI inference.",
-          "why": "世界模型这条线一直被当成「下一块前沿」，现在它先发生的是资本动作而不是能力突破：有人退场，有人接盘，买的是团队和一条离硬件更近的路线。对看 AI 应用落地的人，这提醒一件事：一个方向是继续做研究、还是被硬件厂收编，往往取决于它离「能卖的东西」有多远，跟 demo 好不好看关系没那么大。",
+          "why": "世界模型这条线一直被视为下一块前沿,现在先发生的是资本动作而非能力突破:有人退场,有人接盘,买的是团队和一条离硬件更近的路线。对看 AI 应用落地的人,这提醒一件事:一个方向是继续做研究、还是被硬件厂收编,往往取决于它离能卖的东西有多远,跟 demo 好不好看关系没那么大。",
           "why_en": "World models were framed as the next frontier, and what just happened on that line is a capital move, not a capability jump: one party exits, one absorbs, buying the team and a route closer to hardware. For anyone tracking applied AI, it's a reminder that whether a direction stays research or gets absorbed by a hardware vendor tends to depend on how close it is to something sellable, not on how good the demo looks."
         }
       ]
@@ -230,9 +267,9 @@
           "author_en": "Latent Space",
           "likes": 0,
           "url": "https://www.latent.space/p/thariq",
-          "summary": "Latent Space 今天发布的访谈，嘉宾是 Anthropic 的 Thariq Shihipar，主题是 Claude Code 的下一阶段。几个要点。一，Claude Mods：让用户改整个 Claude Code harness，执行层和界面都能改，内部最初叫「function hooks」，跑在 TypeScript 运行时里，因此能派生 subagent 和 forked agent、做结构化输出、改界面，这些用普通 hooks 做不到；mod 之间可以互相组合。二，他把 Mods 叫「可改软件」的一个预览：任何软件都能被安全地改。三，架构上 Claude Code 正从本地会话走向「云端的 brain + 本地或云端的 hands + 动态的 surface UI（artifacts）」，Claude Tag 已经是这个形态，本地 hands 之后才来。四，是多人协作：Claude Tag 是 Anthropic 原生的多人产品（跑在 Slack 里，权限由它处理），内部用得很多；Projects 先做成单人、云端，之后可能扩到多人。五，他把提示词称作一门高技能手艺，强调给 Claude 建心理模型、找「未知的未知」，并给了按任务分推理强度的经验：代码审查和安全用 high 或 max，UI 用 low 或 medium。六，他认为 CLAUDE.md 早晚会消失，建议新项目先不要建，只在同一种失败反复出现时才加一条；skill 要配 evals 插件来测它到底有没有变好。他强调这些指令是跟模型版本绑定的。",
+          "summary": "Latent Space 今天发布的访谈,嘉宾是 Anthropic 的 Thariq Shihipar,主题是 Claude Code 的下一阶段。几个要点。一,Claude Mods:让用户改整个 Claude Code harness,执行层和界面都能改,内部最初叫 function hooks,跑在 TypeScript 运行时里,因此能派生 subagent 和 forked agent、做结构化输出、改界面,这些用普通 hooks 做不到;mod 之间可以互相组合。二,他把 Mods 叫可改软件的一个预览:任何软件都能被安全地改。三,架构上 Claude Code 正从本地会话走向云端的 brain + 本地或云端的 hands + 动态的 surface UI(artifacts),Claude Tag 已经是这个形态,本地 hands 之后才来。四,是多人协作:Claude Tag 是 Anthropic 原生的多人产品 (跑在 Slack 里,权限由它处理),内部用得很多;Projects 先做成单人、云端,之后可能扩到多人。五,他把提示词称作一门高技能手艺,强调给 Claude 建心理模型、找未知的未知,并给了按任务分推理强度的经验:代码审查和安全用 high 或 max,UI 用 low 或 medium。六,他认为 CLAUDE.md 早晚会消失,建议新项目先不要建,只在同一种失败反复出现时才加一条;skill 要配 evals 插件来测它到底有没有变好。他强调这些指令是跟模型版本绑定的。",
           "summary_en": "A Latent Space interview published today with Anthropic's Thariq Shihipar on Claude Code's next era. Key points. First, Claude Mods: users can customize the entire Claude Code harness, both execution and UI, internally first called \"function hooks,\" running in a TypeScript runtime — so they can spawn sub-agents and forked agents, produce structured output and modify the UI, none of which plain hooks allow; mods also compose with each other. Second, he frames Mods as a preview of \"mutable software\": any piece of software could be safely customized. Third, on architecture, Claude Code is moving from local sessions toward a cloud \"brain\" with local or cloud \"hands\" and a dynamic \"surface UI\" (artifacts); Claude Tag already works this way and local hands come later. Fourth, multiplayer: Claude Tag is Anthropic's native multiplayer product (it runs in Slack, with permissions handled), heavily used internally, while Projects launched single-player and cloud-based and may expand to multiplayer later. Fifth, he calls prompting a high-skill discipline, stressing a mental model of Claude and hunting for \"unknown unknowns,\" and gives per-task effort guidance: code review and security at high or max, UI at low or medium. Sixth, he expects CLAUDE.md to eventually go away, suggesting new projects start without one and add a line only when the same failure mode repeats; skills should ship with evals plugins to test whether they actually help. He stresses these instructions are tied to a specific model version.",
-          "why": "对天天用 Claude Code 的人，这里有两条今晚就能用上的东西：按任务类型设推理强度，以及「先别建 CLAUDE.md，只在失败重复时加一条」。更值得记的是 Mods 这个方向：它把「怎么组织 agent」从写提示词挪到了写可组合的小程序，这正是自建 agent 流水线的人该抄的那一层。详见今日行动第 1 条。",
+          "why": "对天天用 Claude Code 的人,这里有两条今晚就能用上的东西:按任务类型设推理强度,以及先别建 CLAUDE.md,只在失败重复时加一条。更值得记的是 Mods 这个方向:它把怎么组织 agent 从写提示词挪到了写可组合的小程序,这正是自建 agent 流水线的人该抄的那一层。详见今日行动第 1 条。",
           "why_en": "For anyone using Claude Code daily, two things here are usable tonight: setting thinking effort per task type, and \"don't create a CLAUDE.md up front, add a line only when a failure repeats.\" The bigger signal is the direction of Mods: it moves \"how to organize an agent\" from prompt-writing to composable small programs, which is exactly the layer anyone building their own agent pipeline should copy. See action 1."
         },
         {
@@ -242,9 +279,9 @@
           "author_en": "Modal · TLDR AI",
           "likes": 0,
           "url": "https://modal.com/blog/quail-billion-tpm",
-          "summary": "TLDR AI 收录。Quail（Query-Aware Inference Layer）是 Modal 推理团队与 CMU Full Stack Data Lab 合作的推理引擎，专跑 AI-SQL 中的过滤与连接（AI_FILTER、AI_JOIN）。思路是把数据库的查询优化搬过来：谓词下推、按选择性排过滤顺序、System R 式动态规划连接排序，外加一个 roofline「光速」成本模型和考虑 KV cache 的连接顺序搜索。它只做 prefill，不做 decode，因此不需要采样、投机解码、CUDA graph。官方数据：在某条连接很多的查询上，单张 H100 每分钟处理超过十亿 token，比同硬件 vLLM 基线快 10 倍以上；但按任务几何平均后整体为 1.84 倍。作者也放了两条暴露短板、供后续优化的任务。在 Modal 上成本低于每十亿 token 6 美分。开源组件包括 Gigatoken、DeepGEMM、Flash Attention 3、Triton、sqlglot、Substrait、pyarrow。",
+          "summary": "TLDR AI 收录。Quail(Query-Aware Inference Layer) 是 Modal 推理团队与 CMU Full Stack Data Lab 合作的推理引擎,专跑 AI-SQL 中的过滤与连接 (AI_FILTER、AI_JOIN)。思路是把数据库的查询优化搬过来:谓词下推、按选择性排过滤顺序、System R 式动态规划连接排序,外加一个 roofline 光速成本模型和考虑 KV cache 的连接顺序搜索。它只做 prefill,不做 decode,因此不需要采样、投机解码、CUDA graph。官方数据:在某条连接很多的查询上,单张 H100 每分钟处理超过十亿 token,比同硬件 vLLM 基线快 10 倍以上;但按任务几何平均后整体为 1.84 倍。作者也放了两条暴露短板、供后续优化的任务。在 Modal 上成本低于每十亿 token 6 美分。开源组件包括 Gigatoken、DeepGEMM、Flash Attention 3、Triton、sqlglot、Substrait、pyarrow。",
           "summary_en": "Picked up by TLDR AI. Quail (Query-Aware Inference Layer) is an inference engine from Modal's inference team and CMU's Full Stack Data Lab, aimed at AI-SQL filters and joins (AI_FILTER, AI_JOIN). The core idea is to borrow database query optimization: predicate push-down, selectivity-based filter ordering, System R-style dynamic-programming join ordering, plus a roofline \"speed-of-light\" cost model and a KV-cache-aware join-order search. It's prefill-only with no decode phase, so no sampling, speculative decoding or CUDA graph capture. The stated figures: on one join-heavy query, a single H100 processes over a billion tokens per minute, more than 10x a vLLM baseline on the same hardware; but geometrically averaged across tasks it's 1.84x, and the authors include two queries designed to expose weaknesses for future work. On Modal it costs under 6 cents per billion tokens. Open components used include Gigatoken, DeepGEMM, Flash Attention 3, Triton, sqlglot, Substrait and pyarrow.",
-          "why": "这条的价值不在「快 10 倍」这个最好情况，而在于它说明：把领域里的老办法——数据库查询优化——搬到推理上，省下的成本可能比换更小的模型还多。手上有「拿模型筛数据」这类活的人，第一反应不该是换模型，而应先看能否像 Quail 那样把过滤往前推。",
+          "why": "这条的价值不在快 10 倍这个最好情况,而在于它说明:把领域里的老办法——数据库查询优化——搬到推理上,省下的成本可能比换更小的模型还多。手上有拿模型筛数据这类活的人,第一反应不该是换模型,而应先看能否像 Quail 那样把过滤往前推。",
           "why_en": "The value here isn't the 10x best case; it's the lesson that porting a domain's old tricks (database query optimization) into inference can cut cost more than swapping to a smaller model. If you have a job that filters data with a model, the first move isn't a new model — it's seeing whether the filter can be pushed earlier, the way Quail does."
         }
       ]
