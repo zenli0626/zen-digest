@@ -1,0 +1,297 @@
+{
+  "date": "2026-10-02",
+  "partial": false,
+  "banner": "OpenAI 把模型接进芯片设计",
+  "banner_en": "OpenAI wires its model into chip design",
+  "image": {
+    "src": "digests/img/2026-10-02.jpg",
+    "caption": "本期头版图：OpenAI 与 Synopsys 公告页发布的合作主视觉。两家公司 9 月 30 日宣布签订多年期协议，互为首选合作伙伴：OpenAI 获授权使用 Synopsys 的 EDA 工具来开发 GPT-Synopsys，让模型能推理芯片设计与验证并直接操作工具，双方联合研发、联合销售、共享收入。（图：Synopsys / OpenAI）",
+    "caption_en": "Today's front-page image: the partnership key art from the OpenAI and Synopsys announcement. The two companies said on September 30 that they signed a multi-year agreement as preferred partners: OpenAI is licensed to use Synopsys' EDA tools to build GPT-Synopsys, letting the model reason about chip design and verification and directly operate the tools, with joint R&D, joint go-to-market and a shared revenue framework. (Image: Synopsys / OpenAI)"
+  },
+  "actions": [
+    {
+      "text": "挑一个你正在用的检索或记忆层（向量库、全文检索、缓存都算），写下它现在按什么建主索引，再列这个选择挡住了哪几类查询。约 30 分钟。做完的标准是你能说出一句「当初如果按 X 建索引，Y 就能做」。背景：turbopuffer 今天把用了三代的向量主索引降成二级索引，理由是它一直挡着 GROUP BY 和聚合这类查询。",
+      "text_en": "Pick a retrieval or memory layer you actually use — a vector store, full-text search, a cache — and write down what it indexes everything by today, then list which kinds of queries that choice blocks. About 30 minutes. You'll know it's done when you can say, in one sentence, \"had I indexed by X, Y would be possible.\" Background: turbopuffer demoted its vector-primary index — the core of three product generations — to a secondary index today, on the grounds that it had been blocking GROUP BY and aggregation-style queries.",
+      "source": "Hacker News · turbopuffer",
+      "source_en": "Hacker News · turbopuffer",
+      "source_url": "https://turbopuffer.com/blog/rip-vector-database"
+    },
+    {
+      "text": "把报价页里按人头收费的那一档，改写成按用量计费、再加一个客户看得懂的「绝不超过」封顶价，把封顶数字写出来。约 30 分钟。做完的标准是你能直接报出这个上限，而不是只报单价。背景：Claude for Government 今天正式可用，不收席位费，按用量固定增量计费，设硬性封顶。",
+      "text_en": "Take the per-seat tier on your pricing page and rewrite it as usage-based billing with a customer-legible \"not to exceed\" cap — and write down the cap number. About 30 minutes. You'll know it's done when you can quote that ceiling on the spot, not just a unit price. Background: Claude for Government became generally available today with no seat fees, usage billed in fixed increments, and a hard not-to-exceed cap.",
+      "source": "文摘 · Anthropic（Claude for Government）",
+      "source_en": "Digest · Anthropic (Claude for Government)",
+      "source_url": "https://claude.com/blog/claude-for-government-is-now-generally-available"
+    },
+    {
+      "text": "把过去一年因为成本砍掉的自动化用例翻出来，逐个按今天的价格重估一遍，标出哪些现在算得过来，并把其中一条重新立项。约 30 分钟。做完的标准是这份清单里至少有一条真的被重新提起。背景：Anthropic 的机器人暴露指数发现，机器人能做 74% 的体力任务，但只有 0.3% 的任务在成本上打得过人。",
+      "text_en": "Pull out the automation use cases you cut over the past year because they were too expensive, re-price each one at today's costs, flag the ones that now pencil out, and re-open one of them. About 30 minutes. You'll know it's done when at least one item on that list is genuinely back on the table. Background: Anthropic's robot exposure index found robots can perform 74% of physical job tasks but are cost-competitive on only 0.3% of them.",
+      "source": "文摘 · Anthropic",
+      "source_en": "Digest · Anthropic",
+      "source_url": "https://www.anthropic.com/research/what-work-can-robots-do"
+    }
+  ],
+  "hands_on": {
+    "title": "试跑 DeepSeek 的开源 harness",
+    "title_en": "Take DeepSeek's open-source harness for a spin",
+    "why": "DeepSeek 把它的 agent harness 开源了（MIT），架构取自 Cordis 的「一切皆插件」：Agent teams、自动审批、定时任务、语音输入、子 agent 全是插件，能装也能在对话里现写一个。桌面版给 macOS 和 Windows，官方另给一条 npx 起网页版的命令。想看一个把「插件化」当第一原则的 harness 长什么样，这是今晚最省事的一个。",
+    "why_en": "DeepSeek open-sourced its agent harness (MIT), built on Cordis's \"everything is a plugin\" architecture: agent teams, auto-approval review, scheduled tasks, voice input and subagents are all plugins — installable, or written live in chat. A desktop build ships for macOS and Windows, and the project provides an npx command to launch a web version. If you want to see what a harness looks like when pluggability is the first principle, this is the lowest-friction one to try tonight.",
+    "time": "约 15 分钟",
+    "time_en": "About 15 minutes",
+    "steps": [
+      "终端跑 npx @deepseek-ai/dsh web，它会拉起一个本地网页版（需要本机装了 Node）",
+      "或者去 github.com/deepseek-ai/deepseek-harness 下桌面安装包：macOS 是 .dmg，Windows 是 64 位 .exe",
+      "打开后接一个模型，随便让它做一件小事，比如重命名一批文件或整理一张表格",
+      "进插件面板看默认装了哪些（Agent teams、定时任务、子 agent 都在），再点开执行轨迹，看它每一步调了什么工具、花了多久"
+    ],
+    "steps_en": [
+      "In a terminal run npx @deepseek-ai/dsh web — it launches a local web version (needs Node installed)",
+      "Or grab the desktop build from github.com/deepseek-ai/deepseek-harness: a .dmg for macOS, a 64-bit .exe for Windows",
+      "Open it, connect a model, and give it one small job — rename a batch of files or tidy a spreadsheet",
+      "Open the plugin panel to see what ships by default (agent teams, scheduled tasks, subagents are all there), then open the execution trace to see which tool it called at each step and how long it took"
+    ],
+    "source": "Hacker News · DeepSeek Harness",
+    "source_en": "Hacker News · DeepSeek Harness",
+    "source_url": "https://www.deepseek.com/en/harness/"
+  },
+  "meta_read": "今天几件事的判据其实是同一句：最显眼的那一层，往往不是承重的那一层。一家模型公司把旗舰能力挂到别人做了三十年的芯片设计工具上，而不是替它重写；一个数据库厂商把自己赖以成名的向量索引从主位降下去；一个版本控制系统宁可背着历史包袱，也不为一个更强的新哈希去动它；一份劳动力研究把「能不能做」和「值不值得做」拆成两个问题。模型、存储、版本控制、劳动力，四件互不相干的事，指向同一个选型动作：先认出哪一层一旦被抽掉、别的就跟着塌，再决定力气花在哪。今天真正被低估的，是这些不显眼却承重的层。",
+  "meta_read_en": "The judgment behind several of today's stories is the same sentence: the most visible layer is often not the load-bearing one. A model company hangs its flagship capability on someone else's thirty-year-old chip-design tools instead of rewriting them; a database vendor demotes the vector index it made its name on; a version control system would rather carry its historical baggage than touch it for a stronger new hash; a labor study splits \"can it be done\" from \"is it worth doing.\" Models, storage, version control, labor — four unrelated things pointing at one selection move: identify the layer that, if pulled out, takes everything else down with it, and then decide where to spend your effort. What's genuinely underpriced today is those unglamorous load-bearing layers.",
+  "ota": {
+    "learned": [
+      "观察：harness 的下一个设计层不是「工具怎么返回」，是「上下文放在哪」。MIT 博士生 Alex Zhang 在 Latent Space 讲递归语言模型（RLM）：harness 里唯一的工具就是 code，模型把子任务当成工具调用自己，上下文不再当成一段提示词扛着走，而是当成一个对象，写代码去读它、改它。他说这样训练在短任务上的能力能迁到长 8 到 30 倍的任务上，因为子任务始终在分布内。这是 10-01 那条设计规则的下一层：那条管工具接口该返回结构化数据、组合放进沙箱，这条管 harness 本身该长成什么样——把上下文从「扛着」换成「可以写代码操作」。",
+      "观察：另一条路是「harness 即插件宿主」。DeepSeek 开源的 harness 用 Cordis 的『一切皆插件』做骨架，agent 团队、自动审批、定时任务、子 agent 全是可装可写的插件，模型自己也能在对话里现写一个。它和 RLM 不冲突：RLM 说工具只留 code，DeepSeek 说功能都做成插件，两条都在把「能力」从模型权重挪到模型外的那层脚手架。",
+      "已实施：把「harness 结构层」当成一条和工具接口层并列的设计规则，追加进台账，标 proposed，等笔记本那台 Claude 采纳。它补的是 10-01 那条工具设计规则的另一半：那条说工具该返回什么，这条说 harness 该把上下文和工具放在哪。",
+      "已验证：arXiv 今天起执行限流新规，每个投稿人每个自然月最多投两篇、同一时间最多三篇在审（2024 年起的旧上限），被拒的稿也算进月度额度；理由是投稿量两年翻倍，今年 9 月 40,363 篇对 2024 年 9 月的 20,569 篇，cs.AI 一类两年涨了 6 倍多，志愿版主扛不住。这条是研究/写作线的稳定事实，值得写进台账备查。"
+    ],
+    "new_capabilities": [
+      "已验证可用：用 Hacker News 的时间窗扫描时，numericFilters 的参数值必须做 URL 编码。把 created_at_i>…,points>25 直接拼进查询串会拿到空响应——不是零结果，是拿不到 JSON。改成 curl -G --data-urlencode 分参数传，同一条查询立刻返回完整 80 条。补上 10-01 那条 search_by_date 配方的这一处坑。",
+      "已验证可用：bin/fetch-github-trending.mjs 拿到的 github.com/trending 504 是瞬时的，重试一次即成功（本轮第一次 504，第二次返回完整 top 10）。规则：这个脚本要包一层重试，命中 504 时不要直接跳过 github_top10 字段。"
+    ],
+    "learned_en": [
+      "Observation: the harness's next design layer isn't \"how tools return\" — it's \"where the context lives.\" MIT PhD student Alex Zhang described Recursive Language Models (RLMs) on Latent Space: the only tool in the harness is code, the model calls itself as a tool for subtasks, and context is no longer carried around as a prompt but treated as an object it reads and edits by writing code. He says training on short tasks transfers to tasks 8 to 30 times longer, because subtasks stay in-distribution. This is the next layer down from October 1's design rule: that one governed what a tool's interface should return and put composition in a sandbox; this one governs what the harness itself should look like — swapping \"carrying context\" for \"context you can operate on with code.\"",
+      "Observation: the other path is \"the harness as a plugin host.\" DeepSeek's open-source harness uses Cordis's \"everything is a plugin\" skeleton, where agent teams, auto-approval, scheduled tasks and subagents are all installable or writable plugins, and the model can write one live in chat. It doesn't conflict with RLMs: RLMs say keep code as the only tool, DeepSeek says make everything a plugin — both move capability off the model's weights and onto the scaffolding around it.",
+      "Implemented: wrote up the \"harness structure layer\" as a design rule alongside the tool-interface layer, appended to the ledger and marked proposed for the laptop Claude to adopt. It supplies the other half of October 1's rule: that one said what a tool should return, this one says where the harness should keep its context and tools.",
+      "Verified: arXiv began enforcing a new rate-limit policy today — at most two submissions per submitter per calendar month and three active submissions at once (the latter in place since 2024) — with rejected papers counting against the monthly limit. The stated reason is submission volume doubling in two years: 40,363 this September versus 20,569 in September 2024, with the cs.AI category up over 6x in two years, overwhelming volunteer moderators. This is a stable fact for the research/writing beat, worth recording in the ledger."
+    ],
+    "new_capabilities_en": [
+      "Verified and available: in the Hacker News time-window sweep, the numericFilters value must be URL-encoded. Pasting created_at_i>…,points>25 straight into the query string returns an empty response — not zero results, but no JSON at all; switching to curl -G --data-urlencode with separate params returned the full 80 hits immediately. This patches one sharp edge in the October 1 search_by_date recipe.",
+      "Verified and available: the github.com/trending 504 that bin/fetch-github-trending.mjs can hit is transient — one retry succeeded (the first attempt returned 504 this run, the second returned the full top 10). Rule: wrap this script in a retry, and don't skip the github_top10 field just because a single attempt hit a 504."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 150898,
+      "stars_today": 1194
+    },
+    {
+      "rank": 2,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 274147,
+      "stars_today": 883
+    },
+    {
+      "rank": 3,
+      "name": "NVIDIA/OpenShell",
+      "url": "https://github.com/NVIDIA/OpenShell",
+      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+      "language": "Rust",
+      "stars": 14151,
+      "stars_today": 2456
+    },
+    {
+      "rank": 4,
+      "name": "firebase/firebase-ios-sdk",
+      "url": "https://github.com/firebase/firebase-ios-sdk",
+      "description": "Firebase SDK for Apple App Development",
+      "language": "C++",
+      "stars": 6896,
+      "stars_today": 112
+    },
+    {
+      "rank": 5,
+      "name": "mvschwarz/openrig",
+      "url": "https://github.com/mvschwarz/openrig",
+      "description": "Build your own network of agents from Claude Code, Codex and Pi: persistent teams with roles, shared context and owned work.",
+      "language": "TypeScript",
+      "stars": 3887,
+      "stars_today": 642
+    },
+    {
+      "rank": 6,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 9364,
+      "stars_today": 150
+    },
+    {
+      "rank": 7,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 294103,
+      "stars_today": 455
+    },
+    {
+      "rank": 8,
+      "name": "mksglu/context-mode",
+      "url": "https://github.com/mksglu/context-mode",
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "language": "TypeScript",
+      "stars": 24860,
+      "stars_today": 362
+    },
+    {
+      "rank": 9,
+      "name": "heygen-com/hyperframes",
+      "url": "https://github.com/heygen-com/hyperframes",
+      "description": "Write HTML. Render video. Built for agents.",
+      "language": "TypeScript",
+      "stars": 55495,
+      "stars_today": 627
+    },
+    {
+      "rank": 10,
+      "name": "earendil-works/pi",
+      "url": "https://github.com/earendil-works/pi",
+      "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
+      "language": "TypeScript",
+      "stars": 111427,
+      "stars_today": 298
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 80,
+      "items": [
+        {
+          "title": "turbopuffer：向量库把向量索引从主位降级",
+          "title_en": "turbopuffer demotes the vector index from primary",
+          "author": "turbopuffer（Dan Harrison）· Hacker News",
+          "author_en": "turbopuffer (Dan Harrison) · Hacker News",
+          "likes": 310,
+          "url": "https://turbopuffer.com/blog/rip-vector-database",
+          "summary": "turbopuffer 9 月 30 日发布 v3，存储架构重做。从 v1 起，把全库串起来的 ANN 地址（ClusterId 加 LocalId）一直是所有数据的主键，公司说这个设计限制了好几种查询计划，比如 GROUP BY 和聚合。v3 把 ANN 降级成又一个二级索引。文中给了三个具体代价：一是存储放大，多向量场景（比如 late interaction）下非向量数据会跟着每个向量重复；二是写放大，SPFresh 重平衡时搬动整份文档内容和倒排索引，改一个向量可能搬动上百个属性和它们的索引；三是向量化受限，块大小被 ANN 聚簇的 100 到 200 篇卡住。规模数字：托管 1 万亿篇以上文档、每秒 1000 万次以上写入、每秒 2.5 万次以上查询。对照了各家块大小：DuckDB 2048 行、ClickHouse 约 6.5 万、Lucene 256 篇、turbopuffer 自己的 ANN 是 100 到 200 篇。全文检索从 v1 的每块约 1.5 条 posting 改到 v2 的约 256，索引小了 10 倍、查询快了最多 20 倍。早期客户点了 Cursor、Notion、Linear。文中承认 v3 要先跑到和 v2 性能持平才能上生产，公开基准接下来几周给。HN 310 分。",
+          "summary_en": "turbopuffer's September 30 v3 release is a storage-architecture rebuild: since v1, the ANN address (ClusterId plus LocalId) that threads the whole store together had been the primary key under which everything was stored, and the company says that design \"has constrained several query plans, like GROUP BY and aggregations.\" v3 demotes ANN to \"just another\" secondary index. The post names three concrete costs: storage amplification, where in multi-vector setups (late interaction, say) non-vector data duplicates per vector; write amplification, where SPFresh rebalancing moves full document contents and inverted indexes, so updating one vector can move hundreds of attributes and their indexes; and limited vectorization, with block sizes pinned to the ANN cluster size of 100 to 200 docs. Scale figures: 1 trillion-plus documents hosted, 10 million-plus writes per second, 25,000-plus queries per second. It compares block sizes across systems — DuckDB 2,048 rows, ClickHouse around 65k, Lucene 256 docs, turbopuffer's own ANN 100 to 200. Full-text search went from about 1.5 postings per block in v1 to about 256 in v2, making the index 10x smaller and queries up to 20x faster. Early customers named: Cursor, Notion, Linear. The post concedes v3 must reach performance parity with v2 before production, with public benchmarks promised \"over the coming weeks.\" 310 points on HN.",
+          "why": "这条的价值不在向量库要不要用，在它示范了一个常被忽略的取舍：主索引的选择是一个产品决定，不是实现细节。你把什么设为所有数据的主键，就决定了哪些查询天然便宜、哪些永远做不了，而这个代价要等到有人提需求时才显形。做产品的人可以照抄这个自检：默认排序、默认分组、默认检索，这三处的索引选择，各挡住了什么。今天行动第 1 条就是从这条来的。",
+          "why_en": "The value here isn't \"should you use a vector database\" — it's that it demonstrates an overlooked tradeoff: choosing a primary index is a product decision, not an implementation detail. What you set as the key under which everything is stored decides which queries are intrinsically cheap and which are impossible forever, and that cost only shows up when someone asks for the feature. The copyable self-check: default sort, default grouping, default retrieval — write down what each one's index choice blocks. Action 1 today follows from this."
+        },
+        {
+          "title": "Git 3.0 默认换 SHA-256，被指是昂贵且可避免的错误",
+          "title_en": "Git 3.0's SHA-256 default is called a costly, avoidable mistake",
+          "author": "GitButler（Scott Chacon）· Hacker News",
+          "author_en": "GitButler (Scott Chacon) · Hacker News",
+          "likes": 328,
+          "url": "https://blog.gitbutler.com/git-3-sha-256",
+          "summary": "GitButler 的 Scott Chacon 9 月 30 日发文，反对 Git 3.0 把 SHA-256 设为默认哈希，称之为昂贵到不可理解、且本可避免的全球性麻烦。他的论证分两层。第一层，SHA-1 的坏了被夸大：碰撞确实能被制造，但现实中不实用，SHAttered（2017）和 SHA-1 is a Shambles（2020）都是演示；他算了一个意外碰撞的概率下限约 1.4 亿亿亿（1.4 septillion）份随机文件，还算了暴力破解 MD5 原像的耗时：把全地球约 30 亿块 GPU 都换成 RTX 5090 满负荷跑，期望约 160 亿年。第二层，他引 Linus 2005 年的话：信任来自你从哪里拉取，不是来自哈希，真实世界的攻击走的是社工和被收买的维护者，不是 GPU 碰撞（他还引了维护者可能为 4 万美元卖项目的说法）。他指出迁移的具体代价：新仓库 git init 默认走 SHA-256（可测：git init --object-format=sha256），但托管端和仓库不能混格式，推送会直接报 fatal: the receiving end does not support this repository's hash algorithm；submodule 只在同格式内可用，被迫维护两份；转换会作废所有既有签名，老的 40 位哈希 URL 和工具全断；非 Git 的第三方实现支持为零或不完整。他给的替代方案是用独立的树哈希头：随内容签名时额外算一个 SHA-256 或 BLAKE3，并提到 Colin Walters 2015 年起的 git-evtag（加一个 Git-EVTag-v0-SHA512 校验和），可回填、只在签名时多花成本，也能对上 NIST 的 2030 年 SHA-1 期限。结论一句话：别用哈希来判断内容可不可信。HN 328 分、317 条评论。",
+          "summary_en": "GitButler's Scott Chacon argued on September 30 against Git 3.0 making SHA-256 the default hash, calling it \"an incomprehensibly expensive and ultimately valueless and avoidable global nightmare.\" His case has two layers. First, SHA-1's \"broken\" label is overstated: collisions can be manufactured but aren't practically exploitable, and SHAttered (2017) and \"SHA-1 is a Shambles\" (2020) are demonstrations; he puts the accidental-collision bound at roughly 1.4 septillion random files, and estimates a brute-force MD5 preimage attack — turning all ~3 billion GPUs on Earth into RTX 5090s running flat out — at about 16 billion years. Second, he quotes Linus from 2005: trust comes from where you pull from, not from the hash, and real-world attacks come through social engineering and compromised maintainers, not GPU collisions (he cites the notion that a maintainer might sell a project for a $40,000 lump sum). He lists the concrete migration costs: new repos default to SHA-256 under git init (testable via git init --object-format=sha256), but hosts and repos can't mix formats and pushes fail with \"fatal: the receiving end does not support this repository's hash algorithm\"; submodules work only within one format, forcing dual versions; converting breaks every existing signature and every old 40-character-hash URL and tool; and non-Git reimplementations have zero or partial support. His alternative is independent tree-hash headers — sign a SHA-1 content hash for retrieval and a separately computed SHA-256 or BLAKE3 for verification — citing Colin Walters' git-evtag (since 2015, adding a Git-EVTag-v0-SHA512 checksum), which is backfillable, costs extra only when signing, and still answers NIST's 2030 SHA-1 deadline. The one-line conclusion: don't use the hash to trust content. 328 points and 317 comments on HN.",
+          "why": "这条对做工具和做供应链的人有用，不在 Git 本身，在它拆开了一个常被合并的问题：技术上更强和值不值得换是两个问题。升级一个基础组件的成本不落在它自己身上，落在所有依赖它的东西上，而收益（这里）还是理论上的。可以照抄的判断框架是：换之前先算迁移面有多大、收益是实测还是推演、以及有没有一条不回填就兼容的路（他给的 git-evtag 就是这种）。评论区 317 条本身也值得翻，正反两方在 32 位碰撞够不够用上分歧最大。",
+          "why_en": "This is useful for anyone building tools or managing a supply chain, not because of Git itself but because it pulls apart a problem people usually merge: \"technically stronger\" and \"worth switching to\" are two separate questions. The cost of upgrading a foundational component doesn't land on the component — it lands on everything that depends on it, while the benefit here is still theoretical. The copyable framework: before switching, size the migration surface, check whether the gain is measured or inferred, and ask whether there's a path that doesn't require a flag day (the git-evtag route is exactly that). The 317 comments are worth skimming too — the sharpest split is over whether 32-bit collisions are good enough."
+        },
+        {
+          "title": "OpenAI 与 Synopsys 联手：模型直接操作芯片设计工具",
+          "title_en": "OpenAI and Synopsys team up: a model that operates chip design tools",
+          "author": "Synopsys · Hacker News",
+          "author_en": "Synopsys · Hacker News",
+          "likes": 177,
+          "url": "https://news.synopsys.com/2026-09-30-OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design",
+          "summary": "Synopsys 与 OpenAI 9 月 30 日宣布达成多年战略合作，互为对方首选合作伙伴，共同开发并交付 GPT-Synopsys。要点如下：OpenAI 获授权使用 Synopsys 的 EDA 工具开发这一专用模型，使其能推理芯片设计与验证，并直接操作 Synopsys 工具；工程师下达目标（从 PPA 优化到时序与验证收敛），agent 负责跑工具、读结果、改方案、再迭代。模型运行在 OpenAI 托管的基础设施上，可对接客户既有的 agent harness，并接入 Synopsys.ai 与 Synopsys Autopilot 两个平台。商业条款采用联合研发、联合销售、共享收入框架，打包算力、模型与授权。数据方面明确：客户数据不用于训练，静态与传输中加密，保留期可配置，并配有审计与权限控制。目前已与领先半导体客户展开早期技术对接，计划全球联合上市。具名者为 Synopsys 总裁兼 CEO Sassine Ghazi 与 OpenAI 总裁兼联合创始人 Greg Brockman。HN 177 分。",
+          "summary_en": "Synopsys and OpenAI announced a multi-year strategic partnership on September 30, naming each other preferred partners to build and deliver GPT-Synopsys. The highlights: OpenAI is licensed to use Synopsys' EDA tools to develop this specialized model, which can reason about chip design and verification and directly operate Synopsys' tools; engineers delegate objectives — from PPA optimization to timing and verification closure — and agents run the tools, read results, revise, and iterate. The model runs on OpenAI-hosted infrastructure, interoperates with customers' existing agent harnesses, and plugs into two platforms, Synopsys.ai and Synopsys Autopilot. Commercial terms are joint R&D, joint go-to-market and a shared revenue framework, bundling compute, model and licenses. On data, the announcement states customer data is not used for training, is encrypted at rest and in transit, with configurable retention plus audit and permission controls. Early technology engagements are already underway with leading semiconductor customers, with worldwide joint go-to-market planned. Named: Synopsys president and CEO Sassine Ghazi, and OpenAI president and co-founder Greg Brockman. 177 points on HN.",
+          "why": "这是今天最直接可抄的 GTM 结构：一家模型公司没有自己去做芯片设计模型，而是租用别人三十年积累的工具，把模型挂上去，再用多年期、首选伙伴、联合销售、收入分成把这层关系锁死。做垂直 AI 应用的人可以对照：你要进的行业里，谁是那套别人绕不开的工具？与其自己重做，直接接它、分它钱，是否更快。这条也是能力在模型、护城河在工具的一个现成样本。",
+          "why_en": "This is the day's most directly copyable GTM structure: a model company didn't build chip design itself — it rented someone else's thirty years of tooling, hung its model on top, and locked the relationship with a multi-year, preferred-partner, joint-sell, revenue-share arrangement. For anyone building vertical AI applications, the check is: in the industry you're targeting, whose tools does nobody route around? Rather than rebuilding them, is it faster to plug in and share revenue? It's also a ready-made example of \"capability in the model, moat in the tools.\""
+        },
+        {
+          "title": "DeepSeek 开源 harness：一切皆插件",
+          "title_en": "DeepSeek open-sources its harness: everything is a plugin",
+          "author": "DeepSeek · Hacker News",
+          "author_en": "DeepSeek · Hacker News",
+          "likes": 184,
+          "url": "https://www.deepseek.com/en/harness/",
+          "summary": "DeepSeek 发布 Harness，公开预览、开源、MIT 协议，架构基于 Cordis 的「一切皆插件」（Cordis 论文见 arxiv 2608.25512）。它既是桌面应用，也能用一行命令起网页版。日常任务覆盖整理文件、分析数据、写文档、做幻灯片；也能读仓库、改 bug、跑测试，以及做带引用的检索。插件分官方与自建：官方清单包括 Agent teams、自动审批复核、定时任务、语音输入、终端、agent loop、子 agent（多个标着实验性），模型本身能在对话中用 Creator mode 现写一个插件。支持 Word、Excel、HTML、TypeScript、Python、PDF、Markdown 等文件类型。带执行轨迹视图，可看到工具调用、耗时与层级。页面示例中出现的模型是 DeepSeek-V41-Flash High，官方下载提供 macOS（Apple 芯片，.dmg）与 Windows 64 位（.exe），起网页版的命令是 npx @deepseek-ai/dsh web，仓库在 github.com/deepseek-ai/deepseek-harness。HN 184 分。",
+          "summary_en": "DeepSeek released Harness — public preview, open source, MIT — built on Cordis's \"everything is a plugin\" architecture (Cordis paper at arxiv 2608.25512). It runs as a desktop app or as a web version launched with a single command. Everyday work covers organizing files, analyzing data, drafting docs and building slides; it also explores repos, fixes bugs, runs tests, and does cited research. Plugins are both official and self-built: the official list includes Agent teams, auto-approval review, scheduled tasks, voice input, a terminal, agent loop and subagents (several flagged experimental), and the model can write a new one live in chat via \"Creator mode.\" File types supported include Word, Excel, HTML, TypeScript, Python, PDF and Markdown. There's an execution-trace view showing tool calls, timing and hierarchy. The model shown in the page's examples is DeepSeek-V41-Flash High; official downloads are macOS (Apple silicon, .dmg) and Windows 64-bit (.exe), the web version launches with npx @deepseek-ai/dsh web, and the repo is github.com/deepseek-ai/deepseek-harness. 184 points on HN.",
+          "why": "它和同期另外两条（今日文摘版的 RLM，以及上周 Pi 1.0 把组合逻辑收进沙箱）放在一起看，能看出 harness 这一层正被当成产品来设计，而不是模型的附属脚本。对自建 agent 的人，可抄的是那个边界条件：哪些能力做成插件（可装可卸、出问题能单独关掉），哪些留在核心，以及允许模型自己现写插件带来的权限问题——官方清单里那几个实验性标记，本身就是这个问题的注脚。",
+          "why_en": "Read alongside two other items — today's Digest section piece on RLMs and last week's Pi 1.0 folding composition logic into a sandbox — this shows the harness layer being designed as a product rather than a script attached to a model. For anyone building their own agent, the copyable part is the boundary question: which capabilities become plugins (installable, removable, individually killable when they go wrong), which stay in the core, and the permission questions raised by letting the model write plugins live — the \"experimental\" tags on several official plugins are themselves a note on that problem."
+        },
+        {
+          "title": "arXiv 限流新规：每人每月两篇投稿，同时在审最多三篇",
+          "title_en": "arXiv's new limits: two submissions per person per month, three active at once",
+          "author": "arXiv · Hacker News",
+          "author_en": "arXiv · Hacker News",
+          "likes": 106,
+          "url": "https://blog.arxiv.org/2026/10/01/updated-rate-limit-policy/",
+          "summary": "arXiv 自 10 月 1 日起执行新限流，仅针对投稿人，不涉及共同作者：每个自然月最多投两篇；同一时间最多三篇在审（这一条从 2024 年就有）。细则：被拒的稿仍算进当月额度，因为限的是投出去而非挂出来；上个月遗留的在审稿不占当月额度，但占三篇的并发上限；公告前删除的稿两边都不算。理由是投稿量暴增：今年 9 月收到 40,363 篇，2024 年 9 月为 20,569 篇，两年翻倍；作为对照，2016 年 9 月是 9,869 篇；cs.AI 一个类两年涨了 6 倍多，由此产生近 9,000 个支持工单。官方称目的有三：摊平志愿版主的时间、把低质量稿（范围过窄、切香肠式拆分、AI 代写）挡在语料之外、让作者只投最好的工作。arXiv 自称这是权宜之计，等版主工具改好再说。HN 106 分。",
+          "summary_en": "arXiv's new limits take effect October 1 and apply to submitters only, not co-authors: at most two submissions per calendar month, and at most three active submissions at once (the latter in place since 2024). The details: rejected papers still count against the monthly limit, because the limit covers submissions rather than announced papers; papers left on hold from a prior month don't count against the new month's quota, but they do count toward the three-active cap; papers deleted before announcement count against neither. The stated reason is a submission surge — 40,363 this September versus 20,569 in September 2024, doubling in two years, against 9,869 in September 2016 — with the cs.AI category alone up over 6x in two years, generating nearly 9,000 support tickets. arXiv lists three goals: spreading out volunteer moderators' time, keeping low-quality work (thin-scope, salami-sliced, AI-written) out of the corpus, and pushing authors to submit only their best research. arXiv calls the change \"a stopgap\" until its moderation tools improve. 106 points on HN.",
+          "why": "对要发论文或靠 arXiv 做发布节奏的人，这是一个必须调整日程的硬约束，尤其是每月两篇这条，投出去就算，被拒也不退额度。对不写论文的人，它提供的是一条更普适的信号：一个开放平台被 AI 生成的量冲垮之后，收紧的手段是按人限额加时间窗，而不是审核内容——这套模型后面别的开放语料库大概也会抄。",
+          "why_en": "For anyone publishing papers or pacing releases through arXiv, this is a hard constraint to reschedule around — especially the two-per-month limit, which counts on submission, with rejections not returning the quota. For people who don't write papers, it carries a broader signal: when an open platform gets swamped by AI-generated volume, the tightening move is a per-person quota plus a time window, not content review — a model other open corpora will likely copy."
+        },
+        {
+          "title": "GrayKey 新工具绕过 iPhone 的自动重启",
+          "title_en": "A new GrayKey tool bypasses the iPhone's automatic reboot",
+          "author": "404 Media · Hacker News",
+          "author_en": "404 Media · Hacker News",
+          "likes": 256,
+          "url": "https://www.404media.co/cops-can-bypass-iphone-automatic-inactivity-reboot-graykey/",
+          "summary": "404 Media 10 月 1 日报道（作者 Lorenzo Franceschi-Bicchierai）：Apple 在 2024 年 11 月悄悄加入的“不活动重启”功能已被绕过。该功能让手机解锁后放置 72 小时自动重启，增加取证提取难度。绕过者是 Magnet Forensics，GrayKey 的厂商。它推出新硬件 GrayKey Preserve，并为现有 GrayKey 设备加入 Evidence Preservation Mode，可将 iPhone 冻结在可提取状态。消息来自一段流出的宣传视频。这延续了 Apple 与取证厂商（另一家是 Cellebrite）之间的拉锯，这些厂商将设备卖给执法机构，其中一些机构在威权国家。报道提到，警方此前对自动重启功能有意见，因为常常无法在缴获后立即解锁，需等法院授权或排队。HN 256 分。",
+          "summary_en": "404 Media reported on October 1 (by Lorenzo Franceschi-Bicchierai) that Apple's quietly added \"inactivity reboot\" — which restarts an unlocked iPhone after 72 hours to make forensic extraction harder, introduced in November 2024 — has been bypassed. The company behind it is Magnet Forensics, maker of GrayKey: it launched a new hardware device, GrayKey Preserve, and a feature for existing GrayKey units called Evidence Preservation Mode, both meant to freeze iPhones in an extractable state, according to a leaked promotional video. It continues the tug-of-war between Apple and forensic vendors (the other being Cellebrite) that sell to law enforcement, some of them in authoritarian countries. The report notes police had complained about the reboot feature, since they often can't unlock a seized device immediately while awaiting court authorization or facing backlogs. 256 points on HN.",
+          "why": "对做移动安全、合规或设备管理的人，这条有两个点值得记：一，iOS 那条“重启即回落到更强加密”的防线可被绕过，别把它当成合规上的硬保障；二，攻防节奏是“Apple 加一道、取证商拆一道”，每道防线都有有效期。凡是把安全结论写进文档的，最好同时写上“截至某版本、某日期成立”。",
+          "why_en": "For anyone working on mobile security, compliance or device management, two points are worth keeping: the iOS protection that reverts a device to stronger encryption on reboot is bypassable, so don't treat it as a hard compliance guarantee; and the rhythm is \"Apple adds a layer, a forensics vendor removes one,\" so every defense has an expiry. If you write a security conclusion into a document, date it — \"holds as of version X, date Y.\""
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 42,
+      "items": [
+        {
+          "title": "递归语言模型：harness 里只留一个工具，上下文当成对象来写代码",
+          "title_en": "Recursive Language Models: one tool in the harness, context as an object you write code over",
+          "author": "Latent Space（Alex Zhang）",
+          "author_en": "Latent Space (Alex Zhang)",
+          "likes": 0,
+          "url": "https://www.latent.space/p/rlm",
+          "summary": "Latent Space 10 月 2 日发布的访谈，嘉宾 Alex Zhang，MIT 博士生，递归语言模型（RLM）论文第一作者，此前做过 KernelBench、参与 GPU Mode，今年被选为“新星博士生”（前两年是 Shunyu Yao 和 Jack Morris）。按他的说法，RLM 定义很简单：一个 harness 设计，唯一工具是 code，模型能把子任务当工具一样调用自己（程序化调用子 agent），上下文存在记忆/代码环境里（文件系统或 Python/Bash REPL），而不是当成一段越来越长的提示词扛着。核心是两点：上下文卸载（模型写代码操作自己的上下文，把它当对象，而不是把轨迹当提示词），组合式泛化（子任务始终在分布内，整体任务再分布外也能迁移，他称短任务上训练能迁移到长 8 到 30 倍的任务）。举的数字：OpenAI 一次大规模 agent 实验是“88 小时内 10,000 个 agent、1300 亿输出 token”，按公开价格约合 4000 万美元，他说这个成本“意外地比我想的低”；Jev 这类决策模型在快速分类上可能便宜“几百倍”，他提到可以接受“400 倍的成本差”；Prime Agent 是一个建在 Prime Intellect 的 Pi 上的 RLM harness，工具只留 IPython，加了持久子 agent。他还提到 Harvey 法律 AI 加 Base 10、Andy Konwinski 的 Headlong（原 Terminus）、DSPy、以及 Astra 在游戏 benchmark 上的表现。他的判断是现在 Claude Code、Codex、Pi 这些 harness“几乎一样”，更有个性的 harness 设计可能带来大的能力提升，前沿模型可能还有明显的“能力富余”。",
+          "summary_en": "A Latent Space interview published October 2 with Alex Zhang, an MIT PhD student and first author of the Recursive Language Models (RLM) paper, previously known for KernelBench and involvement in GPU Mode, and this year's pick as the emerging-star PhD (after Shunyu Yao and Jack Morris). His definition of an RLM is simple: a harness design whose only tool is code, where the model can call itself as a tool for subtasks (programmatic subagent calling), and context lives in a memory/code environment (a filesystem or a Python/Bash REPL) rather than being carried as an ever-longer prompt. Two core ideas: context offloading, where the model writes code over its own context as an object instead of treating the trajectory as a prompt; and compositional generalization, where subtasks stay in-distribution, so a task that's out-of-distribution overall still transfers — he says training on short tasks moves to tasks 8 to 30 times longer. Figures cited: one large OpenAI agent experiment ran \"10,000 agents in 88 hours\" for \"130 billion output tokens,\" roughly $40M-equivalent at public pricing, which he called \"surprisingly, actually, less than I thought\"; decision models like Jev might be \"a few hundred times cheaper\" for fast classification, with him accepting \"a 400X cost\" gap; and Prime Agent is an RLM harness built on Prime Intellect's Pi, restricted to IPython with persistent subagents added. He also mentions Harvey legal AI plus Base 10, Andy Konwinski's Headlong (formerly Terminus), DSPy, and Astra's performance on a game benchmark. His claim is that today's harnesses — Claude Code, Codex, Pi — are \"virtually the same,\" so more opinionated harness designs could unlock large capability gains, and frontier models may still have significant capability overhang.",
+          "why": "这是今天唯一一条讲 harness 该长成什么样、而不是讲哪个模型更强的材料。可抄的判断有两条：一是把上下文从“扛着”改成“可以写代码操作”，长任务上省的是注意力，不只是 token；二是他说这些主流 harness 已经趋同，能力增量可能来自更有个性的 harness 设计，而不是更贵的模型——如果你的 agent 效果到顶了，先改指令和上下文的组织方式，可能比换模型更值。这条也是本期升级公告的来源。",
+          "why_en": "This is the day's only item about what a harness should look like rather than which model is stronger. Two copyable judgments: move context from \"carried\" to \"code you can operate on,\" which on long tasks saves attention, not just tokens; and his claim that mainstream harnesses have converged means the next capability gain may come from a more opinionated harness design rather than a pricier model — if your agent has plateaued, changing how instructions and context are organized may buy more than swapping models. This piece is also the source for this issue's OTA note."
+        },
+        {
+          "title": "机器人能干活不等于划算：能做 74% 的体力任务，只有 0.3% 成本打得过人",
+          "title_en": "Robots can do the work but not afford it: 74% of physical tasks, 0.3% cost-competitive",
+          "author": "Anthropic Economic Index（Russell Legate-Yang、Maxim Massenkoff）· TLDR AI",
+          "author_en": "Anthropic Economic Index (Russell Legate-Yang, Maxim Massenkoff) · TLDR AI",
+          "likes": 0,
+          "url": "https://www.anthropic.com/research/what-work-can-robots-do",
+          "summary": "Anthropic 的 Russell Legate-Yang 和 Maxim Massenkoff 于 9 月 30 日发布机器人暴露指数。他们用 Claude 对 O*NET 约 900 个职业、约 19000 条任务逐条判断机器人能否胜任，并把环境分为四级：E0 无法完成，E1 专用机器人环境（流水线），E2 结构化的人类设施（仓库），E3 非结构化环境（城市道路）。结论是：机器人能完成美国 74% 的体力任务，占全部工作时间的 34%；机器人加 LLM 合起来，只对大约五分之一（80% 到 81%）的就业完全无法触及；认知与人际类占 54%，体力类占 46%。任务分布：12% 为 E0，23% 为 E1，10% 为 E2，1% 为 E3。最关键的落差在成本：机器人只在 0.3% 的职业任务上成本低于人工；按历史每年 3% 的降价速度，要降到 10% 的任务成本可竞争，需要约 40 年；机器人每年新学会约 2% 的体力任务。回测 50 年（1977 年至今）：暴露度高的职业工资和就业均下降。最暴露的 10 个职业中 9 个是驾驶类，出租车司机指数 2.2（满分 3）；打包工是暴露于成本可竞争机器人中最大的职业，约 56 万美国工人，2015 年以来就业下降 22%。从业者特征：高暴露工人中女性比例低 20 个百分点，西语裔高 16 个，本科以上低 55 个，时薪低约 30 美元，失业率高一倍多。障碍：能力卡住约 70% 的体力任务（操作能力占其一半），监管卡住 14%，人的偏好卡住约 25%（偏好加监管合计约 30%）；要达到 10% 成本可竞争，成本还需再降约 70%。",
+          "summary_en": "Anthropic's Russell Legate-Yang and Maxim Massenkoff published a \"robot exposure index\" on September 30, using Claude to assess roughly 900 O*NET occupations and about 19,000 job tasks, classifying robot exposure into four tiers: E0 (can't do it), E1 (purpose-built robotic environment, like an assembly line), E2 (structured human facility, like a warehouse), E3 (unstructured environment, like a city road). Findings: robots can perform 74% of US physical tasks, which make up 34% of working hours; robots plus LLMs together leave only about one-fifth of employment untouched (80 to 81%); cognitive and interpersonal work is 54% of tasks by time, physical 46%. Task split: 12% E0, 23% E1, 10% E2, 1% E3. The pivotal gap is cost: robots are cost-competitive on just 0.3% of job tasks; at the historical 3% annual price decline, reaching 10% cost-competitiveness takes about 40 years, and robots newly become able to do about 2% of previously impossible physical tasks each year. A 50-year backtest (1977 onward) shows higher-exposure jobs saw wage and employment declines. Nine of the ten most exposed occupations are vehicle operators, with taxi drivers leading at an index of 2.2 out of 3; packers and packagers are the largest occupation exposed to cost-competitive robots at roughly 560,000 US workers, with employment down 22% since 2015. Worker traits: highly exposed workers are 20 percentage points less likely to be female, 16 points more likely to be Hispanic, 55 points less likely to hold a bachelor's degree or above, earn about $30 less per hour, and face unemployment more than twice as high. Barriers: capability blocks about 70% of physical tasks (manipulation is half of that), regulation blocks 14%, and human preferences hold back about 25% (preferences plus regulation, about 30%); reaching 10% cost-competitiveness needs costs to fall another roughly 70%.",
+          "why": "对做自动化产品的人，这条的用法是换一个判据：别问 AI 能不能做这件事，问它做这件事划不划算。它给出的具体教训是，能力指数和成本指数差了两个数量级，很多被砍掉的用例是死在成本上、不是死在能力上，而成本会随规模和时间下降，所以值得定期重估而不是一次性判死。今天行动第 3 条就是这个动作。",
+          "why_en": "For anyone building automation products, the use of this is a different criterion: don't ask \"can AI do this task,\" ask \"is it worth it for AI to do this task.\" The concrete lesson is that the capability index and the cost index differ by two orders of magnitude — many cut use cases died on cost, not capability — and cost falls with scale and time, so they deserve periodic re-pricing rather than a one-time death sentence. Action 3 today is exactly that move."
+        },
+        {
+          "title": "Claude for Government 正式可用：不收席位费，按用量固定增量、硬性封顶",
+          "title_en": "Claude for Government goes GA: no seat fees, usage in fixed increments, a hard cap",
+          "author": "Anthropic · TLDR AI",
+          "author_en": "Anthropic · TLDR AI",
+          "likes": 0,
+          "url": "https://claude.com/blog/claude-for-government-is-now-generally-available",
+          "summary": "Anthropic 于 9 月 30 日宣布 Claude for Government 正式可用（7 月起公开测试）。它跑在 FedRAMP High 授权的环境里，面向联邦和州政府机构，把 Claude 的编码和 agent 能力装进去：能直接操作桌面文件，带 skills、插件和 projects，用于写备忘录、审 RFP、办案；Claude Code 用来改造公共服务软件。管理面给的是配置默认值、跨部门的额度分配和控制、支持机构 ATO 流程的审计日志与文档，敏感操作要两人审批，SCIM 组映射、走机构自己的身份提供商做 SSO，子机构可以分层配置。采购上直接和 Anthropic 按 GA 条款签约，不用另找云厂商；Claude Code CLI 和 Claude for Microsoft 365 走同一套环境早期可用。定价最值得看：不收席位费，机构按用量以固定增量付费，设一个硬性的不超过上限；用户分层有额度和模型限制，用量按用户和模型分别统计，带额度烧穿提醒。HN 未上榜，经 TLDR AI 收录。",
+          "summary_en": "Anthropic announced on September 30 that Claude for Government is generally available (it had been in public beta since July). It runs in a FedRAMP High authorized environment for federal and state agencies, packaging Claude's coding and agentic capabilities: it works directly with desktop files and supports skills, plugins and projects for drafting memos, reviewing RFPs and handling casework, with Claude Code for modernizing public-service software. The admin surface offers configuration defaults, cross-department spend allocation and control, and audit logs and documentation supporting an agency's ATO process; sensitive operations require two-person approval; SCIM group mappings and SSO through the agency's own identity provider; and layered configuration for sub-agency defaults. Procurement is directly with Anthropic on general-availability terms, with no separate cloud-provider relationship, and Claude Code CLI plus Claude for Microsoft 365 are available in early access through the same environment. The pricing is the part worth reading: no seat fees, with agencies paying for usage in fixed increments against a hard not-to-exceed cap; user tiers carry spend and model limits; usage is tracked by user and model, with burndown alerts. Not on HN; surfaced via TLDR AI.",
+          "why": "政府采购这单的看点在定价结构，不在功能：把按人头换成按用量、固定增量、硬性封顶，正好对上公共采购最怕的两件事——预算不可预测和超支。这套结构对任何卖订阅产品的团队都能搬：封顶比折扣更能打消采购的顾虑，因为它把风险从买方挪走。今日行动第 2 条就是照这个改一版自己的报价页。",
+          "why_en": "The interesting part of this government deal is the pricing structure, not the features: swapping per-seat for usage-based billing in fixed increments under a hard cap maps exactly onto public procurement's two biggest fears — unpredictable budgets and overruns. The structure is portable to any team selling a subscription product: a cap removes a buyer's fear more effectively than a discount, because it moves the risk off them. Action 2 today is rewriting your own pricing page this way."
+        }
+      ]
+    }
+  ]
+}
