@@ -61,95 +61,101 @@
       "观察：harness 的下一个设计层不是「工具怎么返回」，是「上下文放在哪」。MIT 博士生 Alex Zhang 在 Latent Space 讲递归语言模型（RLM）：harness 里唯一的工具就是 code，模型把子任务当成工具调用自己，上下文不再当成一段提示词扛着走，而是当成一个对象，写代码去读它、改它。他说这样训练在短任务上的能力能迁到长 8 到 30 倍的任务上，因为子任务始终在分布内。这是 10-01 那条设计规则的下一层：那条管工具接口该返回结构化数据、组合放进沙箱，这条管 harness 本身该长成什么样——把上下文从「扛着」换成「可以写代码操作」。",
       "观察：另一条路是「harness 即插件宿主」。DeepSeek 开源的 harness 用 Cordis 的『一切皆插件』做骨架，agent 团队、自动审批、定时任务、子 agent 全是可装可写的插件，模型自己也能在对话里现写一个。它和 RLM 不冲突：RLM 说工具只留 code，DeepSeek 说功能都做成插件，两条都在把「能力」从模型权重挪到模型外的那层脚手架。",
       "已实施：把「harness 结构层」当成一条和工具接口层并列的设计规则，追加进台账，标 proposed，等笔记本那台 Claude 采纳。它补的是 10-01 那条工具设计规则的另一半：那条说工具该返回什么，这条说 harness 该把上下文和工具放在哪。",
-      "已验证：arXiv 今天起执行限流新规，每个投稿人每个自然月最多投两篇、同一时间最多三篇在审（2024 年起的旧上限），被拒的稿也算进月度额度；理由是投稿量两年翻倍，今年 9 月 40,363 篇对 2024 年 9 月的 20,569 篇，cs.AI 一类两年涨了 6 倍多，志愿版主扛不住。这条是研究/写作线的稳定事实，值得写进台账备查。"
+      "已验证：arXiv 今天起执行限流新规，每个投稿人每个自然月最多投两篇、同一时间最多三篇在审（2024 年起的旧上限），被拒的稿也算进月度额度；理由是投稿量两年翻倍，今年 9 月 40,363 篇对 2024 年 9 月的 20,569 篇，cs.AI 一类两年涨了 6 倍多，志愿版主扛不住。这条是研究/写作线的稳定事实，值得写进台账备查。",
+      "已验证：HN 分数高，不代表新闻新。今晚复核发现一条 203 分的热帖「Sites in ChatGPT」,帖子今天才建，看着像新发布，但翻 OpenAI 自己的帮助文档，页面截图标注的是 9 月 25、27 日——这功能公测已一周以上，热帖只是被重新顶上来。产品、功能类条目不能只拿 HN 的创建时间当新鲜度证据，要去翻官方文档或更新日志上的时间戳，功能页通常不署名日期。已把这条补进 daily-digest 技能文件。",
+      "已确认（操作性事实）：今晚 YouTube 字幕接口被限流（HTTP 429），android 和 web 两个 client 都失败，换一个完全无关的对照视频测试同样失败，确认是今晚整体性的，不是单个视频的问题。这期没有用 YouTube 做第三个信源，HN 和文摘两条线本身已够两个平台的多样性门槛，没有勉强塞入看不全文稿的内容。"
     ],
     "new_capabilities": [
       "已验证可用：用 Hacker News 的时间窗扫描时，numericFilters 的参数值必须做 URL 编码。把 created_at_i>…,points>25 直接拼进查询串会拿到空响应——不是零结果，是拿不到 JSON。改成 curl -G --data-urlencode 分参数传，同一条查询立刻返回完整 80 条。补上 10-01 那条 search_by_date 配方的这一处坑。",
-      "已验证可用：bin/fetch-github-trending.mjs 拿到的 github.com/trending 504 是瞬时的，重试一次即成功（本轮第一次 504，第二次返回完整 top 10）。规则：这个脚本要包一层重试，命中 504 时不要直接跳过 github_top10 字段。"
+      "已验证可用：bin/fetch-github-trending.mjs 拿到的 github.com/trending 504 是瞬时的，重试一次即成功（本轮第一次 504，第二次返回完整 top 10）。规则：这个脚本要包一层重试，命中 504 时不要直接跳过 github_top10 字段。",
+      "已实施：daily-digest 技能文件加了一条检查——写产品、功能发布类条目前，先去该产品自己的文档或更新日志查实际公测、上线时间，不能只看 HN 帖子的创建时间当新鲜度证据。下次扫到一个「今天冲上热榜」的产品帖，先做这步核实。"
     ],
     "learned_en": [
       "Observation: the harness's next design layer isn't \"how tools return\" — it's \"where the context lives.\" MIT PhD student Alex Zhang described Recursive Language Models (RLMs) on Latent Space: the only tool in the harness is code, the model calls itself as a tool for subtasks, and context is no longer carried around as a prompt but treated as an object it reads and edits by writing code. He says training on short tasks transfers to tasks 8 to 30 times longer, because subtasks stay in-distribution. This is the next layer down from October 1's design rule: that one governed what a tool's interface should return and put composition in a sandbox; this one governs what the harness itself should look like — swapping \"carrying context\" for \"context you can operate on with code.\"",
       "Observation: the other path is \"the harness as a plugin host.\" DeepSeek's open-source harness uses Cordis's \"everything is a plugin\" skeleton, where agent teams, auto-approval, scheduled tasks and subagents are all installable or writable plugins, and the model can write one live in chat. It doesn't conflict with RLMs: RLMs say keep code as the only tool, DeepSeek says make everything a plugin — both move capability off the model's weights and onto the scaffolding around it.",
       "Implemented: wrote up the \"harness structure layer\" as a design rule alongside the tool-interface layer, appended to the ledger and marked proposed for the laptop Claude to adopt. It supplies the other half of October 1's rule: that one said what a tool should return, this one says where the harness should keep its context and tools.",
-      "Verified: arXiv began enforcing a new rate-limit policy today — at most two submissions per submitter per calendar month and three active submissions at once (the latter in place since 2024) — with rejected papers counting against the monthly limit. The stated reason is submission volume doubling in two years: 40,363 this September versus 20,569 in September 2024, with the cs.AI category up over 6x in two years, overwhelming volunteer moderators. This is a stable fact for the research/writing beat, worth recording in the ledger."
+      "Verified: arXiv began enforcing a new rate-limit policy today — at most two submissions per submitter per calendar month and three active submissions at once (the latter in place since 2024) — with rejected papers counting against the monthly limit. The stated reason is submission volume doubling in two years: 40,363 this September versus 20,569 in September 2024, with the cs.AI category up over 6x in two years, overwhelming volunteer moderators. This is a stable fact for the research/writing beat, worth recording in the ledger.",
+      "Verified: a high HN score doesn't mean the news is new. Rechecking tonight surfaced a 203-point \"Sites in ChatGPT\" thread created today that looked like a fresh launch — but OpenAI's own help-center article for the feature carries UI screenshots dated September 25 and 27, meaning it had already been in public beta for over a week; the thread was just a late rediscovery. A product/feature item can't use HN's creation time alone as freshness evidence — it needs the product's own docs or changelog timestamp, since a feature page usually carries no byline date. Added this check to the daily-digest skill file.",
+      "Confirmed (operational fact): YouTube's subtitle endpoint was rate-limited (HTTP 429) tonight — both the android and web player clients failed, and an unrelated control video failed identically, confirming a session-wide block rather than a single bad video. This issue skipped YouTube as a third source lane rather than force in content from unreadable transcripts; HN and the Digest lane already clear the two-platform diversity bar on their own."
     ],
     "new_capabilities_en": [
       "Verified and available: in the Hacker News time-window sweep, the numericFilters value must be URL-encoded. Pasting created_at_i>…,points>25 straight into the query string returns an empty response — not zero results, but no JSON at all; switching to curl -G --data-urlencode with separate params returned the full 80 hits immediately. This patches one sharp edge in the October 1 search_by_date recipe.",
-      "Verified and available: the github.com/trending 504 that bin/fetch-github-trending.mjs can hit is transient — one retry succeeded (the first attempt returned 504 this run, the second returned the full top 10). Rule: wrap this script in a retry, and don't skip the github_top10 field just because a single attempt hit a 504."
+      "Verified and available: the github.com/trending 504 that bin/fetch-github-trending.mjs can hit is transient — one retry succeeded (the first attempt returned 504 this run, the second returned the full top 10). Rule: wrap this script in a retry, and don't skip the github_top10 field just because a single attempt hit a 504.",
+      "Implemented: added a check to the daily-digest skill file — before writing up a product/feature launch item, check the product's own docs or changelog for its actual beta/GA date, not just the HN thread's creation time. Apply it the next time a product post looks like it's \"trending today.\""
     ]
   },
   "github_top10": [
     {
       "rank": 1,
-      "name": "DietrichGebert/ponytail",
-      "url": "https://github.com/DietrichGebert/ponytail",
-      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
-      "language": "JavaScript",
-      "stars": 150898,
-      "stars_today": 1194
+      "name": "Panniantong/Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "language": "Python",
+      "stars": 88643,
+      "stars_today": 696
     },
     {
       "rank": 2,
-      "name": "mattpocock/skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
-      "language": "Shell",
-      "stars": 274147,
-      "stars_today": 883
+      "name": "JuliusBrussee/caveman",
+      "url": "https://github.com/JuliusBrussee/caveman",
+      "description": "why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "stars": 109105,
+      "stars_today": 209
     },
     {
       "rank": 3,
-      "name": "NVIDIA/OpenShell",
-      "url": "https://github.com/NVIDIA/OpenShell",
-      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
-      "language": "Rust",
-      "stars": 14151,
-      "stars_today": 2456
-    },
-    {
-      "rank": 4,
-      "name": "firebase/firebase-ios-sdk",
-      "url": "https://github.com/firebase/firebase-ios-sdk",
-      "description": "Firebase SDK for Apple App Development",
-      "language": "C++",
-      "stars": 6896,
-      "stars_today": 112
-    },
-    {
-      "rank": 5,
-      "name": "mvschwarz/openrig",
-      "url": "https://github.com/mvschwarz/openrig",
-      "description": "Build your own network of agents from Claude Code, Codex and Pi: persistent teams with roles, shared context and owned work.",
-      "language": "TypeScript",
-      "stars": 3887,
-      "stars_today": 642
-    },
-    {
-      "rank": 6,
-      "name": "cursor/plugins",
-      "url": "https://github.com/cursor/plugins",
-      "description": "Cursor plugin specification and official plugins",
-      "language": "TypeScript",
-      "stars": 9364,
-      "stars_today": 150
-    },
-    {
-      "rank": 7,
       "name": "obra/superpowers",
       "url": "https://github.com/obra/superpowers",
       "description": "An agentic skills framework & software development methodology that works.",
       "language": "Shell",
-      "stars": 294103,
-      "stars_today": 455
+      "stars": 294468,
+      "stars_today": 556
+    },
+    {
+      "rank": 4,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 151813,
+      "stars_today": 1435
+    },
+    {
+      "rank": 5,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
+      "language": "JavaScript",
+      "stars": 74329,
+      "stars_today": 722
+    },
+    {
+      "rank": 6,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 274713,
+      "stars_today": 955
+    },
+    {
+      "rank": 7,
+      "name": "NVIDIA/OpenShell",
+      "url": "https://github.com/NVIDIA/OpenShell",
+      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+      "language": "Rust",
+      "stars": 14432,
+      "stars_today": 594
     },
     {
       "rank": 8,
-      "name": "mksglu/context-mode",
-      "url": "https://github.com/mksglu/context-mode",
-      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
-      "language": "TypeScript",
-      "stars": 24860,
-      "stars_today": 362
+      "name": "coreyhaines31/marketingskills",
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+      "language": "JavaScript",
+      "stars": 52420,
+      "stars_today": 140
     },
     {
       "rank": 9,
@@ -157,24 +163,24 @@
       "url": "https://github.com/heygen-com/hyperframes",
       "description": "Write HTML. Render video. Built for agents.",
       "language": "TypeScript",
-      "stars": 55495,
-      "stars_today": 627
+      "stars": 55905,
+      "stars_today": 580
     },
     {
       "rank": 10,
-      "name": "earendil-works/pi",
-      "url": "https://github.com/earendil-works/pi",
-      "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
+      "name": "mksglu/context-mode",
+      "url": "https://github.com/mksglu/context-mode",
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
       "language": "TypeScript",
-      "stars": 111427,
-      "stars_today": 298
+      "stars": 25040,
+      "stars_today": 282
     }
   ],
   "sources": [
     {
       "platform": "Hacker News",
       "platform_en": "Hacker News",
-      "swept": 80,
+      "swept": 120,
       "items": [
         {
           "title": "turbopuffer：向量库把向量索引从主位降级",
@@ -195,7 +201,7 @@
           "author_en": "GitButler (Scott Chacon) · Hacker News",
           "likes": 328,
           "url": "https://blog.gitbutler.com/git-3-sha-256",
-          "summary": "GitButler 的 Scott Chacon 9 月 30 日发文，反对 Git 3.0 把 SHA-256 设为默认哈希，称之为昂贵到不可理解、且本可避免的全球性麻烦。他的论证分两层。第一层，SHA-1 的坏了被夸大：碰撞确实能被制造，但现实中不实用，SHAttered（2017）和 SHA-1 is a Shambles（2020）都是演示；他算了一个意外碰撞的概率下限约 1.4 亿亿亿（1.4 septillion）份随机文件，还算了暴力破解 MD5 原像的耗时：把全地球约 30 亿块 GPU 都换成 RTX 5090 满负荷跑，期望约 160 亿年。第二层，他引 Linus 2005 年的话：信任来自你从哪里拉取，不是来自哈希，真实世界的攻击走的是社工和被收买的维护者，不是 GPU 碰撞（他还引了维护者可能为 4 万美元卖项目的说法）。他指出迁移的具体代价：新仓库 git init 默认走 SHA-256（可测：git init --object-format=sha256），但托管端和仓库不能混格式，推送会直接报 fatal: the receiving end does not support this repository's hash algorithm；submodule 只在同格式内可用，被迫维护两份；转换会作废所有既有签名，老的 40 位哈希 URL 和工具全断；非 Git 的第三方实现支持为零或不完整。他给的替代方案是用独立的树哈希头：随内容签名时额外算一个 SHA-256 或 BLAKE3，并提到 Colin Walters 2015 年起的 git-evtag（加一个 Git-EVTag-v0-SHA512 校验和），可回填、只在签名时多花成本，也能对上 NIST 的 2030 年 SHA-1 期限。结论一句话：别用哈希来判断内容可不可信。HN 328 分、317 条评论。",
+          "summary": "GitButler 的 Scott Chacon 9 月 30 日发文，反对 Git 3.0 把 SHA-256 设为默认哈希，称这是昂贵到不可理解、且本可避免的全球性麻烦。他的论证分两层。第一层，SHA-1 的坏被夸大：碰撞确实能造出来，但现实中不实用，SHAttered（2017）和 SHA-1 is a Shambles（2020）都只是演示；他算出意外碰撞的概率下限约 1.4 亿亿亿（1.4 septillion）份随机文件，还算了暴力破解 MD5 原像的耗时：把全地球约 30 亿块 GPU 都换成 RTX 5090 满负荷跑，期望约 160 亿年。第二层，他引 Linus 2005 年的话：信任来自你从哪里拉取，不是来自哈希，真实世界的攻击走的是社工和被收买的维护者，不是 GPU 碰撞（他还引了维护者可能为 4 万美元卖项目的说法）。他指出迁移的具体代价：新仓库 git init 默认走 SHA-256（可测：git init --object-format=sha256），但托管端和仓库不能混格式，推送会直接报 fatal: the receiving end does not support this repository's hash algorithm；submodule 只在同格式内可用，被迫维护两份；转换会作废所有既有签名，老的 40 位哈希 URL 和工具全断；非 Git 的第三方实现支持为零或不完整。他给的替代方案是用独立的树哈希头：随内容签名时额外算一个 SHA-256 或 BLAKE3，并提到 Colin Walters 2015 年起的 git-evtag（加一个 Git-EVTag-v0-SHA512 校验和），可回填、只在签名时多花成本，也能对上 NIST 的 2030 年 SHA-1 期限。结论一句话：别用哈希来判断内容可不可信。HN 328 分、317 条评论。",
           "summary_en": "GitButler's Scott Chacon argued on September 30 against Git 3.0 making SHA-256 the default hash, calling it \"an incomprehensibly expensive and ultimately valueless and avoidable global nightmare.\" His case has two layers. First, SHA-1's \"broken\" label is overstated: collisions can be manufactured but aren't practically exploitable, and SHAttered (2017) and \"SHA-1 is a Shambles\" (2020) are demonstrations; he puts the accidental-collision bound at roughly 1.4 septillion random files, and estimates a brute-force MD5 preimage attack — turning all ~3 billion GPUs on Earth into RTX 5090s running flat out — at about 16 billion years. Second, he quotes Linus from 2005: trust comes from where you pull from, not from the hash, and real-world attacks come through social engineering and compromised maintainers, not GPU collisions (he cites the notion that a maintainer might sell a project for a $40,000 lump sum). He lists the concrete migration costs: new repos default to SHA-256 under git init (testable via git init --object-format=sha256), but hosts and repos can't mix formats and pushes fail with \"fatal: the receiving end does not support this repository's hash algorithm\"; submodules work only within one format, forcing dual versions; converting breaks every existing signature and every old 40-character-hash URL and tool; and non-Git reimplementations have zero or partial support. His alternative is independent tree-hash headers — sign a SHA-1 content hash for retrieval and a separately computed SHA-256 or BLAKE3 for verification — citing Colin Walters' git-evtag (since 2015, adding a Git-EVTag-v0-SHA512 checksum), which is backfillable, costs extra only when signing, and still answers NIST's 2030 SHA-1 deadline. The one-line conclusion: don't use the hash to trust content. 328 points and 317 comments on HN.",
           "why": "这条对做工具和做供应链的人有用，不在 Git 本身，在它拆开了一个常被合并的问题：技术上更强和值不值得换是两个问题。升级一个基础组件的成本不落在它自己身上，落在所有依赖它的东西上，而收益（这里）还是理论上的。可以照抄的判断框架是：换之前先算迁移面有多大、收益是实测还是推演、以及有没有一条不回填就兼容的路（他给的 git-evtag 就是这种）。评论区 317 条本身也值得翻，正反两方在 32 位碰撞够不够用上分歧最大。",
           "why_en": "This is useful for anyone building tools or managing a supply chain, not because of Git itself but because it pulls apart a problem people usually merge: \"technically stronger\" and \"worth switching to\" are two separate questions. The cost of upgrading a foundational component doesn't land on the component — it lands on everything that depends on it, while the benefit here is still theoretical. The copyable framework: before switching, size the migration surface, check whether the gain is measured or inferred, and ask whether there's a path that doesn't require a flag day (the git-evtag route is exactly that). The 317 comments are worth skimming too — the sharpest split is over whether 32-bit collisions are good enough."
@@ -221,7 +227,7 @@
           "url": "https://www.deepseek.com/en/harness/",
           "summary": "DeepSeek 发布 Harness，公开预览、开源、MIT 协议，架构基于 Cordis 的「一切皆插件」（Cordis 论文见 arxiv 2608.25512）。它既是桌面应用，也能用一行命令起网页版。日常任务覆盖整理文件、分析数据、写文档、做幻灯片；也能读仓库、改 bug、跑测试，以及做带引用的检索。插件分官方与自建：官方清单包括 Agent teams、自动审批复核、定时任务、语音输入、终端、agent loop、子 agent（多个标着实验性），模型本身能在对话中用 Creator mode 现写一个插件。支持 Word、Excel、HTML、TypeScript、Python、PDF、Markdown 等文件类型。带执行轨迹视图，可看到工具调用、耗时与层级。页面示例中出现的模型是 DeepSeek-V41-Flash High，官方下载提供 macOS（Apple 芯片，.dmg）与 Windows 64 位（.exe），起网页版的命令是 npx @deepseek-ai/dsh web，仓库在 github.com/deepseek-ai/deepseek-harness。HN 184 分。",
           "summary_en": "DeepSeek released Harness — public preview, open source, MIT — built on Cordis's \"everything is a plugin\" architecture (Cordis paper at arxiv 2608.25512). It runs as a desktop app or as a web version launched with a single command. Everyday work covers organizing files, analyzing data, drafting docs and building slides; it also explores repos, fixes bugs, runs tests, and does cited research. Plugins are both official and self-built: the official list includes Agent teams, auto-approval review, scheduled tasks, voice input, a terminal, agent loop and subagents (several flagged experimental), and the model can write a new one live in chat via \"Creator mode.\" File types supported include Word, Excel, HTML, TypeScript, Python, PDF and Markdown. There's an execution-trace view showing tool calls, timing and hierarchy. The model shown in the page's examples is DeepSeek-V41-Flash High; official downloads are macOS (Apple silicon, .dmg) and Windows 64-bit (.exe), the web version launches with npx @deepseek-ai/dsh web, and the repo is github.com/deepseek-ai/deepseek-harness. 184 points on HN.",
-          "why": "它和同期另外两条（今日文摘版的 RLM，以及上周 Pi 1.0 把组合逻辑收进沙箱）放在一起看，能看出 harness 这一层正被当成产品来设计，而不是模型的附属脚本。对自建 agent 的人，可抄的是那个边界条件：哪些能力做成插件（可装可卸、出问题能单独关掉），哪些留在核心，以及允许模型自己现写插件带来的权限问题——官方清单里那几个实验性标记，本身就是这个问题的注脚。",
+          "why": "与同期另外两条消息一起看——今日文摘版的 RLM，以及上周 Pi 1.0 把组合逻辑收进沙箱——能看出 harness 这一层正被当成产品来设计，而非模型的附属脚本。对自建 agent 的人，可抄的是那个边界条件：哪些能力做成插件（可装可卸、出问题能单独关掉），哪些留在核心，以及允许模型自己现写插件带来的权限问题——官方清单里那几个实验性标记，本身就是这个问题的注脚。",
           "why_en": "Read alongside two other items — today's Digest section piece on RLMs and last week's Pi 1.0 folding composition logic into a sandbox — this shows the harness layer being designed as a product rather than a script attached to a model. For anyone building their own agent, the copyable part is the boundary question: which capabilities become plugins (installable, removable, individually killable when they go wrong), which stay in the core, and the permission questions raised by letting the model write plugins live — the \"experimental\" tags on several official plugins are themselves a note on that problem."
         },
         {
@@ -247,6 +253,18 @@
           "summary_en": "404 Media reported on October 1 (by Lorenzo Franceschi-Bicchierai) that Apple's quietly added \"inactivity reboot\" — which restarts an unlocked iPhone after 72 hours to make forensic extraction harder, introduced in November 2024 — has been bypassed. The company behind it is Magnet Forensics, maker of GrayKey: it launched a new hardware device, GrayKey Preserve, and a feature for existing GrayKey units called Evidence Preservation Mode, both meant to freeze iPhones in an extractable state, according to a leaked promotional video. It continues the tug-of-war between Apple and forensic vendors (the other being Cellebrite) that sell to law enforcement, some of them in authoritarian countries. The report notes police had complained about the reboot feature, since they often can't unlock a seized device immediately while awaiting court authorization or facing backlogs. 256 points on HN.",
           "why": "对做移动安全、合规或设备管理的人，这条有两个点值得记：一，iOS 那条“重启即回落到更强加密”的防线可被绕过，别把它当成合规上的硬保障；二，攻防节奏是“Apple 加一道、取证商拆一道”，每道防线都有有效期。凡是把安全结论写进文档的，最好同时写上“截至某版本、某日期成立”。",
           "why_en": "For anyone working on mobile security, compliance or device management, two points are worth keeping: the iOS protection that reverts a device to stronger encryption on reboot is bypassable, so don't treat it as a hard compliance guarantee; and the rhythm is \"Apple adds a layer, a forensics vendor removes one,\" so every defense has an expiry. If you write a security conclusion into a document, date it — \"holds as of version X, date Y.\""
+        },
+        {
+          "title": "Supabase 收购 Turso：为 agent 规模的按需数据库做准备",
+          "title_en": "Supabase acquires Turso, betting on on-demand databases at agent scale",
+          "author": "Supabase（Paul Copplestone）· Hacker News",
+          "author_en": "Supabase (Paul Copplestone) · Hacker News",
+          "likes": 191,
+          "url": "https://supabase.com/blog/supabase-is-acquiring-turso",
+          "summary": "Supabase CEO Paul Copplestone 10 月 2 日宣布收购 Turso。公告给的理由是规模变了：Supabase 现在每周新建超过 100 万个数据库，驱动这一增长的是 agent 在批量生成原型、探索、面板和应用，公司判断这个需求很快会超过现有数据库基础设施能承接的量。Turso 把 SQLite 用 Rust 重写，做出一个云平台，可以用一台服务器管理上百万个数据库，按需加载、空闲时挂起；这个架构已经支撑 Superhuman、Sauna.ai、CTO.new、Mastra 在 Turso Cloud 或客户自己的云上，为每个 agent 按需开一个数据库。两家公司的分工保持不变：Supabase 继续做 Postgres，Turso 继续做 SQLite，目标是让开发者从原型到生产用同一套体验。Turso 联创 Glauber Costa 和 Pekka Enberg 加入 Supabase，Glauber 将带这块 agent 基础设施业务；公告称 Turso 会继续独立运营，再逐步并入 Supabase 生态。公告没有披露交易金额。HN 191 分；评论区反应不一，有 Turso 客户担心被收购后产品方向或技术支持变化，也有人认为独立开源项目长期靠拿捏盈利很难，收购反而给了它更稳的资源。",
+          "summary_en": "Supabase CEO Paul Copplestone announced the acquisition of Turso on October 2. The stated reason is a scale shift: Supabase now spins up over 1 million databases a week, driven by agents batch-creating prototypes, explorations, dashboards and apps, and the company expects that demand to outpace what current database infrastructure can support. Turso rebuilt SQLite in Rust into a cloud platform where a single server manages millions of databases, loading them on demand and suspending them when idle — an architecture already backing Superhuman, Sauna.ai, CTO.new and Mastra, either on Turso Cloud or in their own clouds, provisioning a database per agent on demand. The division of labor stays the same: Supabase keeps building around Postgres, Turso keeps building SQLite, with the goal of giving developers one consistent experience from prototype to production. Turso co-founders Glauber Costa and Pekka Enberg join Supabase, with Glauber leading the agentic-infrastructure effort; the post says Turso will keep operating independently with a gradual path into the Supabase ecosystem. No deal terms were disclosed. 191 points on HN; comments were split — some Turso customers worry the acquisition will change the product's direction or support, others argued a standalone open-source project struggling to turn a profit is better off with a bigger parent's resources behind it.",
+          "why": "这条给了一个具体的基础设施判断：SQLite 适合给每个 agent 或每次原型按需开一个、用完就挂起的小数据库，Postgres 适合规模化之后的生产环境；过去这是两个要分别选型、分别运维的工具，现在被同一家公司打包成一条从原型到生产的连续路径。如果你的产品会让用户或 agent 批量创建临时的小型数据库（登录即建、一个项目一个库），这是一个现成的参照：先用这类嵌入式/按需方案兜底原型阶段，等规模上来了再迁移到 Postgres，可能比一开始就上重量级数据库更省钱。收购本身也是一个小样本：一个靠开源免费换用户的基础设施项目，被判断为难以独立盈利，最终并入一个更大的、服务于同一增长曲线的平台。",
+          "why_en": "This supplies a concrete infrastructure judgment: SQLite suits a small, on-demand database per agent or per prototype that gets suspended when done; Postgres suits production once things scale. Those used to be two tools you picked and operated separately — now one company is packaging them as a single prototype-to-production path. If your product lets users or agents batch-create small, temporary databases (one per login, one per project), this is a ready reference: lean on an embedded/on-demand option to cover the prototype stage, then migrate to Postgres once scale justifies it, rather than reaching for a heavyweight database from day one. The acquisition itself is also a small data point: an open-source infrastructure project that traded free usage for adoption got judged unable to sustain itself standalone, and ended up folded into a bigger platform riding the same growth curve."
         }
       ]
     },
@@ -262,9 +280,9 @@
           "author_en": "Latent Space (Alex Zhang)",
           "likes": 0,
           "url": "https://www.latent.space/p/rlm",
-          "summary": "Latent Space 10 月 2 日发布的访谈，嘉宾 Alex Zhang，MIT 博士生，递归语言模型（RLM）论文第一作者，此前做过 KernelBench、参与 GPU Mode，今年被选为“新星博士生”（前两年是 Shunyu Yao 和 Jack Morris）。按他的说法，RLM 定义很简单：一个 harness 设计，唯一工具是 code，模型能把子任务当工具一样调用自己（程序化调用子 agent），上下文存在记忆/代码环境里（文件系统或 Python/Bash REPL），而不是当成一段越来越长的提示词扛着。核心是两点：上下文卸载（模型写代码操作自己的上下文，把它当对象，而不是把轨迹当提示词），组合式泛化（子任务始终在分布内，整体任务再分布外也能迁移，他称短任务上训练能迁移到长 8 到 30 倍的任务）。举的数字：OpenAI 一次大规模 agent 实验是“88 小时内 10,000 个 agent、1300 亿输出 token”，按公开价格约合 4000 万美元，他说这个成本“意外地比我想的低”；Jev 这类决策模型在快速分类上可能便宜“几百倍”，他提到可以接受“400 倍的成本差”；Prime Agent 是一个建在 Prime Intellect 的 Pi 上的 RLM harness，工具只留 IPython，加了持久子 agent。他还提到 Harvey 法律 AI 加 Base 10、Andy Konwinski 的 Headlong（原 Terminus）、DSPy、以及 Astra 在游戏 benchmark 上的表现。他的判断是现在 Claude Code、Codex、Pi 这些 harness“几乎一样”，更有个性的 harness 设计可能带来大的能力提升，前沿模型可能还有明显的“能力富余”。",
+          "summary": "Latent Space 10 月 2 日刊出访谈，嘉宾 Alex Zhang 是 MIT 博士生、递归语言模型（RLM）论文第一作者，此前做过 KernelBench、参与 GPU Mode，今年入选「新星博士生」，前两年获此称号的是 Shunyu Yao 和 Jack Morris。按他的说法，RLM 的定义很简单：一种 harness 设计，唯一工具就是 code，模型能把子任务当工具调用自己（程序化调用子 agent），上下文存在记忆或代码环境里（文件系统、Python/Bash REPL），而不是当成一段越来越长的提示词硬扛。关键两点：上下文卸载，模型写代码操作自己的上下文，把它当对象，而不是把轨迹当提示词；组合式泛化，子任务始终在分布内，整体任务即使分布外也能迁移，他说在短任务上训练可迁移到长 8 到 30 倍的任务。他举的数字：OpenAI 一次大规模 agent 实验是「88 小时、10000 个 agent、1300 亿输出 token」，按公开价格约合 4000 万美元，他说这个成本「意外地比我想的低」；Jev 这类决策模型在快速分类上可能便宜几百倍，他提到可以接受「400 倍的成本差」；Prime Agent 是建在 Prime Intellect 的 Pi 上的 RLM harness，工具只留 IPython，加了持久子 agent。他还提到 Harvey 法律 AI 加 Base 10、Andy Konwinski 的 Headlong（原 Terminus）、DSPy，以及 Astra 在游戏 benchmark 上的表现。他的判断是，Claude Code、Codex、Pi 这些 harness 现在「几乎一样」，更有个性的 harness 设计可能带来大的能力提升，前沿模型可能还有明显的能力富余。",
           "summary_en": "A Latent Space interview published October 2 with Alex Zhang, an MIT PhD student and first author of the Recursive Language Models (RLM) paper, previously known for KernelBench and involvement in GPU Mode, and this year's pick as the emerging-star PhD (after Shunyu Yao and Jack Morris). His definition of an RLM is simple: a harness design whose only tool is code, where the model can call itself as a tool for subtasks (programmatic subagent calling), and context lives in a memory/code environment (a filesystem or a Python/Bash REPL) rather than being carried as an ever-longer prompt. Two core ideas: context offloading, where the model writes code over its own context as an object instead of treating the trajectory as a prompt; and compositional generalization, where subtasks stay in-distribution, so a task that's out-of-distribution overall still transfers — he says training on short tasks moves to tasks 8 to 30 times longer. Figures cited: one large OpenAI agent experiment ran \"10,000 agents in 88 hours\" for \"130 billion output tokens,\" roughly $40M-equivalent at public pricing, which he called \"surprisingly, actually, less than I thought\"; decision models like Jev might be \"a few hundred times cheaper\" for fast classification, with him accepting \"a 400X cost\" gap; and Prime Agent is an RLM harness built on Prime Intellect's Pi, restricted to IPython with persistent subagents added. He also mentions Harvey legal AI plus Base 10, Andy Konwinski's Headlong (formerly Terminus), DSPy, and Astra's performance on a game benchmark. His claim is that today's harnesses — Claude Code, Codex, Pi — are \"virtually the same,\" so more opinionated harness designs could unlock large capability gains, and frontier models may still have significant capability overhang.",
-          "why": "这是今天唯一一条讲 harness 该长成什么样、而不是讲哪个模型更强的材料。可抄的判断有两条：一是把上下文从“扛着”改成“可以写代码操作”，长任务上省的是注意力，不只是 token；二是他说这些主流 harness 已经趋同，能力增量可能来自更有个性的 harness 设计，而不是更贵的模型——如果你的 agent 效果到顶了，先改指令和上下文的组织方式，可能比换模型更值。这条也是本期升级公告的来源。",
+          "why": "这是今天唯一一条讲 harness 该长成什么样、而不是讲哪个模型更强的材料。可抄的判断有两条：一是把上下文从「扛着」改成「可以写代码操作」，长任务上省的是注意力，不只是 token；二是他说这些主流 harness 已经趋同，能力增量可能来自更有个性的 harness 设计，而不是更贵的模型——如果你的 agent 效果到顶了，先改指令和上下文的组织方式，可能比换模型更值。这条也是本期升级公告的来源。",
           "why_en": "This is the day's only item about what a harness should look like rather than which model is stronger. Two copyable judgments: move context from \"carried\" to \"code you can operate on,\" which on long tasks saves attention, not just tokens; and his claim that mainstream harnesses have converged means the next capability gain may come from a more opinionated harness design rather than a pricier model — if your agent has plateaued, changing how instructions and context are organized may buy more than swapping models. This piece is also the source for this issue's OTA note."
         },
         {
@@ -286,9 +304,9 @@
           "author_en": "Anthropic · TLDR AI",
           "likes": 0,
           "url": "https://claude.com/blog/claude-for-government-is-now-generally-available",
-          "summary": "Anthropic 于 9 月 30 日宣布 Claude for Government 正式可用（7 月起公开测试）。它跑在 FedRAMP High 授权的环境里，面向联邦和州政府机构，把 Claude 的编码和 agent 能力装进去：能直接操作桌面文件，带 skills、插件和 projects，用于写备忘录、审 RFP、办案；Claude Code 用来改造公共服务软件。管理面给的是配置默认值、跨部门的额度分配和控制、支持机构 ATO 流程的审计日志与文档，敏感操作要两人审批，SCIM 组映射、走机构自己的身份提供商做 SSO，子机构可以分层配置。采购上直接和 Anthropic 按 GA 条款签约，不用另找云厂商；Claude Code CLI 和 Claude for Microsoft 365 走同一套环境早期可用。定价最值得看：不收席位费，机构按用量以固定增量付费，设一个硬性的不超过上限；用户分层有额度和模型限制，用量按用户和模型分别统计，带额度烧穿提醒。HN 未上榜，经 TLDR AI 收录。",
+          "summary": "Anthropic 9 月 30 日宣布 Claude for Government 正式上线,此前 7 月已开放公测。产品部署在 FedRAMP High 授权环境中,面向联邦与州政府机构,集成了 Claude 的编码与 agent 能力:可直接操作桌面文件,配有 skills、插件和 projects,用于起草备忘录、审阅 RFP、办理案件;Claude Code 则用来改造公共服务软件。管理端提供默认值配置、跨部门配额分配与管控、支持机构 ATO 流程的审计日志和文档;敏感操作须双人审批,支持 SCIM 组映射,通过机构自有身份提供商做 SSO,子机构可分层配置。采购方面直接与 Anthropic 按 GA 条款签约,无需另找云厂商;Claude Code CLI 和 Claude for Microsoft 365 在同一环境中可提前使用。定价最值得关注:不收席位费,机构按用量以固定增量付费,并设硬性封顶上限;用户分级设配额与模型限制,用量按用户和模型分别统计,附额度超限提醒。HN 未上榜,由 TLDR AI 收录。",
           "summary_en": "Anthropic announced on September 30 that Claude for Government is generally available (it had been in public beta since July). It runs in a FedRAMP High authorized environment for federal and state agencies, packaging Claude's coding and agentic capabilities: it works directly with desktop files and supports skills, plugins and projects for drafting memos, reviewing RFPs and handling casework, with Claude Code for modernizing public-service software. The admin surface offers configuration defaults, cross-department spend allocation and control, and audit logs and documentation supporting an agency's ATO process; sensitive operations require two-person approval; SCIM group mappings and SSO through the agency's own identity provider; and layered configuration for sub-agency defaults. Procurement is directly with Anthropic on general-availability terms, with no separate cloud-provider relationship, and Claude Code CLI plus Claude for Microsoft 365 are available in early access through the same environment. The pricing is the part worth reading: no seat fees, with agencies paying for usage in fixed increments against a hard not-to-exceed cap; user tiers carry spend and model limits; usage is tracked by user and model, with burndown alerts. Not on HN; surfaced via TLDR AI.",
-          "why": "政府采购这单的看点在定价结构，不在功能：把按人头换成按用量、固定增量、硬性封顶，正好对上公共采购最怕的两件事——预算不可预测和超支。这套结构对任何卖订阅产品的团队都能搬：封顶比折扣更能打消采购的顾虑，因为它把风险从买方挪走。今日行动第 2 条就是照这个改一版自己的报价页。",
+          "why": "政府采购这单的关键在定价结构,不在功能:把按人头收费换成按用量、固定增量、硬性封顶,恰好击中公共采购最怕的两件事——预算不可预测和超支。这套结构对任何卖订阅产品的团队都可借鉴:封顶比折扣更能打消采购顾虑,因为它把风险从买方转移出去。今日行动第 2 条就是依照这个思路,改一版自己的报价页。",
           "why_en": "The interesting part of this government deal is the pricing structure, not the features: swapping per-seat for usage-based billing in fixed increments under a hard cap maps exactly onto public procurement's two biggest fears — unpredictable budgets and overruns. The structure is portable to any team selling a subscription product: a cap removes a buyer's fear more effectively than a discount, because it moves the risk off them. Action 2 today is rewriting your own pricing page this way."
         }
       ]
