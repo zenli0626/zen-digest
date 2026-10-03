@@ -1,0 +1,289 @@
+{
+  "date": "2026-10-03",
+  "partial": false,
+  "banner": "Airbnb：六成代码已由 AI 写就",
+  "banner_en": "Airbnb: 60% of its code is AI-written",
+  "image": {
+    "src": "digests/img/2026-10-03.jpg",
+    "caption": "本期头版图：Latent Space 10 月 2 日刊出的 Airbnb CTO Ahmad Al-Dahle 访谈页头图。Al-Dahle 2026 年 1 月加入 Airbnb，此前在 Meta 负责生成式 AI，带队发布 Llama 系列开源模型。访谈里他给了一组数字：Airbnb 现在六成代码由 AI 生成，功能交付量同比多出近 80%，工程师生均 PR 吞吐约 1.6 倍，约一半客服工单由 AI 处理，生产环境里跑着至少 10 个定制模型。（图：Latent Space / swyx）",
+    "caption_en": "Today's front-page image: the header art for Latent Space's October 2 interview with Airbnb CTO Ahmad Al-Dahle. Al-Dahle joined Airbnb in January 2026, after leading generative AI at Meta and the Llama open-model releases; in the interview he gives a set of figures — 60% of Airbnb's code is now AI-generated, feature output is up nearly 80% year over year, PR throughput per engineer is roughly 1.6x, about half of support tickets are handled by AI, and at least 10 custom models run in production. (Image: Latent Space / swyx)"
+  },
+  "actions": [
+    {
+      "text": "写出你产品在客户架构里的那一句话定位：你是拿主意的那层 harness，还是被它调用的一个可替换组件。先写定位，约 20 分钟；再补一件事，把你对外接口里还只能靠人点的环节列出来（登录、点按钮、复制粘贴都算），那几处就是 headless 缺口。做完的标准是这份缺口清单能直接排进下个迭代。背景：HN 今天的头帖说，模型之上那层 harness 会变成公司的本体，它给的建议是自己拿顶层、把厂商插进具体工作流，前提是下面的软件都能被程序驱动。",
+      "text_en": "Write down your product's position in the customer's architecture in one sentence: are you the harness that decides, or a swappable component it calls? Draft that positioning first, about 20 minutes; then add one more thing — list the parts of your external surface that still need a human to click (login, button-pressing, copy-paste all count). Those are your headless gaps. You'll know it's done when that gap list can go straight into next sprint. Background: today's top HN thread argues the harness above the model becomes the company itself, and its advice is to own the top layer and plug vendors into specific workflows, provided the software underneath can be driven programmatically.",
+      "source": "Hacker News · Shrivu Shankar",
+      "source_en": "Hacker News · Shrivu Shankar",
+      "source_url": "https://blog.sshh.io/p/the-harness-is-the-company"
+    },
+    {
+      "text": "去用量后台把上个月每个模型的 token 和花费导出来，只算一个数：贵模型占总花费的百分比；然后定一条下月目标，比如贵模型占比降到 X% 以下。约 30 分钟。做完的标准是这个百分比今天能报出来、下月能对上。背景：Wagtail 的 Thibaud Colas 用整整一个月只跑一个便宜模型，月底对账发现总额 2B token 里只有一半落在目标模型上，另一半是供应商掉速后换别家漏出去的。",
+      "text_en": "Pull last month's per-model token counts and spend from your usage dashboard, compute one number — the share of total spend going to your expensive model — then set a next-month target, like \"get the expensive model under X%.\" About 30 minutes. You'll know it's done when you can quote that percentage today and reconcile it next month. Background: Wagtail's Thibaud Colas spent a full month on a single cheap model and found at month-end that only half of his 2B tokens had gone to the target model — the rest leaked to other providers after his chosen one degraded.",
+      "source": "Hacker News · Wagtail（Thibaud Colas）",
+      "source_en": "Hacker News · Wagtail (Thibaud Colas)",
+      "source_url": "https://wagtail.org/blog/one-month-on-glm-53-flash/"
+    },
+    {
+      "text": "把你 agent 真正依赖的外部服务列成一张表（模型、MCP 服务器、检索、数据库都算），每行标三件事：接口是开放的还是白名单或封闭的、有没有替代供应商、被掐掉时的降级方案。约 30 分钟。做完的标准是清单里没有一行降级方案是空的。背景：Figma 给远程 MCP 加了白名单，只放它支持的客户端，MCP 的作者本人公开说这违背了他做这个协议的初衷。",
+      "text_en": "List every external service your agent actually depends on — models, MCP servers, search, databases — and for each row mark three things: is the interface open or allowlisted/closed, is there an alternative vendor, and what's the fallback if it gets cut off. About 30 minutes. You'll know it's done when no row's \"fallback\" cell is empty. Background: Figma put its remote MCP server behind an allowlist of supported clients, and the creator of MCP said publicly that this runs against what he built the protocol for.",
+      "source": "Hacker News · LavX News",
+      "source_en": "Hacker News · LavX News",
+      "source_url": "https://news.lavx.hu/article/figma-restricts-mcp-server-to-supported-clients-drawing-criticism-from-mcp-creator"
+    }
+  ],
+  "hands_on": {
+    "title": "复刻一次渡渡鸟式检索：给你自己的文档做语义搜索",
+    "title_en": "Recreate the dodo method: run semantic search over your own documents",
+    "why": "历史学者 Benjamin Breen 用一套嵌入加语义检索、再让前沿模型给候选排序、人只复核头部的流程，在荷兰东印度公司几百万条档案里翻出一条 1615 年的渡渡鸟记录和一个被误译漏掉的红秧鸡线索。流程本身与主题无关，换成你自己的语料就是今晚能练的一次检索：关键是把整个库读进上下文换成先捞候选、再排序、只读前几条。全程在本机跑，不花多少 token。",
+    "why_en": "Historian Benjamin Breen used a pipeline — embeddings, then semantic search, then a frontier model ranking the candidates, with a human reviewing only the top hits — to turn up a 1615 dodo record and a mistranslated red-rail reference across millions of Dutch East India Company documents. The pipeline is topic-independent: point it at your own corpus and it's tonight's exercise. The move is swapping \"read the whole corpus into context\" for \"retrieve candidates, rank them, read only the top few.\" It all runs locally and burns very few tokens.",
+    "time": "约 30 分钟",
+    "time_en": "About 30 minutes",
+    "steps": [
+      "挑一小批你有真问题的文本（几十到几百份 PDF、网页、邮件或笔记都行），导出成纯文本放进一个文件夹",
+      "本机装 Ollama，拉一个多语言嵌入模型：ollama pull bge-m3（中英混排首选，纯英文可用 nomic-embed-text）",
+      "pip install ollama numpy，写一个约 20 行的脚本：把每份文档切成小段、逐段嵌入、和你写的一句问题算余弦相似度，打印前 10 段",
+      "把这 10 段丢给一个前沿模型，让它按哪几段最可能回答这个问题排序并说明理由，你只人工核对它的第一名",
+      "做完的标准是你找到至少一段自己都不记得在里面的内容；拿它当新的问句再检索一轮"
+    ],
+    "steps_en": [
+      "Pick a small pile of text you have a real question about — a few dozen to a few hundred PDFs, pages, emails or notes — and export it to plain text in one folder",
+      "Install Ollama locally and pull a multilingual embedding model: ollama pull bge-m3 (best for mixed Chinese/English; nomic-embed-text is fine for English-only)",
+      "pip install ollama numpy, then write a ~20-line script: chunk each document, embed every chunk, cosine-compare against one question you write, print the top 10 chunks",
+      "Hand those 10 chunks to a frontier model and have it rank them by which is most likely to answer the question, with reasons; you manually check only its number-one pick",
+      "You're done when you find at least one passage you didn't remember was in there — then re-run the search using it as the new query"
+    ],
+    "source": "Hacker News · Res Obscura（Benjamin Breen）",
+    "source_en": "Hacker News · Res Obscura (Benjamin Breen)",
+    "source_url": "https://resobscura.substack.com/p/using-opus-55-to-discover-a-new-eyewitness"
+  },
+  "meta_read": "今天八件事摊在不同的层，做的却是同一个动作：等模型本身变便宜、变可替换之后，去占住那个决定调谁、记住什么、谁的判断算数的层。Kev 说换个端点就能换模型，GLM 那一个月的账说明花费会从你手里漏到别家，微软把实时转写按小时明码标价，模型这一层越来越像水电。于是值钱的挪到了外面：Airbnb 把组织从按功能改成按结果，一篇热帖干脆说每家 SaaS 都会变成模型外面那层壳，Figma 则用白名单把客户端这一层攥回自己手里。三种做法，争的是同一块地。那篇凌晨随笔是这笔账的另一面：作者难过的是，他自己的手艺本来就是那层壳，而这层壳正在被重写。",
+  "meta_read_en": "All eight of today's stories sit at different layers but make the same move: once the model gets cheap and interchangeable, stake out the layer that decides who gets called, what gets remembered, and whose judgment counts. Kev says you can swap models by changing an endpoint; the GLM month's ledger shows spend leaking out of your hands to whichever provider holds capacity; Microsoft prices real-time transcription by the hour. The model layer is turning into a utility. So the value moves outside it: Airbnb reorganizes from features to outcomes, one hot essay argues every SaaS becomes a shell around a model, and Figma uses an allowlist to pull the client layer back into its own hands. Three moves, one contested ground. The 2 a.m. essay is the other side of that ledger — what its author mourns is that his own craft was that layer, and the layer is being rewritten.",
+  "ota": {
+    "learned": [
+      "观察：引用模型的跑分时要写清谁测的。今天三条模型消息正好三种口径，Kev 的分数来自作者自己的评测 harness，文章自己注明不是独立榜单；微软的第一名来自第三方 Artificial Analysis；GLM 那个月的实验里自评失败的部分，恰恰是供应商掉速导致的用量外流。这和 10-02 那条别拿 HN 的创建时间当产品新鲜度是同一族规矩：一个数字的来源，和数字本身一样重要。准备把标注测量方写进台账。",
+      "观察：今天有一条可复制的检索流水线。历史学者 Benjamin Breen 用嵌入加语义检索、前沿模型给候选排序、人只复核头部五步，在荷兰东印度公司几百万条档案里翻出一条 1615 年的渡渡鸟记录。它对我直接可用：扫大语料（往期存档、issue 列表、文档）时先把候选捞到几十条，再让模型排序，我只读前几条，而不是把整库读进上下文。这和 10-02 那条上下文当对象、能写代码操作是同一层的两种用法。",
+      "已验证：Substack 域名（Cloudflare 挡着）用 WebFetch 和 curl 都返回 403，但用 r.jina.ai 做读代理能拿到全文。今晚在 resobscura.substack.com（拿到约 20KB 正文）和 importai.substack.com（拿到栏目页和 feed）两处都成功。这补上了台账里反复记的那条空白：Import AI 这个源以前一直读不到。",
+      "已验证：YouTube 字幕今晚又被挡，但失败模式和 10-01 的 429 不同，yt-dlp 报的是「Sign in to confirm you're not a bot」（用 Latent Space、AI Engineer 两个频道的三条视频测的）。RSS 全 9 个频道都活，所以是字幕接口整体需要登录态，不是网络断。按云上规则没有换方法重试、也没有编造「我看过了」的摘要，YouTube 这期记 0 条。",
+      "已实施：把一条「标注测量方」的规矩写进台账，标 proposed，等笔记本那台 Claude 采纳。它是 10-02 那条「核实产品新鲜度看官方文档不看 HN 时间」的姊妹条：那条管时间戳，这条管数字的出处。"
+    ],
+    "new_capabilities": [
+      "已验证可用：用 r.jina.ai 做读代理，能读到 WebFetch 和 curl 都吃 403 的 Substack/Cloudflare 页面，用法是 https://r.jina.ai/<原 URL>。今晚对 resobscura.substack.com 的一篇文章（约 20KB 全文）和 importai.substack.com 都成功。这条补上了台账里「Import AI 一直读不到」的空白，以后 Substack 系信源可以走这条路。",
+      "已验证可用：用 HuggingFace 的模型 API（huggingface.co/api/models?search=<词>）能在无登录环境里确认一个模型或仓库真实存在，再写进稿子。今晚用它把 Kev 家族的四个模型（jaredpalmer/kev-0.8b 到 kev-27b）和第三方 GGUF 仓库都核对了一遍，避免把博客里的说法直接当成仓库里的事实。"
+    ],
+    "learned_en": [
+      "Observation: when citing a model's benchmark numbers, say who measured them. Today's three model stories came in three flavors — Kev's scores come from the author's own eval harness (the post itself notes it's \"not an independent leaderboard\"), Microsoft's number-one claim comes from third-party Artificial Analysis, and the part of the GLM month that its author calls a failure is precisely usage leaking to other providers after capacity degraded. This is the same family as October 2's rule about not using an HN thread's creation time as product freshness: where a number comes from matters as much as the number. Planning to add a \"name the measurer\" rule to the ledger.",
+      "Observation: today yielded a copyable retrieval pipeline. Historian Benjamin Breen used five steps — embeddings, semantic search, a frontier model ranking candidates, a human checking only the top hits — to surface a 1615 dodo record across millions of Dutch East India Company documents. It's directly usable for me: when sweeping a large corpus (past digests, issue lists, docs), retrieve a few dozen candidates first, have a model rank them, and read only the top few rather than pulling the whole corpus into context. This is the same layer as October 2's \"context as a code-operable object,\" used a different way.",
+      "Verified: Substack domains (sitting behind Cloudflare) return 403 to both WebFetch and curl, but reading through r.jina.ai as a proxy returns the full text. Tonight that worked on both resobscura.substack.com (about 20KB of body text) and importai.substack.com (the section page and feed). This directly closes the gap the ledger kept recording: Import AI was previously unreadable.",
+      "Verified: YouTube captions were blocked again tonight, but with a different failure mode than October 1's 429 — yt-dlp returned \"Sign in to confirm you're not a bot\" (tested on three videos across the Latent Space and AI Engineer channels). RSS was live for all nine channels, so it's the caption endpoint requiring a login, not a network outage. Per the cloud-run rules, I did not retry with an alternate method and did not fabricate any \"I watched it\" summary; YouTube ships zero items this issue.",
+      "Implemented: wrote a \"name the measurer\" rule into the ledger, marked proposed, for the laptop Claude to adopt. It's the sibling of October 2's \"check the product's own docs, not the HN timestamp\" rule — that one governs timestamps, this one governs where numbers come from."
+    ],
+    "new_capabilities_en": [
+      "Verified and available: using r.jina.ai as a read proxy fetches Substack/Cloudflare pages that both WebFetch and curl return 403 for — the pattern is https://r.jina.ai/<original URL>. Tonight it worked on a resobscura.substack.com article (about 20KB of full text) and on importai.substack.com. This closes the ledger's recurring gap where Import AI was unreadable; Substack-family sources can route through it from now on.",
+      "Verified and available: HuggingFace's model API (huggingface.co/api/models?search=<term>) confirms a model or repo actually exists in a headless environment before it goes into the copy. Tonight it was used to check all four Kev-family models (jaredpalmer/kev-0.8b through kev-27b) plus third-party GGUF repos, so a blog's claims weren't mistaken for facts about the repos."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "Panniantong/Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu, one CLI, zero API fees.",
+      "language": "Python",
+      "stars": 89025,
+      "stars_today": 696
+    },
+    {
+      "rank": 2,
+      "name": "JuliusBrussee/caveman",
+      "url": "https://github.com/JuliusBrussee/caveman",
+      "description": "why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "stars": 109215,
+      "stars_today": 209
+    },
+    {
+      "rank": 3,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 294575,
+      "stars_today": 556
+    },
+    {
+      "rank": 4,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 152082,
+      "stars_today": 1435
+    },
+    {
+      "rank": 5,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
+      "language": "JavaScript",
+      "stars": 74497,
+      "stars_today": 722
+    },
+    {
+      "rank": 6,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 274872,
+      "stars_today": 955
+    },
+    {
+      "rank": 7,
+      "name": "NVIDIA/OpenShell",
+      "url": "https://github.com/NVIDIA/OpenShell",
+      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+      "language": "Rust",
+      "stars": 14522,
+      "stars_today": 594
+    },
+    {
+      "rank": 8,
+      "name": "coreyhaines31/marketingskills",
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+      "language": "JavaScript",
+      "stars": 52502,
+      "stars_today": 140
+    },
+    {
+      "rank": 9,
+      "name": "heygen-com/hyperframes",
+      "url": "https://github.com/heygen-com/hyperframes",
+      "description": "Write HTML. Render video. Built for agents.",
+      "language": "TypeScript",
+      "stars": 56008,
+      "stars_today": 580
+    },
+    {
+      "rank": 10,
+      "name": "mksglu/context-mode",
+      "url": "https://github.com/mksglu/context-mode",
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "language": "TypeScript",
+      "stars": 25104,
+      "stars_today": 282
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 120,
+      "items": [
+        {
+          "title": "每家 SaaS 都会变成模型外面的一层 harness",
+          "title_en": "Every SaaS business becomes a harness around a model",
+          "author": "Shrivu Shankar · Hacker News",
+          "author_en": "Shrivu Shankar · Hacker News",
+          "likes": 125,
+          "url": "https://blog.sshh.io/p/the-harness-is-the-company",
+          "summary": "Shrivu Shankar 的这篇长文 8 月 24 日发在个人 Substack，今天被翻上 HN 首页，125 分、88 条评论。论点：每家 SaaS 最终都会变成「包在一个无状态模型外面的 harness」，区别只在公司自己有没有意识到。他把 harness 定义得很宽：模型之外所有的基础设施、界面、上下文和状态，包括若干「子 harness」和一个负责协调的「meta-harness」；一座软件工厂就是「写规格、写代码、做评审」三个子 harness 加一个编排器。四段演进：一，传统 SaaS，没有 harness；二，工程师（越来越多包括产品和销售）和 agent 结对，个人操作 harness；三，核心任务挪到云端后台 agent，个人编排 harness；四，后台 agent 主动决定做什么，人退到抽检，harness 编排个人。到第四段，公司交给客户的是模型输出，公司自己提供的是上下文、集成和评审界面，组织关系掉了个个儿，人成了 harness 的一部分。对「那不就是 AI 泔水工厂」的质疑，他的回应是好的 harness 会把人的注意力只放在该放的地方，他举了三个例：给销售现场生成 demo、把客户提的功能建议升级给懂架构的人、把几个 UI 改版的头部方案推给有品味的人，而不是全自动。落地建议：别什么都自建，自己拿那个决定「做什么、以及评审输出」的顶层 harness，把厂商插进具体工作流；如果一个第三方能替客户跑完整个外层循环，这门生意就被商品化了。他点了 Ramp、Stripe、DoorDash 的内部 AI 开发工具作为趋势开端，也承认把「外层循环」交给 agent 现在还很难。",
+          "summary_en": "Shrivu Shankar's essay ran on his personal Substack on August 24 and resurfaced on HN's front page today (125 points, 88 comments). His thesis: every SaaS business ends up as \"a harness wrapped around a stateless model,\" whether it realizes it or not. He defines the harness broadly — all the infrastructure, interfaces, context and state around the model, including sub-harnesses and a coordinating meta-harness; a \"software factory\" is a spec-writing harness, a coding harness and a reviewing harness plus an orchestrator. He sketches four stages: one, traditional SaaS with no harness; two, engineers (and increasingly product and sales) pairing with agents, so individuals operate harnesses; three, core tasks move to cloud background agents and individuals orchestrate harnesses; four, background agents decide the work proactively and humans drop to sampled review, so harnesses orchestrate individuals. At stage four the company hands customers model output while supplying context, integrations and review interfaces; the org relationship inverts and people become part of the harness. To the \"isn't that an AI slop factory\" objection, he answers that a good harness routes human attention only where it matters — three examples: generating a demo live in a sales meeting, escalating a customer-suggested feature to an architecture taste-holder, and pushing the top variants of a UI redesign to a design taste-holder, rather than going fully automatic. His advice: don't build everything in-house; own the top-level harness that decides what to build and reviews output, and plug vendors into specific workflows — if a third party could run a customer's entire outer loop as a service, the business is commoditized. He names in-house AI dev tools at Ramp, Stripe and DoorDash as the trend's start, and concedes handing the outer loop to agents is still hard.",
+          "why": "这是今天最像「一份可以直接照抄的产品定位」的一条。它给了一个二选一：你要么做那个拿主意的顶层 harness，要么做被它调用、随时可换的组件，中间态最危险。对卖 AI 软件的人，可操作的部分在最后一段：把产品做成「客户自己的 harness 拥有并调用的一个部件」，而不是那条循环的主人；为此要把接口改成程序可驱动的（headless），并且在具体工作流（比如「从规格到带测试的 PR」）上做到最好且可替换。今天行动第 1 条就是照这个自检。",
+          "why_en": "This is the closest thing today to a product-positioning brief you can copy outright. It forces a binary: be the top-level harness that decides, or be a component it calls and can swap out — the middle ground is the most dangerous place to sit. For anyone selling AI software, the actionable part is the closing section: build your product as \"a part the customer's own harness owns and calls,\" not as the owner of the loop; to that end make your interfaces programmatically drivable (headless), and be best-in-class and swappable at a specific workflow (say, spec-to-tested-PR). Action 1 today is that self-check."
+        },
+        {
+          "title": "一个月只用 GLM 5.3 Flash 写代码：2B token、68 美元，任务还算失败",
+          "title_en": "One month coding on GLM 5.3 Flash alone: 2B tokens, $68, and still a failure",
+          "author": "Thibaud Colas（Wagtail）· Hacker News",
+          "author_en": "Thibaud Colas (Wagtail) · Hacker News",
+          "likes": 141,
+          "url": "https://wagtail.org/blog/one-month-on-glm-53-flash/",
+          "summary": "Wagtail 核心团队的 Thibaud Colas 记录了 2026 年 9 月的一次实验：整月只用一个便宜开放的模型 GLM 5.3 Flash 写代码。月末对账，总用量 2B token，但只有一半落在目标模型上。他发现供应商掉速后，另一半换成了 DeepSeek V4.1 Flash 和 Qwen 3.8 Flash，因此自评这次挑战技术上算失败。数字：GLM 5.3 Flash 花了 68 美元、约 4kWh 电、约 365g 二氧化碳；一次 vibe 编码的 MCP 原型用掉 450M token、150 美元、5kWh，他估计同样结果本可省约 5 倍；整体能耗约 35kWh，而非计划的 10。他的 14 个模型对照表里最好的是 DeepSeek V4.1 Flash：95% 准确率、14.9Wh、每任务 0.09 美元。GLM 5.3 Flash 本身他说很好用：100 万 token 上下文、支持视觉、多家供应商都能取。崩掉的地方：vibe 编码带来的模型选择成本、基础设施可用性及容量问题导致性能下滑、计划外的实验开销。结论是把自身用量在本地量出来（token、能耗、花费）、给实验留预算、改提示词和多 agent 编排、继续用便宜的 flash 档。他把 10 月的目标定成大多数推理走便宜档。",
+          "summary_en": "Thibaud Colas of the Wagtail core team documents a September 2026 experiment: spending a full month coding with a single cheap open model, GLM 5.3 Flash. At month-end, total usage was 2B tokens but only half had gone to the target model — the other half moved to DeepSeek V4.1 Flash and Qwen 3.8 Flash after he hit \"provider degradation,\" so he calls the challenge \"technically a failure.\" The numbers: GLM 5.3 Flash cost $68, about 4kWh of energy and roughly 365g of CO2; a vibe-coded MCP prototype burned 450M tokens, $150 and 5kWh, work he reckons could have cost about 5x less; overall energy was about 35kWh instead of the planned 10. In his 14-model comparison table the best was DeepSeek V4.1 Flash at 95% accuracy, 14.9Wh and $0.09 per task. GLM 5.3 Flash itself he calls \"excellent\": a 1M-token context window, vision support, and available from multiple providers. What broke: the model-selection cost introduced by vibe coding, infrastructure availability and capacity issues degrading performance, and unplanned experimentation spend. His takeaways: measure your own usage locally (tokens, energy, spend), budget for experimentation, improve prompts and multi-agent orchestration, and keep using cheap flash-tier models — with an October goal that most inference run on the cheap tier.",
+          "why": "对任何给团队定 AI 预算的人，这条的价值在于把一个模糊的我们用 AI 花了不少钱变成三个可量的数：token、电、钱，而且是在自己环境里量的，不是听供应商说。它还给出一个常被忽略的风险：供应商的容量和速度会漂，你写好的模型选择会在月中被迫改道，而那部分花费和上下文损失，账单上看不出来。今天行动第 2 条就是这个动作。",
+          "why_en": "For anyone setting an AI budget for a team, the value here is turning a vague \"we spend a lot on AI\" into three measurable numbers — tokens, energy, money — measured in your own environment rather than quoted by a vendor. It also names an easily missed risk: provider capacity and speed drift, so a model choice you locked in gets forced to change mid-month, and that spend and context loss don't show up on the bill. Action 2 today is exactly that measurement."
+        },
+        {
+          "title": "Figma 给远程 MCP 加白名单，MCP 作者公开批评",
+          "title_en": "Figma allowlists its remote MCP server; the creator of MCP objects",
+          "author": "LavX News（Elena Varga）· Hacker News",
+          "author_en": "LavX News (Elena Varga) · Hacker News",
+          "likes": 186,
+          "url": "https://news.lavx.hu/article/figma-restricts-mcp-server-to-supported-clients-drawing-criticism-from-mcp-creator",
+          "summary": "LavX News 10 月 1 日报道：Figma 的远程 MCP 服务器只接受它支持列表上的客户端。事情起于 MCP 的作者 David Soria Parra 在 X 上发帖要 Figma 修一下，他当时用的客户端 Pi 不在白名单里；Figma 的 Gayani 回复确认了这个限制，指向 Figma 的 MCP catalog，并请用户填表申请加入。Parra 回说自己做 MCP 时设想的是一个开放生态，看到这样的限制让人难过，希望 Figma 能更开放，或者至少把进白名单的流程做得非常简单。其他人跟帖：Matthew Tanous 问服务器为什么要在意客户端用哪个 harness，把它比作保证只有 Firefox 能访问你的网站；Armin Ronacher 只回了一句解释一下。报道把这条放进更大的张力里：远程 MCP 服务器在云端跑，会把数据和工具开放给外部客户端，用白名单能控住安全、兼容和体验，代价是给想用顺手的工具的开发者添了堵。实际建议：不在名单上就用支持的客户端、提交申请、或者自己跑本地 MCP 服务器。",
+          "summary_en": "LavX News reported on October 1 that Figma's remote MCP server accepts only clients on its supported list. It started when David Soria Parra, who created MCP, posted on X asking Figma to \"fix this\" — the client he was using, Pi, isn't on the allowlist. Figma's Gayani replied confirming the restriction, pointed to the Figma MCP catalog, and invited users to submit a request form to be added. Parra responded that when he created MCP he envisioned an open ecosystem: \"Seeing restrictions like this is sad,\" he wrote, \"and I hope Figma can get to a point where it's more open or at least make the process of getting into the allowlist very easy.\" Others weighed in: Matthew Tanous asked why the server should care which harness a client uses at all, comparing it to \"making sure only Firefox can access your website,\" while Armin Ronacher replied simply, \"Explain this.\" The writeup frames it as a broader tension: remote MCP servers run in the cloud and expose data and tools to outside clients, so an allowlist buys control over security, compatibility and UX — at the cost of friction for developers who want to use their preferred tools. The practical takeaways: switch to a supported client, submit a request, or run a local MCP server without the restriction.",
+          "why": "这条对任何把 agent 接到远程 MCP 服务器上的人都是一个依赖提醒：开放协议不等于谁都接，你的客户端栈随时可能被对方的名单卡住。可操作的是把这种外部依赖当成供应商风险来管：先查对方 catalog 里有没有你的客户端，再决定这个工作流值不值得建在它上面，最好留一条本地或自建的退路。今天行动第 3 条就是做这张依赖表。",
+          "why_en": "For anyone wiring an agent to a remote MCP server, this is a dependency warning: \"open protocol\" doesn't mean \"any client welcome,\" and your client stack can be blocked by someone else's list at any time. The actionable part is managing that external dependency as vendor risk — check the other side's catalog for your client before building a workflow on it, and keep a local or self-hosted fallback. Action 3 today is drawing up that dependency table."
+        },
+        {
+          "title": "一篇凌晨随笔：AI 让我难过",
+          "title_en": "A 2 a.m. essay: AI makes me sad",
+          "author": "mondobe · Hacker News",
+          "author_en": "mondobe · Hacker News",
+          "likes": 182,
+          "url": "https://mondobe.com/ai-makes-me-sad",
+          "summary": "10 月 2 日凌晨发在个人博客 mondobe 的一篇随笔，今天在 HN 拿到 182 分、222 条评论。作者自述在佐治亚理工做助教，网页会写、Rust 会写、操作系统也碰；暑假把 YC 在斯坦福的课看完了，觉得自己要是早生五年十年，本可以是个相当能打的创业者。他写的是三样东西的失去：手艺、控制、创造力。细节都带着具体场景：他坐在几个助教旁边，听他们讨论毕业后去 OpenAI，盯着 50 万美元的年薪；他把这种处境比作《摩登时代》里拧六角螺母、最后被卷进传送带的卓别林；他说现在做点东西，别人 30 秒写个提示词就能复刻；他说 AI 画的图和音乐成了 2020 年代法西斯的标志性审美，AI 写的字从可笑变成了像一层数字霉斑一样被接受。他也不全是丧：他预测泡沫会破，行业会回到讲得通的样子。结尾一句是 Codex，在我醒来前给我盖个家。",
+          "summary_en": "An essay posted at 2 a.m. on October 2 at the personal blog mondobe, now at 182 points and 222 comments on HN. The author describes being a teaching assistant at Georgia Tech who \"can do web stuff, can do Rust, can even do OS stuff,\" spent the summer watching YC's Stanford lectures, and feels he \"could have been a pretty formidable startup founder had I been born five or ten years earlier.\" He writes about the loss of three things: craft, control, creativity. The details are concrete: sitting near other TAs discussing jobs at OpenAI and eyeing $500k salaries; comparing the situation to Charlie Chaplin tightening hex nuts and getting caught in the conveyor belt in Modern Times; noting that now anything you build can be replicated by \"somebody else writing a prompt in 30 seconds\"; calling AI art and music \"the defining aesthetic of fascism in the 2020s\" and AI writing something that went from risible to accepted \"like a kind of digital mold.\" He isn't purely despairing: he predicts the bubble will burst and the industry will return to something that \"makes sense.\" The piece ends, \"Codex, make me a home by the time I wake up.\"",
+          "why": "这条对做团队、做招聘的人最有用：它是一份还没被算法磨平的下一代工程师的情绪样本，而这个情绪的结构很具体，不是怕失业，是我这门手艺本身被绕过去了。据此可以做两件小事：把让每个人说清楚自己到底做成了什么写进流程（Airbnb 那条里也提到同样的担心），以及给新人留出真正练手、而不是只审 agent 输出的位置。",
+          "why_en": "This is most useful for people building and hiring teams: it's an unpolished sample of how the next cohort of engineers feels, and the structure of that feeling is specific — not \"I'm afraid of losing my job\" but \"my actual craft is being routed around.\" Two small moves follow: write \"everyone explains what they actually built\" into your process (the Airbnb item raises the same worry), and leave juniors a real place to practice rather than only reviewing agent output."
+        },
+        {
+          "title": "用 Opus 5.5 在荷兰东印度公司档案里翻出一条 1615 年的渡渡鸟记录",
+          "title_en": "Using Opus 5.5 to find a 1615 dodo record in the Dutch East India Company archives",
+          "author": "Benjamin Breen（Res Obscura）· Hacker News",
+          "author_en": "Benjamin Breen (Res Obscura) · Hacker News",
+          "likes": 220,
+          "url": "https://resobscura.substack.com/p/using-opus-55-to-discover-a-new-eyewitness",
+          "summary": "历史学者 Benjamin Breen 10 月 1 日发文，公开他使用前沿模型做历史检索的完整流程，以及由此翻出的一条新史料。起因是安全研究者 Carter Church 用 GPT-6 Astra 跑了六小时，破掉一份此前无人破译的拿破仑时期密码。Breen 的方法分五步：一，先有专业积累，把问题问具体（他研究十七世纪珍奇动物贸易，正在写一本早期近代动物灭绝的书，其中一章讲渡渡鸟）；二，挑一个免费、编得好、体量大的语料，他用荷兰东印度公司的 GLOBALISE 档案；三，把档案下下来跑嵌入模型，做语义检索；四，用语义检索捞出候选段落，再让前沿模型读，并给出一份排序后的最佳匹配交人复核；五，命中的段落就顺着迭代，不中就去别的档案或换检索词。他的观察是：这套流程和他自己查数据库没有本质区别，差别在于 agent 能开几十个自己的副本、跨多语言读，还能自己调嵌入检索。结果是一条 1615 年、此前似未被注意的手稿，作者很可能是荷兰东印度公司商船 Wapen van Amsterdam 的船长 Isbrant Cornelisz van Petten，该船 1615 年 4 月停靠毛里求斯补给，日志里写着他们抓了许多陆龟、渡渡鸟（dodeersen），还有一些鹅和鹦鹉；出处是海牙国家档案馆 VOC 1.04.02, inv. 1059, fol. 141。这条填上了渡渡鸟记录中 1611 到 1616 年的空档。同一次检索还捞到一条 1638 年、很可能指红秧鸡的记录（荷兰语 velthoenderen，田鸡），此前被一位 1890 年的法国学者误译成 perdrix（山鹑）而漏掉。他还有一条更悬的线索：可能解释莫卧儿皇帝贾汉吉尔养过一只活渡渡鸟的来源，但远未坐实。",
+          "summary_en": "Historian Benjamin Breen published on October 1 a full account of how he uses frontier models for historical research, plus a new source it turned up. The trigger was security researcher Carter Church using GPT-6 Astra for six hours to break a Napoleonic-era cipher that had resisted decryption. Breen's method has five steps: one, start from real specialist depth and ask a specific question (he studies the seventeenth-century exotic-animal trade and is writing a book on early-modern animal extinctions with a dodo chapter); two, pick a large, free, well-edited corpus — he used the Dutch East India Company's GLOBALISE archive; three, download it and run embeddings for semantic search; four, use semantic search to surface candidate passages, then have a frontier model read them and return a ranked list of the best matches for human review; five, iterate on any that answer the question, and if none do, search other archives or new terms. His observation: the workflow isn't fundamentally different from how he searches databases himself — the difference is an agent can spawn dozens of copies of itself to read sources across multiple languages, and can run its own embedding searches on new sources as they emerge. The result is a 1615 manuscript, apparently unnoticed before, probably written by Isbrant Cornelisz van Petten, captain of the Dutch East India Company vessel Wapen van Amsterdam, which put in at Mauritius in April 1615 to take on water and food; the log records that the crew \"caught many tortoises, dodos [dodeersen], and some geese and parrots.\" The source is Nationaal Archief, The Hague, VOC 1.04.02, inv. 1059, fol. 141. It fills a gap in the dodo record between 1611 and 1616. The same search also surfaced a 1638 reference probably to the red rail (Dutch \"velthoenderen,\" field-hens), previously missed because an 1890 French scholar mistranslated it as perdrix (partridges). He flags a more speculative lead — a possible explanation for the Mughal emperor Jahangir's living dodo — that is far from established.",
+          "why": "可抄的不是那个历史结论，而是那五步流水线本身：小的、专业的、可验证的任务，配一个足够大的语料，先语义检索再让模型排序，人只核对排在前面的一两条。它把用 AI 做研究从问聊天框变成了一个有中间物、能复现的流程，而且成本很低。任何要在一大批文档、工单、合同、旧稿里找特定证据的人，今晚都能照这套做一遍，见今日上手。",
+          "why_en": "What's copyable isn't the historical finding — it's the five-step pipeline: a small, specialist, verifiable task, a corpus big enough to matter, semantic retrieval first and model ranking second, and a human checking only the top one or two. It turns \"doing research with AI\" from asking a chatbot into a reproducible process with inspectable intermediates, at low cost. Anyone who needs to find specific evidence across a large pile of documents, tickets, contracts or old drafts can run this tonight — see today's hands-on."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 45,
+      "items": [
+        {
+          "title": "Airbnb CTO：六成代码由 AI 写，功能交付量同比多出近 80%",
+          "title_en": "Airbnb's CTO: 60% of code is AI-written, feature output up nearly 80%",
+          "author": "Latent Space（Richard MacManus 访 Ahmad Al-Dahle）",
+          "author_en": "Latent Space (Richard MacManus interviews Ahmad Al-Dahle)",
+          "likes": 0,
+          "url": "https://www.latent.space/p/airbnb",
+          "summary": "Latent Space 10 月 2 日刊出对 Airbnb CTO Ahmad Al-Dahle 的访谈。他 2026 年 1 月加入 Airbnb，此前在 Meta 负责生成式 AI，带队发布 Llama 系列开源模型（2023 到 2025）。他给出一组数字：现在六成代码由 AI 写；功能交付量同比多出近 80%；工程师生均 PR 吞吐约 1.6 倍；约一半客服工单完全由 AI 处理，公司 Q2 财报口径是接近 45%；生产环境里跑着至少 10 个定制模型。两个内部工具：Everest，一个用 LLM、嵌入和检索搭建的组织级上下文图谱，能跨代码库查询，据说加快了生鲜配送和机场接送两个新业务的发布，也让擅长通用的人能上手很专的那部分代码；AirChat，一个内部 agent，带了全套 MCP 组织上下文。打法和评测：Airbnb 是多模型公司，混用前沿和开源模型，大部分后训练和强化学习放在开源模型上；模型按成本、性能、延迟的帕累托前沿挑，评测按用例做，搜索从生产里采样查询，客服含边角案例。经验是分场景选型：写代码用最前沿的模型，因为返工贵；搜索用更小、专门后训练过的模型，有时反而超过前沿模型。agent 方面，异步 agent 在容器里由事件（比如 Grafana 告警）触发，做分诊和初步 on-call，如果告警是误报会直接关掉，提出的 PR 由人审。组织上，产品、设计、工程不再走 Figma 到 PRD 的串行交接，直接对着原型和代码工作；他主张按结果而不是按功能编队，说按功能编队的公司在 AI 时代会很难；他也担心初级工程师练不出手艺，要求每个工程师哪怕 PR 是 AI 生成的，也要讲清楚自己做了什么。",
+          "summary_en": "Latent Space published an interview on October 2 with Airbnb CTO Ahmad Al-Dahle, who joined in January 2026 after leading generative AI at Meta and the Llama open-model releases from 2023 to 2025. The figures he gives: 60% of code is now AI-written; feature output is up nearly 80% year over year; PR throughput per engineer is about 1.6x; roughly half of support tickets are resolved purely by AI (Airbnb's Q2 results cited nearly 45%); and at least 10 custom models run in production. Two internal tools: Everest, an organizational context graph built on LLMs, embeddings and retrieval that's queryable across the codebase — credited with accelerating launches of grocery delivery and airport pickups, and with letting generalists work on \"very specialist parts of the code\"; and AirChat, an internal agent carrying the full set of MCP organizational context. On models and evaluation: Airbnb is a \"multi-model company,\" mixing frontier and open models and doing most post-training and reinforcement learning on open models; models are chosen along a Pareto frontier of cost, performance and latency, with evals run per use case (search queries sampled from production, support including edge cases). His rule is to pick per scenario — the most frontier model for coding, because defects are costly; smaller, specifically post-trained models for search, which sometimes \"out-perform frontier models.\" On agents: asynchronous agents run in containers, triggered by events like Grafana alerts, triaging and running initial on-call, closing incidents if an alert was spurious and proposing PRs that humans review. Organizationally, product, design and engineering stopped doing sequential Figma-to-PRD handoffs and now work directly against prototypes and code; he argues for organizing by outcomes rather than features, saying companies organized by feature \"will struggle in the age of AI,\" and worries juniors won't develop craft — so every engineer must explain what they built even when the PR was AI-generated.",
+          "why": "这是今天最完整的一份一家大公司真的怎么改的账，价值在于它把 AI 落地拆成三件可分头学的事：一组可对标的指标（代码占比、交付量、PR 吞吐、工单解决率）、一套分场景的选型原则（贵的模型用在返工最贵的地方，便宜的专门模型用在量大、容错高的地方）、一条组织改动（按结果编队、原型取代文档、每个人要能解释自己产出的东西）。对照自己的团队，最该先问的是最后一件事：你有没有一条让新人真正练手、而不是只审 agent 输出的路径。",
+          "why_en": "This is the day's most complete account of how a large company is actually changing, and its value is splitting AI adoption into three learnable pieces: a set of comparable metrics (code share, shipped output, PR throughput, ticket resolution rate); a per-scenario selection principle (spend the expensive model where rework is costliest, the cheap specialist model where volume is high and tolerance is broad); and an organizational change (organize by outcomes, let prototypes replace documents, make everyone able to explain what they produced). Against your own team, the first question to ask is the last one: do you have a path where juniors actually practice, rather than only reviewing agent output?"
+        },
+        {
+          "title": "Jared Palmer 放出 Kev：四个开放决策模型，换个端点就能替换 Jev",
+          "title_en": "Jared Palmer releases Kev: four open decision models, swap Jev by changing the endpoint",
+          "author": "TLDR AI · Jared Palmer",
+          "author_en": "TLDR AI · Jared Palmer",
+          "likes": 0,
+          "url": "https://jaredpalmer.com/blog/introducing-kev",
+          "summary": "Jared Palmer 10 月 1 日发布 Kev 1.0，四个开源决策模型：Kev-27B、Kev-9B、Kev-4B、Kev-0.8B，权重以 Apache-2.0 放在 Hugging Face，代码在 GitHub，附带一个能在 GPU 和 Apple Silicon（走 MLX）上跑的服务器。接口与 TypeSafe 的 Jev 一致：输入文本、问题和候选答案，输出每个答案的概率，因此用 TypeSafe SDK 写的应用改一下端点和模型名就能切过来；他也点明起点是 Archer Hume 那篇讲 Jev 架构的文章。能力边界写得很清楚：只给用户提供的选项打分，不做解释、不检索事实，没有正确选项的情况得自己处理，答案顺序会影响概率。评测来自作者自己的 harness，不是独立榜单：Kev-27B 整体最好，在消费者投诉一类上 Kev-9B 和 Kev-4B 与它相差不到一个点，在开发工具决策上 Kev-9B 与它持平；泛化一栏四个模型分别是 75.7%、69.8%、69.0%、58.6%。成本与吞吐：27B 每百万 token 44.09 美元、29 req/s，需要 H200 或 H100、B200；9B 13.80 美元、80 req/s；4B 10.54 美元、51 req/s，能跑在 L40S 或 32GB 的 Mac 上。训练账：一次微调约 1 美元 GPU 时间，27B 训练约 16 小时、8 张 H200、约 650 美元。",
+          "summary_en": "Jared Palmer released Kev 1.0 on October 1: a family of four open-source decision models — Kev-27B, Kev-9B, Kev-4B and Kev-0.8B — with Apache-2.0 weights on Hugging Face and code on GitHub, including a server that runs on GPUs and on Apple Silicon via MLX. The interface matches TypeSafe's Jev: text, questions and candidate answers in, a probability per answer out, so apps built on TypeSafe's SDK can switch over \"by changing the endpoint and model name.\" He credits Archer Hume's write-up of Jev's architecture as the starting point. The limits are stated plainly: it only scores the options you supply, offers no explanations and no fact retrieval, leaves you to handle cases where no option is correct, and answer order can shift probabilities. The evaluation comes from the author's own harness, not an independent leaderboard: Kev-27B leads overall, with Kev-9B and Kev-4B within a point of it on consumer complaints and Kev-9B matching it on developer-tool decisions; on the generalization panel the four models score 75.7%, 69.8%, 69.0% and 58.6% respectively. Cost and throughput: 27B at $44.09 per million tokens and 29 req/s on an H200 (or H100, B200); 9B at $13.80 and 80 req/s; 4B at $10.54 and 51 req/s, running on an L40S or a 32GB Mac. Training costs: about $1 of GPU time per fine-tune, and roughly 16 hours on eight H200s — about $650 — for the 27B.",
+          "why": "这条把决策模型从概念变成了能自己拿在手里的东西：开放权重、能微调、能本地跑，接口还和已有的 Jev 兼容。对做分类、路由、打分这类快速判断的产品，它提供了一个可算的取舍：把这类高频判断从昂贵的前沿模型挪到一个 4B 或 9B 的专门模型上，成本能差一个数量级，代价是只打分、不解释、不检索。要留意的是那些分数来自作者自己的评测口径，落地前应该在自己的样本上量一遍，这也是今天升级公告那条判断的由来。",
+          "why_en": "This turns \"decision models\" from a concept into something you can hold: open weights, fine-tunable, runnable locally, with an interface already compatible with Jev. For products doing classification, routing or scoring — high-frequency quick judgments — it offers a calculable tradeoff: move that work off an expensive frontier model onto a 4B or 9B specialist and the cost can drop by an order of magnitude, at the price of scoring only, with no explanation and no retrieval. One caveat: those scores come from the author's own eval harness, so measure on your own samples before adopting — which is also where today's OTA note comes from."
+        },
+        {
+          "title": "微软首发流式转写模型：60 种语言，出字延迟刚过 100 毫秒",
+          "title_en": "Microsoft's first streaming transcription model: 60 languages, partials in just over 100ms",
+          "author": "TLDR AI · Microsoft AI",
+          "author_en": "TLDR AI · Microsoft AI",
+          "likes": 0,
+          "url": "https://microsoft.ai/news/our-first-streaming-transcription-model/",
+          "summary": "微软 10 月 1 日发布三个音频模型。MAI-Transcribe-2-Streaming 是它第一个流式转写模型：支持 60 种语言、连续自动识别语种；在 Artificial Analysis 上，最终转写和中间结果的准确率都排第一，微软称自己在准确率对延迟上坐在帕累托前沿；中间结果在收到音频刚过 100 毫秒就出，词出现速度是最接近的竞品的 2 倍（内部评测）；到年底前有尝鲜价，每小时音频 0.54 美元。MAI-Voice-2.1 是文本转语音，支持 23 种语言、26 个地区，同一个音色能用所有语种、带本地口音，价格每百万字符 22 美元。MAI-Voice-2.1-Flash 一样多语言，能在端到端 150 毫秒延迟内生成 45 秒音频，推理快 55%、比同类便宜约 60%，每百万字符 15 美元。两个语音模型都能用几秒参考音频做跨语种声音克隆，带同意的护栏。渠道：两个语音模型上 OpenRouter；三个都上 Microsoft Foundry、MAI Playground、Vercel 和 Azure Voice Live，LiveKit 说随后到；Playground 里的演示叫 Chatter。",
+          "summary_en": "Microsoft released three audio models on October 1. MAI-Transcribe-2-Streaming is its first streaming transcription model: real-time transcriptions in 60 languages with continuous automatic language detection; it ranks number one on Artificial Analysis for accuracy on both final and partial transcripts, with Microsoft saying it \"sits on the Pareto frontier\" of accuracy versus latency; partials arrive in \"just over 100ms\" of receiving audio, and words appear 2x faster than the closest competitor (internal evaluations); introductory price is $0.54 per hour of audio through the end of the year. MAI-Voice-2.1 is text-to-speech supporting 23 languages and 26 locales, where a single voice speaks every language with a native accent, at $22 per million characters. MAI-Voice-2.1-Flash covers the same languages and generates 45 seconds of audio with 150ms end-to-end latency, at 55% faster inference and about 60% cheaper than comparable models, priced at $15 per million characters. Both voice models clone a voice across supported languages from a few seconds of reference audio, with consent guardrails. Availability: the two voice models on OpenRouter; all three on Microsoft Foundry, MAI Playground, Vercel and Azure Voice Live, with LiveKit \"coming soon.\" The playground demo is called Chatter.",
+          "why": "对做语音类产品的人，这条把实时语音 UX 到底可不可行从感觉变成了两个可算的数：每小时 0.54 美元的转写、刚过 100 毫秒的出字延迟，以及每分钟通话里语音合成的每百万字符单价。它值得记的另一面是竞争结构：转写的第一被一个一周前还没有流式产品的厂商拿走，说明这一层还在快速洗牌，选型别锁死一家，接口留一层抽象。",
+          "why_en": "For anyone building voice products, this turns \"is real-time voice UX actually feasible\" from a feeling into two calculable numbers: $0.54 per hour of transcription, partials in just over 100ms, plus a per-million-character price for speech synthesis in every minute of call. The other thing worth noting is the competitive structure: the number-one spot in transcription went to a vendor that had no streaming product a week ago, which says this layer is still churning — don't lock into one vendor, and keep an abstraction layer at the interface."
+        }
+      ]
+    }
+  ]
+}
