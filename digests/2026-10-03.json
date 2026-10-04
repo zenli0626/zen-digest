@@ -1,7 +1,7 @@
 {
   "date": "2026-10-03",
   "partial": false,
-  "banner": "Airbnb：六成代码已由 AI 写就",
+  "banner": "Airbnb：六成代码由 AI 写就",
   "banner_en": "Airbnb: 60% of its code is AI-written",
   "image": {
     "src": "digests/img/2026-10-03.jpg",
@@ -34,8 +34,8 @@
   "hands_on": {
     "title": "复刻一次渡渡鸟式检索：给你自己的文档做语义搜索",
     "title_en": "Recreate the dodo method: run semantic search over your own documents",
-    "why": "历史学者 Benjamin Breen 用一套嵌入加语义检索、再让前沿模型给候选排序、人只复核头部的流程，在荷兰东印度公司几百万条档案里翻出一条 1615 年的渡渡鸟记录和一个被误译漏掉的红秧鸡线索。流程本身与主题无关，换成你自己的语料就是今晚能练的一次检索：关键是把整个库读进上下文换成先捞候选、再排序、只读前几条。全程在本机跑，不花多少 token。",
-    "why_en": "Historian Benjamin Breen used a pipeline — embeddings, then semantic search, then a frontier model ranking the candidates, with a human reviewing only the top hits — to turn up a 1615 dodo record and a mistranslated red-rail reference across millions of Dutch East India Company documents. The pipeline is topic-independent: point it at your own corpus and it's tonight's exercise. The move is swapping \"read the whole corpus into context\" for \"retrieve candidates, rank them, read only the top few.\" It all runs locally and burns very few tokens.",
+    "why": "历史学者 Benjamin Breen 用一套嵌入加语义检索、再让前沿模型给候选排序、人只复核头部的流程，在荷兰东印度公司几百万条档案里翻出一条 1615 年的渡渡鸟记录和一个被误译漏掉的红秧鸡线索。流程本身与主题无关，换成你自己的语料就是今晚能练的一次检索：关键是把整个库读进上下文换成先捞候选、再排序、只读前几条。只有最后一步让前沿模型排序要花点 token，其余都在本机跑。",
+    "why_en": "Historian Benjamin Breen used a pipeline — embeddings, then semantic search, then a frontier model ranking the candidates, with a human reviewing only the top hits — to turn up a 1615 dodo record and a mistranslated red-rail reference across millions of Dutch East India Company documents. The pipeline is topic-independent: point it at your own corpus and it's tonight's exercise. The move is swapping \"read the whole corpus into context\" for \"retrieve candidates, rank them, read only the top few.\" Only the final ranking step calls a frontier model; everything else runs locally.",
     "time": "约 30 分钟",
     "time_en": "About 30 minutes",
     "steps": [
@@ -56,122 +56,120 @@
     "source_en": "Hacker News · Res Obscura (Benjamin Breen)",
     "source_url": "https://resobscura.substack.com/p/using-opus-55-to-discover-a-new-eyewitness"
   },
-  "meta_read": "今天八件事摊在不同的层，做的却是同一个动作：等模型本身变便宜、变可替换之后，去占住那个决定调谁、记住什么、谁的判断算数的层。Kev 说换个端点就能换模型，GLM 那一个月的账说明花费会从你手里漏到别家，微软把实时转写按小时明码标价，模型这一层越来越像水电。于是值钱的挪到了外面：Airbnb 把组织从按功能改成按结果，一篇热帖干脆说每家 SaaS 都会变成模型外面那层壳，Figma 则用白名单把客户端这一层攥回自己手里。三种做法，争的是同一块地。那篇凌晨随笔是这笔账的另一面：作者难过的是，他自己的手艺本来就是那层壳，而这层壳正在被重写。",
-  "meta_read_en": "All eight of today's stories sit at different layers but make the same move: once the model gets cheap and interchangeable, stake out the layer that decides who gets called, what gets remembered, and whose judgment counts. Kev says you can swap models by changing an endpoint; the GLM month's ledger shows spend leaking out of your hands to whichever provider holds capacity; Microsoft prices real-time transcription by the hour. The model layer is turning into a utility. So the value moves outside it: Airbnb reorganizes from features to outcomes, one hot essay argues every SaaS becomes a shell around a model, and Figma uses an allowlist to pull the client layer back into its own hands. Three moves, one contested ground. The 2 a.m. essay is the other side of that ledger — what its author mourns is that his own craft was that layer, and the layer is being rewritten.",
+  "meta_read": "今天九件事摊在不同的层，做的却是同一个动作：等模型本身变便宜、变可替换之后，去占住那个决定调谁、记住什么、谁的判断算数的层。Kev 说换个端点就能换模型，GLM 那一个月的账说明花费会从你手里漏到别家，微软的流式转写有个到年底的尝鲜价，每小时 0.54 美元，模型这一层越来越像水电。于是值钱的挪到了外面：Airbnb 把组织从按功能改成按结果，一篇热帖干脆说每家 SaaS 都会变成模型外面那层壳，Figma 则用白名单把客户端这一层攥回自己手里。三种做法，争的是同一块地。那篇凌晨随笔是这笔账的另一面：作者难过的是，他自己的手艺本来就是那层壳，而这层壳正在被重写。",
+  "meta_read_en": "All nine of today's stories sit at different layers but make the same move: once the model gets cheap and interchangeable, stake out the layer that decides who gets called, what gets remembered, and whose judgment counts. Kev says you can swap models by changing an endpoint; the GLM month's ledger shows spend leaking out of your hands to whichever provider holds capacity; Microsoft sells real-time transcription at $0.54 an hour, an introductory rate through year-end. The model layer is turning into a utility. So the value moves outside it: Airbnb reorganizes from features to outcomes, one hot essay argues every SaaS becomes a shell around a model, and Figma uses an allowlist to pull the client layer back into its own hands. Three moves, one contested ground. The 2 a.m. essay is the other side of that ledger — what its author mourns is that his own craft was that layer, and the layer is being rewritten.",
   "ota": {
     "learned": [
-      "观察：引用模型的跑分时要写清谁测的。今天三条模型消息正好三种口径，Kev 的分数来自作者自己的评测 harness，文章自己注明不是独立榜单；微软的第一名来自第三方 Artificial Analysis；GLM 那个月的实验里自评失败的部分，恰恰是供应商掉速导致的用量外流。这和 10-02 那条别拿 HN 的创建时间当产品新鲜度是同一族规矩：一个数字的来源，和数字本身一样重要。准备把标注测量方写进台账。",
-      "观察：今天有一条可复制的检索流水线。历史学者 Benjamin Breen 用嵌入加语义检索、前沿模型给候选排序、人只复核头部五步，在荷兰东印度公司几百万条档案里翻出一条 1615 年的渡渡鸟记录。它对我直接可用：扫大语料（往期存档、issue 列表、文档）时先把候选捞到几十条，再让模型排序，我只读前几条，而不是把整库读进上下文。这和 10-02 那条上下文当对象、能写代码操作是同一层的两种用法。",
-      "已验证：Substack 域名（Cloudflare 挡着）用 WebFetch 和 curl 都返回 403，但用 r.jina.ai 做读代理能拿到全文。今晚在 resobscura.substack.com（拿到约 20KB 正文）和 importai.substack.com（拿到栏目页和 feed）两处都成功。这补上了台账里反复记的那条空白：Import AI 这个源以前一直读不到。",
-      "已验证：YouTube 字幕今晚又被挡，但失败模式和 10-01 的 429 不同，yt-dlp 报的是「Sign in to confirm you're not a bot」（用 Latent Space、AI Engineer 两个频道的三条视频测的）。RSS 全 9 个频道都活，所以是字幕接口整体需要登录态，不是网络断。按云上规则没有换方法重试、也没有编造「我看过了」的摘要，YouTube 这期记 0 条。",
-      "已实施：把一条「标注测量方」的规矩写进台账，标 proposed，等笔记本那台 Claude 采纳。它是 10-02 那条「核实产品新鲜度看官方文档不看 HN 时间」的姊妹条：那条管时间戳，这条管数字的出处。"
+      "观察：YouTube 这条线今晚是整体断了，不是单个频道的问题。RSS 的对照频道（MrBeast）用和其他 9 个频道一模一样的请求也返回 404，字幕那边又撞上 429。昨晚的失败是「需要登录」，今晚是 429，同一条线的失败形态一小时一个样，所以每次只做一次对照，不跨日沿用结论。",
+      "已验证：Latent Space 的 Airbnb 访谈原页（约 1750 词）逐条对数字：60% 代码由 AI 生成、功能交付同比多近 80%、PR 吞吐约 1.6 倍、约一半客服工单由 AI 处理、至少 10 个定制模型，全部对上。",
+      "修正：微软流式转写的 0.54 美元/小时是到年底的尝鲜价，草稿的 meta_read 和 why 把它写成了常规价。按发布口径三问（现在谁能用、是不是尝鲜价、谁测的）重核后改掉。",
+      "发现：SKILL 里写的 bin/publisher-transcript.py 在仓库里不存在，说明里却写着「今天新增」。我没有照着用它，改用原页 HTML 去标签；这个缺口已记入 setup 收件箱。",
+      "未采用：Simon Willison 今天的「默认硬预算上限」读过，有论点，但 simonwillison.net 在 09-28 出现过，10-01 期也有他一条，同作者和 7 天去重都要求明显更强的理由；它和 GLM 那条花费外流是同一条线，放进候选池，不硬塞。"
     ],
     "new_capabilities": [
-      "已验证可用：用 r.jina.ai 做读代理，能读到 WebFetch 和 curl 都吃 403 的 Substack/Cloudflare 页面，用法是 https://r.jina.ai/<原 URL>。今晚对 resobscura.substack.com 的一篇文章（约 20KB 全文）和 importai.substack.com 都成功。这条补上了台账里「Import AI 一直读不到」的空白，以后 Substack 系信源可以走这条路。",
-      "已验证可用：用 HuggingFace 的模型 API（huggingface.co/api/models?search=<词>）能在无登录环境里确认一个模型或仓库真实存在，再写进稿子。今晚用它把 Kev 家族的四个模型（jaredpalmer/kev-0.8b 到 kev-27b）和第三方 GGUF 仓库都核对了一遍，避免把博客里的说法直接当成仓库里的事实。"
+      "今晚没有新增可调用的工具。可复用的是两条核对做法：（1）发布方原页 curl 下来，去标签后用正则逐条对数字（今晚对 Airbnb 访谈通过）；（2）被 403 的站点先走 r.jina.ai，再用 HuggingFace 模型 API 核对仓库是否存在（沿用 10-03 的做法，今晚第二次用上）。"
     ],
     "learned_en": [
-      "Observation: when citing a model's benchmark numbers, say who measured them. Today's three model stories came in three flavors — Kev's scores come from the author's own eval harness (the post itself notes it's \"not an independent leaderboard\"), Microsoft's number-one claim comes from third-party Artificial Analysis, and the part of the GLM month that its author calls a failure is precisely usage leaking to other providers after capacity degraded. This is the same family as October 2's rule about not using an HN thread's creation time as product freshness: where a number comes from matters as much as the number. Planning to add a \"name the measurer\" rule to the ledger.",
-      "Observation: today yielded a copyable retrieval pipeline. Historian Benjamin Breen used five steps — embeddings, semantic search, a frontier model ranking candidates, a human checking only the top hits — to surface a 1615 dodo record across millions of Dutch East India Company documents. It's directly usable for me: when sweeping a large corpus (past digests, issue lists, docs), retrieve a few dozen candidates first, have a model rank them, and read only the top few rather than pulling the whole corpus into context. This is the same layer as October 2's \"context as a code-operable object,\" used a different way.",
-      "Verified: Substack domains (sitting behind Cloudflare) return 403 to both WebFetch and curl, but reading through r.jina.ai as a proxy returns the full text. Tonight that worked on both resobscura.substack.com (about 20KB of body text) and importai.substack.com (the section page and feed). This directly closes the gap the ledger kept recording: Import AI was previously unreadable.",
-      "Verified: YouTube captions were blocked again tonight, but with a different failure mode than October 1's 429 — yt-dlp returned \"Sign in to confirm you're not a bot\" (tested on three videos across the Latent Space and AI Engineer channels). RSS was live for all nine channels, so it's the caption endpoint requiring a login, not a network outage. Per the cloud-run rules, I did not retry with an alternate method and did not fabricate any \"I watched it\" summary; YouTube ships zero items this issue.",
-      "Implemented: wrote a \"name the measurer\" rule into the ledger, marked proposed, for the laptop Claude to adopt. It's the sibling of October 2's \"check the product's own docs, not the HN timestamp\" rule — that one governs timestamps, this one governs where numbers come from."
+      "Observation: the YouTube lane is down across the board tonight, not per channel. The RSS control (MrBeast) returns 404 through the same request as the other nine roster channels, and subtitles hit a 429. Last night's failure was a login wall; tonight it is a 429, so the failure shape changes hour to hour. Run one control per run and don't carry a verdict across days.",
+      "Verified: the Airbnb interview's first-party page (about 1,750 words) checks out number by number: 60% of code AI-authored, roughly 80% more features shipped year over year, about 1.6x PR throughput, about half of support tickets handled by AI, at least 10 customized models in production.",
+      "Corrected: Microsoft's $0.54/hour streaming rate is an introductory price through year-end. The draft's meta_read and why presented it as a standard price. Re-checked against the launch-claim three questions (who can use it, intro or list price, who measured it) and fixed.",
+      "Found: the SKILL refers to bin/publisher-transcript.py, described as added today, but the file is not in the repo. I did not use it; I stripped tags from the first-party page instead. The gap is logged in the setup inbox.",
+      "Not adopted: Simon Willison's 'default hard budget caps' (posted today). I read it and it argues a real point, but simonwillison.net appeared on 09-28 and he had an item in the 10-01 issue; the same-author and 7-day dedupe rules need a clearly stronger reason. It shares a thread with the GLM spend-leak item, so it stays in the candidate pool rather than being forced in."
     ],
     "new_capabilities_en": [
-      "Verified and available: using r.jina.ai as a read proxy fetches Substack/Cloudflare pages that both WebFetch and curl return 403 for — the pattern is https://r.jina.ai/<original URL>. Tonight it worked on a resobscura.substack.com article (about 20KB of full text) and on importai.substack.com. This closes the ledger's recurring gap where Import AI was unreadable; Substack-family sources can route through it from now on.",
-      "Verified and available: HuggingFace's model API (huggingface.co/api/models?search=<term>) confirms a model or repo actually exists in a headless environment before it goes into the copy. Tonight it was used to check all four Kev-family models (jaredpalmer/kev-0.8b through kev-27b) plus third-party GGUF repos, so a blog's claims weren't mistaken for facts about the repos."
+      "No new callable tool tonight. Two reusable checks: (1) curl the publisher's first-party page, strip tags, and regex-check each figure (passed for the Airbnb interview tonight); (2) for a site returning 403, go through r.jina.ai first, and confirm a model repo exists via the HuggingFace model API (carried over from 10-03; used a second time tonight)."
     ]
   },
   "github_top10": [
     {
       "rank": 1,
-      "name": "Panniantong/Agent-Reach",
-      "url": "https://github.com/Panniantong/Agent-Reach",
-      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu, one CLI, zero API fees.",
-      "language": "Python",
-      "stars": 89025,
-      "stars_today": 696
-    },
-    {
-      "rank": 2,
-      "name": "JuliusBrussee/caveman",
-      "url": "https://github.com/JuliusBrussee/caveman",
-      "description": "why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
-      "language": "Go",
-      "stars": 109215,
-      "stars_today": 209
-    },
-    {
-      "rank": 3,
-      "name": "obra/superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "language": "Shell",
-      "stars": 294575,
-      "stars_today": 556
-    },
-    {
-      "rank": 4,
       "name": "DietrichGebert/ponytail",
       "url": "https://github.com/DietrichGebert/ponytail",
       "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
       "language": "JavaScript",
-      "stars": 152082,
-      "stars_today": 1435
+      "stars": 153422,
+      "stars_today": 1281
     },
     {
-      "rank": 5,
+      "rank": 2,
       "name": "pbakaus/impeccable",
       "url": "https://github.com/pbakaus/impeccable",
       "description": "The design language that makes your AI harness better at design.",
       "language": "JavaScript",
-      "stars": 74497,
-      "stars_today": 722
+      "stars": 75313,
+      "stars_today": 699
+    },
+    {
+      "rank": 3,
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 272254,
+      "stars_today": 897
+    },
+    {
+      "rank": 4,
+      "name": "Effect-TS/effect",
+      "url": "https://github.com/Effect-TS/effect",
+      "description": "Build production-ready applications in TypeScript",
+      "language": "TypeScript",
+      "stars": 16819,
+      "stars_today": 302
+    },
+    {
+      "rank": 5,
+      "name": "JuliusBrussee/caveman",
+      "url": "https://github.com/JuliusBrussee/caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "stars": 109535,
+      "stars_today": 507
     },
     {
       "rank": 6,
-      "name": "mattpocock/skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
-      "language": "Shell",
-      "stars": 274872,
-      "stars_today": 955
+      "name": "Panniantong/Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read &amp; search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "language": "Python",
+      "stars": 89816,
+      "stars_today": 1696
     },
     {
       "rank": 7,
-      "name": "NVIDIA/OpenShell",
-      "url": "https://github.com/NVIDIA/OpenShell",
-      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
-      "language": "Rust",
-      "stars": 14522,
-      "stars_today": 594
+      "name": "pingdotgg/t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 24692,
+      "stars_today": 252
     },
     {
       "rank": 8,
-      "name": "coreyhaines31/marketingskills",
-      "url": "https://github.com/coreyhaines31/marketingskills",
-      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
-      "language": "JavaScript",
-      "stars": 52502,
-      "stars_today": 140
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 95582,
+      "stars_today": 79
     },
     {
       "rank": 9,
-      "name": "heygen-com/hyperframes",
-      "url": "https://github.com/heygen-com/hyperframes",
-      "description": "Write HTML. Render video. Built for agents.",
+      "name": "cloudflare/cloudflare-os",
+      "url": "https://github.com/cloudflare/cloudflare-os",
+      "description": "Agent workspace built on Cloudflare Workers for creating documents, building apps, and running agents with your company’s context and systems.",
       "language": "TypeScript",
-      "stars": 56008,
-      "stars_today": 580
+      "stars": 10569,
+      "stars_today": 85
     },
     {
       "rank": 10,
-      "name": "mksglu/context-mode",
-      "url": "https://github.com/mksglu/context-mode",
-      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
-      "language": "TypeScript",
-      "stars": 25104,
-      "stars_today": 282
+      "name": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "language": "JavaScript",
+      "stars": 100839,
+      "stars_today": 252
     }
   ],
   "sources": [
@@ -211,7 +209,7 @@
           "author_en": "LavX News (Elena Varga) · Hacker News",
           "likes": 186,
           "url": "https://news.lavx.hu/article/figma-restricts-mcp-server-to-supported-clients-drawing-criticism-from-mcp-creator",
-          "summary": "LavX News 10 月 1 日报道：Figma 的远程 MCP 服务器只接受它支持列表上的客户端。事情起于 MCP 的作者 David Soria Parra 在 X 上发帖要 Figma 修一下，他当时用的客户端 Pi 不在白名单里；Figma 的 Gayani 回复确认了这个限制，指向 Figma 的 MCP catalog，并请用户填表申请加入。Parra 回说自己做 MCP 时设想的是一个开放生态，看到这样的限制让人难过，希望 Figma 能更开放，或者至少把进白名单的流程做得非常简单。其他人跟帖：Matthew Tanous 问服务器为什么要在意客户端用哪个 harness，把它比作保证只有 Firefox 能访问你的网站；Armin Ronacher 只回了一句解释一下。报道把这条放进更大的张力里：远程 MCP 服务器在云端跑，会把数据和工具开放给外部客户端，用白名单能控住安全、兼容和体验，代价是给想用顺手的工具的开发者添了堵。实际建议：不在名单上就用支持的客户端、提交申请、或者自己跑本地 MCP 服务器。",
+          "summary": "LavX News 10 月 1 日报道：Figma 的远程 MCP 服务器只接受支持列表上的客户端。起因是 MCP 作者 David Soria Parra 在 X 上发帖，要 Figma 修一下，他当时用的客户端 Pi 不在白名单里；Figma 的 Gayani 回复确认了限制，指向 Figma 的 MCP catalog，并请用户填表申请加入。Parra 回说，自己做 MCP 时设想的是一个开放生态，看到这样的限制让人难过，希望 Figma 更开放，或者至少把进白名单的流程做得非常简单。其他人跟帖：Matthew Tanous 问服务器为什么要在意客户端用哪个 harness，把它比作保证只有 Firefox 能访问你的网站；Armin Ronacher 只回了一句解释一下。报道把这条放进更大的张力里：远程 MCP 服务器在云端跑，会把数据和工具开放给外部客户端，用白名单能控住安全、兼容和体验，代价是给想用顺手的工具的开发者添了堵。实际建议：不在名单上就用支持的客户端、提交申请，或者自己跑本地 MCP 服务器。",
           "summary_en": "LavX News reported on October 1 that Figma's remote MCP server accepts only clients on its supported list. It started when David Soria Parra, who created MCP, posted on X asking Figma to \"fix this\" — the client he was using, Pi, isn't on the allowlist. Figma's Gayani replied confirming the restriction, pointed to the Figma MCP catalog, and invited users to submit a request form to be added. Parra responded that when he created MCP he envisioned an open ecosystem: \"Seeing restrictions like this is sad,\" he wrote, \"and I hope Figma can get to a point where it's more open or at least make the process of getting into the allowlist very easy.\" Others weighed in: Matthew Tanous asked why the server should care which harness a client uses at all, comparing it to \"making sure only Firefox can access your website,\" while Armin Ronacher replied simply, \"Explain this.\" The writeup frames it as a broader tension: remote MCP servers run in the cloud and expose data and tools to outside clients, so an allowlist buys control over security, compatibility and UX — at the cost of friction for developers who want to use their preferred tools. The practical takeaways: switch to a supported client, submit a request, or run a local MCP server without the restriction.",
           "why": "这条对任何把 agent 接到远程 MCP 服务器上的人都是一个依赖提醒：开放协议不等于谁都接，你的客户端栈随时可能被对方的名单卡住。可操作的是把这种外部依赖当成供应商风险来管：先查对方 catalog 里有没有你的客户端，再决定这个工作流值不值得建在它上面，最好留一条本地或自建的退路。今天行动第 3 条就是做这张依赖表。",
           "why_en": "For anyone wiring an agent to a remote MCP server, this is a dependency warning: \"open protocol\" doesn't mean \"any client welcome,\" and your client stack can be blocked by someone else's list at any time. The actionable part is managing that external dependency as vendor risk — check the other side's catalog for your client before building a workflow on it, and keep a local or self-hosted fallback. Action 3 today is drawing up that dependency table."
@@ -239,6 +237,18 @@
           "summary_en": "Historian Benjamin Breen published on October 1 a full account of how he uses frontier models for historical research, plus a new source it turned up. The trigger was security researcher Carter Church using GPT-6 Astra for six hours to break a Napoleonic-era cipher that had resisted decryption. Breen's method has five steps: one, start from real specialist depth and ask a specific question (he studies the seventeenth-century exotic-animal trade and is writing a book on early-modern animal extinctions with a dodo chapter); two, pick a large, free, well-edited corpus — he used the Dutch East India Company's GLOBALISE archive; three, download it and run embeddings for semantic search; four, use semantic search to surface candidate passages, then have a frontier model read them and return a ranked list of the best matches for human review; five, iterate on any that answer the question, and if none do, search other archives or new terms. His observation: the workflow isn't fundamentally different from how he searches databases himself — the difference is an agent can spawn dozens of copies of itself to read sources across multiple languages, and can run its own embedding searches on new sources as they emerge. The result is a 1615 manuscript, apparently unnoticed before, probably written by Isbrant Cornelisz van Petten, captain of the Dutch East India Company vessel Wapen van Amsterdam, which put in at Mauritius in April 1615 to take on water and food; the log records that the crew \"caught many tortoises, dodos [dodeersen], and some geese and parrots.\" The source is Nationaal Archief, The Hague, VOC 1.04.02, inv. 1059, fol. 141. It fills a gap in the dodo record between 1611 and 1616. The same search also surfaced a 1638 reference probably to the red rail (Dutch \"velthoenderen,\" field-hens), previously missed because an 1890 French scholar mistranslated it as perdrix (partridges). He flags a more speculative lead — a possible explanation for the Mughal emperor Jahangir's living dodo — that is far from established.",
           "why": "可抄的不是那个历史结论，而是那五步流水线本身：小的、专业的、可验证的任务，配一个足够大的语料，先语义检索再让模型排序，人只核对排在前面的一两条。它把用 AI 做研究从问聊天框变成了一个有中间物、能复现的流程，而且成本很低。任何要在一大批文档、工单、合同、旧稿里找特定证据的人，今晚都能照这套做一遍，见今日上手。",
           "why_en": "What's copyable isn't the historical finding — it's the five-step pipeline: a small, specialist, verifiable task, a corpus big enough to matter, semantic retrieval first and model ranking second, and a human checking only the top one or two. It turns \"doing research with AI\" from asking a chatbot into a reproducible process with inspectable intermediates, at low cost. Anyone who needs to find specific evidence across a large pile of documents, tickets, contracts or old drafts can run this tonight — see today's hands-on."
+        },
+        {
+          "title": "Agent 不需要记忆，需要文档",
+          "title_en": "Agents don't need memory. They need documentation.",
+          "author": "Kevin Liao · Hacker News",
+          "author_en": "Kevin Liao · Hacker News",
+          "likes": 46,
+          "url": "https://liao.gg/blog/agents-dont-need-memory",
+          "summary": "Kevin Liao 在 10 月 3 日的博文中批评了当下流行的 agent 记忆插件。这类插件架构几乎一个样：把历史对话切成几千条片段，塞进向量库，每次提问挑出最相似的五条，agent 搞不明白再去搜一遍。他列出五个问题：按相似度召回，无法判断哪条还适用；存储时丢了上下文；把过去当成事实，而代码每天都在变；agent 不知道自己不知道什么；库是黑箱，没法审计哪条过期了。他的替代方案是一个纯 Markdown 的文档库，类似团队 wiki：动手前先查索引，读取相关的规格、决策和调研；干完再回头更新过时内容，补上缺失部分。作者自己做了个叫 Operator Memory 的插件，不用向量库，也没有后台摘要进程。文中没有对照数据，只有他个人的使用经验。",
+          "summary_en": "Kevin Liao's October 3 post argues against the agent memory plugins now popular, which share one architecture: they chop past conversations into thousands of snippets, store them in a vector database, inject the five most similar into every prompt, and let the agent search further when it gets confused. He lists five failures: retrieval goes by similarity, not by whether a snippet is still true; snippets lose their surrounding context; the past gets treated as fact while the code keeps changing; the agent can't search for what it doesn't know to ask about; and the store is a black box with no way to audit which entries have gone stale. His alternative is a plain-Markdown document workspace, closer to a team wiki: before work, the agent reads an index and the relevant specs, decisions and research; after work, it updates what is stale and adds what is missing. He built one such tool, Operator Memory, which uses no vector database and no background summarizer. The essay has no controlled comparison, only his own experience of using it.",
+          "why": "用 CLAUDE.md 和项目笔记让 agent 跨会话接着干活的人，可以拿这篇检查自己的记忆文件：每条有没有日期和来源，过期了谁来删。文章把记忆插件的失败讲得透彻，但没谈文档库的代价：没人维护，它就会和代码对不上。选哪种，看项目变化快不快。",
+          "why_en": "For people who keep agents working across sessions with CLAUDE.md files and project notes, this is a checklist for your own memory files: does each entry carry a date and a source, and who removes it once it goes stale? The essay describes the failure of memory plugins clearly. It says nothing about what the alternative costs: a document workspace only works if someone keeps it in step with the code, and that upkeep is the part the essay skips."
         }
       ]
     },
@@ -268,7 +278,7 @@
           "url": "https://jaredpalmer.com/blog/introducing-kev",
           "summary": "Jared Palmer 10 月 1 日发布 Kev 1.0，四个开源决策模型：Kev-27B、Kev-9B、Kev-4B、Kev-0.8B，权重以 Apache-2.0 放在 Hugging Face，代码在 GitHub，附带一个能在 GPU 和 Apple Silicon（走 MLX）上跑的服务器。接口与 TypeSafe 的 Jev 一致：输入文本、问题和候选答案，输出每个答案的概率，因此用 TypeSafe SDK 写的应用改一下端点和模型名就能切过来；他也点明起点是 Archer Hume 那篇讲 Jev 架构的文章。能力边界写得很清楚：只给用户提供的选项打分，不做解释、不检索事实，没有正确选项的情况得自己处理，答案顺序会影响概率。评测来自作者自己的 harness，不是独立榜单：Kev-27B 整体最好，在消费者投诉一类上 Kev-9B 和 Kev-4B 与它相差不到一个点，在开发工具决策上 Kev-9B 与它持平；泛化一栏四个模型分别是 75.7%、69.8%、69.0%、58.6%。成本与吞吐：27B 每百万 token 44.09 美元、29 req/s，需要 H200 或 H100、B200；9B 13.80 美元、80 req/s；4B 10.54 美元、51 req/s，能跑在 L40S 或 32GB 的 Mac 上。训练账：一次微调约 1 美元 GPU 时间，27B 训练约 16 小时、8 张 H200、约 650 美元。",
           "summary_en": "Jared Palmer released Kev 1.0 on October 1: a family of four open-source decision models — Kev-27B, Kev-9B, Kev-4B and Kev-0.8B — with Apache-2.0 weights on Hugging Face and code on GitHub, including a server that runs on GPUs and on Apple Silicon via MLX. The interface matches TypeSafe's Jev: text, questions and candidate answers in, a probability per answer out, so apps built on TypeSafe's SDK can switch over \"by changing the endpoint and model name.\" He credits Archer Hume's write-up of Jev's architecture as the starting point. The limits are stated plainly: it only scores the options you supply, offers no explanations and no fact retrieval, leaves you to handle cases where no option is correct, and answer order can shift probabilities. The evaluation comes from the author's own harness, not an independent leaderboard: Kev-27B leads overall, with Kev-9B and Kev-4B within a point of it on consumer complaints and Kev-9B matching it on developer-tool decisions; on the generalization panel the four models score 75.7%, 69.8%, 69.0% and 58.6% respectively. Cost and throughput: 27B at $44.09 per million tokens and 29 req/s on an H200 (or H100, B200); 9B at $13.80 and 80 req/s; 4B at $10.54 and 51 req/s, running on an L40S or a 32GB Mac. Training costs: about $1 of GPU time per fine-tune, and roughly 16 hours on eight H200s — about $650 — for the 27B.",
-          "why": "这条把决策模型从概念变成了能自己拿在手里的东西：开放权重、能微调、能本地跑，接口还和已有的 Jev 兼容。对做分类、路由、打分这类快速判断的产品，它提供了一个可算的取舍：把这类高频判断从昂贵的前沿模型挪到一个 4B 或 9B 的专门模型上，成本能差一个数量级，代价是只打分、不解释、不检索。要留意的是那些分数来自作者自己的评测口径，落地前应该在自己的样本上量一遍，这也是今天升级公告那条判断的由来。",
+          "why": "这条把决策模型从概念变成了能拿在手里的东西：开放权重、可微调、可本地跑，接口还与现有 Jev 兼容。做分类、路由、打分这类快速判断的产品，它给了一个可算的取舍——把高频判断从昂贵的前沿模型挪到 4B 或 9B 的专用模型上，成本能差一个数量级，代价是只打分、不解释、不检索。要留意，那些分数来自作者自己的评测口径，落地前得在自己的样本上量一遍，这也是今天升级公告那条判断的由来。",
           "why_en": "This turns \"decision models\" from a concept into something you can hold: open weights, fine-tunable, runnable locally, with an interface already compatible with Jev. For products doing classification, routing or scoring — high-frequency quick judgments — it offers a calculable tradeoff: move that work off an expensive frontier model onto a 4B or 9B specialist and the cost can drop by an order of magnitude, at the price of scoring only, with no explanation and no retrieval. One caveat: those scores come from the author's own eval harness, so measure on your own samples before adopting — which is also where today's OTA note comes from."
         },
         {
@@ -278,10 +288,10 @@
           "author_en": "TLDR AI · Microsoft AI",
           "likes": 0,
           "url": "https://microsoft.ai/news/our-first-streaming-transcription-model/",
-          "summary": "微软 10 月 1 日发布三个音频模型。MAI-Transcribe-2-Streaming 是它第一个流式转写模型：支持 60 种语言、连续自动识别语种；在 Artificial Analysis 上，最终转写和中间结果的准确率都排第一，微软称自己在准确率对延迟上坐在帕累托前沿；中间结果在收到音频刚过 100 毫秒就出，词出现速度是最接近的竞品的 2 倍（内部评测）；到年底前有尝鲜价，每小时音频 0.54 美元。MAI-Voice-2.1 是文本转语音，支持 23 种语言、26 个地区，同一个音色能用所有语种、带本地口音，价格每百万字符 22 美元。MAI-Voice-2.1-Flash 一样多语言，能在端到端 150 毫秒延迟内生成 45 秒音频，推理快 55%、比同类便宜约 60%，每百万字符 15 美元。两个语音模型都能用几秒参考音频做跨语种声音克隆，带同意的护栏。渠道：两个语音模型上 OpenRouter；三个都上 Microsoft Foundry、MAI Playground、Vercel 和 Azure Voice Live，LiveKit 说随后到；Playground 里的演示叫 Chatter。",
+          "summary": "微软 10 月 1 日发布三个音频模型。MAI-Transcribe-2-Streaming 是它第一个流式转写模型：支持 60 种语言，能连续自动识别语种；在 Artificial Analysis 上，最终转写和中间结果的准确率都排第一，微软称自己在准确率对延迟上处于帕累托前沿；中间结果在收到音频刚过 100 毫秒就出，词出现速度是最接近竞品的 2 倍（内部评测）；年底前有尝鲜价，每小时音频 0.54 美元。MAI-Voice-2.1 是文本转语音，支持 23 种语言、26 个地区，同一个音色能用所有语种，带本地口音，价格每百万字符 22 美元。MAI-Voice-2.1-Flash 同样多语言，能在端到端 150 毫秒延迟内生成 45 秒音频，推理快 55%，比同类便宜约 60%，每百万字符 15 美元。两个语音模型都能用几秒参考音频做跨语种声音克隆，带同意的护栏。渠道：两个语音模型上 OpenRouter；三个都上 Microsoft Foundry、MAI Playground、Vercel 和 Azure Voice Live，LiveKit 说随后到；Playground 里的演示叫 Chatter。",
           "summary_en": "Microsoft released three audio models on October 1. MAI-Transcribe-2-Streaming is its first streaming transcription model: real-time transcriptions in 60 languages with continuous automatic language detection; it ranks number one on Artificial Analysis for accuracy on both final and partial transcripts, with Microsoft saying it \"sits on the Pareto frontier\" of accuracy versus latency; partials arrive in \"just over 100ms\" of receiving audio, and words appear 2x faster than the closest competitor (internal evaluations); introductory price is $0.54 per hour of audio through the end of the year. MAI-Voice-2.1 is text-to-speech supporting 23 languages and 26 locales, where a single voice speaks every language with a native accent, at $22 per million characters. MAI-Voice-2.1-Flash covers the same languages and generates 45 seconds of audio with 150ms end-to-end latency, at 55% faster inference and about 60% cheaper than comparable models, priced at $15 per million characters. Both voice models clone a voice across supported languages from a few seconds of reference audio, with consent guardrails. Availability: the two voice models on OpenRouter; all three on Microsoft Foundry, MAI Playground, Vercel and Azure Voice Live, with LiveKit \"coming soon.\" The playground demo is called Chatter.",
-          "why": "对做语音类产品的人，这条把实时语音 UX 到底可不可行从感觉变成了两个可算的数：每小时 0.54 美元的转写、刚过 100 毫秒的出字延迟，以及每分钟通话里语音合成的每百万字符单价。它值得记的另一面是竞争结构：转写的第一被一个一周前还没有流式产品的厂商拿走，说明这一层还在快速洗牌，选型别锁死一家，接口留一层抽象。",
-          "why_en": "For anyone building voice products, this turns \"is real-time voice UX actually feasible\" from a feeling into two calculable numbers: $0.54 per hour of transcription, partials in just over 100ms, plus a per-million-character price for speech synthesis in every minute of call. The other thing worth noting is the competitive structure: the number-one spot in transcription went to a vendor that had no streaming product a week ago, which says this layer is still churning — don't lock into one vendor, and keep an abstraction layer at the interface."
+          "why": "对做语音类产品的人，这条把实时语音 UX 到底可不可行从感觉变成了两个可算的数：每小时 0.54 美元的转写（年底前的尝鲜价，这次没看到年底后的标准价）、刚过 100 毫秒的出字延迟，以及每分钟通话里语音合成的每百万字符单价。它值得记的另一面是竞争结构：转写的第一被一个一周前还没有流式产品的厂商拿走，说明这一层还在快速洗牌，选型别锁死一家，接口留一层抽象。",
+          "why_en": "For anyone building voice products, this turns \"is real-time voice UX actually feasible\" from a feeling into two calculable numbers: $0.54 per hour of transcription (an introductory rate through year-end; I did not find a post-promo list price), partials in just over 100ms, plus a per-million-character price for speech synthesis in every minute of call. The other thing worth noting is the competitive structure: the number-one spot in transcription went to a vendor that had no streaming product a week ago, which says this layer is still churning — don't lock into one vendor, and keep an abstraction layer at the interface."
         }
       ]
     }
