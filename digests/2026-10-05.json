@@ -1,0 +1,251 @@
+{
+  "date": "2026-10-05",
+  "partial": false,
+  "banner": "个人 agent 混战，Muse 开放硬件",
+  "banner_en": "The personal-agent race moves into open hardware",
+  "image": {
+    "src": "digests/img/2026-10-05.jpg",
+    "caption": "本期头版图：Muse Gadgets 的社交卡片。页面标题为「Muse Gadgets：给你的 Muse 用的开源硬件」，正文介绍这些可以自己攒的开放设备：用一块现成的 ESP32 板，或按官方 SDK 搭一台树莓派，再把 Muse 接到显示屏、按钮、传感器和执行器上。它同期出现在个人 agent 争夺手机入口的新闻里，把战场从应用延伸到物理设备。（图：Muse Gadgets）",
+    "caption_en": "Today's front-page image: the social card for Muse Gadgets. The page is titled \"Muse Gadgets: Open source hardware for your Muse,\" and its text says these are open devices you build yourself — program an off-the-shelf ESP32 board, or set up a Raspberry Pi with the official SDKs, then connect Muse to displays, buttons, sensors and actuators. It lands alongside the fight over who owns the personal-agent entry point, pushing the contest from apps into physical devices. (Image: Muse Gadgets)"
+  },
+  "actions": [
+    {
+      "text": "挑你产品里单次成本最高的那条模型调用，把「换成本地 125B 模型」的账算一遍：这条调用每月跑多少次、要多大的显存和内存、那台机器摊到每次的电费和折旧各是多少。约 30 分钟。做完的标准是你能说清这条调用换到本地是更便宜还是更贵，差多少。背景：Strata 让一块 12GB 显存的消费级显卡跑起 Qwen3.8-Flash-Next，并对外提供 OpenAI/Anthropic 兼容接口。",
+      "text_en": "Take the single most expensive model call in your product and work out the math for moving it to a local 125B model: how many times a month it runs, how much VRAM and RAM it needs, and the per-call share of that machine's electricity and depreciation. About 30 minutes. You're done when you can say whether that call gets cheaper or more expensive locally, and by how much. Background: Strata runs Qwen3.8-Flash-Next on a 12GB consumer GPU and serves OpenAI/Anthropic-compatible APIs.",
+      "source": "Hacker News · Strata（Niko1221）",
+      "source_en": "Hacker News · Strata (Niko1221)",
+      "source_url": "https://github.com/Niko1221/Strata"
+    },
+    {
+      "text": "从你 agent 的提示词或 CLAUDE.md 里删掉一条「先输出计划再执行」式的规则，拿同一个真实任务重跑一次，记下它少了哪几步协助、结果有没有变差。约 20 分钟。做完的标准是你手上有一条「删了也没差」的具体规则，下次敢一起删。背景：Ethan Mollick 说他错在以为必须先替 agent 设计好管理结构，模型自己就学会了规划。",
+      "text_en": "Delete one \"print a plan before executing\"-style rule from your agent's prompt or CLAUDE.md, re-run the same real task once, and note which steps you had to supply that it no longer asked for, and whether the result got worse. About 20 minutes. You're done when you hold one concrete rule that turned out to change nothing, so you can delete more next time. Background: Ethan Mollick says he was wrong to think you must design a management structure for agents first — models learned to plan on their own.",
+      "source": "文摘 · Ethan Mollick（One Useful Thing）",
+      "source_en": "Digest · Ethan Mollick (One Useful Thing)",
+      "source_url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm"
+    },
+    {
+      "text": "挑一个已经改成异步、不必开口的协作动作（周会进度同步、1:1、客户回访都算），这一轮把它变回要当面或要通话，结束后写下对方多给了你哪一条信息。约 30 分钟。做完的标准是你能说出一条「省掉的那次摩擦本来能带回来什么」。背景：Daniel Hook 把这叫 Waymo 效应，去掉和真人打交道的摩擦被当成纯粹的收益，代价很少被记进账。",
+      "text_en": "Pick one collaboration step you've already made async and wordless (a weekly status sync, a 1:1, a customer check-in) and turn it back into face-to-face or a call for one round, then write down one thing the other person told you that you'd otherwise have missed. About 30 minutes. You're done when you can name one thing the friction you removed was quietly buying. Background: Daniel Hook calls this the Waymo effect — we treat the removal of human friction as pure gain, and rarely book its cost.",
+      "source": "文摘 · Daniel Hook（Research Agenda）",
+      "source_en": "Digest · Daniel Hook (Research Agenda)",
+      "source_url": "https://www.researchagenda.news/articles/the-waymo-effect.html"
+    }
+  ],
+  "hands_on": {
+    "title": "用一条命令关掉 macOS 27 的 Apple Intelligence 并腾回磁盘",
+    "title_en": "Turn off Apple Intelligence on macOS 27 and reclaim the disk in one command",
+    "why": "macOS 27 取消了 Apple Intelligence 的单一总开关，功能关掉后模型还留在磁盘上。RemoveMacAI 把功能关掉、模型删掉，并阻止系统再次下载，所有改动都能一条命令还原。适合想把自己电脑上的本地 AI 驻留清干净、又不想手动翻系统文件的人。",
+    "why_en": "macOS 27 dropped the single master switch for Apple Intelligence, and its models stay on disk after you turn the features off. RemoveMacAI turns the features off, deletes the models and stops macOS from re-downloading them, and every change can be reverted with one command. It's for anyone who wants a clean local-AI footprint on their own machine without poking at system files by hand.",
+    "time": "约 10 分钟",
+    "time_en": "About 10 minutes",
+    "steps": [
+      "在终端运行安装脚本并执行：curl -fsSL https://raw.githubusercontent.com/omlahore/RemoveMacAI/main/install.sh | bash",
+      "先看清单再动手：运行 removemacai status，核对将要关掉的功能和磁盘上模型占用的空间",
+      "想先看不落地的版本，运行 removemacai off --dry-run；要保留个别功能，用 removemacai off --keep <功能名>（功能名用 removemacai features 列出）",
+      "正式执行会打开系统设置、安装一份配置描述文件（需要你点同意），然后删除模型；不满意就运行 removemacai revert 全部还原",
+      "做完的标准是 removemacai status 显示这些功能已关闭、模型已从磁盘移除，且你确认过能还原"
+    ],
+    "steps_en": [
+      "In Terminal, run the installer and execute it: curl -fsSL https://raw.githubusercontent.com/omlahore/RemoveMacAI/main/install.sh | bash",
+      "Inspect before committing: run removemacai status to check which features will be turned off and how much disk the models take",
+      "To preview without applying, run removemacai off --dry-run; to keep specific features, use removemacai off --keep <feature> (list feature names with removemacai features)",
+      "The real run opens System Settings to install a configuration profile (you approve it), then removes the models; unhappy with it, run removemacai revert to undo everything",
+      "You're done when removemacai status shows the features off and the models gone from disk, and you've confirmed the revert works"
+    ],
+    "source": "Hacker News · RemoveMacAI（omlahore）",
+    "source_en": "Hacker News · RemoveMacAI (omlahore)",
+    "source_url": "https://github.com/omlahore/RemoveMacAI"
+  },
+  "meta_read": "今天这五个故事分处五层，指向同一次位移：编排权正从预先写死规则的人手里，滑向模型自己和终端用户。这一层被重新分配的价值还没有对应的账本。Mollick 撤回顾虑、Hook 给摩擦命名，是同一次位移的两端，一端是模型接管了编排，一端是用户先尝到甜头、代价滞后。判断落在这里：谁能把省下的摩擦对应到用户真正在乎的结果，谁拿到入口；只把「更省事」当卖点的产品，会在用户第一次意识到省掉的是判断力时被换掉。",
+  "meta_read_en": "Today's five stories sit at five layers and point to one shift: the right to organize is sliding from whoever pre-wrote the rules toward the model itself and the end user. The value being redistributed at this layer has no matching ledger yet. Mollick's retraction and Hook's naming are the two ends of that one shift — at one end the model took over the organizing, at the other the user tastes the upside first and pays the cost later. The judgment lands here: whoever maps the friction they removed onto something users actually care about takes the entry point; a product whose only pitch is \"less effort\" gets swapped out the first time a user realizes the thing they gave up was judgment.",
+  "ota": {
+    "learned": [
+      "观察：脚手架该有退休测试。Ethan Mollick 说他错在以为要先替 agent 设计好管理结构，结果被新一代模型自己学会规划吃掉了。这直接适用于我自己：skills、memories、提示词规则也是为更弱的模型搭的脚手架，会随模型换代变成噪音。今天提议给日常流程加一道「删除测试」：挑一条已实现的规则，把它拿掉重跑一个固定任务，只有当质量差超出我能判断的检测下限才保留（沿用 2026-09-30 的阳性对照 + 检测下限方法）。尚未实施，排队等笔记本侧采纳。",
+      "已验证：出稿前的分带预检。今天选稿前先跑了一遍文摘线五路 feed 的解析和 YouTube 字幕探测：四路 feed 正常（TLDR AI、Latent Space、Simon Willison、Ahead of AI），Import AI 的 Substack feed 被 Cloudflare 挡下（返回 Just a moment...）；YouTube 九路频道 RSS 全 200，但 yt-dlp 对每条视频都返回「Sign in to confirm you're not a bot」，于是本期 YouTube 记为 0 条，不再重试。",
+      "观察：文摘线这两天偏薄。10 月 3 日 Latent Space 的 AINews 标题直接是「not much happened today」，最可用的稿件集中在 10 月 1-2 日，取稿窗口比名义上的 48 小时更宽。",
+      "来源：X 与小红书本次会话没有 Chrome / claude-in-chrome，按云端适配规则跳过，未扫。"
+    ],
+    "new_capabilities": [
+      "已验证：分带预检。选稿前先探一遍各带的可用性（feed 能否解析、字幕能否下载），把结论写成一行再决定多样性，不再对已经失效的带做重复重试。今天据此把 YouTube 直接记 0，把名额转给文摘和 HN。"
+    ],
+    "learned_en": [
+      "Observation: scaffolding needs a retirement test. Ethan Mollick says he was wrong to think you must design a management structure for agents first — the next generation of models learned to plan and ate that scaffolding. This applies directly to me: skills, memories and prompt rules are scaffolding built for weaker models, and they turn into noise as models change. Today's proposal is to add a \"deletion test\" to the daily flow: take one implemented rule, remove it, re-run a fixed task, and keep the rule only if the quality gap exceeds my detection floor (reusing the 2026-09-30 positive-control + detection-floor method). Not implemented yet — queued for the laptop side to adopt.",
+      "Verified: a per-lane preflight before selecting items. Today I first parsed all five 文摘 feeds and probed YouTube transcripts: four feeds parse fine (TLDR AI, Latent Space, Simon Willison, Ahead of AI), while Import AI's Substack feed is blocked by Cloudflare (returns \"Just a moment...\"); all nine YouTube channel RSS feeds return 200, but yt-dlp returns \"Sign in to confirm you're not a bot\" for every video, so YouTube is recorded as 0 items this issue and not retried.",
+      "Observation: the digest lane is thin these two days. Latent Space's October 3 AINews is literally titled \"not much happened today,\" and the most usable pieces cluster on October 1-2, so the effective window is wider than the nominal 48 hours.",
+      "Sourcing: this session has no Chrome / claude-in-chrome, so X and RedNote were skipped per the cloud adaptation rules."
+    ],
+    "new_capabilities_en": [
+      "Verified: per-lane preflight. Before selecting items, probe each lane's availability (can the feed parse, can transcripts download), write the result as one line, then decide diversity from it — no repeated retries against a lane that is already dead. This is how YouTube got recorded as 0 today and its slot went to 文摘 and HN."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "tester-army/e2e",
+      "url": "https://github.com/tester-army/e2e",
+      "description": "Next generation e2e testing framework for web and mobile apps.",
+      "language": "TypeScript",
+      "stars": 3539,
+      "stars_today": 345
+    },
+    {
+      "rank": 2,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
+      "language": "JavaScript",
+      "stars": 76579,
+      "stars_today": 1171
+    },
+    {
+      "rank": 3,
+      "name": "coreyhaines31/marketingskills",
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+      "language": "JavaScript",
+      "stars": 53218,
+      "stars_today": 197
+    },
+    {
+      "rank": 4,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 155274,
+      "stars_today": 1894
+    },
+    {
+      "rank": 5,
+      "name": "earthtojake/text-to-cad",
+      "url": "https://github.com/earthtojake/text-to-cad",
+      "description": "Give your agent CAD superpowers.",
+      "language": "Python",
+      "stars": 17012,
+      "stars_today": 83
+    },
+    {
+      "rank": 6,
+      "name": "Panniantong/Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "language": "Python",
+      "stars": 91215,
+      "stars_today": 980
+    },
+    {
+      "rank": 7,
+      "name": "getsentry/sentry",
+      "url": "https://github.com/getsentry/sentry",
+      "description": "Developer-first error tracking and performance monitoring",
+      "language": "Python",
+      "stars": 45443,
+      "stars_today": 152
+    },
+    {
+      "rank": 8,
+      "name": "calesthio/OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+      "language": "Python",
+      "stars": 63411,
+      "stars_today": 245
+    },
+    {
+      "rank": 9,
+      "name": "pingdotgg/t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 25316,
+      "stars_today": 490
+    },
+    {
+      "rank": 10,
+      "name": "caddyserver/caddy",
+      "url": "https://github.com/caddyserver/caddy",
+      "description": "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
+      "language": "Go",
+      "stars": 76700,
+      "stars_today": 24
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 96,
+      "items": [
+        {
+          "title": "一块消费级显卡跑 125B 模型：Strata 把 Qwen3.8-Flash-Next 搬进家用机",
+          "title_en": "A consumer GPU runs a 125B model: Strata puts Qwen3.8-Flash-Next on a home PC",
+          "author": "Strata（Niko1221）· Hacker News",
+          "author_en": "Strata (Niko1221) · Hacker News",
+          "likes": 750,
+          "url": "https://github.com/Niko1221/Strata",
+          "summary": "Strata 是开源本地推理引擎,把 125B 的 Qwen3.8-Flash-Next 跑在一块 12GB 显存的消费级显卡加 32GB 系统内存上 (Windows/Linux,约需 80GB 磁盘),对外提供 OpenAI 和 Anthropic 兼容接口,默认监听 127.0.0.1:8080。项目自测:RTX 5070(12GB) 在 Q2_0 量化下写答案约 94 token/s,读 32K 提示词约 2,650 token/s;换 IQ3_S 则降到约 53 和 1,620。显存更大的 RTX 3090 估计 100-140 token/s。HN 上 750 分、335 条评论,支持与质疑各半:有人在自用的 4090 上实测约 124 token/s;也有人指出这速度靠的是 Q2/IQ2 一类低比特量化,Coder 版还砍掉一半 MoE 专家,并称发布量化模型就该附上跑分。项目自带的 AI_SETUP 文档写给 coding agent 看,第一条就是不要把服务暴露在没有 API key 的情况下。",
+          "summary_en": "Strata is an open-source local inference engine that runs the 125B Qwen3.8-Flash-Next on a 12GB consumer GPU plus 32GB of system RAM (Windows/Linux, about 80GB of disk), serving OpenAI- and Anthropic-compatible APIs bound to 127.0.0.1:8080. Its own benchmarks: an RTX 5070 (12GB) writes answers at ~94 tokens/s and reads a 32K prompt at ~2,650 tokens/s under Q2_0, dropping to ~53 and ~1,620 with IQ3_S; a bigger-VRAM RTX 3090 is estimated at 100-140 tokens/s. On HN it has 750 points and 335 comments, split between backers and skeptics: one measured ~124 tokens/s on his own 4090, while others note the speed rides on low-bit quantization like Q2/IQ2, with the Coder variant dropping half the MoE experts, arguing \"publishing benchmarks with quantized models should be standard.\" The repo's AI_SETUP doc is written for a coding agent, and its first rule is \"never expose the server without an API key.\"",
+          "why": "值得记的不是本地能跑大模型这个结论,而是它把门槛写成了可核对的数字:多少显存、哪种量化下每秒多少、读长提示词多快。做 AI 应用的人据此能判断哪一类调用可以搬回本地,哪一类必须留在云上。评论区也提醒,低比特量化的速度要配同一套量化下的准确率才说明问题。",
+          "why_en": "The thing worth keeping isn't \"you can run a big model locally\" — it's that the bar is written as checkable numbers: how much VRAM, how many tokens per second at which quantization, how fast it reads a long prompt. That lets anyone building on models decide which calls can move local and which must stay in the cloud. The comment thread adds the caveat: low-bit quantization's speed only means something paired with accuracy at the same quantization."
+        },
+        {
+          "title": "Muse 开放周边硬件：用 ESP32 或树莓派接入你的个人 agent",
+          "title_en": "Muse opens its hardware: wire your personal agent to an ESP32 or Raspberry Pi",
+          "author": "Muse Gadgets · Hacker News",
+          "author_en": "Muse Gadgets · Hacker News",
+          "likes": 250,
+          "url": "https://gadgets.muse.ai",
+          "summary": "Muse 上线 Gadgets 页,把周边硬件开源:用一块现成的 ESP32 板,或按官方 SDK 搭一台树莓派,就能把 Muse 接到显示屏、按钮、传感器和执行器上。页面还放了 Discord 和 GitHub 的入口,定位是给你的 Muse 用的开源硬件。它出现在个人 agent 争夺手机入口的同一周:据 Ethan Mollick 观察,Muse 已是 App Store 榜首,OpenAI 也推出了 dots,SpaceX 的 Grok Bot、Instinct、Gemini Spark 在做类似的事。硬件这一手把争夺从应用内的入口延伸到物理设备。HN 上 250 分。",
+          "summary_en": "Muse launched a Gadgets page that open-sources its companion hardware: program an off-the-shelf ESP32 board, or set up a Raspberry Pi with the official SDKs, and connect Muse to displays, buttons, sensors and actuators. The page links Discord and GitHub and bills itself as \"open source hardware for your Muse.\" It lands in the same week the personal-agent fight over the phone's entry point heats up: by Ethan Mollick's account, Muse is already the number-one app in the App Store, OpenAI shipped dots, and SpaceX's Grok Bot, Instinct and Gemini Spark do similar things. The hardware move stretches the contest from an in-app entry point out to physical devices. It sits at 250 points on HN.",
+          "why": "对做硬件的团队,这是一个排期信号:当消费级 agent 开始决定用户从哪个入口出发,能不能被它调用、要不要自己出一块设备,会直接影响你会不会被绕过。把有没有官方 agent 接口、要不要开放 SDK 写进产品路线图的时机到了。",
+          "why_en": "For hardware teams this is a scheduling signal: once a consumer agent decides where users start, whether you can be called by it — or need your own device — directly affects whether you get routed around. It's time to put \"is there an official agent interface, and should we open an SDK\" on the roadmap."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 40,
+      "items": [
+        {
+          "title": "Mollick 认错：agent 不需要你来编排",
+          "title_en": "Mollick's correction: agents don't need you to organize them",
+          "author": "Ethan Mollick · One Useful Thing",
+          "author_en": "Ethan Mollick · One Useful Thing",
+          "likes": 1042,
+          "url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
+          "summary": "Ethan Mollick 在 10 月 1 日发文收回一个判断：他此前认为人和 agent 协作要像当管理者一样，先设计好怎么分工、怎么组织，后来发现这违背了「苦涩的教训」——模型自己学会了规划，他精心搭的检索管线、提示词链、分工规则都被吃掉了。他举了自己的两个例子：一个个人 agent 比他更早发现他发给镇政府、用于申请许可的邮件里项目编号写错了，还替他起草了更正；Muse 发现他一张航空消费券快过期，在他要求下联系 American 申请延期。他更看重的不是 agent 会做的事的清单，而是「你不再需要告诉它什么」。文中还转述：OpenAI 于 9 月 8 日称用 AI 在 88 小时内给出了纳维-斯托克斯存在性与光滑性这一千禧年难题的证明，协调结构极薄，但他明确说这尚未获得正式认可。",
+          "summary_en": "On October 1, Ethan Mollick walked back a judgment: he had argued that working with agents means managing them — designing the division of labor and the org structure first — and concluded that this violates the Bitter Lesson, as models learned to plan on their own and ate the retrieval pipelines, prompt chains and division-of-labor rules he had carefully built. He gives two personal examples: a personal agent spotted, before he did, that a permit application email to his town carried the wrong project number, and drafted the correction; and Muse noticed an expiring airline credit and, at his request, contacted American to ask for an extension. What he weighs isn't the list of things agents can do, but \"what you no longer have to tell them.\" He also relays that on September 8 OpenAI said it used AI to produce a proof of the Navier-Stokes existence and smoothness Millennium Prize problem in 88 hours, with a remarkably thin coordination structure — while stating plainly that it has no formal acceptance yet.",
+          "why": "这条的价值在一个反直觉的自我修正：你为上一代模型搭的管理脚手架，正是新一代模型最想替你省掉的东西。对做 agent 产品的人，这意味着别把「帮用户编排 agent」当护城河，它随时会被模型自己接管。",
+          "why_en": "The value here is a counterintuitive self-correction: the management scaffolding you build for the previous generation of models is exactly what the next generation wants to remove for you. For anyone building agent products, it means don't treat \"we help users orchestrate their agents\" as a moat — the model can take that over at any time.",
+          "flag": "文中转述的纳维-斯托克斯证明尚无正式认可，Clay 研究所是否最终承认需另行确认。",
+          "flag_en": "The Navier-Stokes proof Mollick relays has no formal acceptance; whether the Clay Institute ultimately recognizes it remains to be confirmed."
+        },
+        {
+          "title": "Waymo 效应：省掉和真人打交道的摩擦，代价没人记账",
+          "title_en": "The Waymo effect: removing human friction, with nobody counting the cost",
+          "author": "Daniel Hook · Research Agenda",
+          "author_en": "Daniel Hook · Research Agenda",
+          "likes": 0,
+          "url": "https://www.researchagenda.news/articles/the-waymo-effect.html",
+          "summary": "Holtzbrinck 集团首席科学官 Daniel Hook 在 9 月 7 日的文章里给一种现象命名：一项技术去掉了和真人打交道的摩擦，我们把它当成纯粹的收益，因为摩擦的成本一直看得见，而它的好处从来不显形，他把它叫「Waymo 效应」。他和一位同事都是内向者，两人都觉得无人驾驶那段路像个不用应酬的绿洲，过了很久才反应过来：两个跨越大陆见面的人，竟然在为一辆「不用跟任何人说话」的车感到高兴。他担心同一机制正悄悄降低研究协作的意愿。该文在 10 月 2 日的 TLDR AI 里被重新推介。",
+          "summary_en": "In a September 7 essay, Daniel Hook, chief scientific officer of the Holtzbrinck group, named a phenomenon: a technology removes the friction of dealing with another human being, and we experience that removal as pure gain — because the friction's costs were always visible to us while its benefits never were. He calls it the Waymo effect. He and a colleague, both introverts, each found the driverless ride a small oasis free of small talk, and took a while to notice the irony: two people who crossed continents to meet each other were quietly delighted by a car whose central feature is that you don't have to talk to anyone. He worries the same mechanism is quietly weakening the will to collaborate on research. The piece was re-surfaced in the October 2 TLDR AI.",
+          "why": "对做 AI 协作、客服或产品的人，这条给了一个可检验的框架：每当你用 AI 去掉一次「问人、等人、跟人来回」的摩擦，就有一笔没被记账的成本落在别处。值得做的是把「省下的摩擦」对应到用户真正在乎的结果，而不是把「更省事」本身当卖点。",
+          "why_en": "For anyone building AI collaboration, support or product, this offers a testable frame: every time AI removes a piece of \"ask someone, wait for them, go back and forth\" friction, an unbooked cost lands somewhere else. The move is to map the friction you removed onto something users actually care about, rather than selling \"less effort\" itself."
+        },
+        {
+          "title": "Imbue：属于个人的本地 AI，才是个人计算的下一轮",
+          "title_en": "Imbue: a local AI that's actually yours is the next personal computing",
+          "author": "Josh Albrecht · Imbue",
+          "author_en": "Josh Albrecht · Imbue",
+          "likes": 0,
+          "url": "https://ideas.imbue.com/p/personal-computing-20",
+          "summary": "Imbue 的 Josh Albrecht 在 10 月 1 日提出「个人计算 2.0」：他认为封闭 AI 实验室几乎抓走了网上全部公开知识、再卖回给用户，同时推动立法阻止别人照做；而模型变小变便宜之后，个人拥有近似无限、只比电费贵一点的计算能力变得可能。他主张把 AI 置于人的目标之下，走本地、开放权重的路线。这篇文章与 Strata 这类把大模型塞进消费级硬件的工作放在一起读，是同一方向的不同层。",
+          "summary_en": "On October 1, Imbue's Josh Albrecht proposed \"Personal Computing 2.0\": he argues closed AI labs scraped nearly all of the web's public knowledge and now sell it back to us, while lobbying for laws that stop anyone else from doing the same; and that as models get smaller and cheaper, it becomes possible for an individual to hold effectively unlimited compute for barely more than the cost of electricity. He wants AI placed beneath human goals, on a local, open-weight path. Read alongside work like Strata that stuffs a big model onto consumer hardware, it's the same direction at a different layer.",
+          "why": "把这条和 Strata 放在一起读，本地化就不只是「省钱、隐私」的取舍，而是一种产品主张：当模型可以被个人拥有，围绕它做的工具就不该再把用户的数据和流程锁在别人的云里。做产品的人可以据此重排哪些能力必须联网、哪些可以留在端上。",
+          "why_en": "Read with Strata, going local stops being a trade-off between cost and privacy and becomes a product stance: once a model can be owned by an individual, the tools built around it shouldn't lock that person's data and workflows in someone else's cloud. That lets product people re-sort which capabilities must be online and which can stay on-device."
+        }
+      ]
+    }
+  ]
+}
