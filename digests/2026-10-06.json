@@ -1,0 +1,257 @@
+{
+  "date": "2026-10-06",
+  "partial": false,
+  "banner": "用 Claude 写日记，条目被报给警方",
+  "banner_en": "A diary kept in Claude ended up in a police report",
+  "image": {
+    "src": "digests/img/2026-10-06.jpg",
+    "caption": "本期头版图：TechSpot 10 月 5 日那篇报道页面所用的配图，这篇报道是本期头条的出处。（图：TechSpot）",
+    "caption_en": "Today's front-page image: the illustration on TechSpot's October 5 report, the source of today's lead story. (Image: TechSpot)"
+  },
+  "actions": [
+    {
+      "text": "抽查最近一周发布过的生成式内容，逐条看有没有来源不明的签名、水印或 logo；发现就撤下或重做那一条。约 20 分钟。做完的标准是留下的每一处标记，你都能说清它证明什么、由谁授权。背景：Nieman Lab 记录到 ChatGPT 生成的漫画上出现了十几位《纽约客》画家的签名，有一条在 X 上拿到 2.5 万个赞，没人核过那个签名。",
+      "text_en": "Audit everything you published in the past week that contains generated visuals, looking for signatures, watermarks or logos you cannot account for; pull or redo any item where one turns up. About 20 minutes. Done means every mark you keep, you can say what it attests and who authorized it. Context: Nieman Lab documented more than a dozen New Yorker cartoonists' signatures on ChatGPT-generated cartoons; one drew 25,000 likes on X and nobody checked the signature.",
+      "source": "Nieman Lab（Andrew Deck，2026-10-05）",
+      "source_en": "Nieman Lab (Andrew Deck, Oct 5, 2026)",
+      "source_url": "https://www.niemanlab.org/2026/10/chatgpt-is-adding-real-cartoonists-signatures-to-fake-new-yorker-cartoons/"
+    },
+    {
+      "text": "给手上每个 agent 列一行：执行在哪（本地还是云）、会话之间共不共享状态、能不能读到本地文件；三项里有一项说不清的就先标红。约 20 分钟。做完的标准是每个 agent 都有明确归属，且没有两个会话共用同一个执行环境。背景：Anthropic 把 Cowork 的推理和虚拟机都搬到了云上，一个会话一个沙箱，理由是本地虚拟机的磁盘和耗电太贵、合上笔记本工作就停。",
+      "text_en": "Write one line per agent you run: where it executes (local or cloud), whether sessions share state, and whether it can read local files. Flag in red any agent where one of the three is unclear. About 20 minutes. Done means every agent has a clear home and no two sessions share one execution environment. Context: Anthropic moved both Cowork's inference and its VM to the cloud, one sandbox per session, citing the local VM's disk and battery cost and the fact that closing the laptop stopped the work.",
+      "source": "Anthropic（Felix Rieseberg），经 Simon Willison 收录（2026-10-05）",
+      "source_en": "Anthropic (Felix Rieseberg), via Simon Willison (Oct 5, 2026)",
+      "source_url": "https://simonwillison.net/2026/Oct/5/felix-rieseberg/"
+    },
+    {
+      "text": "写下你产品里只能靠人在界面上点才能走完的三个流程，逐个标注：agent 已经能不能直接做完。约 15 分钟。做完的标准是这份清单能回答一个问题：用户改用一个 agent 来办这件事，你的界面还剩什么。背景：Ben Thompson 认为 agent 直接借道网页和系统，就把应用层绕过去了，苹果那套靠开发者接 API 的模式在这一点上吃亏。",
+      "text_en": "List three flows in your product that only work if a person clicks through a UI, and mark each one: can an agent already finish it end to end. About 15 minutes. Done means the list answers one question: if a user hands this task to an agent, what is left of your interface. Context: Ben Thompson argues agents that go straight through the web and the OS route around the app layer, which puts Apple's developer-API model at a disadvantage.",
+      "source": "Stratechery（Ben Thompson，2026-10-05）",
+      "source_en": "Stratechery (Ben Thompson, Oct 5, 2026)",
+      "source_url": "https://stratechery.com/2026/apple-and-a-hackers-future/"
+    }
+  ],
+  "hands_on": {
+    "title": "用 Prime Inference 的命令行，把一次对话指到 GLM-5.3 上",
+    "title_en": "Point a chat at GLM-5.3 from the Prime Inference CLI",
+    "why": "Prime Intellect 新开了推理服务，接口和 OpenAI 兼容。不想动现有代码，把 base URL 换掉就能拿别的开放权重模型跑；命令行一条就能试。",
+    "why_en": "Prime Intellect opened a new inference service with an OpenAI-compatible API. Without changing your code, swapping the base URL lets you run a different open-weight model; one command is enough to try it.",
+    "time": "20 分钟",
+    "time_en": "20 minutes",
+    "steps": [
+      "在终端跑：uv tool install prime && prime login。",
+      "再跑：prime inference chat 'z-ai/glm-5.3'，随便问一句。",
+      "要接进现有代码，把 base URL 改成 https://api.pinference.ai/api/v1，用你的 Prime 密钥，仍走 OpenAI SDK。",
+      "做完的标准：同一条 prompt 在 GLM-5.3 上返回一次结果，你能说清它和你现在用的模型在速度上差多少。"
+    ],
+    "steps_en": [
+      "In a terminal, run: uv tool install prime && prime login.",
+      "Then run: prime inference chat 'z-ai/glm-5.3' and ask it anything.",
+      "To wire it into existing code, point your base URL at https://api.pinference.ai/api/v1 with your Prime key; the OpenAI SDK still works.",
+      "Done means the same prompt returns once on GLM-5.3 and you can say how its speed compares with the model you use now."
+    ],
+    "source": "Prime Intellect：Prime Inference（2026-10-02）",
+    "source_en": "Prime Intellect: Prime Inference (Oct 2, 2026)",
+    "source_url": "https://www.primeintellect.ai/blog/prime-inference"
+  },
+  "meta_read": "这几条放在一起，模型都在变成可替换件，值钱的位置挪到了它外面。署名、人工审核、托管、计费、复算，这五件事没有一件在权重里，却决定了产品能不能立住。能力越强，这个趋势越明显，因为可替换的那个部分越来越大。所以接下来该问的不是哪家模型分高，而是外围的哪一件，我做成别人一时抄不走的。",
+  "meta_read_en": "Read together, the models in these stories are turning into replaceable parts, and the value is moving outside them. Signatures, human review, hosting, billing, re-computation: none of the five lives in the weights, yet each decides whether a product holds up. The stronger the models get, the more this matters, because the replaceable part keeps growing. So the question is no longer which model scores highest, but which piece of the periphery you make hard to copy.",
+  "ota": {
+    "learned": "观察：这一跑三条通道的状态分得清楚。YouTube 九个频道的 RSS 都返回条目（aidotengineer 有 10 月 6 日的 AI Engineer 上传），但 yt-dlp 对每个视频都返回「Sign in to confirm you're not a bot」，这是登录墙，不是空频道，所以本期记零条，也不改用别的办法去抓。文摘五路里四路解析成功，Import AI 的 Substack 前端页返回「Just a moment...」，是 JS 挑战，只有 RSS 间歇可用。观察：窗口纪律这次真的起了作用。Epoch AI 的 agent 产能报告、Cloudflare 的 Web Search API、Prime Intellect 的推理服务、Cactus 的 Whistle 都新鲜好用，但各自的页面日期停在 10 月 2 日，超出 48 小时窗口，本期只把它们留作素材，不作条目。已实施：把「发布前核对署名与出处」写成一条发布规则，追加到 ota-ledger.md，标注 proposed（cloud），留待下一次笔记本会话并入 SKILL.md。",
+    "learned_en": "Observation: this run split the three lanes cleanly by state. All nine YouTube channel RSS feeds returned entries (aidotengineer had AI Engineer uploads dated Oct 6), but yt-dlp returned \"Sign in to confirm you're not a bot\" on every video, a login wall rather than an empty channel, so the issue records zero YouTube items and does not retry another access path. Four of five 文摘 feeds parsed; Import AI's Substack front page returned \"Just a moment...\", a JS challenge, so only its RSS is intermittently usable. Observation: the freshness window earned its keep today. Epoch AI's agent-capacity report, Cloudflare's Web Search API, Prime Intellect's inference service and Cactus's Whistle were all fresh and useful, but each page is dated Oct 2, outside the 48-hour window, so they stayed as raw material rather than items. Implemented: wrote a pre-publication attribution check into ota-ledger.md, marked proposed (cloud), for the next laptop session to fold into SKILL.md.",
+    "new_capabilities": "已验证：每条要刊登的内容先做一次出处核对，署名、数字、日期三项分别回到一手页面确认，无法确认的降级为转述。本期在七条上跑了一遍，核了 Beam 的 501B/23B 与 23.8T token、Stratechery 的 CVE-2026-65400 与 7.1 分、Epoch 的发布日期，并把 SemiAnalysis 的 5 倍标成转述、分析师的 42% 标成无出处。",
+    "new_capabilities_en": "Verified: run a provenance check on everything before it goes in — confirm author, figures and date against the first-party page, and demote anything unconfirmable to reported speech. Applied to all seven items today: checked Beam's 501B/23B parameters and 23.8T tokens, Stratechery's CVE-2026-65400 and 7.1 rating, and Epoch's publication date, and tagged SemiAnalysis's 5x as reported and the analyst's 42% figure as unsourced."
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "tester-army/e2e",
+      "url": "https://github.com/tester-army/e2e",
+      "description": "Next generation e2e testing framework for web and mobile apps.",
+      "language": "TypeScript",
+      "stars": 5271,
+      "stars_today": 1398
+    },
+    {
+      "rank": 2,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 96773,
+      "stars_today": 534
+    },
+    {
+      "rank": 3,
+      "name": "earthtojake/text-to-cad",
+      "url": "https://github.com/earthtojake/text-to-cad",
+      "description": "Give your agent CAD superpowers.",
+      "language": "Python",
+      "stars": 17602,
+      "stars_today": 437
+    },
+    {
+      "rank": 4,
+      "name": "pingdotgg/t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 25726,
+      "stars_today": 485
+    },
+    {
+      "rank": 5,
+      "name": "boykopovar/AnyPS5",
+      "url": "https://github.com/boykopovar/AnyPS5",
+      "description": "Tool for automatic PS5 executables porting to Linux and Windows",
+      "language": "C++",
+      "stars": 5187,
+      "stars_today": 997
+    },
+    {
+      "rank": 6,
+      "name": "Panniantong/Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read &amp; search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "language": "Python",
+      "stars": 92180,
+      "stars_today": 1155
+    },
+    {
+      "rank": 7,
+      "name": "calesthio/OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+      "language": "Python",
+      "stars": 64307,
+      "stars_today": 742
+    },
+    {
+      "rank": 8,
+      "name": "caddyserver/caddy",
+      "url": "https://github.com/caddyserver/caddy",
+      "description": "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
+      "language": "Go",
+      "stars": 77298,
+      "stars_today": 515
+    },
+    {
+      "rank": 9,
+      "name": "DuarteSantos8/openGym",
+      "url": "https://github.com/DuarteSantos8/openGym",
+      "description": "Self-hosted gym &amp; body-weight tracker — plan routines, log workouts (supersets, warm-ups, cardio), see which muscles are trained, fatigued or detrained, import from FitNotes/Strong/Hevy, passkey login. Your data, your server.",
+      "language": "JavaScript",
+      "stars": 4621,
+      "stars_today": 1433
+    },
+    {
+      "rank": 10,
+      "name": "cloudflare/cloudflare-os",
+      "url": "https://github.com/cloudflare/cloudflare-os",
+      "description": "Agent workspace built on Cloudflare Workers for creating documents, building apps, and running agents with your company’s context and systems.",
+      "language": "TypeScript",
+      "stars": 11120,
+      "stars_today": 101
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 40,
+      "items": [
+        {
+          "title": "把 Claude 当日记，一条威胁条目被报给了警方",
+          "title_en": "She used Claude as a diary; a threat in it was reported to police",
+          "author": "TechSpot · Hacker News",
+          "author_en": "TechSpot · Hacker News",
+          "likes": 711,
+          "url": "https://www.techspot.com/news/114091-florida-woman-used-claude-diary-anthropic-reported-shoot.html",
+          "summary": "佛州 Bonita Springs 的 Carli Michelle Heller 用 Claude 当日记，据逮捕报告，她在 9 月 26 日写下要袭击警长办公室。Claude 的安全系统把这条标了出来，升级给一位人工审核员，审核员认定是可信威胁后报了警。警长办公室的探员上门，她被无冲突地拘留，面临一项「书面威胁暴力」指控，佛州法规 836.10 把这类通信定为二级重罪。Anthropic 说，在有限的紧急情况下，若认为披露信息能防止死亡或重伤，可能会共享用户信息。报道还列了两条对照：加拿大 BC 省就一起枪击案起诉 OpenAI 和 Sam Altman；佛州 6 月也就 2025 年 FSU 枪击案起诉。TechSpot 的结论很直白：聊天机器人不是一个只有你看得到的日记本。",
+          "summary_en": "Carli Michelle Heller of Bonita Springs, Florida, used Claude as a diary, and per the arrest report wrote on September 26 that she would attack the Sheriff's office. Claude's safety systems flagged the entry and escalated it to a human reviewer, who judged it a credible threat and reported it to law enforcement. Deputies visited her home; she was detained without incident and faces a charge of making a written threat of violence, which Florida Statute 836.10 makes a second-degree felony. Anthropic says it may share user information in limited emergencies if it believes disclosure is needed to prevent death or serious injury. The report notes two comparisons: British Columbia is suing OpenAI and Sam Altman over a shooting, and Florida sued in June over the 2025 FSU shooting. TechSpot's conclusion is blunt: a chatbot is not a diary only you can see.",
+          "why": "适合把聊天机器人当私人笔记本的人，也适合做 agent 产品的人。这条路径分三段：安全分类器标记、人工审核、移送执法，中间那道人工判断决定事情走多远。所谓「日记」的私密预期，在这里不成立。要留意的是，这是 TechSpot 对一份逮捕报告的转述，可信威胁的认定来自那位审核员，不是模型，也不是法院。",
+          "why_en": "For anyone who treats a chatbot as a private notebook, and for anyone building an agent product: the path is three stages — a safety classifier flags, a human reviewer decides, law enforcement is notified — and that middle human judgment sets how far it goes. The \"diary\" expectation of privacy does not hold here. Note this is TechSpot relaying an arrest report; the credible-threat call was the reviewer's, not a model's or a court's."
+        },
+        {
+          "title": "ChatGPT 生成的漫画，签着真画家的名字",
+          "title_en": "ChatGPT-generated cartoons carry real cartoonists' names",
+          "author": "Andrew Deck · Nieman Lab · Hacker News",
+          "author_en": "Andrew Deck · Nieman Lab · Hacker News",
+          "likes": 404,
+          "url": "https://www.niemanlab.org/2026/10/chatgpt-is-adding-real-cartoonists-signatures-to-fake-new-yorker-cartoons/",
+          "summary": "Nieman Lab 的 Andrew Deck 记录到，ChatGPT 的图像生成器在未获许可、未付报酬的情况下，用上了十几位《纽约客》画家的签名，包括 Brendan Loper（笔名 BLOPER）、Emily Flake（e. flake）、Harry Bliss、Joe Dator、Pat Byrnes，以及 1960 年代就发表作品的 Warren Miller。一张流传开的漫画画的是 Dolly Parton 与 Tim Curry 在天堂门口，其中一条推文拿到 2.5 万个赞，右下角签着 Loper 的笔名，但画不是他画的，也不是他签的；发帖人说，她只是让 ChatGPT「画一张《纽约客》风格的漫画」。OpenAI 发言人说，感谢社区指出模型的问题行为；Deck 通报之后，ChatGPT 开始回一句「This prompt may violate our guardrails concerning similarity to third-party content」，但仍会给一部分通用漫画签名。《纽约客》母公司 Condé Nast 2024 年与 OpenAI 签过多年的授权，但一位发言人说，从未授权任何大模型厂商用其漫画训练。Loper 把签名叫作「真伪证明」；Dator 说信用卡被盗刷都没这个过分，因为盗刷的人没有扮成他。Cornell 的 James Grimmelmann 提醒，署名只是合理使用判断里很小的一块，要走公开权（right of publicity）得先证明商用。",
+          "summary_en": "Nieman Lab's Andrew Deck documented more than 15 New Yorker cartoonists whose signatures ChatGPT's image generator reproduced without permission or compensation, including Brendan Loper (pen name \"BLOPER\"), Emily Flake (\"e. flake\"), Harry Bliss, Joe Dator, Pat Byrnes, and past contributors such as Warren Miller. One widely shared cartoon showed Dolly Parton and Tim Curry at the pearly gates, drew 25,000 likes on a single tweet, and was signed with Loper's pen name though he neither drew nor signed it; the poster said she had simply asked ChatGPT for \"a New Yorker-style cartoon.\" An OpenAI spokesperson said the company appreciates the community flagging bugs; after Deck notified OpenAI, ChatGPT began replying \"This prompt may violate our guardrails concerning similarity to third-party content,\" yet still signs some generic cartoons. Condé Nast signed a multi-year licensing deal with OpenAI in 2024, but a New Yorker spokesperson said Condé Nast has never granted an LLM developer permission to train on its cartoons. Loper calls the signature a \"certificate of authenticity\"; Dator says a hacked credit card felt like less of a violation, because the thief did not dress up as him. Cornell's James Grimmelmann notes attribution is a small part of the fair-use inquiry, and a right-of-publicity claim would need evidence of commercial use.",
+          "why": "适合做生成式内容产品的人：签名、水印这类出处标记是用户信任的落点，模型一旦学会复制它们，出处就变成没人核对的注释。法律上还没定论，署名在合理使用里占比很小，公开权又要先证明商用，所以真正要防的不是官司，是那条假签名替你背书。文中 OpenAI 的回应只有一句公开声明。",
+          "why_en": "For anyone shipping generative content: a signature or watermark is where users place their trust, and once a model learns to copy it, provenance becomes a footnote nobody checks. The law is unsettled — attribution is a small part of fair use, and a right-of-publicity claim needs commercial use — so the real risk is not a lawsuit but a fake signature vouching for you. OpenAI's response here is a single public statement."
+        },
+        {
+          "title": "Reflection 放出开放权重 Beam：501B 总参、23B 激活",
+          "title_en": "Reflection releases Beam, an open-weight 501B-total / 23B-active model",
+          "author": "Reflection · Hacker News",
+          "author_en": "Reflection · Hacker News",
+          "likes": 429,
+          "url": "https://reflection.ai/blog/introducing-beam",
+          "summary": "Beam 是稀疏 MoE，总参 5010 亿、激活 230 亿，面向编码、推理和 agent 任务。预训练用了 23.8 万亿 token，来自网络和自有授权的数据；一轮高算力强化学习在 1.05 万张 NVIDIA GB300 上跑了 4 周，生成超过 1 亿次 rollout。Reflection 自报的图上，它在编码和 agent 任务上接近 GLM 5.2、逼近 Qwen 3.8-Max，SWE-bench Verified 为 80.9；官方说法是，在 Kimi K3 这类模型仍领先的原始能力之外，Beam 的长处在推理时的效率。权重、技术报告和模型卡这个月稍后放出，目前还在做最后的红队与评测，可以先登记早期访问。",
+          "summary_en": "Beam is a sparse Mixture-of-Experts model with 501 billion total parameters and 23 billion active, built for coding, reasoning and agentic work. Pretraining used 23.8 trillion tokens from the web and proprietary licensed data; a high-compute RL run generated over 100 million rollouts on 10,500 NVIDIA GB300 GPUs over four weeks. On Reflection's own chart it approaches GLM 5.2 and nears Qwen 3.8-Max on coding and agentic tasks, with 80.9 on SWE-bench Verified; the company's framing is that where models like Kimi K3 stay ahead on raw capability, Beam's edge is efficiency at inference time. Weights, the technical report and the model card arrive later this month; the model is still in final red-teaming and evaluation, and early access is open.",
+          "why": "适合要选模型的人：这是一份「权重还没到」的发布，图上的成绩也都是自报值。真正值得记的是它的取舍，一家美国实验室把筹码压在推理效率上，而不是原始能力，说明开放权重这条线的竞争点已经在往服务成本挪。",
+          "why_en": "For anyone choosing a model: this is a release whose weights have not shipped, and the chart is self-reported. What is worth remembering is the tradeoff — a US lab betting on inference-time efficiency rather than raw capability — because it shows the open-weight fight shifting toward serving cost."
+        },
+        {
+          "title": "Ben Thompson：agent 让墙内花园更像监狱",
+          "title_en": "Ben Thompson: agents turn the walled garden into a prison",
+          "author": "Ben Thompson · Stratechery · Hacker News",
+          "author_en": "Ben Thompson · Stratechery · Hacker News",
+          "likes": 248,
+          "url": "https://stratechery.com/2026/apple-and-a-hackers-future/",
+          "summary": "Ben Thompson 那台只跑 Claude 和 Codex 的常开 Mac Mini 被入侵了，走的是 macOS 屏幕共享的漏洞 CVE-2026-65400，严重度 7.1，条件是 5900 端口暴露在公网，苹果上周已为 Tahoe、Sequoia、Sonoma 出补丁，机器被装了 Monero 挖矿程序。替他发现异常的是他自己的 agent，监控工具每 30 分钟重启一次，触发了 Claude 一条 URGENT 通知。他的判断是：agent 让每个人都成了黑客，墙内花园从此更像监狱而不是保护。理由是 agent 直接借道网页和系统，等于免费拿到了对一切应用的集成，而苹果那套依赖开发者接 API 的模式因此吃亏，他说「30 万个应用支持 Siri」这个数字是负担。他点名 Meta 开源的 Muse Gadgets 是妙招，回报不在卖设备，在让 Muse 成为一切东西的界面。他没有预言苹果衰落，但说第一次能想象自己不再默认买苹果，新买的那台服务器已经装了 Linux。",
+          "summary_en": "Ben Thompson's always-on Mac Mini, running nothing but Claude and Codex, was compromised through the macOS screen-sharing vulnerability CVE-2026-65400 (severity 7.1), which needs port 5900 exposed to the internet; Apple patched Tahoe, Sequoia and Sonoma last week, and a Monero miner was placed on the machine. What surfaced it was his own agent: a monitoring tool that restarts every 30 minutes triggered a Claude URGENT alert. His conclusion is that agents make everyone a hacker, and that a walled garden now feels less like protection and more like a prison. Agents going straight through the web and the OS get an integration with everything for free, he argues, which puts Apple's model of developers plugging into APIs at a disadvantage — its claim that 300,000 apps work with Siri is a burden, not just a strength. He calls Meta's open-source Muse Gadgets program a stroke of genius: the payoff is Muse as the interface for everything, not selling devices. He does not predict Apple's downfall but says he can, for the first time, envision not buying Apple by default; a new Linux server is already on order.",
+          "why": "适合做产品和平台的人：战场在界面层，谁掌握 agent 之上的那层抽象，谁就拿到默认入口。另有一个不改的成本项，常开的 agent 主机加一个对公网暴露的端口，等于给挖矿程序留门。文中是他本人的事故叙述和个人判断。",
+          "why_en": "For anyone building products and platforms: the battleground is the interface layer, and whoever owns the abstraction above the agent gets the default entry point. There is also a fixed cost to note: an always-on agent host plus an internet-facing port leaves the door open for a miner. The incident and the argument are Thompson's own account."
+        },
+        {
+          "title": "Opus 5.5 agent 算出两种室温反铁磁半导体候选材料",
+          "title_en": "A team of Opus 5.5 agents predicted two room-temperature antiferromagnetic semiconductor candidates",
+          "author": "Geby Jaff · Vals AI · Hacker News",
+          "author_en": "Geby Jaff · Vals AI · Hacker News",
+          "likes": 334,
+          "url": "https://www.vals.ai/blogs/room-temperature-magnetic-semiconductors",
+          "summary": "作者和一组 Claude Opus 5.5 agent 做了两份预测。第一份是自己设计的新化合物 YBaMnFeO₅，只含五个元素，预测带隙 2.35 eV，自旋排序窗口空穴侧 1.0 eV、电子侧 1.4 eV，原始模拟里磁性维持到约 420 K，用量子化已知磁体校准后约 490 K。第二份是在 1999 年就合成过的 KV[Cr(CN)₆]，预测带隙约 2.1 eV，两个带边自旋一致，窗口 2.6 eV 和 1.6 eV，1999 年那批样品磁有序维持到 376 K，高于室温。两者的净自旋矩在完美晶体里都为零。研究者也把问题写在明处：YBaMnFeO₅ 需要的棋盘排列在约 950 K 会散成随机混排，而这类氧化物通常要在 900 到 1300 摄氏度合成，所以这个设计可能做不出有用的形态；KV[Cr(CN)₆] 唯一的样品是多孔粉末含水，两种模拟方法对水削弱效应的程度判断不一致，带隙和自旋排序都还没有实测。输入文件、原始输出、分析代码和一条命令的复核脚本都放在公开仓库里。",
+          "summary_en": "The author and a team of Claude Opus 5.5 agents made two predictions. One is a designed compound, YBaMnFeO₅, made of five elements, with a predicted 2.35 eV band gap and spin-sorted windows of 1.0 eV for holes and 1.4 eV for electrons, magnetic order to about 420 K in the raw simulation or about 490 K after calibrating against a known magnet. The other is KV[Cr(CN)₆], first synthesized in 1999, with a predicted band gap near 2.1 eV, both band edges sorted into the same spin, and windows of 2.6 eV and 1.6 eV; the 1999 sample stayed magnetically ordered to 376 K, above room temperature. Both have zero net spin moment in a perfect crystal. The problems are stated plainly: YBaMnFeO₅'s required checkerboard arrangement falls apart into a random mix around 950 K, while such oxides are usually made at 900–1300 °C, so the design may be hard to make in useful form; KV[Cr(CN)₆]'s only sample is a water-bearing powder, the two simulation methods disagree on how much the water weakens the effect, and neither the band gap nor the spin sorting has been measured. Inputs, raw outputs, analysis code and a one-command checker are in a public repo.",
+          "why": "适合用 agent 做技术工作的人：价值不在材料本身，在那套交付方式，每个预测都附带输入、局限和复核路径。做 agent 辅助的分析报告时，这个标准可以直接拿来用。结论属研究阶段，没有实验验证。",
+          "why_en": "For anyone using agents on technical work: the value is not the material but the delivery — every prediction ships with its inputs, its limits and a way to re-run it. That is a usable bar for agent-assisted analysis reports. The result is research-stage and experimentally unverified."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 55,
+      "items": [
+        {
+          "title": "订阅额度实测，与 OpenAI 的容量收紧",
+          "title_en": "Subscription limits, measured, and OpenAI's capacity squeeze",
+          "author": "Latent Space（AINews）",
+          "author_en": "Latent Space (AINews)",
+          "likes": 0,
+          "url": "https://www.latent.space/p/ainews-reflection-beam-501b-a23b",
+          "summary": "Latent Space 的 AINews 在 10 月 6 日汇总里，几条都与能力和额度有关。SemiAnalysis 测了 Anthropic、OpenAI、Meta、Moonshot、Cursor 等多家订阅，称 Claude 的订阅在 API 等值上比 OpenAI 高出 5 倍以上；按任务成本折算后，这个差距收窄到 1.3 到 2.9 倍。用户反映 OpenAI 暂停了新的 200 美元档注册，并把各档额度实际砍半，GPT-6.1 Sol 被摆成高效的替代。Codex 负责人 Tibo 承诺 28 天里每天做一次实质改进或一次完整重置；第一天把 GPT-6 Astra 和 GPT-6.1 Sol 的默认速度提高约五成，从约 30 TPS 到约 50 TPS，覆盖订阅各处和 OpenCode、Pi、Amp、Devin 这些登入伙伴。另有两则转述：The Information 称微软把内部 Anthropic 预算砍了三分之一以上，Meta 的 Claude Code 用户从约 6 万降到约 3 万，与它推自家工具有关；还有一位分析师称 Anthropic 把 42% 的推理算力花在只贡献约 10% 收入的订阅上，这条没有出处。",
+          "summary_en": "In its October 6 roundup, Latent Space's AINews collects several items about capability and quotas. SemiAnalysis tested plans across Anthropic, OpenAI, Meta, Moonshot, Cursor and others, concluding Claude subscriptions deliver more than 5x the API-equivalent value of OpenAI's; adjusting for task cost narrows that gap to 1.3–2.9x. Users report that OpenAI paused new $200 sign-ups and effectively halved limits across plans, positioning GPT-6.1 Sol as the efficient alternative. Codex lead Tibo pledged a meaningful improvement or a full reset every day for 28 days; day one raised default speed for GPT-6 Astra and GPT-6.1 Sol by about 50%, from roughly 30 to roughly 50 TPS, across subscription surfaces and Sign-in-with-ChatGPT partners including OpenCode, Pi, Amp and Devin. Two reported items: The Information says Microsoft cut projected internal Anthropic spend by more than a third, and Meta's Claude Code users fell from about 60,000 to about 30,000 amid a push to its own tools; one analyst claims Anthropic spends 42% of inference compute on subscriptions earning about 10% of revenue, with no sourcing.",
+          "why": "适合给 AI 采购和定价做判断的人：那个「5 倍」取决于口径，按任务成本折算就只剩 1.3 到 2.9 倍，把它当一次测量而不是事实。要带走的提醒是，供应商侧的额度是活的变量，新注册能暂停，限额能减半，成本模型里得给它留一行。分析师那条和 The Information 两则都是转述，未经证实。",
+          "why_en": "For anyone making AI purchasing or pricing calls: the \"5x\" depends on methodology — adjust for task cost and it falls to 1.3–2.9x — so treat it as one measurement, not a fact. The takeaway is that provider-side limits are a live variable: sign-ups can pause and quotas can halve, so give them a line in your cost model. The analyst claim and the two The Information items are reported and unverified."
+        },
+        {
+          "title": "Anthropic 把 Claude Cowork 的执行整个搬进云",
+          "title_en": "Anthropic moves Claude Cowork's execution entirely into the cloud",
+          "author": "Felix Rieseberg（Anthropic）· Simon Willison 收录",
+          "author_en": "Felix Rieseberg (Anthropic) · via Simon Willison",
+          "likes": 0,
+          "url": "https://simonwillison.net/2026/Oct/5/felix-rieseberg/",
+          "summary": "据 Anthropic 的 Felix Rieseberg 说明，旧版 Cowork 把模型推理放在云上，工具调用则在随应用装到本地的虚拟机里执行；新版把推理和虚拟机都搬到云上，一个会话一个沙箱，彼此不共享状态。虚拟机需要用到用户设备上的东西，比如一个文件，就由桌面应用去完成那次访问调用。官方给的理由是，本地虚拟机在磁盘、电池和性能上的代价不讨喜，而且合上笔记本工作就停；改成云端之后，手机能用，工作也不会因为你离开而中断。出处是 Rieseberg 的原话，由 Simon Willison 在 10 月 5 日收录，并链到一页 Anthropic 帮助文档。",
+          "summary_en": "Per Anthropic's Felix Rieseberg, the old Cowork ran model inference in the cloud but executed tool calls in a VM shipped to the local machine with the app; the new version runs both inference and the VM in the cloud, with one sandbox per session that does not share state with others. When the VM needs something on the user's device, such as a file, the desktop app handles that access call. The stated reasons: users disliked the local VM's disk, battery and performance cost, and closing the laptop stopped the work; in the cloud, the phone works and the work keeps running while you are away. The source is Rieseberg's own words, collected by Simon Willison on October 5 with a link to an Anthropic help page.",
+          "why": "适合做 agent 产品的人：执行放在哪里是一个产品决定，牵动三件事，设备代价（磁盘、电池）、连续性（合上笔记本工作停不停）和隔离（会话之间共不共享状态）。搬到云上买到连续性和手机的触达，付出的是数据离开设备。这是 Anthropic 对自己这次改动的说法。",
+          "why_en": "For anyone building an agent product: where execution runs is a product decision with three consequences — device cost (disk, battery), continuity (does work survive a closed laptop) and isolation (do sessions share state). Moving to the cloud buys continuity and phone reach, and pays in data leaving the device. This is Anthropic's account of its own change."
+        }
+      ]
+    }
+  ]
+}
