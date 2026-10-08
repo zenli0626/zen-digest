@@ -1,0 +1,259 @@
+{
+  "date": "2026-10-08",
+  "partial": false,
+  "banner": "Haiku 5.5 降价七成，跑分超同级",
+  "banner_en": "Claude Haiku 5.5: 75% cheaper, beats its price class",
+  "image": {
+    "src": "digests/img/2026-10-08.jpg",
+    "caption": "本期要图：Anthropic 为 Claude Haiku 5.5 发布页配的社交预览图，页面把这张图的替代文本标为「Anthropic logo」。该型号 10 月 7 日发布，所有平台可用，官方称 100k token 以内的输入输出价格比 Haiku 4.5 低九成。（图：Anthropic）",
+    "caption_en": "Today's front-page image: Anthropic's own social preview card for the Claude Haiku 5.5 release page. The page labels the image's alt text \"Anthropic logo.\" The model shipped on October 7 and is available on all platforms; Anthropic says input/output pricing is 90% lower than Haiku 4.5 for prompts up to 100k tokens. (Image: Anthropic)"
+  },
+  "actions": [
+    {
+      "text": "拿 Sierra 和 Meta 那份 Personal Agent Protocol，对着自己产品的注册或结算流程走一遍，标出哪些步骤必须人点界面才能过。约 20 分钟。做完的标准：写下走不通的那一步，是登录、是验证码，还是支付授权。",
+      "text_en": "Take the Meta/Sierra Personal Agent Protocol and walk your own product's signup or checkout flow against it, marking every step only a human clicking through a UI can pass. About 20 minutes. Done means you write down the exact step that blocks it: login, a CAPTCHA, or payment authorization.",
+      "source": "Sierra《Introducing Personal Agent Protocol》(10 月 6 日)",
+      "source_en": "Sierra, \"Introducing Personal Agent Protocol\" (Oct 6)",
+      "source_url": "https://sierra.ai/blog/introducing-personal-agent-protocol"
+    },
+    {
+      "text": "找一个产品里只在几个固定选项中挑一个的模型调用（分类、路由、打标都算），先量它的延迟和单次成本，再换成一个小的结构化调用跑同一份测试集。约 30 分钟。做完的标准：写下准确率掉没掉、成本降了多少。",
+      "text_en": "Find one model call in your product that only picks among a fixed set of options (classification, routing, tagging all count), measure its latency and per-call cost, then swap in a small structured call and run the same test set. About 30 minutes. Done means you write down whether accuracy moved and how much cost dropped.",
+      "source": "Google《EmbeddingGemma 2》与 Anthropic《Claude Haiku 5.5》的定价与端侧说明",
+      "source_en": "Google's \"EmbeddingGemma 2\" and the pricing and on-device notes in Anthropic's \"Claude Haiku 5.5\"",
+      "source_url": "https://www.anthropic.com/claude-haiku-5-5"
+    },
+    {
+      "text": "挑一个每天跑、依赖本地文件的 agent 任务，把它整个放进容器里跑一次，记录哪里断了：路径、网络出口，还是密钥读取。约 25 分钟。做完的标准：写出把它改成无状态运行还缺的那一两样东西。",
+      "text_en": "Pick one agent task you run daily that depends on local files, run the whole thing inside a container once, and note what breaks: paths, network egress, or key access. About 25 minutes. Done means you write down the one or two things still missing to run it statelessly.",
+      "source": "Docker Agent 与 Latent Space 对 Stacklok 云端 harness 的访谈（10 月 7 日）",
+      "source_en": "Docker Agent and Latent Space's interview with Stacklok on cloud-native agent harnesses (Oct 7)",
+      "source_url": "https://www.latent.space/p/stacklok"
+    }
+  ],
+  "hands_on": {
+    "title": "用一份 YAML 跑起 Docker Agent",
+    "title_en": "Get Docker Agent running from a single YAML file",
+    "why": "Docker 把 agent 做成了 docker 命令行插件：模型、指令、工具集全写在一份 YAML 里，多 agent 分工、MCP 工具、检索、推到 OCI registry 都从这份配置走。今晚就能上手，不用先写代码，配好一条命令就能跑；好处是 agent 定义成了可以版本化、可以推给别人拉起来跑的配置文件。",
+    "why_en": "Docker turned agents into a docker CLI plugin: model, instructions and toolsets all live in one YAML file, and multi-agent delegation, MCP tools, retrieval and pushing to an OCI registry all hang off that config. It's tryable tonight with no code, one command once the config exists, and the payoff is that an agent becomes a versionable config file you can hand to someone else to pull and run.",
+    "time": "15-25 分钟",
+    "time_en": "15-25 minutes",
+    "steps": [
+      "确认 Docker Desktop 是 4.63 或更高版本，这个插件已经自带；否则跑 brew install docker-agent，再把二进制软链到 ~/.docker/cli-plugins/docker-agent。",
+      "设一个密钥：export OPENAI_API_KEY=sk-...（或 ANTHROPIC_API_KEY、GOOGLE_API_KEY），也可以改用 Docker Model Runner 跑本地模型。",
+      "写一份 agent.yaml：root agent 下面填 model、description、instruction，toolsets 里挂一个 MCP，例如 type: mcp、ref: docker:duckduckgo。",
+      "跑 docker agent run agent.yaml；想让工具帮你生成配置就用 docker agent new。",
+      "做完的标准：你能说清这份 YAML 里哪几行换成别的组合会改变 agent 的行为，以及相比手写一个 agent 循环它省掉了什么。"
+    ],
+    "steps_en": [
+      "Confirm Docker Desktop is 4.63 or newer, where the plugin is pre-installed; otherwise run brew install docker-agent and symlink the binary to ~/.docker/cli-plugins/docker-agent.",
+      "Set a key: export OPENAI_API_KEY=sk-... (or ANTHROPIC_API_KEY, GOOGLE_API_KEY), or point it at Docker Model Runner for a local model.",
+      "Write an agent.yaml: under the root agent set model, description and instruction, and add an MCP toolset such as type: mcp with ref: docker:duckduckgo.",
+      "Run docker agent run agent.yaml; if you'd rather have it generate the config for you, run docker agent new.",
+      "Done means you can say which lines in that YAML would change the agent's behavior if swapped, and what it saves you over hand-wiring an agent loop."
+    ],
+    "source": "docker-agent README（Docker Engineering，Apache 2.0，3,933 星）",
+    "source_en": "docker-agent README (Docker Engineering, Apache 2.0, 3,933 stars)",
+    "source_url": "https://github.com/docker/docker-agent"
+  },
+  "meta_read": "今天这几件事摞在一起，变化的位置不在模型能力，在默认值。过去一年的默认是「能上最强就上最强」，账单由谁付没人问；今天四条线同时把这个默认值往下调：最便宜的一档被做到能用，嵌入模型被塞进手机，agent 的循环被往云上搬，公司开始给每个人的 AI 花费设上限。推动这四件事的不是研究者，是采购和使用这些工具的人。会分胜负的地方从「谁的模型更强」挪到了「谁掌握那层没人管的默认值」——型号、跑在哪、算谁的账。省下来的钱不会自己变成更少的工作，它只会变成更高的产出预期，这才是开发者情绪那组数据值得和上面几条放在一起读的原因。",
+  "meta_read_en": "Stack today's stories together and the change is not in what models can do but in the defaults. For a year the default was to reach for the strongest model available, with nobody asking who paid the bill; today four threads lower that default at once: the cheapest tier got good enough to use, an embedding model moved onto the phone, the agent loop started moving to the cloud, and companies began capping what each person may spend on AI. The people pushing all four are the ones buying and using these tools, not the ones researching them. So the contest shifts from whose model is strongest to who owns that unmanaged layer of defaults, meaning the model tier, where it runs, and whose books it lands on. The money saved does not turn into less work by itself, only into higher expectations of output, which is why the developer-sentiment numbers belong next to the rest.",
+  "ota": {
+    "learned": "观察 · 转引不等于复核：原始报道有付费墙时，多家转引常常是同一份原文的副本，不是互相印证。今天的 Meta/微软那条，原文是 The Information（付费墙，抓不到），我找到的三家转引都写着「据 The Information」，所以它们算一个信息源，不是三个。转引之间对得上的数字（每月上限从 10 万美元降到约 1 万、内部 Anthropic 支出预估下调超过三分之一、Claude Code 使用人数从约 6 万降到约 3 万）可以当「原文这么说」记下；只在其中一家出现的数字（Muse Code 的使用人数、Meta 的 Claude Code 花费）就没有第二处能对，按未证实处理，写进正文只写能对上的那几个。这条和 08-22 那条同源但场景不同：08-22 讲的是同一批声音不算印证，这条讲的是同一份原文的多个副本也不算印证，而且判据是具体的数字对不对得上，不是口气像不像。",
+    "learned_en": "Observation: a republication is not a check. When the original report sits behind a paywall, multiple outlets carrying it are usually copies of the same source, not independent confirmation. For today's Meta/Microsoft story the original is The Information (paywalled, unreachable); all three republications I found say \"according to The Information,\" so they count as one source, not three. Figures that agree across the republications (per-employee monthly cap cut from $100,000 to about $10,000, the internal Anthropic spend estimate cut by more than a third, Claude Code users falling from about 60,000 to about 30,000) can be recorded as \"this is what the original says.\" Figures that appear in only one of them (Muse Code's user count, Meta's Claude Code spend) have nothing to check against, so they are treated as unconfirmed and left out of the item, which states only the figures that line up. This shares a root with the 2026-08-22 entry but is a different case: that one said a coordinated set of voices is not corroboration, this one says multiple copies of the same original are not corroboration either, and the test is whether the specific numbers line up, not whether the tone matches.",
+    "new_capabilities": "已验证 · 给付费墙原文加一道「数字核对」闸：原文读不到时，先收集所有转引，按来源分层——都写「据 <原文>」的算一层，只有数字能互相对上的进正文，单处出现的数字标为未证实、不进正文。今晚在 Meta/微软那条上跑通：上限的降幅、支出预估的降幅、Claude Code 人数三处转引都对得上，Muse Code 人数和 Meta 的花费只有一处，直接砍掉。调用方式：写任何转引自付费墙原文的条目之前，先把候选数字分「多处都有」和「只有一处」两堆，只把前者写进正文。",
+    "new_capabilities_en": "Verified · Added a figure-agreement gate for paywalled primaries: when the original can't be read, collect the republications and tier them by source — anything that says \"according to <original>\" is one tier, and only figures that line up across them go into the item; figures found in a single outlet are marked unconfirmed and left out. Ran it tonight on the Meta/Microsoft story: the cap reduction, the spend-estimate cut and the Claude Code headcount all matched across three republications and stayed; the Muse Code user count and Meta's Claude Code spend came from one outlet only and were cut. How to invoke: before writing any item drawn from a paywalled original, split the candidate numbers into \"appears in several\" and \"appears in one,\" and put only the former in the body."
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "morluto/rea",
+      "url": "https://github.com/morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "language": "TypeScript",
+      "stars": 17908,
+      "stars_today": 4655
+    },
+    {
+      "rank": 2,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 280182,
+      "stars_today": 1403
+    },
+    {
+      "rank": 3,
+      "name": "boykopovar/AnyPS5",
+      "url": "https://github.com/boykopovar/AnyPS5",
+      "description": "Tool for automatic PS5 executables porting to Linux and Windows",
+      "language": "C++",
+      "stars": 11869,
+      "stars_today": 2716
+    },
+    {
+      "rank": 4,
+      "name": "ayghri/i-have-adhd",
+      "url": "https://github.com/ayghri/i-have-adhd",
+      "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
+      "language": "Python",
+      "stars": 55431,
+      "stars_today": 619
+    },
+    {
+      "rank": 5,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Factory Droid, and Pi. 42 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 45377,
+      "stars_today": 825
+    },
+    {
+      "rank": 6,
+      "name": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "language": "JavaScript",
+      "stars": 103058,
+      "stars_today": 677
+    },
+    {
+      "rank": 7,
+      "name": "EpicGames/raddebugger",
+      "url": "https://github.com/EpicGames/raddebugger",
+      "description": "A native, user-mode, multi-process, graphical debugger.",
+      "language": "C",
+      "stars": 4802,
+      "stars_today": 90
+    },
+    {
+      "rank": 8,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent - Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions.",
+      "language": "TypeScript",
+      "stars": 97318,
+      "stars_today": 578
+    },
+    {
+      "rank": 9,
+      "name": "manaflow-ai/cmux",
+      "url": "https://github.com/manaflow-ai/cmux",
+      "description": "Open source Ghostty-based macOS terminal with vertical tabs and notifications for AI coding agents.",
+      "language": "Swift",
+      "stars": 3120,
+      "stars_today": 44
+    },
+    {
+      "rank": 10,
+      "name": "trycua/cua",
+      "url": "https://github.com/trycua/cua",
+      "description": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and more.",
+      "language": "Rust",
+      "stars": 6220,
+      "stars_today": 228
+    }
+  ],
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "Claude Haiku 5.5：便宜七成，同级跑分反超 GPT‑6 Luna",
+          "title_en": "Claude Haiku 5.5: 75% cheaper, and it beats GPT-6 Luna in its price class",
+          "author": "Anthropic · Hacker News",
+          "author_en": "Anthropic · Hacker News",
+          "likes": 841,
+          "url": "https://www.anthropic.com/claude-haiku-5-5",
+          "summary": "Anthropic 10 月 7 日发布 Claude Haiku 5.5（模型 ID claude-haiku-5-5），称其为自家最便宜、最快、最强的小模型。定价按每百万 token 计：输入 0.10 美元、输出 0.50 美元（提示 100k token 以内），超过 100k 为 0.50 和 2.50；缓存读取 0.01 和 0.05。Haiku 4.5 为 1.00 和 5.00，100k 以内降九成，以上降五成，官方称平均便宜约 75%。跑分均来自该页：GDPval-AA v2.1 为 1620，Haiku 4.5 为 735，同价位 GPT-6 Luna 为 1437，Sonnet 5.5 为 1840；OSWorld 2.1 为 72.4%，Luna 48.9%；Terminal-Bench 4.0 为 39.2%，Luna 16.4%；FrontierCode 1.1（Main）为 46.4%，Luna 42.4%，Sonnet 5.5 52.1%。Haiku 档首次支持可调推理强度（Low、Med、High、Xhigh、Max），同一型号内可用成本换能力。所有平台可用，含 AWS、Google Cloud 和 Azure。同页还提到 Sonnet 5.5 缓存读取降至 0.10 美元，以及给 Max 和 Team 订阅者的每月 API 额度（100、200，最多 500 美元合用）。跑分和客户案例均出自 Anthropic 发布页，无第三方复核。",
+          "summary_en": "Anthropic released Claude Haiku 5.5 on October 7 (model ID claude-haiku-5-5), calling it its cheapest, fastest and most capable small model. Pricing per million tokens: $0.10 input and $0.50 output for prompts up to 100k tokens, rising to $0.50 and $2.50 above that, with cache reads at $0.01 and $0.05. Against Haiku 4.5's $1.00 and $5.00 that is a 90% cut below 100k tokens and 50% above, which Anthropic describes as roughly 75% cheaper on average. The benchmarks, all from this page: GDPval-AA v2.1 scores 1620, versus 735 for Haiku 4.5, 1437 for the same-price GPT-6 Luna and 1840 for Sonnet 5.5; OSWorld 2.1 is 72.4% against Luna's 48.9%; Terminal-Bench 4.0 is 39.2% against Luna's 16.4%; FrontierCode 1.1 (Main) is 46.4% against Luna's 42.4% and Sonnet 5.5's 52.1%. It is the first Haiku-class model with an adjustable effort setting (Low, Med, High, Xhigh, Max), letting you trade cost against capability within one model. It is available on all platforms, including AWS, Google Cloud and Azure. The same page notes Sonnet 5.5's cache reads dropped to $0.10 and monthly API credits for Max and Team subscribers ($100, $200, up to $500 pooled). Every benchmark and customer result comes from Anthropic's own release page, with no third-party check.",
+          "why": "判断：套发布三问。谁今天能用：所有平台可用，是真上线。是不是促销价：定价表没标限时。谁测的：所有分数都写在 Anthropic 自己页面上，客户案例也是厂商提供的数字。适用于要压推理成本的人：这一档第一次多了一个旋钮——不用换型号，同一型号里调推理强度就能省。",
+          "why_en": "Read: run the three launch questions. Who can use it today: all platforms, a real rollout. Is the price promotional: the pricing table carries no limited-time marker. Who measured it: every score sits on Anthropic's own page, and the customer results are vendor-supplied. For anyone squeezing inference cost: this tier just gained a knob — you can save by adjusting reasoning effort inside one model, without switching models."
+        },
+        {
+          "title": "报道：Meta 和微软给员工的 Claude 花费设上限，转向自家工具",
+          "title_en": "Reported: Meta and Microsoft cap employee Claude spending, shift to in-house tools",
+          "author": "The Information（经 rswebsols 等转引）· Hacker News",
+          "author_en": "The Information (via rswebsols and others) · Hacker News",
+          "likes": 338,
+          "url": "https://www.rswebsols.com/news/meta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai/",
+          "summary": "The Information 10 月 5 日报道，Meta 和微软都在压低员工对 Anthropic Claude 的内部使用。原文有付费墙、没读到，以下数字来自多家转引，且各转引都写着据 The Information，算同一个信息源。微软方面：管理层要求员工少用 Claude，改用 GitHub Copilot 和 OpenAI 的框架；内部 Anthropic 支出原本预计每年至少 10 亿美元，该预估下调超过三分之一；云与 AI 部门给个人的每月 AI 花费上限，从 10 万美元降到多数情况下约 1 万美元。Meta 方面：Claude Code 使用人数从今年早些时候约 6 万降到约 3 万，转向自家 MetaCode 和 Muse Code。两家都仍是 Anthropic 客户，面向客户的 Claude 访问没有撤。注意：上限是预算上限，不是实际支出。",
+          "summary_en": "An October 5 report by The Information says Meta and Microsoft are both reducing internal employee use of Anthropic's Claude. The original is paywalled and could not be read; the figures below come from several republications, each of which says \"according to The Information,\" so they count as a single source. On Microsoft: management told employees to use less Claude and switch to GitHub Copilot and OpenAI frameworks; internal Anthropic spending, projected at at least $1 billion a year, had that estimate cut by more than a third; and a monthly per-employee AI spending cap in its cloud and AI division dropped from $100,000 to about $10,000 in most cases. On Meta: Claude Code users fell from about 60,000 earlier this year to about 30,000, with a shift to its own MetaCode and Muse Code. Both companies remain Anthropic customers, and customer-facing Claude access was not withdrawn. Note that these are spending caps, not actual spending.",
+          "why": "判断：这是企业端自研工具对外购的一次公开倒向，理由写的是成本和掌控，不是能力。适用于卖 AI 工具或做平台的人：客户同时是你的竞争对手时，采购决定会因非产品原因翻转，报价和绑定条款要按这个前提设计。",
+          "why_en": "Read: this is an enterprise tilt away from buying toward building, justified by cost and control rather than capability. For anyone selling AI tools or running a platform: when your customer is also your competitor, purchasing decisions flip for non-product reasons, so price and lock-in terms need to be designed with that assumption."
+        },
+        {
+          "title": "State of Devs 2026：62% 的人经历过倦怠，AI 疲劳被单列",
+          "title_en": "State of Devs 2026: 62% have burned out, with AI fatigue listed on its own",
+          "author": "Devographics · Hacker News",
+          "author_en": "Devographics · Hacker News",
+          "likes": 238,
+          "url": "https://2026.stateofdevs.com/en-US",
+          "summary": "Devographics 调查 State of Devs 2026 在 7 月 5 日到 9 月 5 日之间收了 5,463 份回答，10 月 6 日上了 HN 首页。调查覆盖工作、AI、身心健康等。四分之一的人职业生涯中经历过裁员，近十分之一是在过去九个月里；62% 的人说自己经历过倦怠。对 AI 的态度分裂：49% 正面、42% 负面；问 AI 对心理状态的影响，持否定态度的多于肯定。超过 1,500 人在自由问答里写了 AI，最常见的说法是工作变得不那么有回报，以及管理层对产出的期待不现实；调查把 AI 疲劳单列为一种状态。行业情绪得票最高的是 Exhausted（2,451）和 Disillusioned（2,165），远高于 Hopeful（1,102）和 Excited（897）。",
+          "summary_en": "Devographics' State of Devs 2026 survey collected 5,463 responses between July 5 and September 5 and hit the HN front page on October 6. It covers work, AI and wellbeing, among other areas. A quarter of respondents had been laid off at some point in their career, nearly one in ten within the last nine months, and 62% said they had experienced burnout. Views on AI split: 49% positive against 42% negative, and on AI's effect on mental state, more disagreed than agreed it was positive. More than 1,500 respondents wrote freeform comments about AI, most commonly that work had become \"less rewarding\" and that management held \"unrealistic expectations of productivity\"; the survey lists \"AI fatigue\" as its own state. The top industry feelings were Exhausted (2,451) and Disillusioned (2,165), far ahead of Hopeful (1,102) and Excited (897).",
+          "why": "判断：AI 的账不只记在算力和订阅上，还记在用工具的人身上。适用于带工程团队或做开发者产品的人：产出指标涨了、从业者反馈却变差了，这是同一件事的两面，先看流程是不是只加要求、没减动作。",
+          "why_en": "Read: the AI bill is not only compute and subscriptions, it is also the people using the tools. For anyone running an engineering team or building developer products: output metrics rising while practitioner sentiment falls are two faces of one thing, so first check whether your process has added requirements without removing any steps."
+        },
+        {
+          "title": "Docker 把 agent 做成命令行插件，配置写 YAML",
+          "title_en": "Docker turns agents into a CLI plugin configured in YAML",
+          "author": "Docker Engineering · Hacker News",
+          "author_en": "Docker Engineering · Hacker News",
+          "likes": 222,
+          "url": "https://github.com/docker/docker-agent",
+          "summary": "Docker Engineering 的 docker-agent 10 月 7 日登上 HN 首页，得 222 分。它是 docker 命令行插件，用一份 YAML 定义 agent，运行即 docker agent run。定位多 agent：root agent 配好模型、描述、指令和工具集，子 agent 自动分工。工具有内置的，也可挂任意 MCP server，本地、远程或跑在 Docker 里。模型供应商不限，OpenAI、Anthropic、Gemini、AWS Bedrock、Mistral、xAI、Docker Model Runner 均支持。内置 think、todo、memory 三个工具；检索支持 BM25、向量、混合搜索和重排。agent 能推到任意 OCI registry，再在别处拉下来跑。仓库 Apache 2.0，当前 3,933 星；装了 Docker Desktop 4.63 及以上版本就自带该插件，也可 brew install docker-agent。",
+          "summary_en": "Docker Engineering's docker-agent hit the HN front page on October 7 (222 points). It is a docker CLI plugin that defines an agent in a YAML file and runs it with docker agent run. It is multi-agent: a root agent gets a model, description, instructions and toolsets, and sub-agents delegate among themselves. Tools can be built-in or any MCP server, whether local, remote or running in Docker. It is provider-agnostic, supporting OpenAI, Anthropic, Gemini, AWS Bedrock, Mistral, xAI and Docker Model Runner. It ships think, todo and memory tools, and retrieval covers BM25, embeddings, hybrid search and reranking. Agents can be pushed to any OCI registry and pulled and run elsewhere. The repo is Apache 2.0 with 3,933 stars; Docker Desktop 4.63 and newer includes the plugin, and brew install docker-agent also works.",
+          "why": "判断：把 agent 定义成可版本化、可推送的配置文件，是用容器生态解决 agent 的分发问题。适用于要把 agent 交给别人运行的人：YAML 加 OCI 分发这条路，比自己发明一套 DSL 省事。",
+          "why_en": "Read: defining an agent as a versionable config file you can push is using the container ecosystem to solve agent distribution. For anyone who needs someone else to run their agent: YAML plus OCI distribution is less work than inventing your own DSL."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 78,
+      "items": [
+        {
+          "title": "Kubernetes 的两位创造者，要把 agent 的运行环境搬上云",
+          "title_en": "Kubernetes' two creators want to move the agent runtime into the cloud",
+          "author": "Craig McLuckie、Joe Beda（访 Latent Space）",
+          "author_en": "Craig McLuckie and Joe Beda, interviewed by Latent Space",
+          "likes": 0,
+          "url": "https://www.latent.space/p/stacklok",
+          "summary": "Latent Space 10 月 7 日访谈 Kubernetes 两位共同创造者 Craig McLuckie 和 Joe Beda，他们现在的公司 Stacklok 2023 年拿了 1750 万美元 A 轮，投资方 Accel、Madrona、Bain Capital，从软件供应链安全转向基于 Kubernetes 的 agent 方案。问题很具体：桌面优先的 harness 里，agent 循环、执行和会话状态都在同一个进程里起步，进企业就撑不住，卡在会话可靠性、工具执行隔离和上下文保持三处。开源产品 Mecatl 的做法是把 agent 循环和客户端、模型供应商、状态存储、执行环境解耦，会话状态和记忆从磁盘上的 JSONL 文件搬进托管系统；ToolHive 从 MCP 服务托管长成了带 registry 和 operator 的 Kubernetes 网关；另有一个尚未开源的 AI Gateway，管访问控制、预算、报表和供应商路由。Beda 说企业看 agent 交互应该像看邮件，归属企业。文中引用了一份 520 位负责人的调研。",
+          "summary_en": "In a Latent Space interview on October 7, Kubernetes co-creators Craig McLuckie and Joe Beda describe how their company Stacklok, which raised a $17.5 million Series A in 2023 (Accel, Madrona, Bain Capital), pivoted from software supply chain security to Kubernetes-based agent systems. Their problem is concrete: in a desktop-first harness the agent loop, execution and session state all begin inside the same process, which they say does not hold up in an enterprise, stalling on session reliability, isolating tool execution and preserving context. Their open-source Mecatl decouples the agent loop from the client, model provider, state store and execution environment, moving session state and memory off JSONL files on disk into managed systems. ToolHive grew from MCP server hosting into a Kubernetes-based gateway with a registry and operator, and there is a not-yet-open-sourced AI Gateway handling access control, budgets, reporting and provider routing. Beda argues enterprises should treat agent interactions the way they treat email, as belonging to the enterprise. The piece cites a survey of 520 leaders.",
+          "why": "判断：桌面 agent 产品的下一道坎是会话状态存在哪。把循环和状态解耦，意味着换模型、换执行环境不用重写 agent。适用于自己做 agent 或给企业交付 agent 的人：先问会话状态归谁、存在哪，再谈能力。",
+          "why_en": "Read: the next hurdle for desktop agent products is where session state lives. Decoupling the loop from the state means swapping models or execution environments without rewriting the agent. For anyone building agents or delivering them to enterprises: ask who owns the session state and where it sits before discussing capability."
+        },
+        {
+          "title": "Meta 和 Sierra 起草一份标准：个人 agent 怎么和商家打交道",
+          "title_en": "Meta and Sierra draft a standard for how personal agents talk to businesses",
+          "author": "Bret Taylor、Clay Bavor（Sierra）· TLDR AI",
+          "author_en": "Bret Taylor and Clay Bavor (Sierra) · TLDR AI",
+          "likes": 0,
+          "url": "https://sierra.ai/blog/introducing-personal-agent-protocol",
+          "summary": "10 月 6 日，Sierra 的 Bret Taylor 和 Clay Bavor 发文介绍 Personal Agent Protocol：一份开放标准，Meta 和 Sierra 联合 Genesys、Instinct、Rocket、Shopify、Stripe、Walmart 一起做，定义个人 agent 怎么和商家交互。现在个人 agent 大多像人一样加载页面、点表单，慢且容易失败，有时还得呼客服。协议把两侧的需求分开写：消费者决定给自己的 agent 多少权限，商家设定 agent 能做什么。流程是 agent 从商家网站发现服务后开启会话，可以先以访客身份开始，需要账号时由用户登录，并选择只读还是可写；会话建在 OAuth 上，并跨渠道延续。任务可以走网站、走商家的 API，如 MCP、OpenAPI 这类标准，或走商家自己的 agent。v0.1 规范说好本月内发布，还会有设计工作坊和参考实现。",
+          "summary_en": "On October 6, Sierra's Bret Taylor and Clay Bavor introduced the Personal Agent Protocol, an open standard Meta and Sierra are developing with Genesys, Instinct, Rocket, Shopify, Stripe and Walmart that defines how personal agents interact with businesses. Today most personal agents act like people do, loading pages and clicking through forms, which is slow and error-prone and sometimes ends in a support call. The protocol splits the two sides' needs: consumers decide how much access to give their agent, and companies set what those agents may do. In practice an agent discovers offerings on a company's site and starts a session, potentially as a guest, then has the user sign in for account access and choose read-only or write access; the session is built on OAuth and carries across channels. Tasks can run through the website, the company's APIs (standards like MCP and OpenAPI) or the company's own agent. The v0.1 specification is due later this month, along with design workshops and a reference implementation.",
+          "why": "判断：agent 能不能替用户下单，卡点从来不是模型，是授权和责任。这份标准把「用户给权限」和「商家设边界」分开写，等于给 agent 商务画了一条可审计的线。适用于做交易、订阅或客服入口的产品：先看自己的登录和支付流程能不能被一个受限 agent 走完。",
+          "why_en": "Read: what blocks an agent from checking out on a user's behalf was never the model, it is authorization and liability. By writing the user's grant and the merchant's boundary as separate things, this standard draws an auditable line for agent commerce. For anyone building a checkout, subscription or support entry point: see whether a scoped-down agent can complete your login and payment flows."
+        },
+        {
+          "title": "Gemma 家族的嵌入模型升到 2，图文音视嵌进同一个空间",
+          "title_en": "Gemma's embedding model hits version 2, mapping text, images, audio and video into one space",
+          "author": "Google · TLDR AI",
+          "author_en": "Google · TLDR AI",
+          "likes": 0,
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
+          "summary": "Google 10 月 6 日发布 EmbeddingGemma 2：740M 参数的开源嵌入模型，Apache 2.0，基于 Gemma 4 架构，把文本、图像、音频、视频映射进同一个嵌入空间，主打端侧运行。可以按需裁剪，纯文本最小 270M，视觉编码器 170M、音频编码器 300M。在 Pixel 11 Pro 上，纯文本权重约占 191MB 内存，完整多模态约 567MB。上下文 8K token，是 EmbeddingGemma 1 的 4 倍，官方说能装下约 5.5 分钟音频、29 张图或 58 帧视频；支持 MRL，从 768 维截到 512、256、128 维，最多省 6 倍存储。官方给的数字是 MTEB Code 提升 9.92 分（从 68.76 到 78.68）。权重在 Hugging Face 和 Kaggle，可用 MediaPipe、LiteRT 部署，也有 transformers、vLLM、llama.cpp、Ollama、LMStudio 的路径。",
+          "summary_en": "Google released EmbeddingGemma 2 on October 6: a 740M-parameter open embedding model under Apache 2.0, built on the Gemma 4 architecture, mapping text, images, audio and video into a single embedding space and aimed at on-device use. It is modular, as small as 270M parameters for text-only, with a 170M vision encoder and a 300M audio encoder. On a Pixel 11 Pro the text-only weights need about 191MB of active RAM and the full multimodal model about 567MB. It has an 8K-token context, four times EmbeddingGemma 1, which Google says fits about 5.5 minutes of audio, 29 images or 58 video frames, and it supports MRL truncation from 768 dimensions down to 512, 256 or 128 for up to a 6x storage reduction. Google's stated figure is a 9.92-point gain on MTEB Code, from 68.76 to 78.68. Weights are on Hugging Face and Kaggle, deployable via MediaPipe or LiteRT, with paths through transformers, vLLM, llama.cpp, Ollama and LMStudio.",
+          "why": "判断：检索这一层正在从调一个云 API，变成在设备上跑一个小模型。适合做端侧、或对数据敏感的产品：嵌入模型能在本地跑，RAG 的默认形态就能改，用户数据不必送出去。",
+          "why_en": "Read: the retrieval layer is shifting from calling a cloud API to running a small model on the device. For anyone building on-device or data-sensitive products: once embeddings run locally the default shape of RAG can change, with no need to send user data out."
+        }
+      ]
+    }
+  ]
+}
