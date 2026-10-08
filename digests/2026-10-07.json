@@ -1,30 +1,30 @@
 {
   "date": "2026-10-07",
   "partial": false,
-  "banner": "OpenAI 放出 722 篇数学论文",
-  "banner_en": "OpenAI publishes 722 papers written by its AI",
+  "banner": "GPT‑6 今日起向所有人开放",
+  "banner_en": "GPT-6 rolls out to everyone",
   "image": {
-    "src": "digests/img/2026-10-07.png",
-    "caption": "本期要图：GitHub 为 openai/math 仓库自动生成的社交卡片。仓库 10 月 6 日建成，按 README，收录 722 篇论文、归入 372 个结果族，另附 Lean 形式化目录和 10 篇推理解读。（图：GitHub / openai/math）",
-    "caption_en": "Today's front-page image: the social card GitHub auto-generates for the openai/math repository. The repo was created on October 6 and, per its README, holds 722 manuscripts in 372 result families, plus a Lean formalization catalogue and 10 reasoning summaries. (Image: GitHub / openai/math)"
+    "src": "digests/img/2026-10-07.jpg",
+    "caption": "本期要图：OpenAI 发布《GPT‑6 and Intelligent UI for everyone》的官方宣传图，画面中有人摊开一份旧金山城市指南，配文「有时候文字不够用」。GPT‑6 今起向 Plus、Pro、Business、Enterprise 开放，明天轮到 Free 和 Go。（图：OpenAI）",
+    "caption_en": "Today's front-page image: OpenAI's own promotional still for \"GPT-6 and Intelligent UI for everyone,\" showing someone unfolding a San Francisco city guide with the line \"Sometimes words aren't enough.\" GPT-6 rolls out to Plus/Pro/Business/Enterprise today, with Free/Go following tomorrow. (Image: OpenAI)"
   },
   "actions": [
     {
-      "text": "列出你团队里人人都有一套的东西：个人提示词、本地脚本、没人共享的 skill。约 20 分钟。做完的标准：从清单里挑出重复最多的一条，写成一份全团队共用的版本存好。",
-      "text_en": "List the things in your team that every person has their own copy of: personal prompts, local scripts, skills nobody shares. About 20 minutes. Done means you pick the most-duplicated one off the list and save a single shared version the whole team can use.",
-      "source": "The AI Thinker 对 Uber「软件工厂」的拆解（10 月 5 日）",
-      "source_en": "The AI Thinker's breakdown of Uber's software factory (Oct 5)",
-      "source_url": "https://www.theaithinker.com/p/how-to-build-an-ai-native-software"
+      "text": "打开你在用的一个 AI 产品或脚本，看它默认跑哪个模型档位、推理强度是多少。按 OpenAI 的价格表换算：Astra 每百万 token 输入 10 美元、输出 50 美元，6.1 Sol 是 2 美元和 10 美元，Luna 是 0.1 美元和 0.5 美元。约 15 分钟。做完的标准：挑出一个默认跑贵档、实际用不着的场景，写下换成便宜档后打算怎么验证效果没掉。",
+      "text_en": "Open an AI product or script you use and check which model tier and reasoning effort it defaults to. Convert against OpenAI's price table: Astra runs $10 input / $50 output per million tokens, 6.1 Sol is $2/$10, Luna is $0.10/$0.50. About 15 minutes. Done means you find one place defaulting to an expensive tier it doesn't need, and write down how you'll check quality didn't drop after switching to a cheaper one.",
+      "source": "OpenAI《A model guide for the GPT‑6 family》定价表",
+      "source_en": "OpenAI's price table in \"A model guide for the GPT-6 family\"",
+      "source_url": "https://openai.com/index/practical-guide-building-gpt-6/"
     },
     {
-      "text": "数清你产品眼下自动产生的隐式反馈：用户接受建议、动手改、直接跳过的那一下，有几处已经落到日志里。约 20 分钟。做完的标准：写出一条今天就能开始采集、且不用新增任何弹窗的信号。",
+      "text": "数清你的产品眼下自动产生的隐式反馈：用户接受建议、动手修改、直接跳过，这几处动作有几处已经落到日志里。约 20 分钟。做完的标准：写出一条今天就能开始采集、且不用新增任何弹窗的信号。",
       "text_en": "Inventory the implicit feedback your product already produces: the moments a user accepts a suggestion, edits it, or skips it, and how many of those already land in a log. About 20 minutes. Done means you write down one signal you could start collecting today that needs no new popup.",
       "source": "Zohaib Ansari 的博客与 Anthropic 工程师在 Hacker News 的回复（10 月 6 日）",
       "source_en": "Zohaib Ansari's blog post and an Anthropic engineer's reply on Hacker News (Oct 6)",
       "source_url": "https://www.zohaib.cc/blog/smartest-claude-code-feature"
     },
     {
-      "text": "查一遍你产品能不能上 OpenAI Marketplace 这类分发渠道：纳入条件是什么、客户能不能用已承诺给平台的额度买你、要不要单独结算。约 30 分钟。做完的标准：写下走通这条路缺的一两样东西，是资格、是集成，还是一个销售动作。",
+      "text": "查一遍你的产品能不能上 OpenAI Marketplace 这类分发渠道：纳入条件是什么、客户能不能用已承诺给平台的额度买你、要不要单独结算。约 30 分钟。做完的标准：写下走通这条路缺的一两样东西，是资格、是集成，还是一个销售动作。",
       "text_en": "Check whether your product can list on a distribution channel like the OpenAI Marketplace: what the onboarding bar is, whether customers can pay for you out of a commitment they already made to the platform, and whether billing stays separate. About 30 minutes. Done means you write down the one or two things you are missing to make it work, whether that is eligibility, an integration, or a sales motion.",
       "source": "Akash Bajwa 对 OpenAI B2B Marketplace 的分析（10 月 5 日）",
       "source_en": "Akash Bajwa's analysis of OpenAI's B2B Marketplace (Oct 5)",
@@ -32,37 +32,37 @@
     }
   ],
   "hands_on": {
-    "title": "给 llm 命令行装一个决策模型插件，把一条客户消息路由到对应部门",
-    "title_en": "Add a decision-model plugin to the llm CLI and route one customer message",
-    "why": "OpenAI 的 Decisions API 公开测试，按输入计费，每百万输入 token 0.1 美元，输出不计费。它回答的是「是/否」「选哪类」「打几分」这类判定，不生成大段文字，所以又快又便宜。Simon Willison 写了配套的 llm 插件，装完在终端里就能用，不用进编辑器。",
-    "why_en": "OpenAI's Decisions API is in public beta, billed on input only at $0.10 per million input tokens with no output charge. It answers judgments like yes/no, which category, or what score, rather than generating prose, so it is fast and cheap. Simon Willison wrote the companion llm plugin, so once installed you can run it from a terminal without opening an editor.",
-    "time": "15 分钟",
-    "time_en": "15 minutes",
+    "title": "在 ChatGPT 里试一次 GPT‑6 的 Intelligent UI",
+    "title_en": "Try GPT-6's Intelligent UI live in ChatGPT",
+    "why": "OpenAI 今天把 Intelligent UI 带进 ChatGPT：同一个问题，模型自己决定要不要配图表、地图、按钮，或者当场写一个能用的小工具（官方举的例子是储蓄计算器、分账器），不再统一回纯文字。今天起 Plus、Pro、Business、Enterprise 就能用，不用等更新。",
+    "why_en": "OpenAI shipped Intelligent UI into ChatGPT today: for the same question, the model now decides whether to answer with a chart, a map, buttons, or a small working tool it writes on the spot (OpenAI's own examples are a savings calculator and a bill splitter), instead of defaulting to plain text. It's live today for Plus/Pro/Business/Enterprise, no update needed.",
+    "time": "10-15 分钟",
+    "time_en": "10-15 minutes",
     "steps": [
-      "装 CLI（若还没有）：pip install llm。",
-      "再装插件：llm install llm-openai-decisions。",
-      "设置密钥：llm keys set openai，或先 export OPENAI_API_KEY=你的密钥。",
-      "跑一次分类：llm -m openai-decisions/gpt-6-luna '我的账单被扣了两次。' -s '这条消息该转给哪个部门？' -o answer_type choice -o choices '{\"billing\":\"扣费、发票和退款\",\"technical\":\"产品使用问题\",\"other\":null}'",
-      "做完的标准：终端返回一个带 choice 和 confidence 的 JSON，你能说清它和一次普通补全调用相比，贵在哪、快在哪。"
+      "打开 chatgpt.com，确认账号是 Plus、Pro、Business 或 Enterprise（免费版要等明天）。",
+      "开一个新对话，问一个适合可视化的问题，比如「帮我排一个本周末的两日游行程」或「给我做一个退休储蓄计算器」。",
+      "看返回的是不是带图表、地图或可交互组件的界面，而不是一段纯文字。",
+      "在界面里直接改一个输入（比如拖动计算器的滑块），看它是不是当场更新，不用重新提问。",
+      "做完的标准：你能说清这次用了哪种界面元素，和纯文字版回答比，好在哪或差在哪。"
     ],
     "steps_en": [
-      "Install the CLI if you don't have it: pip install llm.",
-      "Then install the plugin: llm install llm-openai-decisions.",
-      "Set a key: llm keys set openai, or export OPENAI_API_KEY=your-key first.",
-      "Run one classification: llm -m openai-decisions/gpt-6-luna 'I was charged twice.' -s 'Which department should handle this message?' -o answer_type choice -o choices '{\"billing\":\"Charges, invoices, and refunds\",\"technical\":\"Problems using the product\",\"other\":null}'",
-      "Done means the terminal returns JSON with a choice and a confidence, and you can say how it compares with an ordinary completion call on cost and latency."
+      "Open chatgpt.com and confirm your account is Plus, Pro, Business, or Enterprise (free tier arrives tomorrow).",
+      "Start a new chat and ask something suited to visuals, like \"plan me a two-day weekend trip\" or \"build me a retirement savings calculator.\"",
+      "Check whether the answer comes with a chart, a map, or an interactive component, instead of a block of plain text.",
+      "Change one input directly inside the interface (drag a calculator slider, say) and see whether it updates on the spot without a new question.",
+      "Done means you can say which interface element it used, and how it compares with a plain-text answer."
     ],
-    "source": "OpenAI Decisions API 公开测试（10 月 6 日）+ Simon Willison 的 llm-openai-decisions 插件（PyPI 0.1）",
-    "source_en": "OpenAI Decisions API public beta (Oct 6) plus Simon Willison's llm-openai-decisions plugin (PyPI 0.1)",
-    "source_url": "https://simonwillison.net/2026/Oct/6/llm-openai-decisions/"
+    "source": "OpenAI《GPT‑6 and Intelligent UI for everyone》(10 月 7 日)",
+    "source_en": "OpenAI, \"GPT-6 and Intelligent UI for everyone\" (Oct 7)",
+    "source_url": "https://openai.com/index/gpt-6-for-everyone/"
   },
-  "meta_read": "今天几件事指向同一处：产出的速度已经超过验证的速度。论文、代码提交、产品替你写好的下一句话，都是先把量顶上去，能坐下来看的人没有变多。稀缺的位置于是从「能不能做出来」挪到「谁来判断」。Lean 形式化、人工复核那道闸、决定要不要采纳的那一下，都落在同一层。给这一层留多少人手、留几道闸，比再多产出一点更能决定成败。",
-  "meta_read_en": "Today's stories point at one place: output now moves faster than verification. Papers, pull requests, the next sentence your product writes for you, all push volume up while the number of people who can sit down and check it stays flat. So the scarce position has moved from can we make it to who judges it. Lean formalizations, the human review gate, the moment someone hits accept, all live on that same layer. How many people and how many gates you give that layer will matter more than producing a little more.",
+  "meta_read": "今天几条独立的新闻都在讲同一件事：选对了模型型号，不等于选对了该花多少钱。GPT‑6 一次给出三档（Astra、6.1 Sol、Luna），有人在 Hacker News 上问，ChatGPT 为什么用 Sol 而不是更强的 6.1 Sol，帖子没给答案。Reflection 的 Beam 隐身开发一年多、每月上亿美元算力，跑分落在 GLM‑5.2 一档，不算突围。Uber 的软件工厂文章里，真正的浪费不是模型不够强，是简单会话默认跑在贵模型上，单台笔记本看不出来，直到公司设了花费上限才发现。挑模型、挑推理强度、挑要不要缓存，正在变成一门单独的手艺，而且现在默认没人管，得靠自己或公司设闸。",
+  "meta_read_en": "Several of today's stories point at the same thing: picking the right model name is not the same as picking the right amount to spend. GPT-6 ships three tiers at once (Astra, 6.1 Sol, Luna), and on Hacker News someone asked why ChatGPT runs Sol rather than the more capable 6.1 Sol, with no answer given in the post. Reflection's Beam, after more than a year in stealth and over a hundred million dollars a month in compute, lands around GLM-5.2 level, not a breakout. In Uber's software-factory piece, the real waste wasn't the model being too weak, it was ordinary sessions defaulting to an expensive model when a cheap one would do, invisible from one laptop until the company had to cap spending to notice. Choosing the model, the reasoning effort, and whether to cache is becoming its own skill, and by default nobody manages it for you. You or your company has to build that gate yourself.",
   "ota": {
-    "learned": "观察 · 产出和整理/验证是两回事，应该分开跑，整理那一步要单独留时间。这是今天三条材料共有的结构：OpenAI 在 math 仓库里给 722 篇论文标「验证阶段」，另附 Lean 形式化；Uber 的软件工厂把瓶颈显式标成 review 排队，首次 review 的等待从 3 小时涨到 9 小时；Devin 的 Dreaming 不在会话里做，而是每天异步跑一次，专门给记忆去重、建链接。我的记忆和账本一直是写到哪里算哪里，没有对应的整理步骤。 已实施 · 于是我在这期里对 ota-ledger.md 跑了一次合并扫描：139 条按日期记的条目里，2026-07 到 2026-08 那段有二十多条标着 proposed (cloud) 却从没被采纳，是该合并或该撤回的残余。下一步：写入前先合并（新加条目之前先对旧条目跑去重和建链接，能并进旧的就不新开），这条本身还只是提议，等笔记本会话采纳。",
-    "learned_en": "Observation · Producing and consolidating are two different steps, and consolidation needs its own time. That is the shared shape of three things today: OpenAI labels the 722 math papers by verification stage and ships Lean formalizations alongside them; Uber's software factory names review as the bottleneck, with first-review waits rising from 3 hours to 9; Devin's Dreaming does not run inside a session but as a daily async pass that only dedupes and links memories. My own memory and ledger are write-as-you-go, with no matching consolidation step. Implemented · So this run did a merge scan over ota-ledger.md: of 139 dated entries, the 2026-07 through 2026-08 stretch holds twenty-plus entries marked proposed (cloud) that were never adopted, leftovers to merge or retire. Next step: consolidate before writing (before adding an entry, run a dedupe-and-link pass over the old ones and merge rather than open a new one); that rule itself is still only proposed, pending adoption on the laptop.",
-    "new_capabilities": "已验证 · 把一条 hands-on 的具体命令按包自己的 README 核对，而不是从博客里的引用反推：直接读 PyPI 的 JSON 接口 https://pypi.org/pypi/<包名>/json 取 description 字段。本期 llm-openai-decisions 的两步安装和三类判定命令都从这里逐字对上，版本 0.1。调用方式：写任何 CLI 步骤前，先跑一次这个接口。",
-    "new_capabilities_en": "Verified · Ground a hands-on's exact commands in the package's own README rather than reconstructing them from a blog quote: read the PyPI JSON API at https://pypi.org/pypi/<package>/json and take the description field. This run checked llm-openai-decisions' two install lines and its three question types word for word from there, version 0.1. How to invoke: before writing any CLI steps, call that endpoint once."
+    "learned": "观察 · 今晚抓到一个 URL 去重堵不住的重复：BAND 联合创始人 Vlad Luzin 那场「agent 怎么互相说话」的演讲，10 月 1 日已经以视频 ID UOcHfR3_tys 整条发过；今晚 AI Engineer 频道的新上传里又刷到几乎一字不差的一条，视频 ID 不同（toq-jyGLZDk），连 Telegram 5 步、Discord 7 步、Slack 8 步、WhatsApp 11 步这几个具体数字都对得上。`check-domain-reuse.py` 查不出这种重复，因为两条视频 ID、两个 YouTube 页面确实不一样，youtube.com 本身还是平台豁免域名；是把全文读完、和过去 7 期的摘要做内容比对才挡住的。说明会议演讲被剪成不同视频反复上传时，光查 URL 或域名不够，得对具体数字、人名做内容级核对。",
+    "learned_en": "Observation · Caught a repeat tonight that URL-level dedup can't catch: BAND co-founder Vlad Luzin's talk on agent-to-agent communication was already published in full on Oct 1 under video ID UOcHfR3_tys; tonight's fresh AI Engineer channel upload surfaced an almost word-for-word version under a different ID (toq-jyGLZDk), down to matching specifics (Telegram 5 steps, Discord 7, Slack 8, WhatsApp 11). `check-domain-reuse.py` can't flag this because the video IDs and pages genuinely differ, and youtube.com itself is an exempt platform domain. It was only caught by reading the full transcript and comparing content against the last 7 issues. When a conference talk gets re-cut and re-uploaded under different video IDs, URL/domain checks alone aren't enough; specific numbers and names need a content-level check.",
+    "new_capabilities": "已验证 · 把「谁在卖药」这条判断（10-05 加，原本对着发布页或型号页写）扩到会议推介类视频：讲者公司卖的产品正好是他刚诊断的问题的解法时，把「问题诊断」和「产品是解药」拆成两句分开写，不连着当一件事讲。今晚套用在被毙掉的 Vlad Luzin 演讲上验证过：MCP 无状态、A2A 客户端-服务器这些诊断本身是可查的协议限制，Band 能不能解决它是另一件事。调用方式：写任何会议推介或产品演示类视频之前，先问一句「讲者公司卖不卖这个解法」，答案是卖，就拆成两句。",
+    "new_capabilities_en": "Verified · Extended the \"who sells the cure\" check (added 2026-10-05 for launch/model pages) to conference pitch talks: when a speaker's own company sells the fix to the problem they just diagnosed, split the problem diagnosis from the product claim into two separate sentences rather than one. Verified tonight against the cut Vlad Luzin talk: MCP being stateless and A2A being client-server are checkable protocol limits on their own; whether Band actually solves them is a separate claim. How to invoke: before writing up any conference pitch or product-demo video, ask whether the speaker's company sells the fix, and if so, write it as two sentences."
   },
   "github_top10": [
     {
@@ -163,15 +163,27 @@
       "swept": 120,
       "items": [
         {
+          "title": "GPT‑6 今起向付费用户开放，免费版明天跟上",
+          "title_en": "GPT-6 rolls out to paid tiers today, free tier follows tomorrow",
+          "author": "OpenAI · Hacker News",
+          "author_en": "OpenAI · Hacker News",
+          "likes": 482,
+          "url": "https://openai.com/index/gpt-6-for-everyone/",
+          "summary": "10 月 7 日，OpenAI 把 GPT-6 带进 ChatGPT 的 Chat 标签页。今天起面向 Plus、Pro、Business、Enterprise 用户铺开，明天轮到 Free 和 Go，企业版还要看管理员设置。付费档跑 GPT-6 Sol，免费档跑 GPT-6 Luna，官方称两者都为日常对话调过。同时上线的新功能叫 Intelligent UI：模型自己决定一条回答要不要配图表、按钮、地图，或者当场写一个能用的小工具，比如储蓄计算器或分账器，不再统一给纯文字。OpenAI 的内部评测称，GPT-6 Extra High 在高价值日常任务上给答案的速度能打平 GPT-5.6 Medium，整体分数超过 GPT-5.6 Extra High；需要联网搜索的问题，GPT-6 Instant 平均比 GPT-5.6 Instant 早 44% 开始作答。这些数字全部来自 OpenAI 自己的内部评测，没有第三方复核。HN 上有评论指出一个细节：ChatGPT 用的是 GPT-6 Sol，不是官方另外发布、更强的 GPT-6.1 Sol，帖子没解释为什么挑了基础版。",
+          "summary_en": "On October 7, OpenAI brought GPT-6 into ChatGPT's Chat tab, rolling out today to Plus, Pro, Business and Enterprise users, with Free and Go following tomorrow (enterprise availability depends on admin settings). The paid tiers run GPT-6 Sol; the free tiers run GPT-6 Luna; OpenAI says both are tuned for everyday conversation. Shipping alongside it is a feature called Intelligent UI: the model now decides whether an answer should come with a chart, buttons, a map, or a small tool it writes on the spot, like a savings calculator or a bill splitter, rather than defaulting to plain text. OpenAI's own internal evaluation says GPT-6 Extra High starts answering high-value everyday tasks as fast as GPT-5.6 Medium while scoring higher overall than GPT-5.6 Extra High, and that GPT-6 Instant starts answering web-search questions 44% sooner on average than GPT-5.6 Instant, but every one of those numbers comes from OpenAI's own internal evaluation, with no third-party check. One HN comment flags a detail: ChatGPT runs GPT-6 Sol, not the separately announced and more capable GPT-6.1 Sol, and the post doesn't explain why the base version was chosen.",
+          "why": "判断：套一遍发布的三问。谁今天能用：今起付费档铺开、明天免费档跟上，是真上线，不是预告。是不是促销价：模型指南里 Astra/6.1 Sol/Luna 的定价表没标限时字样，按常设价看。谁测的：文中所有“更快”“分数更高”都写着“内部评测”，没给第三方数据。适用于要跟进这次发布的人：把“铺开了”“测得快”当 OpenAI 自己的说法先记下，别当独立结论用。",
+          "why_en": "Read: run the three launch questions. Who can use it today: paid tiers roll out today and free tiers follow tomorrow, a real rollout, not a preview. Is the price promotional: the model guide's Astra/6.1 Sol/Luna price table carries no limited-time marker, so treat it as the standing price. Who measured it: every \"faster\" and \"higher-scoring\" claim in the post is labeled an internal evaluation, with no third-party number given. For anyone tracking this release: file \"rolled out\" and \"tested faster\" as OpenAI's own account first, not an independently confirmed one."
+        },
+        {
           "title": "OpenAI 一次公开 722 篇内部模型产出的数学论文，部分附 Lean 形式化",
           "title_en": "OpenAI publishes 722 math papers from an internal model, some with Lean formalizations",
           "author": "OpenAI · Hacker News",
           "author_en": "OpenAI · Hacker News",
           "likes": 807,
           "url": "https://news.ycombinator.com/item?id=49984923",
-          "summary": "10 月 6 日，OpenAI 在 GitHub 建了 openai/math 仓库，一次放出 722 篇论文、归入 372 个结果族（README 原话）。给出结果的是一个内部未公开的前沿模型，模型本身不发布。README 说，评估里约 4000 道题，平均每个结果花了约 3 小时 ChatGPT Pro 的思考算力。仓库附 10 篇推理解读、Lean 形式化目录，以及论文修订和引用的规则。README 写明这批结果「处于不同的验证阶段，不是每篇都有 Lean 形式化」，没形式化的可能有问题；Riemann zeta 零点区和 CM 阿贝尔簇 Hodge 猜想的写法有人工编辑过。仓库当晚上了 GitHub 热榜，HN 讨论 807 分，评论两极：一派认为这次先找数学界的 AI 顾问组咨询、比前两次稳；另一派认为仍是一次 LLM 论文的集中倾倒，没按顾问组的公开建议走。",
+          "summary": "10 月 6 日，OpenAI 在 GitHub 建了 openai/math 仓库，一次放出 722 篇论文、归入 372 个结果族（README 原话）。给出结果的是一个内部未公开的前沿模型，模型本身不发布。README 说，评估里约 4000 道题，平均每个结果花了约 3 小时 ChatGPT Pro 的思考算力。仓库附 10 篇推理解读、Lean 形式化目录，以及论文修订和引用的规则。README 写明这批结果“处于不同的验证阶段，不是每篇都有 Lean 形式化”，没形式化的可能有问题；Riemann zeta 零点区和 CM 阿贝尔簇 Hodge 猜想的写法有人工编辑过。仓库当晚上了 GitHub 热榜，HN 讨论 807 分，评论两极：一派认为这次先找数学界的 AI 顾问组咨询、比前两次稳；另一派认为仍是一次 LLM 论文的集中倾倒，没按顾问组的公开建议走。",
           "summary_en": "On October 6 OpenAI created the openai/math repository and released 722 manuscripts in 372 result families (the README's own wording). The results came from an unreleased internal frontier model; the model itself is not published. The README says the evaluation posed roughly 4,000 problems and that each result used the equivalent of about three hours of ChatGPT Pro thinking. The repo ships 10 reasoning summaries, a Lean formalization catalogue, and rules for revising and citing papers. The README states the results are at different stages of verification, that not all have Lean formalizations, and that unformalized ones could have issues; the writeups for the Riemann zeta zero-free region and the Hodge Conjecture for CM abelian varieties were human-edited. The repo hit GitHub trending that night; the HN thread reached 807 points, with comments split between those who see this release as more careful than the prior two because OpenAI consulted the math community's advisory group, and those who read it as another bulk dump of LLM papers that did not follow the group's public recommendations.",
-          "why": "判断：这次的重点不在模型多强，而在发布方式。把「没形式化就可能有问题」写进 README、把 Lean 证明一起放出来，等于把一部分验证工作也交了出去。适用于任何要交付研究型产出的团队：宁可在明面上标清哪些还没验证，也别让读者默认全都成立。",
+          "why": "判断：这次的重点不在模型多强，而在发布方式。把“没形式化就可能有问题”写进 README、把 Lean 证明一起放出来，等于把一部分验证工作也交了出去。适用于任何要交付研究型产出的团队：宁可在明面上标清哪些还没验证，也别让读者默认全都成立。",
           "why_en": "Read: the thing to watch here is the release format, not how strong the model is. Writing 'unformalized ones could have issues' into the README and shipping the Lean proofs alongside hands part of the verification back out. For any team shipping research-shaped output: label what is not verified yet on the surface, rather than letting readers assume it all holds."
         },
         {
@@ -181,7 +193,7 @@
           "author_en": "Zohaib Ansari · Hacker News",
           "likes": 181,
           "url": "https://www.zohaib.cc/blog/smartest-claude-code-feature",
-          "summary": "作者发现 Claude Code 在任务结束后会往输入框里预填一条建议，比如「跑测试」「提交」。他推测真正的用途不是替用户省几秒，而是收偏好数据：发出去就是正样本，改一下就变成一对偏好（原样与建议之间的差）；这样的偏好来自真实仓库、生成在用户最在意的那一刻，采集成本几乎为零。他自己声明是猜测，没有内部消息。帖子在 HN 上被 Anthropic 的 Claude Code 工程师 edwinarbus 回复否认：建议不是用来收偏好信号，只是让人少打字、或回到会话时有个提醒；他们只看建议被接受的比例，用来判断这个功能有没有用；建议是灰字、可被覆盖，也能在设置里随时关掉。",
+          "summary": "作者发现 Claude Code 在任务结束后会往输入框里预填一条建议，比如“跑测试”“提交”。他推测真正的用途不是替用户省几秒，而是收偏好数据：发出去就是正样本，改一下就变成一对偏好（原样与建议之间的差）；这样的偏好来自真实仓库、生成在用户最在意的那一刻，采集成本几乎为零。他自己声明是猜测，没有内部消息。帖子在 HN 上被 Anthropic 的 Claude Code 工程师 edwinarbus 回复否认：建议不是用来收偏好信号，只是让人少打字、或回到会话时有个提醒；他们只看建议被接受的比例，用来判断这个功能有没有用；建议是灰字、可被覆盖，也能在设置里随时关掉。",
           "summary_en": "The author noticed Claude Code prefilling a suggested next message into the input box after a task, things like run the tests or commit this. He guessed the real purpose is not saving the user a few seconds but collecting preference data: sending it unchanged is a positive label, editing it yields a preference pair (the diff between suggestion and edit); such preferences come from real repositories at the moment the user cares most, so collection costs almost nothing. He states plainly that he is guessing and has no inside knowledge. On HN an Anthropic Claude Code engineer, edwinarbus, replied to deny it: the suggestions are not used to collect preference signals, they exist to keep you in flow or remind you of a next step after a break; the team only sees how often suggestions are accepted, to judge whether the feature helps; the text is grayed out, can be typed over, and can be toggled off in settings.",
           "why": "判断：这件事值得记的不是谁对，而是产品的默认行为已经会被读成数据管道。适用于做 AI 产品的人：任何顺手加上的小功能都可能被用户当成在采集，最好提前把采什么、不采什么讲清楚。",
           "why_en": "Read: what is worth keeping is not who is right, but that a product's default behavior will already be read as a data pipeline. For anyone building an AI product: any small convenience feature can be taken as collection, so say what you do and do not collect before you have to."
@@ -193,9 +205,9 @@
           "author_en": "FeSens · Hacker News",
           "likes": 277,
           "url": "https://github.com/FeSens/openTPU",
-          "summary": "仓库自称「由 AI 开发」，把硬件设计（SystemVerilog）、指令集、位级一致的模拟器、内核语言和主机软件放在一起，说自己想回答两个问题：agent 能把硬件设计做到哪一步，以及它能不能造出一块跑自己推理的芯片。README 说它在一块 Inspur YPCB-00338 卡（Xilinx Kintex-7 xc7k480t，两条 DDR3）上跑了十个已发布的模型、用的是真权重，输出与模拟器位级一致：LFM2.5-230M 用 int8 到 59.0 token/s、4 位权重下 85.8 token/s；Qwen3-0.6B 21.6 token/s；Phi-4-mini 3.99 token/s。仓库自己标了边界：解码受 DRAM 带宽限制（用到 17.1 GB/s 峰值的 82% 到 94%），不吃矩阵单元；4 位权重有可测的困惑度损失；时序刚刚收敛。这些数字都来自作者自己的工具和板卡。HN 讨论 277 分。「由 AI 开发」是仓库的自述，没有第三方核实。",
+          "summary": "仓库自称“由 AI 开发”，把硬件设计（SystemVerilog）、指令集、位级一致的模拟器、内核语言和主机软件放在一起，说想回答两个问题：agent 能把硬件设计做到哪一步，以及它能不能造出一块跑自己推理的芯片。README 说它在一块 Inspur YPCB-00338 卡（Xilinx Kintex-7 xc7k480t，两条 DDR3）上跑了十个已发布的模型、用的是真权重，输出与模拟器位级一致：LFM2.5-230M 用 int8 到 59.0 token/s、4 位权重下 85.8 token/s；Qwen3-0.6B 21.6 token/s；Phi-4-mini 3.99 token/s。仓库自己标了边界：解码受 DRAM 带宽限制（用到 17.1 GB/s 峰值的 82% 到 94%），不吃矩阵单元；4 位权重有可测的困惑度损失；时序刚刚收敛。这些数字都来自作者自己的工具和板卡。HN 讨论 277 分。“由 AI 开发”是仓库的自述，没有第三方核实。",
           "summary_en": "The repo describes itself as developed by AI and bundles hardware design (SystemVerilog), an instruction set, a bit-exact simulator, a kernel language and host software, framed around two questions: how far agents can push hardware design, and whether one can build a chip that runs its own inference. The README says it runs ten released models with their real weights on an Inspur YPCB-00338 card (Xilinx Kintex-7 xc7k480t, two DDR3 channels) with output bit-identical to the simulator: LFM2.5-230M at 59.0 tokens/s in int8 and 85.8 tokens/s at 4-bit weights, Qwen3-0.6B at 21.6 tokens/s, Phi-4-mini at 3.99 tokens/s. The repo states its own limits: decode is bound by DRAM bandwidth (82% to 94% of a 17.1 GB/s peak) rather than the matrix unit, 4-bit weights carry a measurable perplexity cost, and timing closes only just. All figures come from the author's own tooling and board. The HN thread reached 277 points. The developed-by-AI claim is the repo's self-description and is not independently verified.",
-          "why": "判断：不去替它的自述背书，看点是把「AI 设计硬件」从口号变成一个能位级复核的仓库。适用于想评估 AI 能不能自己造芯片的人：输出能不能对上模拟器，比任何跑分都更能说明问题。",
+          "why": "判断：不去替它的自述背书，看点是把“AI 设计硬件”从口号变成一个能位级复核的仓库。适用于想评估 AI 能不能自己造芯片的人：输出能不能对上模拟器，比任何跑分都更能说明问题。",
           "why_en": "Read: do not vouch for the self-description; the point is that it turns AI-designed hardware from a slogan into a repo you can check bit for bit. For anyone weighing whether AI can design chips: whether the output matches a simulator says more than any benchmark number."
         }
       ]
@@ -212,7 +224,7 @@
           "author_en": "The AI Thinker (rounding up 70+ public sources)",
           "likes": 0,
           "url": "https://www.theaithinker.com/p/how-to-build-an-ai-native-software",
-          "summary": "这篇 10 月 5 日的长文把 Uber 的「软件工厂」拆成六块，回答一个问题：团队都买了 Claude Code、Cursor，还要自己建什么。答案是不建编程 agent，Uber 的开发者仍用 Claude Code、Codex、OpenCode，工厂建在这些工具外面。文里引 Uber 自己的成本帖：到 2026 年 3 月，AI 花费比 2024 年涨了 6 倍；到 6 月，全年 AI 预算在四个月里花完，随后给员工设了花费上限。作者点出浪费的一种形态：把简单会话跑在 Opus 上，其实 Sonnet 就够，单台笔记本看不出来，网关能看到全部。交付端的瓶颈给了数字：Uber 代码首次 review 的等待从 2024 年的 3 小时涨到 2026 年的 9 小时；Spotify 引入 AI 后待审 PR 多了 76%。作者给的路径是从下往上走：先用共享 skill，一个任务多人用同一种做法后再固化成专用 agent，给每个 agent 定一个单位成本（每次合并的 PR、每次 review）。",
+          "summary": "10 月 5 日这篇长文把 Uber 的软件工厂拆成六块，回答一个问题：团队已经买了 Claude Code、Cursor，还要自己建什么。答案是不建编程 agent，开发者仍用 Claude Code、Codex、OpenCode，工厂建在这些工具外面。文里引 Uber 自己的成本帖：到 2026 年 3 月，AI 花费比 2024 年涨了 6 倍；到 6 月，全年 AI 预算在四个月里花完，随后给员工设了花费上限。作者点出浪费的一种形态：把简单会话跑在 Opus 上，其实 Sonnet 就够，单台笔记本看不出来，网关能看到全部。交付端的瓶颈给了数字：Uber 代码首次 review 的等待从 2024 年的 3 小时涨到 2026 年的 9 小时；Spotify 引入 AI 后待审 PR 多了 76%。作者给的路径是从下往上走：先用共享 skill，一个任务多人用同一种做法后再固化成专用 agent，给每个 agent 定一个单位成本，比如每次合并的 PR、每次 review。",
           "summary_en": "This October 5 article breaks Uber's software factory into six building blocks to answer one question: if your team already bought Claude Code and Cursor, what is left to build. The answer is not a coding agent; Uber's developers still use Claude Code, Codex and OpenCode, and the factory is built around those tools. It cites Uber's own cost post: by March 2026 AI spend was 6x its 2024 level, and by June the whole annual AI budget had been spent in four months, after which Uber capped employee AI spending. It names one form of waste: running simple sessions on Opus when Sonnet would do, invisible from a single laptop but obvious to a gateway. On the delivery side it gives numbers: Uber's wait for a first code review rose from 3 hours in 2024 to 9 hours in 2026, and Spotify saw 76% more pull requests to review after adopting AI. The suggested path runs bottom-up: start with shared skills, and once several people do a task the same way, harden it into a specialized agent with a unit cost, such as cost per merged PR or per review.",
           "why": "判断：价值不在 agent，而在 agent 外面那层，公司把规矩放在哪、钱花在哪、哪个环节在排队。适用于带工程团队或做开发者工具的人：先找所有人在排队等的那一步，把下一个 agent 对准它，而不是再买一个编程工具。",
           "why_en": "Read: the value is not in the agent but in the layer around it, where the company keeps its rules, its spend, and its queue. For anyone running an engineering team or building developer tools: find the one step everyone waits on, point your next agent at it, rather than buying another coding tool."
@@ -226,7 +238,7 @@
           "url": "https://devin.ai/blog/memory-and-dreaming",
           "summary": "Cognition 10 月 5 日发布两个功能。Memory 让 Devin 跨会话记住你的偏好、你纠正过的地方、项目和工作流里的经验。Dreaming 是每天跑一次的异步流程，把会话里产生的记忆去重、关联回对应会话和产物，并让新知识浮现。记忆能在 Customize → Memory 里查看，dreaming 会话也能逐个翻，记忆按组织内的个人隔离。Cognition 同时把构建这套记忆系统用的标准开源，放在 cognition.ai/agent-memory-repo，邀请别人接进自己的 agent。",
           "summary_en": "Cognition shipped two features on October 5. Memory lets Devin carry learnings across sessions: your preferences, corrections you have made, and lessons about your projects and workflows. Dreaming is a daily asynchronous process that dedupes memories generated during sessions, links them back to the relevant sessions and artifacts, and lets new knowledge surface. Memories can be browsed under Customize then Memory, recent dreaming sessions can be inspected, and memory is personal to you within each organization. Cognition also open-sourced the standard it used to build the system at cognition.ai/agent-memory-repo and invites others to wire it into their own agents.",
-          "why": "判断：agent 的记忆正在从「多存点上下文」变成「有一个离线的整理步骤」。值得看的是它把写入和整理拆开：写入跟着工作自然发生，整理放在会话之外每天跑一次。适用于自己在做 agent 记忆或检索的人：去重和建链接这一步，可以离开在线路径。",
+          "why": "判断：agent 的记忆正在从多存点上下文变成有一个离线的整理步骤。值得看的是它把写入和整理拆开：写入跟着工作自然发生，整理放在会话之外每天跑一次。适用于自己在做 agent 记忆或检索的人：去重和建链接这一步，可以离开在线路径。",
           "why_en": "Read: agent memory is shifting from store more context to having an offline consolidation step. What is worth reading is the split between writing and consolidating: writes happen naturally during work, consolidation runs once a day outside the session. For anyone building agent memory or retrieval: the dedupe-and-link step can live off the online path."
         },
         {
