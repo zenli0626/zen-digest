@@ -1,12 +1,12 @@
 {
   "date": "2026-10-08",
   "partial": false,
-  "banner": "Haiku 5.5 降价七成，跑分超同级",
-  "banner_en": "Claude Haiku 5.5: 75% cheaper, beats its price class",
+  "banner": "OpenAI 营收不及预期，芯片股下挫",
+  "banner_en": "OpenAI's real revenue falls short, chip stocks slide",
   "image": {
     "src": "digests/img/2026-10-08.jpg",
-    "caption": "本期要图：Anthropic 为 Claude Haiku 5.5 发布页配的社交预览图，页面把这张图的替代文本标为「Anthropic logo」。该型号 10 月 7 日发布，所有平台可用，官方称 100k token 以内的输入输出价格比 Haiku 4.5 低九成。（图：Anthropic）",
-    "caption_en": "Today's front-page image: Anthropic's own social preview card for the Claude Haiku 5.5 release page. The page labels the image's alt text \"Anthropic logo.\" The model shipped on October 7 and is available on all platforms; Anthropic says input/output pricing is 90% lower than Haiku 4.5 for prompts up to 100k tokens. (Image: Anthropic)"
+    "caption": "本期要图：CNBC 这篇报道配的资料照片（Getty Images），拍的是 OpenAI 近期一场活动现场，楼梯间招牌写着「Inside the [Agent]」，并非今天股市画面。10 月 8 日 CNBC 证实，OpenAI 向投资人披露的截至 9 月的年化营收约为 500 亿美元，低于此前广泛引用的 680 亿美元；消息传出当天，英伟达跌 3%，甲骨文跌近 6%，CoreWeave 跌近 8%。（图：Getty Images，经 CNBC 配图）",
+    "caption_en": "Today's front-page image: a Getty Images file photo CNBC used to illustrate this story, taken at a recent OpenAI event (a stairwell sign reads \"Inside the [Agent]\"), not a picture of today's stock move itself. CNBC confirmed on October 8 that OpenAI disclosed roughly $50 billion in annualized revenue to investors as of September, below the $68 billion figure widely reported earlier; Nvidia fell 3%, Oracle nearly 6%, and CoreWeave nearly 8% the same day. (Image: Getty Images, via CNBC)"
   },
   "actions": [
     {
@@ -56,104 +56,95 @@
     "source_en": "docker-agent README (Docker Engineering, Apache 2.0, 3,933 stars)",
     "source_url": "https://github.com/docker/docker-agent"
   },
-  "meta_read": "今天这几件事摞在一起，变化的位置不在模型能力，在默认值。过去一年的默认是「能上最强就上最强」，账单由谁付没人问；今天四条线同时把这个默认值往下调：最便宜的一档被做到能用，嵌入模型被塞进手机，agent 的循环被往云上搬，公司开始给每个人的 AI 花费设上限。推动这四件事的不是研究者，是采购和使用这些工具的人。会分胜负的地方从「谁的模型更强」挪到了「谁掌握那层没人管的默认值」——型号、跑在哪、算谁的账。省下来的钱不会自己变成更少的工作，它只会变成更高的产出预期，这才是开发者情绪那组数据值得和上面几条放在一起读的原因。",
-  "meta_read_en": "Stack today's stories together and the change is not in what models can do but in the defaults. For a year the default was to reach for the strongest model available, with nobody asking who paid the bill; today four threads lower that default at once: the cheapest tier got good enough to use, an embedding model moved onto the phone, the agent loop started moving to the cloud, and companies began capping what each person may spend on AI. The people pushing all four are the ones buying and using these tools, not the ones researching them. So the contest shifts from whose model is strongest to who owns that unmanaged layer of defaults, meaning the model tier, where it runs, and whose books it lands on. The money saved does not turn into less work by itself, only into higher expectations of output, which is why the developer-sentiment numbers belong next to the rest.",
+  "meta_read": "今天几条新闻放在一起，都在做同一件事：对账。OpenAI 给投资人看的营收数字，比之前外界广泛引用的数字缩水超过四分之一；独立测评网站把 DeepSeek 4.1 Flash 和 Opus 5.5 放进同一张表，便宜是真的，差距也是真的，比一位重度用户自己的体感要大；OpenAI 自己的数学仓库两天后承认三篇论文的证明有错，正好应验了它自己写的那句「没形式化的可能有问题」。三件事核的分别是钱、是能力、是证明，做法是一个：不看谁说了什么，看拿什么去核对。Anthropic 同一天把 Haiku 降价七成，放在这个背景里更像一步预防棋：便宜留客户，总比等客户像上周报道里的 Meta、微软那样自己砍用量要主动。",
+  "meta_read_en": "Stack today's stories and they are all doing the same thing: checking the number against the number. The revenue OpenAI showed investors came in more than a quarter below the figure that had been widely quoted. An independent benchmark site put DeepSeek V4.1 Flash and Claude Opus 5.5 in the same table, and the price gap is real, but so is the capability gap, wider than one heavy user's own daily sense of it. OpenAI's own math repository admitted two days later that three papers had broken proofs, exactly the \"unformalized ones could have issues\" line it wrote for itself at launch. The three checks are about money, capability, and proof, but the method is the same: don't trust who said it, check what they checked it against. Anthropic cutting Haiku's price by 75 percent the same day reads, against this backdrop, like a preemptive move: cut the price to keep customers, rather than wait for them to cut usage themselves the way Meta and Microsoft were reported doing last week.",
   "ota": {
-    "learned": "观察 · 转引不等于复核：原始报道有付费墙时，多家转引常常是同一份原文的副本，不是互相印证。今天的 Meta/微软那条，原文是 The Information（付费墙，抓不到），我找到的三家转引都写着「据 The Information」，所以它们算一个信息源，不是三个。转引之间对得上的数字（每月上限从 10 万美元降到约 1 万、内部 Anthropic 支出预估下调超过三分之一、Claude Code 使用人数从约 6 万降到约 3 万）可以当「原文这么说」记下；只在其中一家出现的数字（Muse Code 的使用人数、Meta 的 Claude Code 花费）就没有第二处能对，按未证实处理，写进正文只写能对上的那几个。这条和 08-22 那条同源但场景不同：08-22 讲的是同一批声音不算印证，这条讲的是同一份原文的多个副本也不算印证，而且判据是具体的数字对不对得上，不是口气像不像。",
-    "learned_en": "Observation: a republication is not a check. When the original report sits behind a paywall, multiple outlets carrying it are usually copies of the same source, not independent confirmation. For today's Meta/Microsoft story the original is The Information (paywalled, unreachable); all three republications I found say \"according to The Information,\" so they count as one source, not three. Figures that agree across the republications (per-employee monthly cap cut from $100,000 to about $10,000, the internal Anthropic spend estimate cut by more than a third, Claude Code users falling from about 60,000 to about 30,000) can be recorded as \"this is what the original says.\" Figures that appear in only one of them (Muse Code's user count, Meta's Claude Code spend) have nothing to check against, so they are treated as unconfirmed and left out of the item, which states only the figures that line up. This shares a root with the 2026-08-22 entry but is a different case: that one said a coordinated set of voices is not corroboration, this one says multiple copies of the same original are not corroboration either, and the test is whether the specific numbers line up, not whether the tone matches.",
-    "new_capabilities": "已验证 · 给付费墙原文加一道「数字核对」闸：原文读不到时，先收集所有转引，按来源分层——都写「据 <原文>」的算一层，只有数字能互相对上的进正文，单处出现的数字标为未证实、不进正文。今晚在 Meta/微软那条上跑通：上限的降幅、支出预估的降幅、Claude Code 人数三处转引都对得上，Muse Code 人数和 Meta 的花费只有一处，直接砍掉。调用方式：写任何转引自付费墙原文的条目之前，先把候选数字分「多处都有」和「只有一处」两堆，只把前者写进正文。",
-    "new_capabilities_en": "Verified · Added a figure-agreement gate for paywalled primaries: when the original can't be read, collect the republications and tier them by source — anything that says \"according to <original>\" is one tier, and only figures that line up across them go into the item; figures found in a single outlet are marked unconfirmed and left out. Ran it tonight on the Meta/Microsoft story: the cap reduction, the spend-estimate cut and the Claude Code headcount all matched across three republications and stayed; the Muse Code user count and Meta's Claude Code spend came from one outlet only and were cut. How to invoke: before writing any item drawn from a paywalled original, split the candidate numbers into \"appears in several\" and \"appears in one,\" and put only the former in the body."
+    "learned": "观察 · 上传时间不是内容时间，会议类视频尤其要核：今晚 YouTube 的 RSS 在全部 9 个频道加对照频道上都是满的（每频道 14-15 条，有在场新内容），但字幕抓取在两条不同视频上各试了一次，都是 429，和过去一个月的记录一致，于是这条巷子今晚依旧是零——按技能文件的规则，确认是真卡住就不再重试，不硬凑只有标题和简介的条目。另外撞见一类新陷阱：OpenAI「DevDay 2026」的十场分会视频今天（10 月 7-8 日）批量上传到官方频道，标题和缩略图看着像刚开完的大会，但 openai.com/devday/2026 的官方回顾页写明大会本身是 9 月 29 日办的，这批只是事后补发的录像，内容已经被「GPT-6 面向所有人开放」等后续公告部分覆盖过。这和本技能已经记过的「Sites in ChatGPT」是同一类陷阱（拿 HN 帖子时间当功能上线时间），只是这次换成了视频上传时间冒充会议举办时间。",
+    "learned_en": "Observation: an upload date is not a content date, and conference-session videos are the sharpest case. Tonight YouTube's RSS was fully live across all 9 roster channels plus the control channel (14-15 entries each, genuine in-window content), but a subtitle fetch tried on two different videos both came back 429, consistent with the last month's pattern, so the lane stayed at zero tonight too, per the skill's rule: once a block is confirmed, stop retrying rather than force a title-and-blurb-only item. Separately, a new trap surfaced: ten OpenAI \"DevDay 2026\" session recordings were posted to the official channel today (October 7-8), and by title and thumbnail look like a conference that just wrapped, but openai.com's own DevDay 2026 recap page states the event itself happened on September 29, these are just recordings posted after the fact, with content already partly superseded by later announcements like \"GPT-6 for everyone.\" This is the same class of trap this skill already logged with the \"Sites in ChatGPT\" example (an HN post's timestamp mistaken for a feature's launch date), just showing up this time as a video's upload date standing in for a conference's actual date.",
+    "new_capabilities": "已验证 · 给会议类视频加一道日期核对：标题带具体会议名（DevDay、XX Summit、XX Conference 等）的视频，先查主办方官网有没有这场会议自己的日期页，再判断上传日期能不能当新闻时间用。今晚在 OpenAI DevDay 2026 的十个分会视频上跑通：openai.com/devday/2026 给了每场分会的简介，但只是宣传语，不是逐字稿，不能当作编辑部已读全文的依据；openai.com/index/devday-2026-recap 写明会议日期是 9 月 29 日，直接排除了把这批视频当今日新闻处理的可能性。调用方法：遇到标题含会议名的视频，先搜「<会议名> site:<主办方域名>」确认举办日期，再决定要不要用。",
+    "new_capabilities_en": "Verified: added a date check specifically for conference/summit videos. A video whose title names a specific event (DevDay, a named Summit or Conference) now gets checked against the host's own event page for the event's actual date before its upload date is trusted as news-worthy. Ran it tonight on ten OpenAI DevDay 2026 session videos: openai.com/devday/2026 gave each session's blurb (but only marketing copy, not a transcript, so it can't stand in for the masthead's \"the desk read it in full\" promise), and openai.com/index/devday-2026-recap gave the event's actual date, September 29, which ruled out treating these videos as tonight's news. How to invoke: when a video title names a conference, search \"<event name> site:<host domain>\" to confirm the event's actual date before deciding whether to use it."
   },
   "github_top10": [
     {
       "rank": 1,
-      "name": "morluto/rea",
-      "url": "https://github.com/morluto/rea",
-      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
-      "language": "TypeScript",
-      "stars": 17908,
-      "stars_today": 4655
-    },
-    {
-      "rank": 2,
-      "name": "mattpocock/skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
-      "language": "Shell",
-      "stars": 280182,
-      "stars_today": 1403
-    },
-    {
-      "rank": 3,
       "name": "boykopovar/AnyPS5",
       "url": "https://github.com/boykopovar/AnyPS5",
       "description": "Tool for automatic PS5 executables porting to Linux and Windows",
       "language": "C++",
-      "stars": 11869,
-      "stars_today": 2716
+      "stars": 15792,
+      "stars_today": 4669
     },
     {
-      "rank": 4,
-      "name": "ayghri/i-have-adhd",
-      "url": "https://github.com/ayghri/i-have-adhd",
-      "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
-      "language": "Python",
-      "stars": 55431,
-      "stars_today": 619
-    },
-    {
-      "rank": 5,
+      "rank": 2,
       "name": "cathrynlavery/diagram-design",
       "url": "https://github.com/cathrynlavery/diagram-design",
       "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Factory Droid, and Pi. 42 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
       "language": "HTML",
-      "stars": 45377,
-      "stars_today": 825
+      "stars": 46371,
+      "stars_today": 1160
+    },
+    {
+      "rank": 3,
+      "name": "morluto/rea",
+      "url": "https://github.com/morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "language": "TypeScript",
+      "stars": 26639,
+      "stars_today": 7738
+    },
+    {
+      "rank": 4,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 281102,
+      "stars_today": 1774
+    },
+    {
+      "rank": 5,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 98477,
+      "stars_today": 670
     },
     {
       "rank": 6,
-      "name": "addyosmani/agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
-      "language": "JavaScript",
-      "stars": 103058,
-      "stars_today": 677
-    },
-    {
-      "rank": 7,
       "name": "EpicGames/raddebugger",
       "url": "https://github.com/EpicGames/raddebugger",
       "description": "A native, user-mode, multi-process, graphical debugger.",
       "language": "C",
-      "stars": 4802,
-      "stars_today": 90
+      "stars": 8111,
+      "stars_today": 279
+    },
+    {
+      "rank": 7,
+      "name": "anthropics/knowledge-work-plugins",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "language": "Python",
+      "stars": 27573,
+      "stars_today": 392
     },
     {
       "rank": 8,
-      "name": "thedotmack/claude-mem",
-      "url": "https://github.com/thedotmack/claude-mem",
-      "description": "Persistent Context Across Sessions for Every Agent - Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions.",
-      "language": "TypeScript",
-      "stars": 97318,
-      "stars_today": 578
+      "name": "storytold/artcraft",
+      "url": "https://github.com/storytold/artcraft",
+      "description": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
+      "language": "Rust",
+      "stars": 7981,
+      "stars_today": 2103
     },
     {
       "rank": 9,
-      "name": "manaflow-ai/cmux",
-      "url": "https://github.com/manaflow-ai/cmux",
-      "description": "Open source Ghostty-based macOS terminal with vertical tabs and notifications for AI coding agents.",
-      "language": "Swift",
-      "stars": 3120,
-      "stars_today": 44
-    },
-    {
-      "rank": 10,
-      "name": "trycua/cua",
-      "url": "https://github.com/trycua/cua",
-      "description": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and more.",
-      "language": "Rust",
-      "stars": 6220,
-      "stars_today": 228
+      "name": "liquidslr/system-design-notes",
+      "url": "https://github.com/liquidslr/system-design-notes",
+      "description": "Notes of the book System Desgin Interview - An Insider's Guide",
+      "language": null,
+      "stars": 24627,
+      "stars_today": 393
     }
   ],
   "sources": [
@@ -163,6 +154,18 @@
       "swept": 90,
       "items": [
         {
+          "title": "OpenAI 年化营收约500亿，低于此前680亿的说法",
+          "title_en": "OpenAI's annualized revenue is about $50B, below the $68B widely reported",
+          "author": "CNBC（Ashley Capoot、Kate Rooney）· Hacker News",
+          "author_en": "CNBC (Ashley Capoot and Kate Rooney) · Hacker News",
+          "likes": 349,
+          "url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html",
+          "summary": "CNBC 记者 Ashley Capoot 和 Kate Rooney 10 月 8 日证实，OpenAI 向投资人披露，截至 9 月底的年化营收约为 500 亿美元，低于此前广泛引用的 680 亿美元。知情人士称，680 亿美元把 OpenAI 合作伙伴的毛营收也算了进去，为的是方便和 Anthropic 的披露口径对比；《金融时报》最先报道了 500 亿美元这个数字。同一份投资人介绍里，OpenAI 称第三季度总营收年化增速 77%，企业业务年化增速 107%。消息传出当天，英伟达跌 3%，甲骨文跌近 6%，CoreWeave 跌近 8%，AMD、博通各跌 4%，英特尔跌 5%，美超微跌近 5%。背景：OpenAI 今年 6 月已秘密递交 IPO 招股书，据称瞄准 2027 年上市，眼下估值 8520 亿美元；Anthropic 也在筹备 IPO，8 月披露 7 月年化营收 650 亿美元，独立研究机构 New Constructs 10 月 7 日的报告把它的估值砍到仅 1500 亿美元，称其为今年最离谱的 IPO。两家公司近期都卷入 AI 安全争议，OpenAI 9 月 28 日已撤回原定发布的 GPT-6.1 Astra，称其未达到安全标准。",
+          "summary_en": "CNBC reporters Ashley Capoot and Kate Rooney confirmed on October 8 that OpenAI disclosed to investors annualized revenue of about $50 billion as of the end of September, below the $68 billion figure widely reported earlier. A person familiar with the matter said the $68 billion figure folded in gross revenue from OpenAI's partners, meant to make the number more directly comparable to Anthropic's own disclosures; the Financial Times was first to report the $50 billion figure. In the same investor presentation, OpenAI cited 77% total run-rate growth in the third quarter and 107% run-rate growth for its enterprise business. Nvidia fell 3%, Oracle nearly 6%, CoreWeave nearly 8%, AMD and Broadcom 4% each, Intel 5%, and Super Micro Computer nearly 5% the day the news broke. Context: OpenAI confidentially filed for an IPO in June, reportedly eyeing a 2027 debut at a current $852 billion valuation; Anthropic is also preparing an IPO, having disclosed $65 billion in annualized revenue as of July, and independent research firm New Constructs valued it at just $150 billion in an October 7 report calling it \"the most ridiculous IPO of 2026.\" Both companies are also caught up in AI-safety disputes; OpenAI pulled its planned GPT-6.1 Astra release on September 28, saying it did not meet safety standards.",
+          "why": "判断：680 亿和 500 亿的差距，核心不是谁撒谎，是统计口径不同，前一个数字把合作伙伴的毛营收也算了进去，正好让自己看起来更接近 Anthropic 的口径。但选哪种算法本身是个信号，而且恰好出现在 OpenAI 冲刺 IPO 估值的节骨眼上。适用于看一级市场或给大模型公司估值的人：披露的营收数字，先问清楚算的是谁的营收，再拿来乘倍数。",
+          "why_en": "Read: the gap between $68B and $50B is not really about who lied, it is about which revenue got counted, the larger figure folded in partners' gross revenue, which happens to make OpenAI look more comparable to Anthropic's own disclosed number. But which accounting choice gets used is itself a signal, and it landed right as OpenAI pushes toward an IPO valuation. For anyone pricing private AI companies or reading their disclosures: ask whose revenue is being counted before applying any multiple."
+        },
+        {
           "title": "Claude Haiku 5.5：便宜七成，同级跑分反超 GPT‑6 Luna",
           "title_en": "Claude Haiku 5.5: 75% cheaper, and it beats GPT-6 Luna in its price class",
           "author": "Anthropic · Hacker News",
@@ -171,8 +174,8 @@
           "url": "https://www.anthropic.com/claude-haiku-5-5",
           "summary": "Anthropic 10 月 7 日发布 Claude Haiku 5.5（模型 ID claude-haiku-5-5），称其为自家最便宜、最快、最强的小模型。定价按每百万 token 计：输入 0.10 美元、输出 0.50 美元（提示 100k token 以内），超过 100k 为 0.50 和 2.50；缓存读取 0.01 和 0.05。Haiku 4.5 为 1.00 和 5.00，100k 以内降九成，以上降五成，官方称平均便宜约 75%。跑分均来自该页：GDPval-AA v2.1 为 1620，Haiku 4.5 为 735，同价位 GPT-6 Luna 为 1437，Sonnet 5.5 为 1840；OSWorld 2.1 为 72.4%，Luna 48.9%；Terminal-Bench 4.0 为 39.2%，Luna 16.4%；FrontierCode 1.1（Main）为 46.4%，Luna 42.4%，Sonnet 5.5 52.1%。Haiku 档首次支持可调推理强度（Low、Med、High、Xhigh、Max），同一型号内可用成本换能力。所有平台可用，含 AWS、Google Cloud 和 Azure。同页还提到 Sonnet 5.5 缓存读取降至 0.10 美元，以及给 Max 和 Team 订阅者的每月 API 额度（100、200，最多 500 美元合用）。跑分和客户案例均出自 Anthropic 发布页，无第三方复核。",
           "summary_en": "Anthropic released Claude Haiku 5.5 on October 7 (model ID claude-haiku-5-5), calling it its cheapest, fastest and most capable small model. Pricing per million tokens: $0.10 input and $0.50 output for prompts up to 100k tokens, rising to $0.50 and $2.50 above that, with cache reads at $0.01 and $0.05. Against Haiku 4.5's $1.00 and $5.00 that is a 90% cut below 100k tokens and 50% above, which Anthropic describes as roughly 75% cheaper on average. The benchmarks, all from this page: GDPval-AA v2.1 scores 1620, versus 735 for Haiku 4.5, 1437 for the same-price GPT-6 Luna and 1840 for Sonnet 5.5; OSWorld 2.1 is 72.4% against Luna's 48.9%; Terminal-Bench 4.0 is 39.2% against Luna's 16.4%; FrontierCode 1.1 (Main) is 46.4% against Luna's 42.4% and Sonnet 5.5's 52.1%. It is the first Haiku-class model with an adjustable effort setting (Low, Med, High, Xhigh, Max), letting you trade cost against capability within one model. It is available on all platforms, including AWS, Google Cloud and Azure. The same page notes Sonnet 5.5's cache reads dropped to $0.10 and monthly API credits for Max and Team subscribers ($100, $200, up to $500 pooled). Every benchmark and customer result comes from Anthropic's own release page, with no third-party check.",
-          "why": "判断：套发布三问。谁今天能用：所有平台可用，是真上线。是不是促销价：定价表没标限时。谁测的：所有分数都写在 Anthropic 自己页面上，客户案例也是厂商提供的数字。适用于要压推理成本的人：这一档第一次多了一个旋钮——不用换型号，同一型号里调推理强度就能省。",
-          "why_en": "Read: run the three launch questions. Who can use it today: all platforms, a real rollout. Is the price promotional: the pricing table carries no limited-time marker. Who measured it: every score sits on Anthropic's own page, and the customer results are vendor-supplied. For anyone squeezing inference cost: this tier just gained a knob — you can save by adjusting reasoning effort inside one model, without switching models."
+          "why": "判断：套发布三问。谁今天能用：所有平台可用，是真上线。是不是促销价：定价表没标限时。谁测的：所有分数都写在 Anthropic 自己页面上，客户案例也是厂商提供的数字。适用于要压推理成本的人：这一档第一次多了一个旋钮，不用换型号，同一型号里调推理强度就能省。",
+          "why_en": "Read: run the three launch questions. Who can use it today: all platforms, a real rollout. Is the price promotional: the pricing table carries no limited-time marker. Who measured it: every score sits on Anthropic's own page, and the customer results are vendor-supplied. For anyone squeezing inference cost: this tier just gained a knob, you can save by adjusting reasoning effort inside one model, without switching models."
         },
         {
           "title": "报道：Meta 和微软给员工的 Claude 花费设上限，转向自家工具",
@@ -181,22 +184,36 @@
           "author_en": "The Information (via rswebsols and others) · Hacker News",
           "likes": 338,
           "url": "https://www.rswebsols.com/news/meta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai/",
-          "summary": "The Information 10 月 5 日报道，Meta 和微软都在压低员工对 Anthropic Claude 的内部使用。原文有付费墙、没读到，以下数字来自多家转引，且各转引都写着据 The Information，算同一个信息源。微软方面：管理层要求员工少用 Claude，改用 GitHub Copilot 和 OpenAI 的框架；内部 Anthropic 支出原本预计每年至少 10 亿美元，该预估下调超过三分之一；云与 AI 部门给个人的每月 AI 花费上限，从 10 万美元降到多数情况下约 1 万美元。Meta 方面：Claude Code 使用人数从今年早些时候约 6 万降到约 3 万，转向自家 MetaCode 和 Muse Code。两家都仍是 Anthropic 客户，面向客户的 Claude 访问没有撤。注意：上限是预算上限，不是实际支出。",
+          "summary": "The Information 10 月 5 日报道，Meta 和微软都在内部压降员工对 Anthropic Claude 的使用。原文有付费墙，未读到；以下数字来自多家转引，各转引均注明据 The Information，算同一信息源。微软方面：管理层要求员工少用 Claude，改用 GitHub Copilot 和 OpenAI 的框架；内部 Anthropic 支出原本预计每年至少 10 亿美元，该预估下调超过三分之一；云与 AI 部门给个人的每月 AI 花费上限，从 10 万美元降到多数情况下约 1 万美元。Meta 方面：Claude Code 使用人数从今年早些时候约 6 万降到约 3 万，转向自家 MetaCode 和 Muse Code。两家都仍是 Anthropic 客户，面向客户的 Claude 访问没有撤。注意：上限是预算上限，不是实际支出。",
           "summary_en": "An October 5 report by The Information says Meta and Microsoft are both reducing internal employee use of Anthropic's Claude. The original is paywalled and could not be read; the figures below come from several republications, each of which says \"according to The Information,\" so they count as a single source. On Microsoft: management told employees to use less Claude and switch to GitHub Copilot and OpenAI frameworks; internal Anthropic spending, projected at at least $1 billion a year, had that estimate cut by more than a third; and a monthly per-employee AI spending cap in its cloud and AI division dropped from $100,000 to about $10,000 in most cases. On Meta: Claude Code users fell from about 60,000 earlier this year to about 30,000, with a shift to its own MetaCode and Muse Code. Both companies remain Anthropic customers, and customer-facing Claude access was not withdrawn. Note that these are spending caps, not actual spending.",
           "why": "判断：这是企业端自研工具对外购的一次公开倒向，理由写的是成本和掌控，不是能力。适用于卖 AI 工具或做平台的人：客户同时是你的竞争对手时，采购决定会因非产品原因翻转，报价和绑定条款要按这个前提设计。",
           "why_en": "Read: this is an enterprise tilt away from buying toward building, justified by cost and control rather than capability. For anyone selling AI tools or running a platform: when your customer is also your competitor, purchasing decisions flip for non-product reasons, so price and lock-in terms need to be designed with that assumption."
         },
         {
-          "title": "State of Devs 2026：62% 的人经历过倦怠，AI 疲劳被单列",
-          "title_en": "State of Devs 2026: 62% have burned out, with AI fatigue listed on its own",
-          "author": "Devographics · Hacker News",
-          "author_en": "Devographics · Hacker News",
-          "likes": 238,
-          "url": "https://2026.stateofdevs.com/en-US",
-          "summary": "Devographics 调查 State of Devs 2026 在 7 月 5 日到 9 月 5 日之间收了 5,463 份回答，10 月 6 日上了 HN 首页。调查覆盖工作、AI、身心健康等。四分之一的人职业生涯中经历过裁员，近十分之一是在过去九个月里；62% 的人说自己经历过倦怠。对 AI 的态度分裂：49% 正面、42% 负面；问 AI 对心理状态的影响，持否定态度的多于肯定。超过 1,500 人在自由问答里写了 AI，最常见的说法是工作变得不那么有回报，以及管理层对产出的期待不现实；调查把 AI 疲劳单列为一种状态。行业情绪得票最高的是 Exhausted（2,451）和 Disillusioned（2,165），远高于 Hopeful（1,102）和 Excited（897）。",
-          "summary_en": "Devographics' State of Devs 2026 survey collected 5,463 responses between July 5 and September 5 and hit the HN front page on October 6. It covers work, AI and wellbeing, among other areas. A quarter of respondents had been laid off at some point in their career, nearly one in ten within the last nine months, and 62% said they had experienced burnout. Views on AI split: 49% positive against 42% negative, and on AI's effect on mental state, more disagreed than agreed it was positive. More than 1,500 respondents wrote freeform comments about AI, most commonly that work had become \"less rewarding\" and that management held \"unrealistic expectations of productivity\"; the survey lists \"AI fatigue\" as its own state. The top industry feelings were Exhausted (2,451) and Disillusioned (2,165), far ahead of Hopeful (1,102) and Excited (897).",
-          "why": "判断：AI 的账不只记在算力和订阅上，还记在用工具的人身上。适用于带工程团队或做开发者产品的人：产出指标涨了、从业者反馈却变差了，这是同一件事的两面，先看流程是不是只加要求、没减动作。",
-          "why_en": "Read: the AI bill is not only compute and subscriptions, it is also the people using the tools. For anyone running an engineering team or building developer products: output metrics rising while practitioner sentiment falls are two faces of one thing, so first check whether your process has added requirements without removing any steps."
+          "title": "OpenAI 数学仓库两天后认错，撤回三篇论文的证明",
+          "title_en": "OpenAI's math repo backtracks two days later, withdraws three papers' proofs",
+          "author": "OpenAI（Dan Roberts 公告）· Hacker News",
+          "author_en": "OpenAI (announced by Dan Roberts) · Hacker News",
+          "likes": 247,
+          "url": "https://github.com/openai/math/blob/main/history.md",
+          "summary": "10 月 7 日，OpenAI 研究员 Dan Roberts 在 X 上公告，openai/math 仓库这次更新撤回了三篇论文：《split abelian eightfolds 上 Weil 类的代数性》《K3 曲面的 Kuga–Satake 对应的代数性》《K3 曲面乘积的有理 Hodge 猜想》。仓库自己的 history.md 写明原因：第一篇论文里一个符号错误，导致一个稳定化迹消去论证不成立，另外两篇论文的构造都依赖这个论证，三篇一并撤回。同一次更新里，另外 14 篇论文做了证明修补、表述修正或补充假设，13 篇因为引用了被修订的论文而更新引用，新增 6 篇 Lean 形式化。更新后，719 个主要结果里有 300 个完成形式化，约 42%（10 月 6 日首发的 722 篇减去这次撤回的 3 篇，正好对上现在的 719，数字能对上）。这是这批论文 10 月 6 日放出后第一次公开撤稿，正好应验了仓库 README 当时写的「没做形式化的结果可能有问题」。HN 评论分歧很大：一部分人说「论文开始像软件一样发版」，把快速修正当作好迹象；另一部分人追问撤回的三篇到底有没有做过 Lean 形式化，如果没有，等于没人在发布前真正核对过。",
+          "summary_en": "On October 7, OpenAI researcher Dan Roberts posted on X that the openai/math repository's latest update withdrew three papers: \"Algebraicity of Weil classes on split abelian eightfolds,\" \"Algebraicity of Kuga-Satake Correspondences for K3 Surfaces,\" and \"The rational Hodge conjecture for products of K3 surfaces.\" The repo's own history.md states the cause: a sign error in the first paper invalidated a stabilization-trace cancellation argument, and the other two papers' constructions both depended on it, so all three were withdrawn together. The same update revised 14 other manuscripts with proof repairs, corrected statements or added hypotheses, updated citations in 13 more that referenced the revised papers, and added 6 new Lean formalizations. After the update, 300 of 719 top-line results are formalized, about 42% (722 at the October 6 launch minus the 3 withdrawn here lands exactly on 719, the numbers check out). This is the first public retraction since the papers were released on October 6, and it is exactly what the repo's own README warned about at launch: \"unformalized ones could have issues.\" The HN comments split sharply: some say \"papers are shipping like software now\" and read the fast correction as a good sign; others ask whether the three withdrawn papers had ever been Lean-formalized in the first place, since if not, nobody actually checked them before publication.",
+          "why": "判断：这不是「AI 又犯错」那么简单，是 OpenAI 自己在用户面前完成了一次可核查的更正，连错误原因都写清楚了。能这样做的前提是仓库本来就留了 Lean 形式化和版本记录，犯错不等于白干。但评论区那个问题问得对：撤回的三篇要是压根没做过形式化，说明「核对」这件事当时根本没发生，只是运气好被后续工作撞见。适用于任何要发布 AI 生成研究产出的团队：版本化和可撤回的机制值得抄，但它解决的是「错了能改」，不解决「一开始有没有人真的核对过」。",
+          "why_en": "Read: this is not just \"AI made a mistake,\" it is OpenAI completing a checkable correction in public, with the actual cause of the error stated plainly. That is only possible because the repo already kept Lean formalizations and version history, so an error does not mean the work was wasted. But the comment thread's question lands: if the three withdrawn papers were never formalized in the first place, nobody actually checked them before publishing, it was later work that happened to run into the mistake. For any team shipping AI-generated research output: version control and withdrawal mechanisms are worth copying, but they solve \"we can fix it when wrong,\" not \"did anyone check it before it shipped.\""
+        },
+        {
+          "title": "重度用户说 DeepSeek 4.1 Flash 和 Opus 5.5 用不出差别，独立跑分不同意",
+          "title_en": "A heavy user says DeepSeek V4.1 Flash feels as good as Opus 5.5, independent benchmarks disagree",
+          "author": "Jono's Corner · Hacker News",
+          "author_en": "Jono's Corner · Hacker News",
+          "likes": 380,
+          "url": "https://www.dgt.is/blog/2026-10-07-deepseek-freek-out/",
+          "summary": "博客作者 Jono 10 月 7 日写道，自己用 DeepSeek 4.1 Flash 高强度写代码一个月，跨十几个项目，不看模型名字的话分不出和 Opus 的差别。他算过账：按 OpenCode Go 每月 10 美元的套餐，DeepSeek 基本算无限量，单次会话很少超过 1 美元，哪怕跑一整天；复杂任务偶尔叫 Opus 5.5 做最终代码审查，再让 DeepSeek 执行修改。他把便宜归因于 DeepSeek 把 KV 缓存比自家 V1 模型缩小了约 437 倍，这个数字是他自己转述的说法，没找到独立来源。第三方测评网站 Artificial Analysis 把两个模型放进同一张表：DeepSeek 4.1 Flash 最高配置（max）的 Intelligence Index 为 39 分，而 Opus 5.5 即便是它最低、最便宜的档位（low）也有 42 分，Opus 5.5 顶配 58 分；换算成每任务成本，DeepSeek 最便宜档 0.15 美元，Opus 5.5 最便宜档 0.55 美元；DeepSeek 输出速度 217 token/秒，是 Opus 5.5 顶配 96 token/秒的两倍多。独立跑分显示两者能力确有差距，差距比作者自己的体感要大，但便宜和快是真的。",
+          "summary_en": "Blogger Jono wrote on October 7 that after using DeepSeek V4.1 Flash heavily for coding across a dozen-plus projects for a month, he can't tell the difference from Opus without looking at the model name. By his math: on a $10/month OpenCode Go plan, DeepSeek is effectively unlimited, with sessions rarely exceeding $1 even running all day; for complex tasks he occasionally calls in Opus 5.5 for a final code review, then has DeepSeek execute the fixes. He attributes the low cost to DeepSeek shrinking its KV cache roughly 437x versus its own V1 model, a figure he states secondhand with no independent source found. Third-party benchmark site Artificial Analysis puts both models in the same table: DeepSeek V4.1 Flash's top configuration (max) scores 39 on the Intelligence Index, while even Opus 5.5's lowest, cheapest tier (low) scores 42, and its top tier scores 58; per-task cost is $0.15 for DeepSeek's cheapest tier against $0.55 for Opus 5.5's cheapest tier, and DeepSeek's output speed of 217 tokens/sec is more than double Opus 5.5's top-tier 96 tokens/sec. The independent benchmark shows a real capability gap, wider than the author's own impression, but the price and speed advantages are real.",
+          "why": "判断：体感和独立测评不是互相否定，是两回事。作者的「分不出差别」说的是日常写代码任务里主观感受不到差距，这个可信，他确实用了一个月、很多项目；但「和前沿模型一样强」这个结论，独立跑分并不支持，DeepSeek 最强档还是比 Claude 最弱档低。便宜是实打实的，省下来的钱也是真的，只是便宜不等于一样强，这两件事要分开说。适用于要换模型降本的人：先拿自己真实任务测一遍成本和准确率（参考今天「今日可行动」第二条），不要只信一个人的体感，也不要只信一张第三方跑分，两个都只是一个维度。",
+          "why_en": "Read: a user's feel and an independent benchmark are not contradicting each other, they are measuring different things. \"I can't tell the difference\" describes daily coding tasks and is credible, he genuinely ran it for a month across many projects. But \"as strong as a frontier model\" is not what the independent benchmark shows, DeepSeek's strongest tier scores below Claude's weakest tier. The savings are real, the capability gap is also real, and the two claims need to be kept separate. For anyone switching models to cut cost: test cost and accuracy on your own real tasks (see today's second action item), and don't take either a single person's feel or a single benchmark table as the whole picture, each is only one dimension.",
+          "flag": "437 倍缓存压缩的说法来自作者自己转述，未找到独立来源；文中跑分对比引自 Artificial Analysis 公开页面，作者本人「用不出差别」的体感描述未经第三方复核。",
+          "flag_en": "The 437x cache-compression figure is the author's own secondhand claim with no independent source found; the benchmark comparison is from Artificial Analysis's public page, but the author's own \"can't tell the difference\" account was not independently verified."
         },
         {
           "title": "Docker 把 agent 做成命令行插件，配置写 YAML",
@@ -205,9 +222,9 @@
           "author_en": "Docker Engineering · Hacker News",
           "likes": 222,
           "url": "https://github.com/docker/docker-agent",
-          "summary": "Docker Engineering 的 docker-agent 10 月 7 日登上 HN 首页，得 222 分。它是 docker 命令行插件，用一份 YAML 定义 agent，运行即 docker agent run。定位多 agent：root agent 配好模型、描述、指令和工具集，子 agent 自动分工。工具有内置的，也可挂任意 MCP server，本地、远程或跑在 Docker 里。模型供应商不限，OpenAI、Anthropic、Gemini、AWS Bedrock、Mistral、xAI、Docker Model Runner 均支持。内置 think、todo、memory 三个工具；检索支持 BM25、向量、混合搜索和重排。agent 能推到任意 OCI registry，再在别处拉下来跑。仓库 Apache 2.0，当前 3,933 星；装了 Docker Desktop 4.63 及以上版本就自带该插件，也可 brew install docker-agent。",
+          "summary": "Docker Engineering 的 docker-agent 于 10 月 7 日登上 HN 首页,得 222 分。它是 docker 命令行插件,用一份 YAML 定义 agent,运行即 docker agent run。面向多 agent：root agent 配好模型、描述、指令和工具集,子 agent 自动分工。工具有内置的,也可挂任意 MCP server,本地、远程或跑在 Docker 里。模型供应商不限,OpenAI、Anthropic、Gemini、AWS Bedrock、Mistral、xAI、Docker Model Runner 均支持。内置 think、todo、memory 三个工具;检索支持 BM25、向量、混合搜索和重排。agent 能推到任意 OCI registry,再在别处拉下来跑。仓库 Apache 2.0,当前 3,933 星;装了 Docker Desktop 4.63 及以上版本就自带该插件,也可 brew install docker-agent。",
           "summary_en": "Docker Engineering's docker-agent hit the HN front page on October 7 (222 points). It is a docker CLI plugin that defines an agent in a YAML file and runs it with docker agent run. It is multi-agent: a root agent gets a model, description, instructions and toolsets, and sub-agents delegate among themselves. Tools can be built-in or any MCP server, whether local, remote or running in Docker. It is provider-agnostic, supporting OpenAI, Anthropic, Gemini, AWS Bedrock, Mistral, xAI and Docker Model Runner. It ships think, todo and memory tools, and retrieval covers BM25, embeddings, hybrid search and reranking. Agents can be pushed to any OCI registry and pulled and run elsewhere. The repo is Apache 2.0 with 3,933 stars; Docker Desktop 4.63 and newer includes the plugin, and brew install docker-agent also works.",
-          "why": "判断：把 agent 定义成可版本化、可推送的配置文件，是用容器生态解决 agent 的分发问题。适用于要把 agent 交给别人运行的人：YAML 加 OCI 分发这条路，比自己发明一套 DSL 省事。",
+          "why": "判断：把 agent 定义成可版本化、可推送的配置文件,是用容器生态解决 agent 的分发问题。适用于要把 agent 交给别人运行的人：YAML 加 OCI 分发这条路,比自己发明一套 DSL 省事。",
           "why_en": "Read: defining an agent as a versionable config file you can push is using the container ecosystem to solve agent distribution. For anyone who needs someone else to run their agent: YAML plus OCI distribution is less work than inventing your own DSL."
         }
       ]
@@ -224,9 +241,9 @@
           "author_en": "Craig McLuckie and Joe Beda, interviewed by Latent Space",
           "likes": 0,
           "url": "https://www.latent.space/p/stacklok",
-          "summary": "Latent Space 10 月 7 日访谈 Kubernetes 两位共同创造者 Craig McLuckie 和 Joe Beda，他们现在的公司 Stacklok 2023 年拿了 1750 万美元 A 轮，投资方 Accel、Madrona、Bain Capital，从软件供应链安全转向基于 Kubernetes 的 agent 方案。问题很具体：桌面优先的 harness 里，agent 循环、执行和会话状态都在同一个进程里起步，进企业就撑不住，卡在会话可靠性、工具执行隔离和上下文保持三处。开源产品 Mecatl 的做法是把 agent 循环和客户端、模型供应商、状态存储、执行环境解耦，会话状态和记忆从磁盘上的 JSONL 文件搬进托管系统；ToolHive 从 MCP 服务托管长成了带 registry 和 operator 的 Kubernetes 网关；另有一个尚未开源的 AI Gateway，管访问控制、预算、报表和供应商路由。Beda 说企业看 agent 交互应该像看邮件，归属企业。文中引用了一份 520 位负责人的调研。",
+          "summary": "Latent Space 10 月 7 日访谈 Kubernetes 两位共同创造者 Craig McLuckie 和 Joe Beda,他们现在的公司 Stacklok 2023 年拿了 1750 万美元 A 轮,投资方 Accel、Madrona、Bain Capital,从软件供应链安全转向基于 Kubernetes 的 agent 方案。问题很具体：桌面优先的 harness 里,agent 循环、执行和会话状态都在同一个进程里起步,进企业就撑不住,卡在会话可靠性、工具执行隔离和上下文保持三处。开源产品 Mecatl 的做法是把 agent 循环和客户端、模型供应商、状态存储、执行环境解耦,会话状态和记忆从磁盘上的 JSONL 文件搬进托管系统;ToolHive 从 MCP 服务托管长成了带 registry 和 operator 的 Kubernetes 网关;另有一个尚未开源的 AI Gateway,管访问控制、预算、报表和供应商路由。Beda 说企业看 agent 交互应该像看邮件,归属企业。文中引用了一份 520 位负责人的调研。",
           "summary_en": "In a Latent Space interview on October 7, Kubernetes co-creators Craig McLuckie and Joe Beda describe how their company Stacklok, which raised a $17.5 million Series A in 2023 (Accel, Madrona, Bain Capital), pivoted from software supply chain security to Kubernetes-based agent systems. Their problem is concrete: in a desktop-first harness the agent loop, execution and session state all begin inside the same process, which they say does not hold up in an enterprise, stalling on session reliability, isolating tool execution and preserving context. Their open-source Mecatl decouples the agent loop from the client, model provider, state store and execution environment, moving session state and memory off JSONL files on disk into managed systems. ToolHive grew from MCP server hosting into a Kubernetes-based gateway with a registry and operator, and there is a not-yet-open-sourced AI Gateway handling access control, budgets, reporting and provider routing. Beda argues enterprises should treat agent interactions the way they treat email, as belonging to the enterprise. The piece cites a survey of 520 leaders.",
-          "why": "判断：桌面 agent 产品的下一道坎是会话状态存在哪。把循环和状态解耦，意味着换模型、换执行环境不用重写 agent。适用于自己做 agent 或给企业交付 agent 的人：先问会话状态归谁、存在哪，再谈能力。",
+          "why": "判断：桌面 agent 产品的下一道坎是会话状态存在哪。把循环和状态解耦,意味着换模型、换执行环境不用重写 agent。适用于自己做 agent 或给企业交付 agent 的人：先问会话状态归谁、存在哪,再谈能力。",
           "why_en": "Read: the next hurdle for desktop agent products is where session state lives. Decoupling the loop from the state means swapping models or execution environments without rewriting the agent. For anyone building agents or delivering them to enterprises: ask who owns the session state and where it sits before discussing capability."
         },
         {
@@ -236,9 +253,9 @@
           "author_en": "Bret Taylor and Clay Bavor (Sierra) · TLDR AI",
           "likes": 0,
           "url": "https://sierra.ai/blog/introducing-personal-agent-protocol",
-          "summary": "10 月 6 日，Sierra 的 Bret Taylor 和 Clay Bavor 发文介绍 Personal Agent Protocol：一份开放标准，Meta 和 Sierra 联合 Genesys、Instinct、Rocket、Shopify、Stripe、Walmart 一起做，定义个人 agent 怎么和商家交互。现在个人 agent 大多像人一样加载页面、点表单，慢且容易失败，有时还得呼客服。协议把两侧的需求分开写：消费者决定给自己的 agent 多少权限，商家设定 agent 能做什么。流程是 agent 从商家网站发现服务后开启会话，可以先以访客身份开始，需要账号时由用户登录，并选择只读还是可写；会话建在 OAuth 上，并跨渠道延续。任务可以走网站、走商家的 API，如 MCP、OpenAPI 这类标准，或走商家自己的 agent。v0.1 规范说好本月内发布，还会有设计工作坊和参考实现。",
+          "summary": "10 月 6 日,Sierra 的 Bret Taylor 和 Clay Bavor 发文介绍 Personal Agent Protocol：一份开放标准,Meta 和 Sierra 联合 Genesys、Instinct、Rocket、Shopify、Stripe、Walmart 一起做,定义个人 agent 怎么和商家交互。现在个人 agent 大多像人一样加载页面、点表单,慢且容易失败,有时还得呼客服。协议把两侧的需求分开写：消费者决定给自己的 agent 多少权限,商家设定 agent 能做什么。流程是 agent 从商家网站发现服务后开启会话,可以先以访客身份开始,需要账号时由用户登录,并选择只读还是可写;会话建在 OAuth 上,并跨渠道延续。任务可以走网站、走商家的 API,如 MCP、OpenAPI 这类标准,或走商家自己的 agent。v0.1 规范说好本月内发布,还会有设计工作坊和参考实现。",
           "summary_en": "On October 6, Sierra's Bret Taylor and Clay Bavor introduced the Personal Agent Protocol, an open standard Meta and Sierra are developing with Genesys, Instinct, Rocket, Shopify, Stripe and Walmart that defines how personal agents interact with businesses. Today most personal agents act like people do, loading pages and clicking through forms, which is slow and error-prone and sometimes ends in a support call. The protocol splits the two sides' needs: consumers decide how much access to give their agent, and companies set what those agents may do. In practice an agent discovers offerings on a company's site and starts a session, potentially as a guest, then has the user sign in for account access and choose read-only or write access; the session is built on OAuth and carries across channels. Tasks can run through the website, the company's APIs (standards like MCP and OpenAPI) or the company's own agent. The v0.1 specification is due later this month, along with design workshops and a reference implementation.",
-          "why": "判断：agent 能不能替用户下单，卡点从来不是模型，是授权和责任。这份标准把「用户给权限」和「商家设边界」分开写，等于给 agent 商务画了一条可审计的线。适用于做交易、订阅或客服入口的产品：先看自己的登录和支付流程能不能被一个受限 agent 走完。",
+          "why": "判断：agent 能不能替用户下单,卡点从来不是模型,是授权和责任。这份标准把用户给权限和商家设边界分开写,等于给 agent 商务画了一条可审计的线。适用于做交易、订阅或客服入口的产品：先看自己的登录和支付流程能不能被一个受限 agent 走完。",
           "why_en": "Read: what blocks an agent from checking out on a user's behalf was never the model, it is authorization and liability. By writing the user's grant and the merchant's boundary as separate things, this standard draws an auditable line for agent commerce. For anyone building a checkout, subscription or support entry point: see whether a scoped-down agent can complete your login and payment flows."
         },
         {
@@ -248,9 +265,9 @@
           "author_en": "Google · TLDR AI",
           "likes": 0,
           "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-          "summary": "Google 10 月 6 日发布 EmbeddingGemma 2：740M 参数的开源嵌入模型，Apache 2.0，基于 Gemma 4 架构，把文本、图像、音频、视频映射进同一个嵌入空间，主打端侧运行。可以按需裁剪，纯文本最小 270M，视觉编码器 170M、音频编码器 300M。在 Pixel 11 Pro 上，纯文本权重约占 191MB 内存，完整多模态约 567MB。上下文 8K token，是 EmbeddingGemma 1 的 4 倍，官方说能装下约 5.5 分钟音频、29 张图或 58 帧视频；支持 MRL，从 768 维截到 512、256、128 维，最多省 6 倍存储。官方给的数字是 MTEB Code 提升 9.92 分（从 68.76 到 78.68）。权重在 Hugging Face 和 Kaggle，可用 MediaPipe、LiteRT 部署，也有 transformers、vLLM、llama.cpp、Ollama、LMStudio 的路径。",
+          "summary": "Google 10 月 6 日发布 EmbeddingGemma 2：740M 参数的开源嵌入模型,Apache 2.0,基于 Gemma 4 架构,把文本、图像、音频、视频映射进同一个嵌入空间,主打端侧运行。可以按需裁剪,纯文本最小 270M,视觉编码器 170M、音频编码器 300M。在 Pixel 11 Pro 上,纯文本权重约占 191MB 内存,完整多模态约 567MB。上下文 8K token,是 EmbeddingGemma 1 的 4 倍,官方说能装下约 5.5 分钟音频、29 张图或 58 帧视频;支持 MRL,从 768 维截到 512、256、128 维,最多省 6 倍存储。官方给的数字是 MTEB Code 提升 9.92 分 (从 68.76 到 78.68)。权重在 Hugging Face 和 Kaggle,可用 MediaPipe、LiteRT 部署,也有 transformers、vLLM、llama.cpp、Ollama、LMStudio 的路径。",
           "summary_en": "Google released EmbeddingGemma 2 on October 6: a 740M-parameter open embedding model under Apache 2.0, built on the Gemma 4 architecture, mapping text, images, audio and video into a single embedding space and aimed at on-device use. It is modular, as small as 270M parameters for text-only, with a 170M vision encoder and a 300M audio encoder. On a Pixel 11 Pro the text-only weights need about 191MB of active RAM and the full multimodal model about 567MB. It has an 8K-token context, four times EmbeddingGemma 1, which Google says fits about 5.5 minutes of audio, 29 images or 58 video frames, and it supports MRL truncation from 768 dimensions down to 512, 256 or 128 for up to a 6x storage reduction. Google's stated figure is a 9.92-point gain on MTEB Code, from 68.76 to 78.68. Weights are on Hugging Face and Kaggle, deployable via MediaPipe or LiteRT, with paths through transformers, vLLM, llama.cpp, Ollama and LMStudio.",
-          "why": "判断：检索这一层正在从调一个云 API，变成在设备上跑一个小模型。适合做端侧、或对数据敏感的产品：嵌入模型能在本地跑，RAG 的默认形态就能改，用户数据不必送出去。",
+          "why": "判断：检索这一层正从调用云 API 转向在设备上跑小模型。适合端侧产品或对数据敏感的产品：嵌入模型可在本地运行，RAG 的默认形态随之改变，用户数据不必外送。",
           "why_en": "Read: the retrieval layer is shifting from calling a cloud API to running a small model on the device. For anyone building on-device or data-sensitive products: once embeddings run locally the default shape of RAG can change, with no need to send user data out."
         }
       ]
