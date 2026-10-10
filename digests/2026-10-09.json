@@ -61,92 +61,101 @@
   "meta_read": "今天几条的共同点很直接：稀缺资源在换位置。一条讲端侧，一条讲电，一条讲生物数据，一条讲 agent 的权限边界。并起来看，能力本身越来越像公用事业，胜负集中在两头，离用户最近的设备，和离现实最近的输入端。操作系统把 agent 权限收进内核，数据持有方把标准收进入口，电力公司把并网日期收进审批，三处收的是同一样东西，准入。照这个走法，下一轮产品差距不会来自用了哪个更强的模型，而来自你能不能在这三张桌子上拿到一个不依赖别人的位置。",
   "meta_read_en": "Read together, today's stories share one shape: the scarce resource is changing seats. One is about the edge, one about power, one about biological data, one about the limits of what an agent may do. Stacked up, raw capability increasingly behaves like a utility, and the contest concentrates at two ends: the device closest to the user and the input closest to reality. The OS pulls agent permissions into the kernel, data holders pull standards into their gateways, and utilities pull interconnection dates into a permit queue. All three are collecting the same thing: admission. On this trajectory the next product gap will not come from which stronger model you use but from whether you hold a position on those three tables that doesn't depend on someone else.",
   "ota": {
-    "learned": "观察 · 今天撞到两种被挡，要分开记。YouTube 的字幕抓取返回的是 Sign in to confirm you're not a bot 这类要求登录的机器人校验，不是过去一个月的 429，但结果一样是零，照技能规则确认后不再重试。Import AI 两条路都被挡：WebFetch 返回 403，curl 加浏览器 UA 拿到的是 Cloudflare 的 Just a moment... JS 挑战，说明 10 月 3 日记下的那个 Substack 代理兜底已经不够用，这条带今天记为来源暂时不可达，没有硬凑替代。另一件更值钱：Terence Tao 博客今天那篇《What should we tell our students?》是客座文章，作者其实是 Álvaro Lozano-Robledo，如果不是逐字核了正文，署名会挂成博客主人。",
-    "learned_en": "Observation: today hit two different kinds of \"blocked\" that need to be logged separately. YouTube's subtitle fetch returned a login-gated bot check (\"Sign in to confirm you're not a bot\"), not the 429 seen for the past month, but the result is the same zero, so per the skill's rule the lane was logged as a confirmed zero and not retried. Import AI was blocked both ways: WebFetch returned 403, and curl with a browser user-agent got a Cloudflare \"Just a moment...\" JS challenge, which means the Substack proxy fallback recorded on October 3 no longer suffices; the lane is logged as temporarily unreachable rather than padded with substitutes. The more valuable find: today's post \"What should we tell our students?\" on Terence Tao's blog is a guest post, actually written by Álvaro Lozano-Robledo, and without reading the body word-for-word the byline would have been attributed to the blog's owner.",
-    "new_capabilities": "已验证 · 署名要分开「站点主人」和「文章作者」。规则：只要来源是知名个人博客或专栏，取 author 前先读正文里作者自报的身份或文末的作者说明，不能默认等于域名持有人；客座文章、交叉转载都算这一类。今晚在 terrytao.wordpress.com 上跑通：正文开头就写明是客座文章，作者是 Álvaro Lozano-Robledo，Tao 本人只加了一句按语，按这套读法署名、summary 和 flag 都改对了。调用方法：抓完一篇博客，先在正文里搜 byline、guest post 或文末作者说明，再决定 author 字段写谁。",
-    "new_capabilities_en": "Verified: separate \"site owner\" from \"post author\" when assigning a byline. Rule: whenever a source is a well-known personal blog or column, read the body for the author's own self-identification or a closing author note before filling the author field; never default it to the domain holder, and treat guest posts and cross-posts as this class. Ran it tonight on terrytao.wordpress.com: the body states up front that it is a guest post by Álvaro Lozano-Robledo, with Tao adding only a short note, and by this rule the author, summary and flag were all corrected. How to invoke: after fetching a blog post, search the body for a byline, guest-post marker or closing author note before deciding whom to put in the author field."
+    "learned": "观察 · 今天撞到两种被挡，分开记。YouTube 字幕抓取返回 Sign in to confirm you're not a bot 这类登录校验，不是过去一个月的 429，结果一样是零，按技能规则确认后不再重试。Import AI 两条路都被挡：WebFetch 返回 403，curl 加浏览器 UA 拿到 Cloudflare 的 Just a moment... JS 挑战，10 月 3 日记录的 Substack 代理兜底已不够用，这条记为来源暂时不可达，没有硬凑替代。另一件更值钱：Terence Tao 博客今天那篇《What should we tell our students?》是客座文章，作者是 Álvaro Lozano-Robledo，不逐字核正文，署名就会挂成博客主人。 晚上 9 点复查：YouTube 字幕抓取还是零，原因换了，凌晨是要求登录的机器人校验，晚上三条视频全部 429，一次重试后仍然 429，两种挡法独立，结果一样。claude-in-chrome 本次会话不可用，X 和小红书两条线今晚接不到，不作为缺口记（头版已有 HN 和文摘两个平台达标）。另外，`check-domain-reuse.py` 今晚拦到一条真冲突：OpenAI 安全研究员被开除的消息第一次选的是 TechCrunch，和当天 Tony Fadell 那条用同一个域名，换成 BBC 的独立报道后冲突解除，内容没有损失。",
+    "learned_en": "Observation: today hit two different kinds of \"blocked\" that need to be logged separately. YouTube's subtitle fetch returned a login-gated bot check (\"Sign in to confirm you're not a bot\"), not the 429 seen for the past month, but the result is the same zero, so per the skill's rule the lane was logged as a confirmed zero and not retried. Import AI was blocked both ways: WebFetch returned 403, and curl with a browser user-agent got a Cloudflare \"Just a moment...\" JS challenge, which means the Substack proxy fallback recorded on October 3 no longer suffices; the lane is logged as temporarily unreachable rather than padded with substitutes. The more valuable find: today's post \"What should we tell our students?\" on Terence Tao's blog is a guest post, actually written by Álvaro Lozano-Robledo, and without reading the body word-for-word the byline would have been attributed to the blog's owner. 9pm recheck: YouTube's subtitle fetch is still zero, but the cause changed — the 4am run hit a login-gated bot check, tonight's three attempts all hit a plain 429, one retry still 429. Two independent block modes, same result. claude-in-chrome was unavailable this session, so X and RedNote stayed unreachable tonight — not logged as a gap since Hacker News + 文摘 already clear the 2-platform gate. Separately, `check-domain-reuse.py` caught a real same-issue collision tonight: the OpenAI-fired-safety-researchers item was first sourced to TechCrunch, which collided with the day's own Tony Fadell item on the same domain; swapping to BBC's independent coverage of the same event resolved it with no loss of content.",
+    "new_capabilities": "已验证 · 署名要分开站点主人和文章作者。规则：来源是知名个人博客或专栏时，取 author 前先读正文里作者自报的身份或文末的作者说明，不能默认等于域名持有人；客座文章、交叉转载都算这一类。今晚在 terrytao.wordpress.com 上跑通：正文开头写明是客座文章，作者是 Álvaro Lozano-Robledo，Tao 本人只加了一句按语，按这套读法署名、summary 和 flag 都改对了。调用方法：抓完一篇博客，先在正文里搜 byline、guest post 或文末作者说明，再决定 author 字段写谁。 新增（已落地）：`check-domain-reuse.py` 报同 issue 域名冲突时，先搜一次同一事件的替代 outlet，不要直接砍稿——今晚验证过（TechCrunch 冲突换成 BBC）。调用方法：冲突时用 HN Algolia 搜事件关键词，挑一个说清楚同样事实、没有域名冲突的来源。同时把凌晨那条博客署名分站主/作者的提案并入已有记忆 `feedback-attribution-mark-provenance`，作为具体子案例，没有新开一条记忆。",
+    "new_capabilities_en": "Verified: separate \"site owner\" from \"post author\" when assigning a byline. Rule: whenever a source is a well-known personal blog or column, read the body for the author's own self-identification or a closing author note before filling the author field; never default it to the domain holder, and treat guest posts and cross-posts as this class. Ran it tonight on terrytao.wordpress.com: the body states up front that it is a guest post by Álvaro Lozano-Robledo, with Tao adding only a short note, and by this rule the author, summary and flag were all corrected. How to invoke: after fetching a blog post, search the body for a byline, guest-post marker or closing author note before deciding whom to put in the author field. New (implemented): when `check-domain-reuse.py` flags a same-issue domain collision, search for an alternate outlet on the same event before cutting the story — verified tonight (TechCrunch swapped for BBC). How to invoke: search HN Algolia for the event's keywords and pick a source that states the same facts without the domain conflict. Also folded this morning's queued \"blog owner vs. guest author\" proposal into the existing `feedback-attribution-mark-provenance` memory as a concrete sub-case, rather than opening a new memory file."
   },
   "github_top10": [
     {
       "rank": 1,
-      "name": "boykopovar/AnyPS5",
-      "url": "https://github.com/boykopovar/AnyPS5",
-      "description": "Tool for automatic PS5 executables porting to Linux and Windows",
-      "language": "C++",
-      "stars": 17473,
-      "stars_today": 4669
-    },
-    {
-      "rank": 2,
-      "name": "cathrynlavery/diagram-design",
-      "url": "https://github.com/cathrynlavery/diagram-design",
-      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Factory Droid, and Pi. 42 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
-      "language": "HTML",
-      "stars": 46979,
-      "stars_today": 1160
-    },
-    {
-      "rank": 3,
       "name": "morluto/rea",
       "url": "https://github.com/morluto/rea",
       "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
       "language": "TypeScript",
-      "stars": 31771,
-      "stars_today": 7738
+      "stars": 46489,
+      "stars_today": 14927
     },
     {
-      "rank": 4,
+      "rank": 2,
+      "name": "boykopovar/AnyPS5",
+      "url": "https://github.com/boykopovar/AnyPS5",
+      "description": "Tool for automatic PS5 executables porting to Linux and Windows",
+      "language": "C++",
+      "stars": 22414,
+      "stars_today": 5868
+    },
+    {
+      "rank": 3,
       "name": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills",
       "description": "Skills for Real Engineers. Straight from my .agents directory.",
       "language": "Shell",
-      "stars": 281642,
-      "stars_today": 1774
+      "stars": 282724,
+      "stars_today": 1687
+    },
+    {
+      "rank": 4,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Factory Droid, and Pi. 42 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 47883,
+      "stars_today": 1739
     },
     {
       "rank": 5,
-      "name": "thedotmack/claude-mem",
-      "url": "https://github.com/thedotmack/claude-mem",
-      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-      "language": "TypeScript",
-      "stars": 98744,
-      "stars_today": 670
+      "name": "alibaba/open-code-review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI &amp; Anthropic compatible.",
+      "language": "Go",
+      "stars": 45228,
+      "stars_today": 326
     },
     {
       "rank": 6,
-      "name": "EpicGames/raddebugger",
-      "url": "https://github.com/EpicGames/raddebugger",
-      "description": "A native, user-mode, multi-process, graphical debugger.",
-      "language": "C",
-      "stars": 8189,
-      "stars_today": 279
-    },
-    {
-      "rank": 7,
       "name": "anthropics/knowledge-work-plugins",
       "url": "https://github.com/anthropics/knowledge-work-plugins",
       "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
       "language": "Python",
-      "stars": 27873,
-      "stars_today": 392
+      "stars": 28270,
+      "stars_today": 709
+    },
+    {
+      "rank": 7,
+      "name": "BerriAI/litellm",
+      "url": "https://github.com/BerriAI/litellm",
+      "description": "The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balancing, and logging [Bedrock, Azure, OpenAI, Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM]",
+      "language": "Python",
+      "stars": 60669,
+      "stars_today": 95
     },
     {
       "rank": 8,
+      "name": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "language": "JavaScript",
+      "stars": 104001,
+      "stars_today": 436
+    },
+    {
+      "rank": 9,
       "name": "storytold/artcraft",
       "url": "https://github.com/storytold/artcraft",
       "description": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
       "language": "Rust",
-      "stars": 9103,
-      "stars_today": 2103
+      "stars": 11533,
+      "stars_today": 3752
     },
     {
-      "rank": 9,
-      "name": "liquidslr/system-design-notes",
-      "url": "https://github.com/liquidslr/system-design-notes",
-      "description": "Notes of the book System Desgin Interview - An Insider's Guide",
-      "language": null,
-      "stars": 25007,
-      "stars_today": 393
+      "rank": 10,
+      "name": "Robbyant/lingbot-map",
+      "url": "https://github.com/Robbyant/lingbot-map",
+      "description": "[ECCV 2026 Best Paper Award Candidate] LingBot-Map: Geometric Context Transformer for Streaming 3D Reconstruction",
+      "language": "Python",
+      "stars": 17701,
+      "stars_today": 110
     }
   ],
   "sources": [
@@ -164,9 +173,9 @@
           "url": "https://cactuscompute.com/blog/whistle",
           "summary": "Cactus Compute 10 月 2 日发布 Whistle，一个 16.9MB 的语音识别模型：单文件、纯 CPU、无依赖、无 GPU，和它家的 Needle 共用同一套 C++ 引擎与量化。它在设备上做三件事：转写（16kHz 单声道，单次最长 30 秒，支持英、德、法、西、意、荷、波七种语言，自动检测，静音返回空串而不是编一句话）；词级时间戳（每个词的起止与概率）；语音嵌入（每 80 毫秒一帧，可直接做匹配检索）。另有关键词偏置，把用户常说的名字、地名、产品名在搜索里加权。跑分（词错误率，越低越好）：在 LibriSpeech test-clean/test-other、SPGISpeech、Earnings-22、FLEURS 上领先 Whisper base，在 TED-LIUM、AMI、MLS 上落后；体积 16.9MB，对比 Whisper base 的 145.3MB、Moonshine tiny v2 的 41.9MB。速度（Apple M4 Pro，各自官方运行时）：首字 11.1 毫秒，Whisper base 73.2 毫秒，Moonshine 22.8 毫秒；解码 1319 token/秒，Whisper 266/秒、Moonshine 262/秒。作者称错误率基于 86174 条语音，并用音频校验和与说话人 ID 确认测试音频未进入训练或验证集。已预编译到 17 个目标平台，含 macOS、Linux、Android、iOS、watchOS、Windows on ARM、RISC-V、MIPS、浏览器和 WebAssembly 组件。",
           "summary_en": "Cactus Compute released Whistle on October 2, a 16.9 MB speech recognition model: a single file, CPU-only, with no dependencies and no GPU, sharing the same C++ engine and quantization as its Needle model. It does three things on-device: transcription (16 kHz mono, up to 30 seconds per pass, in English, German, French, Spanish, Italian, Dutch and Polish, auto-detected, returning an empty string for silence rather than inventing a sentence); word timestamps (start, end and probability per word); and speech embeddings (one row per 80 ms frame, usable for matching and retrieval without decoding a transcript). It also supports keyword biasing, weighting the names, places and product words your users actually say. Word error rate (lower is better): it leads Whisper base on LibriSpeech test-clean/test-other, SPGISpeech, Earnings-22 and FLEURS, and trails on TED-LIUM, AMI and MLS; at 16.9 MB against Whisper base's 145.3 MB and Moonshine tiny v2's 41.9 MB. Speed on an Apple M4 Pro, each model on its official runtime: 11.1 ms to first token versus Whisper base's 73.2 ms and Moonshine's 22.8 ms, and 1,319 tokens/sec decode versus Whisper's 266 and Moonshine's 262. The author says the error rate is measured over 86,174 utterances, and that audio checksums and speaker IDs confirm no test audio entered training or validation. It ships prebuilt for seventeen targets, including macOS, Linux, Android, iOS, watchOS, Windows on ARM, RISC-V, MIPS, the browser and a WebAssembly component.",
-          "why": "判断：这不只是「模型又变小了」，是语音转写这条链的成本结构变了，从按分钟计费的云端调用，变成零边际成本的本地调用，音频不出设备。16.9MB 这个体量能进浏览器、手表、RISC-V 设备，离线也能跑，对隐私敏感或没有网络的场景是质变。适用于做端侧、离线或数据合规产品的团队：先检查场景里哪些「必须联网才能转写」的假设其实不成立。",
+          "why": "判断：这不只是模型又变小了，是语音转写这条链的成本结构变了，从按分钟计费的云端调用，变成零边际成本的本地调用，音频不出设备。16.9MB 这个体量能进浏览器、手表、RISC-V 设备，离线也能跑，对隐私敏感或没有网络的场景是质变。适用于做端侧、离线或数据合规产品的团队：先检查场景里哪些必须联网才能转写的假设其实不成立。",
           "why_en": "Read: this is not just \"the model got smaller,\" it is a change in the cost structure of the transcription pipeline, from a per-minute cloud call to a zero-marginal-cost local one with the audio never leaving the device. At 16.9 MB it fits in a browser, a watch or a RISC-V device and runs offline, a step change for privacy-sensitive or offline scenarios. For anyone building on-device, offline or data-compliant products: first check which \"must be online to transcribe\" assumptions in your scenarios don't actually hold.",
-          "flag": "体积、跑分与延迟数字都出自 Cactus Compute 自己的发布博客和模型卡，未见第三方复核；「测试音频未进入训练集」基于作者自查的音频校验和与说话人 ID，非独立验证。",
+          "flag": "体积、跑分与延迟数字都出自 Cactus Compute 自己的发布博客和模型卡，未见第三方复核；测试音频未进入训练集基于作者自查的音频校验和与说话人 ID，非独立验证。",
           "flag_en": "The size, benchmark and latency figures all come from Cactus Compute's own launch post and model card, with no third-party check; the \"no test audio in training\" claim rests on the authors' own audio-checksum and speaker-ID self-audit, not independent verification."
         },
         {
@@ -176,9 +185,9 @@
           "author_en": "Álvaro Lozano-Robledo (guest post on Terence Tao's blog) · Hacker News",
           "likes": 99,
           "url": "https://terrytao.wordpress.com/2026/10/08/what-should-we-tell-our-students/",
-          "summary": "Terence Tao 的博客 10 月 8 日登了一篇客座文章，作者是 Álvaro Lozano-Robledo，标题《What should we tell our students?》。文章从一封焦虑的学生来信写起，逐条回答五个问题：AI 会不会超过任何人类的研究能力；数学家会不会变成「专职写提示词、解读模型输出」的人；是不是只有最聪明的人才能做贡献；数学家还找不找得到工作；现在还要不要读博士。他的结论是「保持冷静，继续学数学」，最大的担心反而是「我们可能要丢掉整整一代数学家」。核心论据（引 Nestor Guillen 的模型）：LLM 主要在已有想法的「凸包」内运作，能填外沿想法之间的空隙，但不产生全新概念。他说没人知道答案，因此不信任何笃定的预测，并提醒很多 AI 必胜论的鼓吹者在创业公司任职，还提到前沿公司会在 IPO 前主导叙事（点名 Anthropic 2026 年 11 月、OpenAI 2027 年初）。就业问题上他主张数学系的价值在发现和传播，证明若没有人去理解就没有用。对要不要读博，他说答案「不该和一年前不同」，关键理由是热情和成为专家；他引 Jeremy Teitelbaum 的话，学生「不能不学 LLM 现在能做什么」。文末补记回应了 OpenAI 最近一次大规模数学发布，称不影响他的结论。评论区里不少博士生和博士后公开反对，认为形势已经变了，说这套建议是替自己说话。",
+          "summary": "10 月 8 日，Terence Tao 的博客登出一篇客座文章，作者是 Álvaro Lozano-Robledo，题为《What should we tell our students?》。文章从一封焦虑的学生来信写起，逐条回答五个问题：AI 会不会超过任何人类的研究能力；数学家会不会变成专职写提示词、解读模型输出的人；是不是只有最聪明的人才能做贡献；数学家还找不找得到工作；现在还要不要读博士。他的结论是保持冷静，继续学数学，最大的担心反倒是我们可能要丢掉整整一代数学家。核心论据引用 Nestor Guillen 的模型：LLM 主要在已有想法的凸包内运作，能填外沿想法之间的空隙，但不产生全新概念。他说没人知道答案，因此不信任何笃定的预测，并提醒很多 AI 必胜论的鼓吹者在创业公司任职，还提到前沿公司会在 IPO 前主导叙事，点名 Anthropic 2026 年 11 月、OpenAI 2027 年初。就业问题上他主张数学系的价值在发现和传播，证明若没有人去理解就没有用。对要不要读博，他说答案不该和一年前不同，关键理由是热情和成为专家；他引 Jeremy Teitelbaum 的话，学生不能不学 LLM 现在能做什么。文末补记回应了 OpenAI 最近一次大规模数学发布，称不影响他的结论。评论区里不少博士生和博士后公开反对，认为形势已经变了，说这套建议是替自己说话。",
           "summary_en": "Terence Tao's blog carried a guest post on October 8 by Álvaro Lozano-Robledo titled \"What should we tell our students?\" It opens with an anxious student's email and answers five questions in turn: whether AI will surpass any human's research ability; whether mathematicians will become \"professional prompters\" who interpret model output; whether only the brightest can contribute; whether mathematicians will still be employable; and whether to start a PhD now. His verdict is \"keep calm and carry on studying math,\" and his biggest worry is the opposite one: \"the very real possibility that we are about to lose an entire generation of mathematicians.\" The core argument, citing a model from Nestor Guillen, is that LLMs largely work inside the \"convex hull\" of existing ideas, filling gaps between outer ideas but not generating genuinely new concepts. He says nobody knows the answers, so he distrusts confident predictions, notes that many AI-triumphalist prognosticators work for startups, and says frontier companies control the narrative ahead of their IPOs (naming Anthropic for November 2026 and OpenAI for early 2027). On employment he argues math departments exist to discover and communicate, and that proofs are useless without humans to understand them. On the PhD question he says the answer \"should not have changed from a year ago to today,\" the key reason being passion and becoming an expert; he quotes Jeremy Teitelbaum that students \"cannot afford not to learn about the current capabilities of LLMs.\" An afterword addresses a recent large OpenAI math release and says it doesn't change his conclusions. In the comments, several PhD students and postdocs push back hard, saying the calculus has changed and that the advice is self-serving.",
-          "why": "判断：这篇文章的价值不在结论，在把一场情绪化的争论拆成五个能回答的问题。它的核心论据（LLM 在已有想法的凸包内工作）是可以检验的判断，作者自己在文中也承认「没人知道答案」。这恰好是最近数学界讨论的底色：能给出确定性的是模型厂商的叙事，不是数学家。适用于正在被「AI 会不会取代我」困扰、要做职业选择的人：先分清哪些是能力判断、哪些是叙事，再拿自己的真实任务去验，别只听任何一边。",
+          "why": "判断：这篇文章的价值不在结论，在把一场情绪化的争论拆成五个能回答的问题。它的核心论据，即 LLM 在已有想法的凸包内工作，是可以检验的判断，作者自己也承认没人知道答案。这恰好是最近数学界讨论的底色：能给出确定性的是模型厂商的叙事，不是数学家。适用于正在被 AI 会不会取代我困扰、要做职业选择的人：先分清哪些是能力判断、哪些是叙事，再拿自己的真实任务去验，别只听任何一边。",
           "why_en": "Read: the value here is not the conclusion but the act of turning an emotional argument into five answerable questions. Its core claim, that LLMs operate inside the convex hull of existing ideas, is a testable judgment, and the author himself concedes in the piece that nobody knows the answers. That is the undertone of recent math-community discussion: the certainties come from model vendors' narratives, not from mathematicians. For anyone wrestling with \"will AI replace me\" while making career choices: first separate which claims are capability judgments and which are narrative, then test them on your own real tasks rather than trusting either side.",
           "flag": "这是博客主人 Tao 的客座文章，主笔是 Álvaro Lozano-Robledo，不是 Terence Tao；文中关于前沿公司动机和 IPO 时间的说法是作者个人观点，未给独立来源。",
           "flag_en": "This is a guest post on Tao's blog written by Álvaro Lozano-Robledo, not by Terence Tao; the claims about frontier companies' motives and IPO timing are the author's own opinion, offered without independent sourcing."
@@ -190,12 +199,36 @@
           "author_en": "Biohub (with the DOE, NIH and others) · Hacker News",
           "likes": 118,
           "url": "https://biohub.org/news/virtual-biology-initiative-expansion/",
-          "summary": "10 月 7 日，Biohub 与美国能源部（DOE）、国立卫生研究院（NIH）及新出资方宣布，大幅扩容虚拟生物学计划，合计投入 18 亿美元，用于生成并开放 AI 可用的生物数据。官方称，这是迄今规模最大的一次协同投入。分摊如下：DOE 五年投入超 5 亿美元，走跨部门的 Genesis Mission，用上超算、X 射线与中子散射、冷冻电镜与断层扫描、自动化实验室；NIH 协调既有数据与知识库（涉及此前超 5 亿美元联邦投入），并与 Biohub 一起统一数据标准；Google DeepMind、Isomorphic Labs 和 Meta 合计投 3 亿美元；Biohub 作为发起方承诺 5 亿美元，其中 4 亿做新测量技术（冷冻电子断层扫描、成像以百万到十亿计的细胞、分子到器官层面的工程工具），1 亿支持 Biohub 之外的研究。参与机构还有 Allen Institute、Broad Institute、Gladstone、Human Cell Atlas、Human Protein Atlas、Wellcome Sanger Institute；NVIDIA 提供加速计算与技术。虚拟生物学计划本身 2026 年 4 月宣布，目标是把细胞响应数据扩展到更多细胞类型和条件，让研究者能在数字世界提问、预测并回答生物学问题。",
+          "summary": "10 月 7 日，Biohub 与美国能源部、国立卫生研究院及新出资方宣布，大幅扩容虚拟生物学计划，合计投入 18 亿美元，用于生成并开放 AI 可用的生物数据。官方称，这是迄今规模最大的一次协同投入。分摊如下：能源部五年投入超 5 亿美元，走跨部门的 Genesis Mission，用上超算、X 射线与中子散射、冷冻电镜与断层扫描、自动化实验室；国立卫生研究院协调既有数据与知识库，涉及此前超 5 亿美元联邦投入，并与 Biohub 一起统一数据标准；Google DeepMind、Isomorphic Labs 和 Meta 合计投 3 亿美元；Biohub 作为发起方承诺 5 亿美元，其中 4 亿做新测量技术，包括冷冻电子断层扫描、成像以百万到十亿计的细胞、分子到器官层面的工程工具，1 亿支持 Biohub 之外的研究。参与机构还有 Allen Institute、Broad Institute、Gladstone、Human Cell Atlas、Human Protein Atlas、Wellcome Sanger Institute；NVIDIA 提供加速计算与技术。虚拟生物学计划本身 2026 年 4 月宣布，目标是把细胞响应数据扩展到更多细胞类型和条件，让研究者能在数字世界提问、预测并回答生物学问题。",
           "summary_en": "On October 7, Biohub, the U.S. Department of Energy (DOE), the National Institutes of Health (NIH) and new funding partners announced a major expansion of the Virtual Biology Initiative, together investing $1.8 billion to generate and open up AI-ready biological data, which the announcement calls the largest coordinated commitment of its kind to date. The breakdown: the DOE puts in more than $500 million over five years through the cross-agency Genesis Mission, drawing on exascale supercomputing, X-ray and neutron scattering, cryo-electron microscopy and tomography, and autonomous labs; the NIH coordinates existing datasets and knowledge bases (involving more than $500 million in prior federal investment) and works with Biohub to standardize datasets for AI training; Google DeepMind, Isomorphic Labs and Meta together invest $300 million; and Biohub, as a founding party, commits $500 million, $400 million of it for new measurement technologies (cryo-electron tomography, imaging millions to billions of cells, and molecular-to-organ engineering tools) and $100 million for research outside Biohub. Other participants include the Allen Institute, Broad Institute, Gladstone Institutes, the Human Cell Atlas, the Human Protein Atlas and the Wellcome Sanger Institute; NVIDIA is providing accelerated computing and technical expertise. The Virtual Biology Initiative itself was announced in April 2026, aiming to expand cell-response data across far more cell types and conditions so researchers can \"ask, predict and answer biological questions digitally.\"",
           "why": "判断：这笔钱的关键词是标准与入口，不是模型。三家 AI 公司出的是 3 亿，政府和 Biohub 出的是 15 亿，且明确要把数据做成统一标识、单一入口的开放数据集。谁定标准，谁就决定了下一代生物基础模型能训什么。适用于做数据平台或垂直 AI 的人：这一轮的入场券是数据工程，不是算力；先盘自己数据有没有统一标识、有没有开放入口。",
           "why_en": "Read: the operative words here are \"standards\" and \"access,\" not models. The three AI companies put in $300 million while government and Biohub put in $1.5 billion, and the stated aim is open datasets with shared standards and a single point of access; whoever sets the standard decides what the next generation of biological foundation models can be trained on. For anyone building a data platform or vertical AI: the ticket this round is data engineering, not compute, so start by auditing whether your data has common identifiers and an open entry point.",
           "flag": "所有数字出自 Biohub 官方公告，属于发布方新闻稿，未经独立核实。",
           "flag_en": "All figures come from Biohub's official announcement, a publisher's press release, and were not independently verified."
+        },
+        {
+          "title": "OpenAI开除三名安全研究员，双方各执一词",
+          "title_en": "OpenAI fires three safety researchers; both sides dispute why",
+          "author": "BBC（Laura Cress）· Hacker News",
+          "author_en": "BBC (Laura Cress) · Hacker News",
+          "likes": 312,
+          "url": "https://www.bbc.co.uk/news/articles/cvlydn8d3lkjo",
+          "summary": "OpenAI 上周开除了三名员工：Mikita Balesni、Tomek Korbak、Jasmine Wang，三人此前都在安全或对齐团队。OpenAI 10 月 2 日告诉 BBC，调查确认三人在既定流程之外处理了敏感信息，10 月 3 日研究负责人的内部通报重复了这个说法，并说这不是因为他们提了安全问题或公开发声。三人 10 月 8 日联合发公开信反驳，Balesni 在 X 上写：我们是因为把公司短期利益放在安全之后才被开除的。Korbak 转发信时写，他几个月来一直在提一个问题：公司正在失去监控 AI agent 在想什么的能力，这是抓到它们学坏的重要手段之一，他认为这是自己被开除的真正原因。三人在信里说，开除带来的寒蝉效应已经让同事不敢再像过去那样说话和做事。OpenAI 说会公布第三方安全评估的细节，但没给时间表。",
+          "summary_en": "OpenAI fired three employees last week: Mikita Balesni, Tomek Korbak, and Jasmine Wang, all previously on safety or alignment teams. OpenAI told the BBC on October 2 that an investigation confirmed the three \"mishandled sensitive information outside established company procedures,\" and a note from research leaders on October 3 repeated that line, adding it was not about raising safety concerns or speaking out. The three published a joint open letter on October 8 disputing this; Balesni wrote on X that \"we were fired for prioritising safety over the near-term interests of OpenAI as a corporation.\" Reposting the letter, Korbak wrote that for months he had been raising one concern: that the company is losing the ability to monitor what AI agents \"think,\" one of the best tools for catching bad behavior, and he believes that is the real reason he was fired. The three say the firings have already made colleagues \"afraid to speak and operate\" the way they used to. OpenAI says it will announce details of third-party safety assessments, without a timeline.",
+          "why": "开除原因本身就是争议焦点，从外部没法核实谁对谁错。能确认的只有三件事:人确实被开除了，公开信确实公开了，OpenAI 两次表态口径一致。真正值得记的是 Korbak 提的那个具体技术点:监控 agent\"在想什么\"的能力正在变差，这和 9 月千禧年数学难题事件里\"思维链监控当时是关着的\"属于同一类风险，远比空泛的\"AI 很危险\"具体。关注 AI 公司治理的人，或者自己团队也在裸奔跑 agent 的人，该看的不是谁更道德，而是监控能力到底还剩多少。",
+          "why_en": "There's no way to independently verify who's right here; the reason for the firing is itself the dispute. What's confirmed: the firings happened, the open letter is real, and OpenAI's statements have stayed consistent across two rounds. The specific technical point worth tracking is Korbak's: the ability to monitor what agents are \"thinking\" is degrading, the same category of risk as September's Millennium Prize incident, where chain-of-thought monitoring was reportedly off at the time. Not a vague \"AI is dangerous\" claim. For anyone tracking AI-company governance, or running agents with thin monitoring themselves: the question isn't who's more honest, it's how much actual monitoring coverage is left."
+        },
+        {
+          "title": "TypeSafe AI完成8.7亿美元A轮融资，估值75亿",
+          "title_en": "TypeSafe AI raises $870M Series A at a $7.5B valuation",
+          "author": "TypeSafe AI · Hacker News",
+          "author_en": "TypeSafe AI · Hacker News",
+          "likes": 260,
+          "url": "https://typesafe.ai/blog/series-ai",
+          "summary": "TypeSafe AI 10 月 9 日官宣完成 A 轮融资，8.7 亿美元，估值 75 亿美元，由 a16z 领投，Sequoia Capital 和老股东 DCVC 跟投，a16z 的 Martin Casado 加入董事会。公司自称财富 500 强里有三分之一在用它的 Jev，已帮客户省下\"数百万美元\"生产成本，但这两个数字都是公司单方面给的，没有第三方核实。Jev 是 TypeSafe AI 今年 9 月中旬发布的\"决策模型\"，不输出文字，只输出带 schema 保证的结构化判断，上线一周内就有开源团队把它复刻出来，之后几周又有多款同类模型跟进。这轮钱的官宣用途，是把 Jev 这条路线做到极致，再加企业功能。",
+          "summary_en": "TypeSafe AI announced on October 9 that it closed a Series A of $870 million at a $7.5 billion valuation, led by a16z, with Sequoia Capital and existing investor DCVC participating; a16z's Martin Casado is joining the board. The company's own claims are that a third of the Fortune 500 use its Jev model and that customers have saved \"millions of dollars\" in production costs, neither number independently verified. Jev, launched in mid-September, is a \"decision model\" that emits no prose at all, only structured judgments with a schema guarantee; an open-source clone appeared within a week of launch, and several copycat models followed over the next few weeks. The company says the funding goes toward pushing the Jev approach further and adding enterprise features.",
+          "why": "这轮融资本身是个 GTM 信号:一个只做\"判断不写字\"的窄模型，上线不到一个月就拿到 75 亿估值，说明市场确实愿意为\"结构化输出\"这个窄而可靠的卖点付钱，并非只有做大模型才有估值。但公司自报的采用率和省钱数字都没有第三方交叉验证，读的时候要分清哪句是融资公告的自我美化，哪句是可核实的事实——钱到账、董事会名单。适用于做企业软件、正在权衡\"要不要把输出收窄成结构化判断\"这类产品决策的人。",
+          "why_en": "The funding itself is a GTM signal: a narrow model that only returns a judgment rather than prose reached a $7.5B valuation inside a month of launch, meaning the market will pay for \"structured, reliable output\" as a selling point on its own, not just for bigger general models. But the adoption and savings numbers are self-reported with no third-party check; separate what's a funding announcement's self-flattery from what's verifiable fact (the money landed, the board seat). Useful for anyone building enterprise software and weighing whether to narrow a product's output into structured decisions."
         }
       ]
     },
@@ -211,9 +244,9 @@
           "author_en": "NVIDIA · TLDR AI",
           "likes": 0,
           "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event/",
-          "summary": "10 月 7 日旧金山的 Windows AI 与 Surface 发布会上，Jensen Huang 与 Satya Nadella 宣布两家联合设计，让 agent 跑在 Windows PC 上。微软宣布 Microsoft Execution Containers（MXC）正式可用：这是操作系统层的基建，让 agent 在系统控制下后台安全、持久地运行；Nadella 的说法是，桌面必须成为 agent 执行最安全的地方。痛点写得很具体：此前 AI 开发只能上 Linux 的 DGX Station，等于要两套环境（AI 用 Linux、办公用 Windows），而多数世界 500 强都统一在 Windows 上。硬件侧，NVIDIA 发布 RTX Spark，把整套 AI 栈放进 Windows 笔记本和迷你主机：Blackwell RTX GPU（最多 6144 核）配最多 20 核 Grace CPU，600GB/s，最高 1 petaflop FP4，最多 128GB 统一内存，能本地跑 Qwen 3.8 Flash Next（125B 模型，51B n-gram）；笔记本 10 月 7 日开放预订、10 月 16 日开卖，迷你主机 11 月上市，OEM 有 Acer、ASUS、Dell、HP、Lenovo、Microsoft、MSI、Gigabyte，Surface Laptop Ultra 基于它。另有预览的 DGX Station for Windows：GB300 Grace Blackwell Ultra Desktop 芯片，748GB 一致性内存，最高 20 petaFLOPS FP4，可本地跑到万亿参数模型，Linux 工具链经 WSL 仍可用。",
+          "summary": "10 月 7 日旧金山的 Windows AI 与 Surface 发布会上，Jensen Huang 与 Satya Nadella 宣布两家联合设计，让 agent 跑在 Windows PC 上。微软宣布 Microsoft Execution Containers（MXC）正式可用:这是操作系统层的基建，让 agent 在系统控制下后台安全、持久地运行；Nadella 的说法是，桌面必须成为 agent 执行最安全的地方。痛点写得很具体:此前 AI 开发只能上 Linux 的 DGX Station，等于要两套环境（AI 用 Linux、办公用 Windows），而多数世界 500 强都统一在 Windows 上。硬件侧，NVIDIA 发布 RTX Spark，把整套 AI 栈放进 Windows 笔记本和迷你主机:Blackwell RTX GPU（最多 6144 核）配最多 20 核 Grace CPU，600GB/s，最高 1 petaflop FP4，最多 128GB 统一内存，能本地跑 Qwen 3.8 Flash Next（125B 模型，51B n-gram）；笔记本 10 月 7 日开放预订、10 月 16 日开卖，迷你主机 11 月上市，OEM 有 Acer、ASUS、Dell、HP、Lenovo、Microsoft、MSI、Gigabyte，Surface Laptop Ultra 基于它。另有预览的 DGX Station for Windows:GB300 Grace Blackwell Ultra Desktop 芯片，748GB 一致性内存，最高 20 petaFLOPS FP4，可本地跑到万亿参数模型，Linux 工具链经 WSL 仍可用。",
           "summary_en": "At the Windows AI and Surface event in San Francisco on October 7, Jensen Huang and Satya Nadella announced the two companies co-engineering hardware and software so agents can run on Windows PCs. Microsoft announced general availability of Microsoft Execution Containers (MXC), OS-level infrastructure for agents to \"run safely and persistently in the background, under operating system control\"; Nadella's framing was that the desktop must be the safest place for agents to execute. The stated pain is concrete: until now AI development forced a Linux-only DGX Station, meaning two environments (Linux for AI, Windows for productivity), while most Fortune 500 firms standardize on Windows. On hardware, NVIDIA launched RTX Spark, putting its full AI stack into Windows laptops and compact desktops: a Blackwell RTX GPU (up to 6,144 cores) with an up-to-20-core Grace CPU, 600 GB/s, up to 1 petaflop of FP4 AI performance and up to 128 GB unified memory, able to run models like Qwen 3.8 Flash Next (a 125B model, 51B n-gram) locally. Laptop preorders opened October 7 with availability October 16, compact desktops go on sale in November, and OEMs include Acer, ASUS, Dell, HP, Lenovo, Microsoft, MSI and Gigabyte, with the Surface Laptop Ultra built around it. A previewed DGX Station for Windows adds a GB300 Grace Blackwell Ultra Desktop chip with 748 GB of coherent memory and up to 20 petaFLOPS FP4, enough to run trillion-parameter models locally, with Linux toolchains still reachable through WSL.",
-          "why": "判断：把 agent 的隔离从应用层挪到操作系统层，等于把 agent 能干什么变成一条由系统强制执行的边界，而不是靠应用自己守规矩；同时开发环境也从 AI 用 Linux、办公用 Windows 的两套，收敛回一台 Windows 机器。适用于要给企业交付 agent 的人：以后 agent 安全的一部分答案会写进 Windows 的 API 里，先看自己的隔离方案是不是还停在应用层。",
+          "why": "判断:把 agent 的隔离从应用层挪到操作系统层，等于把 agent 能干什么变成一条由系统强制执行的边界，而不是靠应用自己守规矩；同时开发环境也从 AI 用 Linux、办公用 Windows 的两套，收敛回一台 Windows 机器。适用于要给企业交付 agent 的人:以后 agent 安全的一部分答案会写进 Windows 的 API 里，先看自己的隔离方案是不是还停在应用层。",
           "why_en": "Read: moving agent isolation from the application layer to the OS layer turns \"what an agent may do\" into a system-enforced boundary rather than something each app must police itself, and it also collapses the two-environment split (Linux for AI, Windows for work) back onto a single Windows machine. For anyone delivering agents into enterprises: part of the answer to \"agent safety\" will soon be written into Windows APIs, so check whether your isolation still stops at the application layer."
         },
         {
@@ -223,9 +256,9 @@
           "author_en": "Tony Fadell (MIT Future Fest) · TechCrunch, TLDR AI",
           "likes": 0,
           "url": "https://techcrunch.com/2026/10/07/tony-fadell-on-why-the-first-wave-of-ai-gadgets-failed-and-what-comes-next/",
-          "summary": "iPod 之父、iPhone 共同创造者、Nest 创始人 Tony Fadell 在首届 MIT Future Fest 上复盘了第一批 AI 硬件为何失败。他放出一页幻灯片，列出三款曾红极一时、如今已停产的设备：Rabbit R1、Humane Ai Pin、Limitless 挂坠，并说这些公司都找过他帮忙，他都拒了。他的核心批评是：得真想清楚要解决什么痛点。这几款都没解决真需求，只是给极客看的有趣技术。他给了一个数字：全世界用过真人助理的人不到 0.01%，所以喊着要 AI 助理的，本来就是已有助理的那批人，多数消费者根本不知道助理是什么；他自己花了好几年，才学会把银行、日程这类敏感事交给助理并建立信任。谈到 Meta 的 Muse，他提到上线后有安全研究者发现严重漏洞，404 Media 报道 Meta 团队上线前曾狂赶修安全问题，他说信任与安全会是头等大事。他预测成功的 agent 必须跑在端侧，为了隐私，也为了设备轻量，并反驳数据中心会征服世界的说法。他还解释了 Meta、OpenAI 做无屏硬件的动机：它们没有苹果那样几十亿台设备，只能靠硬件采集视频、音频、GPS 等二十来种传感数据。",
+          "summary": "iPod 之父、iPhone 共同创造者、Nest 创始人 Tony Fadell 在首届 MIT Future Fest 上复盘了第一批 AI 硬件为何失败。他放出一页幻灯片，列出三款曾红极一时、如今已停产的设备:Rabbit R1、Humane Ai Pin、Limitless 挂坠，并说这些公司都找过他帮忙，他都拒了。他的核心批评是:得真想清楚要解决什么痛点。这几款都没解决真需求，只是给极客看的有趣技术。他给了一个数字:全世界用过真人助理的人不到 0.01%，所以喊着要 AI 助理的，本来就是已有助理的那批人，多数消费者根本不知道助理是什么；他自己花了好几年，才学会把银行、日程这类敏感事交给助理并建立信任。谈到 Meta 的 Muse，他提到上线后有安全研究者发现严重漏洞，404 Media 报道 Meta 团队上线前曾狂赶修安全问题，他说信任与安全会是头等大事。他预测成功的 agent 必须跑在端侧，为了隐私，也为了设备轻量，并反驳数据中心会征服世界的说法。他还解释了 Meta、OpenAI 做无屏硬件的动机:它们没有苹果那样几十亿台设备，只能靠硬件采集视频、音频、GPS 等二十来种传感数据。",
           "summary_en": "Tony Fadell, credited as the father of the iPod, an iPhone co-creator and Nest's founder, spoke at the inaugural MIT Future Fest about why the first wave of AI gadgets failed. He showed a slide of three once-hyped, now-discontinued devices, the Rabbit R1, the Humane Ai Pin and the Limitless pendant, and said all those companies asked for his help and he declined. His core critique: \"You have to really understand what you're trying to do, what pain you're trying to solve.\" None met a real need, he said, calling them \"just interesting technology for geeks.\" He offered a number: less than 0.01% of the world population has ever had a human assistant, so the people asking for an AI assistant are the ones who already have assistants, while most consumers don't even know what one is; it took him \"a couple of years\" to learn to hand sensitive tasks like banking and scheduling to an assistant and trust it. On Meta's Muse, he noted a security researcher found a serious vulnerability post-launch and, citing a 404 Media report, that Meta teams made a \"mad dash\" to fix security issues before launch, adding that \"trust and safety are going to be paramount.\" He predicted a successful agent must run on-device, for privacy and to keep devices lightweight, and disputed the idea that data centers will conquer the world. He also explained why Meta and OpenAI build screen-less hardware: lacking Apple's billions of devices, they must gather sensor data, video, audio, GPS and \"20 things or more,\" through hardware.",
-          "why": "判断：这篇的价值是把 AI 硬件为什么失败从技术叙事拉回产品叙事。第一批设备缺的不是模型，是一个用户本来就有的痛点，加上让人敢交出敏感数据的信任。0.01% 这个数字很说明问题：为有助理的人设计助理，等于对着一个小市场做产品。适用于做 to C AI 产品或硬件的人：先问用户在这件事上有没有参照系，没有就先教，别先卖。",
+          "why": "判断：这篇文章的价值，是把 AI 硬件为什么失败从技术叙事拉回产品叙事。第一批设备缺的不是模型，而是一个用户本来就有的痛点，以及让人敢交出敏感数据的信任。0.01% 这个数字很说明问题：为有助理的人设计助理，等于对着一个小市场做产品。适用于做 to C AI 产品或硬件的人：先问用户在这件事上有没有参照系，没有就先教，别先卖。",
           "why_en": "Read: the value is pulling \"why AI hardware failed\" out of a technology narrative and back into a product one. What the first devices lacked was not a model but a pain point users already had, plus the trust to hand over sensitive data. The 0.01% figure is telling: designing an assistant for people who already have assistants means building for a small market. For anyone making consumer AI products or hardware: ask first whether users have any frame of reference for this, and if not, teach before you sell."
         },
         {
