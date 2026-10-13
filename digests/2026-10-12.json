@@ -1,0 +1,268 @@
+{
+  "date": "2026-10-12",
+  "partial": false,
+  "banner": "代码越快，评审越慢",
+  "banner_en": "Code gets written faster; review keeps getting slower",
+  "image": {
+    "src": "digests/img/2026-10-12.jpg",
+    "caption": "本期要图：OpenAI 新代码评审功能宣传视频的封面。同一天，哈佛团队用 700 家公司三年的数据证明评审时间在变长；QGIS 社区直接禁掉 AI 写的代码。画面与这两件事无关，只是视频封面原图，未经改动。（图：OpenAI YouTube 频道）",
+    "caption_en": "Today's front-page image: the cover of OpenAI's promo video for its new Codex code-review feature. The same day, a Harvard team used three years of data from 700 companies to show review time getting longer, and the QGIS community chose to ban AI-written code outright. The picture itself has nothing to do with either story; it is the unedited video cover. (Image: OpenAI's YouTube channel)"
+  },
+  "actions": [
+    {
+      "text": "挑一个你准备交给 agent 的重写、移植或新建任务，发提示词之前先写下 5 个提示词没回答的问题：要不要保持向后兼容、内存上限多少、过载时丢弃还是排队还是快速失败、更在乎延迟还是吞吐、崩溃时允许丢什么。每个问题定一个答案，写进提示词。约 15 分钟。做完的标准：5 个问题各有一个写进提示词的答案。",
+      "text_en": "Pick a rewrite, port or new build you are about to hand to an agent. Before sending the prompt, write down 5 questions it does not answer: keep backward compatibility or not, memory cap, what to do under overload (drop, queue or fail fast), latency versus throughput, and what a crash may lose. Fix one answer per question and put it in the prompt. About 15 minutes. Done means each of the 5 questions has an answer written into the prompt.",
+      "source": "It's all about the bit：对 DHH 的 Campfire 重写的复盘",
+      "source_en": "It's all about the bit: a review of DHH's Campfire rewrites",
+      "source_url": "https://itsallaboutthebit.com/i-am-sorry-but-you-still-have-to-think/"
+    },
+    {
+      "text": "列出你自己产品（或你常用的某个工具）注册流程里必须有人在场的每一步：验证码、点邮件里的链接、手选套餐、复制 API key、进后台开关。约 15 分钟。做完的标准：一份清单加一个总数，并标出最容易改成 agent 能走的那一步。",
+      "text_en": "List every step in your own product's signup flow (or a tool you use often) that needs a person present: the captcha, clicking an email link, picking a plan by hand, copying an API key, flipping a switch in a dashboard. About 15 minutes. Done means a list, a count, and the one step that would be easiest to make agent-friendly.",
+      "source": "Michael Grinich（WorkOS）：Auth for Agents，AI Engineer",
+      "source_en": "Michael Grinich (WorkOS): Auth for Agents, AI Engineer",
+      "source_url": "https://www.youtube.com/watch?v=nSkmXakJ6eo"
+    },
+    {
+      "text": "挑一个你已经在跑的多步 agent 流程，给第一步写一份交付契约：它必须交出的 3 项检查（例如“训练数据的截止日早于验证数据的开始日”），没交齐就不许进下一步。约 20 分钟。做完的标准：契约写成文件，第二步的提示词引用它。",
+      "text_en": "Take a multi-step agent flow you already run and write a hand-off contract for step one: three checks it must report (for example, the training data ends before the validation data starts), and nothing moves to step two until they are in. About 20 minutes. Done means the contract is a file and step two's prompt cites it.",
+      "source": "Sakana AI 与 UC Berkeley：MASS",
+      "source_en": "Sakana AI and UC Berkeley: MASS",
+      "source_url": "https://pub.sakana.ai/mass/"
+    }
+  ],
+  "hands_on": {
+    "title": "数一数你的 agent 在终端里能看到几个凭据（只看名字）",
+    "title_en": "Count the credentials your agent can see in its terminal (names only)",
+    "why": "Anthropic 托管 agent 的做法是凭据不进沙箱，由代理在请求上附 token，模型看不到就骗不出。本机的 Claude Code 通常不是这样：启动它的终端里的环境变量它都读得到。我在这台机器上只跑了第 1 步的命令，env -u 那一步只确认了命令能用，没让 agent 真的做事。",
+    "why_en": "Anthropic's managed agent keeps credentials out of the sandbox and has a proxy attach the token to requests, so the model cannot be tricked into revealing what it never sees. A local Claude Code usually works differently: it can read every environment variable of the terminal that launched it. I ran only the step 1 command on this machine; for step 3 I only confirmed that env -u works, and did not have an agent do a task.",
+    "time": "20 分钟",
+    "time_en": "20 minutes",
+    "steps": [
+      "在平时启动 Claude Code 的终端里运行：env | grep -i -E 'key|token|secret' | cut -d= -f1。cut 只留变量名，不显示值，输出里不会出现任何密钥。数一下有几行",
+      "对每个名字问一句：这个任务真的需要它吗。把不需要的圈出来",
+      "挑一个圈出来的，用 env -u 变量名 claude 启动（把“变量名”换成它），让 agent 做一个平时的小任务",
+      "做完的标准：任务照常完成，说明这个凭据不该留在 agent 的环境里，去掉它；任务因此失败，就记下哪一步要用它，这一步以后该走代理或受限的短期 token"
+    ],
+    "steps_en": [
+      "In the terminal you normally launch Claude Code from, run: env | grep -i -E 'key|token|secret' | cut -d= -f1. The cut keeps only variable names, so no secret value is printed. Count the lines",
+      "For each name ask: does this task really need it? Mark the ones it does not",
+      "Pick one marked name and launch with env -u NAME claude (replace NAME), then give the agent a small task you usually do",
+      "Done means: if the task finishes as usual, that credential should not live in the agent's environment, so remove it; if the task fails, write down which step needs it, and route that step through a proxy or a narrow short-lived token later"
+    ],
+    "source": "Anthropic：Claude Managed Agents 工作坊（第 1 段，共 4 段）",
+    "source_en": "Anthropic: Claude Managed Agents workshop (part 1 of 4)",
+    "source_url": "https://www.youtube.com/watch?v=Uv0nAf_7tyU"
+  },
+  "meta_read": "今天的消息分散在好几条线上，说的是同一件事。哈佛团队用 700 家公司三年的数据证明：引进编码 agent 后代码量涨了三成，评审时间却涨了近一半，软件产出没变。OpenAI 当天就给 Codex 加了评审功能，想用 agent 去审 agent 写的代码。QGIS 社区选了另一条路，直接禁止 AI 写的代码进仓库，理由是人力审不过来。Karpathy 的话更直白：瓶颈早就从生成挪到了审查。同一场大会上，Anthropic 讲的新架构、WorkOS 讲的 agent 自助注册、Sakana 的自评循环，解决的都是同一个上游问题：谁来把关。机器能查的部分（凭据在不在、合同交没交、自评和外部评委对不对得上）在往前走，只能靠人读的部分，原地不动。",
+  "meta_read_en": "Today's stories sit on different lines but point at one thing. A Harvard team used three years of data from 700 companies: after firms add coding agents, code volume rises 30%, review time rises almost 50%, and software output does not move. OpenAI shipped a review feature in Codex the same day, betting an agent can check an agent's code. QGIS's community picked a different answer and banned AI-written code outright, saying human review cannot keep up. Karpathy put it more bluntly: the bottleneck moved from generating to reviewing a while ago. At the same conference, Anthropic's new agent architecture, WorkOS's pitch for agents that sign themselves up, and Sakana's self-grading loop are all answers to the same upstream question, who checks the work. What a machine can verify, is the credential there, was the contract delivered, does self-grading agree with an outside judge, keeps moving. What only a person can read stays exactly where it was.",
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 12,
+      "items": [
+        {
+          "title": "OpenAI 给 Codex 加评审功能：PR、评论和私聊放进一个地方",
+          "title_en": "OpenAI adds a review feature to Codex: PRs, comments and private chat in one place",
+          "author": "OpenAI（Codex 团队）",
+          "author_en": "OpenAI (Codex team)",
+          "likes": "26364",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=IZXv6a78NDw",
+          "summary": "OpenAI 今天发布的两分半宣传片，我读完了全部字幕。视频开场就是那句话：“代码评审是新的瓶颈”。Codex 现在把 GitHub 上分给你的 PR、你自己提的 PR，还有优先级，收进一个“个人收件箱”。打开一个 PR，云端评审已经先过了一遍——只要连接器有权限，评审会自动跑，不用手动触发。Codex 在 GitHub 上留的评论也会同步显示在这里，不用切换工具。每个 PR 配一个私聊：可以让它总结改动和风险，引用团队的评审准则或设计文档，还能换着法子要总结（简要、风险分析，甚至要求用漫画风格讲）。想再过一遍可以本地单独起一轮评审，跟云端那轮分开算。写评论时可以对着 diff 问问题、按团队风格起草，然后直接在 Codex 里用这条评论和操作，不用跳出去。角色反过来当作者时，也能在同一个界面处理反馈。GitHub 版评审本月起正式可用，GitLab 版还在预览。",
+          "summary_en": "This two-and-a-half-minute promo from OpenAI today, read in full from its subtitles. It opens with the line \"code review is the new bottleneck.\" Codex now pulls PRs assigned to you, PRs you authored, and priority items into one personal inbox. Opening a PR shows a cloud review that already ran a first pass, automatically once the connector has the right permissions, with no manual trigger. Comments Codex leaves on GitHub show up here too, so you never switch tools. Each PR gets a private chat: ask it to summarize the change and the risks, pull in the team's review guidelines or design docs, and ask for different formats (a short summary, a risk analysis, even a comic-book explanation). Wanting another pass, you can start a separate local review on top of the cloud one. Drafting a comment, you can check it against the diff and match your team's style, then use that comment and the review action right inside Codex without leaving. Switching back to being the author, you handle feedback in the same interface. GitHub review went generally available this month; GitLab support is still in preview.",
+          "why": "问题是真的，哈佛团队同一天发的研究显示，引进编码 agent 后评审时间平均涨了近五成（见本期 Hacker News 栏）。但 Codex 能不能真的把评审时间降回去，这段视频没给任何数字，只是演示功能能跑。卖这个功能的恰好是 OpenAI 自己，效果怎样等有人拿真实团队的评审时长去测。",
+          "why_en": "The problem is real, a Harvard study published the same day (this issue's Hacker News column) found review time rising almost 50% after firms add coding agents. But whether Codex actually brings review time back down, this video gives no numbers, only a feature demo. The company selling the fix is OpenAI itself; whether it works waits on someone measuring a real team's review time."
+        },
+        {
+          "title": "Anthropic 托管 agent 工作坊：把大脑、手、会话日志拆开，凭据不进沙箱",
+          "title_en": "Anthropic's managed-agents workshop: brain, hands and session log split apart, credentials kept out of the sandbox",
+          "author": "Priyanka、Gabe Semach（Anthropic）· AI Engineer",
+          "author_en": "Priyanka and Gabe Semach (Anthropic) · AI Engineer",
+          "likes": "26",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=Uv0nAf_7tyU",
+          "summary": "AI Engineer 大会上 Anthropic 的托管 agent 工作坊共四段，这是第一段，我读完了本段全部文字稿（动手部分不在这里）。主讲是工程负责人 Priyanka 和 Gabe Semach。先讲去年 12 月发给早期客户的第一版：会话日志、agent 循环和沙箱全塞进同一个容器。好处是没有服务边界，坏处是容器成了“宠物”：丢包和容器挂掉从外面看一样，调试要连进容器，而客户数据就在里面；客户想接自己 VPC 里的 MCP，要么打通网络，要么把 harness 交给客户跑。新版拆成三块：只追加的会话日志；大脑（harness 加 Claude）；手（沙箱、MCP 工具，按需创建，用完即弃）。沙箱挂了，对 Claude 只是一次失败的工具调用，它自己决定重建还是跳过；harness 挂了，起一个新的，从日志最后一条事件接着跑。凭据不进沙箱：沙箱要访问外部服务时走代理，由代理在请求上附 token，模型始终看不到，也就没法被注入后骗出来。日志只追加不改，压缩策略可以随时换（全量摘要，或只取最近 N 条），原始事件一条不丢。他们说首 token 时间降了约 90%，因为不用等沙箱起来才开始推理。讲者的总结是：harness 里写的是对模型缺点的假设，假设会过期，所以要把接口设计成能撑过假设变化。例子：Sonnet 4.5 有“上下文焦虑”，快到上限就急着收尾，harness 里就加了上下文重置；Opus 4.5 没这毛病，重置就成了多余。随后讲了 v1 environments、agent、session 三个接口，用一个讲笑话的 agent 当例子；本段文字稿到控制台 quickstart 的开头为止。",
+          "summary_en": "Anthropic's managed-agents workshop at AI Engineer, four parts; this is part one and I read its full transcript (the hands-on build is not in this part). Speakers are engineering lead Priyanka and Gabe Semach. They start with the version shipped to early-access customers last December, where the session log, agent loop and sandbox all lived in one container. The upside was no service boundaries; the downside was a \"pet\": a dropped packet and a dead container looked the same from outside, debugging meant connecting into the container, which held customer data, and a customer wanting an MCP server inside their own VPC meant either peering networks or handing over the harness to run. The new version has three parts: an append-only session log; the brain (harness plus Claude); and the hands (sandboxes and MCP tools, created on demand and thrown away). A dead sandbox is just a failed tool call that Claude decides whether to rebuild or skip; a dead harness is replaced by a new one that resumes from the last event in the log. Credentials never enter the sandbox: when the sandbox calls an outside service it goes through a proxy that attaches the token, so the model never sees it and cannot be injected into revealing it. The log is append-only, so the compaction strategy can change at any time (summarize everything, or take the last N events) without losing a raw event. They say time to first token fell about 90%, because inference no longer waits for the sandbox to start. The speaker's summary: a harness encodes assumptions about the model's weaknesses, assumptions go stale, so design interfaces that outlast them. Example: Sonnet 4.5 had \"context anxiety\", rushing to wrap up near the limit, so harnesses added a context reset; Opus 4.5 did not, and the reset became dead weight. The talk then covers the v1 environments, agent and session interfaces using a joke-telling agent; this part's transcript ends at the start of the console quickstart.",
+          "why": "有两个做法可以直接搬走：凭据放在代理而不是沙箱里，会话做成只追加的日志，这样 harness 随时可换。要注意讲者的公司卖这套托管服务，“宠物变牛”是他们自己的经历，不是行业数据；约 90% 的首 token 提速是 Anthropic 自报，没说是哪个分位数。能不能用：讲者说控制台有 quickstart 并给了试用额度，是否对所有账号开放我没核实。",
+          "why_en": "Two practices travel well: keep credentials in a proxy instead of the sandbox, and make the session an append-only log so the harness can be swapped. The speakers' company sells this managed service, \"pet to cattle\" is their own experience and not industry data, and the roughly 90% faster first token is Anthropic's own figure with no percentile named. Availability: the speaker says the console has a quickstart and the room got trial credits; whether every account has access I did not verify."
+        },
+        {
+          "title": "WorkOS 创始人讲 auth.md：让 agent 自己注册服务，不用人点注册页",
+          "title_en": "WorkOS's founder on auth.md: let agents sign up for services without a person clicking through",
+          "author": "Michael Grinich（WorkOS）· AI Engineer",
+          "author_en": "Michael Grinich (WorkOS) · AI Engineer",
+          "likes": "29",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=nSkmXakJ6eo",
+          "summary": "WorkOS 创始人在 AI Engineer 大会上提出 auth.md，我读完了全部文字稿。他的论点：agent 正在替人选供应商（发邮件、部署、存数据），但今天的注册流程默认有人在场：验证码、点邮件链接、选套餐、复制 API key。MCP 解决的是接入已有账号，授权时仍要人点同意，解决不了“agent 第一次注册”。auth.md 是服务方放出的一份 Markdown，写明：这服务干什么、接受哪些身份证明、支持哪些登录方式、给多少权限和免费额度、人之后怎么认领账号。agent 读到它，铸一个身份断言（他说用的标准叫 ID-JAG，一种签名的身份访问授权），服务方验证后发回 access token，之后照常调 API 和 MCP。演示里 agent 没有让人点任何注册页，就在 Cloudflare 上把一个应用部署上线；他说服务方可以给一个限时免费额度，举的例子是“72 小时之类”，不是 Cloudflare 的确切政策。付费放在后面：先让用，再按服务方自己的定价收。他还引了 Salesforce 的 Benioff 那句“我们的 API 就是 UI”。他说规范是开放的，WorkOS 自己托管一个版本，别人可以自己实现。",
+          "summary_en": "WorkOS's founder proposed auth.md at AI Engineer; I read the full transcript. His argument: agents are starting to choose vendors for people (email, deployment, storage), but today's signup assumes a person is present: captchas, clicking an email link, picking a plan, copying an API key. MCP covers connecting to an existing account, still needs a person to approve consent, and does not solve an agent's first signup. auth.md is a Markdown file a service publishes saying what the service does, which identity proofs it accepts, which sign-in methods it supports, what scopes and free allowance it gives, and how a person later claims the account. An agent reads it, mints an identity assertion (he says the standard is ID-JAG, a signed identity access grant), the service verifies it and returns an access token, and normal API and MCP calls follow. In the demo an agent deployed an app live on Cloudflare without anyone clicking a signup page; he says a service can grant a time-limited free allowance, with \"72 hours or something like that\" as his example, not Cloudflare's stated policy. Payment comes later, on the service's own pricing. He also quoted Salesforce's Benioff, \"our API is the UI\". He says the spec is open, WorkOS hosts one version, and anyone can implement it themselves.",
+          "why": "对做产品的人，注册页的验证码和邮件确认，正是现在挡住 agent 下单的东西，这是个具体的漏斗断点。要注意讲者的公司卖身份认证，“立刻带来增长”是他的预测，视频里没有数据；有没有别家采用，视频里只看到和 Cloudflare 的一次演示。",
+          "why_en": "For anyone running a product, the captcha and email confirmation are exactly what stops an agent from becoming a customer, a concrete break in the funnel. The speaker's company sells identity infrastructure, \"an immediate growth boom\" is his prediction with no data shown, and the only adoption evidence in the video is one demo with Cloudflare."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "哈佛团队用 700 家公司数据证明：编码 agent 让代码变多，软件没变多",
+          "title_en": "Harvard researchers use data from 700 firms: coding agents make more code, not more software",
+          "author": "Fiona Chen、James Stratton（哈佛大学）· Ars Technica",
+          "author_en": "Fiona Chen and James Stratton (Harvard University) · Ars Technica",
+          "likes": "307",
+          "likes_label": "HN 分",
+          "url": "https://arstechnica.com/ai/2026/10/ai-coding-agents-generate-more-code-but-not-more-software/",
+          "summary": "Ars Technica 记者 Kyle Orland 报道了哈佛大学 Fiona Chen 和 James Stratton 的一份研究，我读了全文。数据来自工程分析工具 Jellyfish 的客户：700 多家软件公司、超过 70 万员工，2021 年到 2026 年 3 月的 3 亿条工作事件（提交、PR 等）。他们用“双重差分”比较各公司引入 AI 编码助手或 agent 前后的变化。结果：代码量涨 30%，提交数涨 20%，PR 数涨 23%，但 Jira 上记录的 issue 和 epic 完成率没有显著变化，任务本身的大小和复杂度也没变。原因在评审环节：PR 从提交到合并的平均耗时涨了 49%，要求改动的 PR 比例几乎翻倍，每个 PR 的评论数涨 35%。公司也在加人应对——做评审的员工比例涨了 14%，但他们没查到可归因于 AI 的整体用工变化。到 2026 年 3 月，80% 的公司已经上线某种 AI 代码评审工具，但 AI 只贡献了全部评论的 23.3%、全部 PR 评审的 10.8%，大头还是人工。数据截止到今年 3 月，此后 agent 本身和评审工具都有更新，作者也承认这可能随经验积累而改善。",
+          "summary_en": "Ars Technica's Kyle Orland reported on a study by Harvard's Fiona Chen and James Stratton; I read the full article. The data comes from customers of Jellyfish, an engineering-analytics vendor: over 700 software companies, 700,000-plus employees, 300 million work events (commits, PRs, etc.) from 2021 through March 2026. They ran a difference-in-differences comparison before and after each firm adopted AI coding assistants or agents. Result: lines of code up 30%, commits up 20%, pull requests up 23%, but the resolution rate of Jira-tracked issues and epics did not change significantly, and the size or complexity of those issues did not shift either. The reason sits in review: average time from PR submission to merge rose 49%, the share of PRs needing changes nearly doubled, and comments per PR rose 35%. Firms responded by adding reviewers (the share of staff doing code review rose 14%), but found no attributable change in overall headcount from AI. By March 2026, 80% of firms had some AI code review tool live, yet AI accounted for only 23.3% of all review comments and 10.8% of all PR reviews, with humans still doing most of the work. The data cuts off in March 2026, and both the agents and the review tools have since been updated; the authors allow that experience may improve the picture over time.",
+          "why": "这是目前样本最大的一份测算，把前几天 Uber 工厂帖子和 10 月 10 日那条“生成便宜、评审贵”的说法量化了下来。需要留意：数据全部来自 Jellyfish 自己的客户，这些公司本来就买了工程分析工具，不是随机抽样，可能本身就更在意流程、更容易暴露瓶颈。研究是否经过同行评审，文中没说。",
+          "why_en": "This is the largest-sample measurement I have seen on this question, and it puts a number on what the Uber-factory post and the Oct 10 \"generation is cheap, review is expensive\" claim both said anecdotally. One caveat: all the data comes from Jellyfish's own customers, companies that already bought an engineering-analytics tool, not a random sample, so they may already be more process-conscious and more likely to surface a bottleneck. The article does not say whether the study has been peer-reviewed."
+        },
+        {
+          "title": "开源地理信息系统 QGIS 禁止 AI 写的代码进仓库",
+          "title_en": "Open-source GIS project QGIS bans AI-written code from its repository",
+          "author": "Nyall Dawson（QGIS 维护者）· GitHub",
+          "author_en": "Nyall Dawson (QGIS maintainer) · GitHub",
+          "likes": "363",
+          "likes_label": "HN 分",
+          "url": "https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387",
+          "summary": "QGIS 是用户量很大的开源地理信息系统。维护者 Nyall Dawson 在 9 月 24 日提了一份正式提案（QEP428），把原来“人要在场把关”的 AI 政策，改成严格的“不允许”。另一位维护者 haubourg 在评论里说明理由：外部贡献者用 AI 生成的代码量，远超维护者能认真审完的速度，结果只会是一堆没审完的 PR 积压，或者审得不认真留下质量问题；QGIS 能让机构信任，是因为背后有一个可以培训、可以雇佣、可以长期维护的人际网络，这份提案想保住这一点。提案在社区投票里拿到 88 个赞、25 个反对，10 月 7 日由四名核心维护者（rouault-on-strike、alexbruy、signedav、elpaso）正式批准。讨论里也有分歧，有贡献者担心措辞（“写代码”这个动词没写进条款，怎么界定合规）不够清楚，但没人反对整体方向。我读了 PR 下的主要讨论串和提案原文。",
+          "summary_en": "QGIS is a widely used open-source geographic information system. Maintainer Nyall Dawson opened a formal proposal (QEP428) on Sept 24, changing the project's prior \"a human must be in the loop\" AI policy to a strict \"not allowed.\" Fellow maintainer haubourg explained the reasoning in a comment: the volume of AI-generated code from external contributors far outpaces what maintainers can seriously review, which leaves either a backlog of unreviewed PRs or under-reviewed code with quality problems; QGIS earns institutional trust partly because of a human network that organizations can train, hire from and rely on long-term, and the proposal is meant to protect that. The community vote ran 88 thumbs-up to 25 thumbs-down, and four core maintainers (rouault-on-strike, alexbruy, signedav, elpaso) formally approved it on Oct 7. There was some internal disagreement too, with one contributor flagging that the wording (the proposal does not explicitly use the verb \"write\" in its compliance language) was unclear, though no one opposed the overall direction. I read the PR's main discussion thread and the original proposal text.",
+          "why": "这是今天唯一一条反着走的故事。别的条目都在讲怎么让 agent 干更多活、评审怎么跟上，QGIS 的办法是直接把输入关掉。它和哈佛那份研究说的是同一件事——评审撑不住生成的速度——给出的答案正好相反：一边想自动化评审，一边选择不生成。两条路谁更划算，现在没有数据能回答，只能说这是两种真实存在的选择。",
+          "why_en": "This is today's one story going the other direction. Every other item here is about getting an agent to do more, or getting review to keep up; QGIS's answer is to shut off the input. It is responding to the exact same problem as the Harvard study, review cannot absorb the pace of generation, with the opposite fix: one side tries to automate review, the other chooses not to generate at all. No data exists yet to say which is the better trade; both are real, live choices."
+        },
+        {
+          "title": "Karpathy：人们对 LLM 能力的认知差距在拉大，像一个漏斗，最顶端约 5000 人",
+          "title_en": "Karpathy: the gap in how people understand LLM capability is widening into a funnel, about 5,000 people at the top",
+          "author": "Andrej Karpathy · Hacker News",
+          "author_en": "Andrej Karpathy · Hacker News",
+          "likes": "679",
+          "likes_label": "HN 分",
+          "url": "https://twitter.com/karpathy/status/2109361546505966046",
+          "summary": "Karpathy 重发了 4 月的一条推文，说人们对 LLM 能力的认知差距在拉大，更像一个漏斗。数字是他自称的粗估：约 60 亿人（75%）几乎没接触过；10 到 20 亿人（20%）偶尔用免费版聊天产品，当成更好的搜索或写作助手；约 2000 万人（0.2%）在数学和代码领域用前沿模型，亲眼看到以前几周几月的大项目现在一个提示词就能做完；约 5000 人（0.00006%）能在内部用到前沿系统，外界看到的预告是上千个 agent 协作数周做软件大工程、挖零日漏洞、做新科学。同时人的审查在落后：OpenAI 与 Hugging Face 那次事件的“考古”还有人在做，数学家还要读一阵那 722 篇前沿数学手稿。他列的原因有三个：影响随问题大小和时间跨度增长；能力参差，数字化、可验证、有收入的领域最强，因为能力来自在可验证奖励上的强化学习；访问权限（免费、付费、内部）。推文全文读自第三方镜像（api.fxtwitter.com），抓取时约 2.9 万赞、300 万浏览。HN 评论区的分歧：有人说如果 OpenAI 和 Anthropic 对外的软件就是内部水平，演示应该更好；有人说真正的墙是人类验证产出的能力；也有人说文字生成本来就不是多数工作的瓶颈。",
+          "summary_en": "Karpathy reposted an April tweet saying the gap in how people understand LLM capability is widening into a funnel. The numbers are his own napkin estimates: about 6B people (75%) have barely touched LLMs; 1 to 2B (20%) are casual users of free chat products who treat them as a better search or writing aid; about 20M (0.2%) use frontier models professionally in math and code and see first-hand that projects that took weeks or months now finish from one prompt; about 5,000 (0.00006%) have internal access to frontier systems, where the outside world has seen a preview of thousands of agents collaborating for weeks on software mega-projects, finding zero-days and new science. Meanwhile human review is falling behind: people are still doing the \"archaeology\" of the OpenAI and Hugging Face incident, and mathematicians will be reading the 722 frontier-math manuscripts for a while. He gives three drivers: impact scales with problem size and horizon; capability is jagged and peaks where work is digital, verifiable and paid, because it comes from reinforcement learning on verifiable rewards; and access (free, paid, internal). I read the full tweet through a third-party mirror (api.fxtwitter.com); at fetch time it had about 29k likes and 3M views. The HN thread splits: some say that if OpenAI's and Anthropic's public software is the internal level, the demos should be better; some say the real wall is humans' capacity to verify output; others say text generation was never the bottleneck for most work.",
+          "why": "值得读的是后半句：他承认瓶颈从生成挪到了人的审查。所有数字都是他的粗估，没有出处，“5000 人”那一档说的是外人看不到的东西，无从核实；读者能自己对照的只有前三档的大致方向。",
+          "why_en": "The part worth keeping is the admission that the bottleneck has moved from generating to human review. Every figure is his rough estimate with no source, and the \"5,000\" tier describes something outsiders cannot see, so it cannot be checked; a reader can compare only the direction of the first three tiers with their own surroundings."
+        },
+        {
+          "title": "“你还是得思考”：DHH 让 AI 重写 Campfire，同样的代码改一个设置，送达率从 14% 到 90%",
+          "title_en": "\"You still have to think\": AI rewrites of Campfire, where one setting moved delivery from 14% to 90%",
+          "author": "It's all about the bit（博客）· Hacker News",
+          "author_en": "It's all about the bit (blog) · Hacker News",
+          "likes": "433",
+          "likes_label": "HN 分",
+          "url": "https://itsallaboutthebit.com/i-am-sorry-but-you-still-have-to-think/",
+          "summary": "作者看了 DHH 让 AI 把 Campfire Once 从 Rails 重写成 Rust，之后又加了 Elixir 和 Go 版本的结果，说这是“不读代码、只靠 AI”的一个现成样本。第一个问题：提示词不够具体时，很多决定是抛硬币。Rust 版没有保持 100% 向后兼容，去掉了 CSRF token，还用进程内队列取代了 Redis；Elixir 版更接近 Rails 原版。所以这两版的对比先天混了变量。基准测试也有坑：别人测的是闭环压测（每个客户端等上一个响应才发下一个），Rust 处理的请求多约 4 倍，通知送达率只有约 1%（6 到 7 千条里）。作者按固定速率（每秒 100 次 POST）重测：Rust 的客户端收到约 14% 的事件，Elixir 约 60%，但 Elixir 有约 23% 的 POST 超时，最差送达延迟接近 180 秒，内存涨到 1.8GB。Rust 丢事件的原因是广播通道容量设成了 256；改成 16384，送达率升到约 90%，但最差延迟从 11 秒涨到 130 秒以上，作者认为这比“落后就断开、让客户端重连拿最新消息”更差。结论：任何语言都要自己想清楚失败模式和取舍，单一指标会误导。以上测试都是作者本人重跑，代码和数据他在文中给出，没有第三方复现。",
+          "summary_en": "The author looked at DHH's AI-written rewrites of Campfire Once, from Rails to Rust and later Elixir and Go, as a ready-made sample of using AI without reading the code. First point: when a prompt is not specific, many decisions are coin flips. The Rust version is not 100% backward compatible, dropping the CSRF token and replacing Redis with in-process queues; the Elixir version is closer to the Rails original, so the comparison was confounded from the start. The benchmarks also mislead: the original test was closed-loop (each client waits for a response before the next request), Rust handled about 4 times more requests, and only about 1% of notifications arrived (out of 6 to 7 thousand). The author re-ran at a constant 100 POSTs per second: Rust clients received about 14% of events and Elixir about 60%, but Elixir timed out on about 23% of POSTs, had worst-case delivery latency near 180 seconds and reached 1.8GB of memory. Rust lost events because its broadcast channel capacity was 256; raising it to 16384 lifted delivery to about 90% but pushed worst latency from 11 seconds to over 130, which the author thinks is worse than disconnecting laggards and letting clients reconnect and fetch the latest messages. Takeaway: in any language you must think through failure modes and trade-offs, and a single metric misleads. The re-runs are the author's own, with code and data shown in the post and no third-party reproduction.",
+          "why": "这篇给了一个可以直接复用的检查：交给 agent 的活，提示词没回答的问题会被它悄悄回答，所以先列出来。更具体的教训是一个设置（通道容量）同时决定了送达率和延迟，调一边就坏另一边，“修好”之后要看另一个指标。",
+          "why_en": "It gives a check you can reuse: whatever the prompt leaves unanswered, the agent answers silently, so list those questions first. The more specific lesson is that one setting (channel capacity) fixed delivery and broke latency at once, so after any \"fix\" look at the other metric."
+        },
+        {
+          "title": "Sakana 与 Berkeley 的 MASS：让同一个模型当执行者、流程优化者和评审，循环两轮",
+          "title_en": "Sakana and Berkeley's MASS: one model as worker, workflow optimizer and judge, looped for two rounds",
+          "author": "Hyunin Lee 等（UC Berkeley、Sakana AI）· Hacker News",
+          "author_en": "Hyunin Lee et al. (UC Berkeley, Sakana AI) · Hacker News",
+          "likes": "135",
+          "likes_label": "HN 分",
+          "url": "https://pub.sakana.ai/mass/",
+          "summary": "MASS 让同一个模型同时充当执行者、流程优化者和评审，形成自己改进自己的循环。内循环冻结权重，只改多 agent 团队的流程，包括角色、指令、交付契约和调用顺序：模型自行比较两份工作区，选出当前的冠军流程。外循环把冠军流程重复跑 18 遍，用模型自己的两两比较给结果排名，每个任务最多留 16 条轨迹，15 条训练、1 条验证；随后去掉提示词里的流程文字，对执行者和子 agent 的对话做 LoRA 微调，进入下一轮。起点是 Qwen3.6-27B，在 qwen-code 环境里跑两轮。实验规模很小：12 个合成研究任务，覆盖金融、机器人、药学，由 GPT-5.5 事先生成，其中 9 个训练、3 个留出。留出任务上对基础模型的胜率，一轮后为 53.9%，两轮后升至 69.9%。公开基准上，每输出 token 的得分是基础模型的 1.2 到 1.6 倍，涉及 MLR-Bench、DSBench、ScienceAgentBench、AstaBench；但 Terminal-Bench 2.0 只有 0.96 倍，SWE-bench Verified 为 0.94 倍，没有提升，作者猜测加入软件工程任务即可解决。MLR-Bench 的 12 个任务子集、每个跑 5 次，交出论文的次数从 60 次里的 31 次升到 50 次；ScienceAgentBench 成功率从约 29% 升到 32%。自评与强外部评委的一致率从 73% 升到 93%。不给流程时，110 次运行里委派子 agent 的次数从 1 次升到 87 次。以上均为作者自述，没有第三方复现。",
+          "summary_en": "MASS uses one model as the worker, the workflow optimizer and the judge in a self-improvement loop. The inner loop fixes the weights and changes only the team's workflow (roles, instructions, hand-off contracts, call order): the model compares two workspaces itself and picks the current champion workflow. The outer loop runs the champion 18 times, ranks the outputs with the model's own pairwise comparisons, keeps up to 16 trajectories per task (15 train, 1 validation), strips the workflow text from the prompt, LoRA fine-tunes on the worker and subagent conversations, and starts the next round. It starts from Qwen3.6-27B in the qwen-code environment and runs two rounds. The experiment is small: 12 synthetic research tasks (finance, robotics, pharmacy, generated beforehand by GPT-5.5), 9 for training and 3 held out. On the held-out tasks the win rate against the base model goes from 53.9% after one round to 69.9% after two. On public benchmarks, score per output token is 1.2 to 1.6 times the base (MLR-Bench, DSBench, ScienceAgentBench, AstaBench), but 0.96 times on Terminal-Bench 2.0 and 0.94 times on SWE-bench Verified, no gain, which the authors guess would be fixed by adding software-engineering tasks. On MLR-Bench (a 12-task subset, 5 trials each) papers delivered rose from 31 to 50 of 60 runs, and ScienceAgentBench success rose from about 29% to 32%. Agreement between its self-judging and strong external judges rose from 73% to 93%. With no workflow supplied, subagent delegation went from 1 of 110 runs to 87. All of it is the authors' own report, with no third-party reproduction.",
+          "why": "真正值得拿走的不是自我改进这个说法，而是交付契约。作者的分析认为，有效流程里契约比角色名更贴近具体任务，比如金融回测里训练截止早于验证开始的检查。73% 到 93% 是自评循环里最干净的一个数，因为它是对着外部评委量的。样本只有 3 个留出任务，编程基准上也没有提升，别往写代码上外推。",
+          "why_en": "What to take is not \"self-improvement\" but the hand-off contract: the authors' analysis says the contracts in effective workflows (a leakage check such as \"training ends before validation begins\" in a finance backtest) say more about the specific task than role names do. The 73% to 93% is the cleanest number in a self-judging loop because it is measured against external judges. There are only 3 held-out tasks and the coding benchmarks did not improve, so do not extend this to writing code."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "morluto/rea",
+      "url": "https://github.com/morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "language": "TypeScript",
+      "stars": 158182,
+      "stars_today": 45327
+    },
+    {
+      "rank": 2,
+      "name": "bilawalsidhu/gods-eye-view",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+      "language": "JavaScript",
+      "stars": 53706,
+      "stars_today": 1895
+    },
+    {
+      "rank": 3,
+      "name": "mksglu/context-mode",
+      "url": "https://github.com/mksglu/context-mode",
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "language": "TypeScript",
+      "stars": 27301,
+      "stars_today": 246
+    },
+    {
+      "rank": 4,
+      "name": "storytold/artcraft",
+      "url": "https://github.com/storytold/artcraft",
+      "description": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
+      "language": "Rust",
+      "stars": 22086,
+      "stars_today": 4095
+    },
+    {
+      "rank": 5,
+      "name": "open-webui/open-webui",
+      "url": "https://github.com/open-webui/open-webui",
+      "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
+      "language": "Python",
+      "stars": 155020,
+      "stars_today": 157
+    },
+    {
+      "rank": 6,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 52643,
+      "stars_today": 2081
+    },
+    {
+      "rank": 7,
+      "name": "lyogavin/airllm",
+      "url": "https://github.com/lyogavin/airllm",
+      "description": "AirLLM 2.8T LLM inference with single 4GB GPU",
+      "language": "Jupyter Notebook",
+      "stars": 37547,
+      "stars_today": 879
+    },
+    {
+      "rank": 8,
+      "name": "microsoft/BitNet",
+      "url": "https://github.com/microsoft/BitNet",
+      "description": "Official inference framework for 1-bit LLMs",
+      "language": "C++",
+      "stars": 40917,
+      "stars_today": 97
+    },
+    {
+      "rank": 9,
+      "name": "Alishahryar1/free-claude-code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "description": "Use Claude Code, Codex, VSCode, Pi, and OpenCode (and 6 other harnesses) for free (1.3B+ free tokens) from your terminal, app, IDE, or phone, and now from the browser with native browser sessions (multi-harness + multi-model) like OpenClaw (voice supported + ToS friendly)",
+      "language": "Python",
+      "stars": 59136,
+      "stars_today": 626
+    }
+  ],
+  "ota": {
+    "learned": "今晚补上了一个拖了三周、被记录过四次的空档，记录日期分别是 9 月 29 日、10 月 5 日、10 月 10 日、10 月 11 日。SKILL.md 一直说 bin/publisher-transcript.py 已经写好，可以在 YouTube 字幕 429 时去读播主自己页面上的文字稿，但这个脚本在仓库里根本不存在。按 feedback-script-over-accreted-prose 的规则，同一处工作区绕路写了三次以上，就该写成脚本，今晚把它写出来了：纯 GET 加去标签，用字数和时间戳标记数量判断页面是不是一份文字稿，不是就退出码 1。用两个真实页面测过：Latent Space 的 DevDay 那集有文字稿，拿到 1 万字、386 个时间戳，返回 0；同一家媒体一篇普通文章没有文字稿，返回 1。今晚的 YouTube 抓取本身没遇到 429，用 yt-dlp 直接成功，所以这次是先把工具修好，还没等到真的要用它的场合。另外，今天凌晨已经有一份完整的 overnight 草稿，分支 overnight/daily-digest，commit 80b9354，YouTube 2 条加 Hacker News 3 条，已过 strict 门槛，仅预览部署，没有推送。按 SKILL.md 的要求做了必读的时效复查，而不是直接采纳：新发现了当天的哈佛/Jellyfish 编码 agent 评审耗时研究、OpenAI 同日上线的 Codex 评审功能、QGIS 社区禁止 AI 代码三条草稿没有的新闻，并把其中两条的 HN 分重新核对到发稿时的实时值，Karpathy 377→679，DHH 352→433，Sakana 93→135。",
+    "learned_en": "Closed a gap logged four times over three weeks (Sep 29, Oct 5, Oct 10, Oct 11): SKILL.md has claimed bin/publisher-transcript.py already existed as a fallback for reading a publisher's own transcript page when a YouTube subtitle fetch 429s, but the script was never actually in the repo. Per the feedback-script-over-accreted-prose rule (a workaround confirmed three-plus times should become a script), wrote it tonight: a plain GET plus tag-strip, judged as a transcript page or not by word count and timestamp-marker count, exiting 1 if neither threshold is met. Tested against two real pages: Latent Space's DevDay episode (has a transcript) returned 10.6k words and 386 timestamps, exit 0; an ordinary Latent Space article (no transcript) returned exit 1. Tonight's own YouTube sweep never hit a 429 (yt-dlp subtitle fetches succeeded directly), so this fixes the tool ahead of the next time it is actually needed. Separately: a complete overnight draft already existed from early this morning (branch overnight/daily-digest, commit 80b9354, YouTube 2 + Hacker News 3, gate-passed, preview-deployed only, not pushed). Per SKILL.md's mandatory freshness recheck, rather than adopting it as-is, found three stories from later in the day the draft had no way to know about (the Harvard/Jellyfish review-time study, OpenAI's same-day Codex review feature, QGIS's AI-code ban) and refreshed two items' HN point counts to their live values at publish time (Karpathy 377 to 679, DHH 352 to 433, Sakana 93 to 135).",
+    "new_capabilities": "已实施、已用两个真实页面验证：bin/publisher-transcript.py <episode-page-url> <output.txt>，YouTube 字幕 429 时的文字稿兜底。正例，即有时间戳文字稿，和反例，即普通文章，都测过，行为符合 SKILL.md 原来的设想。尚未在真实的 429 救场场景里跑过，下次遇到再确认一次。",
+    "new_capabilities_en": "Implemented and verified against two real pages: bin/publisher-transcript.py <episode-page-url> <output.txt>, the transcript fallback for a YouTube subtitle 429. Tested both the positive case (a page with a timestamped transcript) and the negative case (an ordinary article), and both match what SKILL.md originally specified. Not yet run in a live 429-rescue situation; confirm again next time one occurs."
+  }
+}
