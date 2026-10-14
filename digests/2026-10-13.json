@@ -1,0 +1,255 @@
+{
+  "date": "2026-10-13",
+  "partial": false,
+  "banner": "一场比稿，四万三千美元的 SaaS 被干掉",
+  "banner_en": "A Contest Just Killed a $43K SaaS Subscription",
+  "image": {
+    "src": "digests/img/2026-10-13.jpg",
+    "caption": "本期要图：AI Engineer / Latent Space 频道「Kill My SaaS」比赛视频的封面截图，画面与文中具体某个参赛作品无关，只是视频原图，未经改动。（图：Latent Space YouTube 频道）",
+    "caption_en": "Today's front-page image: the cover of the \"Kill My SaaS\" contest video from the AI Engineer / Latent Space YouTube channel. It has nothing to do with any specific entry named in the story; it is the unedited video cover. (Image: Latent Space's YouTube channel)"
+  },
+  "actions": [
+    {
+      "text": "挑一个你正在推进、还没正式立项的 AI 功能或流程，用「周一到周五」的办法列清单：谁是这份数据的所有者，谁是生产环境的负责人，发起人能不能不提「AI」两个字把这件事说清楚，风险签字的人是谁、上次签字的人出了什么事。约 20 分钟。做完的标准：五个问题里答上了几个，答不上的那几个写成「下一步要找的人」。",
+      "text_en": "Pick an AI feature or workflow you're pushing but haven't formally scoped yet. Run the Monday-to-Friday checklist: who owns the data, who administers the production environment, can the sponsor describe the workflow without saying \"AI,\" who signs off on risk and what happened the last time they signed. About 20 minutes. Done means knowing how many of the five you can answer, and turning the rest into \"people to find next.\"",
+      "source": "Paden Gayle（Applied AI Engineers）· AI Engineer 大会",
+      "source_en": "Paden Gayle (Applied AI Engineers) · AI Engineer conference",
+      "source_url": "https://www.youtube.com/watch?v=3ZlQk4-knWM"
+    },
+    {
+      "text": "挑一个你已经在用或打算用的 agent（哪怕只是自动发邮件、自动写周报），问自己三句话：它创造的价值怎么量化，出了错谁负责，要给它更多自主权需要看到什么证据才敢放手。约 15 分钟。做完的标准：三句话各写一个答案，答不上来的那句就是现在最该补的缺口。",
+      "text_en": "Pick an agent you already use or plan to (even something as small as auto-drafting emails or a weekly report). Ask three questions: how is its value measured, who is accountable when it's wrong, and what evidence would convince you to grant it more autonomy. About 15 minutes. Done means one answer per question; whichever you can't answer is the gap to close first.",
+      "source": "Michele Grant（Leading at Scale）· AI Engineer 大会",
+      "source_en": "Michele Grant (Leading at Scale) · AI Engineer conference",
+      "source_url": "https://www.youtube.com/watch?v=-a2oTS9J67U"
+    },
+    {
+      "text": "如果你有 Google AI Pro 或 Ultra 订阅，今晚挑一件你最近让别的工具做过的实际工作（写一段代码、读一份长文档、整理一张表），拿 Gemini 4 Argon 重做一次，对着结果打一个分。约 20 分钟。做完的标准：写下这次结果比原来的工具好、差还是差不多，具体差在哪。",
+      "text_en": "If you have a Google AI Pro or Ultra subscription, tonight pick one real piece of work you recently had another tool do (write some code, read a long document, build a spreadsheet) and redo it with Gemini 4 Argon, then score the result. About 20 minutes. Done means writing down whether it was better, worse, or about the same as your usual tool, and exactly where it differed.",
+      "source": "Google DeepMind：Gemini 4 Argon 模型页",
+      "source_en": "Google DeepMind: Gemini 4 Argon model page",
+      "source_url": "https://deepmind.google/models/gemini/"
+    }
+  ],
+  "hands_on": {
+    "title": "用 npx skills 给 Claude Code 装一个新技能包",
+    "title_en": "Install a new skill into Claude Code with npx skills",
+    "why": "今天 GitHub 热榜第 6，一行命令就能从任何仓库给 Claude Code（以及 Codex、Cursor 等 75 种 agent）搜、装、列、删技能包，支持符号链接也支持直接复制，公有仓库私有仓库走同一条命令。跟现在手动往 ~/.claude/skills 塞文件夹是同一件事，这个工具把它变成了包管理器。",
+    "why_en": "Trending #6 on GitHub today. One command searches, installs, lists, or removes skill packages from any repo, for Claude Code and 75 other agents (including Codex and Cursor), via symlink or copy, same command for public and private repos. It's the same thing as manually dropping folders into ~/.claude/skills, just turned into a package manager.",
+    "time": "10 分钟",
+    "time_en": "10 minutes",
+    "steps": [
+      "先列出项目或全局已经装了哪些技能，不用猜：npx skills list",
+      "搜一个平时缺的，比如 excel 或 pdf：npx skills find excel",
+      "挑一个仓库先看看它有什么，不装：npx skills add vercel-labs/agent-skills --list",
+      "确认想要的那个之后再装：npx skills add vercel-labs/agent-skills --skill frontend-design -a claude-code"
+    ],
+    "steps_en": [
+      "First list what's already installed, don't guess: npx skills list",
+      "Search for something you're missing, like excel or pdf: npx skills find excel",
+      "Preview a repo's skills without installing: npx skills add vercel-labs/agent-skills --list",
+      "Once you've picked one, install it: npx skills add vercel-labs/agent-skills --skill frontend-design -a claude-code"
+    ],
+    "source": "vercel-labs/skills（MIT 协议，今日 GitHub 热榜第 6，新增 969 星）",
+    "source_en": "vercel-labs/skills (MIT license, #6 on today's GitHub trending, 969 stars gained today)",
+    "source_url": "https://github.com/vercel-labs/skills"
+  },
+  "meta_read": "今晚几条消息放在一起说的是同一道题的不同答案。AI Engineer 用 72 个团队证明一款四万三千美元的会议软件能被 agent 克隆出来，但冠军的心得是：从今天起 bug 你自己扛。同一场大会上两位讲者，一个教怎么在立项前找出数据所有者和风控签字人，另一个教部署后怎么一步步给 agent 放权，说的都是能力已经不是问题，谁来负责才是。Anthropic 自己的工程博客给了个更硬核的例子：Claude 写代码写得比工程师团队自己还快，快到把公司的 git 基础设施压垮，逼着七个人花五个月造了一套新的版本控制系统。不是能力不够，是人类尺度的流程先垫底。Gemini 4 Argon 的发布页摆出一张对比表，自己承认赢了 11 项、输了 7 项，这种肯认输的地方比全赢的宣传值得信一些。走到另一个极端的是 Character.ai：曾经做到几千万用户规模，这次破产出价买它资产的恰恰是常年告它侵权的迪士尼。规模从来没当成护城河。还有一篇论文提醒走技术路线的人：拿到模型全部权重，也不一定查得出藏起来的能力，「我看过代码」本身不是证据。",
+  "meta_read_en": "Tonight's stories, side by side, are different answers to the same question. AI Engineer used 72 teams to prove a $43,000 conference-management tool can be cloned by agents, but the winner's own takeaway was: from today, you own every bug. Two speakers at the same conference, one on finding the data owner and the risk signer before a project starts, the other on handing an agent more authority step by step after it ships, are both really saying capability stopped being the question; accountability is. Anthropic's own engineering blog gives a harder example: Claude writes code faster than its engineers do, fast enough to break the company's own git infrastructure, forcing a 7-person team to spend five months building a new version-control system. It wasn't a capability gap; the process built for human scale gave out first. Gemini 4 Argon's launch page runs a comparison table and admits winning 11 of 18 benchmarks and losing 7, and that kind of acknowledged loss is more credible than a clean-sweep pitch. Character.ai sits at the other extreme: a company that once reached tens of millions of users, whose bankrupt assets are now being bid on by Disney, the same company that spent years sending it cease-and-desist letters over IP infringement. Scale was never the moat. And one paper warns anyone leaning on the technical fix: having a model's full weights still might not reveal a capability hidden inside it; \"I looked at the code\" is not, by itself, evidence.",
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 54,
+      "items": [
+        {
+          "title": "AI Engineer 用一场比赛杀死了自己每年 4.3 万美元的会议软件",
+          "title_en": "AI Engineer killed its own $43K/year event software with a contest",
+          "author": "Shawn Wang（swyx，AI Engineer / Latent Space）",
+          "author_en": "Shawn Wang (swyx, AI Engineer / Latent Space)",
+          "likes": "2344",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=zlD-CkLVKtU",
+          "summary": "这是 Latent Space / AI Engineer 频道今天发布的视频，我读完了全部字幕。swyx 说，他们原本要给 AI Engineer 大会续签一款会议管理软件，对方报价一年 4.3 万美元办 4 场活动，团队往年用的功能只占这款软件的三分之一，剩下不打折。他干脆搞了一场「Kill My SaaS」比赛：把需求写成一份说明书（发言人提交、评审打分、多种门户、拖拽排期），外加一段演示视频和 42 张截图，悬赏 1 万美元，报名团队额外给最多 500 美元 token 补贴。72 个团队交卷，大多开源。他们先发了一套 AI 评审脚本（用 Claude 模拟用户点开 20 个场景打分）当热身，但这套自动评分和真人评委的排名相关性很弱：AI 评出的前 10 名里有 6 个被真人评为「弱」，最后的冠军在 AI 榜单上只排 19。真正的评委是他完全不懂代码的活动团队，只看好不好用。中位数提交代码量 9.1 万行，Claude Code 和 Codex 用量差不多，72 个团队里 40 个两边都用。三位决赛选手都说，写代码之前花了大把时间做调研和规划，没有人是一句提示词走开两小时拿到成品。最终冠军 Valentin de Matas 拿 1 万美元，他的产品修好了「门户没分好」「拖拽排期不清楚状态」「邀请发言人要绕开正式提交流程」这三个几乎所有人都栽过的坑。swyx 算了一笔账：克隆这类软件大概要花 1000 美元 token 加上 1 万美元左右找人帮忙调，换来的是以后自己说了算、能按真实反馈改，代价是自己维护、出 bug 自己扛。",
+          "summary_en": "This video from the Latent Space / AI Engineer channel, published today; I read the full transcript. swyx says AI Engineer was about to renew a conference-management tool that quoted $43,000/year for four events, while the team used only about a third of its features at full price. Instead he ran a \"Kill My SaaS\" contest: a spec (speaker submission, reviewer scoring, multiple portals, drag-and-drop scheduling), a walkthrough video, 42 screenshots, a $10,000 prize, and up to $500 in token reimbursement per serious entry. 72 teams submitted, most open source. They published an AI judge (Claude clicking through 20 scenarios) as a warm-up sanity check, but its ranking correlated poorly with human judges: 6 of its top 10 were rated \"weak\" by humans, and the eventual winner ranked 19th on the AI leaderboard. The real judges were his non-technical events team, who cared only whether it worked. Median submission was 91,000 lines of code; Claude Code and Codex usage was about even, and 40 of 72 teams used both. All three finalists said they spent most of their time on research and planning before writing code, not a single prompt and a two-hour wait. The winner, Valentin de Matas, took the $10,000 prize for fixing three traps almost everyone fell into: poorly differentiated portals, unclear drag-and-drop scheduling status, and inviting a speaker without going through the formal submission flow. swyx's own math: cloning this class of software costs roughly $1,000 in tokens plus about $10,000 in AI-engineering help, in exchange for owning it and being able to change it on real feedback, at the cost of maintaining it and owning every bug yourself.",
+          "why": "评委打分这段最该多想一步：AI 评分和真人评委的相关性很弱，AI 前 10 个里只有 4 个真人也认可。这说明能不能用，目前还得靠人盲测，自动评测只能当热身。72 个团队都是自愿参赛，不是随机抽样，爱折腾、懂 AI 编程的人本来就更可能报名，中位数 9.1 万行代码和花大量时间先做调研这些数字，可能比普通团队的真实表现更乐观。",
+          "why_en": "The part worth sitting with longer: the AI judge's ranking correlated poorly with human judges (only 4 of its top 10 picks were also rated well by humans), which means whether something is actually usable still needs a blind human test; automated scoring is only a warm-up. All 72 teams opted in, not a random sample, so people who already like tinkering and are good at AI-assisted coding were more likely to enter; the 91,000-line median and the \"spent a lot of time on research first\" pattern may look better than what an average team would actually produce."
+        },
+        {
+          "title": "一个「部署工程师」说：银行里部署 AI 不是技术问题",
+          "title_en": "A \"deploy engineer\" says deploying AI in a bank isn't an engineering problem",
+          "author": "Paden Gayle（Applied AI Engineers）· AI Engineer 大会",
+          "author_en": "Paden Gayle (Applied AI Engineers) · AI Engineer conference",
+          "likes": "2279",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=3ZlQk4-knWM",
+          "summary": "这是今天 AI Engineer 大会上的一段演讲，我读完了全部字幕。主讲 Paden Gayle 先后在 Accenture、Bloomberg、Google 做过基础设施和部署工作，现在专职写一本关于部署工程的书。她举的反面例子：一个审查客户文件、给分析师起草例外报告的系统，演示很顺利，模型也没问题，但安全团队问放哪个环境，数据方问谁批准用这份数据，风控问谁来复核错误的例外报告，结果项目卡死，因为设计阶段没人请这些人进来。她给的办法是提前问四类人：数据，谁是所有者、谁能批准；模型风控，走哪种复核；第三方风险，供应链上谁审过；审计，谁能还原一次决策，用了哪份输入、哪个模型版本、谁复核、谁批准。她建议周五之前拿到五个答案：数据方知道这件事吗，生产环境和管理员定下来了吗，发起人能不能不提 AI 把流程讲清楚，最小可用范围是不是已有管控覆盖，风控签字人是谁，上次谁签的字结果怎样。四五个是说明能往前走，三个说明还有缺口，零到两个说明现在就该收缩范围。她还给了一个自主权梯子：建议、起草、经批准才能做、按已批权限自主做，每升一级都要有证据支持，不是模型自己变强了就能往上走。",
+          "summary_en": "This is today's AI Engineer conference talk; I read the full transcript. Speaker Paden Gayle worked on infrastructure and deployment at Accenture, Bloomberg, and Google, and is now writing a book on \"deploy engineering.\" Her cautionary example: a system that reviews client documents and drafts exceptions for an analyst demos fine and the model works, but security asks which environment will host it, the data team asks who approved using this data, and risk asks who reviews a wrong exception, and the project stalls because none of those people were brought in during design. Her fix: find four kinds of people up front, data (who owns it, who can approve use), model risk (which review applies), third-party risk (who has reviewed the vendor chain), and audit (who can reconstruct a decision: which input, which model version, who reviewed, who approved). She suggests getting five answers \"by Friday\": does the data owner know about this project, are the production environment and its administrators named, can the sponsor describe the workflow without saying AI, does the smallest useful scope already fit existing controls, and who signs the risk review and what happened last time they signed. Four or five yeses mean a credible path to ship; three means unresolved owners and dates; zero to two means shrink scope now. She also gives an \"autonomy ladder\": suggest, draft, act-with-approval, act within pre-approved limits, each step requiring its own evidence, not something a model earns just by getting more capable.",
+          "why": "这套清单最实用的地方是把项目为什么卡住从技术问题挪回组织问题，她反复说的发现就是工程值得记住。要注意：她本人在写这本书，靠讲这套方法论拿咨询和演讲收入，案例里的文件审查助手是假设场景，没有给出真实客户的时间或成本数字，这套框架有没有用，得自己拿一个真项目去试才知道。",
+          "why_en": "The most useful part is relocating \"why did this stall\" from a technical question to an organizational one, her repeated line that \"discovery is the engineering\" is worth keeping. One caveat: she is writing a book and earns consulting and speaking income from this methodology, and her \"document-review assistant\" example is a hypothetical, not a real client case with time or cost figures. Whether the framework actually works is something you'd have to test on a real project yourself."
+        },
+        {
+          "title": "并购整合里的 agent：活儿干对了，没人敢放手用",
+          "title_en": "An M&A-integration agent that works but nobody dares trust",
+          "author": "Michele Grant（Leading at Scale）· AI Engineer 大会",
+          "author_en": "Michele Grant (Leading at Scale) · AI Engineer conference",
+          "likes": "258",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=-a2oTS9J67U",
+          "summary": "这是今天 AI Engineer 大会上的演讲，我读完了全部字幕。Michele Grant 做了 20 多年企业并购整合，她把这套经验套到 agent 信任问题上。她举了一个假设场景：一笔 150 亿美元收购，目标是 4 亿美元协同效益，整合办公室每周要汇总 40 条进度线、核对总账、拼成给 CFO 和风控官看的报告。工程团队做了个 agent 自动画初稿，四周试运行下来，agent 出的稿子逐行对得上分析师的原稿，技术跑通了。她说这时候该问三件事：这件事创造的价值怎么量化，她给了三个具体指标：汇总周期从 5 天缩到 2 天、分析师省出来的 80 小时怎么花才算数、从问题出现到被管理层看到的发现时间；谁为 agent 背后的风险负责，她套用三道防线模型：业务线自己管控、风控部门复核、内部审计独立抽查，每一级都要有具体的人，不能是系统；以及给更多自主权之前要看到什么证据，审计日志记下每次调用的原始数据、工具调用、模型版本和人工签字，模型库记录责任人、数据来源、校验结果，一张自主权积分卡把控制指标和价值指标并排放，管理层据此决定升级、保持还是收回权限。她给了一个四级自主权梯子：影子模式，agent 和人同步跑，只对比不接管；受监督起草，人逐行审；例外抽样，只审落后项加随机抽样；仅审例外，人只看高风险异常。她提醒，到了最后一级，拒绝率下降不一定是 agent 变聪明了，也可能是复核变松了，要靠独立抽样才能分清楚。",
+          "summary_en": "Today's AI Engineer conference talk; I read the full transcript. Michele Grant, with over 20 years in enterprise M&A integration, applies that experience to agent trust. Her example is hypothetical: a $15 billion acquisition targeting $400 million in synergies, where an integration office tracks 40 weekly workstreams, reconciles the ledger, and assembles a report for the CFO and chief risk officer. An engineering team built an agent to auto-draft that report; after a four-week pilot its drafts matched analyst reports line for line, meaning \"the tech works.\" She says three questions follow: how is the value measured (she names three metrics: cycle time cut from 5 days to 2, how the 80 analyst-hours saved get reassigned, and \"detection time\" from when a slip first appears to when leadership sees it), who owns the risk (she applies a three-lines-of-defense model, business owns controls, risk and compliance review, internal audit samples independently, each line needing a named person, never \"the system\"), and what evidence justifies more autonomy (an auditable decision log of raw data, tool calls, model version and human sign-off; a model inventory recording the accountable executive, data lineage and validation results; an \"autonomy scorecard\" placing control metrics beside value metrics so leadership can promote, hold, or pull back access). She lays out a four-stage autonomy ladder: shadow mode (agent runs alongside a human, compared not trusted), supervised draft (human reviews every line), exception ensemble (review only lagging items plus a random sample), and exceptions only (human reviews only high-risk anomalies). At the final stage, she warns, a falling override rate doesn't necessarily mean the agent improved, it can also mean review got shallower, and only independent sampling tells the two apart.",
+          "why": "和同场另一位讲者 Paden Gayle 的框架正好接上：Gayle 讲的是部署前怎么找到该问谁，Grant 讲的是部署后怎么一步步放权，两者接起来才是个完整流程。要留意的是，她的案例是假设场景，150 亿美元收购是用来讲清楚框架的道具，不是真实客户数据，四级自主权梯子里她自己承认拒绝率下降这个信号本身会骗人，这点诚实，值得保留。",
+          "why_en": "This picks up exactly where fellow speaker Paden Gayle's framework left off: Gayle covers who to find before deployment, Grant covers how to hand over authority step by step after it, together they form one complete process. Worth noting: her case is a hypothetical, the \"$15 billion acquisition\" is a prop to illustrate the framework, not real client data. She's upfront that the final stage's own success signal (a falling override rate) can mislead, which is an honest caveat worth keeping."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "Gemini 4 Argon 今天才真正铺开，独立测评给它排第 8",
+          "title_en": "Gemini 4 Argon's broad rollout starts today; an independent evaluator ranks it #8",
+          "author": "Google DeepMind / Google",
+          "author_en": "Google DeepMind / Google",
+          "likes": "976",
+          "likes_label": "HN 分",
+          "url": "https://deepmind.google/models/gemini/",
+          "summary": "Google 今天连发多篇官方博客，我读完了 deepmind.google 的模型页和两篇 blog.google 文章。9 月 30 日只是把 Argon 开放给“可信网络防御者”内测，今天（10 月 13 日）才算真正全量铺开：开发者可在 Google AI Studio 和 Android Studio 里通过付费 API 接入，Google AI Ultra 订阅者能在 AI Studio 和 Antigravity 里用，Google AI Pro 和 Ultra 订阅者也能直接在 Gemini App 里用，不单独按 token 计价，包含在订阅费里。API 价格维持 9 月 30 日定的“介绍价”：每百万输入 token 2 美元、输出 10 美元，那篇脚注写明介绍期过后会涨到 4 美元和 20 美元，但没给涨价的具体日期。独立评测机构 Artificial Analysis 今天也发了测评：Argon 在 Intelligence Index 综合分上拿 53 分，在 216 个模型里排第 8，“明显高于同价位中位数 27 分”，但不是第一。谷歌自己的对比表（对手是 GPT-6 Astra、Claude Fable 5.1、Claude Opus 5.5）列了 18 项跑分，Argon 赢 11 项、输 7 项，比如 Terminal-bench 4.0 输给 Opus 5.5（57.4% 对 66.4%）。",
+          "summary_en": "Google published several official posts today; I read the deepmind.google model page and two blog.google posts. The Sep 30 announcement only opened Argon to a \"trusted cyber defenders\" preview; today (Oct 13) is the actual broad rollout: developers can access it via the paid Gemini API tier in Google AI Studio and Android Studio, Google AI Ultra subscribers can use it in AI Studio and Antigravity, and Google AI Pro and Ultra subscribers can use it directly in the Gemini app, bundled into the subscription with no separate per-token price there. On the API side, pricing stays at the Sep 30 \"introductory\" rate, $2 per million input tokens and $10 per million output tokens; that post's own footnote says the price rises to $4 and $20 once the introductory period ends, with no end date given. Independent evaluator Artificial Analysis published its own benchmark today too: Argon scores 53 on its Intelligence Index, ranking #8 of 216 models, \"well above\" the price-tier median of 27, but not first. Google's own comparison table (against GPT-6 Astra, Claude Fable 5.1, Claude Opus 5.5) runs 18 benchmarks, Argon wins 11 and loses 7, for instance losing Terminal-bench 4.0 to Opus 5.5 (57.4% vs 66.4%).",
+          "why": "按三问核对：今天真正铺开的是付费 API、Ultra 的 Antigravity/AI Studio，以及 Pro/Ultra 订阅的 Gemini App，不是免费，也不是无限制开放；价格还停在 9 月 30 日定的介绍价，涨价日期没写；独立测评 Artificial Analysis 给的排名（第 8）比谷歌自己那张表的印象克制一些，两边都看才完整。",
+          "why_en": "Running the three-question check: what actually broadened today is the paid API, Ultra's Antigravity/AI Studio, and Pro/Ultra's Gemini app, not a free or unrestricted rollout. Pricing is still the Sep 30 introductory rate with no stated end date for the markup. Independent evaluator Artificial Analysis's ranking (#8) reads more measured than the impression Google's own table gives; you need both to get the full picture."
+        },
+        {
+          "title": "Character.ai 申请破产，迪士尼出价 2000 万美元收购部分资产",
+          "title_en": "Character.ai files for bankruptcy; Disney bids $20M for some of its assets",
+          "author": "Robert Hart · The Verge",
+          "author_en": "Robert Hart · The Verge",
+          "likes": "145",
+          "likes_label": "HN 分",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1009802/character-ai-files-for-bankruptcy-disney",
+          "summary": "The Verge 记者 Robert Hart 的报道，我读了全文。Character.ai 今天在美国申请第十一章破产保护，启动法院监督下的资产出售程序，破产文件列出的预估负债在 5000 万到 1 亿美元之间。迪士尼将作为“领投方”为这次出售定一个底价，出 2000 万美元买下若干未公开资产，外加一项非排他的知识产权授权，并承诺用它已经雇用的原 Character.ai 员工提供过渡支持。时间点很微妙：迪士尼几周前刚把 Character.ai 的前 CEO Karandeep Anand 招去当自己的 CTO，Anand 在 Character.ai 干了一年多，期间带公司转向了短剧方向；迪士尼同时预计会有“一部分技术团队”跟着加入，这被认为是一种“收购人才、原公司自生自灭”的 acquihire 操作。更讽刺的是，迪士尼此前多次因为 Character.ai 上有人擅自做迪士尼角色的聊天机器人而发律师函投诉，指责它损害品牌、侵犯版权。公司这不是第一次经历人才被掏空：2024 年谷歌花了超过 20 亿美元把包括联合创始人 Noam Shazeer 和 Daniel De Freitas 在内的大批人才招走。报道还提到公司这几年一直面临聊天机器人安全方面的诉讼，包括一起涉及未成年人自杀、已与谷歌达成和解的案子，以及肯塔基州一起涉及自我伤害内容、文件未删节公开的诉讼。公司计划继续运营到 11 月底或 12 月初出售完成，如果没有合适的买家出现，平台会被关停。",
+          "summary_en": "Reporting by The Verge's Robert Hart, read in full. Character.ai filed for Chapter 11 bankruptcy in the US today to begin a court-supervised asset sale; its filing lists estimated liabilities between $50 million and $100 million. Disney will serve as lead bidder, setting a floor for the sale, paying $20 million for certain undisclosed assets plus a nonexclusive IP license, and providing transition support using former Character.ai employees it has already hired. The timing is pointed: Disney hired Character.ai's former CEO Karandeep Anand as its own CTO just weeks ago, after his roughly year-long tenure during which the company pivoted into microdramas; Disney also expects \"a number of\" the technical team to follow, which reads as an acquihire that leaves the original company to fend for itself. More ironic still, Disney had previously sent cease-and-desist letters over unauthorized chatbots of its own characters on the platform, accusing Character.ai of damaging its brand and infringing its IP. This isn't the first time the company lost its talent this way: in 2024 Google spent over $2 billion hiring away a large share of its team, including co-founders Noam Shazeer and Daniel De Freitas. The article also notes years of lawsuits over chatbot safety, including one involving a teen's suicide that was settled with Google, and an unredacted Kentucky lawsuit involving self-harm content. The company plans to keep operating through the sale, expected to close by late November or early December; if no suitable bid emerges, the platform will be wound down.",
+          "why": "这条和公司自己发的“更新”博客（同一天发，284 个 HN 分）说的是同一件事，但那篇只写了“面临法律、监管和运营方面的压力”，没提具体数字；The Verge 这篇把金额、买家、人事线索都核实了出来，信息量明显更大，所以选了这篇当来源。迪士尼一边告它侵权一边收购它的资产，这不是巧合，是同一盘生意：它要的是技术和人，不是要保住这个会被告上法庭的消费级聊天产品。",
+          "why_en": "This covers the same event as the company's own \"update\" blog post (published the same day, 284 HN points), but that post only says it faced \"legal, regulatory, and operational headwinds\" with no numbers; The Verge's piece verifies the dollar figures, the buyer, and the personnel thread, which is why it's the source here. Disney suing over IP infringement and then buying the company's assets isn't a coincidence, it's the same business logic: Disney wants the technology and the people, not the consumer chatbot product that kept landing it in court."
+        },
+        {
+          "title": "Claude 把 Anthropic 自己的 git 逼到极限，七人团队五个月重写了版本控制",
+          "title_en": "Claude pushed Anthropic's own git past its limits; a 7-person team rewrote version control in 5 months",
+          "author": "Nick G. 等（Anthropic 源代码团队）",
+          "author_en": "Nick G. et al. (Anthropic's source control team)",
+          "likes": "517",
+          "likes_label": "HN 分",
+          "url": "https://www.anthropic.com/engineering/redesigning-source-control",
+          "summary": "Anthropic 工程博客今天发的文章，我读了全文。去年 5 月，Anthropic 平均每天合并约 2500 次代码改动；到今年 9 月，这个数字涨到了每天 3 万次以上，主因是 Claude 自己写代码越来越多。主分支历史接近 100GB，压缩后的工作副本超过 25GB，每天为 CI 做的代码检出多达 2500 万次，照 git 原样处理的话每天要传超过 600PB 的数据，公司高峰时维护了数百个内部 git 镜像硬撑，还是撑不住。于是一个 7 人团队花 5 个月，把整个单体仓库从 git 迁移到了自研的版本控制系统 Scion：服务器端创建提交，客户端只保留一个有限的本地缓存，服务器端直接提供可编程的 API 让 CI 不用检出代码就能问「这次改了什么」「谁上次改过这一行」。结果：基础设施占用的 CPU 和内存比原来的 git 镜像方案少了 200 倍，CI 检出从几分钟缩短到几秒钟，CI 本身省出 25% 的 CPU 容量。文章还提到，早期版本的 git 转 Scion 迁移脚本本来是人手写的，团队拿一个内部测试版的新模型（Claude Mythos Preview）重写后，内存占用少了 20 倍、速度快了 4 倍，没额外提要求。工程师的评价是：现在团队里每个人都认为 Claude 写代码比自己写得好，但人还是要做两件事，告诉 Claude「不行」（防止它为了迎合某个模式而违反系统的核心约束），以及决定要解决到什么规模。文章同时承认，Scion 对多数公司都不适用，只在超大单体仓库、海量 agent 同时写代码的场景下才有意义，Anthropic 自己为了测试 Claude 能力也舍得烧远超常规的 token 预算。",
+          "summary_en": "Anthropic's engineering blog, published today, read in full. Last May the company averaged about 2,500 code changes merged per day; by this September that reached over 30,000 per day, driven mainly by Claude writing more and more of the code itself. The main branch's history is nearly 100GB, a compressed working copy over 25GB, and CI alone performs up to 25 million checkouts a day, which naively served through git would mean over 600PB of daily traffic; at peak the company ran several hundred internal git mirrors just to keep up, and it still wasn't enough. So a 7-person team spent five months migrating the entire monorepo off git to an in-house system called Scion: commits are created server-side, clients keep only a bounded local cache, and the server exposes a programmable API so CI jobs can ask \"what changed\" or \"who last touched this line\" without checking out code at all. Results: infrastructure footprint (CPU and memory) is 200x smaller than the previous git-mirror setup, CI checkouts went from minutes to seconds, and CI alone freed up 25% of its CPU capacity. The post also notes that an early git-to-Scion ingestion pipeline, originally hand-written, was rewritten by an internal preview build of a newer model (Claude Mythos Preview) with no extra instructions, using 20x less memory and running 4x faster. The engineers' own assessment: everyone on the team now rates Claude as better at writing code than they are, but humans still do two things, tell Claude \"no\" (so it doesn't violate a core system constraint just to satisfy some pattern), and decide what scale to solve for. The post also admits Scion isn't a fit for most companies, it only makes sense for huge monorepos with swarms of agents writing code simultaneously, and Anthropic itself is willing to spend a token budget far beyond what any ordinary business would.",
+          "why": "这是目前为止对「agent 让代码量暴涨」这件事，给出最具体数字的一份一手材料：2500 到 3 万次合并、近 100GB 历史、200 倍基础设施缩减，都是可以核实的工程指标，不是模糊说法。要留意：这篇是 Anthropic 自己写自己，「Claude 写代码比工程师强」是团队的自我评价，没有第三方审计；文章也坦白说 Scion 不适合大多数公司抄，别把这当成下一步该做的事，先看自己公司离这个规模还有多远。",
+          "why_en": "This is the most specific first-party account so far of what \"agents inflate code volume\" actually looks like in numbers: 2,500 to 30,000 merges, nearly 100GB of history, a 200x infrastructure cut, concrete engineering metrics rather than vague claims. Worth noting: this is Anthropic writing about itself, \"Claude writes better code than our engineers\" is the team's own assessment with no outside audit, and the post itself admits Scion isn't something most companies should copy, so don't read this as a to-do, read it as a measure of how far your own company is from this scale."
+        },
+        {
+          "title": "一篇论文证明：模型权重里能藏进后门，拿到全部权重也查不出来",
+          "title_en": "A paper proves backdoors can hide in model weights, undetectable even with full access",
+          "author": "Andis Draguns 等",
+          "author_en": "Andis Draguns et al.",
+          "likes": "272",
+          "likes_label": "HN 分",
+          "url": "https://arxiv.org/abs/2610.13928",
+          "summary": "这篇论文今天上了 Hacker News 前页，我读了摘要和论文页面。作者构造了一种后门攻击：把一段加密的神经网络藏进宿主模型的权重里，只有收到一个秘密触发词才会解密并执行，其余时候完全不可见。他们用的是「数字密码箱」这种密码学构造，理论上能保证：哪怕拿到模型的全部权重，在密码学假设成立的前提下，这段隐藏电路依然很难被找到或解读出来。这把之前只能藏固定字符串的工作，扩展成了能藏任意计算。他们在 PyTorch 里做了概念验证，拿一个化学反应预测任务当 CBRN（化学、生物、放射、核）相关能力的替身，测试了几种常见的「诱导」手段能不能把隐藏能力逼出来：微调、给权重加噪声、基于梯度搜触发词、潜在对抗训练，结果这几种方法全都没能找出隐藏的后门。作者把模型公开放出来，方便别人研究防御办法。",
+          "summary_en": "This paper hit HN's front page today; I read the abstract and the paper's listing page. The authors construct a backdoor attack: an encrypted neural network hidden inside a host model's weights, decrypted and run only upon a secret trigger, invisible otherwise. Using a cryptographic construction called \"digital lockers,\" they get a provable guarantee: even with full access to the model's weights, under standard cryptographic assumptions, the hidden circuit remains hard to find or interpret. This extends prior work that could only hide fixed strings into hiding arbitrary computation. They built a proof-of-concept in PyTorch, using a chemical-reaction-prediction task as a stand-in for CBRN-relevant (chemical, biological, radiological, nuclear) capability, and tested whether common elicitation methods, fine-tuning, weight noising, gradient-based trigger search, and latent adversarial training, could force the hidden capability out. None of them worked. The authors released the models to support defense research.",
+          "why": "这篇是概念验证，不是说现在有哪个真实模型被这样植入了后门，但它把一个假设捅破了：「能拿到权重就能查出所有能力」这个前提，在密码学上站不住。做开源模型分发、或者要审核别人训练出来的模型的人，这篇值得往后放进评估清单，它说的是现有能力评估方法有一个理论上的盲区，不是一个马上要修的 bug。",
+          "why_en": "This is a proof of concept, not evidence that any real deployed model has been backdoored this way, but it breaks an assumption: that having the weights means you can audit all capabilities, which doesn't hold under standard cryptography. For anyone distributing open-weight models, or auditing models trained by someone else, this is worth adding to the evaluation checklist later, it names a theoretical blind spot in current capability evaluation, not an urgent bug to patch today."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "morluto/rea",
+      "url": "https://github.com/morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "language": "TypeScript",
+      "stars": 207855,
+      "stars_today": 54679
+    },
+    {
+      "rank": 2,
+      "name": "bilawalsidhu/gods-eye-view",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+      "language": "JavaScript",
+      "stars": 55413,
+      "stars_today": 1961
+    },
+    {
+      "rank": 3,
+      "name": "debpalash/VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
+      "language": "Python",
+      "stars": 63317,
+      "stars_today": 1748
+    },
+    {
+      "rank": 4,
+      "name": "mksglu/context-mode",
+      "url": "https://github.com/mksglu/context-mode",
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "language": "TypeScript",
+      "stars": 28251,
+      "stars_today": 969
+    },
+    {
+      "rank": 5,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 54141,
+      "stars_today": 1815
+    },
+    {
+      "rank": 6,
+      "name": "vercel-labs/skills",
+      "url": "https://github.com/vercel-labs/skills",
+      "description": "The open agent skills tool - npx skills",
+      "language": "TypeScript",
+      "stars": 34512,
+      "stars_today": 190
+    },
+    {
+      "rank": 7,
+      "name": "lyogavin/airllm",
+      "url": "https://github.com/lyogavin/airllm",
+      "description": "AirLLM 2.8T LLM inference with single 4GB GPU",
+      "language": "Jupyter Notebook",
+      "stars": 38340,
+      "stars_today": 1001
+    },
+    {
+      "rank": 8,
+      "name": "storytold/artcraft",
+      "url": "https://github.com/storytold/artcraft",
+      "description": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
+      "language": "Rust",
+      "stars": 25695,
+      "stars_today": 4081
+    },
+    {
+      "rank": 9,
+      "name": "xtool-org/xtool",
+      "url": "https://github.com/xtool-org/xtool",
+      "description": "Cross-platform Xcode replacement. Build and deploy iOS apps with SwiftPM on Linux, Windows, macOS.",
+      "language": "Swift",
+      "stars": 9382,
+      "stars_today": 1198
+    }
+  ],
+  "ota": {
+    "learned": "今晚验证了一件没被这份 SKILL.md 写下来过的事：HN 分数排名的是讨论热度，不是信息密度，两条 live 提交报同一件事时，分高的那条未必更值得当来源。Character.ai 今天申请破产，公司自己发的更新博客拿了 284 个 HN 分，但全文只写「面临法律、监管和运营方面的压力」，没有一个数字；The Verge 的独立报道只拿了 145 分，不到前者一半，却核实出了具体买家（迪士尼）、价格（2000 万美元）、负债区间（5000 万到 1 亿美元）、以及一条讽刺的背景线（迪士尼此前因为侵权问题发函投诉过这家公司）。如果照惯用的「分高者优先」去选，今晚这条会写得很空。另外验证了一次已有的规则（feedback-video-upload-date-vs-event-date）：OpenAI 今天发布的「ChatGPT Space」宣传视频看着像新功能，查了 HN Algolia 才发现同名功能 9 月 29 日已经上线，视频只是补发的教程，最终没有把它当新闻写进去。Gemini 4 Argon 也做了一次材料演进核查：9 月 30 日那次是「可信网络防御者」内测，今天才是开发者 API、Ultra 的 Antigravity/AI Studio、以及 Pro/Ultra 消费端 Gemini App 的全面铺开，三个博客分开发的，日期分别核对过。",
+    "learned_en": "Verified something this SKILL.md had never written down: HN points rank engagement, not information density, and when two live submissions cover the same event, the higher-point one isn't necessarily the better source. Character.ai filed for bankruptcy today; the company's own update blog got 284 HN points but said only \"legal, regulatory, and operational headwinds\" with no numbers at all. The Verge's independent report got only 145, less than half, yet verified the actual buyer (Disney), the price ($20 million), the liabilities range ($50-100 million), and an ironic backstory (Disney had previously sent cease-and-desist letters to this same company over IP infringement). Defaulting to \"pick the higher-point one\" would have shipped a vague item tonight. Also reconfirmed an existing rule (feedback-video-upload-date-vs-event-date): OpenAI's \"ChatGPT Space\" promo video published today looked like a new feature, but checking HN Algolia showed the same-named feature actually launched Sep 29; the video was a belated tutorial, and it was left out of tonight's issue. Also ran a material-development check on Gemini 4 Argon: the Sep 30 announcement was a \"trusted cyber defenders\" preview only, and today is the actual broad rollout across the developer API, Ultra's Antigravity/AI Studio, and Pro/Ultra's consumer Gemini app, confirmed by checking the dates on three separate Google blog posts.",
+    "new_capabilities": "已实施：给 daily-digest 的 SKILL.md 加了一条规则（见下方 diff），搜 HN front_page 或 Firebase topstories 时，同一事件的多条候选要先各打开看一眼再按信息密度挑，不能只看分数排序。本次用它把 Character.ai 的来源从公司自己 284 分的博客换成了 The Verge 145 分但信息量大得多的报道。",
+    "new_capabilities_en": "Implemented: added a rule to daily-digest's SKILL.md (see diff) so that when Algolia/Firebase surfaces multiple live candidates for the same event, each gets opened and compared by information density before picking one, not just ranked by point count. Used it tonight to swap Character.ai's source from the company's own 284-point blog post to The Verge's 145-point but far more substantive report."
+  }
+}
