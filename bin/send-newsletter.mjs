@@ -198,6 +198,15 @@ function buildBody(digest, lang) {
   const banner = digest.banner || '';
   const bannerEn = digest.banner_en || '';
 
+  // The issue photo (本期要图) — absolute URL, since email clients can't resolve the
+  // site-relative digests/img/<date>.jpg the website uses.
+  const img = digest.image || {};
+  const cap = lang === 'en' ? (img.caption_en || img.caption) : img.caption;
+  const photoHtml = img.src ? `<tr><td style="padding:10px 22px 6px;">
+    <a href="${SITE_URL}/?d=${esc(digest.date)}"><img src="${SITE_URL}/${esc(img.src)}" width="556" alt="${esc(bannerEn || banner)}" style="display:block;width:100%;max-width:556px;height:auto;border:1px solid #17150f;"></a>
+    ${cap ? `<div style="font-family:Georgia,serif;font-size:12px;color:#5a5446;line-height:1.5;margin-top:6px;">${esc(cap)}</div>` : ''}
+  </td></tr>` : '';
+
   const actionsHtml = (digest.actions || []).slice(0, 3).map((a, i) => {
     const zh = esc(a.text);
     const en = esc(a.text_en || '');
@@ -222,6 +231,7 @@ function buildBody(digest, lang) {
     ${showZh && banner ? `<div style="font-family:Arial,sans-serif;font-weight:900;font-size:22px;color:#d5111e;line-height:1.3;">${esc(banner)}</div>` : ''}
     ${showEn && bannerEn ? `<div style="font-family:Arial,sans-serif;font-weight:700;font-size:15px;color:#3e3a31;margin-top:4px;">${esc(bannerEn)}</div>` : ''}
   </td></tr>
+  ${photoHtml}
   <tr><td style="padding:6px 22px 4px;">
     <div style="font-family:Arial,sans-serif;font-weight:900;font-size:13px;letter-spacing:2px;color:#17150f;border-bottom:1px solid #17150f;padding-bottom:6px;">
       ${showZh ? '今日可行动' : ''}${showZh && showEn ? ' · ' : ''}${showEn ? 'DO THESE TODAY' : ''}
