@@ -169,7 +169,10 @@ not just summaries. Zen reads this instead of the feeds.
      outward-facing. If nothing today clears the bar, say so honestly — no fake upgrades.
    - **Append to the ledger**: add a dated one-line entry to `ota-ledger.md` (what was
      adopted + how to invoke it) so tomorrow's run compounds instead of repeating.
-   - Fill the digest's `ota` object: `learned` (what I learned today, plain sentences)
+   - Fill the digest's `ota` object — `learned` and `new_capabilities` (and their `_en`)
+     are each a JSON **list of strings**, one point per entry, never one paragraph string
+     (a string blanked the whole site 2026-10-05..14; `validate-digest.py --strict` now
+     blocks it): `learned` (what I learned today, plain sentences)
      and `new_capabilities` (what I can now do that I couldn't yesterday, with the
      skill/command name to invoke it). The site renders this as 🆕 今日自我升级. Per
      docs/STYLE-ZH.md #14: tag each entry 观察/已实施/已验证 and only put 已验证 entries
