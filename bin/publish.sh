@@ -20,5 +20,16 @@ python3 bin/validate-digest.py --strict "$f" || {
 }
 
 git add -A && git commit -m "Publish 每日情报 $day" 2>/dev/null
-git push || echo "WARN: git push failed — commit is local only, will diverge from origin"
+if git push; then
+  # The push is what puts the issue on mrqb.space (Vercel deploys main). Ask GitHub to email
+  # subscribers — the keys live in repo secrets; the workflow waits for the live page and
+  # skips if this issue was already mailed. Today's issue only: a backfill never emails.
+  if [[ "$day" == "$(TZ=America/New_York date +%F)" ]]; then
+    gh workflow run newsletter.yml -f day="$day" \
+      && echo "newsletter: queued for $day (GitHub Actions → newsletter)" \
+      || echo "WARN: could not queue the newsletter — run: gh workflow run newsletter.yml -f day=$day"
+  fi
+else
+  echo "WARN: git push failed — commit is local only, will diverge from origin (newsletter not sent)"
+fi
 vercel deploy --yes

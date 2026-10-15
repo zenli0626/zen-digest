@@ -1,0 +1,85 @@
+name: newsletter
+
+# Emails tonight's 每日情报 issue to subscribers when the LAPTOP published it.
+# bin/publish.sh pushes the issue to main (Vercel's git integration takes main straight to
+# mrqb.space), then runs `gh workflow run newsletter.yml -f day=<date>`. The Resend and
+# Supabase keys live only in these repo secrets, which is why the send runs here and not on
+# the laptop. The cloud nightly sends from bin/ci-publish.sh instead; both honor the same
+# newsletter-sent/<date> marker, so an issue is mailed at most once.
+
+on:
+  workflow_dispatch:
+    inputs:
+      day:
+        description: 'Issue date (YYYY-MM-DD) — must be today or yesterday in New York'
+        required: true
+      dry_run:
+        description: 'Build the emails and count subscribers, send nothing'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write         # commit the newsletter-sent/<date> marker back to main
+
+concurrency:
+  group: newsletter
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check the issue is current and good enough to mail
+        env:
+          DAY: ${{ inputs.day }}
+        run: |
+          TODAY="$(TZ=America/New_York date +%F)"
+          YESTERDAY="$(TZ=America/New_York date -d yesterday +%F)"
+          if [ "$DAY" != "$TODAY" ] && [ "$DAY" != "$YESTERDAY" ]; then
+            echo "::error::$DAY is not today ($TODAY) or yesterday — refusing to email an old issue (backfill?)"
+            exit 1
+          fi
+          test -f "digests/$DAY.json" || { echo "::error::digests/$DAY.json is not on main"; exit 1; }
+          # Same bar the cloud nightly uses before it emails.
+          python3 bin/quality-check.py "digests/$DAY.json"
+
+      - name: Wait until mrqb.space serves this issue
+        env:
+          DAY: ${{ inputs.day }}
+        run: |
+          for i in $(seq 1 30); do
+            LIVE="$(curl -fsS "https://mrqb.space/digests/$DAY.json?cb=$(date +%s)" 2>/dev/null \
+                    | python3 -c 'import json,sys; print(json.load(sys.stdin).get("date",""))' 2>/dev/null || true)"
+            if [ "$LIVE" = "$DAY" ]; then echo "live on mrqb.space"; exit 0; fi
+            echo "not live yet (attempt $i/30), waiting 30s"; sleep 30
+          done
+          echo "::error::digests/$DAY.json never appeared on mrqb.space — not emailing a link that 404s"
+          exit 1
+
+      - name: Send
+        env:
+          DAY: ${{ inputs.day }}
+          NEWSLETTER_DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NEWSLETTER_FROM: ${{ secrets.NEWSLETTER_FROM }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node bin/send-newsletter.mjs "digests/$DAY.json"
+
+      - name: Record the send
+        env:
+          DAY: ${{ inputs.day }}
+        run: |
+          [ -f "newsletter-sent/$DAY" ] || { echo "no send recorded — nothing to commit"; exit 0; }
+          git add "newsletter-sent/$DAY"
+          git -c user.name="digest-bot" -c user.email="digest-bot@users.noreply.github.com" \
+              commit -m "Newsletter sent for 每日情报 $DAY"
+          for i in 1 2 3; do git pull --rebase -q && git push && exit 0; sleep 5; done
+          echo "::warning::marker push failed — a later run could re-send $DAY"
