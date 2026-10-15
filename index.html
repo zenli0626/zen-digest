@@ -592,7 +592,9 @@ async function loadDay(d) {
   }
   if (day.ota) {
     let o = `<div id="sec-ota" class="boxed"><div class="b-head"><span class="t">${esc(t.otaHead)}</span><span class="sub">SELF-UPDATE ${esc(day.date)}</span></div>`;
-    const learned = T(day.ota, 'learned'), caps = T(day.ota, 'new_capabilities');
+    // ota fields arrive as a list or (since 2026-10-05) one paragraph string — accept both
+    const asList = v => Array.isArray(v) ? v : (v ? [v] : []);
+    const learned = asList(T(day.ota, 'learned')), caps = asList(T(day.ota, 'new_capabilities'));
     if (learned?.length) o += `<div class="ota-sub">${esc(t.learned)}</div><ul>` +
       learned.map(x => `<li class="oi">${esc(x)}</li>`).join('') + '</ul>';
     if (caps?.length) o += `<div class="ota-sub">${esc(t.caps)}</div><ul class="caps">` +
