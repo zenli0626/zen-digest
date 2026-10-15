@@ -70,15 +70,19 @@ async function main() {
     process.exit(1);
   }
 
+  // NEWSLETTER_TEST_TO=<address>: send one "[TEST]" copy there only — no subscriber list,
+  // no marker read or written, so a test never blocks or replaces the real send.
+  const testTo = process.env.NEWSLETTER_TEST_TO || '';
   const marker = `newsletter-sent/${digest.date}`;
-  if (fs.existsSync(marker)) {
+  if (!testTo && fs.existsSync(marker)) {
     console.log(`${marker} exists — this issue was already emailed, skipping send`);
     return;
   }
 
   // 1) Pull active subscribers.
   let subscribers;
-  try {
+  if (testTo) subscribers = [{ email: testTo, lang: 'both', ref_code: '' }];
+  else try {
     const r = await fetch(
       `${SUPABASE_URL}/rest/v1/subscribers?status=eq.active&select=email,lang,ref_code`,
       {
@@ -106,8 +110,9 @@ async function main() {
   const bodyZh = buildBody(digest, 'zh');
   const bodyEn = buildBody(digest, 'en');
   const bodyBoth = buildBody(digest, 'both');
-  const subjectZh = `每日情报 · ${digest.date} · ${digest.banner || ''}`.trim();
-  const subjectEn = `Daily Intel · ${digest.date}`;
+  const tag = testTo ? '[TEST] ' : '';
+  const subjectZh = `${tag}每日情报 · ${digest.date} · ${digest.banner || ''}`.trim();
+  const subjectEn = `${tag}Daily Intel · ${digest.date}`;
 
   if (dryRun) {
     const langs = subscribers.reduce((m, s) => ({ ...m, [s.lang]: (m[s.lang] || 0) + 1 }), {});
@@ -168,7 +173,7 @@ async function main() {
   }
 
   console.log(`done: sent=${sent} failed=${failed}`);
-  if (sent > 0) {
+  if (sent > 0 && !testTo) {
     fs.mkdirSync('newsletter-sent', { recursive: true });
     fs.writeFileSync(marker, `sent=${sent} failed=${failed} at=${new Date().toISOString()}\n`);
   }
@@ -192,6 +197,15 @@ function buildBody(digest, lang) {
 
   const banner = digest.banner || '';
   const bannerEn = digest.banner_en || '';
+
+  // The issue photo (本期要图) — absolute URL, since email clients can't resolve the
+  // site-relative digests/img/<date>.jpg the website uses.
+  const img = digest.image || {};
+  const cap = lang === 'en' ? (img.caption_en || img.caption) : img.caption;
+  const photoHtml = img.src ? `<tr><td style="padding:10px 22px 6px;">
+    <a href="${SITE_URL}/?d=${esc(digest.date)}"><img src="${SITE_URL}/${esc(img.src)}" width="556" alt="${esc(bannerEn || banner)}" style="display:block;width:100%;max-width:556px;height:auto;border:1px solid #17150f;"></a>
+    ${cap ? `<div style="font-family:Georgia,serif;font-size:12px;color:#5a5446;line-height:1.5;margin-top:6px;">${esc(cap)}</div>` : ''}
+  </td></tr>` : '';
 
   const actionsHtml = (digest.actions || []).slice(0, 3).map((a, i) => {
     const zh = esc(a.text);
@@ -217,6 +231,7 @@ function buildBody(digest, lang) {
     ${showZh && banner ? `<div style="font-family:Arial,sans-serif;font-weight:900;font-size:22px;color:#d5111e;line-height:1.3;">${esc(banner)}</div>` : ''}
     ${showEn && bannerEn ? `<div style="font-family:Arial,sans-serif;font-weight:700;font-size:15px;color:#3e3a31;margin-top:4px;">${esc(bannerEn)}</div>` : ''}
   </td></tr>
+  ${photoHtml}
   <tr><td style="padding:6px 22px 4px;">
     <div style="font-family:Arial,sans-serif;font-weight:900;font-size:13px;letter-spacing:2px;color:#17150f;border-bottom:1px solid #17150f;padding-bottom:6px;">
       ${showZh ? '今日可行动' : ''}${showZh && showEn ? ' · ' : ''}${showEn ? 'DO THESE TODAY' : ''}
