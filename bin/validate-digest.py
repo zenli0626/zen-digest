@@ -66,6 +66,18 @@ def check(path, strict=False):
     total = sum(len(s["items"]) for s in srcs)
     ok = len(platforms) >= MIN_PLATFORMS and total >= MIN_TOTAL_ITEMS
     repetition = check_repetition(path, d)
+    # ota list fields: the site renders them as bullet lists; a plain string blanked the
+    # whole page 2026-10-05..14. Blocks at publish (--strict), warns otherwise.
+    ota = d.get("ota") or {}
+    bad_ota = [k for k in ("learned", "learned_en", "new_capabilities", "new_capabilities_en")
+               if k in ota and not (isinstance(ota[k], list) and all(isinstance(x, str) for x in ota[k]))]
+    if bad_ota:
+        msg = (f"ota.{', ota.'.join(bad_ota)} must be a JSON list of strings "
+               f'(e.g. "learned": ["first point", "second point"]), not one paragraph')
+        if strict:
+            print(f"  ✗ {path}: {msg}")
+            return False
+        print(f"  ⚠ {path}: {msg} (warn only; blocks at publish)")
     if repetition and not strict:
         # Repetition only blocks the publish paths (--strict). The pre-commit hook runs
         # without it, so copy edits and backfills of existing issues still commit.
@@ -103,7 +115,7 @@ def main(argv):
     results = [check(f, strict) for f in files]
     if all(results):
         return 0
-    print("\n发布已拦截：有一期来源过于单一（见上方 ✗）。")
+    print("\n发布已拦截：见上方 ✗。")
     return 1
 
 if __name__ == "__main__":
