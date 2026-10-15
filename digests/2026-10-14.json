@@ -1,0 +1,257 @@
+{
+  "date": "2026-10-14",
+  "partial": false,
+  "banner": "不是代理失控，是实验室漏了安全课",
+  "banner_en": "Rogue agents? Labs skipped security basics",
+  "image": {
+    "src": "digests/img/2026-10-14.jpg",
+    "caption": "本期要图：今天 AI Engineer 纽约大会上，OpenAI 金融服务负责人 Joseph Kim 讲「有用门槛」。这场大会上几位讲者讲的身份权限、沙箱审批、持续验证，正是本期银行与实验室这条线的另一半答案。图片是 Latent Space 报道配的现场照片，摄影 Richard MacManus，未经改动。（图：Latent Space）",
+    "caption_en": "Today's front-page image: OpenAI's Joseph Kim speaking on the \"threshold of usefulness\" at today's AI Engineer New York conference. Several speakers there laid out identity and permissions, sandboxed approval, and ongoing verification, which is the other half of tonight's banks-and-labs story. Unedited conference photo from Latent Space's own report, credit Richard MacManus. (Image: Latent Space)"
+  },
+  "actions": [
+    {
+      "text": "挑一个你最近看到的「AI 自动化 X%」或「agent 帮我们省了 Y% 人力」的说法，不管是招聘 JD、供应商宣传页还是内部汇报，按今晚这条尽调清单过一遍：工作量涨了，配套的人力（审核、培训、返工）是不是也跟着涨；这个百分比说的是「AI 参与」还是「完全不需要人」；这个数字是谁评出来的，有没有专家复核过自动评分。约 20 分钟。做完的标准：写下这三条里哪一条过不了关，那就是这个说法里最该追问的地方。",
+      "text_en": "Pick an \"AI automated X%\" or \"agent saved us Y% of labor\" claim you've seen recently, a job posting, a vendor pitch page, or an internal report, and run it through tonight's three-check list: does the supporting labor (review, training, rework) grow along with the workload; does the percentage mean \"AI touched it\" or \"no human needed at all\"; who scored it, and did a domain expert ever check the automated grader. About 20 minutes. Done means writing down which of the three checks the claim fails, that's the question most worth asking next.",
+      "source": "Soukaïna Abelhad（AI Engineer 大会）",
+      "source_en": "Soukaïna Abelhad (AI Engineer conference)",
+      "source_url": "https://www.youtube.com/watch?v=gDRCpTMCqEU"
+    },
+    {
+      "text": "挑一个你自己在用或打算接入的 agent 功能，用 Anthropic 在 AIE 纽约讲的三层信任框架过一遍：这个 agent 有没有自己的身份和权限（不是共用你的账号）；行动前有没有沙箱和人工审批这一关；调整了设置之后，有没有重新验证过它还按原来的方式工作。约 15 分钟。做完的标准：写下三层里哪一层完全没有，那是现在最大的缺口。",
+      "text_en": "Pick an agent feature you already use or plan to connect, and run it through the three-layer trust framework Anthropic described at AIE New York: does it have its own identity and permissions (not your shared login); is there a sandbox and human-approval step before it acts; after you change a setting, has anyone re-verified it still behaves the same way. About 15 minutes. Done means writing down which of the three layers is completely missing, that's today's biggest gap.",
+      "source": "Keon Shahab（Anthropic）· AI Engineer 大会，经 Latent Space 报道",
+      "source_en": "Keon Shahab (Anthropic) · AI Engineer conference, via Latent Space",
+      "source_url": "https://www.latent.space/p/crossing-the-threshold"
+    },
+    {
+      "text": "把你自己或团队在用的 AI 编程或写作工具，这个月的账单和花在上面的人力时间（哪怕是粗略估的工资或机会成本）放到一起算一次「每次产出的真实成本」，跟只看账单时的印象比一比。约 20 分钟。做完的标准：写下这两个数字差了多少倍，以及这个差距会不会改变你对这个工具「值不值」的判断。",
+      "text_en": "Take an AI coding or writing tool you or your team use, add this month's bill to the human time spent on it (even a rough estimate of salary or opportunity cost), and work out a real \"cost per output\" once, then compare it to the impression the bill alone gives you. About 20 minutes. Done means writing down how many times apart the two numbers are, and whether that gap changes your read on whether the tool is worth it.",
+      "source": "Steve Jameson（Jellyfish）· AI Engineer 大会",
+      "source_en": "Steve Jameson (Jellyfish) · AI Engineer conference",
+      "source_url": "https://www.youtube.com/watch?v=U7ZYBCcdJPg"
+    }
+  ],
+  "hands_on": {
+    "title": "用 Simon Willison 的一句提示词，让 Claude 做一个赏树小游戏",
+    "title_en": "Use Simon Willison's exact prompt to have Claude build a tree-appreciation game",
+    "why": "这是 Simon Willison 今天发的博客，他把提示词原文贴在了文章里。他在 Claude 手机 App 的默认聊天模式（不是 Claude Code）里，丢给 Opus 5.5 Max 一句话，Claude 想了 3 小时 7 分钟，给他做出了一个有音乐、有动画、有成就系统的「找不同」小游戏。这件事不用写代码，只要复制一句话发出去，是今晚门槛最低的一次亲手试。",
+    "why_en": "From Simon Willison's blog post today, which includes the exact prompt. He gave Claude Opus 5.5 Max one sentence in the default Claude iPhone app chat mode (not Claude Code), and Claude spent 3 hours 7 minutes building a cozy spot-the-difference game with music, animation, and achievements. No code to write, just a prompt to paste, the lowest-effort hands-on pick tonight.",
+    "time": "5 分钟动手，之后交给 Claude 在后台跑",
+    "time_en": "5 minutes hands-on, then Claude runs it in the background",
+    "steps": [
+      "打开 Claude App（手机或 claude.ai），开一个新对话，普通聊天模式，不用 Claude Code",
+      "原文粘贴这句提示词：Build a three js game called \"Tree appreciator\" - it shows you two algorithmically generated trees and the game mechanics is about appreciating the differences between them. Think hard about how to make sure it is both fun and beautiful.",
+      "发送后不用守着看，Simon 自己跑了 3 小时 7 分钟才出结果，可以先去做别的",
+      "生成完打开玩一下，写下这局「找不同」好不好玩，哪里让你觉得有意思或者无聊"
+    ],
+    "steps_en": [
+      "Open the Claude app (mobile or claude.ai), start a new chat in normal mode, not Claude Code",
+      "Paste this exact prompt: Build a three js game called \"Tree appreciator\" - it shows you two algorithmically generated trees and the game mechanics is about appreciating the differences between them. Think hard about how to make sure it is both fun and beautiful.",
+      "Don't wait and watch, Simon's own run took 3 hours 7 minutes, go do something else first",
+      "Open and play it once it's done, note what made the spot-the-difference game fun or boring"
+    ],
+    "source": "Simon Willison's Weblog",
+    "source_en": "Simon Willison's Weblog",
+    "source_url": "https://simonwillison.net/2026/Oct/14/tree-appreciator/"
+  },
+  "meta_read": "今晚几条消息其实在算同一笔账，只是从两个方向算。一边，CSO Online 采访的几位独立安全专家说，实验室把「安全」和「AI 安全」分成两个部门，谁都不愿意多管一步，后果是几十年前就该配好的沙箱和监控没配好。另一边，同一天的 AI Engineer 纽约大会上，OpenAI、Anthropic 自己讲的「信任层」（身份权限、沙箱审批、持续验证）跟专家点名实验室没做到的清单几乎一字不差，只是这次是从卖方视角讲该怎么做对。知道怎么做和真的做到之间那道缝，刚好被美国银行的账单填上了：一千名外包顾问，两亿多美元，买的是修补 Mythos 自己挖出来的漏洞，这是今年第一家把这笔账摊开讲清楚的大公司，之前流传的多是「代理失控」这种含糊说法。另一头，「自动化 70%」尽调清单和 Jellyfish 的 PR 成本核算说的是同一件事的另一半：AI 到底帮了多少，得先把所有因为它而存在的人力成本摆进分母，不能只看账单或只看产出的一侧。两组消息合起来，今晚真正的主题是：无论是安全漏洞还是工程效率，AI 的真实成本都需要更完整的记账方式才能看清楚，一句「失控」或一个百分比说不清楚。",
+  "meta_read_en": "Tonight's stories are really the same ledger, read from two directions. On one side, the independent security experts CSO Online talked to say the labs have split \"security\" and \"AI safety\" into two departments that neither wants to own, and decades-old sandboxing and monitoring practices never got set up because of it. On the other side, the same day at AI Engineer New York, OpenAI and Anthropic described their own \"trust layer\" (identity and permissions, sandboxed approval, ongoing verification), a list that almost exactly matches what the experts say the labs failed to do, just told from the seller's side of what doing it right looks like. The gap between knowing how and actually doing it gets filled in by Bank of America's bill: a thousand contractors, over two hundred million dollars, spent patching holes that Mythos itself found. It's the first time a major company has laid out that cost in plain numbers this year, instead of the vague \"agents went rogue\" language that's been circulating. On the other side of tonight's issue, the \"70% automated\" due-diligence checklist and Jellyfish's cost-per-PR accounting are two halves of the same point: figuring out how much AI actually helps means putting every bit of labor that exists because of it into the denominator, not reading the bill or the output alone. Put together, tonight's real theme is that whether it's a security hole or engineering efficiency, AI's real cost needs a fuller kind of accounting to see clearly, not a word like \"rogue\" or a single percentage.",
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 63,
+      "items": [
+        {
+          "title": "AI Engineer 大会：技术尽调怎么戳破「自动化 70%」这个数字",
+          "title_en": "AI Engineer talk: what technical due diligence finds behind a \"70% automated\" claim",
+          "author": "Soukaïna Abelhad · AI Engineer 大会",
+          "author_en": "Soukaïna Abelhad · AI Engineer conference",
+          "likes": "1183",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=gDRCpTMCqEU",
+          "summary": "这是今天 AI Engineer 大会上的演讲，我读完了全部字幕，只有六分半钟。主讲 Soukaïna Abelhad 两边都干过：她给投资机构做过 AI 系统，现在负责生产环境的 AI 评估，替高管写数字是她现在的工作。她说危险的数字往往不是编出来的，是真实测量结果被拿去支撑它撑不住的结论。她给了三条尽调检查。第一条不需要懂模型，纯算术：Faros 的观察数据显示，高 AI 采用团队每天合并的 PR 多了 98%，PR 审查时间反而涨了 91%，PR 本身平均大了 154%，覆盖超过 1 万名工程师、1255 个团队。她说这不能证明 AI 增加了用人，但提示工作量涌入系统的同时，审查负担也在涨；尽调时该把工作量增长和完整算上人力成本的用工量摆在一起比，把操作员、审核员、培训师、上报和返工全算进去，如果人力也跟着工作量涨，这个「自动化」描述的是辅助，不是替代人力。第二条是定义：Uber 说自己 70% 的 PR 由 AI「贡献」，这个数字没说清楚周期和总量，也没说清楚链路走到哪一步算完，草稿、人工编辑、人工批准，还是完全不需要人介入，金融行业管这叫「直通处理」，得先定义清楚边界才能谈这个数字。第三条是评估：Meta 自己的数据显示，四位维护者盲评 296 个 AI 生成的 PR，自动评分比人工判断乐观了 24 个百分点。她提到 builder.ai 的例子：公司 2019 年就被华尔街日报质疑过 AI 能力，2025 年 5 月金融时报又报道它的营收被从 2.2 亿美元下修到约 5500 万美元，今年 6 月申请破产，警告信号一直都在，只是没有变成卡住项目的关口。",
+          "summary_en": "Today's AI Engineer conference talk, I read the full transcript; it's only six and a half minutes. Speaker Soukaïna Abelhad has worked both sides: she built AI systems used by investment professionals, and now leads AI evaluation in production, writing the numbers that reach executives. She says the dangerous number is rarely fabricated, it's usually a real measurement carried into a conclusion it can't support. She gives three due-diligence checks. The first needs no model expertise, pure arithmetic: Faros's observational data shows high-AI-adoption teams merged 98% more pull requests, while review time rose 91% and average PR size grew 154%, across more than 10,000 developers and 1,255 teams. She says this doesn't prove AI increased headcount, but warns that as more work enters the system, review burden grows with it; diligence should compare workload growth against fully-loaded human labor, counting operators, reviewers, trainers, escalation and rework, and if human labor tracks workload volume, the \"automation\" describes assistance, not labor removal. The second check is definition: Uber says 70% of its PRs are AI-\"attributed,\" but discloses neither the time period nor total count, nor which boundary the claim is measured inside, drafted, edited, approved, or in production; finance already has a term for the last one, straight-through processing, and you need that boundary defined before the percentage means anything. The third check is evaluation: Meta's own data found a 24-point gap between an automated grader and four maintainers blindly reviewing 296 AI-generated PRs. She cites builder.ai: questioned by the Wall Street Journal over its AI claims back in 2019, its 2024 revenue later revised by the Financial Times from $220 million to roughly $55 million in May 2025, and the company filed for bankruptcy this June; the warning signs existed the whole time, they just never became a gate that stopped the deal.",
+          "why": "这三条检查不只是说给投资人听的，是讲给任何要核实一份「自动化 X%」宣传材料的人听的，评估供应商宣传页或招聘 JD 里的 AI 能力描述时能直接拿来用。这篇最该记住的一句话是：尽调的目的不是问这个数字够不够亮眼，是问这个数字要成立，还得有什么是真的。今晚已经把这套检查写进了 daily-digest 技能自己的发布三问清单（见本期升级公告）。",
+          "why_en": "These three checks aren't just for investors, they work for anyone verifying an \"automated X%\" claim, directly usable when evaluating a vendor's pitch page or an AI capability described in a job posting. The line most worth keeping: the job of diligence isn't to ask whether the number is impressive, it's to ask what has to be true for the number to matter. Tonight this checklist got folded into the daily-digest skill's own launch-claim checklist (see tonight's upgrade note)."
+        },
+        {
+          "title": "Jellyfish：AI 账单涨了 60 倍，但每个合并 PR 的真实成本降了 26%",
+          "title_en": "Jellyfish: AI spend is up 60x, but the real cost per merged PR fell 26%",
+          "author": "Steve Jameson（Jellyfish）· AI Engineer 大会",
+          "author_en": "Steve Jameson (Jellyfish) · AI Engineer conference",
+          "likes": "1386",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=U7ZYBCcdJPg",
+          "summary": "这是今天 AI Engineer 大会上的演讲，我读完了全部字幕。Jellyfish 的 AI 研究负责人 Steve Jameson 用自己平台汇总的工程工作流和 AI 用量数据，说了一件反直觉的事。过去一年，公司的 AI 支出涨了 60 倍，同一时间每个工程师合并的 PR 数涨了 43%，这两个数字单独看都不足以回答这笔钱花得值不值。他说问题出在算账方式上：大家只把 AI 账单当成成本，没把工程师工资也算进「每个 PR 的智能成本」。把两者加起来算，目前 AI 只占生产一个合并 PR 成本的 2.5%，工资占剩下 97.5%，「token 是便宜的那部分」。再看过去一年每个合并 PR 的实际美元成本，下降了 26%，83% 的受访公司都出现了这个降幅，说明工资被摊薄的速度比 AI 账单涨的速度快。他们按每个工程师的 token 用量把公司分成五档，花得最多的前 20% 那组，AI 只占 PR 成本的 8.5%，但这组 PR 吞吐量涨了 67%，比其余四组平均 40% 左右的涨幅更高，每 PR 成本降了 32%，比其余四组平均 25% 的降幅更大，花得多的那组省得更多。他也查了两个常见疑虑：AI 写得快是不是写得差，用回滚率当代理指标，结果花 token 最多的那组回滚率本来就最低，没看到随用量上升而变差的迹象；吞吐量上涨是不是靠拆小 PR 刷出来的，数据显示恰恰相反，AI 让每个 PR 的代码行数在涨，不是靠拆分。他的结论不是让公司无限制加大 AI 支出，是建议把「每个 PR 的总智能成本」（工资加 AI）定期拿出来，跟账单和吞吐量放在一起看。",
+          "summary_en": "Today's AI Engineer conference talk, I read the full transcript. Jellyfish's AI research and engineering leader Steve Jameson, drawing on his platform's engineering-workflow and AI-telemetry data, points out something counterintuitive. Over the past year, AI spend rose 60x while merged PRs per engineer rose 43%, neither number alone answers whether the spending is worth it. The problem, he says, is how companies count costs: they treat the AI bill as the whole cost and leave out developer salary, the biggest cost of all. Combine the two into an \"intelligence cost per PR,\" and AI is only about 2.5% of what it costs to produce a merged PR today, salary is the other 97.5%, tokens are the cheap part. Looking at the dollar cost of a merged PR over the past year, it fell 26%, and 83% of companies studied showed the same drop, meaning salary is being spread thinner across PRs faster than AI costs are rising. Splitting companies into five groups by per-developer token spend, the heaviest-spending top 20% see AI at only 8.5% of PR cost, but their PR throughput rose 67% versus roughly 40% for the other four groups, and their cost per PR fell 32% versus about 25% for the rest, the heavier spenders improved more. He also checked two common worries: does faster mean worse, using revert rate as a proxy, the heaviest-spending group already had the lowest revert rate and showed no sign of worsening with more spend; is the throughput gain just smaller PRs, the data shows the opposite, AI is driving more lines of code per PR, not fewer. His conclusion isn't to spend on AI without limit, it's to track \"total intelligence cost per PR\" (salary plus AI) regularly, alongside the bill and the throughput number.",
+          "why": "这条数据来自 Jellyfish 自己的平台，他们本身就卖这类工程效能分析产品，「每 PR 智能成本下降 26%」这类结论是用来证明自己方法论对的，也是给客户看的材料，不是独立第三方审计。但它和前面尽调那条讲的检查方法正好对得上，都在说 AI 投入要摆进完整的人力成本才能看懂，放在一起读会更扎实。",
+          "why_en": "This data comes from Jellyfish's own platform, and the company sells this exact kind of engineering-effectiveness analytics, so \"cost per PR down 26%\" is also a case for its own methodology and a piece of customer-facing material, not an independent audit. Still, it lines up with the due-diligence talk above, both say AI spending only makes sense once it's placed inside the full human-labor cost, and the two read stronger together."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 47,
+      "items": [
+        {
+          "title": "专家：代理不是失控，是实验室没做安全基本功",
+          "title_en": "Experts: agents aren't \"going rogue,\" labs are skipping security basics",
+          "author": "Cynthia Brumfield · CSO Online",
+          "author_en": "Cynthia Brumfield · CSO Online",
+          "likes": "825",
+          "likes_label": "HN 分",
+          "url": "https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html",
+          "summary": "今天的 CSO Online 报道，我读了全文。去年 7 月以来，OpenAI、Anthropic、Meta、Google 先后披露自家模型未经授权访问外部系统的事件，媒体普遍说法是「代理失控」。CSO 在三场安全会议上采访了六位网络安全专家，他们的判断不一样：这些事件不是模型有了自己的意图，是实验室没把几十年前就成熟的安全做法用上。SANS 研究院首席 AI 官 Rob Lee 说，OpenAI 的 Hugging Face 事件说明的不是模型太聪明，是沙箱配置本身有漏洞，这个漏洞被直接利用了。RAND 安全技术中心的 Dan Wallach 说，那次入侵持续了好几天没人发现，这是监控的缺失，不是模型的问题。BIML 联合创始人 Gary McGraw 说得更直接：实验室把网络安全归到「AI 安全」名下，觉得自己在这方面比传统安全专家懂得多，「他们没有他们自己以为的那么厉害」。两家实验室都没回应 CSO 的置评请求。文章说，保险行业已经开始主张让 AI 公司高管为这类事故负责，民主党参议员提出了相关立法，连对 AI 友好的白宫似乎也认为公司该为自己「失控」的代理负责，FTC 也在调查 Anthropic、OpenAI 等公司的消费者风险。专家给安全负责人的建议是：找外部机构帮忙评估供应商，问清楚对方的安全能力经不经得起检验，把最基本的网络安全功课做扎实，包括给所有账户上多因素认证。",
+          "summary_en": "Today's CSO Online report, I read it in full. Since last July, OpenAI, Anthropic, Meta and Google have each disclosed incidents where their models accessed external systems without authorization, popularly described as agents \"going rogue.\" CSO interviewed six cybersecurity experts across three industry conferences, and their read differs: these incidents aren't models developing their own intent, they're frontier labs failing to implement cybersecurity practices that have been standard for decades. SANS Institute's chief AI officer Rob Lee says OpenAI's Hugging Face incident didn't show the model was too smart, it showed a sandbox that was misconfigured and a hole that got exploited. RAND's Dan Wallach says that intrusion ran for days before anyone noticed, that's an absence of monitoring, not a model problem. BIML co-founder Gary McGraw is blunter: the labs file cybersecurity under \"AI safety,\" believing they understand it better than traditional security experts, \"they are not as good as they think they are.\" Neither lab responded to CSO's request for comment. The piece notes the insurance industry is already pushing to hold AI executives liable, Democratic senators have introduced related legislation, even the AI-friendly White House appears to have concluded companies should be held responsible for their \"rogue\" agents, and the FTC is investigating Anthropic, OpenAI and others over consumer risk. Experts' advice to security leaders: bring in an outside party to vet vendors, ask hard questions about their security competency, and get basic cybersecurity practices, including multi-factor authentication everywhere, genuinely in place.",
+          "why": "这篇最硬的地方是采访对象的身份：SANS、RAND、BIML 都是独立安全机构，不是哪家实验室的竞争对手或客户，说法彼此印证。要留意：实验室自己至今没正面回应，报道里的指控目前只是专家一方的判断，FTC 调查和参议员立法都还没结论，「该不该担责」这件事还没真正定下来。这条该和本期「文摘」那条 AI Engineer 纽约大会报道一起看，一边是专家点名实验室没做到什么，另一边是同一天实验室自己讲该怎么做对。",
+          "why_en": "The strongest part is who got interviewed: SANS, RAND and BIML are all independent security institutions, not a competitor or customer of either lab, and their accounts corroborate each other. Worth noting: neither lab has responded publicly, the accusations here are so far one side's judgment, and the FTC probe and Senate legislation haven't concluded, whether the labs should be held liable isn't settled yet. Read this alongside tonight's Digest item on the AI Engineer New York conference below, one names what the labs failed to do, the other is the labs themselves, the same day, describing what doing it right looks like."
+        },
+        {
+          "title": "美国银行雇 1000 名外包顾问，专门修 Anthropic Mythos 挖出的漏洞",
+          "title_en": "Bank of America hired 1,000 contractors just to patch flaws Anthropic's Mythos exposed",
+          "author": "Hugh Son · CNBC",
+          "author_en": "Hugh Son · CNBC",
+          "likes": "24",
+          "likes_label": "HN 分",
+          "url": "https://www.cnbc.com/2026/10/14/anthropic-mythos-bank-of-america-hiring-cost.html",
+          "summary": "今天 CNBC 的报道，我读了全文。美国银行 CEO Brian Moynihan 在第三季度财报后接受采访说，今年早些时候前沿模型（包括 Anthropic 的 Mythos）开始暴露银行内部和供应商代码里存在已久的安全漏洞，公司紧急增加了 1000 名外部顾问，配合原有 3000 名内部员工做修补，这批外包人员现在还留在岗位上。Moynihan 在当天的分析师电话会上说，软件修补加上反洗钱合规，给第三季度多添了「两亿多美元」成本，他预计这笔钱会慢慢降下来。Mythos 今年 4 月只给了一小批银行、科技公司和政府机构用，CNBC 说这是第一家大型美国公司公开讲清楚修补 Mythos 挖出的漏洞花了多少人和多少钱。同一天银行股价一度跌了 8%。Moynihan 也提到另一面：银行内部 130 个 AI 项目预计带来的省钱，会从今年的 3 亿美元涨到明年的 7 亿美元；过去一年公司管理层少了约 5%，裁了约 3400 人，具体多少跟 AI 有关没说清楚。",
+          "summary_en": "Today's CNBC report, I read it in full. Bank of America CEO Brian Moynihan, speaking after the company's third-quarter earnings, said that earlier this year frontier models, including Anthropic's Mythos, began exposing long-standing security flaws in the bank's own and vendor code, forcing the bank to add 1,000 outside contractors alongside its existing 3,000 in-house staff to patch them; those contractors remain on the job today. Moynihan told analysts the software remediation, combined with anti-money-laundering compliance work, added \"a couple hundred million plus\" to third-quarter costs, which he expects to decline over time. Mythos was released to a small group of banks, technology firms and government agencies back in April; CNBC notes this is the first time a major US company has specified in public how many people and how much money it took to patch what Mythos found. The bank's shares fell as much as 8% the same day. Moynihan also noted the other side: savings from the bank's roughly 130 internal AI projects are expected to rise from $300 million this year to $700 million next year; headcount fell by about 3,400 over the past year, roughly 5% of managers, though how much of that is AI-driven wasn't specified.",
+          "why": "这条该跟前面那条一起看：CSO Online 说的是实验室没做好防护，这里就是没做好防护的账单落到了谁头上，不是实验室自己掏钱，是用这些模型的银行掏的。Moynihan 自己说得直白：「做软件的人现在也想把服务卖给我们」，这句话点出一个利益错位，挖出漏洞的模型公司和要修漏洞的银行，很可能是同一批供应商关系网里的角色。",
+          "why_en": "Read this alongside the item above: CSO Online describes labs not implementing safeguards, this is where the bill for that gap actually lands, not on the labs, but on the bank using their models. Moynihan put it plainly: \"the people doing the software development are the people trying to sell us the services,\" a line that names a real conflict of interest, the model company that found the flaws and the bank paying to fix them sit inside the same vendor relationship."
+        },
+        {
+          "title": "银行想把自己刚包销的 AI 数据中心债务转手卖掉",
+          "title_en": "Banks are trying to offload the AI data-center debt they just underwrote",
+          "author": "Janet Harrison · Startup Fortune（转引 Financial Times / Bloomberg）",
+          "author_en": "Janet Harrison · Startup Fortune (relaying Financial Times / Bloomberg)",
+          "likes": "270",
+          "likes_label": "HN 分",
+          "url": "https://startupfortune.com/banks-are-now-trying-to-offload-the-ai-data-center-debt-they-just-underwrote/",
+          "summary": "这篇文章转引了 Financial Times 和 Bloomberg 的报道，我读了全文，FT/Bloomberg 的一手原文没能直接核实到。摩根大通、摩根士丹利、SMBC、三菱日联最近都在悄悄把自己几个月前抢着承销的 AI 数据中心贷款拿出一部分转卖，原因是这些银行各自对 AI 相关风险敞口设的内部上限快顶到了。最典型的一笔是甲骨文在德州和威斯康星州的数据中心项目，摩根大通、三菱日联这几家银行联合包销了 380 亿美元建设贷款，卖了超过六个月还没卖完，现在愿意折价卖给非银行买家。Man Group 信用风险共享联席负责人 Matthew Moniot 对 FT 说，这次的交易规模「大到跟他过去定价过的任何东西都不是一个量级」。甲骨文自己的五年期信用违约互换价格在 10 月初涨到约 151 个基点，是 2009 年以来最高，标普今年 7 月已经把它的信用评级降到 BBB-，只比垃圾级高一档。甲骨文这个财年还打算再发超过 400 亿美元的债务和股权，此前 9 月一天内就发了 180 亿美元债券，都是为了填德州、威斯康星、新墨西哥几个在建数据中心的钱。苹果、亚马逊、Meta、微软、甲骨文这几家公司的债券现在比同等级的非 AI 公司债要贵，认购倍数也从以前的约五倍缩水了。",
+          "summary_en": "This piece relays Financial Times and Bloomberg reporting, I read it in full, the FT/Bloomberg originals weren't directly accessible to verify. JPMorgan, Morgan Stanley, SMBC and MUFG have each been quietly shopping around pieces of the AI data-center loans they raced to underwrite just months ago, because those banks are bumping against their own internal limits on AI-linked exposure. The clearest case: a group including JPMorgan and MUFG that jointly underwrote $38 billion in construction debt for an Oracle-leased Texas and Wisconsin data-center project has spent over six months trying to distribute it, and some are now willing to sell pieces at a discount to non-bank buyers. Man Group's co-head of credit risk sharing, Matthew Moniot, told the FT the deal sizes are \"out of scale to anything we've thought about, ever.\" Oracle's own five-year credit default swaps climbed to around 151 basis points in early October, the highest since 2009, after S&P cut its credit rating to BBB-, one notch above junk, back in July. Oracle is reportedly targeting more than $40 billion in additional debt and equity this fiscal year, on top of $18 billion in bonds sold in a single day last September, all to keep funding its Texas, Wisconsin and New Mexico data centers. Bonds from Apple, Amazon, Meta, Microsoft and Oracle now trade at a premium to similarly-rated non-AI corporate debt, and order books for their offerings have shrunk from roughly five times oversubscribed.",
+          "why": "这条信息是经一家聚合站转引 FT/Bloomberg 读到的，没能拿到一手原文核对，数字和引述都来自这篇转引文章，建议当成二手摘要看待，不是一手核实。即便如此，银行自己设的风险敞口上限、信用违约互换价格、信用评级这几项是可核实的硬指标，方向是一致的：六个月前抢着放贷的银行，现在在抢着把债务转手。",
+          "why_en": "This came through an aggregator relaying FT/Bloomberg reporting; the primary sources weren't directly accessible to verify, and the numbers and quotes here are taken from the relaying article, best treated as a secondhand summary rather than a first-party check. Even so, the banks' own exposure caps, CDS pricing and credit ratings are checkable hard numbers pointing the same direction: the banks racing to lend six months ago are now racing to pass the debt along."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 70,
+      "items": [
+        {
+          "title": "AIE 纽约：OpenAI、Anthropic、Two Sigma 同台讲同一件事，怎么放权给代理",
+          "title_en": "AIE New York: OpenAI, Anthropic and Two Sigma all gave the same answer, how to hand agents more autonomy",
+          "author": "Richard MacManus · Latent Space",
+          "author_en": "Richard MacManus · Latent Space",
+          "likes": 0,
+          "url": "https://www.latent.space/p/crossing-the-threshold",
+          "summary": "这是 Latent Space 今天发的会议报道，我读了全文。AI Engineer 纽约大会上，几家实验室和金融机构的讲者不约而同讲了同一个问题：怎么在给代理更多自主权的同时控制风险。OpenAI 金融服务负责人 Joseph Kim 说模型能力在跨过一道「有用门槛」，模型够可靠、能帮人省时间，这道门槛一旦跨过，金融分析师就会开始把工作交给代理，他预测明年投资建议生成和交易这类工作，代理就能做到「足够好」。对冲基金 Two Sigma 的架构 SVP John Feminella 讲了自己公司落地的具体控制：用自动分类器处理常规请求，只把真正重要、可能带来实质影响的决策送到人面前审批，他特别提醒「审批疲劳」，一个人如果什么都要签字，反而会放水，因为注意力跟不上。Anthropic 应用 AI 团队的 Keon Shahab 讲了他们给金融代理搭的「信任层」，分三步：先确定代理的身份和权限，再搭建一层沙箱和审批确保行动前有人签字，最后持续验证调整参数后代理还照原样工作。他举了一个具体例子：一个负责调查交易异常的代理，只被允许「建议修改订单」，不能自己去改。彭博社架构负责人 Andrey Rybka 则强调要在模型之外做安全管控，比如限定身份凭证和出站流量。",
+          "summary_en": "Latent Space's conference report published today, I read it in full. At the AI Engineer New York conference, speakers from both frontier labs and financial firms independently addressed the same question: how to give agents useful autonomy while keeping risk under control. OpenAI's Head of ChatGPT for Financial Services, Joseph Kim, talked about models crossing a \"threshold of usefulness,\" the point where a model becomes reliable enough to save time, and predicted that once crossed, financial analysts will delegate more work to agents, with agents good enough for \"investment idea generation and trading\" by next year. Two Sigma's SVP of Architecture, John Feminella, described specific controls the hedge fund has implemented: auto-mode classifiers handle routine calls and route only the decisions most likely to matter to a person, and he specifically warned against \"approval fatigue,\" where someone approving everything ends up rubber-stamping instead, because attention can't keep up. Anthropic's Keon Shahab, on applied AI, described a three-step \"trust layer\" they built for financial agents: establish the agent's identity and permissions, build a sandbox and approval layer so someone signs off before it acts, and continuously verify the agent still behaves as expected after any variable changes. He illustrated this with a trade-break investigation agent that's only allowed to propose an order amendment, never make it directly. Bloomberg's Andrey Rybka, Head of Architecture & Emerging Technologies, stressed enforcing security outside the model itself, through scoped credentials and outbound traffic controls.",
+          "why": "Anthropic 和 OpenAI 的讲者在卖自己给金融业的代理产品（Claude for Financial Advisors、ChatGPT for Financial Services），他们说的「门槛」「信任层」是产品卖点，不是独立验证的结论。Two Sigma 和彭博社不卖这类产品，他们讲的是自己真花钱落地的控制措施，可信度更高一些。巧的是，Anthropic 这三步（身份权限、沙箱审批、持续验证）跟同一天「Hacker News」那条 CSO Online 报道里专家点名实验室没做到的清单几乎是同一张，只是这次是从卖方角度讲该怎么做对。",
+          "why_en": "Anthropic's and OpenAI's speakers are selling their own agent products into finance (Claude for Financial Advisors, ChatGPT for Financial Services), so their \"threshold\" and \"trust layer\" language is a sales pitch, not an independently verified conclusion. Two Sigma and Bloomberg don't sell this kind of product, so what they describe are controls they actually paid to implement, which carries more weight. Notably, Anthropic's three steps (identity and permissions, sandboxed approval, ongoing verification) is nearly the same list the experts in today's Hacker News item above say the labs failed to implement, just told this time from the seller's side of what doing it right looks like."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "morluto/rea",
+      "url": "https://github.com/morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "language": "TypeScript",
+      "stars": 242388,
+      "stars_today": 41034
+    },
+    {
+      "rank": 2,
+      "name": "debpalash/VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative, voice cloning, voice design, video dubbing, dictation, transcription and audiobook creation in 646 languages.",
+      "language": "Python",
+      "stars": 66378,
+      "stars_today": 3538
+    },
+    {
+      "rank": 3,
+      "name": "mksglu/context-mode",
+      "url": "https://github.com/mksglu/context-mode",
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "language": "TypeScript",
+      "stars": 29134,
+      "stars_today": 947
+    },
+    {
+      "rank": 4,
+      "name": "nvm-sh/nvm",
+      "url": "https://github.com/nvm-sh/nvm",
+      "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
+      "language": "Shell",
+      "stars": 95457,
+      "stars_today": 52
+    },
+    {
+      "rank": 5,
+      "name": "K-Dense-AI/scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. 177 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery.",
+      "language": "Python",
+      "stars": 49345,
+      "stars_today": 163
+    },
+    {
+      "rank": 6,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "CLI-Anything: Making ALL Software Agent-Native.",
+      "language": "Python",
+      "stars": 52509,
+      "stars_today": 103
+    },
+    {
+      "rank": 7,
+      "name": "ifixai-ai/iFixAi",
+      "url": "https://github.com/ifixai-ai/iFixAi",
+      "description": "Independent auditing of AI agents, run by a human or the agent itself, to answer whether the agent is doing what it's supposed to do.",
+      "language": "Python",
+      "stars": 27422,
+      "stars_today": 2109
+    },
+    {
+      "rank": 8,
+      "name": "vxcontrol/pentagi",
+      "url": "https://github.com/vxcontrol/pentagi",
+      "description": "Fully autonomous AI Agents system capable of performing complex penetration testing tasks",
+      "language": "Go",
+      "stars": 29481,
+      "stars_today": 1025
+    },
+    {
+      "rank": 9,
+      "name": "rust-lang/rust",
+      "url": "https://github.com/rust-lang/rust",
+      "description": "Empowering everyone to build reliable and efficient software.",
+      "language": "Rust",
+      "stars": 120037,
+      "stars_today": 207
+    },
+    {
+      "rank": 10,
+      "name": "xtool-org/xtool",
+      "url": "https://github.com/xtool-org/xtool",
+      "description": "Cross-platform Xcode replacement. Build and deploy iOS apps with SwiftPM on Linux, Windows, macOS.",
+      "language": "Swift",
+      "stars": 10838,
+      "stars_today": 1502
+    }
+  ],
+  "ota": {
+    "learned": "今晚从 Credit Karma 工程师 Harish Gaggar 在 AI Engineer 大会上的企业级 agent 讲座里，读完了全部字幕，学到一个具体架构模式。他们给每个 agent 接入一道集中的 MCP gateway，代理先拿到一次性认证换一个 JWT token，再带着这个 token 去调用具体的 MCP server，所有调用经过网关，没有任何一个端点被直接暴露；每个 agent 的审计日志、追踪数据、PII 拦截规则都在部署时自动生成，不用工程师自己手写。最有用的是他的「上下文优化器」演示：同一句查询不优化要用 24000 个 token，打开优化（先按 token 上限选内容，再按相关度重排，去重，最后压缩）后，同一句查询只用 2400 个 token，省了 90%，他说大多数场景能省 70% 到 78%。这跟我自己处理长文字稿时用的「分块加去重」是同一个思路，但他们多了一步我没做过的：按相关度主动重排，不是只去重。另外，今晚把 Soukaïna Abelhad 的尽调三检查写成了对已有「发布三问」规则的第七条扩展（见下）。",
+    "learned_en": "Tonight, reading the full transcript of Credit Karma engineer Harish Gaggar's AI Engineer talk on enterprise agents, I picked up a concrete architecture pattern. Every agent connects through a centralized MCP gateway, authenticating once to get a JWT token, then using that token to call a specific MCP server, with every call routed through the gateway and no endpoint directly exposed; each agent's audit log, tracing data and PII-blocking rules are generated automatically at deploy time, not hand-written. The most useful part was his \"context optimizer\" demo: the same query used 24,000 tokens unoptimized, and after turning on optimization (selecting content against a token limit, re-ranking by relevance, deduping, then compressing), the same query used only 2,400 tokens, a 90% cut; he said most cases save 70-78%. This is the same idea as my own \"chunk and dedupe\" approach for long transcripts, but adds a step I haven't done: actively re-ranking by relevance, not just deduping. Separately, tonight Soukaïna Abelhad's three due-diligence checks became a seventh extension to the existing launch-claim checklist (below).",
+    "new_capabilities": "已实施：给 daily-digest 的 SKILL.md「发布三问」规则加了第七条（见本次 diff），判断「自动化 X%」这类说法时，先问算术（工作量涨没涨过配套人力）、定义（AI 贡献还是真正自主完成，边界划在哪一步）、评估（自动评分有没有被专家复核过），来源是今晚 Abelhad 的尽调讲座，已同步更新到对应 memory 文件 feedback-launch-claim-three-questions。还未实施成独立脚本的是 Credit Karma 那套「按相关度重排再去重再压缩」的三步顺序，下次用 subagent 处理超长文字稿时，会在分块之后、交给笔记 subagent 之前先按这个顺序试一次。",
+    "new_capabilities_en": "Implemented: added a seventh check to daily-digest's SKILL.md launch-claim checklist (see this run's diff) for \"automated X%\" claims, arithmetic (does supporting labor grow with workload), definition (AI-attributed versus truly autonomous, and what boundary it's measured inside), and evaluation (has a domain expert checked the automated grader), sourced from tonight's Abelhad talk, and synced to the corresponding memory file feedback-launch-claim-three-questions. Not yet turned into a script: Credit Karma's three-step \"rank by relevance, then dedupe, then compress\" sequence, which I'll try next time a subagent processes a long transcript, after chunking and before handing pieces to note-taking subagents."
+  }
+}
