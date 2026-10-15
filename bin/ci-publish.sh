@@ -87,6 +87,7 @@ if python3 bin/quality-check.py "$F"; then
   fi
   commit_back "Publish 每日情报 $DAY (auto, cloud — quality pass → prod)"
   node bin/send-newsletter.mjs "$F" "$BROADSHEET" || echo "newsletter send failed (non-fatal)"
+  [[ -f "newsletter-sent/$DAY" ]] && commit_back "Newsletter sent for 每日情报 $DAY"
 
   # Mirror to the public "learning in public" repo (hhxxttxs) — best-effort, token-gated.
   if [[ -n "${PUBLIC_REPO_TOKEN:-}" ]]; then

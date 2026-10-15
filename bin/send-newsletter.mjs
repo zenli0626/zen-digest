@@ -4,6 +4,11 @@
 //
 // Usage: node bin/send-newsletter.mjs <digest.json> [broadsheet.png]
 // Env: SUPABASE_URL, SUPABASE_SERVICE_KEY, RESEND_API_KEY, NEWSLETTER_FROM
+//      NEWSLETTER_DRY_RUN=1 — fetch subscribers and build the emails, but send nothing.
+//
+// One send per issue: after a send it writes newsletter-sent/<date>; if that file already
+// exists it skips. The caller commits the marker, so the cloud run and the laptop-triggered
+// newsletter workflow never both mail the same issue.
 //
 // If RESEND_API_KEY is unset, this is a deliberate no-op (exit 0) so the send
 // step stays wired into ci-publish.sh but does nothing until Resend is
@@ -56,12 +61,19 @@ async function main() {
   }
 
   const fs = await import('node:fs');
+  const dryRun = process.env.NEWSLETTER_DRY_RUN === '1';
   let digest;
   try {
     digest = JSON.parse(fs.readFileSync(digestPath, 'utf8'));
   } catch (err) {
     console.error(`could not read/parse ${digestPath}:`, err.message);
     process.exit(1);
+  }
+
+  const marker = `newsletter-sent/${digest.date}`;
+  if (fs.existsSync(marker)) {
+    console.log(`${marker} exists — this issue was already emailed, skipping send`);
+    return;
   }
 
   // 1) Pull active subscribers.
@@ -87,7 +99,7 @@ async function main() {
     console.log('no active subscribers, nothing to send');
     return;
   }
-  console.log(`sending to ${subscribers.length} subscriber(s)`);
+  console.log(`${dryRun ? '[dry run] would send' : 'sending'} to ${subscribers.length} subscriber(s)`);
 
   // 2) Build the email body per language variant, then substitute the
   //    per-recipient unsubscribe link.
@@ -96,6 +108,15 @@ async function main() {
   const bodyBoth = buildBody(digest, 'both');
   const subjectZh = `每日情报 · ${digest.date} · ${digest.banner || ''}`.trim();
   const subjectEn = `Daily Intel · ${digest.date}`;
+
+  if (dryRun) {
+    const langs = subscribers.reduce((m, s) => ({ ...m, [s.lang]: (m[s.lang] || 0) + 1 }), {});
+    console.log(`[dry run] by lang: ${JSON.stringify(langs)}`);
+    console.log(`[dry run] subject zh/both: ${subjectZh}`);
+    console.log(`[dry run] subject en: ${subjectEn}`);
+    console.log(`[dry run] body sizes: zh=${bodyZh.length} en=${bodyEn.length} both=${bodyBoth.length} chars`);
+    return;
+  }
 
   let sent = 0, failed = 0;
 
@@ -147,6 +168,10 @@ async function main() {
   }
 
   console.log(`done: sent=${sent} failed=${failed}`);
+  if (sent > 0) {
+    fs.mkdirSync('newsletter-sent', { recursive: true });
+    fs.writeFileSync(marker, `sent=${sent} failed=${failed} at=${new Date().toISOString()}\n`);
+  }
 }
 
 // Build a simple, inline-styled bilingual (or single-language) HTML email
