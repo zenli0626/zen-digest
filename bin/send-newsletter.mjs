@@ -70,15 +70,19 @@ async function main() {
     process.exit(1);
   }
 
+  // NEWSLETTER_TEST_TO=<address>: send one "[TEST]" copy there only — no subscriber list,
+  // no marker read or written, so a test never blocks or replaces the real send.
+  const testTo = process.env.NEWSLETTER_TEST_TO || '';
   const marker = `newsletter-sent/${digest.date}`;
-  if (fs.existsSync(marker)) {
+  if (!testTo && fs.existsSync(marker)) {
     console.log(`${marker} exists — this issue was already emailed, skipping send`);
     return;
   }
 
   // 1) Pull active subscribers.
   let subscribers;
-  try {
+  if (testTo) subscribers = [{ email: testTo, lang: 'both', ref_code: '' }];
+  else try {
     const r = await fetch(
       `${SUPABASE_URL}/rest/v1/subscribers?status=eq.active&select=email,lang,ref_code`,
       {
@@ -106,8 +110,9 @@ async function main() {
   const bodyZh = buildBody(digest, 'zh');
   const bodyEn = buildBody(digest, 'en');
   const bodyBoth = buildBody(digest, 'both');
-  const subjectZh = `每日情报 · ${digest.date} · ${digest.banner || ''}`.trim();
-  const subjectEn = `Daily Intel · ${digest.date}`;
+  const tag = testTo ? '[TEST] ' : '';
+  const subjectZh = `${tag}每日情报 · ${digest.date} · ${digest.banner || ''}`.trim();
+  const subjectEn = `${tag}Daily Intel · ${digest.date}`;
 
   if (dryRun) {
     const langs = subscribers.reduce((m, s) => ({ ...m, [s.lang]: (m[s.lang] || 0) + 1 }), {});
@@ -168,7 +173,7 @@ async function main() {
   }
 
   console.log(`done: sent=${sent} failed=${failed}`);
-  if (sent > 0) {
+  if (sent > 0 && !testTo) {
     fs.mkdirSync('newsletter-sent', { recursive: true });
     fs.writeFileSync(marker, `sent=${sent} failed=${failed} at=${new Date().toISOString()}\n`);
   }
