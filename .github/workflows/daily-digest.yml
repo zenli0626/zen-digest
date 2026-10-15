@@ -46,6 +46,10 @@ jobs:
           elif [ -f "digests/$DAY.json" ]; then
             echo "run=false" >> "$GITHUB_OUTPUT"
             echo "digests/$DAY.json already published — nothing to do."
+          elif git ls-remote --exit-code --heads origin "draft/$DAY" >/dev/null; then
+            # Held drafts live on draft/<date>, not main — don't rebuild one on the retry cron.
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "draft/$DAY already holds tonight's draft — nothing to do."
           elif [ "$HOUR" -ge 12 ] && [ "$HOUR" -lt 21 ]; then
             # Off-season half of the DST pair: 01:37 UTC is 20:37 EST in winter. Never publish
             # before 21:00 NY — the other cron entry covers this season an hour later.

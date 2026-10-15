@@ -5,8 +5,9 @@
 #   diversity gate (hard) → render broadsheet → quality self-check
 #     PASS → vercel --prod + commit + 🟢 paper                (auto-live)
 #     FAIL → vercel preview + commit draft + 🟡 paper + preview link (held for review)
-# Deploys only via VERCEL_TOKEN (repo is NOT git-connected to Vercel), so prod is only ever
-# touched when BOTH the gate and the quality bar pass.
+# The repo IS git-connected to Vercel: every push to main goes to prod (mrqb.space). So only
+# an issue that passed BOTH the gate and the quality bar is committed to main; a held draft
+# goes to its own draft/<date> branch (Vercel gives it a preview, never prod).
 set -uo pipefail
 cd "$(dirname "$0")/.." || exit 1
 DAY="${1:-$(TZ=America/New_York date +%F)}"
@@ -25,6 +26,16 @@ commit_back() {
   git -c user.name="digest-bot" -c user.email="digest-bot@users.noreply.github.com" \
       commit -m "$1" || true
   git push || true
+}
+
+# Held issues never touch main (a push to main is a prod deploy). Promote by merging the
+# branch, or let the laptop's evening run supersede it.
+commit_draft() {
+  git checkout -q -B "draft/$DAY"
+  git add -A
+  git -c user.name="digest-bot" -c user.email="digest-bot@users.noreply.github.com" \
+      commit -m "$1" || true
+  git push -u origin "draft/$DAY" || true
 }
 
 # Send the front-page PNG as a Telegram document (full resolution, readable). Falls back to
@@ -68,7 +79,7 @@ fi
 
 # 1) Diversity gate — hard requirement even to preview-publish.
 if ! python3 bin/validate-digest.py --strict "$F"; then
-  commit_back "Draft 每日情报 $DAY (auto — failed diversity gate)"
+  commit_draft "Draft 每日情报 $DAY (auto — failed diversity gate)"
   notify "🔴 每日情报 $DAY：未过多样性闸门（来源过单一）。已存草稿，未部署。见 Actions 日志。"
   echo "publish: diversity gate failed"; exit 1
 fi
@@ -105,6 +116,6 @@ if python3 bin/quality-check.py "$F"; then
 else
   OUT=$(vercel deploy --yes --token="$VERCEL_TOKEN" 2>&1)
   PREVIEW=$(echo "$OUT" | grep -oE 'https://[a-z0-9.-]+\.vercel\.app' | tail -1)
-  commit_back "Draft 每日情报 $DAY (auto — held for review)"
+  commit_draft "Draft 每日情报 $DAY (auto — held for review)"
   send_paper "🟡 每日情报 $DAY 未过上线自检，已停在预览待你过目。这是草稿版头版长图，满意就手动 promote 到 prod。预览：${PREVIEW:-见 Actions 日志}"
 fi
