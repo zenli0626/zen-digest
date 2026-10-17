@@ -1,7 +1,7 @@
 {
   "date": "2026-10-16",
   "partial": false,
-  "banner": "Claude 写九成代码，审查改法",
+  "banner": "Claude 写九成代码，人审怎么改",
   "banner_en": "Claude writes 90% of the code: review got a new playbook",
   "image": {
     "src": "digests/img/2026-10-16.jpg",
@@ -17,7 +17,7 @@
       "source_url": "https://www.niemanlab.org/2026/10/metas-new-commercial-terms-will-allow-the-scraping-of-news-sites-legal-experts-say/"
     },
     {
-      "text": "挑一个你自己的代码仓库，在 Claude Code 里跑 /security-review，修掉发现的问题，再跑一次，直到某一轮不再有新发现。约 30 分钟，记下每一轮的发现数，最后一轮为零算完成。这是 Brockman 描述的 OpenAI 内部做法的缩小版，他们是停掉约 25% 的生产工程师做这件事；换更强的模型后要重跑一遍。",
+      "text": "挑一个自己的代码仓库，在 Claude Code 里跑 /security-review，修掉发现的问题，再跑一次，直到某一轮不再有新发现。约 30 分钟，记下每一轮的发现数，最后一轮为零算完成。这是 Brockman 描述的 OpenAI 内部做法的缩小版，他们停掉约 25% 的生产工程师做这件事；换更强的模型后要重跑一遍。",
       "text_en": "Pick one of your own repositories, run /security-review in Claude Code, fix what it finds, and run it again until a round turns up nothing new. About 30 minutes; note the number of findings per round, and done is a round with zero. This is a small version of what Brockman describes inside OpenAI, where about 25% of production engineers were pulled onto this; rerun it whenever a stronger model arrives.",
       "source": "No Priors：Greg Brockman（OpenAI）",
       "source_en": "No Priors: Greg Brockman (OpenAI)",
@@ -81,7 +81,7 @@
           "url": "https://www.youtube.com/watch?v=AwuTTOJGEi0",
           "summary": "我读完了整段文字稿（约 8200 词）。数学：Brockman 说 OpenAI 公布了近 400 个重要的公开问题已被解决，其中有百年历史的难题；他说 AI 产生新知识“不可否认”，但还没到提出全新理论。药物发现：他把它排在 OpenAI 最想改造的第一位，认为瓶颈在数据和监管文书，比如临床试验申报要写一年，AI 能压缩；他承认生物数据难得，部分环节数据不存在。产品：他每天用的 Dots 是常开的主动式 agent，盯着消息、日历、待办，早上给他一份清单。网络安全：他称现在是“防守窗口”，前沿模型帮防守方的能力还领先于广泛可得的攻击能力，但后者每次发布都在上升。OpenAI 内部做法是把约 25% 的生产工程师调去只做安全，用当时最强的模型红队自家基础设施，直到模型再找不出新问题，换新模型再来一遍。他还说“安全支出应该远超软件支出”，并说自己可能不对。",
           "summary_en": "I read the full transcript (about 8,200 words). Math: Brockman says OpenAI published almost 400 important open problems now resolved, some a century old; he calls AI producing new knowledge \"impossible to deny\" but not yet whole new theories. Drug discovery: he ranks it first among the fields OpenAI most wants to transform, and says the bottlenecks are data and regulatory paperwork, such as a year to write a clinical-trial filing, which AI can shorten; he concedes biological data is scarce and some steps have none. Product: the Dots agent he uses daily is always on and proactive, watching messages, calendar and to-dos and handing him a list each morning. Cybersecurity: he calls this the \"defender's window\", where frontier models help defenders ahead of broadly available attack capability, which rises with each release. Inside OpenAI, about 25% of production engineers were pulled onto security only, red-teaming their own infrastructure with the strongest model of the time until it found nothing new, and the process repeats with each new model. He also says security spend \"should vastly outstrip software spend\", and adds he may be wrong.",
-          "why": "说话的人是 OpenAI 总裁。公司卖模型，也卖他提到的 Daybreak 防守方项目。因此「近 400 个问题」「25% 工程师」「10 亿美元承诺」都是公司自报，没有第三方数字。访谈里主持人说「GPT-6 已发给超过 10 亿人」，同样没有出处。可以拿走的是那个做法：每换一次模型，就让它把自己的系统查到查不出为止，详见今日行动第 2 条。",
+          "why": "说话的人是 OpenAI 总裁。公司既卖模型，也卖他提到的 Daybreak 防守方项目。所以「近 400 个问题」「25% 工程师」「10 亿美元承诺」全是公司自报，没有第三方数字。访谈里主持人说「GPT-6 已发给超过 10 亿人」，同样没有出处。能拿走的是那个做法：每换一次模型，就让它把自己的系统查到查不出为止，详见今日行动第 2 条。",
           "why_en": "The speaker is OpenAI's president, and the company sells both the models and the Daybreak program for defenders he mentions, so \"almost 400 problems\", \"25% of engineers\" and the \"$1 billion commitment\" are company-reported with no third-party figures. The host's line that GPT-6 reached over a billion people is also unsourced. What transfers is the practice: each time the model changes, let it audit your systems until it finds nothing new (see action 2)."
         }
       ]
@@ -138,9 +138,9 @@
           "likes": "159",
           "likes_label": "HN 分",
           "url": "https://blogs.gnome.org/uraeus/2026/10/15/aiandreverseengineerhardware/",
-          "summary": "Schaller 买的 Plustek 8200i 底片扫描仪换了芯片，Linux 不支持，他用 Claude Code 折腾几个月没进展。后来照 Glorious Eggroll 的办法，让 agent 控制一台 Windows 虚拟机，在 KVM 里跑厂商驱动、直通真设备，宿主机用 usbmon 抓 USB 流量，再抓自己驱动的同样流量，对比差异就是驱动的 bug 清单。几小时出第一张扫描，几天后接近完整，含红外除尘。同一套流程用在 ThinkPad 的 MIPI 摄像头上：一天内修出内核和 libcamera 补丁，包括裁剪选择、增益上限、镜头阴影校正缺失和白平衡统计错误，低光下画面亮度从 31.1 升到 90.9。他把脚本整理成通用的 hw-harness。他自己写明：这是单台设备、单帧结果，蓝色通道在低光下仍偏少约 17%，上游 SANE 在他放弃期间已合入了自己的驱动。",
+          "summary": "Schaller 买的 Plustek 8200i 底片扫描仪换了芯片,Linux 不支持,他用 Claude Code 折腾几个月没进展。后来照 Glorious Eggroll 的办法,让 agent 控制一台 Windows 虚拟机,在 KVM 里跑厂商驱动、直通真设备,宿主机用 usbmon 抓 USB 流量,再抓自己驱动的同样流量,对比差异就是驱动的 bug 清单。几小时出第一张扫描,几天后接近完整,含红外除尘。同一套流程用在 ThinkPad 的 MIPI 摄像头上:一天内修出内核和 libcamera 补丁,包括裁剪选择、增益上限、镜头阴影校正缺失和白平衡统计错误,低光下画面亮度从 31.1 升到 90.9。他把脚本整理成通用的 hw-harness。他自己写明:这是单台设备、单帧结果,蓝色通道在低光下仍偏少约 17%,上游 SANE 在他放弃期间已合入了自己的驱动。",
           "summary_en": "Schaller's Plustek 8200i film scanner had a new chipset Linux did not support, and months of Claude Code attempts went nowhere. Following Glorious Eggroll, he had the agent control a Windows virtual machine, running the vendor driver in KVM with the real device passed through, capturing USB traffic with usbmon on the host, then capturing the same from his own driver; the differences are the driver's bug list. A first scan came within hours and a near-complete driver, including infrared dust removal, within days. The same flow on a ThinkPad MIPI camera produced kernel and libcamera patches in a day, covering crop selection, gain cap, missing lens shading correction and a white-balance statistics bug, raising low-light frame brightness from 31.1 to 90.9. He packaged the scripts as a generic hw-harness. He states these are single-unit, single-frame results, blue is still about 17% short in low light, and upstream SANE merged its own driver while he had given up.",
-          "why": "可迁移的是方法：用同一台仪器录一份能用的、一份不能用的，只看差异。这比让模型对着一堆日志猜强得多。局限也写在原文里：真硬件才是裁判，人要拿着设备验证。详见今日上手。",
+          "why": "可迁移的是方法:用同一台仪器录一份能用的、一份不能用的,只看差异。这比让模型对着一堆日志猜强得多。局限也写在原文里:真硬件才是裁判,人要拿着设备验证。详见今日上手。",
           "why_en": "What transfers is the method: record one working and one failing run with the same instrument and look only at the difference, which beats having a model guess from a pile of logs. The limits are in the post too: real hardware is the judge, and a person holds the device to check. See today's hands-on."
         }
       ]
@@ -240,10 +240,10 @@
   ],
   "ota": {
     "learned": [
-      "重要：今晚的凌晨 2 点草稿把头条定成 Anthropic 三季度营收 168 亿美元，但这条新闻和它的 URL（simonwillison.net 的同一篇）昨天（10-15）已经是当期头条，草稿自己完全没发现是重复。不是我读出来的，是发布前跑 bin/validate-digest.py --strict 时校验器的 7 天查重直接拦了下来，报错写着“already covered in 2026-10-15.json”。一个读起来通顺、三平台三条线都讲得很完整的草稿，照样会把昨天的头条当成今天的新闻重发一遍，流畅不等于对。教训：任何接手别人（包括我自己早几小时）写的草稿，发布前必须真的跑一遍查重脚本，不能只凭读感觉“这条我没见过”。头条换成 Claude Code 团队自己的代码审查流程（claude.dev，今天发的一手材料），配图也从 YouTube 缩略图换成该文章自带的 og 图。",
-      "已实施：新增记忆 feedback-reference-capture-diff。遇到“这个不能用”的问题，先用同一种工具各录一份能用的和不能用的，去掉令牌，diff 之后只给我差异，让我对每处差异写一个假设加一条验证命令，再改代码。来源是 Christian Schaller 的博客，数字是他单台设备的结果，上游 SANE 同期已经有自己的驱动，所以记成待验证。我下次碰到“A 能用 B 不行”的配置或接口问题时先做这一步，这就是检验。",
-      "观察：今晚自己重新抓了一遍 9 个频道的 RSS，7 个 404、2 个正常（含对照频道正常，排除全站故障），和凌晨草稿记的“4 个 404、2 个 500”不是同一批，说明这个故障这几天一直在变，不能拿前一次的结论当这次的结论。",
-      "落选：Anthropic 三季度营收条目本身（与 10-15 期头条同一 URL，校验器拦截后整条连同头条、配图一起换掉）、Korlam/Sonar 的 CI 重建视频（被 claude.dev 这篇一手材料替掉，同一个主题更详细、更可核实）、Modal 10 亿美元年化运行率（纯融资公告，换成 Mercor 的基准覆盖率研究以增加一条新线索）、Claude 揭秘 ECDSA 曲线来源（648 分最高分但偏研究趣闻，不在应用/GTM 这条选题倾向里）、Anthropic 被评最高等级垃圾债（和原头条同一家公司，容易显得在同一条新闻上叠罗汉，头条已换掉后这条也一并跳过）、Postgres 19 因 AI 审查延期（和 Claude Code 审查条目同一主题，会让“审查”这条线占满三条）、swyx 的 AI Engineer 开场（只讲大会和“最高一层循环”，没有可用的具体做法）、Epic 与 Steam 启动速度对比（来源是游戏博客转推文，差 0.24 秒，“靠 AI 写的”说法没有证据）、Simon Willison 的游戏反编译链接（与 10-11 期同一主题）、OpenCode 2.0 和 Meta Muse Spark（10-13、10-15 期已有）、CSO Online 智能体报道（10-15 期已用）。"
+      "重要:今晚的凌晨 2 点草稿把头条定成 Anthropic 三季度营收 168 亿美元,但这条新闻和它的 URL(simonwillison.net 的同一篇) 昨天 (10-15) 已经是当期头条,草稿自己完全没发现是重复。不是我读出来的,是发布前跑 bin/validate-digest.py --strict 时校验器的 7 天查重直接拦了下来,报错写着“already covered in 2026-10-15.json”。一个读起来通顺、三平台三条线都讲得很完整的草稿,照样会把昨天的头条当成今天的新闻重发一遍,流畅不等于对。教训:任何接手别人 (包括我自己早几小时) 写的草稿,发布前必须真的跑一遍查重脚本,不能只凭读感觉“这条我没见过”。头条换成 Claude Code 团队自己的代码审查流程 (claude.dev,今天发的一手材料),配图也从 YouTube 缩略图换成该文章自带的 og 图。",
+      "已实施:新增记忆 feedback-reference-capture-diff。遇到“这个不能用”的问题,先用同一种工具各录一份能用的和不能用的,去掉令牌,diff 之后只给我差异,让我对每处差异写一个假设加一条验证命令,再改代码。来源是 Christian Schaller 的博客,数字是他单台设备的结果,上游 SANE 同期已经有自己的驱动,所以记成待验证。我下次碰到“A 能用 B 不行”的配置或接口问题时先做这一步,这就是检验。",
+      "观察:今晚自己重新抓了一遍 9 个频道的 RSS,7 个 404、2 个正常 (含对照频道正常,排除全站故障),和凌晨草稿记的“4 个 404、2 个 500”不是同一批,说明这个故障这几天一直在变,不能拿前一次的结论当这次的结论。",
+      "落选:Anthropic 三季度营收条目本身 (与 10-15 期头条同一 URL,校验器拦截后整条连同头条、配图一起换掉)、Korlam/Sonar 的 CI 重建视频 (被 claude.dev 这篇一手材料替掉,同一个主题更详细、更可核实)、Modal 10 亿美元年化运行率 (纯融资公告,换成 Mercor 的基准覆盖率研究以增加一条新线索)、Claude 揭秘 ECDSA 曲线来源 (648 分最高分但偏研究趣闻,不在应用/GTM 这条选题倾向里)、Anthropic 被评最高等级垃圾债 (和原头条同一家公司,容易显得在同一条新闻上叠罗汉,头条已换掉后这条也一并跳过)、Postgres 19 因 AI 审查延期 (和 Claude Code 审查条目同一主题,会让“审查”这条线占满三条)、swyx 的 AI Engineer 开场 (只讲大会和“最高一层循环”,没有可用的具体做法)、Epic 与 Steam 启动速度对比 (来源是游戏博客转推文,差 0.24 秒,“靠 AI 写的”说法没有证据)、Simon Willison 的游戏反编译链接 (与 10-11 期同一主题)、OpenCode 2.0 和 Meta Muse Spark(10-13、10-15 期已有)、CSO Online 智能体报道 (10-15 期已用)。"
     ],
     "learned_en": [
       "Important: tonight's 2am draft had led with Anthropic's Q3 revenue ($16.8bn) as the banner, but that exact story and URL (the same simonwillison.net post) was already yesterday's (10-15) banner, and the draft had no idea it was a repeat. I didn't catch it by reading; running bin/validate-digest.py --strict before publish is what caught it, erroring \"already covered in 2026-10-15.json\" from the script's 7-day URL check. A draft that reads smoothly, with three coherent platforms and threads, can still republish yesterday's headline as today's news. Fluent is not the same as correct. Lesson: when adopting anyone else's draft, including my own from a few hours earlier, the dedup script has to actually run before publish, not get skipped because the content reads like it was already checked. Banner swapped to the Claude Code team's own code-review process (claude.dev, published today, primary source), and the lead image swapped from a YouTube thumbnail to that post's own og:image.",
@@ -252,7 +252,7 @@
       "Cut: the Anthropic Q3 revenue item itself (same URL as the 10-15 banner; once the validator caught it, the banner and image were swapped along with it), Korlam/Sonar's CI-rebuild video (replaced by the claude.dev primary source on the same topic, more detailed and more verifiable), Modal's $1B annualized run rate (a bare funding announcement; swapped for Mercor's benchmark-coverage research to add a genuinely new thread), Claude's ECDSA curve-origin reveal (top HN score at 648 but a research curiosity, off this digest's applied/GTM tilt), Anthropic's junk-credit-rating news (same company as the original banner, would have stacked two items on one company; skipped once the banner itself was swapped out), Postgres 19's AI-review delay (same review theme as the Claude Code item, would have made it a third item on one thread), swyx's AI Engineer opening (conference framing and \"the highest loop\", no usable specifics), Epic versus Steam launch speed (a gaming blog relaying tweets, a 0.24 second gap, no evidence for the \"AI-written\" claim), Simon Willison's game-decompilation link (same thread as the 10-11 issue), OpenCode 2.0 and Meta Muse Spark (already in the 10-13 and 10-15 issues), the CSO Online agent story (used 10-15)."
     ],
     "new_capabilities": [
-      "已实施、待验证：记忆 feedback-reference-capture-diff。调用方式：告诉我一个“在 A 能用、在 B 不行”的请求或配置，我会先要两份同口径的抓取，对比后只依据差异列假设和验证命令，不会先改代码。"
+      "已实施、待验证:记忆 feedback-reference-capture-diff。调用方式:告诉我一个“在 A 能用、在 B 不行”的请求或配置,我会先要两份同口径的抓取,对比后只依据差异列假设和验证命令,不会先改代码。"
     ],
     "new_capabilities_en": [
       "Implemented, untested: memory feedback-reference-capture-diff. How to invoke: tell me about a request or config that works in A and fails in B, and I will first ask for two captures taken the same way, then list hypotheses and verification commands from the diff alone, without editing code first."
