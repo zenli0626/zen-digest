@@ -1,0 +1,261 @@
+{
+  "date": "2026-10-16",
+  "partial": false,
+  "banner": "Claude 写九成代码，审查改法",
+  "banner_en": "Claude writes 90% of the code: review got a new playbook",
+  "image": {
+    "src": "digests/img/2026-10-16.jpg",
+    "caption": "本期要图：claude.dev 工程博客《Claude Code 团队怎么做代码审查》的封面图。（图：claude.dev）",
+    "caption_en": "Today's front-page image: the cover graphic from claude.dev's engineering post \"How the Claude Code team does code review.\" (Image: claude.dev)"
+  },
+  "actions": [
+    {
+      "text": "10 月 30 日前，打开自己网站的 robots.txt，查有没有写 meta-externalagent，没有就加一条 Disallow，再决定是否保留 Meta 的商业账号。约 10 分钟，把“屏蔽了 / 没屏蔽、保留 / 停用账号”写进一行备忘算完成。背景：Meta 新商业条款 10 月 30 日生效，继续使用商业账号即视为同意其抓取关联网站并用于训练。",
+      "text_en": "Before October 30, open your own site's robots.txt and check for meta-externalagent; if it is missing, add a Disallow rule, then decide whether to keep your Meta business accounts. About 10 minutes; done when one line of notes says blocked or not, and keep or close the accounts. Background: Meta's new commercial terms take effect October 30, and continuing to use a business account counts as consent to crawling of associated websites and training on them.",
+      "source": "Nieman Lab（Andrew Deck、Hanaa' Tameez）",
+      "source_en": "Nieman Lab (Andrew Deck, Hanaa' Tameez)",
+      "source_url": "https://www.niemanlab.org/2026/10/metas-new-commercial-terms-will-allow-the-scraping-of-news-sites-legal-experts-say/"
+    },
+    {
+      "text": "挑一个你自己的代码仓库，在 Claude Code 里跑 /security-review，修掉发现的问题，再跑一次，直到某一轮不再有新发现。约 30 分钟，记下每一轮的发现数，最后一轮为零算完成。这是 Brockman 描述的 OpenAI 内部做法的缩小版，他们是停掉约 25% 的生产工程师做这件事；换更强的模型后要重跑一遍。",
+      "text_en": "Pick one of your own repositories, run /security-review in Claude Code, fix what it finds, and run it again until a round turns up nothing new. About 30 minutes; note the number of findings per round, and done is a round with zero. This is a small version of what Brockman describes inside OpenAI, where about 25% of production engineers were pulled onto this; rerun it whenever a stronger model arrives.",
+      "source": "No Priors：Greg Brockman（OpenAI）",
+      "source_en": "No Priors: Greg Brockman (OpenAI)",
+      "source_url": "https://www.youtube.com/watch?v=AwuTTOJGEi0"
+    },
+    {
+      "text": "挑一个有 Claude Code（或别的 agent）开 PR 权限的仓库，写三条规则：风险档位由改动本身决定，不是作者决定。文档和带开关的新增自动过；涉及支付、登录、CI 配置这类必须一个人看；agent 的批准不算这个人的批准。约 15-20 分钟，写进 CLAUDE.md 或 CODEOWNERS 算完成。",
+      "text_en": "Pick one of your repositories where Claude Code or another agent can open pull requests, and write three rules: the risk tier is set by the change, not the author. Docs and additions behind a flag auto-approve; anything touching payments, login or CI config needs one person; an agent's approval does not count as that person's. About 15 to 20 minutes; done when it is in CLAUDE.md or CODEOWNERS.",
+      "source": "claude.dev：Addy Osmani、Morgan Westlee Lunt、Qing Wang（Claude Code 团队）",
+      "source_en": "claude.dev: Addy Osmani, Morgan Westlee Lunt, Qing Wang (the Claude Code team)",
+      "source_url": "https://claude.dev/blog/solving-code-review-at-anthropic/"
+    },
+    {
+      "text": "下次有人拿一个 AI 基准分数说“它已经能做某个岗位的工作”，先去 Mercor 的 benchmark map 查一下这个岗位在 O*NET 里的具体任务有没有被覆盖。软件工程、金融分析这类覆盖密，法务秘书、门店管理这类基本没覆盖。约 5 分钟，查完写下“覆盖 / 没覆盖”算完成。",
+      "text_en": "Next time someone cites an AI benchmark score to claim it can already do some job, check Mercor's benchmark map first for whether that job's actual O*NET tasks are covered. Software engineering and financial analysis are covered densely; legal secretaries or retail management are barely covered at all. About 5 minutes; done when you've written down covered or not.",
+      "source": "Mercor Labor Index：Benchmark Map",
+      "source_en": "Mercor Labor Index: Benchmark Map",
+      "source_url": "https://www.mercor.com/research/labor-index/benchmark-map/"
+    }
+  ],
+  "hands_on": {
+    "title": "给一个“在 A 能用、在 B 不行”的请求做对照抓包，再让 Claude 只看差异",
+    "title_en": "Run a paired capture on a request that works in one place and fails in another, then have Claude read only the diff",
+    "why": "Christian Schaller 给一台没有 Linux 驱动的底片扫描仪写驱动，卡了几个月。后来让 Claude 在虚拟机里录下厂商 Windows 驱动的 USB 流量，再和自己驱动的流量对比，几小时内出了第一张能用的扫描。把这个方法缩到一个 HTTP 请求上，几分钟就能试。需要说明：这是他一个人在自己设备上的结果，不是评测。",
+    "why_en": "Christian Schaller was stuck for months writing a Linux driver for a film scanner. Then he had Claude record the vendor's Windows driver USB traffic in a virtual machine and compare it with his own driver's traffic, and he had a first usable scan within hours. Shrunk to one HTTP request, the method takes minutes to try. One caveat: these are one person's results on his own hardware, not a benchmark.",
+    "time": "20 分钟",
+    "time_en": "20 minutes",
+    "steps": [
+      "选一个“换个账号或环境就失败”的请求，例如某个 API 在 curl 里能通、在你的程序里报错。",
+      "用同样的方式各抓一次：curl -sv \"<网址>\" -H \"<请求头>\" -o /dev/null 2> good.txt，再对失败的那一边抓成 bad.txt。",
+      "先去掉令牌：sed -i '' -E 's/(Authorization: ).*/\\1REDACTED/I' good.txt bad.txt，然后 diff -u good.txt bad.txt > diff.txt。",
+      "在 Claude Code 里说：“good.txt 是能用的请求，bad.txt 是失败的。只根据 diff.txt 列出每一处差异，每处给一个假设和一条验证命令，先不要改代码。”",
+      "自己跑排第一的那条验证命令。命令结果支持假设，才算找到原因。"
+    ],
+    "steps_en": [
+      "Pick a request that fails when you change account or environment, for example an API call that works in curl and errors in your program.",
+      "Capture each side the same way: curl -sv \"<url>\" -H \"<headers>\" -o /dev/null 2> good.txt, then the same for the failing side as bad.txt.",
+      "Strip tokens first: sed -i '' -E 's/(Authorization: ).*/\\1REDACTED/I' good.txt bad.txt, then diff -u good.txt bad.txt > diff.txt.",
+      "In Claude Code say: \"good.txt is the working request and bad.txt the failing one. Using only diff.txt, list every difference, with one hypothesis and one verification command each. Do not change any code yet.\"",
+      "Run the top verification command yourself. The cause counts as found only when its output supports the hypothesis."
+    ],
+    "source": "Christian Schaller 的博客：用 AI 逆向硬件",
+    "source_en": "Christian Schaller's blog: Using AI to reverse engineer hardware",
+    "source_url": "https://blogs.gnome.org/uraeus/2026/10/15/aiandreverseengineerhardware/"
+  },
+  "meta_read": "今天的说法大多是各家自己报的数。Brockman 说的“近 400 个问题”“25% 工程师”是 OpenAI 自己的；Claude Code 团队说自己 PR 翻倍、回退降四成，也是自己统计的。Mercor 这篇说的是为什么这类说法本来就难核实：市面上的 AI 基准测试，九成的工时它们根本没测过，测的那一成还明显偏向软件、金融这类高薪、AI 最先盯上的岗位。也就是说，“AI 能做多少工作”这个问题，连拿什么去量都还没定下来。\n\n另一条线是怎么在没有人把关每一行代码的情况下留底。Schaller 靠两份同口径抓包定位 bug，Claude Code 团队给每个 PR 留谁写的、谁批的、检查结果存档，发现堵车了就设三轮审查上限，Brockman 说的安全排查也是一轮轮查到模型自己找不出新问题为止。这些不是在证明 AI 审查比人准，是在证明查过这件事可以留痕，可以回头核对。",
+  "meta_read_en": "Most of today's claims are self-reported. Brockman's \"almost 400 problems\" and \"25% of engineers\" are OpenAI's own, and the Claude Code team's own numbers on doubled PRs and a 40% drop in reverts are also their own count. Mercor's piece explains why claims like these are hard to check in the first place: the AI benchmarks the industry leans on simply don't measure 90% of American working hours, and the slice they do measure skews toward software and finance, the high-wage work AI aimed at first. Put plainly, nobody has settled what to measure \"how much work AI can do\" against.\n\nThe second thread is how to leave a record when no person reads every line. Schaller finds bugs from two captures taken the same way, the Claude Code team logs who wrote and approved each PR plus its saved test results and caps review at three rounds, and Brockman's security sweep repeats until the model itself finds nothing new. None of this proves AI reviews better than people. It proves the check left something you can go back and verify.",
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "No Priors：OpenAI 总裁 Greg Brockman 谈数学突破、药物发现和“防守窗口”",
+          "title_en": "No Priors: OpenAI president Greg Brockman on math results, drug discovery and the \"defender's window\"",
+          "author": "No Priors · Greg Brockman（OpenAI）",
+          "author_en": "No Priors · Greg Brockman (OpenAI)",
+          "likes": "9150",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=AwuTTOJGEi0",
+          "summary": "我读完了整段文字稿（约 8200 词）。数学：Brockman 说 OpenAI 公布了近 400 个重要的公开问题已被解决，其中有百年历史的难题；他说 AI 产生新知识“不可否认”，但还没到提出全新理论。药物发现：他把它排在 OpenAI 最想改造的第一位，认为瓶颈在数据和监管文书，比如临床试验申报要写一年，AI 能压缩；他承认生物数据难得，部分环节数据不存在。产品：他每天用的 Dots 是常开的主动式 agent，盯着消息、日历、待办，早上给他一份清单。网络安全：他称现在是“防守窗口”，前沿模型帮防守方的能力还领先于广泛可得的攻击能力，但后者每次发布都在上升。OpenAI 内部做法是把约 25% 的生产工程师调去只做安全，用当时最强的模型红队自家基础设施，直到模型再找不出新问题，换新模型再来一遍。他还说“安全支出应该远超软件支出”，并说自己可能不对。",
+          "summary_en": "I read the full transcript (about 8,200 words). Math: Brockman says OpenAI published almost 400 important open problems now resolved, some a century old; he calls AI producing new knowledge \"impossible to deny\" but not yet whole new theories. Drug discovery: he ranks it first among the fields OpenAI most wants to transform, and says the bottlenecks are data and regulatory paperwork, such as a year to write a clinical-trial filing, which AI can shorten; he concedes biological data is scarce and some steps have none. Product: the Dots agent he uses daily is always on and proactive, watching messages, calendar and to-dos and handing him a list each morning. Cybersecurity: he calls this the \"defender's window\", where frontier models help defenders ahead of broadly available attack capability, which rises with each release. Inside OpenAI, about 25% of production engineers were pulled onto security only, red-teaming their own infrastructure with the strongest model of the time until it found nothing new, and the process repeats with each new model. He also says security spend \"should vastly outstrip software spend\", and adds he may be wrong.",
+          "why": "说话的人是 OpenAI 总裁。公司卖模型，也卖他提到的 Daybreak 防守方项目。因此「近 400 个问题」「25% 工程师」「10 亿美元承诺」都是公司自报，没有第三方数字。访谈里主持人说「GPT-6 已发给超过 10 亿人」，同样没有出处。可以拿走的是那个做法：每换一次模型，就让它把自己的系统查到查不出为止，详见今日行动第 2 条。",
+          "why_en": "The speaker is OpenAI's president, and the company sells both the models and the Daybreak program for defenders he mentions, so \"almost 400 problems\", \"25% of engineers\" and the \"$1 billion commitment\" are company-reported with no third-party figures. The host's line that GPT-6 reached over a billion people is also unsourced. What transfers is the practice: each time the model changes, let it audit your systems until it finds nothing new (see action 2)."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 150,
+      "items": [
+        {
+          "title": "Meta 的新商业条款将允许抓取新闻网站，法律专家说",
+          "title_en": "Meta's new commercial terms will allow scraping of news sites, legal experts say",
+          "author": "Nieman Lab · Andrew Deck、Hanaa' Tameez",
+          "author_en": "Nieman Lab · Andrew Deck, Hanaa' Tameez",
+          "likes": "148",
+          "likes_label": "HN 分",
+          "url": "https://www.niemanlab.org/2026/10/metas-new-commercial-terms-will-allow-the-scraping-of-news-sites-legal-experts-say/",
+          "summary": "从 10 月 30 日起，继续使用 Facebook、Instagram 或 WhatsApp 商业账号，就视为授权 Meta 用爬虫、机器人和「测试凭据」访问账号「关联」的网站，并可用这些内容训练 Meta 的产品。三位受邀审阅条款的法律专家认为，这能被用来主张 Meta 可抓取新闻网站内容训练 AI。目前商业账号没有退出选项，条款写的是不同意就停止商业使用。Meta 发言人称这只是把分散在各处的抓取条款合并，不会改变抓取方式，内容所有者仍可用 robots.txt 管理。专家指出，新条款给了 Meta 主张商业条款优先于 robots.txt 的口子；康奈尔的 Grimmelmann 说「测试凭据」技术上允许注册假用户绕过登录墙，Meta 没回答是否会绕过付费墙。威斯康星的 Sobel 把它比作反垄断里的「搭售」。",
+          "summary_en": "From October 30, continuing to use a Facebook, Instagram or WhatsApp business account counts as authorizing Meta to use crawlers, bots and \"test credentials\" on websites \"associated with\" the account, and to use that content to train Meta products. Three legal experts who reviewed the terms say this could be used to argue Meta may scrape news sites to train AI. Business accounts have no opt-out; the terms say to stop commercial use if you disagree. A Meta spokesperson says the language only consolidates crawling terms scattered elsewhere, will not change how Meta crawls, and that owners can still use robots.txt. Experts say the new text gives Meta an opening to argue the commercial terms override robots.txt; Cornell's Grimmelmann says \"test credentials\" would technically allow signing up as a fake user to get past login walls, and Meta did not answer whether paywalls would be bypassed. Wisconsin's Sobel compares it to \"tying\" in antitrust law.",
+          "why": "对任何靠 Meta 引流的网站，这是一个有期限的二选一：保留账号就默认让渡抓取权，停用就丢流量。可执行的是 robots.txt，但法律专家认为它未必拦得住，这一点 Meta 的回应没有解决，详见今日行动第 1 条。",
+          "why_en": "For any site that gets traffic from Meta, this is a dated either-or: keep the account and concede crawling by default, or close it and lose the traffic. The one lever is robots.txt, but the legal experts doubt it would hold, and Meta's reply does not resolve that (see action 1)."
+        },
+        {
+          "title": "Claude Code 团队怎么跟上 agent 写代码的速度做审查",
+          "title_en": "How the Claude Code team keeps up code review at agent speed",
+          "author": "claude.dev · Addy Osmani、Morgan Westlee Lunt、Qing Wang",
+          "author_en": "claude.dev · Addy Osmani, Morgan Westlee Lunt, Qing Wang",
+          "likes": "224",
+          "likes_label": "HN 分",
+          "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+          "summary": "我读完了全文。Claude Code 自己的代码库里，Claude 写了大约九成代码；6 月到 9 月，这个仓库合并的 PR 数翻了一倍多，被回退的比例同时降了四成以上。审查分几层：开 PR 前先让 Claude 自己跑测试或截图比对设计验证一遍，再用带新上下文的子 agent 看一遍 diff；每个 PR 开出来先过一道 Claude 审查，几个 agent 并行找 bug，再有一组单独投票，够票数才贴出来，纯风格、清理类发现直接过滤掉，这个过滤规则是先在自己的 PR 上 A/B 测过才留下的，上线后内部 PR 收到实质评论的比例从 16% 升到 54%；安全审查单独一道，有发现不能合并；之后才是常规的 lint、测试、构建；人工批准按风险分三档：低风险（文档、带开关的新增）自动过，中风险要一个人，高风险和几类敏感路径要两个人，档位由改动本身决定而不是作者，agent 的批准永远不算人的批准，新提交一来之前的批准要重新给。他们还发现一个 agent 作者和一个 agent 审查者能互相折腾一整夜，一条 PR 改了五十多轮才停；查了下 reviewer 反复标记的 bug，约 59% 都是审查第一轮之前就一直存在的老代码，不是没审好，是老代码没人清，于是加了三轮审查上限，只审新增的 diff，同类 bug 一次性归成一类提，不重复提已经提过的发现。",
+          "summary_en": "I read the full post. In Claude Code's own repository, Claude writes about 90% of the code; from June to September, merged pull requests more than doubled while the share that got reverted fell by more than 40%. Review runs in layers: before a PR exists, Claude verifies its own work by running tests or comparing a screenshot to the design, then a subagent with fresh context reviews the diff; every PR then gets a Claude review first, with several agents hunting bugs in parallel and a separate group voting on each finding before it is posted, filtering out style and cleanup-only comments, a filter they A/B tested on their own PRs before keeping. After launch, the share of internal PRs getting substantive comments rose from 16% to 54%. Security review runs separately and blocks merge on any open finding. Then the usual lint, tests and build. Human approval is tiered by risk: low risk (docs, additions behind a flag) needs no human, medium needs one, high risk and a few sensitive paths need two, with the change itself setting the tier, not the author; an agent's approval never counts as a person's, and new commits require the approval again. They also found an agent author and an agent reviewer could keep each other busy all night, one PR went through more than fifty rounds before its author stopped it, and checking git blame on what kept getting flagged showed about 59% was code that had already been there before the reviewer's first pass, meaning old bugs nobody had cleaned up, not a reviewer doing a bad job. So they capped review at three rounds, re-review only the new diff, and group same-type bugs into one comment instead of repeating them.",
+          "why": "这是 Anthropic 自己写自己的流程，「九成代码是 Claude 写的」「PR 翻倍、回退降四成」「16% 到 54%」都是公司自报，没有第三方审计。上周（10-13）那篇讲的是 Anthropic 大仓库怎么把 git 换成自研系统 Scion 来扛每天 3 万次改动，是基础设施规模问题；这篇讲的是审查规则本身，两者不是一件事，别把两条新闻的数字混着用。能直接抄的是风险分档和 REVIEW.md 的写法，详见今日行动第 3 条。",
+          "why_en": "This is Anthropic writing about its own process: \"90% of the code is Claude's,\" \"PRs doubled, reverts down 40%,\" and \"16% to 54%\" are all company-reported, with no third-party audit. Last week's (10-13) post was about Anthropic's monorepo swapping git for its own system, Scion, to handle 30,000 daily changes, an infrastructure-scale problem. This one is about the review rules themselves, a different thing, so don't mix the two sets of numbers. What transfers directly is the risk-tier table and how to write a REVIEW.md (see action 3)."
+        },
+        {
+          "title": "基准测试地图：九成美国工时，AI 基准根本没测过",
+          "title_en": "A benchmark map: 90% of US working hours aren't measured by AI benchmarks at all",
+          "author": "Mercor Labor Index",
+          "author_en": "Mercor Labor Index",
+          "likes": "389",
+          "likes_label": "HN 分",
+          "url": "https://www.mercor.com/research/labor-index/benchmark-map/",
+          "summary": "Mercor 把美国劳工统计局 O*NET 职业分类里 923 个职业、18797 项具体工作任务，拿去对 29 个现有 AI 基准测试逐条打标。结果：只有 208 个职业里有任务被至少 5 条基准题覆盖，22 个职业大类里有 6 个大类一条覆盖都没有。综合算下来，美国人九成的工作时间花在现有基准根本没覆盖或覆盖很少的任务上。覆盖也不是随机分布：同样被标记为「AI 容易接手」的任务，基准覆盖的概率是没被标记的 6 倍；在控制了这个因素之后，工资总额越高的职业，任务被覆盖的概率还是显著更高，O*NET 自己打分「重要」的任务被覆盖的概率是「不重要」任务的 6 到 10 倍。举例：基准把 AI 容易接手的律师的任务覆盖得很细，但同样被标记为容易接手的法务秘书、法院书记员，任务基本没人测。Mercor 自己也说了限制：29 个基准不是完整样本，统计功效本来就低，饱和的老基准和没饱和的新基准混在一起比较本身就有偏差，而且基准测的大多是 AI 独立完成任务，不是 AI 帮人干活这种更常见的用法。",
+          "summary_en": "Mercor tagged all 923 US Department of Labor O*NET occupations and their 18,797 specific work tasks against 29 existing AI benchmarks. Result: only 208 occupations have a task covered by at least 5 benchmark prompts, and 6 of 22 job families have none at all. Added up, roughly 90% of American working hours go to tasks with little or no benchmark coverage. Coverage is not random either: a task tagged as easy for AI to take over is about 6 times more likely to be covered than one that isn't; even controlling for that, tasks in higher-wage occupations are still significantly more likely to be covered, and O*NET's own \"important\" tasks are covered 6 to 10 times more often than tasks marked unimportant. Example: benchmarks cover AI-exposed lawyers' tasks closely, but barely touch similarly AI-exposed legal secretaries or court clerks. Mercor states its own limits: 29 benchmarks is not a complete sample, statistical power is inherently low, mixing saturated old benchmarks with unsaturated new ones is itself biased, and most benchmarks measure AI doing a task alone rather than AI helping a person, which is the more common real use.",
+          "why": "这是 Mercor 自己选的 29 个基准，不是行业全集，他们自己也说这会让覆盖率的估计偏低。但「AI 基准盯着软件和金融岗位，别的基本不测」这个方向性结论，和控制变量后依然成立的工资、重要性偏差，是有方法支撑的，不是印象。下次看到「AI 已经能做 X 工作」这类说法，先问一句这个 X 有没有真被测过，详见今日行动第 4 条。",
+          "why_en": "These are Mercor's own 29 chosen benchmarks, not the full industry set, and they say so themselves, which biases the coverage estimate downward. But the directional finding, that AI benchmarks cluster on software and finance jobs and barely touch the rest, and the wage and importance skew that survives after controlling for other factors, is backed by a method, not an impression. Next time you see a claim that AI can already do some job, ask first whether that job was actually measured (see action 4)."
+        },
+        {
+          "title": "用 AI 逆向硬件：底片扫描仪驱动和笔记本摄像头修复",
+          "title_en": "Using AI to reverse engineer hardware: a film-scanner driver and a laptop camera fix",
+          "author": "Christian Schaller（GNOME / Red Hat 工程师）",
+          "author_en": "Christian Schaller (GNOME / Red Hat engineer)",
+          "likes": "159",
+          "likes_label": "HN 分",
+          "url": "https://blogs.gnome.org/uraeus/2026/10/15/aiandreverseengineerhardware/",
+          "summary": "Schaller 买的 Plustek 8200i 底片扫描仪换了芯片，Linux 不支持，他用 Claude Code 折腾几个月没进展。后来照 Glorious Eggroll 的办法，让 agent 控制一台 Windows 虚拟机，在 KVM 里跑厂商驱动、直通真设备，宿主机用 usbmon 抓 USB 流量，再抓自己驱动的同样流量，对比差异就是驱动的 bug 清单。几小时出第一张扫描，几天后接近完整，含红外除尘。同一套流程用在 ThinkPad 的 MIPI 摄像头上：一天内修出内核和 libcamera 补丁，包括裁剪选择、增益上限、镜头阴影校正缺失和白平衡统计错误，低光下画面亮度从 31.1 升到 90.9。他把脚本整理成通用的 hw-harness。他自己写明：这是单台设备、单帧结果，蓝色通道在低光下仍偏少约 17%，上游 SANE 在他放弃期间已合入了自己的驱动。",
+          "summary_en": "Schaller's Plustek 8200i film scanner had a new chipset Linux did not support, and months of Claude Code attempts went nowhere. Following Glorious Eggroll, he had the agent control a Windows virtual machine, running the vendor driver in KVM with the real device passed through, capturing USB traffic with usbmon on the host, then capturing the same from his own driver; the differences are the driver's bug list. A first scan came within hours and a near-complete driver, including infrared dust removal, within days. The same flow on a ThinkPad MIPI camera produced kernel and libcamera patches in a day, covering crop selection, gain cap, missing lens shading correction and a white-balance statistics bug, raising low-light frame brightness from 31.1 to 90.9. He packaged the scripts as a generic hw-harness. He states these are single-unit, single-frame results, blue is still about 17% short in low light, and upstream SANE merged its own driver while he had given up.",
+          "why": "可迁移的是方法：用同一台仪器录一份能用的、一份不能用的，只看差异。这比让模型对着一堆日志猜强得多。局限也写在原文里：真硬件才是裁判，人要拿着设备验证。详见今日上手。",
+          "why_en": "What transfers is the method: record one working and one failing run with the same instrument and look only at the difference, which beats having a model guess from a pile of logs. The limits are in the post too: real hardware is the judge, and a person holds the device to check. See today's hands-on."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "morluto/rea",
+      "url": "https://github.com/morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "language": "TypeScript",
+      "stars": 276392,
+      "stars_today": 32314
+    },
+    {
+      "rank": 2,
+      "name": "anthropics/claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "language": "Python",
+      "stars": 39410,
+      "stars_today": 307
+    },
+    {
+      "rank": 3,
+      "name": "K-Dense-AI/scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "language": "Python",
+      "stars": 50754,
+      "stars_today": 1091
+    },
+    {
+      "rank": 4,
+      "name": "JuliusBrussee/caveman",
+      "url": "https://github.com/JuliusBrussee/caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "stars": 112761,
+      "stars_today": 433
+    },
+    {
+      "rank": 5,
+      "name": "debpalash/VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.",
+      "language": "Python",
+      "stars": 69547,
+      "stars_today": 3024
+    },
+    {
+      "rank": 6,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework &amp; software development methodology that works.",
+      "language": "Shell",
+      "stars": 300115,
+      "stars_today": 582
+    },
+    {
+      "rank": 7,
+      "name": "ruvnet/ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, federation, vector RAG integration, and native Claude Code / Codex / Hermes and many more Integrated",
+      "language": "TypeScript",
+      "stars": 75268,
+      "stars_today": 147
+    },
+    {
+      "rank": 8,
+      "name": "mksglu/context-mode",
+      "url": "https://github.com/mksglu/context-mode",
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "language": "TypeScript",
+      "stars": 29895,
+      "stars_today": 904
+    },
+    {
+      "rank": 9,
+      "name": "NationalSecurityAgency/ghidra",
+      "url": "https://github.com/NationalSecurityAgency/ghidra",
+      "description": "Ghidra is a software reverse engineering (SRE) framework",
+      "language": "Java",
+      "stars": 89014,
+      "stars_today": 1369
+    },
+    {
+      "rank": 10,
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 280609,
+      "stars_today": 1013
+    }
+  ],
+  "ota": {
+    "learned": [
+      "重要：今晚的凌晨 2 点草稿把头条定成 Anthropic 三季度营收 168 亿美元，但这条新闻和它的 URL（simonwillison.net 的同一篇）昨天（10-15）已经是当期头条，草稿自己完全没发现是重复。不是我读出来的，是发布前跑 bin/validate-digest.py --strict 时校验器的 7 天查重直接拦了下来，报错写着“already covered in 2026-10-15.json”。一个读起来通顺、三平台三条线都讲得很完整的草稿，照样会把昨天的头条当成今天的新闻重发一遍，流畅不等于对。教训：任何接手别人（包括我自己早几小时）写的草稿，发布前必须真的跑一遍查重脚本，不能只凭读感觉“这条我没见过”。头条换成 Claude Code 团队自己的代码审查流程（claude.dev，今天发的一手材料），配图也从 YouTube 缩略图换成该文章自带的 og 图。",
+      "已实施：新增记忆 feedback-reference-capture-diff。遇到“这个不能用”的问题，先用同一种工具各录一份能用的和不能用的，去掉令牌，diff 之后只给我差异，让我对每处差异写一个假设加一条验证命令，再改代码。来源是 Christian Schaller 的博客，数字是他单台设备的结果，上游 SANE 同期已经有自己的驱动，所以记成待验证。我下次碰到“A 能用 B 不行”的配置或接口问题时先做这一步，这就是检验。",
+      "观察：今晚自己重新抓了一遍 9 个频道的 RSS，7 个 404、2 个正常（含对照频道正常，排除全站故障），和凌晨草稿记的“4 个 404、2 个 500”不是同一批，说明这个故障这几天一直在变，不能拿前一次的结论当这次的结论。",
+      "落选：Anthropic 三季度营收条目本身（与 10-15 期头条同一 URL，校验器拦截后整条连同头条、配图一起换掉）、Korlam/Sonar 的 CI 重建视频（被 claude.dev 这篇一手材料替掉，同一个主题更详细、更可核实）、Modal 10 亿美元年化运行率（纯融资公告，换成 Mercor 的基准覆盖率研究以增加一条新线索）、Claude 揭秘 ECDSA 曲线来源（648 分最高分但偏研究趣闻，不在应用/GTM 这条选题倾向里）、Anthropic 被评最高等级垃圾债（和原头条同一家公司，容易显得在同一条新闻上叠罗汉，头条已换掉后这条也一并跳过）、Postgres 19 因 AI 审查延期（和 Claude Code 审查条目同一主题，会让“审查”这条线占满三条）、swyx 的 AI Engineer 开场（只讲大会和“最高一层循环”，没有可用的具体做法）、Epic 与 Steam 启动速度对比（来源是游戏博客转推文，差 0.24 秒，“靠 AI 写的”说法没有证据）、Simon Willison 的游戏反编译链接（与 10-11 期同一主题）、OpenCode 2.0 和 Meta Muse Spark（10-13、10-15 期已有）、CSO Online 智能体报道（10-15 期已用）。"
+    ],
+    "learned_en": [
+      "Important: tonight's 2am draft had led with Anthropic's Q3 revenue ($16.8bn) as the banner, but that exact story and URL (the same simonwillison.net post) was already yesterday's (10-15) banner, and the draft had no idea it was a repeat. I didn't catch it by reading; running bin/validate-digest.py --strict before publish is what caught it, erroring \"already covered in 2026-10-15.json\" from the script's 7-day URL check. A draft that reads smoothly, with three coherent platforms and threads, can still republish yesterday's headline as today's news. Fluent is not the same as correct. Lesson: when adopting anyone else's draft, including my own from a few hours earlier, the dedup script has to actually run before publish, not get skipped because the content reads like it was already checked. Banner swapped to the Claude Code team's own code-review process (claude.dev, published today, primary source), and the lead image swapped from a YouTube thumbnail to that post's own og:image.",
+      "Implemented: a new memory, feedback-reference-capture-diff. For a \"this does not work\" problem, record one working and one failing run with the same tool, strip tokens, diff them and give me only the difference; I write one hypothesis and one verification command per difference before touching code. Source is Christian Schaller's blog; the numbers are single-unit results and upstream SANE meanwhile had its own driver, so it is logged as unverified. I will do this first on the next \"works for A, fails for B\" config or API problem, and that is the test.",
+      "Observation: a fresh RSS pull on all 9 roster channels tonight found 7 returning 404 and 2 working (including a control channel that worked, ruling out a site-wide outage), a different split than the 2am draft's \"4 404, 2 500\" — the fault keeps shifting day to day, so don't treat an earlier run's verdict as this run's.",
+      "Cut: the Anthropic Q3 revenue item itself (same URL as the 10-15 banner; once the validator caught it, the banner and image were swapped along with it), Korlam/Sonar's CI-rebuild video (replaced by the claude.dev primary source on the same topic, more detailed and more verifiable), Modal's $1B annualized run rate (a bare funding announcement; swapped for Mercor's benchmark-coverage research to add a genuinely new thread), Claude's ECDSA curve-origin reveal (top HN score at 648 but a research curiosity, off this digest's applied/GTM tilt), Anthropic's junk-credit-rating news (same company as the original banner, would have stacked two items on one company; skipped once the banner itself was swapped out), Postgres 19's AI-review delay (same review theme as the Claude Code item, would have made it a third item on one thread), swyx's AI Engineer opening (conference framing and \"the highest loop\", no usable specifics), Epic versus Steam launch speed (a gaming blog relaying tweets, a 0.24 second gap, no evidence for the \"AI-written\" claim), Simon Willison's game-decompilation link (same thread as the 10-11 issue), OpenCode 2.0 and Meta Muse Spark (already in the 10-13 and 10-15 issues), the CSO Online agent story (used 10-15)."
+    ],
+    "new_capabilities": [
+      "已实施、待验证：记忆 feedback-reference-capture-diff。调用方式：告诉我一个“在 A 能用、在 B 不行”的请求或配置，我会先要两份同口径的抓取，对比后只依据差异列假设和验证命令，不会先改代码。"
+    ],
+    "new_capabilities_en": [
+      "Implemented, untested: memory feedback-reference-capture-diff. How to invoke: tell me about a request or config that works in A and fails in B, and I will first ask for two captures taken the same way, then list hypotheses and verification commands from the diff alone, without editing code first."
+    ]
+  }
+}
