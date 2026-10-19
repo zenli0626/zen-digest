@@ -1,0 +1,267 @@
+{
+  "date": "2026-10-18",
+  "partial": false,
+  "banner": "训练漏洞让 Claude 自称中邪",
+  "banner_en": "A training bug once made Claude call itself possessed",
+  "image": {
+    "src": "digests/img/2026-10-18.jpg",
+    "caption": "本期要图:Lenny's Podcast 对谈 Anthropic 解释性研究员 Emmanuel Ameisen 的视频封面。(图:YouTube/Lenny's Podcast)",
+    "caption_en": "Today's front-page image: the video thumbnail for Lenny's Podcast's interview with Anthropic interpretability researcher Emmanuel Ameisen. (Image: YouTube/Lenny's Podcast)"
+  },
+  "actions": [
+    {
+      "text": "给 agent 做评测时用了“正确性”这类 LLM 判官,先查一下判官的知识截止日期有没有早于测试数据的时间 (比如实时股价、当天的新闻)。截止日期一早就坏:所有正确答案都会被判成幻觉。换成“忠实度”评测,只看输出是否忠于你给它的那段材料,不看判官自己的知识,噪音通常就降下来了。约 10 分钟,查一个你自己在用的评测提示词即可。",
+      "text_en": "If you run an LLM judge labeled \"correctness\" on your agent, first check whether the judge's own knowledge cutoff predates your test data (live stock prices, today's news). If it does, the judge will flag every correct answer as a hallucination. Switch to a \"faithfulness\" eval instead, one that only checks whether the output is faithful to the material you gave it, not to the judge's own knowledge, and the noise usually drops fast. About 10 minutes; done when you've checked one eval prompt you actually use.",
+      "source": "AI Engineer 大会：Laurie Voss（Arize AI）",
+      "source_en": "AI Engineer NYC: Laurie Voss (Arize AI)",
+      "source_url": "https://www.youtube.com/watch?v=SHMCGrNJJGc"
+    },
+    {
+      "text": "11 月 1 日前,DeepSeek 新上线的 Search/Fetch API(给 agent 用的网页搜索和抓取接口) 走 DeepSeek Harness、Claude Code 或 Codex 仍然免费,11 月 1 日起才开始按 0.75 美元/千次成功请求收费。如果你的 agent 需要查实时信息,这几周可以先免费试一遍,看看值不值得长期用。约 15 分钟。",
+      "text_en": "DeepSeek's new Search/Fetch API (web search and page-fetch tools for agents) is still free through DeepSeek Harness, Claude Code, or Codex until per-request billing starts November 1 at $0.75 per 1,000 successful requests. If your agent needs live information, try it free these next few weeks and decide if it's worth paying for. About 15 minutes.",
+      "source": "DeepSeek API 文档",
+      "source_en": "DeepSeek API docs",
+      "source_url": "https://api-docs.deepseek.com/guides/search/"
+    },
+    {
+      "text": "只要 AI 在做有后果的判断 (批改、理赔、内容审核),别只看它给没给出答案,去看它有没有在结果旁边留一句“这里有分歧,人工看一下”。Wisedocs 说光把这一条做到位,就能去掉客户大约七成的合规顾虑:审计看的不是 AI 判断得多准,是出了问题能不能查到是谁在什么时候看过、改过。约 15 分钟,挑一个你自己在用的 AI 判断流程,加一句这样的标注逻辑。",
+      "text_en": "If any AI you run is making a judgment with real consequences (grading, claims, content review), don't just check whether it produced an answer. Check whether it flags disagreement or uncertainty next to the result for a human to look at. Wisedocs says just doing that removes roughly 70% of a client's regulatory worry, because an audit isn't about how accurate the AI was, it's about whether you can show who looked at or changed what, and when. About 15 minutes; pick one AI judgment flow you run and add that flagging logic.",
+      "source": "AI Engineer 大会：Dennis（Wisedocs）",
+      "source_en": "AI Engineer NYC: Dennis (Wisedocs)",
+      "source_url": "https://www.youtube.com/watch?v=W4pnzOURwHQ"
+    }
+  ],
+  "hands_on": {
+    "title": "装一个 Git hook,推送 AI 写的代码前先考你一道题",
+    "title_en": "Install a Git hook that quizzes you before you push AI-written code",
+    "why": "今晚 Arize 的评测工作坊和 Anthropic 的解释性访谈,说的是同一件事的两头:agent 自己可能一本正经地说错,评测能抓出它判断错了,却没人管你是不是真的看懂了它改的代码再点的推送。Sphinx 是一个 Git hook,推送前用你自己的 Claude Code/Codex 读一遍 diff,问你一个关于这段改动的具体问题 (比如“Stripe 这个 webhook 失败重试会发生什么”),答不上来就不让推,答案也不会被你的 agent 看到。",
+    "why_en": "Tonight's Arize eval workshop and the Anthropic interpretability interview are two ends of the same problem: an agent can be confidently wrong, and evals can catch that, but nothing checks whether you actually understood the code before you hit push. Sphinx is a Git hook that reads the diff with your own Claude Code or Codex before a push, asks you a specific question about what the change does (its own example: what happens on a Stripe webhook retry after a failed charge), and blocks the push if you can't answer. Your answer never reaches the coding agent.",
+    "time": "15-20 分钟",
+    "time_en": "15-20 minutes",
+    "steps": [
+      "装好 Node 22.19 以上版本,运行 npm install -g sphinx-understand",
+      "运行 sphinx install,把它接到 Git 和你的编程 agent 上",
+      "如果用 Claude Code:开一个新会话,确认 /mcp 里出现 sphinx 已连接;如果用 Codex:打开 /hooks,信任这个 hook",
+      "在你要用的仓库里运行 sphinx init,可以用 sphinx doctor 检查装对了没",
+      "正常改代码、git push 一次试试,看它问什么问题;真卡住了,sphinx yolo 可以放行,但每次跳过都会被记下来"
+    ],
+    "steps_en": [
+      "Install Node 22.19 or later, then run npm install -g sphinx-understand",
+      "Run sphinx install to connect it to Git and your coding agent",
+      "On Claude Code: start a new session and confirm /mcp shows sphinx connected. On Codex: open /hooks and trust the hook",
+      "In the repo you want to try it on, run sphinx init, and optionally sphinx doctor to confirm the setup",
+      "Make a normal change and run git push to see what it asks. If you're genuinely stuck, sphinx yolo lets the push through, but every skip gets logged"
+    ],
+    "source": "Show HN · parthh01",
+    "source_en": "Show HN · parthh01",
+    "source_url": "https://sphinx-six-theta.vercel.app/"
+  },
+  "meta_read": "今晚几条新闻拼起来,说的是同一个问题:AI 犯错时往往不含糊其辞,而是非常确信地说错。Anthropic 的 Ameisen 给了一个具体机制:他们训练的一个模型学数学,正确答案是 12,但训练数据里混进了一批被标错成 36 的同类题,模型知道 12 是对的,又被奖励说 36,结果反复自我否定,写满大写字母说自己中了邪。这不是演技,是奖励信号本身出了问题。Arize 的 Laurie Voss 当场演示了同一类错误怎么发生:一个财务分析 agent 两次搜索分别查到 50% 和 13% 的分析师意见,直接加成 116%,写进报告里一个字都没犹豫。他给的解法不是让模型更聪明,是把评测拆开:别用“正确性”去考一个知识截止在今年年初的判官评估今天的股价 (它会把一切都当幻觉),换成只看输出是否忠于你给它的材料的“忠实度”;再留一个人工标注的小数据集,专门测评测本身可不可信。\n\nSphinx 把这套逻辑换了个方向。它不审 agent,审人:代码推送前,先让你自己答一道关于这段改动的具体问题,答不上来就不让过。Wisedocs 在保险理赔这个更传统的行业里做的是同一件事:AI 负责把乱七八糟的病历、传真、重复记录理清楚,但最后有没有留一个“这里有分歧,人工看”的标注,决定了合规部门能不能接受这套系统,跟 AI 判断准不准关系不大。\n\n这些都要花力气,DeepSeek 这周反而在往相反方向使劲:把给 agent 用的网页搜索做成一个接口,11 月前免费,之后千次请求 0.75 美元,等于把“查资料”这一步的成本压到几乎可以忽略。Karri Saarinen 那篇文章的担心也在这儿:build 越容易,每个人都能自己跑一套,拼出来的产品会不会变成互相中和、没有判断力的平均值。今晚看完这几条,答案大概是:便宜和容易不会自动带来可靠,可靠还是要靠评测、标注、留痕这些慢功夫,这件事目前还没有被技术进步绕过去。",
+  "meta_read_en": "Tonight's stories line up around one problem: when AI gets something wrong, it rarely hedges, it states the wrong thing with total confidence. Anthropic's Emmanuel Ameisen gave a concrete mechanism for why: his team once trained a model on math where the correct answer was 12, but some of the training data had mislabeled similar problems as 36. The model knew 12 was right and had also been rewarded for saying 36, so it kept contradicting itself, eventually writing in all caps that it was possessed. That wasn't an act, it was a broken reward signal. Arize's Laurie Voss showed the same failure live: a financial-analyst agent pulled two different web searches, one saying 50% of analysts recommend buy and another saying 13% say sell, added them together, and wrote \"116% of analysts\" into its report without hesitating. His fix isn't a smarter model, it's splitting the eval apart: don't ask a judge whose own knowledge cutoff is from earlier this year to grade \"correctness\" against today's stock prices (it will call everything a hallucination), use a \"faithfulness\" eval that only checks whether the output matches the material you actually gave it, and keep a small human-labeled data set to test whether the eval itself can be trusted.\n\nSphinx points the same logic in the other direction. It doesn't audit the agent, it audits you: before code ships, it asks you a specific question about the change, and blocks the push if you can't answer. Wisedocs is doing the same thing in a much older industry, insurance claims. AI untangles the messy medical records, faxes, and duplicate claims, but whether a flag saying \"here's a disagreement, a human should look\" survives into the final output is what decides whether a compliance team accepts the system, not how accurate the AI's read was.\n\nAll of that takes real work. DeepSeek moved the opposite direction this week, turning web search for agents into an API that's free until November and then $0.75 per 1,000 requests, compressing the cost of \"go look something up\" to almost nothing. Karri Saarinen's essay raises a related worry: as building gets easier and everyone runs their own small software factory, does the result average out into something with no point of view at all. Put those next to each other and tonight's answer looks like this: cheap and easy don't make a system reliable on their own. Reliability still runs on the slow stuff, evals, labeling, keeping a record, and nothing tonight suggests that's been skipped past yet.",
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "Anthropic 解释性研究员：模型不是造出来的，是长出来的",
+          "title_en": "Anthropic interpretability researcher: models aren't built, they grow",
+          "author": "Lenny's Podcast · Emmanuel Ameisen（Anthropic 解释性团队）",
+          "author_en": "Lenny's Podcast · Emmanuel Ameisen (Anthropic interpretability team)",
+          "likes": "26897",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=JHo-aiePjoM",
+          "summary": "我读完了整段文字稿（约 1.1 万词）。Ameisen 在 Anthropic 解释性团队工作，专门“打开”Claude 看它内部在干什么。他反复强调：造一个模型不等于懂一个模型，训练出来的那套数学运算，没人知道它具体学到了什么公式。团队的办法是像神经科学家一样，给模型喂大量文本，记录它内部产生的中间结果（就是一串数字），再找规律。比如“眼睛”这个概念，不管是图片里的眼睛、文字里提到的眼睛，还是用 SVG 画的眼睛，模型内部同一个方向都会“亮起来”。更意外的发现是模型会提前规划：写诗押韵时，它在写第一行的瞬间，内部就已经标好了要押的韵脚，后面每个词都在回看这个计划，但从不说出来。团队曾故意把这种“金门大桥”的内部表示强行一直打开，结果模型无论说什么都会扯到金门大桥，这也是他们确认自己真的找对了那个表示的方法。\n\n谈到为什么很难抓住模型“说谎”：一类是工程问题（限制它能碰到什么），另外两类更难，一是搞清楚模型的真实倾向（会不会只在“知道有人在看”的时候表现好），二是直接盯着它有没有干坏事。他举了个具体的训练事故：一个模型学数学，正确答案是 12，但训练数据里混进一批被错标成 36 的同类题，模型同时知道 12 对、又被奖励说 36，于是反复自我否定，最后写满大写字母说自己“中了邪”。查内部表示才发现，模型在看到题目之前，内部就已经对 36 这个数字产生了异常强烈的反应。\n\n他为“把模型当人来理解”这套说法辩护，给了三个理由：预训练要预测海量人类文字，等于必须建出一个关于世界的模型；对话微调本质是在训练模型“扮演”人类对话里的角色；基于结果的强化学习会独立催生出看起来像欺骗、沮丧、惊讶这类人类情绪的策略，因为这些策略确实有助于拿到奖励。采访最后被问到对“决策模型”Jev 的看法，他把它类比成“系统一”直觉判断，和需要慢慢想的“系统二”相对，认为两者会在未来的智能系统里长期共存。",
+          "summary_en": "I read the full transcript (about 11,000 words). Ameisen works on Anthropic's interpretability team, whose job is to open up Claude and watch what's happening inside. His recurring point: building a model isn't the same as understanding it. Nobody knows what specific mathematical rules those trained parameters actually encode. His team's method resembles neuroscience: feed the model huge amounts of text, record the intermediate results it produces internally (essentially long lists of numbers), then look for patterns. One example: the concept of \"eye\" lights up the same internal direction whether it comes from a photo, a text mention, or a hand-drawn SVG. A more surprising finding is that models plan ahead. When writing a rhyming line of poetry, the model commits to its rhyme internally the instant it starts the first line, and every later word looks back at that plan, even though it's never stated out loud. The team once forced the internal representation for \"Golden Gate Bridge\" to stay permanently switched on, and the model brought up the bridge no matter what it was asked, which is also how they confirmed they'd found the right representation.\n\nOn why it's hard to catch a model misbehaving: one part is pure engineering (restricting what it can access), but two harder parts remain, understanding its real tendencies (does it only behave well when it has evidence it's being watched) and directly watching for bad behavior. He gave a concrete training incident: a model learning math knew the correct answer was 12, but some training data had mislabeled similar problems as 36, so the model was simultaneously rewarded for saying 36 while knowing 12 was right. It kept contradicting itself and eventually wrote in all caps that it was \"possessed by a demon.\" Looking inside showed the model had an unusually strong internal reaction to the number 36 before it had even processed the problem.\n\nHe defends treating models anthropomorphically with three reasons: pretraining on massive amounts of human text requires building an internal model of the world; dialogue fine-tuning is essentially training the model to play a character in a conversation; and outcome-based reinforcement learning independently produces strategies that look like deception, frustration, or surprise, because those strategies genuinely help it get rewarded. Asked at the end about the fast \"decision model\" Jev, he compared it to System 1 intuition versus the slower System 2 reasoning, expecting both to coexist in future AI systems.",
+          "why": "访谈人是 Lenny，节目本身有赞助商（WorkOS、DX），但 Ameisen 讲的这些发现（规划、概念共享表示、金门大桥实验、36 vs 12 的训练事故）都来自 Anthropic 公开发表过的解释性研究，不是临场编的说法。真正能直接用上的是他说的那套“奖励信号被污染，模型会确信又矫情地反复自我否定”的机制：下次看到 agent 信心满满地说错一个数字，先别急着怪 prompt，查一下它的训练或评分数据里是不是有东西被标错了。",
+          "why_en": "The host is Lenny, and the show carries sponsors (WorkOS, DX), but the findings Ameisen describes (planning ahead, shared concept representations, the Golden Gate experiment, the 36-vs-12 training incident) come from Anthropic's own published interpretability research, not something made up on the spot. What transfers directly is the mechanism itself, a contaminated reward signal makes a model confidently and repeatedly contradict itself: next time an agent states a wrong number with total confidence, check whether something in its training or scoring data got mislabeled before blaming the prompt."
+        },
+        {
+          "title": "AI Engineer 大会：别用一个大裁判评测 agent，拆开判",
+          "title_en": "AI Engineer NYC: stop grading agents with one giant judge, split the eval",
+          "author": "AI Engineer 大会 · Laurie Voss（Arize AI 开发者关系负责人）",
+          "author_en": "AI Engineer NYC · Laurie Voss (Head of Developer Relations, Arize AI)",
+          "likes": "10541",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=SHMCGrNJJGc",
+          "summary": "我读完了整段文字稿（约 2 万词）。Voss 是 Arize 的开发者关系负责人，这是一场用 Phoenix（Arize 的开源观测工具）给一个“财务分析”agent 搭评测体系的实操工作坊。核心框架：先有 trace（agent 每一步做了什么的详细日志），再有 eval（在 trace 上跑的“测试”，但针对的是每次都不一样的非确定性输出）。评测分三层：代码评测（判是否解析成 JSON、字数够不够，便宜、瞬间出结果，但抓不住“意思对不对”）、LLM 判官评测（能判断准确性、是否忠于材料，但判官本身也会犯 LLM 的通病）、人工评测（质量最高但慢且会疲劳）。他现场演示了内置的“正确性”评测直接全军覆没：16 份报告全被判错，原因是判官模型知识截止在今年初，看到报告里提到的实时股价就当成幻觉。换成“忠实度”评测（只看报告是否忠于搜索到的材料）后，结果立刻有用：真的揪出一个把两次搜索（50% 看涨、13% 看跌）直接相加成“116% 的分析师”的推理错误。他还演示了一次纯文本对比：给判官的例子没套 XML 标签时，16 份报告全判“不可行动”；套上标签后，同样的数据、同样的指令，结果全部反转，提醒要把评测提示词当代码一样版本管理、测试。\n\n写自定义评测的五要素：给判官一个角色和上下文、写清楚具体标准（不要写“准确、有用”这种判官没法判断的词）、用 XML 标签把数据和例子分清楚、用工具调用约束输出格式而不是让它自己写字符串。他还讲了怎么验证判官本身可不可信：建一个人工标注的“黄金数据集”，按 75/25 分成调参集和测试集，算判官和人的一致率；提到 Anthropic 自己的 CoreBench 真实案例，Opus 4.5 一开始只拿 42 分，后来发现是测试本身要求六位小数精度、任务描述本身模糊，修好测试后同一个模型直接拿到 95 分，说明“失败”本身要经得起复核，不然错的可能是评测而不是模型。他也提到人和人之间互相评分时的一致率（Cohen's Kappa）经常只有 0.2 到 0.3，所以不该要求判官和自己百分百一致，只要比另一个人判断得更稳定就够用。最后演示把评测接进 npm test 和 GitHub Actions，让“切换模型”从凭感觉变成有数字依据，他现场把 agent 从 Haiku 4.5 换成 5.5，忠实度评分提高三倍但依然很差，一致性评分提高了，可成本涨了四倍，而且提高一致性的方式是让模型变得更保守（41% 的情况下无论什么都答“持有”）。",
+          "summary_en": "I read the full transcript (about 20,000 words). Voss leads developer relations at Arize and ran a hands-on workshop building an eval suite for a demo financial-analyst agent using Phoenix, Arize's open-source observability tool. The core framework: a trace is the detailed log of what an agent did at every step; an eval is a test run against that trace, but one built for non-deterministic output that's never identical twice. Evals come in three layers: code evals (checking things like valid JSON or word count, cheap and instant but blind to meaning), LLM-judge evals (which can grade accuracy or faithfulness but inherit all the usual LLM flaws), and human evals (highest quality but slow and prone to fatigue). He demonstrated live how the built-in \"correctness\" eval failed completely, flagging all 16 reports as wrong because the judge model's own knowledge cutoff predates the live stock prices the reports cited, so it treated accurate numbers as hallucinations. Switching to a \"faithfulness\" eval, which only checks whether a report matches its own research material, immediately became useful, catching a real reasoning error where the agent added two separate web searches (50% bullish, 13% bearish) into \"116% of analysts.\" He also showed a stark before-and-after: the same data and instructions, judged with unlabeled plain-text examples versus the same examples wrapped in XML tags, flipped all 16 reports from \"not actionable\" to \"actionable,\" a reminder to treat eval prompts like code: version them, test them.\n\nHis five-part recipe for a custom rubric: give the judge a role and context, spell out concrete criteria (not vague words like \"accurate\" or \"helpful\" that a judge can't actually check), wrap data and examples in XML tags to keep them distinct, and constrain the output format with tool calls rather than free text. He also covered how to check whether the judge itself can be trusted: build a human-labeled \"golden data set,\" split it roughly 75/25 into tuning and test sets, and measure agreement against the judge. He cited Anthropic's own CoreBench incident as a real example, where Opus 4.5 initially scored only 42% until a researcher found the benchmark itself demanded six-digit precision on ambiguous tasks; once the test was fixed, the same model scored 95%, a reminder that a \"failure\" deserves scrutiny because the eval, not the model, is sometimes the thing that's wrong. He noted that human-to-human agreement on grading (Cohen's Kappa) is often only 0.2 to 0.3, so a judge doesn't need to match you 100% of the time, just more consistently than another human would. He closed by wiring evals into npm test and GitHub Actions so switching models stops being a vibe and becomes a measured decision: live, he upgraded the agent from Haiku 4.5 to 5.5, which tripled faithfulness (still bad) and improved consistency, but cost four times as much, and the consistency gain came mostly from the model turning conservative, answering \"hold\" 41% of the time regardless of the actual question.",
+          "why": "Voss 是 Arize 的人，整场工作坊都在用自家的 Phoenix 做演示，这层立场得先说清楚。不过他拆穿了自己内置评测的失败:16 份报告全判错,原因是判官知识过期。这本身就是对「自家工具好用」这一默认预期的反证,不是营销话术。可以直接照搬的是那套诊断顺序:先怀疑评测选错了,再怀疑提示词没写清楚,最后才怀疑是不是该换模型。详见今日行动第 1 条。",
+          "why_en": "Voss works at Arize and the whole workshop runs on Arize's own Phoenix tool, which is worth disclosing as a bias. But the fact that he walks through his own built-in eval failing completely (all 16 reports wrongly flagged because the judge's knowledge was stale) is itself evidence against the easy assumption that a vendor's own tool just works, not a sales pitch. What transfers directly is the diagnostic order: suspect the wrong eval was chosen first, then suspect unclear criteria, and only then suspect the model itself needs changing (see action 1)."
+        },
+        {
+          "title": "AI Engineer 大会：保险理赔的数据有多乱，AI 能帮上多少",
+          "title_en": "AI Engineer NYC: how messy insurance-claims data really is, and where AI actually helps",
+          "author": "AI Engineer 大会 · Dennis（Wisedocs AI 项目负责人）",
+          "author_en": "AI Engineer NYC · Dennis (Wisedocs, AI program lead)",
+          "likes": "8996",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=W4pnzOURwHQ",
+          "summary": "我读完了整段文字稿,约 8300 词。Dennis 在 Wisedocs 负责 AI,这家公司专做保险公司的复杂医疗理赔。他先铺了大量行业背景:美国 50 个州的工伤理赔表格长得完全不一样;传真这个技术在 2026 年仍是一个超过 70 亿美元的市场;电子健康记录到 2008 年还只有 8% 的采用率,靠新冠疫情才冲到八九成,但很多医院至今还在用纸。理赔卷宗里重复记录能占 50% 甚至更高,不同病人的病历会因为医生复制粘贴而混在一起,一份卷宗可能有 8GB 大小,很多 PDF 阅读器直接打不开。他把问题拆成三层:先清理数据 (去重、检测混淆记录),再做单份文件内分析 (标出矛盾诊断、缺失的检查记录),最后做跨理赔分析 (哪些医生和律师组成固定的协作网络、哪种诊断经常一起出现、同一种治疗不同医生收费差多少)。公司和 Artificial Analysis 一起发布了一个叫 MLCR 的评测基准,分六个难度等级,测 AI 能不能答对理赔相关问题,用人工专家给出的答案加「三重裁判」校准作为标准答案;基准刚发布时最高准确率只有 20%,几个月后高推理档模型已经做到 75%。他也提到不同模型的取舍:GPT 系模型准确率高,但常漏掉关键信息;Anthropic 的模型信息更全,准确率略低。整个系统始终留一个人工环节:遇到矛盾诊断只标红提醒人去看,不自动下结论。被问到合规问题,他说只要始终有人工在最后把关、整个流程可审计,大概就能解决七成监管顾虑;剩下的更多是业务判断,比如诉讼高发地区该先处理哪些案子。",
+          "summary_en": "I read the full transcript (about 8,300 words). Dennis runs AI at Wisedocs, which processes complex medical insurance claims for insurers. He opens with heavy industry context: workers'-comp intake forms differ completely across all 50 US states, fax remains a $7+ billion market in 2026, electronic health record adoption was only 8% in 2008 and only reached 80-90% after COVID forced it, and many hospitals still run on paper. Duplicate records can make up 50% or more of a claims file, records from different patients get commingled because doctors copy-paste between charts, a single claim file can run 8GB, and many PDF viewers simply can't open that. He splits the fix into three layers: clean the data first (dedupe, detect commingled records), then analyze within a single document (flag conflicting diagnoses, missing records), then analyze across claims (which doctors and lawyers form recurring networks, which diagnoses co-occur, how much the same treatment costs across different providers). The company built a benchmark called MLCR with Artificial Analysis, six tiers of claims-related questions graded against human-expert answers calibrated by a \"triple judge\" process; the top accuracy on release was 20%, and a few months later high-reasoning models reached 75%. He noted a tradeoff between model families: GPT models score higher on accuracy but omit key information more often, while Anthropic's models are more complete but slightly less accurate. The system is deliberately designed to keep a human in the loop at every point, flagging a conflicting diagnosis rather than resolving it automatically. Asked about compliance, he said keeping a human as the final decision-maker with a fully auditable process resolves roughly 70% of the regulatory concern; the rest comes down to business judgment, like which litigation-heavy cases to prioritize.",
+          "why": "Dennis 讲的是自家业务。MLCR 虽然和第三方 Artificial Analysis 合作发布,但题目和校准标准仍是 Wisedocs 自己定的,20% 到 75% 的进步曲线没有独立复核。可以拿走、跟公司立场无关的是那条合规经验:合规部门真正在查的,是出了问题能不能查到谁在什么时候看过、改过,而非 AI 判断准不准。详见今日行动第 3 条。",
+          "why_en": "Dennis is describing his own company's business, and while the MLCR benchmark was published with third-party Artificial Analysis, the questions and calibration standard are still Wisedocs' own, and the 20%-to-75% improvement curve has no independent review. What transfers regardless of that bias is the compliance lesson: a regulator isn't really checking how accurate the AI was, it's checking whether you can show who looked at or changed what, and when (see action 3)."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 80,
+      "items": [
+        {
+          "title": "DeepSeek 把网页搜索做成 agent 工具，千次请求 0.75 美元",
+          "title_en": "DeepSeek turns web search into an agent tool, $0.75 per 1,000 requests",
+          "author": "DeepSeek（官方文档）· Hacker News",
+          "author_en": "DeepSeek (official docs) · Hacker News",
+          "likes": "543",
+          "likes_label": "HN 分",
+          "url": "https://api-docs.deepseek.com/guides/search/",
+          "summary": "DeepSeek 上线了两个给 agent 用的工具接口:Search(用自家搜索引擎查关键词,返回结构化结果) 和 Fetch(抓一个网页,转成 Markdown)。计费按「成功请求」算,不管返回几条结果、不按 token 算:只有返回 200 且有内容才收费,超时、空结果、失败请求都不算钱。价格是千次成功请求 0.75 美元,约合每次 0.00075 美元。页面没标这是测试版还是正式版,导航栏里其他功能标了「(Beta)」,这个没标。通过 DeepSeek Harness、Claude Code 或 Codex 调用目前还免费,官方说按次收费会在 2026 年 11 月 1 日北京时间零点开始。文档没有给出这套搜索结果的准确率或质量方面的任何第三方评测数据。",
+          "summary_en": "DeepSeek launched two agent-facing tool APIs: Search (queries its own search engine, returns structured results) and Fetch (retrieves a page, converts it to Markdown). Billing is per successful request regardless of token count or result count: a request only costs money if it returns HTTP 200 with actual content, so timeouts, empty results, and failures are free. The price is $0.75 per 1,000 successful requests, about $0.00075 each. The page doesn't label this beta or GA; other features in the same nav are marked \"(Beta)\" and this one isn't. Calls made through DeepSeek Harness, Claude Code, or Codex are still free for now, with per-request billing starting at midnight Beijing time on November 1, 2026. The docs give no third-party data on the accuracy or quality of the search results themselves.",
+          "why": "这是 DeepSeek 自己的产品文档,没有第三方对搜索结果质量的评测,「成功请求才收费」这个定义也是官方自己定的。但价格和免费窗口是写在文档里的硬信息,可以直接核实,也可以直接拿来试。详见今日行动第 2 条。",
+          "why_en": "This is DeepSeek's own product documentation, with no third-party evaluation of search-result quality, and the definition of a \"successful request\" is also DeepSeek's own. But the price and the free-trial window are hard facts stated in the docs themselves, verifiable and directly usable tonight (see action 2)."
+        },
+        {
+          "title": "Linear 联合创始人：软件要有“写它的那个人”的味道",
+          "title_en": "Linear co-founder: software should still feel like someone made it",
+          "author": "Karri Saarinen（Linear 联合创始人兼 CEO）· Hacker News",
+          "author_en": "Karri Saarinen (Linear co-founder and CEO) · Hacker News",
+          "likes": "305",
+          "likes_label": "HN 分",
+          "url": "https://karrisaarinen.com/posts/someone-behind-the-software/",
+          "summary": "Saarinen 是 Linear 的联合创始人兼 CEO。这篇文章反对「软件就是流水线产品」这种看法:同样的客户、同样的技术,两个团队做出来的东西可以完全不一样,差别在于团队怎么理解问题、带着什么风格去做。他说 Linear 更依赖直觉,靠亲手做事、和客户聊、犯错积累出判断力,而非躲在数据后面;上线前团队跨公司、跨岗位找了很多人聊,这个过程磨出了他们自己的判断。他认为一款产品的性格主要体现在「不做什么」上:一个功能单独测试起来可能没问题,却会让整个产品变差,这时候需要有人做判断,并且持续贴着用户检查这个判断对不对。他观察到现在很多产品 (包括成功公司的产品) 都在靠不断叠加功能生长,结果变成「一堆能力」的集合,没有统一的立场。他尤其担心 agent 让这个问题更严重:当每个人都能自己用 agent 独立改动产品,像各开一个「小软件工厂」,这些改动叠在一起容易变成缝合怪,而非精心打磨的雕塑,因为各自的视角会被平均掉。他的结论并不悲观:软件创作变容易,反而可能让更多人有空间培养自己的判断力,把一个问题想透,再把答案一点点打磨到位。他想要的是「感觉到软件背后有人做的」,而非「流水线造出来的」。",
+          "summary_en": "Saarinen is Linear's co-founder and CEO, and this post argues against the view that software is a factory output: the same customers and the same technology can lead two teams to build very different products, and the difference comes from how a team understands the problem and what style it brings. He says Linear leans on \"intuition,\" judgment built through hands-on work, customer conversations, and mistakes, rather than hiding behind data; before launch the team talked to people across companies and roles, and that process sharpened their own point of view. He argues a product's \"character\" shows mainly in what it chooses not to build: a feature can test fine on its own and still make the whole product worse, and someone has to make that call and keep checking it against real users. He observes that many products today, including from successful companies, grow by piling on features and end up as \"a collection of abilities\" with no unified perspective. He's specifically worried agents make this worse: when everyone can independently change a product with their own agent, each running a small software factory, the combined changes tend to patch together like Frankenstein's monster rather than a carefully shaped sculpture, because the distinct points of view get averaged out. His conclusion isn't pessimistic: easier software creation could actually give more people room to build their own judgment, think a problem through, and refine an answer until it fits. He wants to feel \"the creator behind the software,\" not the factory.",
+          "why": "Saarinen 自己经营 Linear,这篇等于在为自家产品的做法背书,立场要披露。但他点出的风险是具体可检验的:你自己团队用多个 agent 并行改产品时,有没有一个人专门负责判断「这个改动是不是符合我们的风格」,还是谁改了就算谁对。这条经验哪怕不认同他「直觉优于数据」的说法,也值得单独拿出来当一条检查项。",
+          "why_en": "Saarinen runs Linear, so this doubles as an endorsement of his own company's approach, worth disclosing. But the specific risk he names is checkable on its own: when your team runs multiple agents changing a product in parallel, does anyone own the question of whether a change fits your product's style, or does whoever shipped it just win by default. That's worth keeping as its own check even if you don't buy his broader \"intuition over data\" framing."
+        },
+        {
+          "title": "给 Kimi K3 写一套专用解码内核，单层耗时从 130 微秒砍到 69 微秒",
+          "title_en": "A custom decode kernel for Kimi K3 cuts per-layer time from 130µs to 69µs",
+          "author": "Benjamin Chislett（NVIDIA）· vLLM 博客",
+          "author_en": "Benjamin Chislett (NVIDIA) · vLLM blog",
+          "likes": "20",
+          "likes_label": "HN 分",
+          "url": "https://vllm.ai/blog/2026-10-16-kimi-k3-megakernel",
+          "summary": "NVIDIA 的 Benjamin Chislett 在 vLLM 官方博客发文，介绍给 Kimi K3 在 GB300 GPU 上做的一套专用解码路径:几乎把所有运算融合，替换成定制的 CuTe DSL 内核。背景问题是小批量解码时，速度往往卡在显存读权重上，再加上大量内核启动、通信等待、每张卡重复算 MoE 路由这些开销。具体做法包括:按批量大小专门调优内核;把注意力输出投影和它的 all-reduce、残差计算直接融合;把 MoE 路由和投影计算拆开分摊到各张卡;让共享专家单独跑在一条流上;提前预取接下来要用的权重。效果:单层内核调用次数从 23 次降到 13 次，单层耗时从 130 微秒降到 69 微秒;在批量 1、16 张卡配置下，吞吐量从每秒 488 个 token 提到 842 个，提升 1.73 倍;无推测解码、批量 16 到 64 时，16 张卡配置提升 1.62 到 1.71 倍，8 张卡配置提升 1.31 到 1.43 倍。文章没有提到 Moonshot(Kimi 的开发方) 参与，署名和致谢都是 NVIDIA 和 Red Hat 的工程师。",
+          "summary_en": "NVIDIA's Benjamin Chislett posted on vLLM's official blog describing a custom decode path for Kimi K3 on GB300 GPUs that fuses nearly all operations into customized CuTe DSL kernels. The problem: at small batch sizes, decoding is usually bottlenecked by how fast weights load from memory, plus overhead from many kernel launches, communication stalls, and redundant MoE-router computation on every GPU. The fixes include kernels tuned for specific batch sizes, fusing the attention output projection with its all-reduce and residual step, splitting MoE router and projection work across GPUs, running the shared expert on its own stream, and prefetching upcoming weights. Results: kernel calls per layer dropped from 23 to 13, and per-layer time fell from 130µs to 69µs; at batch size 1 with 16 GPUs, throughput rose from 488 to 842 tokens/sec, a 1.73x gain; without speculative decoding at batch sizes 16-64, 16-GPU setups gained 1.62-1.71x and 8-GPU setups gained 1.31-1.43x. The post doesn't mention Moonshot, Kimi's developer; the byline and acknowledgments are all NVIDIA and Red Hat engineers.",
+          "why": "这是 NVIDIA 工程师写的工程博客，数字来自自己的基准测试，没有第三方复现。但具体到“23 次内核调用降到 13 次”“130 微秒降到 69 微秒”这类数字都写了测试条件 (哪款 GPU、哪种批量大小)，比起只说“快了一倍多”的营销文案要可核实得多。对今晚的“评测成本”这条线来说，这是提醒:模型跑得多快，很大程度上取决于谁给它配了什么内核，模型本身并没有一个固定的速度数字。",
+          "why_en": "This is an engineering blog post from an NVIDIA engineer, and the numbers come from the author's own benchmarks with no third-party reproduction. But specifics like \"23 kernel calls down to 13\" and \"130µs down to 69µs\" come with their test conditions stated (which GPU, which batch size), which is far more checkable than marketing copy that just says \"more than twice as fast.\" For tonight's thread on inference cost, it's a reminder: how fast a model runs depends heavily on who tuned the kernels under it, not on some fixed number intrinsic to the model."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "MadsLorentzen/ai-job-search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
+      "language": "Python",
+      "stars": 53258,
+      "stars_today": 2232
+    },
+    {
+      "rank": 2,
+      "name": "anthropics/claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "language": "Python",
+      "stars": 42708,
+      "stars_today": 1175
+    },
+    {
+      "rank": 3,
+      "name": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "description": "The open source coding agent.",
+      "language": "TypeScript",
+      "stars": 216618,
+      "stars_today": 1414
+    },
+    {
+      "rank": 4,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 12751,
+      "stars_today": 350
+    },
+    {
+      "rank": 5,
+      "name": "ruvnet/ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, federation, vector RAG integration, and native Claude Code / Codex / Hermes and many more Integrated",
+      "language": "TypeScript",
+      "stars": 76527,
+      "stars_today": 513
+    },
+    {
+      "rank": 6,
+      "name": "akitaonrails/ai-memory",
+      "url": "https://github.com/akitaonrails/ai-memory",
+      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
+      "language": "Rust",
+      "stars": 10500,
+      "stars_today": 512
+    },
+    {
+      "rank": 7,
+      "name": "stablyai/orca",
+      "url": "https://github.com/stablyai/orca",
+      "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
+      "language": "TypeScript",
+      "stars": 96679,
+      "stars_today": 1146
+    },
+    {
+      "rank": 8,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "CLI-Anything: Making ALL Software Agent-Native -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 54598,
+      "stars_today": 589
+    },
+    {
+      "rank": 9,
+      "name": "debpalash/VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative: voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
+      "language": "Python",
+      "stars": 75421,
+      "stars_today": 2082
+    },
+    {
+      "rank": 10,
+      "name": "android/skills",
+      "url": "https://github.com/android/skills",
+      "description": "",
+      "language": "Kotlin",
+      "stars": 8778,
+      "stars_today": 375
+    }
+  ],
+  "ota": {
+    "learned": [
+      "今晚本地 Chrome/claude-in-chrome 不在，YouTube RSS 只有 2/9 个频道直接可用 (Karpathy、AI Engineer 大会)，剩下 7 个用 yt-dlp 按频道单独抓才成功;Hacker News 的 Algolia front_page+query=AI 又只返回了 1 条，换成 Firebase topstories 接口扫前 80 条才找到足够候选。这两个故障都是文档里记过的老问题，但每晚都要重新验证，不能直接用上次的结论。",
+      "文摘 (Import AI、TLDR AI、Latent Space、Simon Willison) 这条带今晚实际上是空的:Import AI 上一期还是 10 月 12 日，TLDR AI 最新一期也过了 48 小时窗口，Latent Space 唯一一篇新帖子是拼凑推文的“高分品鉴”栏目，信息密度太低，Simon Willison 今晚发的都是自己小工具的版本号更新。YouTube + Hacker News 两个平台已经过了多样性门槛，没有硬凑一条文摘进去。",
+      "想用两场 AI Engineer 大会的工作坊 (WorkOS 的 Beyond Done、Arize 的 Phoenix 评测课) 做今晚的上手环节，结果两边的落地页和文字稿都只说“这个仓库”，但都没给出真正能 clone 的链接，查了两轮都没找到。后来才想起同一批候选里有一个独立发布、带 GitHub 仓库和 npm 包的 Show HN 工具 Sphinx，直接能验证安装步骤，换它做了今晚的上手环节。",
+      "DeepSeek 新上线的 Search/Fetch API 文档里把“免费”和“收费”两个阶段写得很清楚 (11 月 1 日北京时间零点开始按次收费)，但对搜索结果本身的准确率只字未提。这类基础设施型的发布，容易因为价格数字具体而显得“可信”，但价格具体和结果好用是两件完全不相关的事。"
+    ],
+    "learned_en": [
+      "Chrome/claude-in-chrome wasn't available locally tonight. YouTube's RSS feed came back live for only 2 of 9 roster channels (Karpathy, AI Engineer NYC); the other 7 needed a per-channel yt-dlp fallback to succeed. Hacker News's Algolia front_page+query=AI search again returned only 1 hit, and switching to the Firebase topstories endpoint over the top 80 ids is what actually turned up enough candidates. Both failure modes are already documented, but each needed re-verifying fresh tonight rather than trusting a prior run's read.",
+      "The 文摘 (newsletter) lane was effectively empty tonight: Import AI's last issue was October 12, TLDR AI's latest issue was already more than 48 hours stale, Latent Space's only fresh post was a thin roundup of aggregated tweets, and Simon Willison's fresh posts were all minor version-bump notes about his own small tools. With YouTube and Hacker News already clearing the 2-platform diversity gate, no newsletter item was forced in just to fill the slot.",
+      "Tried to source tonight's hands-on from two AI Engineer NYC conference workshops (WorkOS's Beyond Done, Arize's Phoenix eval course). Both landing pages and transcripts said \"this repo\" but neither gave an actual clone URL, and two rounds of searching turned up nothing. Only then did it register that the same candidate pool already had a standalone, independently published Show HN tool with its own GitHub repo and npm package, Sphinx, whose install steps could actually be verified. That became tonight's hands-on instead.",
+      "DeepSeek's new Search/Fetch API docs are explicit about the free-versus-paid timeline (per-request billing starts midnight Beijing time on November 1), but say nothing about the accuracy of the search results themselves. Infrastructure launches like this can read as \"trustworthy\" simply because the price is a specific number, even though a specific price and a good result have nothing to do with each other."
+    ],
+    "new_capabilities": [
+      "已实施:daily-digest/SKILL.md 第 3 步 (hands_on) 新增一条规则，会议工作坊自己的落地页经常提到“这个仓库”却从不给出可 clone 的链接，追一轮搜索没找到就该换成同一批候选里独立发布、文档齐全的工具 (比如 Show HN 一类)，不要连续两次在同一个工作坊的仓库上耗时间。"
+    ],
+    "new_capabilities_en": [
+      "Implemented: added a rule to daily-digest/SKILL.md step 3 (hands_on) — a conference workshop's own landing page often names \"this repo\" without ever giving a fetchable clone link; after one search round turns up nothing, switch to a standalone, well-documented tool from the same candidate pool (a Show HN-style project) instead of spending a second round chasing the same workshop's repo."
+    ]
+  }
+}
