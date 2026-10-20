@@ -1,0 +1,276 @@
+{
+  "date": "2026-10-19",
+  "partial": false,
+  "banner": "Anthropic 前五大客户转投 OpenAI",
+  "banner_en": "Anthropic's top-five customer defects to OpenAI",
+  "image": {
+    "src": "digests/img/2026-10-19.jpg",
+    "caption": "本期要图：Replit 创始人兼 CEO Amjad Masad 在 TechCrunch Disrupt 大会现场说出那句话。（图：TechCrunch）",
+    "caption_en": "Today's front-page image: Replit founder and CEO Amjad Masad, on stage at TechCrunch Disrupt when he said it. (Image: TechCrunch)"
+  },
+  "actions": [
+    {
+      "text": "Coinbase 的 Evan Kormos 给了一份四问清单，用来判断某个工作流节点能否交给 agent：能否直接对着政策核对？能否限定在有限次循环里，不无限重试？出了问题能否回溯到具体轨迹？卡住时能否交回给人？挑一个你正在跑的自动化流程（哪怕很简单），把四个问题依次问一遍。四条都答得上来，这一步大概可以再推进一档自动化；有一条答不上来，先别急着加 agent。约 10 分钟。",
+      "text_en": "Coinbase's Evan Kormos gave a four-question test for deciding whether a workflow step is ready to hand to an agent: can you check it against policy directly? Can it run in a bounded loop instead of retrying forever? Can you trace back to exactly what happened if it breaks? Can it fall back to a human when stuck? Pick one automation you're already running, even a simple one, and ask all four. If you can answer yes to all of them, it's probably ready for more automation. If you can't answer one, hold off on adding an agent there. About 10 minutes.",
+      "source": "AI Engineer 大会：Evan Kormos（Coinbase）",
+      "source_en": "AI Engineer NYC: Evan Kormos (Coinbase)",
+      "source_url": "https://www.youtube.com/watch?v=_4Ph2dhmUFI"
+    },
+    {
+      "text": "Cursor（现属 SpaceX）给每个打补丁式的 workaround 都加了日志：谁触发过、触发了几次，一旦连续无人触发，系统自动开一张「可以删了」的工单。找出你维护的脚本或 cron 任务里那种「如果 X 失败就用 Y 顶一下」的补丁，加一行最简单的计数，一个月后回头看它还在不在触发。约 15 分钟。",
+      "text_en": "Cursor (now part of SpaceX) logs every time a patch-style workaround fires, who triggered it and how often, and once one stops firing for a while, a bot automatically opens a ticket saying it can be removed. Find a workaround in your own scripts or cron jobs, the \"if X fails, fall back to Y\" kind, and add the simplest possible counter or log line. Check back in a month to see if it's still firing. About 15 minutes.",
+      "source": "AI Engineer 大会：Jediah Katz（Cursor / SpaceX AI）",
+      "source_en": "AI Engineer NYC: Jediah Katz (Cursor / SpaceX AI)",
+      "source_url": "https://www.youtube.com/watch?v=7Y4sbZgBdnc"
+    },
+    {
+      "text": "Replit 这次能把默认模型从 Claude 换成 OpenAI，前提是它一直保留了「同一套接口，底层模型随时能插拔」的架构，CEO 自己说 remains model agnostic。查一下你手上任何调用单一模型 API 的脚本或自动化（不限于 Claude），模型名字是不是硬编码在代码里。抽出一个变量，哪怕今晚不真的换着跑，至少做到想换的时候不用改代码。约 15-20 分钟。",
+      "text_en": "Replit could swap its default model from Claude to OpenAI this cleanly because it had kept a \"same interface, swappable model underneath\" architecture all along; the CEO's own words were \"remains model agnostic.\" Check any script or automation you run that calls a single model API, not just Claude, and see whether the model name is hardcoded. Pull it into a variable. Even if you don't actually switch tonight, you'll be able to switch without touching code when you want to. About 15-20 minutes.",
+      "source": "TechCrunch · Kirsten Korosec 等",
+      "source_en": "TechCrunch: Kirsten Korosec et al.",
+      "source_url": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/"
+    }
+  ],
+  "hands_on": {
+    "title": "给你的预测或 agent 系统做一次时间旅行回测",
+    "title_en": "Time-travel backtest your own prediction or agent system",
+    "why": "Exa 把自己的网页索引（号称 4000 多亿页快照，跨 20 年）做成可指定日期查询的接口，加一个 snapshotAsOf 参数，搜索和抓页都会被锁定在那个日期之前存过的版本，不会漏出未来信息。这解决一个具体问题：如果你拿现在的网页搜索结果去验证任何预测类判断（哪怕只是「这家公司会不会被收购」这种简单是非题），答案很可能已经写在网上了，等于自己给自己放水。工作坊现场让观众用这个接口给「公司被收购前」设计预测特征，当场打分，结果拿第一的那组特征，拆开一看其实是把训练集里没被收购的四家公司名字直接列出来排除掉，是赛制意义上的作弊，也正是 Exa 的 Ryan Ahern 想借这个练习提醒大家的事：没有留出一个独立的测试集，回测分数很容易是在骗自己。",
+    "why_en": "Exa turned its own web index, which it says holds over 400 billion page snapshots spanning two decades, into a date-queryable API: add a snapshotAsOf parameter and both search and page-fetch get locked to whatever version was stored before that date, so no future information leaks in. That solves a specific problem: if you validate any predictive judgment, even a simple yes/no like \"will this company get acquired,\" against today's web search, the answer is often already sitting online, so you're grading your own homework. In the workshop, Exa's Ryan Ahern had the room design acquisition-prediction features and score them live. The top-scoring entry, once unpacked, turned out to just list and exclude the four companies in the training set that hadn't been acquired, which is overfitting dressed up as a clever feature, exactly the risk he was using the exercise to demonstrate: without a held-out test set, a backtest score is easy to fool yourself with.",
+    "time": "20-25 分钟",
+    "time_en": "20-25 minutes",
+    "steps": [
+      "去 dashboard.exa.ai 注册一个账号，拿到免费的 API key",
+      "存成环境变量：export EXA_API_KEY=你的 key",
+      "跑一次不限定时间的搜索，确认接口能用：curl -X POST https://api.exa.ai/search -H \"x-api-key: $EXA_API_KEY\" -H \"Content-Type: application/json\" -d '{\"query\":\"<你关心的一家公司 可能被收购>\",\"numResults\":5}'",
+      "在请求里的 contents 对象加 snapshotAsOf 字段，指定一个过去的日期，对比同一个查询在「现在」和「那时」分别搜出什么：curl -X POST https://api.exa.ai/search -H \"x-api-key: $EXA_API_KEY\" -H \"Content-Type: application/json\" -d '{\"query\":\"<同一个查询>\",\"numResults\":5,\"contents\":{\"highlights\":true,\"snapshotAsOf\":\"2026-09-19\"}}'",
+      "对比两次结果的差异：如果你在做任何「只能看当时能看到的信息」的判断（背调、投资决策、给 agent 做评测），snapshotAsOf 就是用来堵住未来信息偷偷溜进测试集的那个开关"
+    ],
+    "steps_en": [
+      "Sign up at dashboard.exa.ai and grab a free API key",
+      "Save it as an environment variable: export EXA_API_KEY=your_key",
+      "Run an unconstrained search first to confirm the API works: curl -X POST https://api.exa.ai/search -H \"x-api-key: $EXA_API_KEY\" -H \"Content-Type: application/json\" -d '{\"query\":\"<a company you think might get acquired>\",\"numResults\":5}'",
+      "Add a snapshotAsOf field inside the contents object, pointing at a past date, and compare the same query run \"now\" versus \"then\": curl -X POST https://api.exa.ai/search -H \"x-api-key: $EXA_API_KEY\" -H \"Content-Type: application/json\" -d '{\"query\":\"<the same query>\",\"numResults\":5,\"contents\":{\"highlights\":true,\"snapshotAsOf\":\"2026-09-19\"}}'",
+      "Compare the two result sets. If you're making any judgment that should only see what was knowable at the time, background checks, investment calls, grading an agent, snapshotAsOf is the switch that keeps future information from quietly leaking into your test set"
+    ],
+    "source": "AI Engineer 大会：Ryan Ahern（Exa）",
+    "source_en": "AI Engineer NYC: Ryan Ahern (Exa)",
+    "source_url": "https://www.youtube.com/watch?v=L4dUFimVDKU"
+  },
+  "meta_read": "今晚最大的新闻和最小的新闻，说的是同一件事的两面。Anthropic 联创 Jack Clark 在 IMF 讲台上说奇点已经开始：Humanity's Last Exam 的分数从去年初的 8% 涨到现在的 67.7%，FrontierMath 从 2% 涨到 94%。他引用的一篇物理学论文，专家反复核对才发现不是模型错了，是人自己算错了。同一周，Anthropic 宣布拿出 5% 股权（还可能随估值继续加），理由之一就是给 AI 带来的劳动力冲击兜底。一家公司一边说世界要被彻底改写，一边先把分家产的章程写好。\n\n但同一周传出的另一条消息更朴素：Replit 创始人在台上说，他们把默认模型从 Claude 换成了 OpenAI，理由不是什么奇点，就是便宜、搭档关系、跑分更好看。Replit 曾是 Anthropic 前五大客户之一。换得这么轻巧，本身就说明一件事：如果你的产品靠的是调用哪个模型，而不是模型之外你做了什么，客户随时可以在周四的发布会上说换就换，奇点讲得再漂亮也留不住他。\n\n今晚几场 AI Engineer 大会的演讲，讲的恰好是怎么填上这道缝。Coinbase 的 Evan Kormos 说，信任 agent 的办法不是相信它聪明，而是把政策和系统拆开，用四个问题逐个审：能不能查、能不能圈定循环、能不能回溯、能不能交回人。刚从 Cursor 转到 SpaceX 的 Jediah Katz 讲了一个更冷的事实：模型变聪明之后，先被淘汰的恰恰是那些曾经用来弥补模型短板的补丁。他把这个过程叫数据飞轮，用得越多、积累的数据越多，模型学得越快，补丁自己把自己做没用。Exa 的 Ryan Ahern 现场让观众做一次股票收购预测，拿第一名的那组特征拆开一看，是把训练集里的答案直接写进了规则里。三场演讲说的其实是一件事：agent 这件事上，真正值钱的不是模型多聪明，是你有没有留一道真正挡得住作弊的测试，挡得住补丁一直续命而不被发现，挡得住客户觉得随时能走。Anthropic 这周在讲奇点，Replit 这周在讲账单，两边说的都是真话，只是说的不是同一层。",
+  "meta_read_en": "Tonight's biggest story and its smallest story are two sides of the same thing. Anthropic co-founder Jack Clark told the IMF the singularity has begun: Humanity's Last Exam went from 8% to 67.7% since early last year, FrontierMath from 2% to 94%, and in a physics paper he cites, experts had to double-check their own calculations before realizing the model wasn't wrong, they were. The same week, Anthropic announced it's committing 5% of its shares (with more tied to valuation milestones) to a fund partly meant to cushion the labor-market fallout AI itself is causing. That's a company writing the terms of its own windfall redistribution while telling the world the windfall is about to be historic.\n\nBut a plainer story broke the same week: Replit's founder said onstage that the company switched its default model from Claude to OpenAI, and the reason wasn't anything close to a singularity, it was cost, a partnership, and better benchmark scores. Replit had been one of Anthropic's top-five customers. How easily that switch happened says something on its own: if your product's value is \"which model it calls\" rather than everything you built on top of it, a customer can walk the moment a better deal shows up on stage, no matter how grand the narrative sounds.\n\nTonight's AI Engineer NYC talks happen to be about closing exactly that gap. Coinbase's Evan Kormos argued that trusting an agent isn't about believing it's smart, it's about separating policy from the running system and checking every step against four questions: can you verify it against policy, bound its loop, trace it, and fall back to a human. Jediah Katz, who just moved from Cursor to SpaceX, named a colder fact: the moment models get smarter, the first thing to die is the very scaffolding built to patch their weaknesses, what he calls a \"data flywheel,\" more usage generates more data, the model absorbs the skill faster, and the patch quietly makes itself obsolete. Exa's Ryan Ahern had a room full of engineers build a stock-acquisition predictor live, and the winning entry, once unpacked, had simply hardcoded the answer key from the training set into its rule. All three talks point at the same thing: in agent work, what's actually valuable isn't how smart the model is, it's whether you've built a test that can't be gamed, a way to notice a patch that's still running on autopilot, and a product that a customer can't just walk away from. Anthropic is talking about the singularity this week. Replit is talking about its bill. Both are telling the truth, just at different altitudes.",
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "AI Engineer 大会：agent 能不能转正，看四个问题",
+          "title_en": "AI Engineer NYC: four questions decide if an agent is ready to run alone",
+          "author": "AI Engineer 大会 · Evan Kormos（Coinbase）",
+          "author_en": "AI Engineer NYC · Evan Kormos (Coinbase)",
+          "likes": "395",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=_4Ph2dhmUFI",
+          "summary": "我读完了整段文字稿。Kormos 在企业金融服务做了 15 年软件，现在是 Coinbase 的 player coach（这个头衔对应 Coinbase 真实的组织改革：Brian Armstrong 公开说过要用会写代码的教练取代纯管理岗）。他讲的核心框架是先把政策（组织对风险和合规的书面规则，他比作系统提示词）和实际运行的系统拆成两个独立的东西。政策很少变，系统一直在变，但系统的变动要始终被政策约束。具体工作流用两种图表示：DAG（有向无环图，步骤严格按顺序走，比如一笔商业贷款的审批）和 DCG（有向有环图，比如代码审查，反复打回修改直到过关为止）。判断某个节点该不该交给 agent，他给了一组具体问题：能不能直接对着政策核对？能不能圈定在有限次数的循环里？出了问题能不能回溯到具体轨迹？卡住时能不能交回给人？他特别强调，传统软件靠单元测试建立的信心机制在 agent 身上失效，因为同一个请求可能给出不止一个都算对的答案，不能只做一次性的输出比对，要建代表性数据集，做统计意义上的重复评测。落地路径是一个信心阶梯：先全程人工核对，积累到政策阈值后转成抽样核对，再到人只处理例外情况，但人始终参与刷新数据集。",
+          "summary_en": "I read the full transcript. Kormos spent 15 years building software in enterprise financial services and is now a \"player coach\" at Coinbase, a title that maps onto a real organizational shift there (Brian Armstrong has said publicly the company is replacing pure managers with coding managers). His core framework splits \"policy,\" the organization's written rules for risk and compliance, which he compares to a system prompt, from the actually-running system, arguing policy changes rarely while the system changes constantly, but every change to the system must stay bounded by policy. He represents workflows as two kinds of graphs: a DAG (directed acyclic graph, steps move strictly forward, like approving a commercial loan) and a DCG (directed cyclic graph, like code review, which loops back for revision until it passes). To decide whether a given step should go to an agent, he gives a concrete checklist: can it be checked against policy directly, can it run in a bounded loop, can you trace back to what happened if it breaks, and can it fall back to a human when stuck. He specifically argues that the \"confidence mechanism\" traditional software gets from unit tests breaks down for agents, since the same request can produce more than one acceptable answer, so you can't just compare one output to one expected value; you need representative data sets and repeated, statistical evaluation instead. The rollout path is a confidence ladder: full human verification first, moving to sampling once confidence clears a policy threshold, then humans handling only exceptions, but staying involved in refreshing the data sets throughout.",
+          "why": "Kormos 讲的是他在 Coinbase 的实践经验，没有第三方数据佐证具体效果，框架本身也偏概念性（DAG/DCG、信心阶梯），不是一套可以直接照搬的工具。但四个问题这个检查表足够具体，可以直接拿去问自己手上的任何一个自动化流程，详见今日行动第 1 条。",
+          "why_en": "Kormos is describing his own practice at Coinbase, with no third-party data backing the specific outcomes, and the framework itself (DAG/DCG, the confidence ladder) is fairly conceptual rather than a tool you can drop in directly. But the four-question checklist is concrete enough to run against any automation you already have, see action 1."
+        },
+        {
+          "title": "AI Engineer 大会：模型越聪明，先死的是脚手架",
+          "title_en": "AI Engineer NYC: smarter models kill the scaffolding first",
+          "author": "AI Engineer 大会 · Jediah Katz（Cursor / SpaceX AI）",
+          "author_en": "AI Engineer NYC · Jediah Katz (Cursor / SpaceX AI)",
+          "likes": "15565",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=7Y4sbZgBdnc",
+          "summary": "我把整段文字稿读完了。Katz 从 2025 年初就在 Cursor 做 agent 脚手架，他说自己是任期最长的脚手架工程师。今年 SpaceX 以 600 亿美元全股票收购 Cursor 母公司 Anysphere，他随团队去了 SpaceX（这笔交易 6 月已公开核实，不是本期新闻）。他把脚手架拆成两层：跑运行时的基础层，像传统软件工程，管状态和断点续传；负责上下文与编排的上层，管哪些提示词、工具、记忆压缩能生效。他说「脚手架已死」争论真正在说的是这一层。证据来自两份独立研究。UC Berkeley 测了 7 个前沿模型在 Pi、Codex、Claude Code 等多种脚手架上的 SWE-bench Lite 成绩，发现脚手架选择对新一代更聪明的模型几乎不影响分数；Apple 和 EPFL 的研究在 MLEBench 上也得出类似结论。但两份研究都发现，脚手架之间在单任务成本上差异显著。他把这个过程称为数据飞轮：脚手架先让更难的任务可以被尝试，更多人尝试产生更多数据，数据喂给模型训练，模型学会原生做到脚手架曾经代为做的事，比如探索代码库、长时间持续工作、自测，脚手架的那部分补丁因此变得多余，又腾出手去啃下一层更难的任务。他举 SpaceX 内部产品 GrokBot 为例，这是一个长期运行、协调多个子任务的自主同事。恰恰因为这类新任务，比如做幻灯片、订票、决定该做还是该问，模型还没吃透，团队反而在往里加回更多提示词和护栏。他还提到一个具体机制：每条临时补丁，他叫 shim，被调用时都会被记录，一旦连续没人触发，系统自动开一张可以清理的工单，而不是等下一次模型升级才想起来删。",
+          "summary_en": "I read the full transcript. Katz has built agent scaffolding at Cursor since early 2025, describing himself as the company's longest-tenured scaffolding engineer, and moved to SpaceX along with the rest of the team after SpaceX acquired Cursor's parent company Anysphere for $60 billion in an all-stock deal earlier this year (that deal is already public and independently verified, not tonight's news). He splits \"scaffolding\" into two layers: a runtime foundation layer, which behaves like traditional software engineering and manages state and resumability, and a context-and-orchestration layer, which controls which prompts, tools, and memory-compaction tricks fire, the layer he says the \"scaffolding is dead\" debate is actually about. His evidence comes from two independent studies: UC Berkeley tested seven frontier models across scaffolds including Pi, Codex, and Claude Code on SWE-bench Lite and found scaffold choice barely moved scores for newer, smarter models; Apple and EPFL reached a similar conclusion on MLEBench. Both studies found a significant difference in cost per task between scaffolds, though. He calls the underlying process a \"data flywheel\": scaffolding first makes harder tasks attemptable, more attempts generate more usage data, that data feeds back into model training, the model learns to natively do what the scaffold used to patch for it (exploring a codebase, working persistently for a long time, checking its own work), and the scaffolding that used to do that becomes dead weight, freeing effort to tackle the next harder layer. He points to SpaceX's internal product GrokBot, a long-running \"autonomous colleague\" that coordinates sub-tasks, as an example of the opposite happening right now: because these new task types (making slide decks, booking travel, deciding whether to act or ask first) haven't been absorbed by the model yet, the team is actively adding prompting and guardrails back in. He also describes a concrete mechanism: every time a temporary patch (he calls it a shim) fires, it gets logged, and once one stops firing for a while, a bot automatically opens a ticket saying it can be cleaned up, rather than waiting for the next model upgrade to remember to remove it.",
+          "why": "Katz 讲的是他自己公司 Cursor/SpaceX AI 内部的产品决策和内部数据，比如 shim 日志、GrokBot 的护栏调整，没有外部复核。但他引用的两份第三方研究，UC Berkeley、Apple+EPFL，是独立机构做的，可以单独核实。数据飞轮这个框架本身也经得起检验，可以直接套用到任何一份不断堆砌 workaround 的文档或脚本上，详见今日行动第 2 条。",
+          "why_en": "Katz is describing product decisions and internal data from his own company (Cursor/SpaceX AI), including the shim-logging and GrokBot guardrail adjustments, with no outside review. But the two third-party studies he cites (UC Berkeley, Apple+EPFL) are independent and separately checkable, and the \"data flywheel\" framework itself holds up on its own merits, applicable to any document or script that keeps accumulating workarounds, see action 2."
+        },
+        {
+          "title": "AI Engineer 大会：给网页搜索装一个时间机器",
+          "title_en": "AI Engineer NYC: time-travel for web search",
+          "author": "AI Engineer 大会 · Ryan Ahern（Exa）",
+          "author_en": "AI Engineer NYC · Ryan Ahern (Exa)",
+          "likes": "3716",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=L4dUFimVDKU",
+          "summary": "我把整段文字稿读完了。Ahern 是 Exa 的全栈工程师。Exa 做给 agent 用的网页搜索，号称索引覆盖约 1000 亿份文档、跨万亿级 URL。他先铺了背景：AI 现在搜索的频率和耐心都远超人类，Cursor 用 Exa 查文档，Gamma 用它查财务数据，Exa 自己也服务对冲基金和风投做尽调。主题是新功能 Snapshot。Exa 一直在给抓到的每个页面存历史版本，Snapshot 让你指定一个过去的日期，搜索或抓取都会被锁定在那个日期之前存过的版本。他给了两个具体例子。OpenAI 年化收入到底是 700 亿还是 500 亿，媒体一开始报高，后来才澄清是总收入和净收入、是否扣除云厂商成本的统计口径问题。如果你的系统设计成在当时就能发现这类财务脚注，这类信息本身就值钱。另一个例子是歌手 Ed Sheeran 近期有负面新闻，但如果往前看会发现他此前已经有过不适合做保险代言人的信号。他特别强调一个风险：任何实时搜索都天然知道未来结果，公司已经被收购了，直接拿这种搜索去训练或评估预测系统等于把答案提前泄露给自己。现场练习让观众设计公司会不会被收购的预测特征，锁定在收购前 1 天、7 天、30 天去测试打分。拿第一名的特征拆开后发现，本质是把训练集里没被收购的四家公司名字直接列出来排除。他当场承认这是自己为了演示简单，特意没设置独立的留存测试集导致的后果，提醒现场所有人用这套能力时务必加留存集，否则回测分数很容易是在欺骗自己。",
+          "summary_en": "I read the full transcript. Ahern is a full-stack engineer at Exa, which builds web search for AI agents and says its index covers roughly 100 billion documents across trillions of URLs. He opens with context: AI now searches far more often and more persistently than humans do, Cursor uses Exa to look up docs, Gamma uses it for financial data, and Exa itself serves hedge funds and VCs doing diligence. The talk's subject is a new feature called Snapshot: Exa has always been storing historical versions of pages it crawls, and Snapshot lets you specify a past date so that search or page-fetch results get locked to whatever version existed before that date. He gives two concrete examples: whether OpenAI's annualized revenue was really $70 billion or $50 billion, where early media reports ran high before it was clarified as a gross-versus-net and cloud-cost-passthrough accounting question, information worth catching at the time it was live; and singer Ed Sheeran's recent adverse media, where looking further back would have already surfaced signals he wasn't a good fit for an insurance endorsement. He stresses a specific risk: any \"live\" search inherently already knows the future (a company is already acquired), so training or evaluating a predictive system against it leaks the answer to yourself ahead of time. In a live exercise, the room designed features predicting company acquisitions, scored by locking the search to 1, 7, and 30 days before each event. The winning feature, once unpacked, simply listed and excluded by name the four companies in the training set that hadn't been acquired. Ahern admitted on the spot that he'd deliberately left out a held-out test set to keep the demo simple, and used the result to warn everyone that using this capability without a holdout set makes it very easy for a backtest score to fool you.",
+          "why": "Ahern 讲的是 Exa 自家产品，案例，OpenAI 营收口径、Ed Sheeran，都是用来展示自家功能的卖点，立场要披露。但 snapshotAsOf 这个参数和接口格式是文档里写明的硬信息，可以直接核实、直接试用，详见今日上手。",
+          "why_en": "Ahern is presenting Exa's own product, and the examples (OpenAI's revenue accounting, Ed Sheeran) are chosen to showcase the feature's selling points, worth disclosing. But the snapshotAsOf parameter and request format are hard facts documented in Exa's own API reference, directly verifiable and directly usable, see tonight's hands-on."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "Replit 弃用 Claude，CEO 说是钱和表现的问题",
+          "title_en": "Replit drops Claude, CEO cites cost and performance",
+          "author": "Kirsten Korosec 等 · TechCrunch",
+          "author_en": "Kirsten Korosec et al. · TechCrunch",
+          "likes": "1",
+          "likes_label": "HN 分",
+          "url": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/",
+          "summary": "Replit 创始人兼 CEO Amjad Masad 10 月 16 日在 TechCrunch Disrupt 台上说，Replit 不再和 Anthropic 合作。事后他澄清，准确说法是 Replit Agent 的默认模型已经换成 OpenAI 的 ChatGPT（他点名的是 Sol 和 Astra 两个型号），理由是成本、合作关系和表现都考虑过了，并直说“我觉得 ChatGPT 现在更好”。Replit 内部和公开的基准测试显示，这两个模型在从零构建 vibe-coded 应用上表现更好。背景是 Replit 8 月才公开宣布和 OpenAI 的合作，在那之前一直用 Claude，Masad 说 Replit 曾是 Anthropic 前五大客户之一。用户目前仍能选用 Claude，只是默认值变了；但文章指出，大多数用户不会改默认设置，所以 Replit 给 Anthropic 的实际支出可能明显下降。Masad 对 TechCrunch 的书面回应说，Replit“依然是模型中立的”。文章也提到反面证据：知情人士说合作关系其实还在；9 月底 Replit 自己的博客还点名 Claude Fable 5 和 5.1 是 Agent 生产环境里用的模型；一名产品员工最近还在社交媒体上推荐 Anthropic 的 Opus 5.5。营收数据：企业客户占比从去年的约 2% 涨到今年约 15%，B2B 已占总营收过半，Masad 预计 2027 年企业和政府客户会占到营收一半以上。",
+          "summary_en": "Replit founder and CEO Amjad Masad said onstage at TechCrunch Disrupt on October 16 that Replit is no longer working with Anthropic; he later clarified the precise claim is that Replit Agent's default model has switched to OpenAI's ChatGPT (naming the Sol and Astra models), citing \"cost, partnership, and performance,\" and adding directly, \"I think ChatGPT is better now.\" Replit's internal and public benchmarks reportedly show those models performing better at building vibe-coded apps from scratch. Replit had publicly announced its OpenAI partnership only in August, having run on Claude before that, and Masad said Replit had been one of Anthropic's top-five customers. Users can still select Claude; only the default changed, but the article notes most users never change the default, so Replit's actual spend with Anthropic could drop significantly. In a written statement to TechCrunch, Masad said Replit \"remains model agnostic.\" The article also cites counter-evidence: people familiar with the relationship said the partnership is still in place; a late-September Replit blog post itself named Claude Fable 5 and 5.1 as models running in Agent's production environment; and a Replit product employee recently promoted Anthropic's Opus 5.5 on social media. On the business side: enterprise revenue share rose from about 2% last year to about 15% this year, B2B already makes up over half of total revenue, and Masad expects enterprise and government customers to exceed half of revenue by 2027.",
+          "why": "这是 CEO 在发布会台上的即兴发言，后来自己澄清、又被知情人士反驳，说法本身就不稳定，适合当“舞台效果 vs 真实合同状态”的例子，不必全信。但企业收入占比从 2% 涨到 15% 这类具体业务数字是 Masad 自己给出的，和“换不换模型”这件事无关，可以单独核实。详见今日行动第 3 条。",
+          "why_en": "This is a CEO's off-the-cuff remark on a conference stage, which he then walked back himself and which people familiar with the matter disputed, so the framing itself is unstable, a good example of \"stage effect versus actual contract status,\" not something to take at face value. But the specific business figures, like enterprise revenue share rising from 2% to 15%, come from Masad independently of the model-switch claim and can be checked on their own. See action 3."
+        },
+        {
+          "title": "Anthropic 拿出 5% 股权，还可能更多",
+          "title_en": "Anthropic pledges 5% of its shares, with more to come",
+          "author": "Anthropic（官方博客）· Hacker News",
+          "author_en": "Anthropic (official blog) · Hacker News",
+          "likes": "57",
+          "likes_label": "HN 分",
+          "url": "https://www.anthropic.com/news/public-benefit-fund",
+          "summary": "Anthropic 10 月 18 日宣布成立“公益基金”：在股东批准的前提下，立即拿出 5% 的公司股份，之后公司估值每上涨 50%，董事会可以再追加 2%（具体的估值基准线和触发节点还没公布）。算上创始人此前承诺捐出的 80% 个人股份、以及大约一半员工参与的“公司配捐”员工股票计划，官方给出的说法是，加起来大约 20% 的股份最终会流向公共用途，还不算后续按估值追加的部分。基金的组织形式是一家 Anthropic 全资持有的 LLC，不是免税的 501(c)(3)，官方给的理由是这样在资金用途上更灵活；同时明确写明，基金持有的 Anthropic 股份不会用于游说或政治捐款，不管在美国还是海外。可能的用途包括给传统非营利组织的大额捐赠，以及对特定人群的直接发放，官方特别点出劳动力市场冲击是一个方向，并提到公司此前已经投入 2 亿美元做相关经济研究。另外，原本会给高管的、随公司估值上涨而增加的股权激励，现在被改为直接划给这个基金。公司说，未来几个月会公布更具体的治理结构和估值触发节点，以及一份衡量进展的公益报告。",
+          "summary_en": "Anthropic announced a \"Public Benefit Fund\" on October 18: subject to stockholder approval, 5% of company shares are committed immediately, and the board can add another 2% for every 50% increase in company valuation above a baseline that hasn't been specified yet. Combined with the founders' earlier pledge of 80% of their personal equity and an employee equity-match program that roughly half of employees participate in, the company's own figure is that about 20% of shares will eventually go toward public purposes, before counting any further valuation-triggered additions. The fund is structured as a wholly-owned LLC rather than a tax-exempt 501(c)(3), which the company says gives it more flexibility in how it gives; it also explicitly states none of the fund's Anthropic shares will be used for lobbying or political donations, in the US or abroad. Possible uses include large grants to traditional nonprofits and direct distributions to specific populations, with labor-market impact named specifically as one direction, alongside the $200 million the company has already committed to related economic research. Separately, equity compensation that would otherwise have grown for executives as the company's valuation rises is now being redirected straight into the fund instead. The company says more detail on governance structure, valuation triggers, and a public-benefit progress report will come in the following months.",
+          "why": "这是 Anthropic 自己公布的自己的钱怎么花，估值基准线和追加节点都还没公布，所以“加起来约 20%”这个总数现在没法独立核实，等官方公布具体数字再看。但 LLC 而非 501(c)(3)、不用于游说政治捐款、把高管激励股权转给基金这几条，都是公告原文里写清楚、可以直接核对的结构性事实。",
+          "why_en": "This is Anthropic announcing how it will spend its own money, and since the valuation baseline and trigger points haven't been published yet, the \"roughly 20%\" total can't be independently verified until the company releases actual numbers. But the structural facts, LLC rather than 501(c)(3), no use for lobbying or political donations, executive equity compensation being redirected into the fund, are all stated plainly in the announcement itself and directly checkable."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 30,
+      "items": [
+        {
+          "title": "Anthropic 联创在 IMF 说：奇点已经开始",
+          "title_en": "Anthropic co-founder tells the IMF: the singularity has begun",
+          "author": "Jack Clark（Anthropic 联创）· Import AI",
+          "author_en": "Jack Clark (Anthropic co-founder) · Import AI",
+          "likes": "",
+          "likes_label": "",
+          "url": "https://importai.substack.com/p/import-ai-477-in-which-i-tell-the",
+          "summary": "我读完了全文。这是 Jack Clark 10 月 17 日在泰国曼谷 IMF 会议上做的 Per Jacobsson 讲座全文，发在他自己的 Import AI 第 477 期。他的核心论点：今年起，同一个前沿模型已经能在多个科学领域同时逼近人类专家水平，这是“奇点”真正开始的证据，不只是概念。支撑数字：Humanity's Last Exam 测试分数从 2025 年 1 月的 8% 涨到现在的 67.7%（目前最高分是 Claude Opus 5.5）；FrontierMath 从 2024 年 11 月发布时的 2% 涨到现在的 94%。他讲了一个具体故事：一篇上周发布的论文 TheoPhysEval，收集了 50 道未公开发表的理论物理题，物理学家 Suvrat Raju 记录说，模型一开始被判定算错，但专家反复核对后发现，是人自己的计算里藏着细微错误，模型修正后最终拿到 98%（49/50）。他也引用 Anthropic 内部数据：自己团队现在的代码产出量是公司头四年的近十倍。基于“模型可以自主完成大范围任务并迅速扩散到经济中”的假设，他引用 Anthropic 自己做的建模：到 2030 年美国 GDP 可能达到 44 万亿美元。政策建议部分，他把这次机会类比成十年前各国该不该提前建数据中心：现在该提前建的是实验设备和机器人产能，否则会重复“光有算力没有产能”的老问题；同时提出几个没有答案的具体选择题，比如生物研究该给 AI 多大自主权、AI 自己做 AI 研究时该不该保留人类理解每一步的能力。",
+          "summary_en": "I read the full text. This is the full Per Jacobsson lecture Jack Clark gave at the IMF meeting in Bangkok on October 17, published in his own Import AI issue 477. His central claim: starting this year, the same single frontier model can approach human-expert level across multiple scientific fields simultaneously, which he argues is real evidence the singularity has actually begun, not just a concept. Supporting numbers: Humanity's Last Exam scores rose from 8% in January 2025 to 67.7% now (the current top score is held by Claude Opus 5.5); FrontierMath rose from 2% at its November 2024 launch to 94% now. He tells a specific story: a paper published last week, TheoPhysEval, collected 50 unpublished theoretical physics problems, and physicist Suvrat Raju documented that the model's answers were initially marked wrong, but repeated expert review found subtle errors in the humans' own calculations instead; once corrected, the model ultimately scored 98% (49/50). He also cites internal Anthropic data: his own team's code output is now nearly ten times what it was in the company's first four years. Based on the assumption that models can autonomously complete a broad range of tasks and diffuse quickly through the economy, he cites Anthropic's own modeling: US GDP could reach $44 trillion by 2030. His policy recommendation draws an analogy to the decade-old question of whether countries should build data centers ahead of demand: now is the time to build lab equipment and robotics capacity ahead of demand too, or risk repeating the old problem of having compute without the physical capacity to use it. He also raises several unresolved specific choices, like how much autonomy to give AI in biological research, and whether humans should insist on understanding every step when AI starts doing AI research on itself.",
+          "why": "Clark 是 Anthropic 联创，这篇讲稿也是在为自家公司卖的技术做背书，立场要披露。44 万亿美元这个数字，他在原文里就说明是基于「假设模型能自主完成大范围任务」的建模结果，不是预测。但 HLE、FrontierMath 是公开、独立维护的评测榜，分数可以单独核实；TheoPhysEval 的细节也来自论文作者本人的记录，不是 Clark 自己的转述。",
+          "why_en": "Clark is Anthropic's co-founder, so this lecture is also, in effect, an endorsement of the technology his own company sells, worth disclosing. The $44 trillion figure is explicitly flagged in his own text as a modeling result based on the assumption that models can autonomously complete a broad range of tasks, not a forecast. But HLE and FrontierMath are public, independently maintained benchmark leaderboards whose scores can be checked separately, and the TheoPhysEval details come from the paper's own author's account, not Clark's secondhand retelling."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "MadsLorentzen/ai-job-search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
+      "language": "Python",
+      "stars": 57301,
+      "stars_today": 3856
+    },
+    {
+      "rank": 2,
+      "name": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "description": "The open source coding agent.",
+      "language": "TypeScript",
+      "stars": 217821,
+      "stars_today": 1311
+    },
+    {
+      "rank": 3,
+      "name": "akitaonrails/ai-memory",
+      "url": "https://github.com/akitaonrails/ai-memory",
+      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
+      "language": "Rust",
+      "stars": 11356,
+      "stars_today": 666
+    },
+    {
+      "rank": 4,
+      "name": "Comfy-Org/ComfyUI",
+      "url": "https://github.com/Comfy-Org/ComfyUI",
+      "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world.",
+      "language": "Python",
+      "stars": 139732,
+      "stars_today": 1011
+    },
+    {
+      "rank": 5,
+      "name": "ruvnet/ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, federation, vector RAG integration, and native Claude Code / Codex / Hermes and many more Integrated",
+      "language": "TypeScript",
+      "stars": 77195,
+      "stars_today": 564
+    },
+    {
+      "rank": 6,
+      "name": "stablyai/orca",
+      "url": "https://github.com/stablyai/orca",
+      "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
+      "language": "TypeScript",
+      "stars": 98302,
+      "stars_today": 1590
+    },
+    {
+      "rank": 7,
+      "name": "headroomlabs-ai/headroom",
+      "url": "https://github.com/headroomlabs-ai/headroom",
+      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+      "language": "Python",
+      "stars": 76252,
+      "stars_today": 310
+    },
+    {
+      "rank": 8,
+      "name": "withmarbleapp/os-taxonomy",
+      "url": "https://github.com/withmarbleapp/os-taxonomy",
+      "description": "",
+      "language": "JavaScript",
+      "stars": 6128,
+      "stars_today": 284
+    },
+    {
+      "rank": 9,
+      "name": "Kruk2/jasna",
+      "url": "https://github.com/Kruk2/jasna",
+      "description": "Video restoration tool",
+      "language": "Python",
+      "stars": 2897,
+      "stars_today": 498
+    },
+    {
+      "rank": 10,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "CLI-Anything: Making ALL Software Agent-Native -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 55241,
+      "stars_today": 606
+    }
+  ],
+  "ota": {
+    "learned": [
+      "本地没有 Chrome/claude-in-chrome，是一次纯 headless 跑法：YouTube RSS 这次 9 个频道里有 5 个直接可用（Anthropic、Karpathy、Lenny's、No Priors、OpenAI），加一个对照频道（Google for Developers）也正常，排除了 YouTube 全站故障；AI Engineer 大会、Dwarkesh Patel、Latent Space、Zara Zhang 这 4 个走 yt-dlp 回退。5/9 比 10-16、10-18 两次的 2/9 明显好转，但按既有规则，这只是又一次独立样本，不能当成已经修好，下次还要重新测。",
+      "AI Engineer 大会 YouTube 频道今晚一次性放出 6 条全新的会议演讲（全部是今天上传），比往常零星放出要集中，推测是会议录像分批发布的节奏问题，不是信号变化。No Priors 和 Lenny's 今晚的条目几乎全是 42-52 秒的短预告片，不是完整节目，这类条目直接跳过，不强行当完整内容读。",
+      "两处人名核对：YouTube 标题给的「Evan Kormos」和字幕转写出来的「Evan Cormos」不一致，「Jediah Katz」和字幕转写的「Jedidiah」也不一致，网上搜不到独立的第三方资料能确认哪个拼法对，这次按会议官方标题的拼法为准（不是单纯信字幕），和过去「查到独立资料就用查到的」不是同一种确定程度，这里记一下留痕。",
+      "Jediah Katz 演讲里提到他「跟着 Cursor 被 SpaceX 收购」，这件事本身听起来意外，核实后确认是真的但不是新闻：SpaceX 今年 6 月已经官宣用 600 亿美元全股票收购 Cursor 母公司 Anysphere，演讲里只是提了一句背景，没有新信息，没有当独立条目处理。",
+      "Anthropic 的公益基金公告本来是通过 TLDR AI 的今日简讯发现的，但去 HN Algolia 一查，这篇公告自己在 Hacker News 上有独立的提交（57 分、47 条评论），比只引用 TLDR 的转述要更站得住，改成直接按 Hacker News 来源收录，TLDR 这条本身不再单独算一个来源。"
+    ],
+    "learned_en": [
+      "No Chrome/claude-in-chrome locally tonight, so this was a fully headless run: 5 of 9 YouTube roster channels came back live via RSS this time (Anthropic, Karpathy, Lenny's, No Priors, OpenAI), and a control channel (Google for Developers) also worked, ruling out a site-wide YouTube outage; the other 4 (AI Engineer NYC, Dwarkesh Patel, Latent Space, Zara Zhang) needed the yt-dlp fallback. 5/9 is a clear improvement over the 2/9 seen on both 10-16 and 10-18, but per the existing rule this is just one more independent data point, not proof it's fixed, and needs retesting fresh next time.",
+      "AI Engineer NYC's YouTube channel dropped six brand-new conference talks all at once tonight (all uploaded today), more clustered than its usual trickle, likely just how the conference is batching its video releases rather than any real signal change. No Priors and Lenny's tonight were almost entirely 42-52 second teaser clips rather than full episodes, and those were skipped outright rather than treated as complete content.",
+      "Two name checks came up uncertain: YouTube's title credits \"Evan Kormos\" while the auto-transcript renders \"Evan Cormos,\" and the title credits \"Jediah Katz\" while the transcript renders \"Jedidiah.\" No independent third-party source turned up to confirm either spelling, so tonight defaulted to the conference's own title-card spelling rather than the transcript, which is a lower degree of certainty than the usual \"verified against an independent source\" standard, noted here for the record.",
+      "Jediah Katz's talk mentioned he \"came to SpaceX as part of the Cursor acquisition,\" which sounded surprising enough to verify. It checked out as true but isn't news: SpaceX already announced the $60 billion all-stock acquisition of Cursor's parent Anysphere back in June. The mention was just background in his talk, no new information, so it wasn't written up as its own item.",
+      "Anthropic's Public Benefit Fund announcement was first surfaced through TLDR AI's daily digest, but checking HN Algolia found the announcement has its own independent Hacker News submission (57 points, 47 comments), a stronger basis than citing TLDR's summary secondhand. Switched the sourcing to Hacker News directly; the TLDR mention no longer counts as a separate source."
+    ],
+    "new_capabilities": [
+      "已实施：在 daily-digest/SKILL.md 第 4 步「Build to delete applies to this file too」这条规则下加了一句量化触发条件，来自今晚 Jediah Katz 讲的「数据飞轮」框架：workaround 该不该删，不该靠「每季度检查一次」这个日历动作，该靠连续多次独立运行的真实成功率。具体定出的门槛是：YouTube RSS 的 fresh 成功数连续 3 次以上超过一半（9 个频道里 5 个以上），就值得试着把 yt-dlp 回退收回成偶尔用的备注，而不是继续在文档里一条条加日期确认。"
+    ],
+    "new_capabilities_en": [
+      "Implemented: added a quantified trigger to the \"Build to delete applies to this file too\" rule in daily-digest/SKILL.md step 4, drawn from Jediah Katz's \"data flywheel\" framework tonight. The decision to delete a workaround shouldn't rest on a calendar action (\"check once a quarter\"), it should rest on real, repeated success rates across independent runs. The concrete threshold set: once the YouTube RSS fresh-success count clears half the roster (5+ of 9 channels) for 3 or more consecutive runs, it's worth trying to collapse the yt-dlp fallback back down to an occasional-use note, instead of continuing to append another dated confirmation to the document each time."
+    ]
+  }
+}
