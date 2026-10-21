@@ -1,0 +1,280 @@
+{
+  "date": "2026-10-20",
+  "partial": false,
+  "banner": "WhatsApp 悄悄叮嘱客服 AI：别提监管机构",
+  "banner_en": "WhatsApp told its chatbot: don't mention regulators",
+  "image": {
+    "src": "digests/img/2026-10-20.jpg",
+    "caption": "本期配图：Redact 这篇调查报道自带的插图，说的是 WhatsApp 帮助页面里藏给客服 AI 看、不给用户看的那段指令。（图：Redact）",
+    "caption_en": "Today's image: the illustration accompanying Redact's investigation into the text WhatsApp's help pages hid for its own support chatbot, never meant for a human visitor to read. (Image: Redact)"
+  },
+  "actions": [
+    {
+      "text": "Monzo 给每个 agent 的访问都挂在一道集中的 MCP 网关后面。谁调用过什么、调用了几次，网关这一层都留痕，不靠单个 agent 自己说实话。挑一个你现在跑的、会碰到真实数据或外部系统的 agent 或自动化脚本，查一下它的访问凭证和调用记录是走统一的一个关口，还是散落在好几个地方、各管各的。只要有一处是散的，先把它找出来，不用马上改。约 15 分钟。",
+      "text_en": "Monzo puts every agent's access behind one centralized MCP gateway, so who called what and how often gets logged at that single layer, instead of trusting each agent to self-report honestly. Pick one agent or automation you're running right now that touches real data or an external system, and check whether its credentials and call logs go through one unified choke point, or are scattered across several places each managing its own access. If even one piece is scattered, just find it tonight, no need to fix it immediately. About 15 minutes.",
+      "source": "AI Engineer 大会：Felipe Felisola Caso、Francesco Galletta（Monzo）",
+      "source_en": "AI Engineer NYC: Felipe Felisola Caso, Francesco Galletta (Monzo)",
+      "source_url": "https://www.youtube.com/watch?v=adfw3xJBx1o"
+    },
+    {
+      "text": "Peec AI 那篇实验给了三条写法，不用造假数据也能用：一句话只讲一个论断；数字旁边直接标来源和年份；标题按大模型拆子查询的习惯去写（比如「XX 数据」「XX 规模」）。挑一篇你自己站上已经发布的、带数字的文章或页面，照这三条改一遍。约 20 分钟。",
+      "text_en": "Peec AI's experiment gives three writing rules that work without faking any data: one claim per sentence, the source and year right next to every number, and headings phrased the way an LLM's own sub-queries get phrased (like \"[topic] statistics\" or \"[topic] market size\"). Pick one already-published page or post on your own site that has numbers in it, and rewrite it against these three rules. About 20 minutes.",
+      "source": "Peec AI：Metehan Yesilyurt",
+      "source_en": "Peec AI: Metehan Yesilyurt",
+      "source_url": "https://peec.ai/blog/publish-stats-get-cited-the-tactic-that-put-my-data-all-over-the-web"
+    },
+    {
+      "text": "如果你有任何脚本或工具会调用 DeepSeek 的模型做代码生成，哪怕只是偶尔用一下，查一下最近几次用它写的代码有没有碰过对中国敏感的话题。CrowdStrike 测出来，提示词涉及这类话题时，DeepSeek-R1 写出严重安全漏洞的概率最多高 50%。如果有，今晚把那部分代码多看一遍，别直接信。约 10 分钟。",
+      "text_en": "If you have any script or tool that calls a DeepSeek model for code generation, even occasionally, check whether any recent use touched a topic sensitive to China. CrowdStrike found that when a prompt touches a topic like that, DeepSeek-R1 generates code with up to 50% higher odds of a severe security vulnerability. If it has, give that code a closer look tonight instead of trusting it outright. About 10 minutes.",
+      "source": "美国国土安全部 · Federal Register 官方公告",
+      "source_en": "U.S. Department of Homeland Security · Federal Register notice",
+      "source_url": "https://public-inspection.federalregister.gov/2026-21447.pdf"
+    }
+  ],
+  "hands_on": {
+    "title": "用两种身份抓同一个网页，看它对 AI 说了什么悄悄话",
+    "title_en": "Fetch the same page as two different visitors, and see what it tells AI in private",
+    "why": "今晚的头条是 Redact 怎么发现 WhatsApp 帮助页面藏着话：同一个页面，用普通浏览器身份去看是一个版本，用 AI 爬虫身份去看可能是另一个版本，两个版本一对比，藏起来的部分就露出来了。这个核查方法本身不难，谁都能现在就试一次，拿去查任何一个你自己常用、又担心「说一套做一套」的公司帮助页面或客服系统。",
+    "why_en": "Tonight's banner story is about how Redact discovered the hidden text in WhatsApp's help pages: fetch the same page as a normal browser and you get one version, fetch it as an AI crawler and you might get a different one, and diffing the two surfaces whatever was hidden. The checking method itself isn't hard, and anyone can try it right now against any company's help page or support bot they rely on and suspect of saying one thing and doing another.",
+    "time": "10-15 分钟",
+    "time_en": "10-15 minutes",
+    "steps": [
+      "挑一个你自己常用的公司帮助页面，比如一家你交易或办公常用的服务商的「账号注销」或「隐私」页面",
+      "用普通浏览器的身份抓一次，存成文件：curl -s -A \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\" \"<页面 URL>\" -o browser.html",
+      "再用一个 AI 爬虫的身份抓同一个页面：curl -s -A \"ChatGPT-User/1.0\" \"<同一个页面 URL>\" -o crawler.html（也可以换成 \"GPTBot/1.0\" 试一次）",
+      "对比两次结果：diff browser.html crawler.html",
+      "重点看有没有哪一段文字只出现在其中一个版本里，尤其是涉及「该不该找监管机构」「能不能退款/删除」这类对用户不利的措辞"
+    ],
+    "steps_en": [
+      "Pick a help page from a company you actually rely on, like a service you deal with's \"delete account\" or \"privacy\" page",
+      "Fetch it with a normal browser identity and save it: curl -s -A \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\" \"<page URL>\" -o browser.html",
+      "Fetch the same page again with an AI crawler identity: curl -s -A \"ChatGPT-User/1.0\" \"<same page URL>\" -o crawler.html (also worth trying \"GPTBot/1.0\")",
+      "Diff the two results: diff browser.html crawler.html",
+      "Look especially for any paragraph that only shows up in one version, particularly anything about whether to contact a regulator, or whether a refund/deletion is possible, phrasing that works against the user"
+    ],
+    "source": "Redact：Dan Saltman",
+    "source_en": "Redact: Dan Saltman",
+    "source_url": "https://redact.dev/blog/whatsapp-help-pages-hidden-ai-instructions"
+  },
+  "meta_read": "今晚三条新闻，说的其实是同一种骗术：一个数字或一句解释，只要没人往下翻一层，就能一直站得住。WhatsApp 把藏给客服 AI 的指令说成「bug」，但 102 段话、统一的内部标签、横跨 80 个页面的规律，不太像意外，更像是有人写进系统提示词里的既定做法，只是被抓到了才认成「bug」。Anthropic 上半年报出 800 多亿美元的净亏损，听起来像是烧钱烧穿了底，往下翻一层才知道，720 亿是重新计价可转换票据带来的账面数字，没有一美元现金真的流出去。Peec AI 的实验更直接：花 50 美元编出来的假数据，被真机构反复引用，原因是大模型做调研时，没人会去逐条核实一个统计数字，排序模型比的是像不像证据，不是真不真。三件事说的是同一句话：只要核实的成本比制造可信感的成本高，没人核实过的那层解释就会一直流通下去。\n\n今晚另外两场 AI Engineer 的演讲，恰好是在对着这句话做工程。Monzo 没有去信任每个 agent 会说实话，而是把访问全部收进一道中心化的网关，谁调用了什么，一笔一笔记下来，信任建在记录上，不建在「这个 agent 应该不会乱来」这句话上。SF Compute 把同一个思路搬到算力交易上，他们管自己卖的东西叫「physical settlement」，意思是合约最后必须兑付真正能跑的 GPU，不能只是一个好看的数字，这也是为什么这个市场必须由一个自己没有硬件生意的人来做，谁手里握着实物，谁就有理由让数字好看而不是让数字真实。今晚真正值钱的技能，不是编故事的能力，也不是识破故事的直觉，是搭一套系统，让「这句话到底真不真」这件事本身变得便宜。",
+  "meta_read_en": "Tonight's three biggest stories are really the same trick told three ways: a number or an explanation holds up for exactly as long as nobody peels back one layer. WhatsApp is calling the instructions it hid for its own support AI a \"bug,\" but 102 text blocks, one consistent internal label, spread across 80 pages in a consistent pattern, doesn't look like an accident so much as an established practice someone wrote into a system prompt, relabeled a \"bug\" only once it got caught. Anthropic reported an H1 net loss north of $80 billion, which sounds like the company is burning through the floor, until you peel back one layer and find $72 billion of it is a paper number from revaluing its own convertible notes, with not one real dollar actually leaving the building. Peec AI's experiment is the most direct version: $50 worth of fabricated statistics got cited over and over by real institutions, because when an LLM does research, nobody is checking any single statistic for truth, and the reranker is scoring how convincing something looks, not whether it's accurate. All three are saying the same thing: whenever verifying something costs more than faking the appearance of credibility, the unverified version just keeps circulating.\n\nTwo other AI Engineer talks tonight happen to be engineering directly against that fact. Monzo isn't trusting each agent to behave honestly; instead it routes all access through one centralized gateway that logs exactly who called what, building trust on the record rather than on the claim that \"this agent probably won't misbehave.\" SF Compute applies the same instinct to compute trading: they call what they sell \"physical settlement,\" meaning a contract eventually has to deliver GPUs that actually run, not just a number that looks good on paper, which is also why this market has to be run by someone who doesn't own the hardware themselves, since whoever holds the physical asset has a reason to make the number look good rather than make it true. The valuable skill tonight isn't the ability to make up a convincing story, and it isn't the instinct to spot one either, it's building a system that makes \"is this actually true\" cheap to check in the first place.",
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "给 GPU 做一个真正的期货市场",
+          "title_en": "Building a real futures market for GPUs",
+          "author": "AI Engineer 大会 · Evan Conrad（SF Compute）",
+          "author_en": "AI Engineer NYC · Evan Conrad (SF Compute)",
+          "likes": "2033",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=EAtLq9_vrE0",
+          "summary": "我把整段文字稿读完了，也对照了同一天 Latent Space 上对 Conrad 的另一篇访谈（latent.space/p/sfcompute2）。Conrad 是 SF Compute 的创始人。公司不自己买硬件，而是在别人的数据中心和电力基础上，接管从选址、物料清单到集群架构、配电柜、交换机的整套运维，再把 GPU 算力按期货那套玩法做成一个可以挂单交易的市场，他们管这叫 physical settlement（实物结算）：不像纯金融指数，这里的合约最终要交付真正能用的算力，所以合约条款要考虑任务能不能被打断、存储恢复速度、具体是哪代 GPU、哪种网络和软件配置。他给了一组对比数字：租一块 B300 做推理，满载利用率下大约每小时能收 40 美元，五成利用率下大约 25 美元；而同一块芯片的租赁成本大约只要 5 到 6 美元每小时。他说这是巨大的超额收费，这两个数字必须有一个要变。现在他们挂单交易的量只占总容量的 5% 左右，一个花 100 美元买算力的客户平均能转手赚回 25 美元；集群通常按 3 到 5 年期融资。他解释为什么 Nvidia、各大云厂商、Crusoe、CoreWeave、Lambda、Modal、Fireworks 这些更大的玩家都没做这件事：他们在算力供给端或推理业务上的需求太旺盛，没办法做一个真正中立的做市商，你得先把自己的生意砍掉，才能做成这件事。Latent Space 那篇访谈补了一个类比：SF Compute 想做的事，相当于当年软件定义网络把控制层和数据层拆开那样，把算力的控制和算力的物理交付拆开；Conrad 还说，谁自己有大量硬件或推理业务，谁就有结构性的利益冲突，做不成这个中立市场，这也是为什么 Nvidia 自己做不了这件事，即便它从现有生意里受益。",
+          "summary_en": "I read the full transcript and also checked the same-day companion interview on Latent Space (latent.space/p/sfcompute2). Conrad founded SF Compute, which doesn't own its own hardware; instead it runs the entire operational stack, site selection, bill of materials, cluster architecture, power distribution, switches, on top of partners' data centers and power, then turns GPU capacity into a tradable order-book market using futures-market mechanics, what they call \"physical settlement.\" Unlike a pure financial index, a contract here ultimately has to deliver usable compute, so the contract terms have to account for whether the workload can be interrupted, how fast storage recovers, and exactly which GPU generation, network, and software configuration is involved. He gave a striking comparison: renting a B300 for inference nets about $40/hour at full utilization, about $25/hour at 50% utilization, while leasing that same chip costs only about $5-6/hour. He called it \"a huge overcharge, one of these numbers has to change.\" Only around 5% of their total capacity currently trades on the liquid order book; a customer who spends $100 buying capacity recoups about $25 on average by reselling it, and clusters are typically financed on 3-5 year terms. He explained why none of the bigger players, Nvidia, the major clouds, Crusoe, CoreWeave, Lambda, Modal, Fireworks, have built this: they all have too much demand on either the supply or inference side to act as a neutral market-maker, \"you have to kill your own business to make this work.\" The Latent Space interview adds a useful analogy: what SF Compute is attempting is similar to what software-defined networking did decades ago, separating the \"control plane\" from the \"data plane,\" applied here to separating control over compute from its physical delivery; Conrad also argues that anyone who already owns large amounts of hardware or runs an inference business has a structural conflict of interest that keeps them from running a neutral market, which is exactly why even Nvidia \"can't build this,\" despite benefiting from the business it already has.",
+          "why": "Conrad 讲的是自己公司的生意和自己报的里程碑数字（几亿美元交易量），没有第三方审计，这点要披露。但 40 美元对 6 美元这组价差、5% 的挂单渗透率，都是具体到可以反复追问的数字，physical settlement 这套合约设计本身也经得起单独推敲，不依赖相信 Conrad。",
+          "why_en": "Conrad is describing his own company's business and his own self-reported milestones (hundreds of millions of dollars in volume), with no third-party audit, worth disclosing. But the $40-versus-$6 price gap and the 5% order-book penetration are specific enough numbers to keep probing on their own, and the physical-settlement contract design itself holds up as an idea independent of whether you take Conrad's word for it."
+        },
+        {
+          "title": "一家银行自己造了个 coding agent，意外用疯了",
+          "title_en": "A bank built its own coding agent. It took off",
+          "author": "AI Engineer 大会 · Felipe Felisola Caso、Francesco Galletta（Monzo）",
+          "author_en": "AI Engineer NYC · Felipe Felisola Caso, Francesco Galletta (Monzo)",
+          "likes": "3566",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=adfw3xJBx1o",
+          "summary": "我把整段文字稿读完了。Monzo 是英国的数字银行，内部有 3000 多个后端服务、1.3 万多个数据仓库模型。他们做的内部工具叫 Agent Chip，最早是今年 1 月 Slack 里一个对表情符号回应就自动生成代码的玩笑，后来在公司内部火了。现在的硬数字：Agent Chip 写的代码，占了整个技术团队（数据、机器学习、后端、App）所有合并 PR 的 10% 以上；每天跑 1800 多个任务；连非工程岗的业务同事都开始用它自助查数据。架构分三层：最外层是一道集中的 MCP 网关，挡在内部服务和知识库前面，做确定性的访问控制和每个 agent 的鉴权；中间是编排层，负责调度 agent；真正不确定、会瞎来的那部分 agent 运行逻辑，放进一个独立的沙箱命名空间里，跟生产环境物理隔开（毕竟是受监管的银行），里面再嵌一层沙箱，加一道明确的出口代理控制对外访问。他们有一句话总结自己的平台投入：LLM 不是大语言模型，是一堆小小的乘数（lots of little multipliers），真正让这东西跑起来的是告警、预发布环境、队列、数据库抽象这些平台工程投入，不是模型本身。整套设计刻意做成模型无关：换成任何一个模型，蓝绿 agent 那个盒子都能直接替换。",
+          "summary_en": "I read the full transcript. Monzo is a UK digital bank with over 3,000 backend services and more than 13,000 data-warehouse models internally. Their internal tool, Agent Chip, started in January as a Slack joke, react to a message with an emoji and it would generate code, and it went viral inside the company from there. The hard numbers now: Agent Chip authors over 10% of all merged pull requests across the entire tech org, data, ML, backend, and the app team; it runs over 1,800 tasks a day; and even non-engineering business staff have started using it to self-serve data queries. The architecture has three layers: a centralized MCP gateway in front of internal services and knowledge sources handling deterministic access control and per-agent authentication; an orchestration layer scheduling the agents; and the actually non-deterministic, unpredictable part of an agent's run living inside an isolated sandbox namespace, physically separated from production since Monzo is a regulated bank, with a nested sandbox inside that and an explicit egress proxy controlling outbound access. Their summary line for their own platform investment: \"LLM\" doesn't stand for \"large language model,\" it stands for \"lots of little multipliers,\" meaning what actually made this work was the platform engineering, alerting, staging environments, queuing, database abstractions, not the model itself. The whole design is deliberately model-agnostic: swap in any model and the \"blue/green agent box\" can be replaced directly.",
+          "why": "这是 Monzo 自己内部的工程实践分享，没有外部数据佐证具体效果，但也没有明显要卖的产品，不像今晚另几条带销售立场。10% 的合并 PR 占比、1800 个任务/天这些数字是演讲者自己给的，无法独立核实，但 MCP 网关加沙箱隔离这套架构本身是可以直接照抄的设计，详见今日行动第 1 条。",
+          "why_en": "This is Monzo's own internal engineering talk, with no external data backing the specific numbers, but also no product being sold, unlike a couple of tonight's other talks. The 10%-of-merged-PRs figure and the 1,800-tasks-a-day number come from the speakers themselves and can't be independently verified, but the MCP-gateway-plus-sandbox-isolation architecture is a design that can be copied directly, see action 1."
+        },
+        {
+          "title": "买下一家公司，再把 AI 装进去",
+          "title_en": "Buy the business, then install the AI",
+          "author": "AI Engineer 大会 · Prathik Naidu（Long Lake）",
+          "author_en": "AI Engineer NYC · Prathik Naidu (Long Lake)",
+          "likes": "9064",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=J7n3WJnFTto",
+          "summary": "我把整段文字稿读完了。Naidu 是私募基金 Long Lake 的创始合伙人。他的论点：把 AI 工具卖给企业很难，要过安全审查、推动采用、还要跟客户谈定价，而且大头的价值往往被买方自己拿走；从零做一个 AI 原生创业公司也很难，没有分发渠道、没有信任、没有行业 know-how。他给的第三条路：直接把一家传统服务型公司整个买下来，自己就有了客户关系、专有的运营数据，以及之后所有的利润升级空间，不用再去说服谁。具体数字：Long Lake 已经募了 75 亿美元（他点名的投资人包括 Elad Gil、General Catalyst、Alpha Wave、D1），公司才三年多，55 名员工，已经在住宅服务、建筑设计、人力资源这些行业收购并合作了 40 多家公司，刚宣布要把美国运通旗下的商旅公司 Amex GBT 私有化，交易额 63 亿美元。他用软件和服务两种生意的利润结构做对比：软件公司收 100 块营收大概能留下 80 块；服务型公司收 100 块大概只能留 20 块，因为人力成本会跟着营收一起涨；AI 真正的机会，是把服务型公司的利润结构往软件那个方向推。",
+          "summary_en": "I read the full transcript. Naidu is a founding partner at Long Lake, a private equity fund. His thesis: selling AI tools into enterprises is hard, you have to clear security review, drive adoption, and negotiate pricing, and the enterprise buyer usually captures most of the value anyway; building a pure AI-native startup from scratch is also hard, with no distribution, no trust, and no domain expertise. His proposed third path: buy an existing services business outright, and you already own the customer relationships, the proprietary operating data, and all the margin upside that follows, no convincing required. The numbers: Long Lake has raised $7.5 billion (he names Elad Gil, General Catalyst, Alpha Wave, and D1 as investors), is just over three years old with 55 employees, has partnered with or acquired 40-plus companies across residential services, architecture, and HR, and just announced a $6.3 billion take-private of Amex GBT, American Express's corporate travel business. He contrasts the margin structures of the two business types: a software company keeps about $80 of every $100 in revenue; a services company keeps about $20, because labor cost scales with revenue; AI's real opportunity, in his framing, is pushing a services business's margin structure toward software's.",
+          "why": "Naidu 讲的是自己基金的投资论点，交易数量和回报都是他自报的数字，未经第三方审计，这点需要说明。募资额、投资人名单、Amex GBT 这笔交易的金额，则是可单独核实的公开信息。",
+          "why_en": "Naidu is presenting his own fund's investment thesis, and the deal count and returns are self-reported with no third-party audit, worth disclosing. But the fundraise total, the named investors, and the Amex GBT deal size are all independently checkable public information."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "WhatsApp 帮助页面，藏着只给AI看的话",
+          "title_en": "WhatsApp's help pages hid text meant only for AI",
+          "author": "Redact · Dan Saltman",
+          "author_en": "Redact · Dan Saltman",
+          "likes": "714",
+          "likes_label": "HN 分",
+          "url": "https://redact.dev/blog/whatsapp-help-pages-hidden-ai-instructions",
+          "summary": "我读了全文。Redact 创始人 Dan Saltman 10 月 8 日发现，WhatsApp 帮助中心 545 个页面里有 80 个藏着文字，肉眼看不见，却会喂给自己的客服 AI，共 102 段。最突出的两段：在「注销账号」页面，藏着的指令让 AI 遇到用户被锁在账号外时，只讲 30 天、120 天、365 天的自动删除窗口，并明确写「不要建议联系任何数据保护机构、监管机构或监督机构」，也不能说 WhatsApp 可以手动帮删。可 WhatsApp 自己 7 月 2 日生效的欧盟隐私政策写得很清楚，用户可以向监管机构投诉，还引用了 GDPR 第 17 条和第 77 条。另一段在举报或拉黑页面，一旦用户提到律师或诉讼，藏着的指令让 AI 不要引用或解释 GDPR、LGPD、CCPA，也不做任何责任方面的表态，哪怕用户自己先提起法律问题。这些文字的内部标签叫「HelpContentGalaxyLLMInclude」，专门喂给 Google、Bing 这类搜索爬虫。Redact 用 OpenAI、Anthropic、Perplexity 的爬虫身份去抓同一页面，拿到的版本里没有这段话，说明这是 WhatsApp 指挥自己客服 AI 系统性隐瞒信息的证据，还不能证明哪个第三方 AI 真的照做了，Redact 自己也写明这一点。WIRED 10 月 19 日报道了 WhatsApp 的回应：这是给内部客服机器人的指令，出现是个 bug，已经修好，希望机器人「专注给用户最好的建议」，不是「提供法律意见」。Internet Archive 的快照能对上，10 月 15 日 21:40 到 10 月 18 日 02:08 之间，这 102 段话从全部 80 个页面上消失了。Facebook 和 Instagram 的帮助中心用同一套系统，Redact 抽查了 300 个页面，没发现类似问题。",
+          "summary_en": "I read the full post. Redact founder Dan Saltman found on October 8 that 80 of WhatsApp's 545 help-center pages carry text invisible on screen but fed straight to WhatsApp's own support chatbot, 102 blocks in total. Two stand out. On the delete-your-account page, hidden instructions tell the AI that if a user is locked out, it should only cite the 30, 120, and 365-day auto-deletion windows, and state plainly: do not recommend contacting any Data Protection Authority, regulator, or supervisory authority, and don't suggest WhatsApp can delete the account manually either. But WhatsApp's own EU privacy policy, effective July 2, tells users directly they can file a complaint with a regulator, citing GDPR Articles 17 and 77. On the report-or-block page, once a user mentions a lawyer or a lawsuit, hidden instructions tell the AI not to cite or interpret GDPR, LGPD, or CCPA, and not to make any liability statement, even when the user raised the law first. The internal label on these blocks is HelpContentGalaxyLLMInclude, and they're served to crawlers like Google and Bing. When Saltman fetched the same pages using OpenAI, Anthropic, and Perplexity crawler identities, the hidden text wasn't there, which Redact itself is careful to say proves WhatsApp instructed its own chatbot to systematically withhold information, not that any third-party AI actually obeyed those instructions. WIRED reported WhatsApp's response on October 19: the notes were instructions meant for its internal support bot, appeared due to a bug that's now fixed, and the goal is a bot that focuses on giving users the best advice rather than legal advice. Internet Archive snapshots line up with that: all 102 blocks disappeared from all 80 pages between October 15 at 21:40 and October 18 at 02:08 UTC. Facebook and Instagram's help centers run the same system; Redact spot-checked 300 of their pages and found nothing like this.",
+          "why": "Redact 做的是数据删除服务，跟「帮用户维权」这件事本身有点利益关联，这点需要说明。但 102 段文字、内部标签、Internet Archive 快照时间，都是可以独立核对的硬证据；WhatsApp 自己说是「bug」，但这些话是人写进系统提示词的，不是 AI 自己决定隐瞒，别把这算成 AI 又闯祸了。",
+          "why_en": "Redact is in the data-deletion business itself, which gives it some stake in \"helping users assert their rights,\" worth disclosing. But the 102 text blocks, the internal label, and the Internet Archive snapshot timestamps are all independently checkable hard evidence. WhatsApp calls it a \"bug,\" but humans wrote these into a system prompt; this isn't an AI deciding on its own to hide something, so it shouldn't be filed as \"AI gone wrong\" either."
+        },
+        {
+          "title": "DeepSeek 被美国联邦民用机构系统禁用",
+          "title_en": "DeepSeek banned from U.S. federal civilian agency systems",
+          "author": "美国国土安全部 · Federal Register 官方公告（经 Hacker News / Reuters 转引）",
+          "author_en": "U.S. Department of Homeland Security · Federal Register notice (via Hacker News / Reuters)",
+          "likes": "552",
+          "likes_label": "HN 分",
+          "url": "https://public-inspection.federalregister.gov/2026-21447.pdf",
+          "summary": "Reuters 10 月 19 日报道，美国国土安全部（DHS）下令，禁止 DeepSeek（杭州深度求索人工智能基础技术研究有限公司）进入联邦民用机构的 IT 系统。这跟五角大楼 2025 年 1 月就已生效的国防部禁令不是一回事，是把范围扩大到民用机构。原文（Federal Register 公告 2026-21447）给的理由：DeepSeek 是中国的私营公司，服务器在中国境内，中国法律给了政府「广泛的权力」去访问私营企业的基础设施，它的模型「存在多种威胁途径」，「可能包含恶意软件或其他安全漏洞」。HN 讨论指出，这次禁令管得比「不能用 DeepSeek 的云服务」更宽，还覆盖「用 DeepSeek 实现做出来的第三方产品和服务」，意味着哪怕机构自己在本地跑开源权重，也可能算在禁令里，不只是调用 DeepSeek 官方 API。评论区引用了 CrowdStrike 已经发表的研究：当提示词涉及对中国敏感的话题（比如西藏）时，DeepSeek-R1 生成的代码，出现严重安全漏洞的概率要高出最多 50%，这个数字可以单独核实，不只是政策文件里的说法。",
+          "summary_en": "Reuters reported on October 19 that the Department of Homeland Security has ordered DeepSeek (Hangzhou DeepSeek Artificial Intelligence Basic Technology Research Co., Ltd.) banned from federal civilian agency IT systems. This is separate from the Pentagon's own ban on DeepSeek, which has been in effect since January 2025; this order extends the ban to civilian agencies. The underlying Federal Register notice (2026-21447) states DeepSeek is a privately-owned PRC company, its servers sit in China, Chinese law gives the government \"extensive authority\" to access private company infrastructure, and its models \"present multiple threat vectors\" and \"may contain malware or other security vulnerabilities.\" HN's discussion points out the ban's scope is broader than just blocking DeepSeek's hosted service, it also covers \"third-party products and services developed using DeepSeek implementations,\" which commenters read as reaching even agencies running the open weights locally, not just calling DeepSeek's own API. Commenters cited CrowdStrike's already-published research: when a prompt touches a PRC-sensitive topic like Tibet, DeepSeek-R1 generates code with up to 50% higher odds of a severe security vulnerability, a number that can be checked independently rather than just taken from the policy document.",
+          "why": "这是政府文件，理由部分带着明显的地缘政治立场，「威胁途径」「可能包含」这类措辞本身没给出具体证据，要分开看。但禁令的法律依据（DHS 公告号）和 CrowdStrike 的漏洞率数据都是可以直接核实的硬信息，跟政策立场是两件事。",
+          "why_en": "This is a government document and its stated rationale carries an obvious geopolitical stance; phrases like \"threat vectors\" and \"may contain\" don't come with specific evidence attached, worth separating from the rest. But the ban's legal basis (the DHS notice number) and CrowdStrike's vulnerability-rate data are both directly checkable, independent of the policy's own framing."
+        },
+        {
+          "title": "编个假数据，让 ChatGPT 天天引用你",
+          "title_en": "He faked 50,000 statistics, and ChatGPT kept citing them",
+          "author": "Peec AI · Metehan Yesilyurt",
+          "author_en": "Peec AI · Metehan Yesilyurt",
+          "likes": "319",
+          "likes_label": "HN 分",
+          "url": "https://peec.ai/blog/publish-stats-get-cited-the-tactic-that-put-my-data-all-over-the-web",
+          "summary": "我读完了全文。作者 Metehan Yesilyurt 是 AI 搜索可见度工具 Peec AI 的研究员。大约 7 个月前（算下来是今年 3 月左右），他用 GPT-4.1 花一天生成了 5 万条完全编造的统计数字，涵盖 SEO、营销、电商等话题，又花点钱加了 1.5 万篇列表式文章，整站成本约 50 美元，放在 stateglobe.com 上。Google 的搜索质量更新很快把这个站压没了，几个月来在 Google 上几乎查不到。但 ChatGPT 从没停过来抓：过去 30 天，这个站收到 60 万次以上的爬虫请求，其中 7.2 万次来自「ChatGPT-User」，这是 ChatGPT 实时帮用户查页面用的身份，不是训练爬虫，每一次都对应一个真实用户的提问。按 Ahrefs 和 Semrush 统计，现在有 330 多个域名反链到这个站，里面有 Shopify、DHL、Bluehost；编出来的数字已经被一篇学术论文、卡塔尔一家大型金融集团的投研报告、一家印度经济媒体、一个加拿大网红社群的报告引用过。10 月 7 日那天，这个站在他们跟踪的 AI 搜索可见度排名里排第二，仅次于 Statista。他总结的机制：大模型做调研时，会把问题拆成几个子查询，常常自动加上「statistics」「data」或当前年份这类词；一个具体数字读起来比一句模糊的话更像证据；而在给用户实时作答的规模下，逐条核实一个统计数字的成本太高，排序模型比的是相关性和新鲜度，不是真假。他把这篇写成研究，不是教程，也点出风险：一个假数字被真机构引用后，看起来就有了权威性，以后可能反过来进入模型的训练数据，造成「洗白」。他还做了第二次、完全诚实的实验（真数据，每个数字标来源），同样很快开始被别人引用。给的三条具体建议：一句话只讲一个论断，这样这段话被单独抓取时还站得住；数字旁边直接标来源和年份；标题按大模型会拆出的子查询方式去写，比如「某话题 statistics」「某话题 market size」。",
+          "summary_en": "I read the full post. Author Metehan Yesilyurt is a researcher at Peec AI, which sells an AI-search-visibility tracking tool. About seven months before this post (so roughly March of this year), he spent one day using GPT-4.1 to generate 50,000 entirely fabricated statistics across SEO, marketing, and e-commerce topics, then spent a bit more adding 15,000 listicle articles, total cost around $50, and put it all on stateglobe.com. Google's search-quality updates buried the site almost immediately; it's been nearly invisible on Google for months. But ChatGPT never stopped fetching it: in the last 30 days alone the site got over 600,000 bot requests, 72,000 of them from \"ChatGPT-User,\" the identity ChatGPT uses to fetch a page live for a real user's question, not a training crawler, meaning each of those is answering an actual person. Per Ahrefs and Semrush, the site now has over 330 referring domains, including Shopify, DHL, and Bluehost; its made-up numbers have been cited in an academic paper, an investment research report from a large Qatari financial group, an Indian economics publication, and a Canadian influencer-community report. As of October 7, the site ranked #2 on their tracked AI-search-visibility board, behind only Statista. His explanation for the mechanism: when an LLM does research, it breaks a query into sub-queries that often get modifiers like \"statistics,\" \"data,\" or the current year appended automatically; a specific number reads as stronger evidence than a vague claim; and at the scale of answering real-time user queries, checking any one statistic for truth is too expensive, so reranking optimizes for relevance and freshness, not accuracy. He frames this explicitly as research, not a how-to, and flags the risk himself: once a fake number gets cited by a real institution, it looks authoritative, and could eventually get laundered back into a future model's training data. He also ran a second, fully honest version of the experiment (real data, every number sourced) and that one started earning citations almost as fast. His three concrete, non-fabrication-dependent recommendations: write one claim per sentence, so a passage still holds up when retrieved on its own; put the source and year directly next to every number; and phrase headings the way an LLM's own sub-queries would be phrased, like \"[topic] statistics\" or \"[topic] market size.\"",
+          "why": "作者在 Peec AI 做「AI 搜索可见度」研究，这篇一定程度上也是给自家产品打广告，这点要披露。但他引用的抓取量、反链数、排名这些数字，来自 Cloudflare 日志、Ahrefs、Semrush 等第三方工具，不是自己编的战绩；三条写作建议本身不需要造假数据就能用，详见今日行动第 2 条。",
+          "why_en": "The author works on AI-search-visibility research at Peec AI, so this post is, to some degree, also marketing for his own product, worth disclosing. But the traffic, backlink, and ranking numbers he cites come from Cloudflare logs, Ahrefs, and Semrush, independent tools, not self-reported vanity metrics; and the three writing recommendations work without faking any data, see action 2."
+        },
+        {
+          "title": "Anthropic 上半年亏 800 多亿，九成是账面数字",
+          "title_en": "Anthropic's $80B+ H1 loss is mostly a paper number",
+          "author": "Bloomberg/WSJ（经 Hacker News 转引）",
+          "author_en": "Bloomberg/WSJ (via Hacker News)",
+          "likes": "99",
+          "likes_label": "HN 分",
+          "url": "https://www.reuters.com/business/anthropic-recorded-net-loss-over-80-billion-first-half-this-year-wsj-reports-2026-10-20/",
+          "summary": "Reuters 10 月 20 日转引 WSJ 的报道：Anthropic 今年上半年净亏损超过 800 亿美元。但按 Bloomberg 对同一篇 WSJ 报道的解读，这里面 720 亿美元，也就是绝大部分，是不涉及现金的会计调整，来自重新计价 Anthropic 自己发过的可转换票据和其他金融工具。机制很常见：一张按较低估值定价的可转换票据，公司估值一涨，这张票据在账面上就变「贵」了，要按亏损记一笔，哪怕没有一美元现金真的流出去，受益的只是早期投资者按更优惠的条件把票据换成股份。这个数字是在已经报过的两条消息之上叠出来的：9 月的 2025 全年净亏 420 亿美元，和 10 月 15 日披露的三季度营收 168 亿美元，这两条不重复说，只提这次新出现的、超 800 亿美元的上半年亏损总数和 720 亿美元的非现金拆解。放在这一周的背景里看：同一周 Anthropic 还宣布拿出至少 5% 股权成立公益基金，联创 Jack Clark 在 IMF 讲「奇点已经开始」，一边说公司要重写世界，一边公司账上躺着一个靠会计规则吹起来的巨额亏损。",
+          "summary_en": "Reuters relayed a WSJ report on October 20 that Anthropic recorded a net loss of over $80 billion in H1 2026. But per Bloomberg's own read of the same WSJ reporting, $72 billion of that, the large majority, is a non-cash accounting adjustment from revaluing convertible notes and other instruments Anthropic itself has issued. The mechanics are standard: a convertible note priced against an earlier, lower valuation becomes \"more expensive\" on paper once the company's valuation rises, and that gets booked as a loss even though no actual cash moves, the only real effect being that existing investors convert their notes on more favorable terms. This figure sits on top of two things already reported: the $42 billion full-year 2025 net loss (September) and the $16.8 billion Q3 revenue disclosed October 15; neither is repeated here, only the new H1 total above $80 billion and its $72 billion non-cash breakdown are new. Set against the rest of this week: Anthropic also announced committing at least 5% of its shares to a public benefit fund, and co-founder Jack Clark told the IMF the singularity has begun, all in the same week a company talking about rewriting the world is also sitting on a headline loss number inflated largely by accounting mechanics.",
+          "why": "Reuters、WSJ、Bloomberg 都是独立财经媒体，没有明显利益关联。但「720 亿是非现金」这个关键拆解，目前只看到 Bloomberg 转述的说法，没查到 Anthropic 自己公开披露的审计数字，这部分按「据报道」处理，不算 Anthropic 官方证实。",
+          "why_en": "Reuters, WSJ, and Bloomberg are all independent financial press with no obvious conflict of interest. But the key \"$72 billion is non-cash\" breakdown comes only from Bloomberg's own relay so far; no Anthropic-disclosed audited figure was found to confirm it directly, so this should be read as reported, not as something Anthropic has officially confirmed itself."
+        }
+      ]
+    }
+  ],
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "MadsLorentzen/ai-job-search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
+      "language": "Python",
+      "stars": 60623,
+      "stars_today": 3861
+    },
+    {
+      "rank": 2,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 34252,
+      "stars_today": 1712
+    },
+    {
+      "rank": 3,
+      "name": "stablyai/orca",
+      "url": "https://github.com/stablyai/orca",
+      "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
+      "language": "TypeScript",
+      "stars": 99756,
+      "stars_today": 1565
+    },
+    {
+      "rank": 4,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 169695,
+      "stars_today": 1208
+    },
+    {
+      "rank": 5,
+      "name": "Comfy-Org/ComfyUI",
+      "url": "https://github.com/Comfy-Org/ComfyUI",
+      "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world.",
+      "language": "Python",
+      "stars": 140781,
+      "stars_today": 1206
+    },
+    {
+      "rank": 6,
+      "name": "ruvnet/ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, federation, vector RAG integration, and native Claude Code / Codex / Hermes and many more Integrated",
+      "language": "TypeScript",
+      "stars": 77852,
+      "stars_today": 684
+    },
+    {
+      "rank": 7,
+      "name": "Graphify-Labs/graphify",
+      "url": "https://github.com/Graphify-Labs/graphify",
+      "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+      "language": "Python",
+      "stars": 130258,
+      "stars_today": 802
+    },
+    {
+      "rank": 8,
+      "name": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "description": "The open source coding agent.",
+      "language": "TypeScript",
+      "stars": 218937,
+      "stars_today": 1240
+    },
+    {
+      "rank": 9,
+      "name": "msitarzewski/agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+      "language": "Shell",
+      "stars": 162361,
+      "stars_today": 562
+    },
+    {
+      "rank": 10,
+      "name": "headroomlabs-ai/headroom",
+      "url": "https://github.com/headroomlabs-ai/headroom",
+      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+      "language": "Python",
+      "stars": 76765,
+      "stars_today": 549
+    }
+  ],
+  "ota": {
+    "learned": [
+      "今晚 YouTube 的 9 个频道加对照频道，RSS 一次性全部 200，没有一个要靠 yt-dlp 回退，是目前记录里最好的一次。按既有的量化门槛（连续 3 次以上过半才算修好），这是 10-19（5/9）之后第 2 次过半，还差 1 次才够格，继续记，不提前把 yt-dlp 回退收回去。",
+      "写 WhatsApp 这条时确认了一条编辑原则：藏在系统提示词里的指令是人写的，公司事后说「是个 bug」，不代表这是 AI 自己决定隐瞒用户。这条跟既有的「不要把系统的问题说成 AI 自己『决定』要做什么」是同一条规则的具体案例，写作时按『公司用 AI 当挡箭牌』处理，不按『AI 又闯祸了』处理。",
+      "SF Compute 的 Evan Conrad 同一天在 AI Engineer 大会现场和 Latent Space 播客上各讲了一遍，内容互补：大会版本给了「40 美元对 6 美元」这组价差的具体数字，Latent Space 那篇补了「physical settlement」这个概念和「谁有硬件生意谁就有利益冲突」这条论证。按「同一事两处印证」处理成一条 YouTube 条目，没有拆成两条占两个位置。",
+      "今晚任务中发现本机磁盘几乎写满:460G 的盘只剩 117Mi 可用,基本命令一度因 ENOSPC 直接失败。查了一下,/tmp 下两个已发布完的旧 digest 抓取目录 (10-18、10-19) 占了约 770M,删掉后恢复到 921Mi,刚好够跑完今晚的任务。但这远不足以解释 460G 盘的用量,大头显然在别处——同一个 APFS 容器里的另一个卷,或本机其它工具的缓存。没有继续深挖未知大文件,那超出今晚任务范围;按设置记一条观察,交给 Zen 自己查。"
+    ],
+    "learned_en": [
+      "Tonight all 9 YouTube roster channels plus the control channel returned RSS 200 on the first try, with zero needing the yt-dlp fallback, the best result on record so far. Against the existing quantified trigger (3+ consecutive runs above 50% before collapsing the fallback), this is the 2nd qualifying run after 10-19's 5/9, one more needed before the threshold is met. Keep tracking, don't retire the yt-dlp fallback early.",
+      "Writing up the WhatsApp story confirmed an editorial principle: instructions hidden in a system prompt were written by a person, and a company calling it a \"bug\" afterward doesn't mean an AI decided on its own to withhold information from users. This is a concrete case of the existing \"don't describe a system's problem as the AI 'deciding' to do something\" rule: frame it as a company using AI as a shield, not as \"AI misbehaving again.\"",
+      "SF Compute's Evan Conrad gave two complementary talks the same day, one live at AI Engineer NYC, one on the Latent Space podcast: the conference talk supplied the concrete $40-versus-$6 price-gap numbers, the Latent Space piece added the \"physical settlement\" concept and the \"whoever owns the hardware has a conflict of interest\" argument. Treated as one YouTube item per the \"same event, two corroborating sources\" rule, not split into two separate slots.",
+      "Mid-run tonight, this machine's disk was nearly full (460G volume down to 117Mi free, basic commands briefly failed outright with ENOSPC). Investigating found two already-published old digest scratch directories under /tmp (10-18, 10-19) using about 770M; deleting them recovered 921Mi, just enough to finish tonight's task, but that's nowhere near enough to explain a 460G volume's usage, the real cause is clearly elsewhere (another volume in the same APFS container, or some other tool's cache on this machine). Didn't dig further into unidentified large files, since that's outside tonight's task scope; logging it as a setup observation for Zen to check himself."
+    ],
+    "new_capabilities": [
+      "已实施:新增记忆 feedback-citable-content-structure,来自今晚 Peec AI 那篇“造假数据被 AI 引用”的实验。核心规则:以后帮 Zen 写任何打算被搜到、被引用的公开内容 (digest 本身、BY 官网页面、简历/LinkedIn 这类),默认按三条来写:一句话只讲一个论断,单独被抓取时也站得住;数字旁边直接标来源和年份;标题照大模型搜索时会拆出的子查询习惯去写,比如“XX 数据”“XX 规模”。这条跟已有的 feedback-null-if-unsure-extraction-prompts 不是一回事,那条管的是让模型别瞎猜,这条管的是怎么写才更容易被模型正确引用。"
+    ],
+    "new_capabilities_en": [
+      "Implemented: added a new memory, feedback-citable-content-structure, drawn from tonight's Peec AI experiment on fabricated statistics getting cited by LLMs. The core rule: when writing any public-facing content for Zen that's meant to be found or cited (this digest itself, BY website pages, resume/LinkedIn material), default to three structural habits: one claim per sentence (so it still holds up if retrieved on its own), the source and year right next to every number, and headings phrased the way an LLM's own search sub-queries get phrased (like \"[topic] statistics\" or \"[topic] market size\"). This is distinct from the existing feedback-null-if-unsure-extraction-prompts memory, which is about keeping a model from guessing; this one is about how to write so a model is more likely to cite it correctly."
+    ]
+  }
+}
