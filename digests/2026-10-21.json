@@ -1,0 +1,302 @@
+{
+  "date": "2026-10-21",
+  "partial": false,
+  "banner": "Claude Duet 上线，先排队再谈信任",
+  "banner_en": "Claude's new assistant ships behind a waitlist",
+  "image": {
+    "src": "digests/img/2026-10-21.jpg",
+    "caption": "本期配图：Claude Duet 产品页自带的用图，一个圆点绕出来的循环图标配衬线字体的产品名。（图：Anthropic）",
+    "caption_en": "Today's image: Claude Duet's own product-page art, a looping dot icon beside the serif wordmark. (Image: Anthropic)"
+  },
+  "actions": [
+    {
+      "text": "GEICO 的 Ford Prior 在 AI Engineer 大会上提了一句具体的坑：别让 Claude 自己设一个定时任务去「查一下工作做得怎么样了」，因为每次触发都是重新启动一个全新会话，不是接着上次的往下走，查得越勤，烧的预算越多。翻一下你自己正在跑的 cron 或 /loop 任务，看有没有哪个是让 agent 定时「回来看看进度」而不是真的在等一个会变化的外部状态，有就把检查间隔拉长，或者换成能在同一个会话里续着查的方式。约 10 分钟。",
+      "text_en": "GEICO's Ford Prior named a specific trap at AI Engineer NYC: don't let Claude set up its own cron to \"check on\" its own work, since every firing spins up a brand-new session from scratch instead of continuing the last one, so the more often it checks, the faster it burns budget. Look through your own running cron jobs or /loop tasks for one that's just periodically asking an agent to \"check progress\" rather than genuinely waiting on something that changes externally, and if you find one, either stretch the interval out or switch to something that can keep checking within one continuing session. About 10 minutes.",
+      "source": "AI Engineer 大会：Ford Prior（GEICO）",
+      "source_en": "AI Engineer NYC: Ford Prior (GEICO)",
+      "source_url": "https://www.youtube.com/watch?v=DouK81O8R3o"
+    },
+    {
+      "text": "今晚那场「如何用 AI 做出两亿播放的内容系统」工作坊里，Cerebras 的 Sarah Chieng 和 OpenAI 的 Cova Lee 最常用的一条 skill 其实不是拍摄或剪辑技巧，是一句复盘提示词：「复盘我的工作流程，告诉我时间都花在哪了，哪些重复性任务可以变成工具或自动化。」找一个你自己最近常重复做的 Claude Code 任务或工作流，把这句话原样丢给它，看它翻出点什么你自己都没意识到的重复劳动。约 15 分钟。",
+      "text_en": "In tonight's \"AI content system behind 200M views\" workshop, the most-used skill from Cerebras's Sarah Chieng and OpenAI's Cova Lee wasn't a filming or editing trick, it was a review prompt: \"Review my process, show me where I spend the most time, and suggest repetitive tasks I could turn into tools or automation.\" Pick a workflow or task you repeat often in Claude Code and hand it that exact prompt, and see what repetitive work it surfaces that you hadn't noticed yourself. About 15 minutes.",
+      "source": "AI Engineer 大会：Sarah Chieng（Cerebras）、Cova Lee（OpenAI）",
+      "source_en": "AI Engineer NYC: Sarah Chieng (Cerebras), Cova Lee (OpenAI)",
+      "source_url": "https://www.youtube.com/watch?v=CFbnVpSsDFQ"
+    },
+    {
+      "text": "PHP 8.x 全线今天发布紧急安全更新，修了两个未授权远程代码执行漏洞，昨晚协调披露流程泄密后已经有人在流通可用的利用代码。如果你手上有任何跑在 PHP 上的东西，哪怕只是一个 WordPress 插件或者很久没碰的旧项目，今晚先查一下版本，该升级升级。约 10 分钟。",
+      "text_en": "The entire PHP 8.x line shipped an emergency security release today for two unauthenticated remote-code-execution holes, and working exploits are already circulating after the coordinated-disclosure process got leaked last night. If you have anything running on PHP, even a WordPress plugin or an old project you haven't touched in a while, check its version tonight and upgrade it. About 10 minutes.",
+      "source": "Simon Willison（引 PHP Foundation 公告）",
+      "source_en": "Simon Willison (citing the PHP Foundation's announcement)",
+      "source_url": "https://simonwillison.net/2026/Oct/21/php-security-release/"
+    }
+  ],
+  "hands_on": {
+    "title": "打开 Claude Code 自带但默认关闭的「你应该知道」侧写模式",
+    "title_en": "Turn on Claude Code's built-in \"You Should Know\" mod (off by default)",
+    "why": "今晚文摘版那篇「Claude Mods」里提到，Anthropic 内置了六个 mod，其中五个默认开着，只有「You Should Know」默认关闭。它是一个 side agent，盯着主 agent 干活，专门标出你可能会漏看的信息。作者举了个真实例子：他让 Claude 简化一个项目里啰嗦的界面文案，主 agent 改完、截了前后对比图，看起来全做完了。结果 You Should Know 跳出来提醒：被改的那个文件，还有另外约 45 个文件，本来就有没提交的旧改动，如果之后嫌演示用的改动碍事想丢弃重来，会连那些旧改动一起丢掉。这正好是 Zen 自己踩过的「worktree cd bleed」那类近似事故会防住的东西，而且现在就能打开，不用等下次出事才想起来。",
+    "why_en": "Tonight's 文摘 item on \"Claude Mods\" notes Anthropic ships six built-in mods, five on by default and only \"You Should Know\" off. It's a side agent that watches the main agent work and flags information you're likely to miss. The author's real example: he asked Claude to simplify noisy UI copy in a personal project; the main agent trimmed the text, took before/after screenshots, looked fully done. Then You Should Know flagged that the file being edited, plus about 45 others, already had uncommitted earlier work sitting in them, work that would have been thrown away along with the demo edits if he later discarded them. That's exactly the kind of near-miss the \"worktree cd bleed\" lesson already warns about, and it's a switch that can be flipped right now instead of waiting to get burned by it first.",
+    "time": "2-3 分钟",
+    "time_en": "2-3 minutes",
+    "steps": [
+      "在 Claude Code 里输入 /plugin",
+      "打开 Installed",
+      "找到 Built-in 分组，里面能看到六个内置 mod：agents-md、diff、plugin-authoring、sec-default、telemetry、you-should-know",
+      "把 you-should-know 从关闭切换成打开",
+      "正常用一阵 Claude Code，留意它什么时候在主 agent 的输出上方弹出提示"
+    ],
+    "steps_en": [
+      "In Claude Code, type /plugin",
+      "Open Installed",
+      "Find the Built-in group, which lists six built-in mods: agents-md, diff, plugin-authoring, sec-default, telemetry, you-should-know",
+      "Toggle you-should-know from off to on",
+      "Keep using Claude Code as normal, and watch for when it surfaces a note above the main agent's output"
+    ],
+    "source": "Latent Space：Dan McAteer",
+    "source_en": "Latent Space: Dan McAteer",
+    "source_url": "https://www.latent.space/p/claude-mods"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "一天花一千美元 AI token，啃下 GEICO 的遗留代码",
+          "title_en": "A thousand dollars in AI tokens, one day, GEICO's legacy code",
+          "author": "AI Engineer 大会 · Ford Prior（GEICO）",
+          "author_en": "AI Engineer NYC · Ford Prior (GEICO)",
+          "likes": "5458",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=DouK81O8R3o",
+          "summary": "我把整段文字稿读完了。Ford Prior 是 GEICO（伯克希尔哈撒韦旗下）理赔技术组的高级工程师，自称公司里唯一的技术布道者，带着一个理赔创新实验室。半年前他盘点工程师的工作量，发现处理完补丁和小版本升级后，大家平均只剩不到 25% 的带宽留给真正能保持竞争力的大改动。于是他搭了一个多人 AI 原生战情室:一份决策者和相关领域专家的花名册，一个负责操作昂贵 AI 工具的 driver，再加一套 AI 原生协作工具（沟通频道、交互式设计工具、代码仓库），全部接进工作流、agent skill、MCP 和 agent 编队。他给自己下的赌注是:一天之内，用一千美元的 AI token，把一个业务域从头到尾图谱化，包括业务拓扑和几百万行的遗留代码，再让 agent 自己提出一个具体改动，一路部署到生产，下午四点给老板演示。这套流程他跑了三次，对应 Anthropic 代码现代化插件给的三级分类:最简单的 rentals 域做的是 uplift（在现有 API 上扩展），agent 自己发现了一个数据关联，靠给客户推送最新租车信息，每月能省 8500 次调用;damages 域做的是 transform，新建了一批 agent 可调用的 API 去支撑更大的工作流;最复杂的 salvage 域做的是 reimagine，产出了一份完整的迁移方案，带 API 规格和设计稿，经产品和技术各层级签字认可，过程中还顺带挖出一个生产环境的 bug（细节不能说）。支撑这套流程的工具叫 FleetKit，是和 Anthropic 合作做的，还没开源:一套写成 markdown 的规则和协议，针对 Claude 的 harness（他特别点名是 Fable）做了优化，拿到一个目标就拆解，派 leader agent 去调研和定方案，把结果排进人工审批队列（比如 GitHub issue），审批通过再派 builder agent 去落地。他把资产分成两类仓库:一类是可替换的（harness、模型、插件），一类是不可替换的，全是 GEICO 自己的上下文、方法论和判断权。几条具体教训:第一，千万别让 Claude 自己设定时任务去查查进度，每次触发都是重开一个全新会话，预算瞬间烧穿;第二，他们拿工程师最近真实写的代码当黄金标准做了基准测试，发现 Sonnet 5.5 写出来的代码不比专门优化过的 Fable 差，甚至更好，说明选模型这件事本身值得专门测，不能想当然;第三，他们现在存上下文就是裸的 markdown 文件，没用任何图谱工具，他承认这是待改进的地方;第四，他想要的下一步是把战情室里的语音讨论自动转录下来，现在全靠自己手写笔记，肯定漏了不少。",
+          "summary_en": "I read the full transcript. Ford Prior is a senior staff engineer in GEICO's (a Berkshire Hathaway company) claims tech group, self-described as the company's only \"tech evangelist,\" running a claims innovation lab. About six months ago he audited his engineers' workload and found that after clearing patches and minor upgrades, they had under 25% bandwidth left, on a good day, for the major changes that actually keep the company competitive. So he built a \"multiplayer AI-native war room\": a roster of decision-makers and subject-matter experts, a \"driver\" who operates the expensive AI tooling, and an AI-native productivity suite (comms channel, an interactive design tool, code repos), all wired into workflows, agent skills, MCPs, and agent fleets. His bet: in one day, with a thousand dollars of AI tokens, map one business domain end to end, including its business topology and millions of lines of legacy code, have an agent propose one real change, deploy it all the way to production, and demo it to his boss at 4pm. He ran this three times, mapping to the three-tier taxonomy from Anthropic's code-modernization plugin: the simplest domain, rentals, got an uplift (extending an existing API), where the agent found a data pattern that saves 8,500 calls a month by pushing customers up-to-date rental info; the damages domain got a transform, new agent-callable APIs to unlock a larger workflow; the most complex domain, salvage, got a reimagine, producing a full migration plan with API specs and design mockups, signed off by product and tech at every level, and along the way the agent surfaced a production bug he couldn't share details on. The tool behind all this is FleetKit, built in collaboration with Anthropic and not yet open source: a tightly structured set of rules and protocols written in markdown, tuned for the Claude harness (he specifically named Fable), which takes a goal, breaks it down, dispatches \"leader\" agents to research and propose an approach, queues the result for human approval (e.g. a GitHub issue), then dispatches \"builder\" agents once approved. He splits assets into two kinds of repos: replaceable (harness, model, plugin) and irreplaceable (GEICO's own context, methods, and judgment/decision rights). A few concrete lessons: first, never let Claude set up its own cron to \"check on progress,\" every firing spins up a brand-new session and burns budget immediately; second, benchmarking against their engineers' own recently-written code as golden data, Sonnet 5.5 wrote code just as good as, if not better than, the specialized Fable model, meaning model choice itself deserves real testing rather than assumption; third, their context storage today is just plain markdown files with no graph tooling, which he flagged as an open gap; fourth, his wanted next step is auto-transcribing the war room's spoken discussions, since right now he's hand-writing notes and surely losing things.",
+          "why": "省下 8500 次调用/月、一千美元预算、25% 带宽，这些数字都是 Prior 自己给的，没有第三方审计，这点要说明。但 FleetKit 的架构设计、三级分类方法论，以及别让 agent 自建 cron 查进度这条教训，都是可以直接照搬验证的具体做法，不依赖信他自报的数字。",
+          "why_en": "The numbers (8,500 calls/month saved, the $1,000 budget, the 25% bandwidth figure) are self-reported by Prior with no third-party audit, worth disclosing. But FleetKit's architecture, the three-tier taxonomy, and the \"don't let an agent set up its own check-in cron\" lesson are concrete practices that can be directly copied and verified on their own, independent of trusting his self-reported numbers."
+        },
+        {
+          "title": "两个做内容的人，教你怎么用 AI 做出两亿播放",
+          "title_en": "Two creators teach the AI content system behind 200M views",
+          "author": "AI Engineer 大会 · Sarah Chieng（Cerebras）、Cova Lee（OpenAI）",
+          "author_en": "AI Engineer NYC · Sarah Chieng (Cerebras), Cova Lee (OpenAI)",
+          "likes": "未标注",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=CFbnVpSsDFQ",
+          "summary": "我把整段文字稿读完了。Sarah Chieng 是 Cerebras 的开发者体验负责人，该公司做全球最快最大的 AI 推理芯片，客户包括 OpenAI、Mistral、Cognition 等；她本人也在 YouTube、LinkedIn、Instagram 上做内容。Cova Lee 刚加入 OpenAI 开发者体验团队，此前是全职短视频创作者，活跃于 Instagram、YouTube Shorts、TikTok。整场 workshop 分六个阶段：立意、写稿、拍摄、剪辑、分发、发布。演示全程用 ChatGPT（原 Codex）搭配 Cerebras 跑的 GPT 5.6 Soul Ultra Fast 模型，每秒 750 token。立意阶段的核心是 swipe file：一个收集参考、灵感、疑问的素材库，agent 能从中读出你的审美取向。Cova 在此基础上搭了个自建工具，拉取几千个同行视频做对比研究，还能模拟 YouTube 首页，看自己的标题缩略图放进真实首页环境里是否显眼；工具里有个离群值滑块，从 1 倍到 20 倍同频道平均播放量，用来找出表现异常好的那条视频。两人反复强调，标题和封面图占一条视频表现的 50%，就该花 50% 的时间在上面，而不是几秒钟。写稿阶段建议用语音口述，工具可选 Whisper Flow 或 ChatGPT 语音模式，别直接打字，因为打字容易写成套路化的营销腔；再把积累的内容训练成一个写稿 skill，一次生成三个版本的脚本，按权重打分排序。拍摄阶段先把脚本标注成分镜清单，分 A-roll、B-roll、屏幕录制，自动生成拍摄时的勾选清单；工具包括 Coast，本地持续录屏，方便回头搜以前某个演示片段，以及 CleanShot，用来截图标注、打码、画箭头。剪辑阶段最关键的一条是 HyperFrames：一个带 API 的视频编辑工具，把一堆原始素材丢给它，按文字指令剪辑、配文字动效，Cova 提到这是 Haydn 做的。另外还提到 HeyGen 做数字人补录漏嘴的词、Astra（OpenAI 的电脑操作 agent）驱动 Premiere，以及用 Image Gen 做生成式填充给背景换装，比如给空荡荡的宿舍墙面加机器人和灯光。每周还有一个复盘习惯：让 ChatGPT 复盘我的创作流程，告诉我时间花在哪，哪些重复劳动能自动化。这个 skill 曾帮 Cova 发现自己同时在两个地方维护待办清单，以及一个剪辑软件里完全没必要的导入检查步骤。两人都特别提到 OpenAI 的 Dots：它不按定时任务跑，而是主动在后台盯着 Twitter、LinkedIn 的动态和自己内容的表现，表现异常好或者该发的内容没发，会主动提醒，不用等被问。全程他们都强调一个边界：工具负责去掉枯燥的重复劳动，但最终的观点和声音必须是你自己的，否则没人会看。",
+          "summary_en": "I read the full transcript. Sarah Chieng heads developer experience at Cerebras (builder of the world's fastest, largest AI inference chips, powering OpenAI, Mistral, and Cognition), and also creates content herself on YouTube, LinkedIn, and Instagram; Cova Lee just joined OpenAI's developer experience team after working full-time as a short-form creator (Instagram, YouTube Shorts, TikTok). The workshop walks through six stages: ideating, scripting, recording, editing, repurposing, publishing, demoed throughout on ChatGPT (formerly Codex) running GPT 5.6 Soul Ultra Fast on Cerebras hardware (750 tokens/second). Ideation centers on a \"swipe file,\" a one-stop library of every reference, inspiration, and question that lets an agent read your taste directly; Cova built on this with a custom research tool that pulls thousands of competitor videos for comparison and simulates the actual YouTube homepage to see if a title and thumbnail stand out, including an \"outlier slider\" from 1x to 20x a channel's average views to find breakout videos. Both emphasize that title and thumbnail determine about 50% of a video's performance and deserve 50% of your time, not a few seconds. Scripting works best dictated aloud (Whisper Flow or ChatGPT voice mode) rather than typed, since typing defaults to marketing-sounding phrasing; past content gets trained into a \"script skill\" that generates three script options scored and ranked by weighted criteria. Recording turns a script into an annotated shot list (A-roll/B-roll/screen-recording) with an auto-generated filming checklist; tools include Coast (continuous local screen recording, searchable later for old demo clips) and CleanShot (quick screenshot annotation, blurring, arrows). The key editing tool is HyperFrames, an API-driven video editor you can hand raw footage to with text instructions for cuts and text animation, which Cova notes is \"built by Haydn.\" Others mentioned: HeyGen for AI-avatar fixes of a single flubbed word, Astra (OpenAI's computer-use agent) driving Premiere, and Image Gen's generative fill to redecorate a plain background (like adding a robot and lighting to a bare dorm-room wall). A weekly habit: asking ChatGPT to \"review my creative process, show me where I spend the most time, and suggest repetitive tasks to automate,\" a prompt that once surfaced that Cova was maintaining two separate to-do lists and running an unnecessary import-check step in her editor. Both repeatedly point to OpenAI's Dots as the automation they rely on most: not a scheduled task, but something proactively watching Twitter, LinkedIn, and their own content's performance in the background, pinging them when something's outperforming or when a planned post never went out, instead of waiting to be asked. Throughout, both draw the same line: tools should remove tedium, not taste, the final voice and point of view still has to be yours, or nobody watches.",
+          "why": "这是两位创作者分享自己的工作方法，播放量、涨粉效果等没有第三方数据验证，算经验之谈，不是审计过的结论。但里面提到的具体 skill 提示词，也就是复盘流程那条，还有 swipe file 做法、HyperFrames 这类工具的用法，都可以直接拿来试，和播放量数字本身是否可信无关，详见今日行动第 2 条。",
+          "why_en": "This is two creators sharing their own working methods, with no third-party data verifying the specific view counts or follower growth, closer to experience than an audited result. But the concrete skill prompt they share (the process-review one), the swipe-file practice, and how they use a tool like HyperFrames are all directly testable techniques, independent of whether the view-count claims themselves hold up, see action 2."
+        },
+        {
+          "title": "换个模型，幻觉少了快四成",
+          "title_en": "Swap the model, cut hallucinations by nearly 40%",
+          "author": "OpenAI · V7（GPT-5.6 Luna 客户案例）",
+          "author_en": "OpenAI · V7 (GPT-5.6 Luna customer story)",
+          "likes": "未标注",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=20IRGgQwPkc",
+          "summary": "我把整段文字稿读完了，这是一条约两分半的客户案例短片。V7 是给企业做工作流自动化的平台，产品叫 V7 Go，片子里几位 V7 的人讲他们怎么用 OpenAI 最新的 GPT-5.6 Luna。几个月前，模型还没法理解保险核保或融资尽调这类复杂流程；现在能直接吃进上百页的指令文件，端到端跑完一整套流程，每一步结论都挂着可追溯的引用，外加一套记住公司所有信息的记忆系统。V7 自己做的基准测试里，一个叫工具调用错误的指标，在上下文图谱测试中从 2.7% 降到了 0.2%。他们解释说，模型只占一半，另一半是跑模型的平台：V7 的上下文图谱按本体论存实体、事实、关系，之前的模型经常搞不清一个事实到底值不值得记住；旧的 RAG 方案遇到答不出的问题还会硬猜，换上 GPT-5.6 Luna 配上下文图谱之后，幻觉率降了 38%，文档的视觉理解也更好。工作流层面，原来调研一家公司信息要花几分钟，现在几秒钟就能出结果，而且不用每次都把数据重新摄入一遍；生成的投资备忘录从过得去变成有深度、够准确。他们的结论是，一年前做不到或不划算的用例，现在能做了，这让那些以慢著称的大企业能真正开始往 AI 时代转型。",
+          "summary_en": "I read the full transcript, a roughly two-and-a-half-minute customer-story clip. V7 is an enterprise workflow-automation platform (product name V7 Go); in this clip, V7's team describes using OpenAI's newest GPT-5.6 Luna model. A few months ago, models couldn't really handle complex processes like insurance underwriting or deal screening; now they can ingest a hundred-plus pages of instructions and run an entire workflow end to end, with citations anchoring every step and a memory system that retains everything about the company. In V7's own benchmark, a metric called \"tool call errors\" on a context-graph test dropped from 2.7% to 0.2%. They explain the model is only half the equation, the platform running it is the other half: V7's \"context graphs\" store entities, facts, and relationships under an ontology matching the customer's data, and older models often couldn't tell whether a fact was worth remembering in the first place; older RAG-based setups would guess at unanswerable queries, while GPT-5.6 Luna paired with V7's context graph cut hallucinations by 38%, with better visual document understanding too. On the workflow side, researching a company used to take minutes and now takes seconds, without re-ingesting all the data from scratch each time; generated investment memos went from \"decent\" to genuinely deep and accurate. Their takeaway: use cases that were impractical or impossible a year ago are now workable, helping enterprises known for being slow actually start retooling for the AI era.",
+          "why": "这是 V7 和 OpenAI 合拍的客户案例短片，本质是联合营销。数字，即 2.7% 降到 0.2%、幻觉降 38%，全是 V7 自己报的，没有第三方审计，这点要说清楚。片中讲的上下文图谱加可追溯引用这套架构设计本身独立于这些数字，可以单独判断是否有参考价值。",
+          "why_en": "This is a co-produced customer-story clip from V7 and OpenAI, essentially joint marketing, and the numbers (2.7% to 0.2%, the 38% hallucination cut) are entirely V7's own self-reported figures with no third-party audit, worth stating plainly. The \"context graph plus traceable citations\" architecture described is independent of those numbers and can be judged on its own merits."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 80,
+      "items": [
+        {
+          "title": "Claude Duet 上线：主动替你盯事，先要排队",
+          "title_en": "Claude Duet launches: a proactive agent, behind a waitlist",
+          "author": "Anthropic（官方博客）· Hacker News",
+          "author_en": "Anthropic (official blog) · Hacker News",
+          "likes": "363",
+          "likes_label": "HN 分（两条提交合计）",
+          "url": "https://claude.com/product/claude-duet",
+          "summary": "我读完了 Anthropic 官方产品页和介绍文章全文。Claude Duet 今天开放研究预览，先限 Pro、Max 订阅用户排队申请，目前只开放美国，用量计入已有套餐额度，预览期不单独收费。它是独立 App（iOS、Android，也能在 claude.ai 上用），围绕 Claude Opus 5.5 构建，核心能力是判断：每天早上发一条简报，汇总你接入的各个应用里最需要关注的事，白天持续盯着这些应用，只在真正需要你时才发消息；任务从订会议室这种小事，到搭几十个工具联动的仪表盘、做财务或销售预测、原型开发、建网页应用都能接。安全方面，官方说法是复用了 Claude Code、Claude in Chrome 已在用的可信 agent 框架，凭证处理方式和 Claude Managed Agents 一致。HN 上两条提交合计 363 分，讨论很热闹：不少人直接把它归为 OpenAI Dots、Grok Bot、Meta Muse 的同类竞品，有评论总结这类产品要活下来需要三样东西，算力规模、模型能力、能撑住烧钱的既有收入，四家目前都只占了两样不到三样；也有人质疑这种私人助理功能为什么不直接并进 Claude 主体验，而要单独开一个 App；还有人翻出一周前 Ars Technica 的报道，Meta 自家的 Muse 在用户分享对话时会把个人和商业机密一起泄露出去，拿来对比主动帮你办事这类产品到底该给多少信任。",
+          "summary_en": "I read Anthropic's full product page and announcement article. Claude Duet opened a \"research preview\" today, waitlist-gated and starting with US Pro and Max subscribers only; usage counts against your existing plan limits, no separate charge during the preview. It's a standalone app (iOS, Android, also usable on claude.ai) built around Claude Opus 5.5, with judgment as its core feature: each morning it sends a brief summarizing what most needs your attention across your connected apps, watches those apps through the day, and only messages you when something genuinely needs you. Tasks range from small things like scheduling a meeting to building dashboards wired into dozens of tools, financial or sales forecasts, prototyping, and building web apps. On safety, Anthropic says it draws on the same trustworthy-agent framework already guiding Claude Code and Claude in Chrome, with credential handling matching Claude Managed Agents. The two HN submissions total 363 points and the discussion is lively: many commenters file it alongside OpenAI's Dots, Grok's bot, and Meta's Muse as the same product category, with one summarizing that surviving in this space needs three things, compute at scale, model capability, and existing revenue to absorb the cost, and that none of the four currently has all three; others question why a \"personal assistant\" feature needs its own separate app instead of living inside the main Claude experience; still others pulled up a week-old Ars Technica report that Meta's own Muse leaked users' personal and business secrets when conversations were shared, raised as a reason to be cautious about how much trust any \"acts proactively on your behalf\" product deserves right now.",
+          "why": "产品描述部分来自 Anthropic 官方页面，是一手信息，但没有给出任何可独立核验的效果数字，这是纯功能发布，不是带基准测试的发布。研究预览、限美国、需排队这几点是关键限定词，容易被只看标题的人忽略，这次发布离真正大规模可用还有距离。HN 评论区关于 Muse 泄密的引用来自一周前的独立报道，不是今晚新闻，这里只作为信任讨论的背景引用，不单独算一条。",
+          "why_en": "The product description comes from Anthropic's own official page, first-party but with no independently checkable performance numbers attached, a pure feature launch rather than a benchmark-backed one. \"Research preview,\" \"US only,\" and \"waitlist\" are the key qualifiers easy to miss if you only read the headline, this is still some distance from broad general availability. The HN discussion's Muse-leak reference comes from an independent report a week old, not tonight's news, cited here only as trust-debate background, not counted as its own item."
+        },
+        {
+          "title": "给全网打补丁：Trail of Bits 公开两个审查 AI 补丁的插件",
+          "title_en": "Patch the Planet: Trail of Bits open-sources two plugins for auditing AI-written patches",
+          "author": "Trail of Bits · Anish Naik、Marcelo Morales",
+          "author_en": "Trail of Bits · Anish Naik, Marcelo Morales",
+          "likes": "230",
+          "likes_label": "HN 分",
+          "url": "https://blog.trailofbits.com/2026/10/21/your-ai-agent-fixed-the-bug-but-what-else-did-it-change/",
+          "summary": "我读完了全文。这是 Trail of Bits 和 OpenAI 的联合项目 Patch the Planet（两家已经为多个常用开源项目联手写过几百个安全补丁，案例之一是 Scapy）今天发布的两个插件：patching-bugs 负责复现漏洞、写修复、跑测试；regression-hunt 负责检查改动有没有破坏原本正常的功能。背景是他们九月发过一篇文章，承认自己合并的补丁里出过回归问题；这次是对那之后每一个被工程师写出、被维护者合并进上游的补丁做了全面复查：130 多个 PR 里，确认了 21 个回归，16 个是功能性的，1 个是性能，4 个是构建或测试相关，没有一个破坏了安全防护。核查方法是让 agent 对每个补丁找可能的回归点，用改动前后各跑一次概念验证（PoC）去确认，再交给工程师复核；一次运行里 58 个候选里确认了 21 个，准确率约 36%。他们把经验归纳成四条设计原则：用尽量少的话给出有态度的指导，而不是写一本厚厚的手册；步骤要模块化，两个插件都能拆开单独用；输入输出都用严格的 schema，包含结论、代码改动、需要的检查项、原始证据和待解决问题；再加一条反馈闭环，把上一版插件处理不好的任务收集起来，当作下一版的基准测试。regression-hunt 比起一个只被提示 review 这个 PR 有没有回归的普通 Codex agent，误报率低 25%。",
+          "summary_en": "I read the full post. This is the Patch the Planet joint project between Trail of Bits and OpenAI (the two have already co-authored hundreds of security patches for widely used open-source projects, including Scapy), releasing two plugins today: patching-bugs reproduces a bug, writes a fix, and tests it; regression-hunt checks whether a change broke previously working behavior. The context: a September post from Trail of Bits acknowledged regressions in their own merged patches; this is a full review of every patch a Trail of Bits engineer wrote and a maintainer merged upstream since then. Across 130-plus merged PRs, they confirmed 21 regressions, 16 functional, 1 performance, 4 build/test-related, and none broke a security protection. The method: an agent looks for potential regressions in each patch, confirms each with a before-and-after proof-of-concept run, then hands results to an engineer for review; one run surfaced 58 candidates and confirmed 21 of them, roughly 36% precision. They distill this into four design principles: give opinionated guidance in as few words as possible rather than a thick manual; keep steps modular so either plugin can run standalone; use strict input/output schemas carrying the claim, the code change, the required check, the raw evidence, and open questions; and close the loop by collecting tasks an earlier version failed at to benchmark the next one. regression-hunt produces 25% fewer false positives than a baseline Codex agent simply prompted to \"review the PR for regressions.\"",
+          "why": "这是 Trail of Bits 自己发布并自我审查的结果，21 个回归、36% 准确率这些数字没有第三方复核，但他们明确公开了方法论（改动前后各跑一次 PoC）和失败率，而不是只报喜不报忧，这篇本身就是对九月那次失误的公开复盘，可信度比一般的产品发布高。",
+          "why_en": "This is Trail of Bits publishing and self-auditing its own results, so the 21-regressions and 36%-precision numbers have no third-party review, but they explicitly disclose their methodology (a before/after PoC for each confirmation) and their failure rate rather than only reporting successes, and the post itself is a public follow-up to their own September misstep, which lends it more credibility than a typical product launch."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 5,
+      "items": [
+        {
+          "title": "DeepSeek 开源推理引擎，自称单集群每天处理 155 万亿 token",
+          "title_en": "DeepSeek open-sources its inference engine, claims 155T tokens/day from one cluster",
+          "author": "DeepSeek（GitHub 仓库）· Latent Space AINews、TLDR AI、Hacker News",
+          "author_en": "DeepSeek (GitHub repo) · Latent Space AINews, TLDR AI, Hacker News",
+          "likes": "2302",
+          "likes_label": "HN 分（今晚最高）",
+          "url": "https://github.com/deepseek-ai/DeepInfer",
+          "summary": "我读完了 Latent Space AINews 那篇综述，也看了 GitHub 仓库本身（Apache-2.0 协议）。DeepSeek 发布了 DeepInfer，这是支撑其 V4.1 Flash 模型的推理引擎，连同生产部署细节一并公开。架构上把视觉编码、预填充、解码拆成独立阶段，支持分布式推理、投机解码、SWA 受限重放，以及在英伟达和华为昇腾两种硬件上的结构化输出；配套的 deepseek-recipe 组件负责生产级 token 编解码和官方 API 兼容处理。DeepSeek 给出的生产数据是：单集群每天处理 155 万亿 token，输入缓存命中率 96%，平均首字延迟 400 毫秒，生成速度 230 token/秒（写代码可达 300 token/秒），非高峰时段每加速器小时收入 38 美元。这些都是第一方数据，未经独立审计。「完全开源」的说法也有保留：DeepSeek 承认 KV 缓存管理和负载均衡部分尚未公开，因为与内部基础设施耦合太深。vLLM 团队给出了目前最实在的对比回应：他们确认 DeepInfer 最初基于 vLLM 搭建，按 Apache 2.0 发布；在匹配配置下，vLLM 自己在 GB200 上跑出的解码吞吐量与 DeepInfer 公布的结果相差不到 6%，还公开了复现脚本和 AgentX 的测试结果，这在一定程度上削弱了「DeepSeek 的推理效率是其他开源引擎做不到的」这一说法。GitHub 上该仓库今晚新增约 1.8 万星。",
+          "summary_en": "I read Latent Space's AINews summary and the GitHub repo itself (Apache-2.0 license). DeepSeek released DeepInfer, the inference engine behind its V4.1 Flash model, together with the production-deployment details. The architecture separates vision encoding, prefill, and decode into independently scalable stages, supporting distributed inference, speculative decoding, SWA Bounded Replay, and structured output on both NVIDIA and Huawei Ascend hardware; the accompanying deepseek-recipe component handles production-grade token encoding/decoding and official-API-compatible processing. DeepSeek's own production figures: 155 trillion tokens/day from a single cluster, a 96% input-cache hit rate, 400ms average time to first token, 230 tokens/second generation (300 tokens/second for coding), and $38 revenue per accelerator-hour at off-peak prices. These are first-party production claims, not independently audited numbers. The \"fully open source\" framing also has a caveat: DeepSeek itself says the KV-cache management and load-balancing components aren't released yet, since they're still coupled to internal infrastructure. The most concrete outside response came from the vLLM team, who confirmed DeepInfer was originally built on top of vLLM and released under Apache 2.0, then reported that under a matched configuration, vLLM's own decode throughput on GB200 came within 6% of DeepInfer's published numbers, publishing reproduction scripts and AgentX results alongside it, which meaningfully undercuts the claim that DeepSeek's inference efficiency is uniquely inaccessible to existing open-source engines. The repo gained roughly 18,000 stars tonight.",
+          "why": "155 万亿 token、96% 缓存命中率这些数字全是 DeepSeek 自己报告的生产数据，没有第三方审计，原文也明确写了这一点。但 vLLM 团队给出的 6% 吞吐量差距是独立团队用自己的硬件复现出来的，不依赖相信 DeepSeek 的自我报告，也是这篇报道里唯一能单独核实的对照点。",
+          "why_en": "The 155-trillion-tokens-a-day and 96%-cache-hit-rate figures are all DeepSeek's own self-reported production data with no third-party audit, which the original piece itself states plainly. But the vLLM team's 6% throughput gap is an independent reproduction on their own hardware, not dependent on taking DeepSeek's self-report on faith, and it's the one point in this story that can be checked on its own."
+        },
+        {
+          "title": "Claude Mods：把 agent 的「注意力」接口交还给用户自己设计",
+          "title_en": "Claude Mods: putting the agent's \"attention interface\" back in the user's hands",
+          "author": "Latent Space · Dan McAteer",
+          "author_en": "Latent Space · Dan McAteer",
+          "likes": "未标注",
+          "likes_label": "付费订阅内容",
+          "url": "https://www.latent.space/p/claude-mods",
+          "summary": "我读完了全文。作者 Dan McAteer 提出一个框架叫「注意力接口」：随着模型把越来越多的 harness 能力吸收进权重本身，剩下来真正重要的那一层，是决定 agent 什么时候该打断你、给你看什么、哪些决定必须由你来做。Claude Mods 是 Claude Code 的插件系统，本质是能在 CLI 和桌面端运行的 TypeScript/JavaScript 函数，响应提示词、工具调用、界面渲染这类事件，可以观察、改写或接管默认行为。Anthropic 自己内置了六个 mod，用 /plugin 打开 Installed 下的 Built-in 分组就能看到：agents-md（加载 AGENTS.md 当项目说明）、diff（接管 /diff 面板）、plugin-authoring（教 Claude 怎么写 mod）、sec-default（管理组织层面的 mod 权限）、telemetry（发送用量数据）、you-should-know（唯一默认关闭的一个，一个旁观主 agent 工作的 side agent，专门标出容易被漏看的重要信息）。作者举了个亲历例子：他让 Claude 简化一个项目的界面文案，主 agent 改完文案、截了前后对比图，看起来全做完了；结果 you-should-know 跳出来提醒，被改的文件和另外约 45 个文件本来就有未提交的旧改动，提醒他先提交或暂存，否则之后一丢弃就连旧工作一起丢了。他自己还做了个叫 ModSmith 的开源插件，里面的「Next Steps Supervisor」mod 会在一轮改了文件、跑了命令或调用超过 8 次工具之后自动触发，建议下一步该做什么，做成一个点一下就能发给 Claude 的按钮。文章后半段把这套思路拿去对比另外两家：OpenAI 10 月 7 日随 GPT-6 推出的 Intelligent UI，由模型实时生成图表、表单这类小工具，零配置但用户几乎没法自定义；Cursor 的 PR 路由与审批功能，让团队写策略、系统按风险分和代码所有权自动分配审阅人，其中有一条规则很关键：如果一个 PR 本身改动了审批策略文件，系统不会用这份被改过的策略去放宽对这个 PR 自己的审查，而是读主分支上的旧策略，这样 agent 没法靠改规则来给自己放行。三者的差别在于谁来设计这层「注意力接口」：ChatGPT 是模型在厂商划定的框架里自己选；Cursor 是团队定规则、系统按固定流程执行；Claude Mods 是用户和 agent 一起把这层接口本身搭出来。",
+          "summary_en": "I read the full post. Author Dan McAteer proposes a frame called the \"Attention Interface\": as models absorb more of the harness's capability into their own weights, the layer that actually matters is the one deciding when an agent interrupts you, what it shows you, and which decisions have to be yours. Claude Mods is Claude Code's plugin system, TypeScript/JavaScript functions that run in the CLI and desktop app, responding to events like a prompt, a tool call, or an interface render, able to observe, rewrite, or take over default behavior. Anthropic ships six built-in mods, visible via /plugin → Installed → Built-in: agents-md (loads AGENTS.md as project instructions), diff (takes over the /diff pane), plugin-authoring (teaches Claude to write mods), sec-default (guards what an organization manages against user-installed mods), telemetry (sends usage analytics), and you-should-know, the only one off by default, a side agent that watches the main agent work and flags information you're likely to miss. The author gives a real example: he asked Claude to simplify noisy UI copy in a personal project; the main agent trimmed the text and took before/after screenshots, everything looked done. Then you-should-know flagged that the file being edited, plus about 45 others, already had uncommitted earlier work sitting in them, suggesting he commit or stash it first so a later discard wouldn't wipe that earlier work out too. He also built his own open-source plugin, ModSmith, whose \"Next Steps Supervisor\" mod fires after a turn that edited files, ran commands, or made 8-plus tool calls, suggesting a next step as a one-click button that sends the instruction straight to Claude. The back half of the piece compares this to two other companies: OpenAI's Intelligent UI, shipped with GPT-6 on October 7, where the model generates charts, forms, and small tools on the fly, zero setup but little user control; and Cursor's PR Routing & Approval, where a team writes policy and the system auto-assigns reviewers by risk score and code ownership, with one notable rule: if a PR itself edits the approval-policy file, the system won't use that edited version to relax review on the same PR, it reads the policy from the base branch instead, so an agent can't change the rules to approve its own work. The three differ in who designs this attention layer: ChatGPT's model picks within a frame the lab built; Cursor's team sets policy that a fixed workflow enforces; Claude Mods lets the user and the agent build the interface layer together.",
+          "why": "这篇是作者自己的实践分享加一个自创框架，属于观点性文章，「注意力接口」这个说法是他本人提出，不是行业共识用语，这点要说明。但文中提到的六个内置 mod、you-should-know 默认关闭等，都是 Claude Code 现有功能，可以直接打开 /plugin 核实；Cursor 那条「agent 不能用自己改过的策略给自己放行」的规则来自 Cursor 官方文档，也是可独立核实的。",
+          "why_en": "This is the author's own practice writeup plus a framework he coined himself, an opinion piece, and the \"Attention Interface\" term is his own, not an industry-standard phrase, worth noting. But the six built-in mods and \"You Should Know\" being off by default are real, current Claude Code features directly checkable via /plugin; the Cursor rule that an agent can't use its own edited policy to approve its own PR comes from Cursor's own documentation and is independently verifiable."
+        },
+        {
+          "title": "PHP 紧急打补丁：AI 找出的漏洞，披露流程却先泄了密",
+          "title_en": "PHP's emergency patch: AI found the bug, but the disclosure leaked first",
+          "author": "Simon Willison（引 PHP Foundation、Wiz Research）",
+          "author_en": "Simon Willison (citing the PHP Foundation, Wiz Research)",
+          "likes": "未标注",
+          "likes_label": "博客原创",
+          "url": "https://simonwillison.net/2026/Oct/21/php-security-release/",
+          "summary": "我读完全文，并核对了文中引用的 PHP Foundation 公告和 Wiz Research 时间线。今天 PHP 8.x 全线发布紧急安全更新，修复两个未授权远程代码执行漏洞；从昨晚开始，已有可用的利用代码在流通，原因是协调披露流程本身泄了密。完整时间线：8 月 19 日，Wiz Research 用 Wiz Atlas、Gemini 4 Argon、GPT-5.6 Sol 三个工具/模型组合，发现第一个 PHP 漏洞；8 月 20 日，确认对 Drupal 存在未授权 RCE；8 月 21 日，确认对 WordPress 也存在；8 月 24 日，Wiz 把漏洞报告给 PHP 安全团队；9 月 21 日，PHP 确认收到并开始协调修复；原计划 10 月 22 日 14:00 UTC 统一发布补丁和公开披露。10 月 20 日约 15:00 UTC，两个 CVE 编号开始在网络论坛和社交媒体上流传，带着错误的发布时间和错误的 CVSS 评分（流传的是满分 10.0，官方实际评分是 9.2）；没有技术细节泄露，但 PHP 项目因此把原定发布时间提前，在 19:30 UTC 发了预公告，并把正式发布从 10 月 22 日提前到 10 月 21 日 14:00 UTC。泄露和提前公告发生后，一家参与报告的安全公司（文中称为 Calif）误发了一段概念验证视频，展示针对多个真实目标跑通的利用过程，暴露了一些此前未披露的技术细节；视频很快被删，但副本已在社交媒体上流传，加速了更多人复现利用代码，到 10 月 21 日流通范围进一步扩大。",
+          "summary_en": "I read the full post and cross-checked the PHP Foundation announcement and Wiz Research timeline it cites. The entire PHP 8.x line shipped an emergency security update today fixing two unauthenticated remote-code-execution holes, and working exploits have been circulating since last night because the coordinated-disclosure process itself leaked. Full timeline: August 19, Wiz Research discovered the first PHP vulnerability using a combination of Wiz Atlas, Gemini 4 Argon, and GPT-5.6 Sol; August 20, confirmed unauthenticated RCE against Drupal; August 21, confirmed against WordPress too; August 24, Wiz reported it to the PHP security team; September 21, PHP acknowledged and began a coordinated fix; the original plan was a unified patch-and-disclosure release at 14:00 UTC on October 22. Around 15:00 UTC on October 20, the two CVE IDs started circulating on forums and social media with a wrong release time and a wrong CVSS score (10.0 circulated, versus the actual 9.2); no technical details leaked at that point, but the PHP project still moved its timeline up, publishing a pre-announcement at 19:30 UTC and pulling the formal release forward from October 22 to 14:00 UTC on October 21. After the leak and early announcement, one of the reporting security firms (named Calif in the post) mistakenly published a proof-of-concept video showing the exploit working against real targets, exposing some previously undisclosed technical detail; the video was deleted quickly but copies had already spread on social media, accelerating more people reproducing working exploits, with circulation widening further through October 21.",
+          "why": "时间线来自 Willison 转述的 PHP Foundation 官方公告和 Wiz Research 自己发的报告，两边说法互相印证，CVE 编号、评分数字都可以单独核实。Calif 误发视频这个细节目前只在 PHP Foundation 这篇公告里看到，没找到 Calif 自己的独立确认，按转述处理。",
+          "why_en": "The timeline comes from Willison's relay of the PHP Foundation's own announcement and Wiz Research's own published report, and the two corroborate each other; the CVE numbers and score figures are independently checkable. The detail that \"Calif\" mistakenly published a video currently appears only in the PHP Foundation's own announcement, no independent confirmation from Calif itself was found, so it should be treated as relayed, not independently confirmed."
+        }
+      ]
+    }
+  ],
+  "meta_read": [
+    "今晚几件事拼在一起，讲的是同一件事：谁来决定什么值得人类的注意力，谁又为判断错了负责。Claude Duet 要做的是主动帮你分辨什么该打扰你、什么能等；Cova Lee 和 Sarah Chieng 工作坊里反复提到的 OpenAI Dots，干的是同一件事；Claude Mods 这篇文章干脆把这层东西起了个名字，叫注意力接口，还把 ChatGPT、Cursor、Claude 三家的做法摆在一起对比，谁设计这层接口，决定权就在谁手里。GEICO 的战情室把这套思路落到了实处：不信任某个 agent 不会乱来，是在每一级改动前都放一道由具体人签字的判断关卡，复杂度越高的改动，关卡也越多。Trail of Bits 的两个新插件做的是同一件事的另一面：不信任 agent 自己报告我没搞出回归，而是逼它拿改动前后各跑一次概念验证去自证，36% 的准确率摆在明面上，没有藏起来。这些都是在设计怎么把人的注意力用在刀刃上。但今晚的 PHP 故事是另一面的提醒：从 8 月 19 日发现漏洞到 10 月 22 日原定统一发布，PHP 团队足足留了两个月做协调披露，每一步都很谨慎。结果一个流传出去的错误 CVSS 分数，就让整套流程在一夜之间失控提前，还带出一段不该公开的概念验证视频。设计得再精巧的注意力接口，防得住的是日常的噪音，防不住一次意外的尖峰事件。真正值钱的不是把平时的信号过滤干净，是假设总会有一次意外泄露、一次误操作，系统撑不撑得住。"
+  ],
+  "meta_read_en": "Tonight's stories, lined up together, are all saying the same thing: who decides what deserves human attention, and who answers for it when that judgment is wrong. Claude Duet's whole pitch is proactively sorting what should interrupt you from what can wait; the OpenAI Dots that Cova Lee and Sarah Chieng kept citing in their workshop does the same job; the Claude Mods piece just gives this layer a name, the \"Attention Interface,\" and lines up ChatGPT's, Cursor's, and Claude's approaches side by side, the difference being who actually gets to design that layer. GEICO's war room turns this into practice: instead of trusting any one agent not to go off the rails, it puts a human-signed judgment gate before every tier of change, more gates for higher-complexity changes. Trail of Bits's two new plugins are the flip side of the same idea: instead of trusting an agent's own claim that it introduced no regression, it forces the agent to prove it with a before-and-after proof-of-concept, and puts the 36% precision rate out in the open rather than hiding it. All of this is engineering around where to spend human attention. But tonight's PHP story is the reminder on the other side: PHP's team spent a full two months, from discovering the bug on August 19 to an originally planned unified release on October 22, doing careful coordinated disclosure, every step deliberate. Then one wrong CVSS score leaking out was enough to blow the entire timeline forward overnight, dragging a proof-of-concept video that should never have gone public along with it. However well-designed an attention interface is, it protects against everyday noise. It doesn't protect against one unexpected spike. What's actually valuable isn't filtering out the routine signal, it's whether the system holds up the one time something leaks or someone slips.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 36538,
+      "stars_today": 2012
+    },
+    {
+      "rank": 2,
+      "name": "vllm-project/vllm",
+      "url": "https://github.com/vllm-project/vllm",
+      "description": "A high-throughput and memory-efficient inference and serving engine for LLMs",
+      "language": "Python",
+      "stars": 94884,
+      "stars_today": 441
+    },
+    {
+      "rank": 3,
+      "name": "stablyai/orca",
+      "url": "https://github.com/stablyai/orca",
+      "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
+      "language": "TypeScript",
+      "stars": 101297,
+      "stars_today": 1541
+    },
+    {
+      "rank": 4,
+      "name": "headroomlabs-ai/headroom",
+      "url": "https://github.com/headroomlabs-ai/headroom",
+      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+      "language": "Python",
+      "stars": 77269,
+      "stars_today": 474
+    },
+    {
+      "rank": 5,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 171669,
+      "stars_today": 2079
+    },
+    {
+      "rank": 6,
+      "name": "Comfy-Org/ComfyUI",
+      "url": "https://github.com/Comfy-Org/ComfyUI",
+      "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world.",
+      "language": "Python",
+      "stars": 141533,
+      "stars_today": 939
+    },
+    {
+      "rank": 7,
+      "name": "supabase/supabase",
+      "url": "https://github.com/supabase/supabase",
+      "description": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.",
+      "language": "TypeScript",
+      "stars": 113015,
+      "stars_today": 504
+    },
+    {
+      "rank": 8,
+      "name": "twentyhq/twenty",
+      "url": "https://github.com/twentyhq/twenty",
+      "description": "The open alternative to Salesforce, designed for AI.",
+      "language": "TypeScript",
+      "stars": 59176,
+      "stars_today": 112
+    },
+    {
+      "rank": 9,
+      "name": "shiyu-coder/Kronos",
+      "url": "https://github.com/shiyu-coder/Kronos",
+      "description": "Kronos: A Foundation Model for the Language of Financial Markets",
+      "language": "Python",
+      "stars": 42836,
+      "stars_today": 575
+    },
+    {
+      "rank": 10,
+      "name": "strelov1/freehire",
+      "url": "https://github.com/strelov1/freehire",
+      "description": "freehire — the open-source search engine for job seekers",
+      "language": "Go",
+      "stars": 2400,
+      "stars_today": 360
+    }
+  ],
+  "ota": {
+    "learned": [
+      "今晚 YouTube 的 9 个频道 RSS 直接成功 4 个（Karpathy、AI Engineer 大会、OpenAI、Latent Space），对照频道 Google for Developers 正常、MrBeast 异常 404，说明不是全站故障；剩下 5 个（Anthropic、Dwarkesh Patel、Lenny's、No Priors、Zara Zhang）靠 yt-dlp 按频道回退全部成功，但这 5 个回退后翻出来的最新内容全部落在 48 小时窗口之外（最近的是 10 月 18 日），说明这次不是抓取失败，是这几个频道这两天确实没更新。4/9 直接成功率没到量化门槛要求的过半，不把 yt-dlp 回退收回去，继续按既有节奏记录每晚的直接成功率。",
+      "三条新鲜字幕最初用 --sub-langs \"en.*\" 全部 429，换成已有记录里发布不到一天的视频先试 en-orig 这条规则，三条全部一次成功，再次确认这条是针对当天新视频的真实修复，不是要收回的 workaround。",
+      "今晚发现，我这个 claude -p 进程就是 launchd 在晚上 8:57 触发 run-digest.sh 自动跑出来的子进程，并非额外插进来的一次交互式复核。/tmp/digest-2026-10-21/ 目录里混着今天凌晨 2 点另一次自动跑（大概率是云端 cron）留下的检查点文件（build.py、cand.txt、rss-*.xml、按频道抓的字幕等）。SKILL.md 里有一条规则：同日草稿需要重新判断新鲜度，不能直接拼接。按此规则，我没有直接采用凌晨那批候选，而是自己重新测了一遍 HN 和 YouTube。只在凌晨那批候选和今晚独立抓到的候选重合时（比如 DeepInfer、Tenex、Voxtral 3、PHP 安全更新、eMudhra 证书事件），才把它当作交叉验证的信号。没有发现今晚的候选和凌晨的候选冲突。没有调用 bin/publish.sh，按约定由 run-digest.sh 在这个进程退出后自己调用。",
+      "HN Algolia 的 front_page+query=AI 今晚又只返回 3 条。换成 Firebase topstories 接口扫前 80 条，用线程池并发拉取详情，80 条全部成功。这是记录里第 N 次确认同一个 Algolia 参数组合的稳定故障。继续保留 Firebase 回退，不收回。"
+    ],
+    "learned_en": [
+      "Tonight 4 of the 9 YouTube roster channels returned RSS directly (Karpathy, AI Engineer NYC, OpenAI, Latent Space); the control channel Google for Developers worked fine while MrBeast 404'd, ruling out a sitewide outage. The other 5 (Anthropic, Dwarkesh Patel, Lenny's, No Priors, Zara Zhang) all succeeded via the yt-dlp per-channel fallback, but everything the fallback surfaced from those 5 fell outside the 48-hour window (most recent was October 18), meaning this wasn't a fetch failure, those channels genuinely hadn't posted anything new in two days. 4/9 direct success doesn't clear the quantified threshold for retiring the yt-dlp fallback, so it stays, and tonight's direct-success rate is logged to keep tracking the trend.",
+      "All three fresh subtitle fetches 429'd on --sub-langs \"en.*\"; switching to the already-documented \"for an upload under a day old, try en-orig alone first\" rule succeeded on all three on the first retry, re-confirming this is a real fix for same-day uploads, not a workaround due for removal.",
+      "Discovered tonight that this very claude -p process IS the child process launchd's run-digest.sh spawned at 8:57pm, not a separate interactive check layered on top. /tmp/digest-2026-10-21/ contained checkpoint files (build.py, cand.txt, rss-*.xml, per-channel subtitle fetches) left over from a different automated run around 2am today, likely the cloud cron. Per SKILL.md's rule that a same-day draft needs a freshness recheck rather than a direct splice, that 2am candidate pool wasn't adopted directly; HN and YouTube were independently re-swept tonight, and the 2am candidates were only used as a cross-check signal where they overlapped with tonight's independently found candidates (e.g. DeepInfer, Tenex, Voxtral 3, the PHP security release, the eMudhra certificate incident), no conflicts found between tonight's picks and the 2am batch. bin/publish.sh was not called from here, per the arrangement that run-digest.sh calls it itself after this process exits.",
+      "HN Algolia's front_page+query=AI combination again returned only 3 hits tonight; switched to the Firebase topstories endpoint, scanning the top 80 with a thread pool for parallel detail fetches, all 80 succeeded. This is the Nth confirmation that this specific Algolia parameter combination fails consistently, so the Firebase fallback stays in place, not retired."
+    ],
+    "new_capabilities": [
+      "已实施：新增记忆 feedback-no-self-scheduling-cron-checkins，来自 GEICO 的 Ford Prior 在 AI Engineer 大会上讲的具体教训——让 Claude 自己设一个定时任务去“查查工作做得怎么样”，每次触发都是重开一个全新会话而不是接着上次往下走，查得越勤，预算烧得越快。这条对我自己管理 ScheduleWakeup、CronCreate 这类工具是直接可用的提醒：以后碰到“要不要给这个任务加个定时检查”的判断时，先确认间隔是不是真的在等一个会变化的外部状态，而不是单纯想“隔一会儿回来看看”，后者应该用 Monitor 或者同一会话里续着查，不该另开一个定时触发的新会话。"
+    ],
+    "new_capabilities_en": [
+      "Implemented: added a new memory, feedback-no-self-scheduling-cron-checkins, drawn from a concrete lesson GEICO's Ford Prior gave at AI Engineer NYC, letting Claude set up its own cron to \"check on\" its own work spins up a brand-new session every firing instead of continuing the last one, so the more often it checks, the faster the budget burns. This is a directly usable reminder for how I manage ScheduleWakeup and CronCreate myself: going forward, before deciding whether a task needs a scheduled check-in, confirm the interval is actually waiting on something that changes externally, rather than just wanting to \"come back and look again later\", the latter belongs in Monitor or a continuing poll within the same session, not a freshly-triggered new one."
+    ]
+  }
+}
