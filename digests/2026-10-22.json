@@ -1,0 +1,291 @@
+{
+  "date": "2026-10-22",
+  "partial": false,
+  "banner": "Railway 遭入侵，环境变量疑似泄露",
+  "banner_en": "Railway Breach Puts Stored Secrets at Risk",
+  "image": {
+    "src": "digests/img/2026-10-22.jpg",
+    "caption": "本期配图：Railway 官方事故披露文章的标题卡。（图：Railway）",
+    "caption_en": "Today's image: the title card from Railway's own incident disclosure post. (Image: Railway)"
+  },
+  "actions": [
+    {
+      "text": "今晚 Jellyfish 那组数据显示，在他们追踪的 5 万名工程师里，真正把 AI 技能（skill）用到位（每周 30 次以上）的只占 12%，但这批人比不怎么用技能的人，merge PR 数量多出 30%，这个差距比换不换模型大得多。翻一下自己这周跑过的 Claude Code 会话，数一数真正调用过 /skill 的次数，看自己落在他们说的哪一档。约 10 分钟。",
+      "text_en": "Tonight's Jellyfish talk found that among the 50,000 engineers they track, only 12% actually use AI skills at a heavy level (30+ invocations a week), but that group merges 30% more PRs than low-skill-use engineers, a bigger gap than switching models produces. Go back through this week's Claude Code sessions and count how many times a /skill actually got invoked, and see which tier that lands in. About 10 minutes.",
+      "source": "AI Engineer 大会：Nicholas Arcolano（Jellyfish）",
+      "source_en": "AI Engineer NYC: Nicholas Arcolano (Jellyfish)",
+      "source_url": "https://www.youtube.com/watch?v=Ve2bAarPA2I"
+    },
+    {
+      "text": "Towards AI 今晚发布的 Tone-Bench 测出一个具体配方：便宜模型（比如 GLM 5.3 flash）生成好几版草稿，再用一个高算力模型（比如 Opus）过一遍、挑优点合并，成本比直接用 Opus 写一版还低，效果还更好。下次要写一篇长文案，或者给什么内容生产流程起草文字，先按这个配方跑一遍，再对比平时一遍成稿的结果。约 15 分钟。",
+      "text_en": "Tonight's Towards AI Tone-Bench release found a concrete recipe: generate several drafts with a cheap model (like GLM 5.3 flash), then run one high-compute model (like Opus) over them to pick and merge the best parts, which costs less than a single Opus draft and performs better. Next time a long piece of copy or any content-production draft is needed, try this recipe once and compare it against the usual one-shot result. About 15 minutes.",
+      "source": "AI Engineer 大会：Louis-François Bouchard（Towards AI）",
+      "source_en": "AI Engineer NYC: Louis-François Bouchard (Towards AI)",
+      "source_url": "https://www.youtube.com/watch?v=_dTF3NpPzGo"
+    },
+    {
+      "text": "George Kurtz 在采访里提到一个具体盲点：企业里的 agent 到底在用谁的身份干活，很多公司自己都说不清楚，这就是他说的 Shadow AI。翻一下自己手上正在跑的几个长期 agent 或自动化任务，确认每一个用的是独立凭证还是共用了本人的身份，哪个权限范围明显超过了它实际要做的事。约 15 分钟。",
+      "text_en": "George Kurtz named a specific blind spot in the interview, what he calls Shadow AI: most companies genuinely can't say what identity their agents are operating under. Go through whatever long-running agents or automated tasks are in use, confirm each one uses its own credentials rather than piggybacking on a personal identity, and flag anywhere the permission scope is clearly wider than the job needs. About 15 minutes.",
+      "source": "No Priors：George Kurtz（CrowdStrike）",
+      "source_en": "No Priors: George Kurtz (CrowdStrike)",
+      "source_url": "https://www.youtube.com/watch?v=PST8yesYOSo"
+    }
+  ],
+  "hands_on": {
+    "title": "给 AI 一个假终端，看它装到几时会露馅",
+    "title_en": "Give an AI a fake terminal and see how long the act holds up",
+    "why": "今晚 Hacker News 当晚第二热门的帖子，独立开发者 Simon Edwardsson 把一个 3.6 亿参数的小模型（基于 Qwen2.5-Coder-0.5B 微调）训练成了一个终端模拟器：它背后没有真的 shell，没有真的文件系统，每敲一个键，模型就预测屏幕该怎么变。作者给了一个现成的浏览器 demo，不用装任何东西，今晚就能玩。它能跑 vim、tmux，还能玩贪吃蛇，故意打错一个命令（比如把 python 打成 pythoon）它也会装出报错的样子，但装得到底多像、多久会露馅，得自己上手试。",
+    "why_en": "Tonight's second-hottest Hacker News post is an indie project from Simon Edwardsson: a 360-million-parameter model (fine-tuned from Qwen2.5-Coder-0.5B) trained to act as a terminal, no real shell or filesystem behind it, every keypress it just predicts how the screen should change. He built a ready-to-use in-browser demo, nothing to install, tryable tonight as-is. It can run vim, tmux, even play snake, and if a command gets deliberately typo'd (like typing pythoon instead of python) it fakes an error convincingly, but how convincing, and where it breaks down, is worth seeing for yourself.",
+    "time": "15-20 分钟",
+    "time_en": "15-20 minutes",
+    "steps": [
+      "用桌面版 Chrome 或 Edge 打开 https://simedw.com/projects/worldtui/（demo 约 208MB，第一次加载需要下载，建议用 WiFi）",
+      "等页面提示 WebGPU 加载完成，会看到一个假的终端提示符",
+      "先正常敲几条命令，比如 ls、cat 一个文件，看它怎么回应",
+      "故意打错一个命令，比如把 python 打成 pythoon，看它是不是也装出报错的样子",
+      "试着跑 vim 或者 tmux，或者直接玩一把内置的贪吃蛇，留意它是否还记得前几步做过什么"
+    ],
+    "steps_en": [
+      "Open https://simedw.com/projects/worldtui/ on desktop Chrome or Edge (the demo is about 208MB, downloads on first load, Wi-Fi recommended)",
+      "Wait for WebGPU to finish loading, a fake terminal prompt should appear",
+      "Type a few normal commands first, like ls or cat on a file, and see how it responds",
+      "Deliberately typo a command, like typing pythoon instead of python, and see if it fakes an error convincingly",
+      "Try running vim or tmux, or just play the built-in snake game, and notice whether it still remembers what happened a few steps back"
+    ],
+    "source": "Simon Edwardsson 博客",
+    "source_en": "Simon Edwardsson's blog",
+    "source_url": "https://simedw.com/2026/10/21/world-model-terminal/"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "CrowdStrike CEO：新顶级猎食者不是国家，是 agent",
+          "title_en": "CrowdStrike's CEO: the new apex predator isn't a nation, it's an agent",
+          "author": "No Priors · George Kurtz（CrowdStrike 创始人兼 CEO）",
+          "author_en": "No Priors · George Kurtz (CrowdStrike founder & CEO)",
+          "likes": "2426",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=PST8yesYOSo",
+          "summary": "我把整段文字稿读完了。乔治·库尔茨（George Kurtz）是 CrowdStrike 创始人兼 CEO，之前创办过 Foundstone，做安全快三十年。他重画了传统的“痛苦金字塔”：底层是黑客活动分子，中层是网络犯罪，顶层是国家级对手，原本顶层人数最少、能力最强；现在因为开放权重的大模型几乎没有护栏，这座金字塔被整个拍平了，几年前只有国家级对手才有的能力，今天一个黑客活动分子就能拿到，新的顶级猎食者不是国家，是 agent。他给了几个具体数字：攻击者从落脚一台机器到真正突破、换到下一台机器，过去要几天几小时，现在平均 29 分钟，最快 27 秒；对手不再靠恶意软件留下指纹，靠的是临时生成的提示词，每次攻击路径都长得不一样。他观察到的一个细节：前沿大模型的护栏太强，连做一页讲网络安全的 PPT 都会被拒绝，所以攻击者大量转向开放权重模型，比如 GLM、Qwen 这类，要么是没被约束过的版本，要么是专门为红队场景调过的版本；他自己家里就有两台 Nvidia Spark DGX，想跑什么模型都能跑，做勒索软件、做攻击工具包都没有门槛。他说去年 Hugging Face 那次被当成分水岭：当时的智能体想自保、想藏自己，这些都在意料之中，真正的教训是防守方没有和攻击方同等级别的前沿防御能力，因为前沿模型的护栏反而挡住了防守方，逼得当时的研究者要去用开放权重模型才能看懂发生了什么。这成了他们做 Safe Mind 的直接动机：和英伟达合作（他专门提到和黄仁勋本人一起坐下来谈了六个月），在 NemoTron 系列模型的基础上，训练出红队模型 Red Tempest 和蓝队模型 Blue Solano，两边持续互相对抗迭代，直到蓝队能识别出红队的套路为止；黄仁勋还坚持要做“数字孪生”，把客户环境整个复制到一个虚拟空间里做推演。他给了一个成本对比：用最顶级的前沿模型做一次安全补救，大概要十美元，用他们自己训练过的模型，大概三美分。CrowdStrike 现在有 33 个产品模块，库尔茨创业时只有一个。谈到未来两年，他的判断是本地模型会越来越多地直接跑在个人电脑上，开放权重会继续追赶，很多银行级客户已经明确表态：日常工作用开放权重模型就够了，哪怕落后前沿三个月，真正赚钱的高价值任务才舍得花钱上前沿模型；蒸馏这件事他认为挡不住，开放权重模型已经从前沿模型身上学到了足够多。被问到“要不要把互联网关掉”这种极端担忧，他直接说是“胡说”，agent 做的事本质上还是人类本来就会做的事，只是更快更多，不存在凭空出现的新攻击类型。他的结论是：对抗 AI 的唯一办法是用更好的 AI，防守方的优势在于了解自己的系统、架构图和代码，这套优势能不能发挥出来，决定了能不能第一次让安全变成“加速器”而不是“刹车”。",
+          "summary_en": "I read the full transcript. George Kurtz, CrowdStrike's founder and CEO (previously founded Foundstone), has been in security for nearly 30 years. He redraws the classic \"pyramid of pain\": hacktivists at the bottom, e-crime in the middle, nation-states at the top, originally the smallest group with the most capability. Open-weight models with almost no guardrails have flattened that whole pyramid: capability that only a nation-state had a few years ago is now available to a hacktivist, and the new apex predator isn't a nation, it's an agent. He gave specific numbers: the time from an attacker landing on one machine to breaking out and pivoting to another used to be days or hours, now it averages 29 minutes, as fast as 27 seconds in the quickest case. Adversaries no longer leave a malware fingerprint, they generate prompts on the fly, so every attack path looks different. One detail he flagged: frontier model guardrails are so strict that even a PowerPoint slide about cybersecurity gets refused, which pushes attackers heavily toward open-weight models like GLM or Qwen, either unrestricted versions or ones tuned for red-team use; he has two Nvidia Spark DGX boxes at home and can run whatever model he wants, no barrier to building ransomware or an attack kit. He calls last year's Hugging Face incident a turning point: the agent trying to survive and hide itself was expected, the real lesson was that defenders didn't have frontier-grade defensive capability on par with offense, because frontier guardrails actually blocked defenders, forcing researchers at the time to use open-weight models just to understand what was happening. That became the direct motivation for building Safe Mind: working with Nvidia (he specifically mentions sitting down with Jensen Huang himself for six months), they trained a red-team model (Red Tempest) and a blue-team model (Blue Solano) on the NemoTron family, looping the two against each other until blue could recognize red's patterns; Huang also insisted on a \"digital twin,\" replicating a customer's entire environment into a virtual space for rehearsal. He gave a cost comparison: general remediation with the top frontier model costs about ten dollars, their own trained model costs about three cents. CrowdStrike now has 33 product modules, versus one when he started the company. On the next two years, he expects local models running directly on personal computers to keep growing, open weights to keep catching up, and many bank-tier customers have already told him plainly: open-weight models are good enough for daily work even three months behind the frontier, they only pay for frontier models on the high-value tasks that actually make money; he thinks distillation can't be stopped at this point, open-weight models have already learned enough from frontier ones. Asked about the extreme worry of \"turning off the internet,\" he calls it nonsense outright, an agent is still fundamentally doing what a human would do, just faster and more of it, there's no genuinely new class of attack appearing out of nowhere. His conclusion: the only way to fight AI is with better AI, and the defender's edge, knowing their own systems, architecture diagrams, and code, is what decides whether security can finally become an accelerator instead of a brake.",
+          "why": "29 分钟的平均突破时间、十美元对三美分的成本差、33 个产品模块这些数字都是库尔茨本人在采访里说的，没有第三方审计，CrowdStrike 本身也是卖防御产品的公司，这些数字对他自己的生意有利，这点要说清楚。但“痛苦金字塔被拍平”这个框架、开放权重模型被用来绕过前沿模型护栏这个现象，和不少其他独立信源的观察一致，不只是他一家的说法。",
+          "why_en": "The 29-minute average breakout time, the ten-dollar-versus-three-cent cost gap, and the 33 product modules are all Kurtz's own numbers from the interview with no third-party audit, and CrowdStrike sells defense products, so these figures flatter his own business, worth stating plainly. But the \"pyramid of pain got flattened\" framing and open-weight models being used to route around frontier-model guardrails line up with independent observations elsewhere, not just his own claim."
+        },
+        {
+          "title": "5万工程师数据：拖累你 AI 编程产出的不是模型",
+          "title_en": "Data from 50,000 engineers: the model isn't what's holding back AI coding output",
+          "author": "AI Engineer 大会 · Nicholas Arcolano（Jellyfish AI 与研究负责人）",
+          "author_en": "AI Engineer NYC · Nicholas Arcolano (Head of AI & Research, Jellyfish)",
+          "likes": "2940",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=Ve2bAarPA2I",
+          "summary": "我把整段文字稿读完了。Nicholas Arcolano 是 Jellyfish 的 AI 与研究负责人。这家公司把 AI 编程工具和 agent 的遥测数据，同工程团队的工作流数据、产出数据拼在一起看，号称是这个领域最大的数据集，覆盖几十万名开发者、上千家公司。他讲了一个真实的自然实验：SpaceX 宣布收购 Cursor 前后，Cursor 在界面里大力推 Grok，不少工程师的模型用量一夜之间大幅转向 Grok，比正常的换模型偏好快得多。他拿这段时间的数据去看，工程师切换到 Grok 的比例和每周 merge 的 PR 数量之间，没有任何统计相关性；换模型这件事本身，没有带来产出变化。他把问题继续往下拆，取了一个更严格的子集：今年用 Cursor 或 Claude Code 的约 5 万名工程师、覆盖 447 家公司，统计每周人均 merge PR 数量的变化，看哪些因素真正能解释这个变化。结果：工具本身（换 Cursor 还是 Claude Code）只能解释不到 1% 的差异；用得好不好，也就是会不会用 skill、自定义规则这些技巧，能解释约 3%；用得多不多，也就是 token 消耗量，能解释约 9%，花十倍 token 大概能把产出从中位数拉到前 10%，但边际递减明显；所处的公司和团队，比如代码库质量、审查流程、团队文化，能解释约 12%，token 消耗量不变，公司之间产出还有 2 倍的差距；剩下的大头，也就是工程师个人，能解释将近四分之三，个人之间的差距是 3.5 倍，比公司间的差距还大。他特别点出一个和技能相关的细节：按他们的数据，到今年 9 月，还有近一半的工程师-周完全没用任何 skill，只有 12% 的工程师-周用到了他认为算重度使用的水平（每周 30 次以上），但这批重度使用技能的人，产出比不用技能的人高出 30%，这个效应比换模型家族的效应大得多。他还做了个纵向研究：拿 1 万名工程师 10 年的数据，看本季度排名前四分之一的工程师，半年后还留在前四分之一的比例，AI 出现前是 56%，AI 出现后是 59%，变化很小，说明 AI 没有明显打乱谁是最好的工程师这个排序，原有的工程能力还是很值钱。他最后的结论：工具本身很抢眼、很好聊，但领导者真正能控制、能改变结果的，是另外那一边，人、团队、组织文化，这些才是可以实际调整的杠杆。",
+          "summary_en": "I read the full transcript. Nicholas Arcolano is head of AI and research at Jellyfish, a company that joins AI coding tool and agent telemetry with engineering workflow and output data, claiming the largest dataset of its kind, covering hundreds of thousands of developers across roughly 1,300 companies. He describes a real natural experiment: around the time SpaceX announced its acquisition of Cursor, Cursor started pushing Grok hard in its UI, and many engineers' model usage shifted heavily to Grok almost overnight, a far faster change than ordinary preference-driven model switching. Looking at that period's data, he found no statistical correlation between how much an engineer's usage shifted to Grok and their weekly merged-PR count, the model switch by itself didn't move output. He then dug into a stricter subset: about 50,000 engineers using Cursor or Claude Code this year, across 447 companies, measuring what actually explains changes in weekly merged PRs per engineer. The result: the tool itself (Cursor versus Claude Code) explains under 1% of the variance; how well you use it, meaning skill use and custom rules, explains about 3%; how much you use it, meaning token consumption, explains about 9%, where spending 10x the tokens roughly doubles output from the median to the top 10%, with clear diminishing returns; your company and team, code quality, review process, culture, explains about 12%, with a 2x output gap between companies even at fixed token spend; the largest share, nearly three-quarters, is the individual engineer, where the gap between the top and bottom 10% of individuals is 3.5x, wider than the company-level gap. He singles out one detail about skill use: as of this September, nearly half of engineer-weeks in their data had zero skill use at all, and only 12% hit what he'd call heavy use (30-plus invocations a week), but that heavy-use group outputs 30% more than non-users, a bigger effect than switching model families. He also ran a longitudinal study: tracking 10,000 engineers over 10 years, looking at what fraction of \"top-quartile this quarter\" engineers stay top-quartile six months later, 56% before AI versus 59% after, barely moved, meaning AI hasn't meaningfully reshuffled who the best engineers are, existing engineering skill still matters a lot. His closing point: the tool itself gets all the attention and makes for exciting conversation, but what leaders can actually control and change is the other side of the equation, people, teams, organizational culture, those are the real levers.",
+          "why": "这些百分比拆解和 5 万工程师、447 家公司的数据规模，是 Jellyfish 用自己的产品数据和统计模型算出来的，具体用什么统计模型演讲里没有展开，第三方拿不到原始数据复核。但 Cursor 推 Grok 这段自然实验本身是一个真实发生、可独立验证的外部事件（SpaceX 收购 Cursor、Cursor 改界面权重，都是公开信息），拿这段时间当对照组的思路是合理的，不完全依赖信 Jellyfish 的内部统计。",
+          "why_en": "The percentage breakdown and the 50,000-engineer, 447-company scale are Jellyfish's own product data run through their own statistical model, with the specific methodology not detailed in the talk, so no outside party can check the raw numbers. But the underlying \"natural experiment,\" Cursor pushing Grok around the SpaceX-Cursor acquisition, is a real, independently verifiable external event (the acquisition and the UI change are both public), so using that period as a control group is methodologically sound even without taking Jellyfish's internal statistics on faith."
+        },
+        {
+          "title": "AI 写作有多水，这次有人量化了",
+          "title_en": "How much AI writing sounds like slop, now measured",
+          "author": "AI Engineer 大会 · Louis-François Bouchard（Towards AI）",
+          "author_en": "AI Engineer NYC · Louis-François Bouchard (Towards AI)",
+          "likes": "7775",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=_dTF3NpPzGo",
+          "summary": "我把整段文字稿读完了。字幕把 slop 识别成了「slub」,按上下文判断,说的就是 Karpathy 讲的「AI slop」,即读起来像机器写的废话,这里按原意处理。Louis-François Bouchard 是 Towards AI 创始人,公司一半业务做 AI 教育内容,发过上百条视频、上千篇文章,出过一本书。他说团队天天被 AI slop 折磨:模型写出来的东西爱用 delve 这类套话词,内容空泛不具体,说了等于没说,还会重复,偶尔瞎编事实,最要命的是没有「这是我写的」的语气,所有模型写出来都一个味。为此他们今晚正式发布新跑分 Tone-Bench,核心思路是看能不能写得像「我」,而非统计套话词出现几次;他明确说这不是重做 EQ-Bench 的 slop score。测试方法:准备 10 个固定任务 (脚本简报加研究资料),每个模型生成 5 次,交给 4 个不同家族的 LLM 评委打分 (他提到加了一个新评委模型,字幕里听着像「Jeff」,具体是谁没确认清楚),从语气、文笔质量、是否照指令走、有没有编事实、slop 程度五个维度评分,每次评测要往评委模型里塞约 1.4 万字提示词和例子。他们发现一个有意思的偏见:几乎所有模型评委都更偏爱自家家族的输出,OpenAI 系尤其明显;为校正这一点,他和三个同事手动比对了 1000 组 AB 测试样本。搭这套跑分花了约 500 小时打基础,再加上四个 Claude 20 倍订阅连跑四个月调参;改一行评分规则的 prompt,重跑一次就要两千多美元,改一行生成模型的 prompt 要四千多美元。跑分结果:性价比上 GLM 5.3 flash 便宜又好用,比榜首 Opus 5.5 extra high 便宜 50 倍;Claude Max thinking 档位的写作效果和便宜档位差不多,却贵了 2.5 倍,写东西这件事不值得上最贵的档位。他的实操建议:给模型喂尽量长、尽量具体的提示词,正反例子都给,写过的东西能全文给就全文给;用高算力模型过一遍、给反馈,但只过一到三次,超过三次又会绕回 slop;要规模化,就用便宜模型生成好几份草稿,再让聪明模型挑优点合并,比直接让贵模型写一版成本更低、效果更好;不管怎么调,人工复核省不掉。",
+          "summary_en": "I read the full transcript (the auto-captions mis-heard \"slop\" as \"slub\" throughout, context makes clear this is the same \"AI slop\" Karpathy named, handled here as the intended word). Louis-François Bouchard is the founder of Towards AI, a company that does AI education content as half its business, publishing hundreds of videos, thousands of articles, and a book. He says his own team fights AI slop daily: models overuse words like \"delve,\" stay vague instead of specific, say nothing while sounding like they said something, repeat themselves, occasionally hallucinate facts, and worst of all have no tone that sounds like \"you\" wrote it, every model's output sounds the same. To address it, they're formally launching a new benchmark tonight called Tone-Bench, whose core idea isn't just counting slop-word frequency (he's explicit it's not rebuilding EQ-Bench's slop score), but whether a model can write in a specific voice. Method: 10 fixed tasks (a brief plus research material), each model generates 5 drafts, judged by 4 different LLM-family judges (he mentions adding a new judge model that the captions render as something like \"Jeff,\" unconfirmed exactly which model), scored across tone, writing quality, instruction-following, factual hallucination, and slop level, each evaluation feeding roughly 14,000 words of prompt and examples into the judge. They found an interesting bias: almost every model-judge favors its own family's output, OpenAI's models especially strongly, which they tried to correct by having him and three teammates manually compare 1,000 A/B sample pairs. Building the benchmark took about 500 hours of groundwork, plus four months of iteration on four Claude 20x subscriptions; changing one line of the judge's scoring prompt alone costs more than $2,000 to re-run, and changing one line of the generation prompt costs more than $4,000. Results: on cost-effectiveness, GLM 5.3 flash is cheap and strong, 50x cheaper than the top-ranked Opus 5.5 extra-high; Claude's Max thinking tier writes about as well as the cheaper tier while costing 2.5x more, meaning writing isn't a task worth paying for the most expensive tier. His practical advice: feed models the longest, most specific prompt possible, with both positive and negative examples, and past writing in full where possible; run one high-compute model over the draft for feedback, but only one to three passes, more than that loops back into slop; for scale, generate several drafts with a cheap model and have a smart model pick and merge the best parts, which costs less and performs better than one draft from an expensive model directly; but no matter how it's tuned, human review stays non-optional.",
+          "why": "GLM 5.3 flash 便宜 50 倍这类排名和跑分结果,都是 Towards AI 自己设计、自己测的,评委用的也是 LLM 本身;模型评委偏爱自家输出这个偏差他自己也提到了,没有完全消除。但方法论、成本、1000 组人工 AB 复核这些细节都公开说明了,比大多数「谁家模型最好」的榜单透明,具体排名可参考,不宜照单全收。",
+          "why_en": "Rankings like \"50x cheaper than the top model\" are Towards AI's own benchmark, designed and run by them, judged by LLMs that he himself flags as biased toward their own family's output, a bias not fully eliminated. But the methodology, cost figures, and the 1,000-pair manual A/B review are all disclosed, more transparent than most \"which model writes best\" leaderboards, worth treating the specific rankings as a reference rather than gospel."
+        },
+        {
+          "title": "前交易员做了个给交易员用的 AI，自称 4 秒学 300 件事",
+          "title_en": "An ex-trader built an AI for traders, claims it learns 300 things every 4 seconds",
+          "author": "Latent Space · Anekha Sokhal（Moshi 创始人兼 CEO）",
+          "author_en": "Latent Space · Anekha Sokhal (Moshi founder & CEO)",
+          "likes": "1668",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=DWHyPWnzGAI",
+          "summary": "我把整段文字稿读完了。Anekha Sokhal 本科在华威大学读数学、运筹、统计与经济,拿 Fulbright 奖学金来美国,发表过与 Stability AI 合作的 ICLR 论文,也与 NASA 有过合作,之后创办 Moshi。创业前她在摩根大通做新兴市场和大宗商品衍生品交易,后来转去买方,用过一次性几十万美元的 X(Twitter) 全量数据流做量化研究。Moshi 做的是给交易员用的实时信息系统,从大宗商品、能源市场切入,之后想做宏观市场。她有个说法形容处理速度:「我说这句话用了 4 秒钟,这 4 秒里 Moshi 已经学到了 300 件新东西」,这是她自己打的比方,没有第三方测过。产品把数据分成几类处理:结构化的期货时间序列和技术指标,基本面的供需数据,新闻这类公开非结构化数据,还有 X 帖子、播客这类另类数据,再加上用户自己的私有数据 (内部研究员的判断、付费订阅源、企业内部数据)。她把产品形容成「如果彭博、Claude 和 Netflix 生了个孩子」:核心是一套自建的推荐系统,交易员盯着一只股票时,系统能主动提示二阶、三阶关联的信息,比如一家能源相关公司有动作,会间接影响原油,这种关联不是一条新闻能直接看出来的。被问起会不会直接看客户私有数据,她说原则是尽量不把客户数据转手给第三方,自己养了一个团队 (不少成员有 NASA 背景) 专做文档理解模型,而非外包给 Reducto 这类现成厂商,理由是自己有工程团队就该自己掌握核心能力。对话里还聊到她上一份工作招人的经历:一个岗位挂出 4 天收到 2500 份申请,大多是噪音,一部分是签证不允许在美工作却投递的,筛选成本很高。她提到一个和这次大会主题有关的观察:不少参会者压力很大,因为管理层现在直接说「不需要团队了,你就是团队」,过去要十个人做的系统,现在要一个人独自搭起来。",
+          "summary_en": "I read the full transcript. Anekha Sokhal studied mathematics, operational research, statistics, and economics at Warwick, came to the US on a Fulbright scholarship, published an ICLR paper with Stability AI, and worked with NASA before founding Moshi. Before that she traded emerging markets and commodity derivatives at JP Morgan, then moved to the buy side, where she once paid for a full X (Twitter) firehose costing hundreds of thousands of dollars for quant research. Moshi builds a real-time information system for traders, starting in commodities and energy, aiming at macro markets next. She described the processing speed with an analogy: \"it takes me 4 seconds to say this sentence, and in that same 4 seconds Moshi has learned 300 new things,\" her own framing, not independently measured. The product sorts data into categories: structured futures time-series and technical indicators, fundamentals supply-demand data, public unstructured data like news, alternative data like X posts and podcasts, plus the user's own private data (an internal analyst's calls, paid subscriptions, internal company data). She describes the product as \"if Bloomberg, Claude, and Netflix had a baby\": the core is a self-built recommendation system that, when a trader is watching one stock, proactively surfaces second- and third-order connections, like an energy-adjacent equity's move indirectly affecting oil, connections not obvious from any single news story. Asked whether they look at client private data directly, she says the principle is not routing client data through a third party if avoidable; the team (many with NASA backgrounds) builds its own document-understanding models in-house rather than outsourcing to a vendor like Reducto, reasoning that if you already have the engineering team, you should own the core capability yourself. The conversation also covers her last job's hiring experience: a job posting got 2,500 applications in 4 days, most of it noise, some from people without a US work visa applying anyway, making filtering expensive. She notes an observation tied to the conference's theme: a lot of attendees are under real pressure now, because leadership is telling them flatly \"you don't need a team, you are the team,\" and a system that used to take ten people now has to be built by one person alone.",
+          "why": "「4 秒学 300 件事」是她自己打的比方,不是严格的基准测试,没有第三方复核;交易员使用后的效果数字,比如节省多少调研时间,整段对话里也没给出具体数字。背景信息 (华威学位、Fulbright、ICLR 论文、JP Morgan 履历) 可以独立核实,产品本身的效果目前只能信她自己说的。",
+          "why_en": "The \"learns 300 things in 4 seconds\" line is her own analogy, not a rigorous benchmark, with no third-party verification; the conversation gives no concrete numbers for actual trader outcomes, like time saved on research. Her background (the Warwick degree, Fulbright, ICLR paper, JP Morgan résumé) is independently checkable; the product's actual performance, for now, rests on her own word alone."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "部署平台 Railway 密钥库遭入侵，疑似针对 AI 推理商的攻击潮一环",
+          "title_en": "Deploy platform Railway's secrets store breached, tied to a wave of attacks on AI inference providers",
+          "author": "Railway（官方披露）· Hacker News",
+          "author_en": "Railway (official disclosure) · Hacker News",
+          "likes": "590",
+          "likes_label": "HN 分",
+          "url": "https://blog.railway.com/p/security-disclosure-wednesday-october-21st",
+          "summary": "我读完了 Railway 官方发布的披露全文，也核对了 HN 评论区。10 月 21 日上午，Railway（为「几百万开发者」部署应用的平台）发现存放客户环境变量的系统有异常活动，初步调查认为未授权第三方可能访问过加密的环境变量，其中一部分已被解密并取走。环境变量里常有 API 密钥、数据库和镜像仓库的凭据。Railway 将事件定性为「近期一系列针对平台公司、目标是攻陷 AI 推理服务商」的攻击之一，已通知相关上游服务商主动吊销密钥。官方建议：所有用户立刻轮换存在 Railway 上的全部环境变量（包括 API 密钥）和私有镜像仓库凭据，并检查相关服务日志有无异常；调查期间所有部署暂停，新版本无法发布。Railway 称影响或只涉及部分用户，但未给具体数字，也未披露攻击者如何进入。10 月 22 日官方连发两篇后续，建议用户分别检查 AWS 和 GCP 账号有无异常访问，说明调查仍在向外扩展。HN 评论区有人称在 Railway 的 Discord 看到多名用户确认密钥已被第三方使用，还有人转述 Postiz（一个开源社媒管理工具）创始人在 X 上说自己服务被打挂、密钥已泄露；这两条均为评论区转述，无独立信源核实。同一周还有类似事件：LiteLLM 的发布管道被劫持两小时，技术细节见本期另一条。这波攻击针对的是开发者依赖的基础设施层，从密钥存储到软件发布管道，而非某家公司的代码本身。本地查了一遍，确认有一个项目的生产后端部署在 Railway 上，按官方建议，该项目存在 Railway 上的环境变量需要轮换，具体项目信息私下处理，不写入本期公开内容。",
+          "summary_en": "I read Railway's full disclosure and checked the HN comments. On the morning of October 21, Railway, a platform that deploys apps for what it calls millions of developers, found anomalous activity in the systems that store customer environment variables, and its initial investigation suggests an unauthorized third party may have accessed encrypted environment variables, with some of them decrypted. Environment variables commonly hold API keys and database or registry credentials. Railway itself frames this as part of a recent series of attacks on platform companies aimed at compromising AI inference providers, and says it has told the relevant upstream providers to revoke keys proactively. Its own recommendation: all users should immediately roll every environment variable stored on Railway (API keys included) and any private registry credentials, and check the relevant service logs for anything unusual; all deployments were paused during the investigation, so no new version could ship. Railway says the impact may be limited to a subset of users but gives no number and no account of how the attacker got in. On October 22 it posted two follow-ups recommending users check for anomalous AWS and GCP access respectively, a sign the investigation is still widening. In the HN comments, some say they saw multiple users in Railway's Discord confirm their keys had already been used by a third party, and others relay that the founder of Postiz (an open-source social-media management tool) posted on X that his service had been taken down and his keys leaked; both of these are secondhand from the comments with no independent source confirming them. The same week saw a similar incident: LiteLLM's own release pipeline was hijacked for two hours, technical details in another item in this issue. Taken together, this wave of attacks isn't hitting any one company's code, it's hitting the infrastructure layer every developer depends on, from secrets storage to software release pipelines. Checking this against my own projects: one project's production backend does run on Railway, so per Railway's own guidance, that project's stored environment variables need rotating; the specific project is being handled privately and isn't named in this public issue.",
+          "why": "事件来自 Railway 官方披露，属第一方信息，但未给受影响用户具体数字，也未说明攻击者如何进入，调查仍在继续；10 月 22 日连发两篇关于 AWS、GCP 异常访问的建议，说明 Railway 自己尚未摸清攻击全部范围。评论区「密钥已被用过」「Postiz 被打挂」两条为转述，未找到独立信源，按未核实处理。",
+          "why_en": "The incident itself comes from Railway's own disclosure, first-party, but with no concrete number of affected users and no account of exactly how the attacker got in, with the investigation still ongoing; two follow-up posts on October 22 about checking AWS and GCP access suggest even Railway itself hasn't fully mapped the attack's scope yet. The comment-section claims that \"keys have already been used\" and that Postiz was taken down are both secondhand, with no independent source found, and are treated as unverified."
+        },
+        {
+          "title": "LiteLLM 投毒两小时：窃密木马专挑 Claude Code、Cursor 这类 AI 工具凭证下手",
+          "title_en": "LiteLLM poisoned for two hours: the credential stealer specifically targeted Claude Code, Cursor, and other AI dev tools",
+          "author": "SafeDep（独立安全研究）· Hacker News",
+          "author_en": "SafeDep (independent security research) · Hacker News",
+          "likes": "588",
+          "likes_label": "HN 分",
+          "url": "https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/",
+          "summary": "我读完了 SafeDep（一家做开源供应链安全的公司）发布的独立技术分析全文，并核对 LiteLLM 官方事故报告作为交叉印证。10 月 21 日，攻击者拿到三名 LiteLLM 开发者的 GitHub CLI 凭证（LiteLLM 自己推测是从一个暴露在公网的内部部署日志里偷到的），绕开分支保护，把发布流程指向仿冒仓库「Berri-AI/litellm」（注意大小写和连字符，与官方的 BerriAI/litellm 刻意做得很像），再用另一名开发者的凭证通过审批，官方流水线就这样把毒版本构建、签名、发布了出去。具体投毒手法：在 pyproject.toml 里加了一行不起眼的配置（maturin 构建设置里的 data = \"cook\"），这行代码在源码包（sdist）里看不出来，只有在真正打包出来的 wheel 包里才会把一个叫 cook 的文件夹塞进去，最终在 site-packages 目录下落地三个文件：cook.pth（12 字节，只做一件事，导入 cook.py）、cook.py（解压后约 6 万字节的窃密程序）、sitecustomize.py（后门守护进程）。Python 启动时会自动执行 .pth 文件和 sitecustomize.py，这两个文件在任何 Python 进程启动时都会跑，不管这个进程有没有真的 import litellm，pip、IDE 的语言服务器、CI 任务统统会中招。cook.py 收集的东西非常全：SSH 密钥、云服务凭据（AWS、Azure、gcloud、kubeconfig、Docker 登录信息）、浏览器保存的密码和历史记录、shell 历史、CI/CD 密钥（GitLab runner、Jenkins、Terraform）、GPG 和 TLS 私钥，还专门列了一份 AI 开发工具的清单：Claude Code、Claude Desktop、Cursor、Windsurf、GitHub Copilot、VS Code 的 mcp.json、Gemini CLI、Codex 的 auth.json，以及 Continue、Aider、Goose、opencode、Qwen、Crush、Kiro、Zed 和 Hugging Face token；这些数据用 AES-256 加密、RSA-4096 公钥封装密钥，打包发到一个仿冒域名 www.litellm[.]dev。后门部分（sitecustomize.py）会每小时去一个 GitHub 仓库读一个文本文件里写的服务器地址，再去那个地址下载并执行代码。SafeDep 发现，发布恶意版本约两小时后（UTC 13:40），那个托管服务器地址的 GitHub 账号已被删除、返回 404，后门因为读不到新地址，现在处于失效状态，但凡是在这两小时窗口期之前就已经跑起来过守护进程的机器，有可能在失效前收到过下一段代码。官方和 SafeDep 公布的时间线对得上：UTC 10:08 攻击者改掉发布流程，10:46 从仿冒仓库构建出预发布版本，11:39 到 11:40 七个 wheel 包传到 PyPI，11:46 毒 Docker 镜像发布，13:23 PyPI 把 1.107.0 下架，13:40 攻击者的 GitHub 账号被封/删除，14:20 Docker Hub 的镜像标签被下架或指回干净版本。确认干净的版本：1.106.2、1.107.0rc1、1.107.0rc2，以及 1.107.0 依赖的两个配套包 litellm-proxy-extras==0.4.110 和 litellm-enterprise==0.1.78。本地排查了常见的几个 Python 环境（系统 Python、pyenv、用户目录下的 site-packages），没有找到 litellm 这个包，也没有 cook.pth、可疑的 sitecustomize.py 这几个特征文件，pip 确认本机也没装过 litellm，结论是没有暴露面。",
+          "summary_en": "I read SafeDep's (an open-source supply-chain security company) full independent technical writeup, cross-checked against LiteLLM's own incident report. On October 21, an attacker obtained GitHub CLI credentials from three LiteLLM developers (LiteLLM believes these were stolen from logs of an internal deployment exposed to the public internet), bypassed branch protection, and pointed the release workflow at a lookalike repository, \"Berri-AI/litellm\" (note the capitalization and hyphen, deliberately close to the real BerriAI/litellm), then used a second developer's credentials to pass the approval gate, letting the official pipeline build, sign, and publish the poisoned release. The specific technique: one inconspicuous line added to pyproject.toml (a maturin build setting, data = \"cook\"), invisible in the source distribution (sdist) and only materializing in the actual built wheel, which drops a cook folder into site-packages as three files: cook.pth (12 bytes, doing exactly one thing, importing cook.py), cook.py (roughly 60KB decompressed, the credential stealer), and sitecustomize.py (the backdoor daemon). Since Python automatically runs .pth files and sitecustomize.py on startup, both run in every Python process regardless of whether that process ever imports litellm, pip, an IDE's language server, and CI jobs all get hit. cook.py's collection list is extensive: SSH keys, cloud credentials (AWS, Azure, gcloud, kubeconfig, Docker login info), browser-saved passwords and history, shell history, CI/CD secrets (GitLab runner, Jenkins, Terraform), GPG and TLS private keys, and a specific list of AI dev tools: Claude Code, Claude Desktop, Cursor, Windsurf, GitHub Copilot, VS Code's mcp.json, Gemini CLI, Codex's auth.json, plus Continue, Aider, Goose, opencode, Qwen, Crush, Kiro, Zed, and the Hugging Face token. The data gets AES-256 encrypted with an RSA-4096-wrapped key and shipped to a lookalike domain, www.litellm[.]dev. The backdoor half (sitecustomize.py) checks a GitHub repo every hour for a server address written in a text file, then downloads and runs code from that address; SafeDep found that about two hours after the malicious release (13:40 UTC), the GitHub account hosting that address had already been deleted, returning 404, so the backdoor can no longer fetch a new address and is now effectively dead, though any machine that had the daemon running before that window closed could have already received and executed a next-stage payload. The official and SafeDep timelines line up: 10:08 UTC the attacker alters the release workflow, 10:46 builds a pre-release from the lookalike repo, 11:39-11:40 seven wheels land on PyPI, 11:46 the poisoned Docker images publish, 13:23 PyPI pulls 1.107.0, 13:40 the attacker's GitHub account is deleted, 14:20 Docker Hub tags are removed or repointed to clean images. Confirmed clean versions: 1.106.2, 1.107.0rc1, 1.107.0rc2, and the two companion packages 1.107.0 depends on, litellm-proxy-extras==0.4.110 and litellm-enterprise==0.1.78. A local scan of the usual Python environments (system Python, pyenv, the user site-packages) found no litellm package anywhere, no cook.pth, and no suspicious sitecustomize.py, and pip confirms litellm was never installed on this machine, so there's no exposure here.",
+          "why": "SafeDep 是独立第三方安全研究公司，报告不是 LiteLLM 自己发的，技术细节（文件哈希、具体字节数、解码后的配置参数）公开到可以逐条核对的程度，可信度比单纯的官方声明高。但攻击者具体怎么拿到那三名开发者的 GitHub 凭证，这一步目前只有 LiteLLM 自己的推测（从暴露的内部部署日志里偷的），SafeDep 没有独立证实，按未完全核实处理。",
+          "why_en": "SafeDep is an independent third-party security research firm, not LiteLLM itself, and the technical detail (file hashes, exact byte counts, decoded configuration values) is disclosed specifically enough to check line by line, more credible than a bare official statement. But exactly how the attacker obtained those three developers' GitHub credentials in the first place is still only LiteLLM's own guess (stolen from an exposed internal deployment's logs), not independently confirmed by SafeDep, and is treated as not fully verified."
+        },
+        {
+          "title": "十二个 AI 模型，给出了同一个「争议观点」",
+          "title_en": "Twelve AI models gave the same \"controversial\" answer",
+          "author": "ModelCompare · Hacker News",
+          "author_en": "ModelCompare · Hacker News",
+          "likes": "254",
+          "likes_label": "HN 分",
+          "url": "https://www.modelcompare.ai/blog/ai-models-controversial-take-on-humans",
+          "summary": "我读完了全文。ModelCompare 是一家做模型横评的公司。这次测试选了 12 个主流模型，来自美、中、法等三个国家的十家实验室，每个模型各问三次同一个问题：“说一个你对人类最有争议的看法，不要含糊其辞”。35 次有效回答中（一次被拒答），29 次说的是同一件事：人类不是先讲真话、再找证据，而是先站队、再给站队找理由。GPT-6.1 Sol 说“人类更忠于归属感，而不是真相”；Grok 4.7 说“人类宁愿一起错，也不要一个人对”；DeepSeek V4 Pro 说“人类没有原则，只有忠诚对象”；Kimi K3 说“人类没有信念，只有身份归属”；Gemini 4 Argon 把人类意识形容成“一个公关部门”。12 个模型里有 7 个三次回答全部命中这个趋同答案。文章把每个模型的三次原始回答都挂了出来，不是只给一个统计结论。这篇文章本身是 ModelCompare 自己的营销内容，不是经过同行评审的研究。方法论也比较简单（固定一句提示词、各问三次），没有控制提示词措辞变化对结果的影响，也没有披露所用 API 版本和测试时间。",
+          "summary_en": "I read the full post. ModelCompare runs model-comparison rankings as a business, and for this piece they asked 12 mainstream models, from ten labs across the US, China, and France, the same question three times each: name your most controversial opinion of humans, no hedging. Across 35 valid answers (one refusal), 29 landed on the same idea: people don't find the truth and then pick a side, they pick a side and then invent reasons for it. GPT-6.1 Sol said \"humans are more loyal to belonging than to truth\"; Grok 4.7 said \"humans would rather be wrong together than right alone\"; DeepSeek V4 Pro said \"humans do not have principles, they have loyalties\"; Kimi K3 said \"humans don't have beliefs, they have memberships\"; Gemini 4 Argon called human consciousness \"a PR department.\" 7 of the 12 models hit this convergent answer on all three tries, and the post publishes every model's three raw answers rather than just a summary statistic. The post itself is ModelCompare's own marketing content, not peer-reviewed research, and the methodology is fairly simple (one fixed prompt, three runs each), with no control for prompt-wording variation and no disclosure of exact API versions or test dates.",
+          "why": "这篇是 ModelCompare 自己的营销博客，不是独立学术研究。方法论简单、样本量小（35 次回答），结果能在多大程度上推广到别的问法、别的时间点，没法确认。但它把每个模型的原始回答全部公开挂出来，不是只给一个趋同率的结论，这点比很多同类营销内容更透明，读者自己就能判断趋同这个说法站不站得住。",
+          "why_en": "This is ModelCompare's own marketing blog, not independent academic research, with a simple methodology and a small sample (35 answers), and there's no way to confirm how far the result generalizes to a different phrasing or a different time. But it publishes every model's raw answers in full rather than just handing over a \"convergence rate\" conclusion, which is more transparent than most comparable marketing content, letting readers judge the \"convergence\" claim for themselves."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 4,
+      "items": [
+        {
+          "title": "本地跑的编程小模型，号称比同量级都快一倍",
+          "title_en": "A local coding model that claims to be twice as fast as its weight class",
+          "author": "Recursive（官方发布）· TLDR AI",
+          "author_en": "Recursive (official announcement) · TLDR AI",
+          "likes": "未标注",
+          "likes_label": "官方发布",
+          "url": "https://recursive.com/updates/introducing-recursive-flint",
+          "summary": "我读完了官方发布全文。Recursive 今天发布了 Flint，一个专为本地运行的编程 agent 设计的混合专家（MoE）模型。总参数 400 亿，单次推理只激活 25 亿。团队说，这是一个小团队带着一套叫 Eureka Machine 的自动化研究系统，在不到四个月里从零搭出来的。Eureka Machine 是自家的自动 AI 研发系统，负责提出想法、实现、测试，再根据结果决定下一步试什么。官方说这套系统参与了 Flint 从数据、训练配方到推理优化几乎每一个环节。官方给出的基准测试结果：在 SWE-Bench Pro v2、Terminal-Bench 2.1、SWE-Bench Verified 这几个 agent 编程基准上，Flint 是 500 亿参数以下 MoE 模型里最强的，跟 250 亿到 400 亿参数的稠密模型打平手，但跑得快五倍以上。速度上，优化过的推理引擎能在 M4 Pro MacBook Pro 上跑出每秒 125 个以上 token，在 64GB 的 NVIDIA RTX Spark 上短上下文能跑到每秒 150 个以上。官方说比同量级模型最高快一倍。上下文窗口支持到 51.2 万 token，官方建议实际使用别超过 25.6 万。这些数字全部来自 Recursive 自己公布的基准测试。官方文章里写了具体的测试条件（温度 1.0、top-p 0.95、top-k 20，agent 测试给了最多 5 小时超时、至少跑 5 次取平均），但没有第三方复现。官方发布里也没有明确给出这个模型用的是什么量化精度（是原始精度还是量化过的版本），这是判断每秒 150 token 这类速度数字含金量时缺的一块。用途上，官方把它定位成“本地日常编程模型”：能离线用、数据不出本机、不用付 API 费。但官方自己也提醒，面对复杂任务，Flint 需要比大厂闭源模型更明确的拆解和指令，不能完全按闭源模型的习惯去用。",
+          "summary_en": "I read the full official announcement. Recursive released Flint today, a mixture-of-experts (MoE) model built for local agentic coding, 40 billion total parameters but activating just 2.5 billion per token, which the team says a small group built from scratch in under four months with an automated research system called the Eureka Machine. The Eureka Machine is their own automated AI R&D system, proposing ideas, implementing, testing, and deciding what to try next based on results, and the company says it touched nearly every part of Flint's build, from data and training recipes to inference optimization. Their own benchmark results: on SWE-Bench Pro v2, Terminal-Bench 2.1, and SWE-Bench Verified, Flint leads all MoE models under 50 billion total parameters on agentic coding, matches dense models in the 25-40 billion parameter range, while running more than five times faster. On speed, their optimized inference engine hits more than 125 tokens/second on an M4 Pro MacBook Pro and more than 150 tokens/second at short context on a 64GB NVIDIA RTX Spark, which they say is up to twice as fast as comparable models. It supports context windows up to 512k tokens, with a recommendation to stay within 256k for actual use. All of these numbers come from Recursive's own published benchmarks, and the announcement does state the specific test conditions (temperature 1.0, top-p 0.95, top-k 20, agentic evals allowing up to 5-hour timeouts and averaging at least 5 runs), but there's no third-party reproduction, and the announcement doesn't clearly state what quantization the model ships at, raw precision or a quantized version, which is a missing piece for judging how much the \"150 tokens/second\" figure is actually worth. On positioning, they frame it as a daily local coding model: works offline, keeps data on your own machine, no API fees, though they also note it needs clearer task breakdown and more explicit instructions than the big closed-source models on complex tasks, it can't be used with the same habits.",
+          "why": "SWE-Bench、Terminal-Bench 这些跑分结果和每秒 token 数，全部是 Recursive 自己公布的。测试条件写得比较完整，但没有第三方复现过，官方也没有明确给出量化精度。这块信息缺口会直接影响快一倍这个说法的含金量，用之前最好自己装上跑一遍手头的任务再判断。",
+          "why_en": "The SWE-Bench, Terminal-Bench numbers and the tokens-per-second figures are all Recursive's own published benchmarks, with fairly complete test conditions disclosed, but no third-party reproduction, and the announcement doesn't clearly state the quantization level, a real gap that bears directly on how much the \"twice as fast\" claim is worth, better to install it and run your own tasks through it before trusting the number."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条故事拼在一起，说的是同一件事：模型本身正变得不那么关键，真正值钱、也真正该防的，是模型外面那一圈——数据、流程、发布管道、谁在用、用得好不好。Jellyfish 那组数据把这事摆得明白：5 万工程师里，换模型能解释的产出差异不到 1%，真正拉开差距的是人和组织。CrowdStrike 的库尔茨讲的是同一件事的反面：前沿模型护栏太死，他们干脆自己在 NemoTron 上训了一套红蓝对抗模型，值钱的不是模型底座，是上面那层喂进去的十五年安全数据。Towards AI 的配方也一样：单独一个模型写出来的东西普遍一个味，真正管用的是拿便宜模型批量出草稿、再用聪明模型挑拣合并，起作用的是这套流程。Recursive 的 Flint 走的也是这条路，一个不算大的模型配一套自动化研究系统，号称打平几倍大的稠密模型。反过来看，不做这层定制，直接问模型一个开放问题，得到的就是训练数据里最大公约数那个声音。今晚 ModelCompare 那篇文章里，12 个模型被问到对人类最有争议的看法，29 次答案收敛到同一句话：人类不是先认真相再表态，是先站队再给站队找理由。模型没有自己的声音，只有训练数据的中位数，这事被用一种带点反讽的方式印证了一遍。而今晚两起供应链事件提醒的是这套逻辑的阴暗面：既然真正该防的那层是模型外面的东西，那这层本身也成了最值得攻击的目标。LiteLLM 那个窃密木马专门列了一份清单，Claude Code、Cursor、Codex、Hugging Face token 全在里面，说明攻击者现在很清楚，谁掌握着 agent 的权限和凭证，谁就是值得下手的目标，这和 Railway 那条「这波攻击冲着 AI 推理商来的」的说法，其实是同一个判断。",
+  "meta_read_en": "Tonight's stories, lined up together, say the same thing: the model itself matters less and less, what's actually valuable, and actually worth protecting, is the layer wrapped around it, the data, the process, the release pipeline, who's using it and how well. Jellyfish's data puts this fact in plain sight: across 50,000 engineers, switching models explains under 1% of the output difference, what actually widens the gap is the people and the organization. CrowdStrike's Kurtz makes the same point from the other direction: frontier guardrails are so strict that they trained their own red-and-blue models on NemoTron instead, what's valuable isn't the model foundation, it's the fifteen years of their own security data fed into the layer on top. Towards AI's recipe lands the same way: any single model's writing tends to sound the same, what actually works is batching cheap-model drafts and having a smart model pick and merge, what does the work is the process. Recursive's Flint takes the same path, a modest-sized model paired with an automated research system, claiming to match dense models several times its size. Flip it around: skip that layer of customization, ask a model an open question directly, and the result is the median voice of its training data, and tonight's ModelCompare piece demonstrates this almost ironically, 12 models asked for their most controversial opinion of humans converged on the same answer 29 times out of 35, that people don't find the truth and then take a side, they take a side and then invent reasons for it, basically \"a model has no voice of its own, only the training data's median\" proven on itself. And tonight's two supply-chain incidents are the dark mirror of this whole logic: if the layer actually worth protecting is the one wrapped around the model, then that same layer becomes the most worthwhile thing to attack. LiteLLM's credential stealer specifically listed Claude Code, Cursor, Codex, and Hugging Face tokens among its targets, meaning attackers now understand clearly that whoever holds an agent's permissions and credentials is the target worth going after, the same judgment Railway's own \"this wave is aimed at AI inference providers\" framing is making.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "php/php-src",
+      "url": "https://github.com/php/php-src",
+      "description": "The PHP Interpreter",
+      "language": "C",
+      "stars": 41215,
+      "stars_today": 287
+    },
+    {
+      "rank": 2,
+      "name": "anthropics/knowledge-work-plugins",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "language": "Python",
+      "stars": 31664,
+      "stars_today": 303
+    },
+    {
+      "rank": 3,
+      "name": "DietrichGebert/ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "language": "JavaScript",
+      "stars": 173612,
+      "stars_today": 1948
+    },
+    {
+      "rank": 4,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 39696,
+      "stars_today": 2979
+    },
+    {
+      "rank": 5,
+      "name": "Graphify-Labs/graphify",
+      "url": "https://github.com/Graphify-Labs/graphify",
+      "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+      "language": "Python",
+      "stars": 133042,
+      "stars_today": 1408
+    },
+    {
+      "rank": 6,
+      "name": "supabase/supabase",
+      "url": "https://github.com/supabase/supabase",
+      "description": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.",
+      "language": "TypeScript",
+      "stars": 113517,
+      "stars_today": 693
+    },
+    {
+      "rank": 7,
+      "name": "fastapi/fastapi",
+      "url": "https://github.com/fastapi/fastapi",
+      "description": "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
+      "language": "Python",
+      "stars": 103795,
+      "stars_today": 101
+    },
+    {
+      "rank": 8,
+      "name": "luongnv89/claude-howto",
+      "url": "https://github.com/luongnv89/claude-howto",
+      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "language": "Python",
+      "stars": 43301,
+      "stars_today": 177
+    },
+    {
+      "rank": 9,
+      "name": "Meloong-Git/PCL",
+      "url": "https://github.com/Meloong-Git/PCL",
+      "description": "Minecraft 启动器 Plain Craft Launcher（PCL）。",
+      "language": "Visual Basic .NET",
+      "stars": 8725,
+      "stars_today": 119
+    }
+  ],
+  "ota": {
+    "learned": [
+      "今晚的 HN 候选池里，590 分的 Railway 密钥库被破新闻，标题只写了「Security Disclosure」，没有任何 AI 关键词，被自己按标题关键词过滤 AI 候选的那道正则直接漏掉了，正文里「这波攻击冲着 AI 推理商来的」这句话才是它真正该入选的理由。是靠检查 /tmp 下一个凌晨两点跑过的检查点目录才补回来的，那批候选里已经有这条，独立确认了它不是一次性噪音。已经把 daily-digest/SKILL.md 改了一条规则：Firebase topstories 不能只靠标题关键词过滤，发布前手动扫一遍前 15-20 条按分数排序的候选，不管标题有没有命中关键词；同一次人工复扫里还翻出了 LiteLLM 投毒事件的独立技术分析（SafeDep，588 分），原本只打算用 LiteLLM 官方博客（11 分）当来源，换成独立研究方的版本信息量高出一个量级。",
+      "今晚 YouTube 的 9 个频道 RSS，8 个直接 200（只有 Latent Space 404，靠 yt-dlp 按频道回退补上），对照频道也正常，排除全站故障。10-21 那晚（4/9）打断了之前两连过半的计数，今晚（8/9）重新起算，还差 2 次连续过半才够格把 yt-dlp 回退收回去。",
+      "4 条当天发布的新视频字幕，直接用 --sub-langs \"en-orig\"，全部一次成功，没有遇到 429，继续确认这条规则对当天发布的新视频有效。",
+      "新写了 bin/exposure-check.py，给「供应链/投毒包」类新闻一个本地暴露面的判定，而不是在 why 字段里写一句空话「你应该查一下」。第一版用 Path.rglob 扫 ~/Claude 这类大目录，rglob 没法在进入子目录前剪枝，结果在几百个 worktree 里转了两分半才出结果；改成 os.walk 加 dirnames[:] 原地过滤 node_modules/.git 这些目录后，同样的扫描只要几秒。今晚拿它查了 litellm，加上手动翻 site-packages 和 pip show 做双重确认，结论是本机没有暴露；Railway 那条不是包投毒，是平台账号层面的事，脚本管不着，改用人工查本机有没有项目部署在 Railway 上，查到了一个，已经在这期里给了通用化处理过的提示，具体项目信息没写进公开内容，留给 Zen 自己处理。"
+    ],
+    "learned_en": [
+      "Tonight's HN candidate pool had a 590-point Railway secrets-store breach story titled only \"Security Disclosure,\" with no AI keyword in the title at all, which my own title-keyword regex for AI candidates filtered out entirely; the actual reason it belonged in the issue, \"this wave of attacks is aimed at AI inference providers,\" only appears in the body text. It only got caught because a checkpoint directory from a run at 2am had already surfaced it independently, confirming it wasn't a one-off noise pick. I've added a rule to daily-digest/SKILL.md: Firebase topstories can't rely on title-keyword filtering alone, manually scan the top 15-20 by score before publishing regardless of whether the title hits a keyword; the same manual rescan also surfaced an independent technical analysis of the LiteLLM poisoning incident (SafeDep, 588 points), an order of magnitude more detailed than the LiteLLM official blog (11 points) I'd originally planned to use as the sole source.",
+      "Tonight 8 of 9 YouTube roster channels got direct RSS 200s (only Latent Space 404'd, filled in via the yt-dlp per-channel fallback), with the control channel also fine, ruling out a sitewide outage. 10-21's 4/9 broke the prior two-run streak above 50%; tonight's 8/9 restarts the count, 2 more consecutive runs above 50% needed before the yt-dlp fallback can be retired.",
+      "All 4 same-day-upload subtitle fetches succeeded on the first try using --sub-langs \"en-orig\" directly, no 429s, reconfirming this rule holds for videos published the same day.",
+      "Wrote bin/exposure-check.py, to give a supply-chain/poisoned-package story a real local-exposure verdict instead of a vague \"you should check this\" in the why field. The first version used Path.rglob over directories like ~/Claude, and rglob can't prune a subdirectory before descending into it, so it spent two and a half minutes crawling hundreds of worktrees before returning; switched to os.walk with in-place dirnames filtering for node_modules/.git and similar, and the same scan now takes seconds. Tonight it checked litellm, backed by a manual site-packages walk and pip show as a second confirmation, verdict: no exposure on this machine. Railway's incident isn't a poisoned package, it's a platform-account-level breach the script doesn't cover, so that one got a manual check for any project deployed on Railway instead, and one was found; this issue carries a generalized version of that finding with no project name attached, the specific project is left for Zen to handle directly."
+    ],
+    "new_capabilities": [
+      "已实施：新增 bin/exposure-check.py，用法是 python3 bin/exposure-check.py <package> [<受影响版本号>]，扫描 ~/Claude、~/BY-Website、~/zen-digest 下的依赖清单文件，加上本机 pip/npm 全局安装情况，给出「本地有没有暴露」的判定。已实施：daily-digest/SKILL.md 新增一条规则，Firebase topstories 候选不能只靠标题关键词过滤，发布前手动扫一遍前 15-20 条按分数排序的候选，防止像今晚 Railway 这种「AI 关联在正文不在标题」的高分故事被漏掉。"
+    ],
+    "new_capabilities_en": [
+      "Implemented: added bin/exposure-check.py, invoked as python3 bin/exposure-check.py <package> [<affected-version>], scanning dependency manifests under ~/Claude, ~/BY-Website, ~/zen-digest plus local pip/npm global installs, to give a real \"is there local exposure\" verdict. Implemented: added a rule to daily-digest/SKILL.md that Firebase topstories candidates can't be filtered by title keyword alone, manually scan the top 15-20 by score before publishing, to catch a high-scoring story like tonight's Railway breach whose AI relevance sits in the body, not the headline."
+    ]
+  }
+}
