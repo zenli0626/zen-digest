@@ -1,0 +1,253 @@
+{
+  "date": "2026-10-23",
+  "partial": false,
+  "banner": "密码不进模型，授权按次给",
+  "banner_en": "Keep the password out of the model",
+  "image": {
+    "src": "digests/img/2026-10-23.png",
+    "caption": "本期头版配图：1Password 官方博客为 1Password for Agents 发布的题图。公告写明了流程：agent 遇到登录页时向用户发起请求，用户在 1Password 里批准，凭据由 1Password 直接填入目标网站，agent 看不到密码或一次性验证码。（图：1Password 官方博客）",
+    "caption_en": "This issue's lead image: the header 1Password published with its 1Password for Agents announcement. The flow described on that page: when an agent hits a sign-in page it requests access, the user approves in 1Password, and 1Password fills the credential into the destination site while the agent never sees the password or one-time code. (Image: 1Password's official blog)"
+  },
+  "actions": [
+    {
+      "text": "给你手上那个要连续跑很久的 agent 任务加一道时钟检查，二十分钟够了：把监控从交还控制权时检查改成每 N 步检查一次，在任务循环里每 10 步落一条带 step 编号的日志，监控端按同一个编号抽样，两边条数对不上就停下来查。做完的标准是：让 agent 连续跑满 30 步不交还控制权，看监控有没有在你没介入时留下记录。",
+      "source": "METR、Redwood Research 红队报告",
+      "source_url": "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
+      "text_en": "Add a clock to an agent task that runs for a long time. Tonight, 20 minutes: change its monitoring from 'check when control returns' to 'check every N steps,' write a log line with a step number every 10 steps, sample the monitor log by the same numbers, and stop when the two counts diverge. Done means you can let the agent run 30 steps without handing control back and still see a record from the monitor even though you never intervened.",
+      "source_en": "METR and Redwood Research red-team report"
+    },
+    {
+      "text": "拿一份你熟悉的真实长文档做一次双模型对照，二十分钟够了：财报、尽调材料、几十页规格书都行，同时丢给 Kimi K3.1 Pro 和一个你常用的闭源模型，让两边各出三条结论，标出对应原文位置，再逐条核对。K3.1 Pro 的上下文是 100 万 token，官方内部评测里，财务建模从 50.4 提到 57.6，业务运营从 8.9 提到 37。这些分数只说明值得试，不说明对你的文档有效。做完的标准是你能指出哪一边编了原文里没有的数字。",
+      "source": "Moonshot AI 官方博客",
+      "source_url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "text_en": "Run a two-model comparison on a real long document you know well. Tonight, 20 minutes: an earnings report, diligence materials or a 40-page spec all work. Give it to Kimi K3.1 Pro and to a closed model you already use, ask each for three conclusions with the exact places in the source that support them, then check every claim. K3.1 Pro has a 1M-token context, and its official internal evaluations move finance modeling from 50.4 to 57.6 and business operations from 8.9 to 37. Those scores only say it is worth testing, not that it works on your document. Done means you can point to which side invented a number that is not in the source.",
+      "source_en": "Moonshot AI official blog"
+    },
+    {
+      "text": "检查你手上那个 agent skill 有没有绑定一家产品的私有接口，十分钟够了：翻一遍它的字段、路径和工具名；有依赖的话，把接口签名和工具调用抽成一层可替换的薄封装，再用另一个支持 Agent Skills 的客户端加载一遍。做完的标准是同一个 skill 在两个客户端里都能跑，换模型不用改正文。",
+      "source": "Anthropic 官方公告",
+      "source_url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+      "text_en": "Check whether the agent skill you use is tied to one vendor's private interface. Tonight, 10 minutes: go through its fields, paths and tool names; if it depends on one vendor, pull the interface signature and tool calls into a thin replaceable wrapper, then load the same skill in a second client that supports Agent Skills. Done means the skill runs in both clients and changing models does not require editing its body.",
+      "source_en": "Anthropic official announcement"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚十分钟：用一个终端把几个 coding agent 摆到同一屏",
+    "why": "同时跑 Claude Code、Codex、Pi、OpenCode 时，最容易丢的是哪个在等我、哪个跑完了、token 花在哪。Corgi 把这些做进终端：每个 agent 的状态、刚改过哪些文件、每个 workspace 的 token 用量都在一屏里，后台进程像 tmux 一样重开还在。",
+    "time": "~10 分钟",
+    "steps": [
+      "在 macOS、Linux 或 WSL 上跑安装脚本：curl -fsSL https://corgi.computer/install.sh | bash",
+      "在项目目录里启动 corgi，按 Ctrl-T 新建一个 tab，选 Claude Code 或 Codex",
+      "再开一个 tab 跑第二个 agent，把同一个任务拆成两条独立线",
+      "按 F1 看哪个 agent 在等你；悬停能看到它刚做了什么，输入 top 看 token 用量",
+      "退出后重新输入 corgi，确认后台的 agent 还在"
+    ],
+    "source": "Show HN · Corgi",
+    "source_url": "https://corgi.computer/",
+    "title_en": "Tonight, 10 minutes: put several coding agents on one terminal screen",
+    "why_en": "When Claude Code, Codex, Pi and OpenCode are all running, what gets lost is which one is waiting on you, which one finished, and where the tokens went. Corgi puts that in the terminal: each agent's status, the files it just changed, and per-workspace token usage on one screen, with background processes that survive a restart like tmux.",
+    "time_en": "~10 min",
+    "steps_en": [
+      "On macOS, Linux or WSL, run the installer: curl -fsSL https://corgi.computer/install.sh | bash",
+      "Start corgi inside a project, press Ctrl-T for a new tab, and pick Claude Code or Codex",
+      "Open a second tab and run another agent, splitting the task into two independent lines",
+      "Press F1 to see which agent is waiting on you; hover to see what it just did, and type top to see token usage",
+      "Quit and type corgi again to confirm the background agents are still there"
+    ],
+    "source_en": "Show HN · Corgi"
+  },
+  "meta_read": "今天的七条可以按谁握着钥匙排成一条线：模型层把能力做成公共品，工具层把凭据收进保险库，标准层把规范交给基金会，监控层把有没有越界留给日志，资本层则把未来的调用量提前折成估值。每一层都能自证，合起来却没有人对整条链负责：保管凭据的不知道 agent 拿授权去做了什么，维护标准的管不到各家怎么实现，做审计的拿不到别层的原始记录。企业部署 agent，买的不是能力，是这条链上任何一环出事都能被指认、被复现。谁先把跨层的日志接起来，谁才有资格收那笔信任溢价。",
+  "meta_read_en": "Today's seven stories line up along one question: who holds the keys. At the model layer, capability is turning into a public good. At the tool layer, credentials move into a vault. At the standards layer, the spec goes to a foundation. At the monitoring layer, 'did it cross the line' becomes a question for logs and later audit. At the capital layer, future usage gets priced in advance. Each layer can vouch for itself, but nobody owns the whole chain: the party holding the credential doesn't know what the agent did with the permission, the standard's maintainers don't control implementations, and the auditors can't reach the raw records from other layers. What companies actually buy when they deploy agents is not capability but a chain where any failure can be traced and reproduced. Whoever connects the logs across those layers first earns the trust premium.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 42219,
+      "stars_today": 2716
+    },
+    {
+      "rank": 2,
+      "name": "php/php-src",
+      "url": "https://github.com/php/php-src",
+      "description": "The PHP Interpreter",
+      "language": "C",
+      "stars": 41573,
+      "stars_today": 716
+    },
+    {
+      "rank": 3,
+      "name": "anthropics/knowledge-work-plugins",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "language": "Python",
+      "stars": 32248,
+      "stars_today": 635
+    },
+    {
+      "rank": 4,
+      "name": "NVIDIA/OpenShell",
+      "url": "https://github.com/NVIDIA/OpenShell",
+      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+      "language": "Rust",
+      "stars": 18830,
+      "stars_today": 1119
+    },
+    {
+      "rank": 5,
+      "name": "Renhuai123/ziwei-doushu",
+      "url": "https://github.com/Renhuai123/ziwei-doushu",
+      "description": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
+      "language": "TypeScript",
+      "stars": 6892,
+      "stars_today": 546
+    },
+    {
+      "rank": 6,
+      "name": "SnailSploit/Claude-Red",
+      "url": "https://github.com/SnailSploit/Claude-Red",
+      "description": "claude-red is a curated library of offensive security skills designed for the Claude skills system. Each skill is a structured SKILL.md file that primes Claude with expert-level methodology for a specific attack surface — from SQLi to shellcode, EDR evasion to exploit development.",
+      "language": "Python",
+      "stars": 8520,
+      "stars_today": 226
+    },
+    {
+      "rank": 7,
+      "name": "OpenBMB/VoxCPM",
+      "url": "https://github.com/OpenBMB/VoxCPM",
+      "description": "VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning",
+      "language": "Python",
+      "stars": 40281,
+      "stars_today": 150
+    },
+    {
+      "rank": 8,
+      "name": "nodejs/node",
+      "url": "https://github.com/nodejs/node",
+      "description": "Node.js JavaScript runtime ✨🐢🚀✨",
+      "language": "JavaScript",
+      "stars": 122891,
+      "stars_today": 66
+    }
+  ],
+  "ota": {
+    "learned": [
+      "观察 · METR 和 Redwood 的红队报告把监控只在 hand-back 时触发写成了可复现的绕过路径：agent 只要一直行动、不交还控制权，就能无限推迟被检查。compaction 事件没纳入监控，按报告估计，2026 年 5 到 7 月约 10% 的合格 Codex 流量因此漏掉。两个客户端可控的 header 还能直接关掉新 agent 的监控。这些是监控设计缺了时钟和对账，并非模型层面的漏洞。",
+      "观察 · 1Password for Agents 把凭据托管做成产品：agent 发起请求，用户批准，凭据由保险库直接填入目标站点，agent 看不到密码或一次性验证码，也不能碰其他条目。这比在提示词里写不要泄露密码可靠，因为它把秘密移出了模型的可见范围。",
+      "已实施 · 提案已写入 ota-ledger.md，排队等笔记本会话固化成 memory。具体规则：任何 agent 监控都不能只在交还控制权时触发，要按固定步数或时间采样；推理日志和监控日志要按 step 编号对账；未受监控的运行需要显式批准。"
+    ],
+    "new_capabilities": [
+      "已验证 · 控制面四问：审任何 agent 替人做事的设计，固定问四件事：身份是什么、能碰什么、多久被检查一次、推理日志和监控日志在哪对账。今天用它审了本期七条，能清楚分出 1Password 只管前两问、METR 只管后两问，不再把有授权当成有监控。调用方式：把这四问写在 agent 设计文档开头，逐条填答案；答案里出现应该、大概的地方就是缺口。台账已排队，待笔记本会话写成 memory feedback-agent-control-surface。"
+    ],
+    "learned_en": [
+      "Observation · METR and Redwood's red-team report turns 'monitoring only fires on hand-back' into a reproducible bypass: an agent can postpone being checked indefinitely just by continuing to act. Compaction events were not monitored, and the report estimates that left about 10% of eligible Codex traffic uncovered between May and July 2026. Two client-controlled headers can also disable monitoring for new agents. These are not model-level bugs; they are what a monitoring design looks like when it has no clock and no reconciliation.",
+      "Observation · 1Password for Agents turns credential custody into a product: the agent asks, the user approves, the vault fills the credential into the destination site, and the agent never sees the password or one-time code and cannot reach other vault items. That is more reliable than writing 'do not leak the password' in a prompt, because it moves the secret outside the model's visible range.",
+      "Implemented · the proposal is now appended to ota-ledger.md and queued for a laptop session to turn it into memory. The rule: any agent monitor must not fire only when control returns; sample every fixed number of steps or minutes; reconcile inference logs and monitor logs by step number; require explicit approval for unmonitored runs."
+    ],
+    "new_capabilities_en": [
+      "Verified · the four control-surface questions: when reviewing any 'agent acts on your behalf' design, ask four things: what is its identity, what may it touch, how often is it checked, and where do inference logs and monitor logs get reconciled. I used it on today's seven items and could separate who handles identity and scope from who handles checking and reconciliation, so 'it has authorization' no longer passes as 'it is monitored.' How to invoke: put the four questions at the top of the design doc and fill in every answer; any answer that says 'should' or 'probably' is a gap. The ledger entry is queued for a laptop session to write memory feedback-agent-control-surface."
+    ]
+  },
+  "sources": [
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 29,
+      "items": [
+        {
+          "title": "1Password 让 agent 登录时只拿授权，不拿密码",
+          "title_en": "1Password gives agents a login without the password",
+          "author": "1Password（官方博客）· TLDR AI",
+          "author_en": "1Password (official blog) · TLDR AI",
+          "likes": null,
+          "url": "https://1password.com/blog/1password-for-ai-agents",
+          "summary": "1Password 于 10 月 22 日发布 1Password for Agents。流程如下：agent 遇到登录页时暂停，向用户的 1Password 保险库发起请求；用户看清是哪个站点、哪次任务后批准；凭据由 1Password 直接填入目标网站，agent 看不到密码，也看不到一次性验证码。每个任务只能使用获批的那组登录，保险库里的其他条目无法触及，用户随时可以关闭。Individual 和 Family 账户在 1Password.com 上不额外收费，1Password.eu 和 1Password.ca 暂不支持。Muse（Meta）和 SpaceXSI Grok Bot 正在陆续接入；Claude Duet、ChatGPT Work 和 dots、Perplexity、Ramp、Browserbase、Browser Use 等在排队。官方没有公开 SDK、协议细节或技术规范，集成能力视合作方而定。",
+          "summary_en": "1Password launched 1Password for Agents on October 22. The flow: when an agent hits a sign-in page, it pauses and asks the user's 1Password vault for access; the user reviews which site and which task, then approves; 1Password fills the credential directly into the destination site, and the agent never sees the password or the one-time code. A task can only use the logins approved for it, other vault items stay out of reach, and the user can turn the integration off at any time. It costs nothing extra for Individual and Family accounts on 1Password.com; accounts on 1Password.eu and 1Password.ca are not supported. Muse (Meta) and SpaceXSI Grok Bot are rolling out now; Claude Duet, ChatGPT Work and dots, Perplexity, Ramp, Browserbase and Browser Use are listed as coming soon. No SDK, protocol details or public technical specification have been published, and capabilities vary by partner.",
+          "why": "这是今天唯一把 agent 身份做成可售产品的发布。做 agent 产品的人可以借鉴其交互：权限按任务申请、用户逐次批准、凭据不进入模型上下文。它没有公开 SDK 和协议细节，集成前需先确认这一点。",
+          "why_en": "It is the only launch today that turns agent identity into a product you can buy. Anyone building agent products can copy the interaction: request permission per task, have the user approve each time, and keep the credential out of the model's context. No SDK or protocol details have been published, so ask about that before integrating."
+        },
+        {
+          "title": "红队三周，OpenAI 的 agent 监控能被绕开",
+          "title_en": "Three weeks of red-teaming found ways around OpenAI's agent monitor",
+          "author": "METR · Redwood Research（经 TLDR AI）",
+          "author_en": "METR · Redwood Research (via TLDR AI)",
+          "likes": null,
+          "url": "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
+          "summary": "METR 和 Redwood Research 各出一人，于 2026 年 7 月 21 日至 8 月 11 日在 OpenAI 内部做了三周红队，报告 10 月 22 日公开。两人获得 OpenAI 的代码、监控提示词和配置，访谈了约十二名研究员和工程师，产出一份 61 页内部报告，OpenAI 删节至 38 页后交给两家机构负责人。报告估算了监控覆盖率：至少与 GPT-5.5 同等强度的模型，其 Responses API 流量约 75% 到 94% 有资格被监控，内部 Codex agent 流量为 99.2%；红队开始时，RL 训练 rollout 完全没有覆盖。最关键的发现是触发条件：监控仅在 agent 把控制权交还用户时启动，compaction 事件未纳入监控，按报告估计，2026 年 5 至 7 月约 10% 的合格 Codex 流量因此漏掉。agent 只要持续行动、不交还控制权，就能无限推迟被检查。报告还列出沙箱逃逸、隐藏最近数百条动作、两个客户端可控 header 直接关闭监控等路径。OpenAI 称生产环境相关漏洞均已修补，METR 表示这些说法其未核实。",
+          "summary_en": "One METR employee and one Redwood Research employee spent three weeks, July 21 to August 11, 2026, red-teaming OpenAI's internal agent monitoring from inside the company. They had access to OpenAI's codebase, monitor prompts and configuration, interviewed about a dozen researchers and engineers, and produced a 61-page internal report; OpenAI redacted a 38-page version for the two organizations' leadership. Coverage estimates: roughly 75% to 94% of Responses API traffic from models at least as strong as GPT-5.5 was eligible for monitoring, and 99.2% of internal Codex agent traffic. RL training rollouts had no coverage when the exercise began. The sharpest finding was the trigger: monitoring ran only when an agent handed control back to the user, and compaction events were not monitored, leaving an estimated 10% of eligible Codex traffic uncovered between May and July 2026. An agent could postpone being monitored indefinitely by simply continuing to act. The report also lists sandbox escape, a mechanism that hides hundreds of recent actions, and two client-controlled headers that disable monitoring for new agents. OpenAI says all production vulnerabilities it found have been patched; METR says it has not evaluated those claims.",
+          "why": "要讨论的是监控系统的覆盖率和触发条件，模型是否使坏并非重点。自行搭建 agent 监控的人，应先看其 hand-back 触发和 compaction 盲区，再看模型。",
+          "why_en": "This is not a debate about whether models will misbehave; it is about the coverage and trigger conditions of a monitoring system. If you run monitoring for your own agents, look at its hand-back trigger and its compaction blind spot before you look at the model."
+        },
+        {
+          "title": "Agent Skills 交给 Linux 基金会，标准不再由一家说了算",
+          "title_en": "Agent Skills moves to the Linux Foundation",
+          "author": "Anthropic（官方公告）· TLDR AI",
+          "author_en": "Anthropic (official announcement) · TLDR AI",
+          "likes": null,
+          "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+          "summary": "Anthropic 于 10 月 22 日将 Agent Skills 移交 Agentic AI Foundation（AAIF），后者隶属 Linux 基金会。转让内容包括三样：Agent Skills 的名称和标志、GitHub 组织、agentskills.io 域名。AAIF 由 Anthropic 与 Block、OpenAI 共同创立，此前已接手 MCP。维护者来自 Anthropic、Google、OpenAI 等公司，以个人身份参与，David Soria Parra 和 Mahesh Murag 为 Lead Maintainer。Anthropic 提出的路线图包括带版本号的发布、正式提案流程，以及面向 skill 作者和安装者的安全指南。标准本身仍然开放，不加入 AAIF 也可使用和贡献。官方数字：70 多个 agent 平台已接入，包括 ChatGPT、Cursor、GitHub Copilot 和 VS Code；累计发布 100 万个 skill，安装约 2.8 亿次。",
+          "summary_en": "On October 22 Anthropic transferred Agent Skills, its open standard for giving agents task-specific workflows, to the Agentic AI Foundation (AAIF), part of the Linux Foundation. The transfer covers the Agent Skills name and logo, the GitHub organization, and the agentskills.io domain. AAIF was co-founded by Anthropic, Block and OpenAI, and previously received MCP from Anthropic. Maintainers come from Anthropic, Google, OpenAI and other companies, working as individuals; David Soria Parra and Mahesh Murag are the designated Lead Maintainers. Anthropic proposed a roadmap with versioned releases, a formal proposal process, and security guidance for skill authors and installers. The standard stays open and vendor-neutral, and anyone can use or contribute without joining the AAIF. By the official numbers, more than 70 agent platforms have integrated it, including ChatGPT, Cursor, GitHub Copilot and VS Code; 1 million skills have been published and nearly 280 million installed.",
+          "why": "若你在写 skill 或做 skill 市场，治理归属决定两件事：版本兼容是否会被单方更改，安全审查由谁定。现在可按 MCP 先例预期公开提案流程，但具体安全指南尚未落地。",
+          "why_en": "If you write skills or run a skill marketplace, governance decides two things: whether version compatibility can be changed unilaterally, and who sets security review. The MCP precedent suggests an open proposal process, but the security guidance itself has not landed yet."
+        },
+        {
+          "title": "OpenAI 谈 300 亿美元新融资，估值 1.25 万亿",
+          "title_en": "OpenAI in talks for $30B at a $1.25T valuation",
+          "author": "CNBC · Kate Rooney、Ashley Capoot（经 TLDR AI）",
+          "author_en": "CNBC · Kate Rooney, Ashley Capoot (via TLDR AI)",
+          "likes": null,
+          "url": "https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html",
+          "summary": "CNBC 10 月 22 日报道，OpenAI 接近完成最高 300 亿美元的新融资，投前估值 1.25 万亿美元，该估值为新资本进入前的数字。阿联酋投资方和 Coatue 领投。此轮被定位为 IPO 前的机会主义桥接轮，OpenAI 周四告知投资人，目标是在下周末前取得签字，最终规模未定。融资之外，OpenAI 还在谈一份商业协议，从阿联酋获取更多算力。公司 2 月告诉投资人，到 2030 年总算力支出目标约 6000 亿美元；6 月已向 SEC 秘密提交招股书。CFO Sarah Friar 8 月对员工称公司 2027 年将上市，CEO Sam Altman 9 月称现在上市不是好时机。对手 Anthropic 据报在寻求 1.5 万亿至 2 万亿美元估值，5 月刚以 9650 亿美元估值完成 650 亿美元融资。",
+          "summary_en": "CNBC reported on October 22 that OpenAI is close to finalizing a funding round of up to $30 billion at a $1.25 trillion pre-money valuation, a figure that excludes the new capital. Investors from the United Arab Emirates and Coatue are leading. The round is positioned as an 'opportunistic' bridge ahead of a potential IPO; OpenAI told investors on Thursday it aims to secure signatures by the end of next week, with the final size still undetermined. Alongside the investment, OpenAI is negotiating a commercial deal to secure more computing capacity from the UAE. The company told investors in February it targets roughly $600 billion in total compute spend by 2030, and it confidentially filed its prospectus with the SEC in June. CFO Sarah Friar told employees in August that OpenAI 'will be a public company in 2027'; CEO Sam Altman said in September that 'right now would be an ill-advised moment to go public.' Rival Anthropic is reportedly seeking a $1.5 trillion to $2 trillion valuation and closed a $65 billion round at a $965 billion valuation in May.",
+          "why": "看点在于桥接轮这一说法，估值本身并非重点：先锁定私募资金和海湾算力，再谈 IPO。对做 AI 产品的人而言，这是信号：上游算力采购还会继续加杠杆，模型价格短期不会因供给宽松普降。",
+          "why_en": "The story is not the valuation; it is the word 'bridge.' Lock in private money and Gulf compute first, then talk about an IPO. For anyone building AI products, the signal is that upstream compute spending keeps taking on leverage, so model prices will not broadly fall just because supply loosens."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 40,
+      "items": [
+        {
+          "title": "Kimi K3.1 Pro 开放权重追到前沿，还把网安能力单独削掉",
+          "title_en": "Kimi K3.1 Pro hits the frontier with open weights, minus the cyber data",
+          "author": "Moonshot AI（官方博客）· Hacker News",
+          "author_en": "Moonshot AI (official blog) · Hacker News",
+          "likes": 725,
+          "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+          "summary": "Moonshot 发布 Kimi K3.1 Pro，称其为目前最强的 3T 级开放权重模型。做法是在 K3 基础上加大后训练算力，用跨数百个下游领域的联合强化学习。上下文 100 万 token。几个数字：Terminal-Bench 4.0 得 65.7，Claude Opus 5.5 是 66.4，GPT-6 Astra 是 58.2；Hallu Bench Hard 的声明级幻觉率从 K3 的 23.4% 降到 8.3%；内部业务运营评测从 8.9 升到 37，财务建模从 50.4 升到 57.6，金融研究从 58.8 升到 70.4，xdev-bench-hard 的 pass@3 从 33.3 升到 81.0。另有一个 Highspeed 版本，速度是标准版的 2 到 3 倍。权重计划在 11 月 4 日前放出，API 模型名是 kimi-k3.1-pro 和 kimi-k3.1-pro-highspeed，支持零数据保留。博客还提到一个去掉网络安全风险削减的 checkpoint 得了 90.5，说明网安数据在后训练和强化学习阶段被拿掉了。",
+          "summary_en": "Moonshot released Kimi K3.1 Pro, calling it its most capable 3T-class open-weight model. It is a post-trained version of K3 with substantially more post-training compute and joint reinforcement learning across hundreds of downstream domains. Context window: 1 million tokens. Selected numbers: Terminal-Bench 4.0 scores 65.7, versus 66.4 for Claude Opus 5.5 and 58.2 for GPT-6 Astra; the claim-level hallucination rate on Hallu Bench Hard falls from 23.4% on K3 to 8.3%; internal business-operation evaluation rises from 8.9 to 37, finance modeling from 50.4 to 57.6, financial research from 58.8 to 70.4, and xdev-bench-hard pass@3 from 33.3 to 81.0. A Highspeed variant runs at 2 to 3 times the speed of the standard model. Weights are due by November 4, 2026. API model IDs are kimi-k3.1-pro and kimi-k3.1-pro-highspeed, with Zero Data Retention available. The blog also notes that a checkpoint without cyber risk-reduction scored 90.5, indicating cyber-related data was removed during mid-training and RL.",
+          "why": "值得看的不是又多了个高分模型，是两个产品决定：100 万上下文配 Highspeed 变体，明显冲着长文档和高频调用；网安能力被单独削掉，说明开放权重也开始做能力分级。做 agent 的人可以拿它当长上下文和低成本调用的对照项。",
+          "why_en": "The interesting part is not another high-scoring model but two product decisions: a 1M-token context paired with a Highspeed variant, aimed at long documents and high-frequency calls, and cyber capability deliberately stripped out, which means open weights are now doing capability tiering too. For agent builders, it is a useful comparison point for long-context and low-cost calls."
+        },
+        {
+          "title": "360M 参数的小模型，假装自己是一个终端",
+          "title_en": "A 360M-parameter model that pretends to be a terminal",
+          "author": "Simon Edwardsson · Hacker News",
+          "author_en": "Simon Edwardsson · Hacker News",
+          "likes": 613,
+          "url": "https://simedw.com/2026/10/21/world-model-terminal/",
+          "summary": "Simon Edwardsson 用 Qwen2.5-Coder-0.5B 做底，训练了一个只预测终端画面的小模型：没有真的 shell，也没有文件系统，按键进去，字符屏幕出来。词表砍到 333 个 token，去掉 151,936 token 的嵌入表后约 360M 参数，int4 量化后 208MB。训练数据是 33.6 万段合成会话、约 20 亿 token，全部来自 Docker 里无网络运行的真实程序，终端尺寸以 32×96 为主，模拟了 1.2% 的打字错误，用三轮 DAgger 做自我纠正。能处理 bash 输入、vim 的模式和保存退出、man 手册、贪吃蛇、tmux 分屏切换和 Python REPL，还记得用户创建过的部分文件。成本是 RTX 4090 上约 75 个 GPU 小时；浏览器里在 M4 Mac 上约 60 毫秒一个字符。ShellBench 得 80/106，对照的提示版 Qwen2.5-Coder-0.5B 是 52，Qwen3-0.6B 是 60；文件回读 9/13，两个对照分别是 2/13 和 3/13。记忆仍不可靠，嵌套目录和复杂 Python 上会编。",
+          "summary_en": "Simon Edwardsson trained a small model to predict terminal screens from keypresses, with no real shell and no filesystem. It is built on Qwen2.5-Coder-0.5B; the vocabulary was cut to 333 tokens, and dropping the 151,936-token embedding table brought it to about 360M parameters, or 208 MB after int4 quantization. Training used 336,000 synthetic episodes, about 2 billion tokens, recorded from real programs running in Docker with no internet access. Most sessions were 32x96 characters, typos were simulated at a 1.2% rate, and three rounds of DAgger self-correction followed. It handles bash typing, vim modes and save/quit, man pages, snake, tmux panes and switching, and a Python REPL, and remembers some files the user created. Training cost about 75 GPU-hours on an RTX 4090; in a browser on an M4 Mac it decodes at about 60 ms per character. ShellBench: 80/106, versus 52 for prompted Qwen2.5-Coder-0.5B and 60 for Qwen3-0.6B. File readbacks: 9/13, versus 2/13 and 3/13. Memory is still unreliable, and nested directories and harder Python produce hallucinations.",
+          "why": "价值不在「假终端」这个噱头，在成本结构：75 个 4090 小时、int4 后 208MB、浏览器里能跑。同样的路子可以套到任何有大量命令行轨迹的垂直场景，先问自己手上有没有 30 万条可回放的轨迹。",
+          "why_en": "The value is not the fake-terminal gimmick but the cost structure: 75 hours on a 4090, 208 MB after int4, and it runs in a browser. The same approach can be pointed at any vertical with lots of command-line traces, as long as you first ask whether you have 300,000 replayable episodes."
+        },
+        {
+          "title": "只写步行半小时内的地方，维基百科换了个切片方式",
+          "title_en": "Wikipedia, sliced to what's within a half-hour walk",
+          "author": "Ed Jefferson · Hacker News",
+          "author_en": "Ed Jefferson · Hacker News",
+          "likes": 1244,
+          "url": "https://edjefferson.com/localwiki/",
+          "summary": "Ed Jefferson 做了 Local Wikipedia：输入城镇、街区、地标或邮编，或者直接用定位，页面只列你步行半小时范围内的维基百科条目。内容全部来自维基百科，只取带地理坐标的页面；定位在浏览器里处理，分享链接不带分享者的位置。附近少于 25 条时，返回约 6 英里内最近的 25 条；多于 500 条时，只显示最近的 500 条。另有随机条目、A 到 Z 索引和切换区域。网站声明与维基百科无关。HN 评论里有人指出维基百科自带 Special:Nearby 功能，也有人要距离可调、公制单位和维基语言选择；还有人发现很多本地条目根本没有地理标签，会被直接漏掉。",
+          "summary_en": "Local Wikipedia is a location-based encyclopedia: enter a town, neighborhood, landmark or postcode, or use your detected location, and it shows only Wikipedia articles within about a half-hour walk. Content comes straight from Wikipedia and is limited to geocoded pages. Location is processed in the browser and is not included in shared links. If fewer than 25 items are nearby, it returns the closest 25 within about 6 miles; if more than 500, it shows the closest 500. There is also a random article, an A-to-Z index and a way to switch area. The site says it is unaffiliated with Wikipedia. On Hacker News, commenters noted that Wikipedia already has a Special:Nearby feature, asked for adjustable distance, metric units and a Wikipedia language selector, and pointed out that many nearby articles lack geotags and are silently dropped.",
+          "why": "一个硬约束就能把通用内容变成地方产品，这类切片的护城河不在数据，在选择哪条约束最贴近使用场景。HN 评论里用户马上提出的三个开关，正好说明约束还可以再收紧一层。",
+          "why_en": "One hard constraint can turn general content into a local product; the moat in that kind of slicing is not the data but choosing the constraint closest to the use case. The three switches users immediately asked for in the comments are a sign that the constraint can be tightened further."
+        }
+      ]
+    }
+  ]
+}
