@@ -1,0 +1,260 @@
+{
+  "date": "2026-10-23",
+  "partial": false,
+  "banner": "没基准就埋雷再找雷",
+  "banner_en": "No benchmark? Plant the bug, then find it",
+  "image": {
+    "src": "digests/img/2026-10-23.jpg",
+    "caption": "本期配图：AI Engineer 纽约大会 Air Canada 演讲的视频封面，讲的是没有公开基准时如何评测智能体。（图：AI Engineer / YouTube）",
+    "caption_en": "Today's image: the cover of Nathanael Weill's AI Engineer NYC talk on Air Canada, about evaluating agents when no public benchmark exists. (Image: AI Engineer / YouTube)"
+  },
+  "actions": [
+    {
+      "text": "如果你的智能体会输出「置信度 0.85」这样的数字，并据此决定是否转人工，今天就换掉。做法：列出可直接观察的信号（检索有无命中、同一问题问两遍答案是否一致、问题类型），按信号分桶，用过去人工核对过的结果计算每桶的正确率，作为置信度；每周再核一次「90% 那一桶是否真的约 90% 正确」。约 40 分钟，做完的标志是置信度不再来自模型自己写的数字。",
+      "text_en": "If your agent prints a number like \"confidence 0.85\" and you use it to decide what goes to a human, replace it today. List signals you can observe directly (did retrieval hit, do two runs of the same question agree, question type), bucket replies by those signals, compute each bucket's correct rate from past human-checked cases, and use that as the confidence. Each week check whether the 90% bucket is really right about 90% of the time. About 40 minutes; done when no confidence comes from a number the model wrote itself.",
+      "source": "Amrut Joshi 博客",
+      "source_en": "Amrut Joshi's blog",
+      "source_url": "https://rumple.github.io/blog/2026/10/20/asking-llm-for-confidence.html"
+    },
+    {
+      "text": "盘一遍手上在跑的 AI 用例，每个写四行：它能自己动手还是只给建议，有没有人复核，用户是内部还是外部，出错有没有监控能抓到。先给「能动手、没人复核、对外、无监控」的那个补控制，再去调模型。约 30 分钟。",
+      "text_en": "Go through the AI use cases you have running and write four lines for each: can it act on its own or only advise, does anyone review it, is the user internal or external, would monitoring catch an error. Add controls first to the one that acts alone, has no reviewer, faces outsiders and has no monitoring, and only then tune the model. About 30 minutes.",
+      "source": "AI Engineer 纽约大会 · New York Life",
+      "source_en": "AI Engineer NYC · New York Life",
+      "source_url": "https://www.youtube.com/watch?v=mMw3arwQsL0"
+    },
+    {
+      "text": "如果你让编码智能体带真实密钥跑，看一眼 NVIDIA OpenShell 的做法：智能体看不到真实凭据，凭据只在发往已批准地址的请求里被补上。先查自己的环境能否做到同样的隔离，看「智能体进程的环境变量里有没有生产密钥」，有就先拿掉。约 15 分钟。",
+      "text_en": "If you run coding agents with real secrets, look at how NVIDIA's OpenShell does it: the agent never sees real credentials, and they are added only to requests bound for approved endpoints. For your own setup, first check whether the agent process's environment holds any production secrets, and remove them if so. About 15 minutes.",
+      "source": "NVIDIA OpenShell README",
+      "source_en": "NVIDIA OpenShell README",
+      "source_url": "https://github.com/NVIDIA/OpenShell"
+    }
+  ],
+  "hands_on": {
+    "title": "打开浏览器，把 3.6 亿参数模型当终端用",
+    "title_en": "Open a browser and use a 360M-parameter model as your terminal",
+    "why": "Simon Edwardsson 把 Qwen2.5-Coder-0.5B 微调成一个假终端：背后没有真正的 shell 或文件系统，每按一个键，模型就预测屏幕该怎么变。它能建文件、跑 vim 和 tmux、玩 snake，还大致记得你几步前敲过什么。整个演示在浏览器里跑（WebGPU，下载约 208MB），故意打错一个命令就能看出它不是真 shell。他把终端当成字符网格而非像素画面，这样才能用几亿参数的小模型实时预测，无需上大模型。",
+    "why_en": "Simon Edwardsson fine-tuned Qwen2.5-Coder-0.5B into a fake terminal: there is no real shell or filesystem behind it, and every keypress makes the model predict how the screen should change. It can create files, run vim and tmux, play snake, and roughly remembers what you typed a few commands back. The whole demo runs in your browser (WebGPU, about a 208MB download), and typing a command wrong is enough to see it isn't a real shell. He treats the terminal as a grid of characters rather than pixels, which is what lets a model this small predict it in real time instead of needing something bigger.",
+    "time": "约 10 分钟",
+    "time_en": "About 10 minutes",
+    "steps": [
+      "用桌面版 Chrome 或 Edge 打开 simedw.com 的 WorldTUI 演示页（需要支持 WebGPU 的浏览器和实体键盘，手机能跑但很慢）。",
+      "等约 208MB 的模型加载完，会看到一个假的终端提示符。",
+      "故意打错一个命令，比如把 python 打成 pythoon，看它怎么反应，提醒自己背后没有真正的 shell 在执行。",
+      "跑一跑 vim、tmux，或者直接玩内置的 snake，看它能否记住你几步前输入的内容。",
+      "想一下自己手上有没有类似的「窄任务」：只需在一个很小、可预测的状态空间里连续预测，就可能不用上大模型，训一个几亿参数的小模型专门干这件事反而更便宜更快。"
+    ],
+    "steps_en": [
+      "Open the WorldTUI demo on simedw.com in desktop Chrome or Edge (needs a WebGPU-capable browser and a physical keyboard; it runs on a modern phone too, just painfully slowly).",
+      "Wait for the roughly 208MB model to load. You'll see a fake terminal prompt.",
+      "Deliberately mistype a command, like \"pythoon\" instead of \"python\", and watch how it responds. That's your reminder there's no real shell running underneath.",
+      "Run vim, tmux, or just play the built-in snake game, and see whether it remembers what you typed a few commands earlier.",
+      "Think about whether you have a similarly \"narrow\" task of your own: anything that only needs continuous prediction inside a small, predictable state space might not need a large model at all. A fine-tuned model with a few hundred million parameters can be cheaper and faster."
+    ],
+    "source": "Simon Edwardsson 博客 simedw.com",
+    "source_en": "Simon Edwardsson's blog (simedw.com)",
+    "source_url": "https://simedw.com/2026/10/21/world-model-terminal/"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "没有基准怎么评测智能体：Air Canada 先埋错误，再看它能不能找出来",
+          "title_en": "Evaluating agents with no benchmark: Air Canada plants the error, then checks the agent finds it",
+          "author": "AI Engineer 大会 · Nathanael Weill（Air Canada）",
+          "author_en": "AI Engineer NYC · Nathanael Weill (Air Canada)",
+          "likes": "3839",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=c_SPW__jF9w",
+          "summary": "全文读完。背景：Air Canada 的 AI 团队要给运营、商务、会员等部门做智能体，任务太专，没有公开基准，领域专家又没空。他在上一家公司做电信工程师问答时吃过亏：每周开一次评审会，把五个聊天机器人的回答投到大屏上让专家挑，专家之间还常常意见不一，一周只能试一个方案。后来改成反着出题：先拿一页文档，让 LLM 写一个只能由这页回答的问题，再看智能体能否检索回这一页，用代码判分。评测从每周一次变成每天几十次，复杂的检索技巧反而发现用处不大，把嵌入模型、分块、BM25 权重调对才有效。2026 年的新项目是分析供应商合同，他把同一思路用到了五种做法上：一是拿签过字的合同和修改版做对比，但公司没留下各版本，行不通；二是从规则出发，写一份违反某条规则的合同（比如责任上限超过 100 万美元），生成了 275 个答案已知的测试；三是拿一份好合同删掉一个条款，看智能体能否指出缺了东西，他说这是最有效的一种，现在发现智能体漏掉了大部分被删的条款；四是不变性检查，换供应商名、地址、条款顺序、重复运行，标记数不该变；五是把专家现有的合同模板里的空白用一组组取值填满，批量生成合同。后四种都用代码判分。他明确避开了 LLM 当裁判，理由是裁判的噪声和被评测智能体的噪声一样难处理。专家的反馈不直接拿去改智能体，而是拿去做更好的测试。他还承认为了能评测，有时要把方案改成更容易评测的形态。结尾提醒：这些测试只是起点，不是上线与否的最终判断。",
+          "summary_en": "I read the full transcript. Context: Air Canada's AI team builds agents for operations, commercial and loyalty, tasks so specific there is no public benchmark, and the domain experts are busy. At a previous job, on a telecom-engineer Q&A assistant, he ran a weekly review meeting that put five chatbots' answers on a big screen for experts to pick from, and the experts often disagreed, so they could try one change a week. They then flipped the problem: take one page of a document, have an LLM write a question only that page can answer, and check by code whether the agent retrieves that page. Evaluation went from once a week to dozens a day, and the fancy retrieval tricks turned out not to help; getting the embedding model, chunking and BM25 weight right did. His 2026 project analyzes supplier contracts, and he applies the same idea five ways. One, diff a signed contract against its amended version, which failed because the company does not keep earlier versions. Two, start from a rule (say, a liability cap above $1 million), write a contract that breaks it, and expect the flag; that produced 275 tests with known answers. Three, take a good contract, delete a clause, and expect the agent to say something is missing; he calls this the most powerful and says the agent currently misses most of the deleted clauses. Four, invariance checks: change the supplier name, address or clause order, or rerun the same input, and the number of flags must not change. Five, fill the blanks in the experts' existing contract templates with lists of values to generate contracts in bulk. The last four are graded by code. He deliberately avoids LLM-as-judge, because judge noise was about as hard to fix as the agent's own. Expert feedback goes into building better tests, not into patching the agent directly, and he admits he sometimes re-shaped the solution so it could be evaluated. His closing caveat: these tests are a starting point, not a go/no-go decision.",
+          "why": "这套做法能直接搬：任何输出里有「已知答案」的任务（找缺项、找违规、查字段）都能用埋雷法评测。证据只是一个团队的自述，没有给准确率数字，被删条款「漏掉大部分」说明现在的智能体还不好用。",
+          "why_en": "This transfers directly: any task with a known answer built in (find the missing item, the violation, the field) can be tested by planting it. The evidence is one team's account with no accuracy figure, and \"misses most deleted clauses\" means their agent is not good yet."
+        },
+        {
+          "title": "1368 起 AI 事故的教训：风险看上线时的控制，不只看模型",
+          "title_en": "1,368 AI failures: deployment controls matter more than the model",
+          "author": "AI Engineer 大会 · Vishal Srivastava、Tanmay Sah（New York Life）",
+          "author_en": "AI Engineer NYC · Vishal Srivastava & Tanmay Sah (New York Life)",
+          "likes": "5339",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=mMw3arwQsL0",
+          "summary": "全文读完。他们拿公开的 AI 事故数据库，把事故按三层归类：开发（数据质量、系统设计、可预测性、公平性、失败模式、可解释性共六项）、部署（授予 AI 多大决定权、人工复核是否有效、暴露给谁、有没有监控）、业务影响（财务、法律、波及人数），一共 13 项。他们说这 13 项能覆盖约 98% 的事故，平均每起事故同时涉及约 6 项。按「出事时这一项在不在」和「出现频率」画图，人工复核和监控这类部署控制最能预测伤害，系统设计和波及规模出现得多，却不那么预测伤害。结论：评测要按风险排序，不按事故频率排序；同一个模型换一种部署方式，风险就不同，所以要测的是整个部署系统，包括检索有没有取回对的内容、工具失败时怎么办、人工复核能不能抓住错误、智能体是否越权。他们还借用 Peter Wason 的实验说评测要想办法证伪，不是证实，提出「搭建、攻击、修复、再攻击」循环，并拿 Air Canada 聊天机器人给错误退款政策、被法庭判赔的案例演示一遍。评测者自己也算被治理的对象，因为 AI 裁判会出错。",
+          "summary_en": "I read the full transcript. They took a public AI-incident database and sorted failures along three layers with 13 sub-dimensions in total: development (data quality, system design, predictive validity, fairness, failure modes, explainability), deployment (how much decision authority the AI has, whether human review is effective, who is exposed, whether there is monitoring), and business impact (financial, legal, number of people affected). They say the 13 cover about 98% of incidents, with about six present in the average incident. Plotting how often each is present against how strongly its presence goes with harm, deployment controls such as human mediation and monitoring predict harm best, while system design and scale show up often but predict harm less. Their conclusion: rank evaluation effort by risk, not by how frequent a failure type is. The same model has different risk under different deployment, so test the whole deployed system: did retrieval bring back the right content, what happens when a tool fails, does human review catch mistakes, does the agent stay inside its permissions. Borrowing Peter Wason's experiments, they argue evals should try to falsify rather than confirm, propose a build, break, fix, break-again loop, and walk the airline-chatbot refund case (a tribunal held the airline responsible) through it. The evaluator itself is also something to govern, since an AI judge can be wrong.",
+          "why": "框架清楚，可以直接当检查表用。要留意：「覆盖 98% 的事故」是他们自己设计分类后回头套数据库的结果，没有外部验证；也没有给任何模型或产品的实测对比。",
+          "why_en": "The framework is clear enough to use as a checklist. Note that \"covers 98% of incidents\" is the result of fitting categories they designed back onto the database, with no external validation, and there is no measured comparison of any model or product."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 60,
+      "items": [
+        {
+          "title": "别问大模型「你有几成把握」：那个数字只是顺着文字写出来的",
+          "title_en": "Don't ask an LLM how confident it is: the number is just text it continued",
+          "author": "Amrut Joshi（个人博客）",
+          "author_en": "Amrut Joshi (personal blog)",
+          "likes": "205",
+          "likes_label": "HN 分",
+          "url": "https://rumple.github.io/blog/2026/10/20/asking-llm-for-confidence.html",
+          "summary": "读完了博文，评论区只看了开头几条。核心论点：一个可靠的置信度要满足两条，一是反映预测所依据的信息量，二是在同类问题上对照过真实结果。模型写出的「0.85」是对话里一个合理的下一段文字，没有哪个内部仪表读数，也没人拿它去对照过正确率。他列了可以自己验证的现象：重问一遍数字会变（0.85 变 0.7），换一种问法（「你确定吗」）数字会动，前面已经写了「这显然是正确答案」，后面的高分就是顺理成章的续写。替代做法分五步：列出可直接观察的信号（检索是否命中、同题两次回答是否一致）；没数据时先用历史平均正确率当起点；记录每次回复、给出的置信度和结果；按信号分组统计正确率来更新规则；每周核对「90% 那一档是否真有九成对」。文章没有实验数据，是推理加类比（天气预报）。HN 评论里有人提醒，这些系统本质是预测下一个词，包一层外壳也改变不了这一点；这是评论观点，不是文章结论。",
+          "summary_en": "I read the post and only the first few HN comments. Core argument: a trustworthy confidence needs two things, that it reflects how much information the prediction rests on, and that it has been checked against real outcomes on the same kind of question. A model's \"0.85\" is a plausible next piece of text in a conversation, not a gauge reading, and nobody has graded it against accuracy. He lists things you can verify yourself: ask again and the number changes (0.85, then 0.7), rephrase (\"are you sure?\") and it moves, and if the model has already written \"this is clearly the right answer\" a high score is the natural continuation. His alternative has five steps: list signals you can observe directly (did retrieval hit, do two runs agree); start from the historical correct rate when you have no other data; log every reply, the confidence given and the outcome; update the rule by grouping past replies by signals and counting how often each group was right; and every week check whether the 90% bucket is really right about nine times in ten. The post has no experiments of its own; it is reasoning plus a weather-forecast analogy. One HN comment says these systems are next-token predictors and wrapping them does not change that; that is a commenter's view, not the post's conclusion.",
+          "why": "对做 agent 路由的人有用：「低于 0.7 转人工」这类规则，如果 0.7 是模型自己写的，就没有依据。文章的替代方案是常规的校准做法，不是新发明，也没给实测数字。",
+          "why_en": "Useful if you route agent output by confidence: a rule like \"under 0.7, send to a human\" has no basis when the 0.7 is model-written. The alternative is standard calibration practice, not a new invention, and the post gives no measured numbers."
+        },
+        {
+          "title": "NVIDIA 开源 OpenShell：给自主智能体一个按策略限权的沙箱",
+          "title_en": "NVIDIA open-sources OpenShell: a policy-bounded sandbox for autonomous agents",
+          "author": "NVIDIA（GitHub 仓库）",
+          "author_en": "NVIDIA (GitHub repo)",
+          "likes": "353",
+          "likes_label": "HN 分",
+          "url": "https://github.com/NVIDIA/OpenShell",
+          "summary": "读了仓库 README 和评论开头。OpenShell 让每个智能体在隔离沙箱里跑，内核层面限制它能读写哪些文件、调用哪些系统调用，每个网络连接出沙箱前先过策略检查。智能体拿不到真实凭据，凭据只会加到发往已批准地址的请求上。策略改动在批准前会用形式化验证检查新增了什么风险访问（比如带着凭据访问新主机、调用新的 API 方法），这类改动要等人工复核。安装是一条 curl 脚本加 `openshell sandbox create`，支持 Linux、苹果芯片 Mac，Windows（WSL 2）标为实验性，需要 Docker、Podman 或主机虚拟化；有 Python、TypeScript、Go、Rust 的 SDK，还有一组给编码智能体用的技能。版本是 0.1.x，Apache-2.0 许可。HN 上有人说刚从 GTC 欧洲回来，不少演示都用了它；另有人指出它默认收集匿名遥测，关闭方法是把网关的 OPENSHELL_TELEMETRY_ENABLED 设为 false。",
+          "summary_en": "I read the repo README and the opening comments. OpenShell runs each agent in an isolated sandbox: kernel controls limit which files it can touch and which system calls it can make, and every network connection goes through a policy check before leaving the sandbox. Agents never see real credentials; they are added only to requests bound for approved endpoints. Before a policy change is approved, formal verification flags new risky access it would grant (reaching a new host with credentials, calling a new API method), and those changes wait for human review. Install is a curl script plus `openshell sandbox create`; Linux and Apple-silicon macOS are supported, Windows via WSL 2 is marked experimental, and it needs Docker, Podman or host virtualization. There are Python, TypeScript, Go and Rust SDKs and a set of skills for coding agents. It is version 0.1.x under Apache-2.0. One HN commenter said they had just come back from GTC Europe where many demos used it; another pointed out anonymous telemetry is on by default, switched off by setting OPENSHELL_TELEMETRY_ENABLED=false on the gateway.",
+          "why": "谁能用：开源可装，但是 0.1.x 早期版本。价格：免费。数据来源：全是 NVIDIA 自己的 README，我没有运行它，也没有第三方安全评估，「形式化验证」只是项目自述。",
+          "why_en": "Who can use it: open source and installable, but an early 0.1.x release. Price: free. Who measured: everything here is NVIDIA's own README. I did not run it, there is no third-party security assessment, and \"formal verification\" is the project's own description."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 25,
+      "items": [
+        {
+          "title": "Anthropic 把 Agent Skills 标准捐给了 Linux 基金会旗下的 AAIF",
+          "title_en": "Anthropic donates the Agent Skills standard to the Linux Foundation's AAIF",
+          "author": "Anthropic（官方博客）",
+          "author_en": "Anthropic (official blog)",
+          "likes": "—",
+          "likes_label": "",
+          "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+          "summary": "读完了官方公告全文，另看了 Simon Willison 的一手评论。Agent Skills 是一套标准：一个文件夹，里面放一份 SKILL.md 加脚本和参考资料，教智能体做某件具体的事。Anthropic 在做 Claude Code 时发现，它处理通用知识工作没问题，但常常缺真实业务流程需要的具体做法，于是做了这套标准。2025 年 10 月发布后几周内，开发者就在 GitHub 上传了几千份技能，还给 Codex、Cursor、OpenCode 写了加载器。公告称，目前超过 70 个智能体平台接入这套标准，包括 ChatGPT、Cursor、GitHub Copilot 和 VS Code，累计发布 100 万份技能，安装量约 2.8 亿次。今天 Anthropic 把 Agent Skills 这个名字和图标、GitHub 组织、agentskills.io 域名，整体捐给 Agentic AI Foundation（AAIF，隶属 Linux 基金会）。AAIF 正是 Anthropic 和 Block、OpenAI 一年前共同发起、并已经捐过 MCP 协议的那个基金会。往后由 Anthropic、Google、OpenAI 等公司的工程师以个人身份维护，David Soria Parra 和 Mahesh Murag 任首席维护者。下一步计划是版本化发布、正式提案流程，还有给写技能和装技能的人用的安全指引。Simon Willison 指出，他去年 12 月就预测过这步：Anthropic 当时第一次把 skills 称为「开放标准」，他当时写道，这大概率会走进 AAIF，就像 MCP 之前一样。",
+          "summary_en": "I read the full announcement and Simon Willison's own commentary on it. Agent Skills is a standard: a folder holding a SKILL.md file plus scripts and reference material that teaches an agent one specific task. Anthropic built it while working on Claude Code, where general knowledge work went fine but the model often lacked the procedural knowledge real business tasks need. Within weeks of the October 2025 launch, developers had published thousands of skills on GitHub and written loaders for Codex, Cursor and OpenCode. The announcement says more than 70 agent platforms have integrated the standard, including ChatGPT, Cursor, GitHub Copilot and VS Code, with 1 million skills published and roughly 280 million installs. Today Anthropic is donating the Agent Skills name and logo, the GitHub organization and the agentskills.io domain to the Agentic AI Foundation (AAIF, under the Linux Foundation) — the same foundation Anthropic co-founded with Block and OpenAI a year ago and already donated MCP to. Engineers from Anthropic, Google, OpenAI and others will maintain it as individuals going forward, with David Soria Parra and Mahesh Murag as Lead Maintainers; next steps are versioned releases, a formal proposal process and security guidance for people writing and installing skills. Simon Willison notes he predicted exactly this last December, when Anthropic first called skills an \"open standard\" — he wrote then that it would likely end up in AAIF, the same way MCP did.",
+          "why": "这是 Anthropic 第二次把自己起草的标准交给中立治理机构（第一次是 MCP）：先靠一家公司把标准立起来、推开生态，等接入面够广再放手。如果 Zen 以后要给自己的工具设计一个跨厂商接口，这是个可以参考的路径。采用数字（100 万份技能、2.8 亿次安装）是 Anthropic 自己给的，没有第三方审计。",
+          "why_en": "This is the second time Anthropic has handed off a standard it drafted to neutral governance (the first was MCP): one company stands the standard up and drives adoption, then lets go once it's broadly integrated. Worth keeping in mind if Zen ever designs a cross-vendor interface for his own tools. The adoption numbers (1 million skills, 280 million installs) are Anthropic's own, with no independent audit."
+        },
+        {
+          "title": "OpenAI 融资谈到 1.25 万亿美元估值，阿联酋投资人领投",
+          "title_en": "OpenAI nears $1.25T valuation in new funding round, led by UAE investors",
+          "author": "CNBC（Kate Rooney、Ashley Capoot）",
+          "author_en": "CNBC (Kate Rooney, Ashley Capoot)",
+          "likes": "—",
+          "likes_label": "",
+          "url": "https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html",
+          "summary": "读完了 CNBC 全文。消息来自「了解交易情况的人士」，未经 OpenAI 官方确认：OpenAI 正接近完成一轮最高 300 亿美元的融资，投前估值 1.25 万亿美元（不含新进资金），由阿联酋投资人和 Coatue 领投，被包装成「机会性」的过渡轮，为可能的 IPO 做准备。这轮融资的发起，是因为 9 月有投资人主动找上门；OpenAI 周四告诉投资人，目标是下周末之前拿到签字，但最终规模还没定。与融资同时，OpenAI 还在和阿联酋谈一笔商业协议，换取更多算力；今年 2 月 OpenAI 说过，到 2030 年总算力支出目标约 6000 亿美元。OpenAI 今年 6 月已经向 SEC 秘密递交了 IPO 招股书，但没公开具体上市时间；8 月，CFO Sarah Friar 对员工说「2027 年会成为上市公司」，9 月 CEO Sam Altman 却说「现在去上市是个糟糕的时机」，CFO 和 CEO 的说法并不一致。对手 Anthropic 也在冲 IPO，同样 6 月秘密递交了招股书，据报目标估值在 1.5 万亿到 2 万亿美元之间，今年 5 月刚以 9650 亿估值完成一轮 650 亿美元融资。",
+          "summary_en": "I read the full CNBC article. The source is \"people familiar with the deal\", not an official OpenAI confirmation: OpenAI is close to finalizing an up to $30 billion round at a $1.25 trillion pre-money valuation (not counting the new capital), led by UAE investors alongside Coatue, framed as an \"opportunistic\" bridge ahead of a possible IPO. The round started after investors approached OpenAI in September. OpenAI told investors on Thursday it's aiming to get signatures by the end of next week, but the final size is still being determined. Alongside the round, OpenAI is negotiating a commercial deal with the UAE for more compute capacity; it said in February it's targeting about $600 billion in total compute spend by 2030. OpenAI confidentially filed its IPO prospectus with the SEC in June without disclosing a listing date. In August, CFO Sarah Friar told employees OpenAI \"will be a public company in 2027\"; in September, CEO Sam Altman said \"right now would be an ill-advised moment to go public\" — the CFO and CEO statements don't quite agree. Rival Anthropic is also gearing up for an IPO, having confidentially filed in June too, reportedly targeting a $1.5-2 trillion valuation; it closed a $65 billion round at a $965 billion valuation in May.",
+          "why": "谁能用：这轮还没签完，1.25 万亿只是谈判中的数字，不是定案。价格/估值：CNBC 说是投前估值，不含新资金，要和 Anthropic 据报的 1.5-2 万亿目标区分开看。谁在说：全文建立在匿名信源上，OpenAI 自己没有证实；CFO 和 CEO 对上市时间点的说法本身就不统一，这轮融资与其说是定论，更像是双方都还在摆姿态。",
+          "why_en": "Who can act on this: the round isn't signed yet, so $1.25 trillion is a negotiating number, not a closed deal. Price: CNBC frames it as pre-money, excluding new capital, which should be kept distinct from Anthropic's reported $1.5-2 trillion target. Who is saying so: the whole piece rests on anonymous sources, with no OpenAI confirmation, and even OpenAI's own CFO and CEO don't agree on the IPO timeline — this reads less like a settled fact and more like both sides still positioning."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天的三条材料说的是同一个缺口：智能体的输出，大家习惯让模型自己打分或者让专家凭感觉评，但真正稳的检查都来自模型之外的东西。Air Canada 用自己埋的错误，Joshi 用过去的结果表，OpenShell 用内核层的策略。共同点是答案或规则在模型之外，能用代码核对。做不到这一点的评测，数字再好看也无法对账。",
+  "meta_read_en": "Today's three items point at one gap: people let the model score itself or let experts judge by feel, yet the checks that hold up all come from outside the model. Air Canada uses errors it planted itself, Joshi uses a table of past outcomes, and OpenShell uses policy enforced at the kernel. What they share is that the answer or the rule lives outside the model and code can check it. An evaluation that cannot do that has numbers nobody can reconcile.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 42159,
+      "stars_today": 2716
+    },
+    {
+      "rank": 2,
+      "name": "php/php-src",
+      "url": "https://github.com/php/php-src",
+      "description": "The PHP Interpreter",
+      "language": "C",
+      "stars": 41564,
+      "stars_today": 716
+    },
+    {
+      "rank": 3,
+      "name": "anthropics/knowledge-work-plugins",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "language": "Python",
+      "stars": 32220,
+      "stars_today": 635
+    },
+    {
+      "rank": 4,
+      "name": "NVIDIA/OpenShell",
+      "url": "https://github.com/NVIDIA/OpenShell",
+      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+      "language": "Rust",
+      "stars": 18805,
+      "stars_today": 1119
+    },
+    {
+      "rank": 5,
+      "name": "Renhuai123/ziwei-doushu",
+      "url": "https://github.com/Renhuai123/ziwei-doushu",
+      "description": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
+      "language": "TypeScript",
+      "stars": 6863,
+      "stars_today": 546
+    },
+    {
+      "rank": 6,
+      "name": "SnailSploit/Claude-Red",
+      "url": "https://github.com/SnailSploit/Claude-Red",
+      "description": "claude-red is a curated library of offensive security skills designed for the Claude skills system. Each skill is a structured SKILL.md file that primes Claude with expert-level methodology for a specific attack surface — from SQLi to shellcode, EDR evasion to exploit development.",
+      "language": "Python",
+      "stars": 8493,
+      "stars_today": 226
+    },
+    {
+      "rank": 7,
+      "name": "OpenBMB/VoxCPM",
+      "url": "https://github.com/OpenBMB/VoxCPM",
+      "description": "VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning",
+      "language": "Python",
+      "stars": 40260,
+      "stars_today": 150
+    },
+    {
+      "rank": 8,
+      "name": "nodejs/node",
+      "url": "https://github.com/nodejs/node",
+      "description": "Node.js JavaScript runtime ✨🐢🚀✨",
+      "language": "JavaScript",
+      "stars": 122867,
+      "stars_today": 66
+    }
+  ],
+  "ota": {
+    "learned": [
+      "新增记忆 feedback-plant-and-find-evals：没有基准、专家又没空时，反着出题。先埋入已知错误（删条款、违反规则、换无关字段看结果是否不变），再用字符串匹配判分，不用 LLM 当裁判。同一条里记了 Joshi 的配套规则：置信度来自可观察信号加历史结果表，不来自模型自己写的数字。",
+      "今晚复查发现：今天凌晨两点有一次未发布的草稿，三次写了同一条 Air Canada 故事（头条、一条完整条目、还有今日上手），违反了本技能自己「说一次就够」的编辑规则。改法：把今日上手换成一条独立线索（WorldTUI，一个充当假终端的 3.6 亿参数模型，浏览器直接能玩），既不重复，也比原来「写一段 20 行脚本」的方案更贴合「今晚就能上手」的要求。以后发布前会先查一条故事是不是同时占了头条/配图/条目/行动/今日上手/编者按里的两个以上位置。",
+      "YouTube 复查：今晚 OpenAI 频道与对照频道（MrBeast）的 RSS 都正常，其余 8 个 roster 频道 404；凌晨两点那次连对照频道也 404。两次失败形态不同，记一笔，不当作同一次故障的延续。",
+      "落选：Kimi K3.1 Pro 发布（第三条「新模型」类消息，没什么特别值得动手的点）；Gemini 3.5 Pro 为什么没发——一手来源只是 threadreaderapp 转存的推特帖，核实不了，太像传闻；1Password for Agents（会让「智能体安全/沙箱」这条线第二次出现，换一条新线索更划算）；METR/Redwood 给 OpenAI 内部监控做红队——和今晚已有的两条「评测/安全」材料主题太近。"
+    ],
+    "learned_en": [
+      "New memory feedback-plant-and-find-evals: when there is no benchmark and experts are busy, invert the problem. Plant a known error first (delete a clause, break a rule, swap an irrelevant field and expect no change), then grade by string match instead of an LLM judge. The same entry records Joshi's companion rule: confidence comes from observable signals plus a table of past outcomes, not from a number the model wrote.",
+      "Tonight's recheck found an unpublished 2am draft that told the same Air Canada story three times (banner, a full item, and hands_on), breaking this skill's own \"say it once\" editorial rule. Fix: swapped hands_on to an independent thread (WorldTUI, a 360M-parameter model pretending to be a terminal, playable directly in a browser) — not a repeat, and closer to \"actually tryable tonight\" than the original write-a-20-line-script plan. Going forward I'll check before publishing whether a story occupies more than one of {banner, image, item, action, hands_on, meta_read}.",
+      "YouTube recheck: tonight OpenAI's channel and the control channel (MrBeast) both had working RSS; the other 8 roster channels 404'd. At 2am even the control channel had 404'd. The two failures look different, logged as separate data points rather than one continuing outage.",
+      "Cut list: Kimi K3.1 Pro launch (a third model-launch-shaped item, no unusually actionable angle); the Gemini 3.5 Pro postmortem (its primary source is a threadreaderapp mirror of a tweet, unverifiable, too rumor-tier); 1Password for Agents (would be a second item on the agent-security/sandboxing thread already covered; a new thread was the better use of the slot); METR/Redwood's red-team of OpenAI's internal agent monitoring (too close to tonight's two existing evals/security items)."
+    ],
+    "new_capabilities": [
+      "现在我给任何没有基准的新 agent 或流水线步骤写评测时，会先写「埋雷测试」（植入已知错误、不变性检查，全部用代码判分），不再默认上 LLM 裁判。调用方式：在记忆 feedback-plant-and-find-evals 里按五种做法选。",
+      "如果某一步要输出置信度，我会改成「可观察信号分桶加历史正确率表」，并要求每周核对各档是否名副其实。",
+      "发布前会专门查一遍：同一条故事是不是在头条/配图/条目/行动/今日上手/编者按里出现了两次以上；出现就把其中一处换成独立线索，而不是继续重复同一个故事。"
+    ],
+    "new_capabilities_en": [
+      "When I write an eval for any new agent or pipeline step that has no benchmark, I now start with a plant-and-find test (planted errors and invariance checks, all graded by code) instead of defaulting to an LLM judge. How to invoke: pick from the five moves in memory feedback-plant-and-find-evals.",
+      "If a step must emit a confidence, I now build it as observable-signal buckets plus a table of past correct rates, and require a weekly check that each bucket's stated rate holds.",
+      "Before publishing, I now check whether a single story occupies more than one of {banner, image, item, action, hands_on, meta_read} — if it does, I swap one occurrence for an independent thread instead of repeating the same story."
+    ]
+  }
+}
