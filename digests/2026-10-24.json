@@ -1,0 +1,263 @@
+{
+  "date": "2026-10-24",
+  "partial": false,
+  "banner": "国家级黑客借 AI agent 攻破 ConnectWise",
+  "banner_en": "AI Agents Go Live: State Hackers Breach ConnectWise",
+  "image": {
+    "src": "digests/img/2026-10-24.jpg",
+    "caption": "本期配图：CyberScoop 报道微软披露 Storm-0940 攻击时配的照片，画面是微软的标识。10 月 21 日，微软安全研究团队称，这家国家级黑客组织用开源 agentic 渗透测试框架 ARTEX，自动化攻击了 ConnectWise 云备份服务的客户环境。（图：CyberScoop/Getty Images）",
+    "caption_en": "Today's image: the photo CyberScoop ran with Microsoft's disclosure of the Storm-0940 attack, showing Microsoft's own logo. On October 21, Microsoft's security research team said the state-linked group used an open-source agentic penetration-testing framework called ARTEX to automate attacks on customers of ConnectWise's Cloud Backup service. (Image: CyberScoop/Getty Images)"
+  },
+  "actions": [
+    {
+      "text": "挑一个你最近改过、但没认真测过的 agent 任务或 prompt，先别急着判断「感觉好像更好了」。写下两件事：这次改动是为了解决什么已知问题，还有哪些「现在已经正常工作、不能被这次改动破坏」的场景。拿几个最近真实跑过的例子（不是编的测试用例），改动前后各跑一次，对比这两类场景各自有没有变化。做完的标准是：你能具体说出这次改动在哪类场景上变好了，又在哪类场景上可能变差了，而不是一句「感觉更好用了」。",
+      "text_en": "Pick an agent task or prompt you recently changed but never rigorously tested. Before deciding it \"feels better,\" write down two things: what known problem this change was meant to fix, and which currently-working scenarios this change must not break. Take a few real recent examples (not made-up test cases), run them before and after the change, and compare both categories. Done when you can name specifically which scenarios improved and which might have gotten worse, not just \"it feels better now.\"",
+      "source": "AI Engineer 大会：Sofia Jakovcevic（Arize）",
+      "source_en": "AI Engineer NYC: Sofia Jakovcevic (Arize)",
+      "source_url": "https://www.youtube.com/watch?v=v5tm5EAzsAs"
+    },
+    {
+      "text": "挑一项你已经在用 AI 辅助做的研究或决策类工作，接下来一周，每次用的时候记两件事：花了多少时间，这次产出有没有真被你用上（而不是看了一眼就扔）。先别急着算「省了多少钱」。Contour 那场演讲里就说过，ROI 在投资这类工作上很难当场算清楚，但「花的时间」和「有没有用上」这两件事，现在就能开始分开记。做完的标准是：一周后你能说出这几次使用里，有几次产出真的改变了你接下来的动作。",
+      "text_en": "Pick one research or decision-making task where AI is already helping. For the next week, every time you use it, log two things: how much time it took, and whether the output actually got used (not just glanced at and discarded). Don't rush to calculate \"money saved\" — as the Contour talk makes clear, ROI on investing-type work is genuinely hard to pin down immediately, but \"time spent\" and \"actually used\" can start getting tracked separately right now. Done when, after a week, you can say how many of those uses actually changed what you did next.",
+      "source": "AI Engineer 大会：Hari Kumar（Contour Asset Management）",
+      "source_en": "AI Engineer NYC: Hari Kumar (Contour Asset Management)",
+      "source_url": "https://www.youtube.com/watch?v=ZMZlAn6Pyfg"
+    },
+    {
+      "text": "翻一下你现在接入的第三方应用或集成（OAuth 授权、API key、webhook），挑出权限范围最大的那一个，问自己一句：它拿到的权限是不是比它实际要做的事大。ConnectWise 这次被攻破，根本原因就在这里。微软自己的说法是，「一个拿到高权限的受损第三方应用，能提供远超它本来用途的访问权限」。能收紧权限范围的，现在就收紧；收不紧的，至少记下来，知道一旦它被攻破，攻击者能拿到什么。做完的标准是：你能具体说出这个第三方应用如果今晚被攻破，攻击者能碰到你哪些数据或系统。",
+      "text_en": "Go through the third-party apps or integrations currently connected to your systems (OAuth grants, API keys, webhooks), pick the one with the widest permission scope, and ask: does it have more access than the job it actually does requires? That's the exact root cause behind the ConnectWise breach, in Microsoft's own words: \"a compromised third-party application with high privileges could provide access beyond its originally intended purpose.\" Narrow the scope wherever you can; where you can't, at least write down what an attacker would reach if it were compromised. Done when you can name specifically what data or systems that third-party app could touch if it were breached tonight.",
+      "source": "微软安全研究团队（官方披露）· CyberScoop",
+      "source_en": "Microsoft Security Research (official disclosure) · CyberScoop",
+      "source_url": "https://cyberscoop.com/?p=91224"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚十分钟：上传一张照片，几秒内被「画」成油画",
+    "title_en": "Tonight, 10 minutes: upload a photo and watch it get 'painted' in seconds",
+    "why": "Simon Willison 用一句提示词让 Claude Opus 5.5 做出了这个工具：打开一个 canvas，用模拟画笔把你上传的照片快速「画」一遍。背后没有扩散模型，靠的是 Sobel 边缘检测加 canvas 动画，没用任何外部图像生成接口。效果好不好、画得像不像，得自己上传一张照片试试看。",
+    "why_en": "Simon Willison got Claude Opus 5.5 to build this with a single prompt: open a canvas and rapidly \"paint\" an uploaded photo with a simulated brush. There's no diffusion model behind it, just Sobel edge detection and canvas animation, no external image-generation API involved. Whether it actually looks good is worth seeing with your own photo.",
+    "time": "~5 分钟",
+    "time_en": "~5 minutes",
+    "steps": [
+      "打开 https://tools.simonwillison.net/quick-study-painter",
+      "上传一张自己的照片（人像、风景都行，建议选对比明显的图）",
+      "等几秒，看它把照片「画」成模拟油画的过程",
+      "换一张反差大的照片再试一次，对比两次的「笔触」风格是否一样"
+    ],
+    "steps_en": [
+      "Open https://tools.simonwillison.net/quick-study-painter",
+      "Upload a photo of your own (portraits or landscapes both work; pick one with clear contrast)",
+      "Wait a few seconds and watch it get 'painted' into a simulated oil painting",
+      "Try a second, visually different photo and compare whether the 'brushwork' style stays the same"
+    ],
+    "source": "Simon Willison 博客",
+    "source_en": "Simon Willison's blog",
+    "source_url": "https://simonwillison.net/2026/Oct/23/quick-study-painter/"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "npm 创始人：写代码免费了，「产品工程师」才是新岗位",
+          "title_en": "npm's co-founder: coding went free, the \"product engineer\" is the new job",
+          "author": "AI Engineer 大会 · Laurie Voss（Arize AI 开发者关系负责人，npm 联合创始人）",
+          "author_en": "AI Engineer NYC · Laurie Voss (Head of DevRel, Arize AI; npm co-founder)",
+          "likes": "767",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=kspZP5BgkEU",
+          "summary": "我把整段文字稿读完了。Laurie Voss 现任 Arize AI 开发者关系负责人,此前联合创建过 npm。他引用 swyx 三年前那篇《AI 工程师崛起》,说那篇还没说到位:AI 工程师在变,所有工程岗位都在变。核心变化是写代码基本免费了。开了自主编码 agent 的开发者,代码量涨了 741%,也就是八倍,实际交付速度只快了 30%。瓶颈卡在代码审查:他引用 Cisco 二十年前的一项研究,人审查代码,每小时超过 450 行质量就明显下降;一万行的 diff 要像样审完得花一周,现实中没人真这么做。GitHub Copilot 现在承担了 GitHub 上五分之一以上的代码审查,OpenAI 内部甚至说员工可以不审查自己的 PR。机器审查员也不靠谱:四个 AI 审查工具同时跑,各自都能挑出真实问题,彼此挑出的问题几乎不重合;有人试过完全不做人工审查,半年后公开承认失败,系统出了大问题要整个重做;亚马逊几次事故复盘后规定,资深工程师必须签字才能合并;Anthropic 也发过一篇关于漏网 bug 的事故报告,那些 bug 连人和机器审查都没挡住。代码该不该合并,两个标准的差距很大:Cognition 做了个跑分,测试能不能过,模型通过率 87%;换成作为维护者你会不会合并这段代码,通过率掉到 54%。中间的差距是风格、副作用、历史背景这些东西,写不进代码本身,只存在于维护者脑子里。他借用管理学家高德拉特的约束理论:修好一个瓶颈,瓶颈不会消失,只会挪到下一处。他押注接下来十年瓶颈停在定义清楚什么叫好这件事上,因为这件事不可转移:日历应用和排期应用解决的是几乎一样的问题,但对好的定义完全不同。由此他造了个新岗位名字,产品工程师:不只是找人聊需求,而是把好的标准写成规格、写成评估标准,再交给 agent 去打字实现。市场已经在为这个角色付钱:前向部署工程师的招聘启事九个月内涨了 800%,平均年薪 24 万美元。这也带来一个紧迫问题:22 到 25 岁的初级工程师就业从 2023 年初开始持续下滑,41 到 49 岁的资深工程师需求反而上升,因为带新人的老办法——把需求写死,让新人实现,再告诉他哪里错了——现在直接交给了 agent。Google 培养产品经理苗子的 APM 项目一年只出 50 人,他估计至少需要一万人。他给的具体建议:真正高风险、牵连大的代码留给人看,其余交给自动审查;花精力做出便宜就能验证对错的机制,再把这套机制交给 agent;把团队里最资深的人脑子里的判断写成规格和评估标准,这才是产品工程师真正的工作;衡量时不要只看代码产量,要看审查意见有没有真被采纳,看测试通过与维护者愿意合并之间的差距有多大。",
+          "summary_en": "I read the full transcript. Laurie Voss now heads developer relations at Arize AI and previously co-founded npm. He cites swyx's \"rise of the AI engineer\" essay from three years ago and argues it didn't go far enough: it's not just AI engineers changing, every engineering job is. The underlying shift is that writing code has become essentially free: developers who turn on autonomous coding agents write 741% more code, 8x, but only ship 30% faster. The bottleneck is code review: he cites a 20-year-old Cisco study showing human review quality falls off sharply past 450 lines an hour, meaning a 10,000-line diff would take a week to properly review, and in practice nobody does that. GitHub Copilot now does more than one in five reviews on GitHub, and OpenAI internally says employees aren't required to review their own PRs. But machine reviewers aren't reliable either: four AI review tools run in parallel each catch real issues, but barely overlap on which ones; someone who stopped human review entirely for six months publicly admitted it failed and had to rebuild; Amazon now requires senior-engineer sign-off after a run of outages traced to agent-produced code; Anthropic published its own postmortem on bugs that slipped past every reviewer, human and machine. The gap between two ways of measuring \"good enough\" is wide: Cognition's benchmark shows an 87% pass rate on \"does it pass the tests\" that falls to 54% on \"would you, as the maintainer, merge this,\" and that gap is style, side effects, and history that live only in the maintainer's head, not in the code itself. He borrows Goldratt's theory of constraints: fixing a bottleneck doesn't remove it, it just moves to the next one. His bet for the next decade is that the bottleneck settles on defining what \"good\" means, because that knowledge doesn't transfer: a calendar app and a scheduling app solve nearly the same problem but have completely different definitions of good. From this he coins a new job title, the \"product engineer\": not just talking to people about requirements, but writing down what \"good\" means as specs and eval criteria, then handing the typing to agents. The market is already paying for this: job postings for \"forward deployed engineer\" rose 800% in nine months, averaging $240k. But this creates an urgent problem: employment for junior engineers aged 22-25 has been declining steadily since early 2023, while demand for senior engineers aged 41-49 has risen, because the old way of training juniors (give a tightly specified ticket, let them build it, tell them what's wrong) is now just what agents do. Google's own APM pipeline for grooming product people turns out only 50 a year; he estimates at least 10,000 are needed. His concrete advice: reserve human review only for genuinely high-blast-radius code and automate the rest; spend effort building mechanisms that are cheap to verify, then hand those to agents; turn the judgment inside your most senior people's heads into specs and evals, that's the actual job of a product engineer; measure the right thing, not code volume, but whether review feedback actually gets acted on and how wide the gap is between \"tests passed\" and \"a maintainer would merge this.\"",
+          "why": "741% 更多代码、30% 更快交付、87%→54%,这些数字,还有 Cognition 的跑分和 Voss 引用的多数统计,都出自厂商或研究方自己的测算,没看到独立复核;Cisco 那项代码审查速度的研究是独立的老研究,22-25 岁初级工程师就业下滑这张图,他说取自劳工统计数据,这两点比较容易单独核实。",
+          "why_en": "The 741% more code, 30% faster shipping, and 87%→54% Cognition benchmark are mostly vendor- or researcher-reported figures with no independent audit visible; but the Cisco code-review-speed study is an older independent study, and the chart showing junior (22-25) engineer employment declining, which he says comes from labor statistics, are the two claims here that are comparatively easy to check independently."
+        },
+        {
+          "title": "Bridgewater 的秘密武器：1 亿份文档喂给 agent 当投资助理",
+          "title_en": "Bridgewater's secret weapon: 100 million documents feeding its AI investment associate",
+          "author": "AI Engineer 大会 · Sam Green & Aaron Linsky（Bridgewater Associates）",
+          "author_en": "AI Engineer NYC · Sam Green & Aaron Linsky (Bridgewater Associates)",
+          "likes": "5654",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=CLve4Nx_RwI",
+          "summary": "我把整段文字稿读完了。Sam Green 是 Bridgewater 应用 AI 团队负责人，Aaron Linsky 做产品工程。两人讲的是 Bridgewater 内部叫 Vault 的数据平台，现在存了超过一亿份文档，每天还在增加，来自 135 个外部数据源，加上公司内部的备忘录、会议记录、辩论记录。开场他们做了个对照实验：同一个问题「AI 基建投资如何影响韩元，市场参与者是否认为这会持续」，丢给一个普通的企业聊天机器人，它找了 15 份相关资料，最后只用了一两份就给出答案，还自己承认没找到足够文档支撑结论，用来回答的笔记还是三个月前的，在投资这行三个月是很长的时间。接上 Vault 以后，同一个问题，agent 先被提示聚焦到具体的一周时间窗口，找到 52 份候选文档，最后用了七份作答，答案明显更扎实。两人总结出三条经验。第一条：人和 agent 对数据平台的需求完全不同，必须分开设计。人一分钟读 300 词，agent 一分钟能读 3 万词，快 100 倍；人要的是精准、低噪音，agent 对精度没那么敏感，只要东西在，就能用上。他们专门做了个检索基准测试，200 道题，人工挑出最佳文档，一开始精度（前十条里有多少是对的）只有 60%，改进后用 agentic search 做法升到 90-95%。过滤这块最初踩了坑：传统向量数据库过滤要么先过滤再算距离（精度高但慢），要么先算距离再过滤（快但精度低），后来换成 Turbo Puffer 的「原生过滤」，只在最近的几个聚类里搜索再打分，速度和精度都接近最优解，同时还要撑住人类每小时 100 次查询和 agent 每秒上百次、agent 群可能上千次查询这两种完全不同的规模。第二条经验更微妙：工具再好，不能指望直接扔给投资人就会被用起来，得先把旧习惯迁移过去。他们发现分析师原来都靠邮件，订阅列表、按规则分文件夹，这些习惯都原样搬进了 Vault，订阅变成保存搜索，文件夹变成保存合集，先让人用熟悉的方式进来，再慢慢打开新用法，比如跨全部数据提问、按主题追踪动态消息流、把合集直接交给 agent 继续处理。有了「口袋分析师」产品以后，几个小时的研究工作几美元、几分钟就能做完；下一代「研究员」把同样思路拉长到几天到几周的研究周期；还训练了专用模型配合基础模型一起推理 Vault 里的数据，第一个产品是「预测者」，产出宏观相关的 AI 预测，还有把非结构化数据直接变成可交易策略信号的功能。第三条，也是他们最后强调的重点：真正的回报是让 agent 从「等人提问才回答」变成「主动盯着该关注什么」，他们管这个叫「投资人工作台」，agent 会主动提出一个话题，连带证据摆出来，投资人决定要不要深入；深入之后，这次协作产生的结论会自动写回 Vault，给下一轮用。两人最后抛出的问题：你的 AI 知道这个世界正在发生什么吗？它记得你公司已经学到的东西吗？",
+          "summary_en": "I read the full transcript. Sam Green leads Bridgewater's applied AI team, Aaron Linsky runs product engineering. They described Bridgewater's internal data platform, the Vault, which now holds more than 100 million documents and keeps growing, drawn from 135 external sources plus the firm's own internal memos, meeting transcripts, and debates. They opened with a side-by-side: the same question, how AI infrastructure investment affects the Korean won and whether markets expect it to continue, asked of a generic enterprise chatbot, which found 15 relevant documents but used only one or two to answer, admitted it hadn't found enough to fully support a conclusion, and drew on a note three months old, a long time in investing. Connected to the Vault, the same question gets the agent to first focus on a specific one-week window, find 52 candidate documents, and draw on seven to produce a noticeably stronger answer. The two drew three lessons. First: humans and agents need completely different things from a data platform and must be designed for separately. A human reads about 300 words a minute; an agent reads about 30,000, 100x faster; humans need precision and low noise, agents are far less sensitive to precision; if the data's there, they'll use it. They built a retrieval benchmark, 200 questions with hand-picked best documents, where precision-at-10 started at 60% and rose to 90-95% after building out agentic search. Filtering was an early stumbling block: classic vector-database filtering is either post-filter (fast, lower recall) or pre-filter (high recall, slow); they eventually moved to Turbo Puffer's \"native filtering,\" which searches only the nearest clusters and scores those, getting close to both speed and recall, while also handling two very different scales, about 100 human queries an hour versus 100+ agent queries a second, with agent swarms reaching into the thousands. Second, subtler lesson: no matter how good the tool is, you can't just hand it to investors and expect adoption, you have to migrate their existing habits first. Analysts had been living in email, subscription lists, and rule-based folders; all of that got carried into the Vault as-is, subscriptions became saved searches, folders became saved collections, letting people enter through familiar habits before opening up new ones, like asking questions across all the data, following dynamic topic feeds, or handing a collection straight to an agent. Their \"pocket analyst\" product turns hours of research into a few dollars and a few minutes; the next-generation \"researcher\" stretches the same idea to a days-to-weeks research cycle; they've also trained custom models to reason over Vault data alongside foundation models, starting with a \"forecaster\" producing macro-relevant AI predictions, plus turning unstructured data directly into tradable signal. Third, and their closing emphasis: the real payoff is moving agents from reactively answering to proactively flagging what deserves attention, in what they call the \"investor workbench,\" where the agent surfaces a topic with evidence attached and the investor decides whether to dig deeper; whatever comes out of that collaboration gets written straight back into the Vault for the next round. Their closing question: does your AI know what's happening in the world, and does it remember what your firm has already learned?",
+          "why": "60% 到 90-95% 的检索精度提升、Turbo Puffer 的过滤效果，都是 Bridgewater 自己内部测的，没有第三方复核，也没有公开具体基准数据集；但「文档够新、够全才能让 agent 给出靠谱答案」这个开场对照实验，逻辑上和检索增强生成（RAG）领域其他独立研究的结论一致，不是 Bridgewater 一家的孤例。",
+          "why_en": "The 60%-to-90/95% retrieval precision gain and the Turbo Puffer filtering results are Bridgewater's own internal benchmarks, with no public dataset or third-party review; but the opening side-by-side, an agent needs current, comprehensive documents to give a reliable answer, matches independent findings elsewhere in retrieval-augmented generation research, not just Bridgewater's own claim."
+        },
+        {
+          "title": "对冲基金怎么算 AI 的 ROI？答案是先别急着算钱",
+          "title_en": "How does a hedge fund measure AI's ROI? First, stop trying to put a dollar number on it",
+          "author": "AI Engineer 大会 · Hari Kumar（Contour Asset Management AI 负责人）",
+          "author_en": "AI Engineer NYC · Hari Kumar (Head of AI, Contour Asset Management)",
+          "likes": "4954",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=ZMZlAn6Pyfg",
+          "summary": "我把整段文字稿读完了。Hari Kumar 是 Contour Asset Management 的 AI 负责人。这家多空对冲基金成立十多年,管理 60 亿美元,主做科技、媒体、电信板块,大约 15 到 20 人。他来公司一年,任务是证明 AI 投入在全公司各环节都有效果,先从研究流程开始,再扩到交易、运营、合规、财务。他坦言这件事很难,因为很难说清楚「我们在 AI 上花了这么多钱和时间,到底换来了什么」,尤其是拿盈亏 (P&L) 这个最终指标去衡量。他讲的具体做法,是给分析师的研究流程做真实场景 AB 测试:公司十个分析师,每人覆盖三四十个标的,他们记录分析师在没有 AI 工具时,针对一个标的、从一次财报到下一次财报这三个月周期里的完整工作流程,包括用了哪些数据来源、得出了什么结论;然后用上更多 AI 工具以后 (比如 AI 帮忙做专家访谈、AI agent 做消费者调研),重走同样流程,对比两次的结论和耗时。他特别强调,这件事没法立刻看到 ROI,更多是流程层面的改善:调研流程是不是变好了,模型更新是不是变快了。他们还在建一个想法追踪 agent:分析师某天花一天研究一个想法,后来被别的事打断就放下了,几个月没人再提,可能错过关键的价格窗口;现在用 agent 持续追踪这些半途而废的想法,结合市场变化判断「现在是不是该重新看看这个」,主动提醒分析师、基金经理和交易员。另一个具体指标是每条有用洞见的成本:记录分析师每天花多少时间在哪个标的上,同时追踪这些洞见最终有没有被采纳、带来了什么结果。这样才能把「花了多少时间」和「有没有用上」两件事分开看,不至于笼统地说「我们投入了多少 AI 预算」。另一个有意思的点,是把另类数据 (比如 Yipit 的信用卡数据) 通过 MCP/API 直接喂进 agent;原本信用卡数据和专家访谈记录是分开看的两条线,现在能让 agent 把两者关联起来看。他也谈到 ROI 账里容易被忽略的一块:工具坏了谁来修。模型调用会断,连接器隔几天就坏一次,修复这些问题占用的时间也该算进 ROI 账目,不能只看「用了新工具带来多少增量」。最后他总结,对基金这种生意来说,衡量 AI 投入回报极难,但越来越多中小型基本面基金在往这个方向走,统一一层能跨分析师干很多事的工具会越来越值钱。",
+          "summary_en": "I read the full transcript. Hari Kumar is head of AI at Contour Asset Management, a fundamental long-short hedge fund over a decade old managing $6 billion, focused on tech/media/telecom with roughly 15-20 people. He's been there a year, tasked with proving AI investment pays off across the firm, starting with research and expanding to trading, operations, compliance, and finance. He's upfront that this is hard, because it's genuinely difficult to say what the firm gets back for its AI spend, especially measured against the ultimate metric, P&L. His concrete method is running live AB tests on analysts' research workflows: the firm's ten analysts each cover 30-40 names, and they recorded an analyst's full pre-AI workflow for a given name over one earnings-to-earnings three-month cycle, including which data sources were used and what conclusions were reached; then, as more AI tools rolled out (AI-assisted expert calls, AI-agent-run consumer surveys), they re-ran the same workflow and compared conclusions and time spent. He stresses this doesn't show ROI immediately, it's more a process-level improvement question: is the research workflow better, are model updates happening faster. They're also building an \"idea tracking\" agent: an analyst might spend a day on an idea, get pulled onto something else, and the idea sits forgotten for months, possibly missing a key price window; now an agent keeps tracking those half-finished ideas against market moves and proactively flags \"this might be worth revisiting now\" to the analyst, the PM, and the trader. Another concrete metric is \"cost per useful insight\": tracking how much time an analyst spends per name per day, combined with tracking whether those insights were actually acted on and what resulted, which separates \"time spent\" from \"actually used\" instead of vaguely citing total AI budget. Another interesting piece is feeding alternative data (like Yipit's credit-card panel data) directly into agents via MCP/API, letting what used to be two separate lines, credit-card data and expert-call notes, get connected by the agent. He also flags a part of the ROI ledger that's easy to overlook: who fixes things when they break. Model calls fail, connectors break every few days, and the time spent fixing those should count against ROI too, not just the upside of adopting new tools. He closes by saying measuring AI's return is genuinely hard for a fund like his, but more small-to-mid fundamental funds are heading this direction, and one unified layer doing a lot across analysts will keep getting more valuable.",
+          "why": "每条有用洞见的成本、流程层面的改善,这些框架和具体做法是 Hari Kumar 自己讲的实践经验,没有给出具体的对比数字 (比如 AB 测试前后到底差了多少时间、多少结论质量)。这场演讲更像方法论分享,不是带数据的结果报告;但他明确承认这件事很难量化,没有过度包装成已经解决的问题,这一点比不少 AI-ROI 宣传材料要诚实。",
+          "why_en": "The \"cost per useful insight\" framework and the AB-test practice are Hari Kumar's own described methodology, with no concrete before/after numbers given (how much time or decision quality actually changed), so this reads more as a methodology talk than a results report with data; but he's explicit that measuring this is genuinely hard, without dressing it up as already solved, which is more honest than a lot of AI-ROI marketing material."
+        },
+        {
+          "title": "改一行 prompt，整个 agent 就垮了：怎么做 agent 的回归测试",
+          "title_en": "Change one line of a prompt and the whole agent breaks: how to regression-test agents",
+          "author": "AI Engineer 大会 · Sofia Jakovcevic（Arize 前向部署工程师）",
+          "author_en": "AI Engineer NYC · Sofia Jakovcevic (Forward Deployed Engineer, Arize)",
+          "likes": "3525",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=v5tm5EAzsAs",
+          "summary": "我把整段文字稿读完了。Sofia Jakovcevic 是 Arize(一家做 AI 可观测性的公司) 的前向部署工程师。她举了个具体例子:安全工程师提了个一行改动,让客服 agent 每次执行操作前先跟用户确认,代码审查上看毫无风险;上线一周后用生产数据跑评估,发现操作安全性这项指标提升了 17 分,但任务完成度掉了 17 分,原因是用户一旦中途离开对话,agent 因为要等确认而没能完成任务;两项加起来平均是零。这组数字说明,改善一个维度不代表整体变好。她指出问题的根源:agent 不是在代码层面出错,是在运行时出错。一行 system prompt 的改动会改变成千上万种可能的执行路径,这些路径只存在于观测数据 (trace) 里,不在静态代码里;代码 diff 告诉你改了什么,trace 才告诉你实际发生了什么。她给出一个五步回归测试流程:第一步,从真实生产 trace 里选数据集,要覆盖常规场景、已知失败场景、边界场景,还要专门留一批已经工作正常、不能破坏的场景;第二步,建评分机制,用 LLM-as-judge 或代码判定,把幻觉、任务完成度、操作安全性这类主观指标转成可计算的数字分数;第三步,跑一次基线实验,记录改动前的分数;第四步,做改动 (换 prompt、换模型、换工具),重新跑评估比较;第五步,把这套流程接入 CI,每次 PR 自动跑一遍,不达标不能合并。她在 Arize 平台上现场演示了具体操作:在 playground 里同时测试多个版本的 prompt,挂上任务完成度和操作安全性两个评估器,一次跑完能看到每个版本的延迟、成本、错误率;也可以接远程 agent,通过 HTTP 调用测试多 agent 协作系统。她提到 Arize 有一个公开的 Agent Skills 仓库,能把这整套能力接进 Claude Code 之类的编码 agent,让编码 agent 自己看到生产环境的真实表现。最后她给了两个判断:第一,每一次失败都该变成一条新的测试用例,回归测试集应该随着失败不断变厚;第二,她预测接下来的方向是从人来复盘 agent 变成 agent 自己复盘自己,因为现在瓶颈在人工审阅仪表盘、分类问题、提交修复、审查 PR 这几步;如果编码 agent 能直接看到生产 trace,就能在不知道发生了什么的情况下少写盲飞的 PR。",
+          "summary_en": "I read the full transcript. Sofia Jakovcevic is a forward deployed engineer at Arize, an AI observability company. She opens with a concrete example: a security engineer proposes a one-line change asking a support agent to confirm with the user before taking any action, which looks risk-free in code review; a week after shipping it, running evals on production data shows a genuine 17-point improvement on \"action safety\" but a 17-point drop on \"task completion\", because once a user leaves mid-session the agent, waiting for confirmation, never finishes the task; the two average out to net zero, showing that improving one dimension doesn't mean the agent improved overall. She names the root cause: agents don't fail at the code level, they fail at runtime, a one-line system-prompt change can shift thousands of possible execution paths that exist only in observability traces, not in static code, the diff tells you what changed but the trace tells you what actually happened. She lays out a five-step regression loop: first, select a dataset from real production traces, covering normal cases, known failures, edge cases, and a protected set of \"already working, must not break\" cases; second, build a scoring mechanism, turning subjective metrics like hallucination, task completion, and action safety into numeric scores via LLM-as-judge or code-based evaluators; third, run a baseline experiment and record pre-change scores; fourth, make the change (prompt, model, or tool) and rerun the evaluation to compare; fifth, wire this into CI so every PR runs it automatically and can't merge below threshold. She demos this live on the Arize platform: testing multiple prompt versions side by side in a playground, attaching task-completion and action-safety evaluators, seeing latency, cost, and error rate for each version in one run, and connecting to remote agents over HTTP to test multi-agent systems. She mentions Arize has a public Agent Skills repository that plugs this whole capability into coding agents like Claude Code, letting a coding agent see real production behavior directly. She closes with two predictions: first, every failure should become a new test case, so the regression suite keeps growing denser with real failures; second, the next shift is from humans reviewing agents to agents reviewing themselves, because the current bottleneck is the manual steps, reviewing dashboards, triaging, submitting fixes, reviewing PRs, and if a coding agent can see production traces directly, it stops pushing \"blind\" PRs without knowing what's actually happening.",
+          "why": "17 分提升、17 分下降这组数字，是她现场用真实产品（Arize 自家平台）演示的具体案例，可信度较高。但这是厂商自己挑的演示案例，不代表所有 prompt 改动都会出现这种精确对称的抵消。她本人是 Arize 员工，整套方法论和现场演示都绑定在自家产品上；工具是否真的比其他可观测性平台好，这场演讲没法单独验证。",
+          "why_en": "The 17-point gain and 17-point drop are a concrete demo on Arize's own real product, reasonably credible, but it's a vendor-chosen example and doesn't mean every prompt change produces this exact symmetric cancellation; she's an Arize employee and the whole methodology and demo is tied to her own company's product, so whether this tool genuinely beats other observability platforms isn't something this talk can verify on its own."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 5,
+      "items": [
+        {
+          "title": "微软实锤：国家级黑客用开源 agentic 渗透测试框架打穿 ConnectWise",
+          "title_en": "Microsoft confirms: a state-linked group used an open-source agentic pentest framework to breach ConnectWise",
+          "author": "微软安全研究团队（官方披露）· CyberScoop",
+          "author_en": "Microsoft Security Research (official disclosure) · CyberScoop",
+          "likes": "未标注",
+          "likes_label": "官方披露·行业媒体核实",
+          "url": "https://cyberscoop.com/?p=91224",
+          "summary": "我读完了 CyberScoop 对微软这篇披露的报道全文，里面直接引用了微软安全研究团队 10 月 21 日那篇博客的原话。微软把这次攻击归因给一个从 2021 年就活跃、代号 Storm-0940 的国家级黑客组织（中国背景）。早在 9 月，这个组织就已经用一个叫 ARTEX 的开源 agentic 渗透测试框架，自动化攻击了全球多个行业的“数百家”机构，涉及航空航天、汽车、化工、能源、金融、政府、法律、制造、媒体、军事、半导体、科技、智库和非营利组织。ARTEX 能配合任意大模型使用，微软形容它是“一套由大模型驱动的 agent 系统，几乎不需要人工介入，就能从侦察一路跑到数据外泄”。10 月 14 日前的四天里，Storm-0940 先对 8 家机构的 327 个微软 365 和 Exchange Online 账号发起密码喷洒攻击，记录到超过 15 万次失败登录，峰值每分钟 2900 次失败。这波攻击本身没有成功。但第二天，这个组织用同一套 AI agent 和基建转向攻击 ConnectWise，拿下了一批使用 ConnectWise 云备份服务客户的微软 365 环境访问权限。微软说，在部分受害环境里，这些 AI agent 不只是登录成功，还往下走到了 Microsoft Graph 和目录层操作，包括侦察、修改应用凭据来建立持久化，甚至改动身份、用户组和特权角色。微软特别点出一句：“一个拿到高权限的受损第三方应用，能提供远超它本来用途的访问权限”，这正是这次攻击能往下扎这么深的根本原因。微软说“成功登录不代表客户数据一定被访问或窃取”，也没公布到底有多少客户环境真正被攻破。ConnectWise 这边，周六（10 月 18 日前后）暂停了部分服务，周三（10 月 21 日）开始分阶段恢复，提醒客户暂时别重新启用连接，预计恢复还要几天。微软安全业务执行副总裁 Igor Tsyganskiy 在领英上说，“自十月初以来，一波 AI 驱动的网络攻击一直在持续”，这次 ConnectWise 事件只是“众多事件里的一个”。",
+          "summary_en": "I read CyberScoop's full report on Microsoft's disclosure, which directly quotes Microsoft Security Research's own October 21 blog post. Microsoft attributes the attack to a state-linked group active since 2021, tracked as Storm-0940 (China-aligned), saying that as early as September this group used an open-source agentic penetration-testing framework called ARTEX to automate attacks against \"hundreds\" of organizations globally, spanning aerospace and defense, automotive, chemicals, energy, financial services, government, legal, manufacturing, media, military, semiconductors, technology, think tanks, and nonprofits. ARTEX works with any AI model; Microsoft describes it as \"a system of LLM-driven agents that run an autonomous penetration test from reconnaissance through data exfiltration with little needed human interaction.\" During a four-day stretch ending October 14, Storm-0940 first targeted 327 Microsoft 365 and Exchange Online accounts across eight organizations with a password-spray campaign, logging more than 151,000 failed logon attempts, peaking at 2,900 per minute; that campaign itself was unsuccessful, but the next day the group turned the same AI agents and infrastructure on ConnectWise, compromising Microsoft 365 environments for a batch of ConnectWise Cloud Backup customers. Microsoft says that in some of these environments the AI agents went beyond simple authentication into Microsoft Graph and directory operations, including reconnaissance, modifying application credentials to establish persistence, and changes to identities, groups, and privileged roles; Microsoft specifically states, \"a compromised third-party application with high privileges could provide access beyond its originally intended purpose,\" which is exactly why this attack went as deep as it did. Microsoft says a successful sign-in doesn't necessarily mean customer data was accessed or stolen, and hasn't disclosed exactly how many customer environments were actually compromised. ConnectWise paused some services around Saturday, October 18, began restoring them in phases on Wednesday, October 21, and told customers to keep connections disabled for now, expecting recovery to take several more days. Microsoft EVP Igor Tsyganskiy wrote on LinkedIn that \"since early October, a wave of AI-driven cyberattacks has been ongoing,\" and that the ConnectWise incident is just \"one of many.\"",
+          "why": "2,250 个租户、每分钟 2900 次登录尝试这些数字，是微软自己披露博客里的原话，CyberScoop 直接引用，算第一方数据，没有独立第三方审计；攻击规模、具体多少客户数据真被偷走，微软自己也没给出确切数字，只说“登录成功不代表数据被访问”，这部分还不确定。但 327 个账号、15 万次失败登录、四天时间窗这几个具体数字，以及 ConnectWise 自己 10 月暂停和恢复服务的时间线，是微软和 ConnectWise 各自独立公开的信息，两边对得上，互相印证。",
+          "why_en": "The 2,250-tenant and 2,900-attempts-per-minute figures are Microsoft's own words from its disclosure blog, quoted directly by CyberScoop, so they're first-party with no independent audit; the full scope, how much customer data was actually stolen, isn't given either, since Microsoft itself only says a successful sign-in doesn't necessarily mean data access. But the 327-account, 151,000-failed-login, four-day-window figures, and ConnectWise's own separately-disclosed pause-and-restore timeline, are two independently published accounts that line up with each other."
+        },
+        {
+          "title": "Apollo 首席经济学家：科技股之外，AI 还没让任何人多赚一分钱",
+          "title_en": "Apollo's chief economist: outside tech stocks, AI hasn't made anyone a dollar more yet",
+          "author": "Torsten Slok（Apollo 首席经济学家）",
+          "author_en": "Torsten Slok (Chief Economist, Apollo)",
+          "likes": "未标注",
+          "likes_label": "机构研究简报",
+          "url": "https://www.apollo.com/wealth/insights-news/insights/daily-spark/no-signs-of-ai-payoff-outside-the-tech-sector",
+          "summary": "我读完了 Apollo 首席经济学家 Torsten Slok 这篇简报全文。他的核心数据对比是“科技七巨头”和“标普其余 493 家公司”：人均营收，七巨头在涨，其余 493 家持平；利润率，七巨头在涨，其余 493 家也持平；全要素生产率（用旧金山联储的调整后口径）看不出 AI 带来任何增长。换句话说，砸了这么多钱、吹了这么久的 AI，除了科技公司自己，整个美国企业界的账面上还看不到任何回报。他的判断是：主流企业现在开始把 AI token 支出看成成本项，而不是增长来源，愿意为最新模型买单的，基本还是靠风投输血的创业公司，传统企业并不觉得非用最新模型不可。他给的解释角度很直接：AI 是个很好的计算器，但做生意靠的是判断力，判断力依赖上下文，依赖信任、文化、不成文的规矩、道德权衡，这些东西决定了一家公司的声誉风险，也决定了营收和利润率，AI 目前理解不了这些。他的结论是：AI 这个故事最终要在标普其余 493 家公司身上见分晓，不是在七巨头身上，而眼下这 493 家公司的营收增长和利润率，还看不出任何起色。",
+          "summary_en": "I read Apollo chief economist Torsten Slok's full briefing. His core comparison is between the \"Mag 7\" and the \"S&P 493\": revenue per worker is rising for the Mag 7 but flat for the 493; profit margins are rising for the Mag 7 but flat for the 493; total factor productivity (using the San Francisco Fed's adjusted series) shows no sign of AI boosting growth at all. In other words, after all this spending and hype, outside the tech companies themselves, corporate America's books still show zero payoff. His read: mainstream companies are starting to treat AI token spend as a cost center rather than a growth driver; the ones willing to pay for the latest models are mostly VC-backed startups, while traditional companies don't feel compelled to use the newest model. His explanation is blunt: AI is a great calculator, but running a business depends on judgment, and judgment depends on context, trust, culture, and unwritten rules and ethical tradeoffs, the things that actually determine reputational risk and, ultimately, revenue and margins, which AI doesn't understand yet. His conclusion: the AI story will be decided by the S&P 493, not the Mag 7, and right now those 493 companies show no sign of improving revenue growth or margins.",
+          "why": "这篇简报的图表来自彭博、Macrobond、旧金山联储等公开数据源，方法可查，不是 Slok 凭空下的论断；但“判断力依赖上下文”这类解释 AI 为什么还没见效的说法，是他自己的定性判断，没有数据支撑，算是他给出的一种解释角度，不是已经证实的因果关系。",
+          "why_en": "The chart data comes from public sources (Bloomberg, Macrobond, the San Francisco Fed), so the methodology is checkable and not just Slok's own assertion; but his explanation for why AI hasn't paid off yet, that business judgment depends on context, trust, and culture AI doesn't understand, is his own qualitative read, not something the data itself demonstrates, more an interpretive frame than a proven causal claim."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条新闻摆在一起看，共同点不是「AI 有用」或「AI 有风险」，是「说这话的人开始敢把名字和数字摆上台面」。Torsten Slok 不是随便一个唱衰 AI 的人，他是 Apollo 的首席经济学家，拿彭博和旧金山联储的数据，说标普除科技股外的 493 家公司，营收和利润率都看不出 AI 带来的变化。这话过去几个月不少人含糊地说过，今晚是第一次有人把图表摆出来。Contour 那位 AI 负责人也没敢说「我们靠 AI 赚了多少钱」，他讲的是怎么把「花了多少时间」和「有没有用上」这两件最基本的事分开记，因为连这个基金自己都还没算出真正的 ROI。另一头，微软也没含糊地说「agent 攻击正在变多」，它直接点名 Storm-0940，给出 327 个账号、15 万次失败登录、2250 个租户这些具体数字，把过去几周 CrowdStrike、METR 这些人只能描述趋势的「agent 攻击」，变成了一个有名字、有时间线、有确认受害者的真实事件。连 Bridgewater 和 Arize 这两场最像「成功案例」的演讲，讲的也不是模型多厉害，是怎么花心思做检索基准、做回归测试，把「感觉变好了」这种话从公司内部彻底删掉。往好的方向看，这是个健康的信号：吵了一年的「AI 到底有没有用」「agent 到底有多危险」，正在从嘴仗变成可以拿数字对质的问题。",
+  "meta_read_en": "Tonight's stories share one thing, not a verdict that AI works or that it's dangerous, but that the people making these claims are starting to put their name and a number on the table instead of a vibe. Torsten Slok isn't some random AI skeptic, he's Apollo's chief economist, and using Bloomberg and San Francisco Fed data he shows that across the S&P 493 companies outside the Mag 7, revenue per worker and profit margins haven't moved. People have said versions of this vaguely for months; tonight is the first time someone put an actual chart behind it. Contour's head of AI didn't claim his fund is making money off AI either, he described how to separate \"time spent\" from \"actually used,\" because the fund itself hasn't worked out a real ROI number yet. On the other side, Microsoft didn't vaguely say agent attacks are rising, it named Storm-0940 directly and gave 327 accounts, 151,000 failed logins, and 2,250 tenants, turning what CrowdStrike and METR could only describe as a trend over the past few weeks into a confirmed incident with a name, a timeline, and identified victims. Even the two talks that read most like success stories, Bridgewater and Arize, weren't really about how smart the model is, they were about the work of building retrieval benchmarks and regression tests specifically to delete the phrase \"it feels better\" from how the company talks about AI internally. Read generously, that's a healthy sign: a year of shouting about whether AI actually works and how dangerous agents really are is starting to turn into something you can argue with actual numbers instead.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 44589,
+      "stars_today": 2264
+    },
+    {
+      "rank": 2,
+      "name": "NVIDIA/OpenShell",
+      "url": "https://github.com/NVIDIA/OpenShell",
+      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+      "language": "Rust",
+      "stars": 19484,
+      "stars_today": 896
+    },
+    {
+      "rank": 3,
+      "name": "aws/agent-toolkit-for-aws",
+      "url": "https://github.com/aws/agent-toolkit-for-aws",
+      "description": "Official, AWS-supported MCP servers, skills, and plugins to help AI agents build on AWS",
+      "language": "Python",
+      "stars": 3136,
+      "stars_today": 13
+    },
+    {
+      "rank": 4,
+      "name": "Nutlope/hallmark",
+      "url": "https://github.com/Nutlope/hallmark",
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "language": "CSS",
+      "stars": 32164,
+      "stars_today": 455
+    },
+    {
+      "rank": 5,
+      "name": "luongnv89/claude-howto",
+      "url": "https://github.com/luongnv89/claude-howto",
+      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "language": "Python",
+      "stars": 44571,
+      "stars_today": 392
+    },
+    {
+      "rank": 6,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
+      "language": "Rust",
+      "stars": 86428,
+      "stars_today": 619
+    },
+    {
+      "rank": 7,
+      "name": "pollen-robotics/microduck",
+      "url": "https://github.com/pollen-robotics/microduck",
+      "description": "A Tiny biped duck robot 🦆",
+      "language": "Rust",
+      "stars": 11003,
+      "stars_today": 319
+    },
+    {
+      "rank": 8,
+      "name": "google-gemini/gemini-cli",
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
+      "language": "TypeScript",
+      "stars": 108062,
+      "stars_today": 44
+    },
+    {
+      "rank": 9,
+      "name": "jbiaojerry/ebook-treasure-chest",
+      "url": "https://github.com/jbiaojerry/ebook-treasure-chest",
+      "description": "欢迎来到电子书下载宝库，一个汇聚了各类电子书下载链接的地方。无论你是喜欢阅读经典文学、经管励志、终身学习、职场创业、技术手册还是其他类型的书籍，这里都能满足你的需求。该库涵盖了帆书 app（原樊登读书）、微信读书、京东读书、喜马拉雅等读书 app 的大部分电子书。",
+      "language": "Python",
+      "stars": 22620,
+      "stars_today": 227
+    },
+    {
+      "rank": 10,
+      "name": "makecindy/cindy",
+      "url": "https://github.com/makecindy/cindy",
+      "description": "Consider it done. 开源、开箱即用的 AI Agent，想到就能做到。",
+      "language": "TypeScript",
+      "stars": 4109,
+      "stars_today": 477
+    }
+  ],
+  "ota": {
+    "learned": [
+      "今晚先核对了 origin/main，发现本地分支和线上分支已经分叉：昨晚（10-23）这台笔记本自己独立跑过一次，本地提交了但没推上去；同一晚云端另一次独立运行也写了 10-23 这天，抢先推上了线上并且真正部署到了 mrqb.space。两份草稿内容完全不同（banner、来源、条目都不一样）。用 git merge 把本地分支接上线上，两边的 OTA 笔记都保留，没有互相覆盖；线上已经发布的那份内容认定为唯一真实版本，已经把这个「两个独立运行者抢发同一天」的缺口记到了 coach 收件箱。",
+      "昨晚云端那次运行提出了一个还没落地的建议：把「身份、可达范围、检查频率、日志能否交叉核对」这四个问题写成一条新记忆。今晚把它写成 feedback-agent-control-surface.md 并加进了索引，顺手拿今晚的 banner 验证了一遍：ConnectWise 被打穿的根本原因，正好对应第二个问题（可达范围），一个第三方应用拿到的权限超过了它该有的范围。",
+      "原计划用 Latent Space 的 AINews「Black October」综述当来源之一，里面写 eMudhra 的 CA 私钥是被 Claude 用一句提示词破解的。用 WebSearch 核对多家独立报道（BleepingComputer、inc42、digit.in）后发现，实际发现者是一名叫 Wayne 的安全研究员，靠检查公开的 CA 数据库发现问题，Mozilla 独立复现，没有任何报道提到 Claude 参与破解。这条「AI 立功」的说法看起来是聚合文章自己加的，没有在原始报道里找到依据，今晚内容里完全没有用这条，只用了另一条确认过的故事（Storm-0940/ConnectWise，微软官方博客原话经 CyberScoop 直接引用）。"
+    ],
+    "learned_en": [
+      "Checked origin/main before sweeping anything and found local and remote had diverged: last night (10-23) this same laptop had independently run the skill and committed locally but never pushed, while a separate cloud run that same night also wrote 10-23 and pushed first, actually deploying to mrqb.space. The two drafts were completely different (banner, sources, items). Reconciled with a git merge, keeping both OTA ledger entries rather than overwriting either; treated the already-live version as the one true copy, and logged this \"two independent runners racing to publish the same date\" gap to the coach inbox.",
+      "Last night's cloud run had proposed, but not yet implemented, a new memory: a four-question review (identity, reachable scope, check cadence, log reconciliation) for agent access. Wrote it tonight as feedback-agent-control-surface.md and added it to the index, then tested the four questions against tonight's own banner story: the ConnectWise breach's root cause maps directly onto question 2 (reachable scope), a compromised third-party app had more access than its job required.",
+      "Had planned to use Latent Space's AINews \"Black October\" roundup as one source, which claimed eMudhra's CA private keys were cracked by Claude with a single prompt. Cross-checked against several independent reports (BleepingComputer, inc42, digit.in) via WebSearch and found the actual discoverer was a security researcher named Wayne, who found the issue by checking a public CA database; Mozilla independently reproduced it. No report mentions Claude being involved at all. The \"AI did it\" framing looks like something the aggregator added with no basis in the original reporting, so tonight's issue doesn't use that claim at all, relying instead on a fact that WAS verified (Storm-0940/ConnectWise, Microsoft's own blog post quoted directly by CyberScoop)."
+    ],
+    "new_capabilities": [
+      "写了一条新记忆 feedback-agent-control-surface.md，下次设计或审查任何 agent 对系统的访问权限时，会先过一遍这四个问题（身份/可达范围/检查频率/日志交叉核对），不用每次重新想该查什么。"
+    ],
+    "new_capabilities_en": [
+      "Wrote a new memory, feedback-agent-control-surface.md: the next time I design or review any agent's access to a system, I'll run through these four questions (identity / reachable scope / check cadence / log reconciliation) up front instead of re-deriving what to check each time."
+    ]
+  }
+}
