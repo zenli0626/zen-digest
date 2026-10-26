@@ -15,6 +15,16 @@ Scans requirements*.txt / pyproject.toml / Pipfile / poetry.lock / package.json
 ~/zen-digest (the repo roots named in CLAUDE.md) for the package name, and
 checks `pip show` / `npm ls -g` for a locally installed copy. Prints a verdict
 line first, manifest hits after. Read-only — makes no changes.
+
+Some vulnerable libraries (e.g. Brotli, zlib) ship compiled INTO the Node.js
+binary itself rather than as an npm package — `npm ls -g` and a package.json
+grep both miss them, because there is no "brotli" dependency to find even
+though every Node process on the machine links the vulnerable decoder. For
+names in RUNTIME_EMBEDDED, also check `process.versions.<key>` on whatever
+`node` is on PATH. Confirmed 2026-10-25: a CVE-2026-111497 (Broccoli2Shell)
+check for "Brotli" found the vulnerable pip package but, before this fix,
+would have silently cleared the machine's Node 26.0.0 (also vulnerable,
+patched at 26.12.1) because Node ships no brotli *npm* package to find.
 """
 from __future__ import annotations
 
@@ -31,6 +41,21 @@ MANIFEST_NAMES = {
 MANIFEST_PREFIXES = ("requirements",)
 ROOTS = [Path.home() / "Claude", Path.home() / "BY-Website", Path.home() / "zen-digest"]
 SKIP_DIRS = {"node_modules", ".git", "venv", ".venv", "__pycache__", ".next", "dist", "build"}
+RUNTIME_EMBEDDED = {"brotli": "brotli", "zlib": "zlib", "openssl": "openssl", "icu": "icu"}
+
+
+def node_runtime_version(package: str) -> str | None:
+    key = RUNTIME_EMBEDDED.get(package.lower())
+    if not key:
+        return None
+    try:
+        out = subprocess.run(
+            ["node", "-e", f"process.stdout.write(process.version + ' ' + (process.versions['{key}'] || ''))"],
+            capture_output=True, text=True, timeout=10,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    return out.stdout.strip() if out.returncode == 0 and out.stdout.strip() else None
 
 
 def find_manifest_hits(package: str) -> list[str]:
@@ -81,14 +106,19 @@ def main() -> int:
 
     hits = find_manifest_hits(package)
     version = installed_version(package)
+    runtime = node_runtime_version(package)
 
-    exposed = bool(hits) or bool(version)
+    exposed = bool(hits) or bool(version) or bool(runtime)
     print(f"package: {package}" + (f"  affected_version={affected_version}" if affected_version else ""))
     if version:
         flag = " <-- MATCHES AFFECTED VERSION" if affected_version and affected_version in version else ""
         print(f"  installed locally: {version}{flag}")
     else:
         print("  installed locally: not found (pip/npm global)")
+    if runtime:
+        node_ver, embedded_ver = runtime.split(" ", 1) if " " in runtime else (runtime, "")
+        flag = " <-- MATCHES AFFECTED VERSION" if affected_version and embedded_ver and affected_version in embedded_ver else ""
+        print(f"  embedded in local Node runtime ({node_ver}): {embedded_ver}{flag}")
     if hits:
         print(f"  referenced in {len(hits)} local manifest(s):")
         for h in hits:
