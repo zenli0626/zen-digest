@@ -1,0 +1,267 @@
+{
+  "date": "2026-10-26",
+  "partial": false,
+  "banner": "Anthropic 递表：亏损九成来自估值重估",
+  "banner_en": "Anthropic files for IPO; nine-tenths of the loss is a valuation mark",
+  "image": {
+    "src": "digests/img/2026-10-26.jpg",
+    "caption": "Anthropic 10 月 26 日向 SEC 提交的 S-1 注册声明首页（公开文件，SEC EDGAR）。封面写明公司名 Anthropic, PBC、拟在 Nasdaq Global Select 上市、代码 ANT，发行价区间与发行股数留空。",
+    "caption_en": "Page one of the S-1 registration statement Anthropic filed with the SEC on October 26 (public SEC EDGAR document). The cover names Anthropic, PBC, its planned Nasdaq Global Select listing under the symbol ANT, and leaves the price range and share count blank."
+  },
+  "actions": [
+    {
+      "text": "今晚十分钟：打开 Anthropic 的 S-1，翻到合并利润表，把“经营亏损”和“净亏损”两行并排看。经营亏损 6.93 亿美元，净亏损 807.48 亿美元，差额主要来自公允价值变动；能说出哪些是现金、哪些是账面，就算完成。",
+      "text_en": "Ten minutes tonight: open Anthropic's S-1, find the consolidated statements of operations, and read the operating loss and net loss lines side by side. Operating loss was $693 million, net loss $80.748 billion, and the gap is mostly fair-value marks; if you can say which figures are cash and which are book entries, you're done.",
+      "source": "Anthropic, PBC · SEC EDGAR",
+      "source_en": "Anthropic, PBC · SEC EDGAR",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
+    },
+    {
+      "text": "今晚十分钟：查一下你自己的 SGLang 部署。先跑 `python -c \"import sglang; print(sglang.__version__)\"`，低于 0.5.22 就升级；再确认 prefill 的 KV cache 池不小于模型的上下文长度。两项都满足，就算完成。",
+      "text_en": "Ten minutes tonight: check your own SGLang deployment. Run `python -c \"import sglang; print(sglang.__version__)\"` and upgrade if it's below 0.5.22; then confirm the prefill KV cache pool is at least as large as the model's context length. If both hold, you're done.",
+      "source": "Cloudflare 官方博客",
+      "source_en": "Cloudflare (official blog)",
+      "source_url": "https://blog.cloudflare.com/kv-cache-exposure-remediation/"
+    },
+    {
+      "text": "今晚十五分钟：拿一篇长文档，测一下你 Mac 上 Apple 端侧模型的实际上下文窗口。公开 API 报告 8,192 token，官方文档仍写 4,096；连续跑三次摘要，记下从哪一次开始被截断，你就能确定真正可用的长度。",
+      "text_en": "Fifteen minutes tonight: take a long document and measure the actual context window of Apple's on-device model on your Mac. The public API reports 8,192 tokens while the documentation still says 4,096; run three summaries in a row and note where truncation starts, and you'll know the real usable length.",
+      "source": "Julien Simon（The AI Realist）",
+      "source_en": "Julien Simon (The AI Realist)",
+      "source_url": "https://www.airealist.ai/p/exploring-apple-on-device-model"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚一小时：跑通 Raschka 推理模型课第二章",
+    "title_en": "An hour tonight: run chapter 2 of Raschka's reasoning-model course",
+    "why": "这套课最有价值的部分不是讲概念，而是把评测和训练循环写成能跑的 notebook；第二章先把 Qwen3 0.6B 跑起来并看清 KV cache，后面的 verifier 和 GRPO 才有落脚点。",
+    "why_en": "The value of this course isn't the concepts, it's that the eval and training loops are runnable notebooks; chapter 2 gets Qwen3 0.6B running and shows the KV cache, which is the ground the verifier and GRPO chapters build on.",
+    "time": "60 到 90 分钟",
+    "time_en": "60-90 min",
+    "steps": [
+      "克隆仓库：`git clone --depth 1 https://github.com/rasbt/reasoning-from-scratch.git`，然后 `cd reasoning-from-scratch`。",
+      "装环境：`uv python pin 3.13 && uv sync`；不想用 uv 就在仓库根目录跑 `pip install -r requirements.txt`，课程锁定的 PyTorch 版本是 2.10.0。",
+      "在仓库根目录跑 `uv run jupyter lab`，打开 `ch02/01_main-chapter-code/ch02_main.ipynb`，从头跑到尾。第二章做一件事：用预训练的 Qwen3 0.6B 生成文本，并把 KV cache 的复用讲清楚。",
+      "跑完后打开 `ch03/01_main-chapter-code/ch03_main.ipynb` 看一眼评测部分；第三章开始有 verifier，第 5、6 章建议用 GPU，CPU 机器到第四章为止。",
+      "记下两个数字：模型加载后的内存占用，以及生成长文本时 KV cache 涨了多少。这两个数字决定你后面能不能在本地复现更长的推理。"
+    ],
+    "steps_en": [
+      "Clone the repo: `git clone --depth 1 https://github.com/rasbt/reasoning-from-scratch.git`, then `cd reasoning-from-scratch`.",
+      "Set up the environment: `uv python pin 3.13 && uv sync`; if you'd rather not use uv, run `pip install -r requirements.txt` from the repo root. The course pins PyTorch 2.10.0.",
+      "From the repo root, run `uv run jupyter lab`, open `ch02/01_main-chapter-code/ch02_main.ipynb`, and run it top to bottom. Chapter 2 does one thing: generate text with the pre-trained Qwen3 0.6B and show how the KV cache is reused.",
+      "Then open `ch03/01_main-chapter-code/ch03_main.ipynb` and look at the evaluation section; the verifier starts in chapter 3, chapters 5 and 6 are better with a GPU, and CPU machines can stop after chapter 4.",
+      "Write down two numbers: memory after the model loads, and how much the KV cache grows while generating a long response. Those two numbers decide whether you can reproduce longer reasoning locally."
+    ],
+    "source": "Sebastian Raschka · Ahead of AI",
+    "source_en": "Sebastian Raschka · Ahead of AI",
+    "source_url": "https://magazine.sebastianraschka.com/p/building-reasoning-models"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 30,
+      "items": [
+        {
+          "title": "Anthropic 递交 S-1：807 亿美元净亏损，九成来自估值重估",
+          "title_en": "Anthropic files its S-1: $80.7B net loss, nine-tenths from valuation marks",
+          "author": "Anthropic, PBC · SEC EDGAR · Hacker News",
+          "author_en": "Anthropic, PBC · SEC EDGAR · Hacker News",
+          "likes": "1485",
+          "likes_label": "HN 分",
+          "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+          "summary": "我把招股书里的合并利润表和 MD&A 对照读了一遍。Anthropic 在 10 月 26 日向 SEC 递交 S-1，拟以代码 ANT 在 Nasdaq Global Select 上市，发行价区间和发行股数都还空着，是一份初步招股书（preliminary prospectus）。数字的对比很刺眼：2026 年上半年营收 162.86 亿美元，2025 年同期 11.63 亿；同期净亏损 807.48 亿美元，2025 年上半年是 129.69 亿。但净亏损里，724 亿美元来自可转债、衍生品负债和 SAFE 的公允价值变动，另有 94.05 亿美元来自 note purchase agreements（票据购买协议）的初始公允价值确认与变动；两笔都是随公司估值上升而增加的账面计量，不是现金支出。同期经营亏损只有 6.93 亿美元，调整后经营利润为正 16.18 亿美元，调整后经营利润率 10%；2025 年全年调整后经营亏损 48.54 亿美元。经营层面还在扩张：截至 9 月 30 日，过去 12 个月收入 10 万美元以上的客户超过 11,900 家，一年前是 950 家；100 万美元以上超过 1,900 家，1,000 万美元以上约 250 家；净收入留存率约 900%。截至 6 月 30 日，剩余履约义务 108 亿美元，约 75% 会在未来 12 个月确认；总债务 62 亿美元，主要是 2023 年 9 月向亚马逊（AWS）发行的可转债。上半年融资活动流入 1,108 亿美元，主要来自优先股和可转债。10-25 那篇讲降价的文章留了一个问题：几家公司临近 IPO 为什么还主动降价；今天的进展是 Anthropic 把账本直接交了出来。",
+          "summary_en": "I read the consolidated statements of operations against the MD&A. Anthropic filed its S-1 with the SEC on October 26, plans to list Class A common stock on Nasdaq Global Select under the symbol ANT, and leaves the price range and share count blank, so this is a preliminary prospectus. The numbers are stark: revenue was $16.286 billion in the first half of 2026 versus $1.163 billion a year earlier, while net loss was $80.748 billion versus $12.969 billion in H1 2025. But $72.4 billion of that net loss came from the change in fair value of convertible notes, derivative liabilities, and SAFEs, and another $9.405 billion from the initial fair-value recognition and change of the note purchase agreements; both are book measurements that rose with the company's valuation, not cash spending. Operating loss for the half was just $693 million, adjusted operating income was positive at $1.618 billion (a 10% adjusted operating margin), and the full-year 2025 adjusted operating loss was $4.854 billion. The business kept expanding: as of September 30, more than 11,900 customers had $100,000 or more of trailing-twelve-month revenue, up from more than 950 a year earlier; more than 1,900 had $1 million or more, and about 250 had $10 million or more. Net revenue retention was approximately 900%. As of June 30, remaining performance obligations were $10.8 billion, about 75% of which is expected to be recognized over the next 12 months; total indebtedness was $6.2 billion, mainly convertible notes issued to Amazon (AWS) in September 2023. Cash provided by financing activities was $110.8 billion in the half, mostly from preferred stock and convertible notes. The October 25 price-cut piece left one question open: why cut prices right before an IPO. Today's development is that Anthropic handed over the books.",
+          "why": "最容易被标题带偏的是 807 亿净亏损：其中 90% 以上是随估值上升产生的公允价值计量，经营亏损只有 6.93 亿美元，调整后经营利润已经转正。真正需要盯的是另外两行：上半年算力和基础设施支出 89.45 亿美元，约占营收 55%；融资流入 1,108 亿美元，说明这台机器仍靠私募资本供血。900% 的净收入留存率很惊人，但它衡量的是一批刚上车的大客户在扩容，基数还小，不能直接外推到整个企业市场。发行价区间没填，这份文件还不能用来算估值。",
+          "why_en": "The easiest way to misread the headline is to take the $80.7 billion net loss at face value: over 90% of it is fair-value measurement that rises with the company's valuation, operating loss was only $693 million, and adjusted operating income has already turned positive. The two lines to watch are elsewhere: compute and infrastructure spending was $8.945 billion in the half, about 55% of revenue, and financing brought in $110.8 billion, which says the machine is still being fed by private capital. A 900% net revenue retention rate is startling, but it measures a young base of large customers expanding their seats and usage, so it can't be extrapolated to the whole enterprise market. The price range is blank, so the filing can't be used to calculate a valuation yet."
+        },
+        {
+          "title": "微软向约 6 万名员工发自愿离职方案，超过全球员工四分之一",
+          "title_en": "Microsoft offers buyouts to about 60,000 employees, over a quarter of its workforce",
+          "author": "Jaspreet Singh / Thomson Reuters · Hacker News",
+          "author_en": "Jaspreet Singh / Thomson Reuters · Hacker News",
+          "likes": "770",
+          "likes_label": "HN 分",
+          "url": "https://www.cbc.ca/news/business/microsoft-voluntary-buyout-9.7396520",
+          "summary": "微软 10 月 26 日（周一）向约 6 万名员工发出自愿离职方案。公司 6 月 30 日年报显示全球全职员工 22.3 万人，此次收到方案者超过四分之一。可申请范围覆盖微软各业务线，包括 AI experiences、Copilot、财务、人力资源、Xbox 和 Windows + Devices；CBC 引述知情人士称，营销、商业业务和安全部门不在其中。方案在加拿大、印度、英国和美国提供。CBC 引述知情人士称，此举意在控制成本，为庞大的 AI 投资提供资金；微软首席人力官 Amy Coleman 在备忘录中表示，这给考虑离开公司的合格员工一个现在过渡的选择，也让相关组织多一种调整人力的方式。微软未透露有多少加拿大员工收到方案，也未披露接受方案的人数。公司预计 2026 日历年资本支出 1,750 亿美元，并将在周三（10 月 28 日）美股收盘后发布第一财季财报。",
+          "summary_en": "Microsoft said on Monday, October 26, that it is offering voluntary buyouts to about 60,000 employees. Its annual filing showed 223,000 full-time employees worldwide as of June 30, so more than a quarter of the global workforce received the offer. Eligibility runs across Microsoft, including AI experiences, Copilot, finance, human resources, Xbox, and Windows + Devices; CBC, citing a person familiar with the matter, says marketing, commercial business, and security are excluded. The offer is available in Canada, India, the United Kingdom, and the United States. CBC, citing a person familiar with the matter, says the move is meant to contain costs and help fund the company's large AI investments. In a memo, executive vice president and chief people officer Amy Coleman said the offer gives eligible employees who may be considering a future outside the company a choice to make that transition now with support, and gives participating organizations another way to adapt their workforce. Microsoft did not say how many Canadian employees received the offer or how many accept it. The company has forecast $175 billion in capital expenditures for the 2026 calendar year and is scheduled to report first-quarter results after markets close on Wednesday, October 28.",
+          "why": "自愿离职不是裁员，但比裁员更能说明成本压力：方案覆盖 Copilot 和 AI experiences 这类核心 AI 团队，说明压缩的不只是边缘业务。22.3 万员工中超过四分之一收到方案，这是公司层面的比例，不等于最终会有 6 万人离开；真实数字要等接受期限和周三的财报。Anthropic 的招股书摆在一起看，一边为 AI 投资筹钱，一边压缩人力开支，两个动作同时发生。",
+          "why_en": "A voluntary buyout is not a layoff, but it says more about cost pressure: the offer reaches Copilot and AI experiences, which means the cuts are not limited to peripheral teams. More than a quarter of 223,000 employees receiving the offer is a company-wide ratio, not a promise that 60,000 will leave; the real number waits for the acceptance window and Wednesday's earnings. Put next to Anthropic's filing, one company is raising money for AI investment while the other is trimming payroll, and both are happening at once."
+        },
+        {
+          "title": "Cloudflare 披露 GLM-5.3 跨租户缓存泄露：155 条回复混入他人数据",
+          "title_en": "Cloudflare discloses GLM-5.3 cache leak: 155 responses carried other tenants' data",
+          "author": "Cloudflare 官方博客 · Hacker News",
+          "author_en": "Cloudflare (official blog) · Hacker News",
+          "likes": "77",
+          "likes_label": "HN 分",
+          "url": "https://blog.cloudflare.com/kv-cache-exposure-remediation/",
+          "summary": "Cloudflare 10 月 26 日公开一起租户隔离事故的完整报告。9 月 8 日，Knostic 安全研究员 Gadi Evron 报告，Workers AI 上的 GLM-5.3 模型（@cf/zai-org/glm-5.3）自 8 月 27 日起会把其他客户的请求数据带回给部分用户；9 月 9 日修复并恢复服务，其他托管在 Workers AI 上的模型未受影响。受影响回复共 155 条，全部来自超过 681,280 token 的提示。原因是两个问题叠加：Cloudflare 给 GLM-5.3 配了 1,048,576 token 的上下文窗口，但 prefill GPU 上的 KV cache 池只能放 681,280 token；这一不匹配上线前已知，他们以为引擎会对放不下的请求直接报错，长上下文测试也确实返回成功；第二个问题是 SGLang 在处理超长请求的拒绝路径上有 bug。修复分两层：把池扩到约 204 万 token，约为上下文长度的两倍；同时让拒绝路径本身变安全。SGLang 补丁在 v0.5.20，后续 v0.5.21、v0.5.22，Cloudflare 建议所有使用 SGLang 的运营方升级到 v0.5.22 或更高。报告称未发现蓄意利用迹象，识别到的请求在时间和量级上符合普通长上下文使用；GLM-5.3 是唯一受影响的模型。",
+          "summary_en": "Cloudflare published a full report on a tenant-isolation incident on October 26. On September 8, security researcher Gadi Evron of Knostic reported that the GLM-5.3 model on Workers AI (@cf/zai-org/glm-5.3) had been returning other customers' request data to some users since August 27; Cloudflare fixed it and restored service on September 9, and no other model hosted on Workers AI was affected. In total, 155 responses were affected, all to prompts longer than 681,280 tokens. Two problems overlapped. Cloudflare had configured GLM-5.3 with a 1,048,576-token context window, but the KV cache pool on its prefill GPUs held only 681,280 tokens; the mismatch was known before launch, and the team expected the engine to return an error for any prompt it could not process, while long-context tests returned successful responses, so they did not treat it as an issue. The second problem was a bug in how SGLang handled the rejection path for overlong requests. The fix had two layers: expand the pool to about 2.04 million tokens, roughly twice the context length, and make the rejection path itself safe. The SGLang patch shipped in v0.5.20, with follow-ups in v0.5.21 and v0.5.22, and Cloudflare recommends that all SGLang operators upgrade to v0.5.22 or later. The report found no evidence of deliberate exploitation; the requests it identified matched ordinary long-context use in timing and volume. GLM-5.3 was the only model affected.",
+          "why": "这是推理引擎的资源配置和拒绝路径同时出错，不是模型对齐问题；触发条件很具体：上下文窗口大于 KV 池。Cloudflare 承认上线前就知道池子不够，只是误以为引擎会安全报错，这一判断失误比 bug 本身更值得记。报告只覆盖 Cloudflare 自己的部署，155 条不能外推到其他运营方。",
+          "why_en": "This isn't an alignment problem; it's a serving engine whose resource configuration and rejection path failed together, with a very specific trigger: a context window larger than the KV pool. Cloudflare admits it knew the pool was too small before launch and assumed the engine would fail safely, and that judgment error is more instructive than the bug itself. The report covers only Cloudflare's own deployment, so the 155 figure can't be extrapolated to other operators."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 7,
+      "items": [
+        {
+          "title": "Apple 的 20B 端侧模型：2 GiB 内存，数学掉到 78 分",
+          "title_en": "Apple's 20B on-device model: 2 GiB of memory, math score drops to 78",
+          "author": "Julien Simon（The AI Realist）",
+          "author_en": "Julien Simon (The AI Realist)",
+          "likes": "未标注",
+          "likes_label": "博客",
+          "url": "https://www.airealist.ai/p/exploring-apple-on-device-model",
+          "summary": "Julien Simon 在 The AI Realist 上拆解了 macOS 27 中的 Apple 端侧模型 Core Advanced。该模型有 200 亿参数，每次只激活 10 亿到 40 亿，属稀疏 MoE；权重约 2 bit，专家放在一个 4.95 GB 的 flash 文件里，请求时按 294,912 字节的块读入，636 MiB 的模型页常驻 Neural Engine。长请求结束两秒后，模型加安全模型占用约 2.0 GiB 内存；作者在同一台 Mac 上跑的同类开源模型 Gemma 4 26B A4B 约占 15 GiB。在 20 道数学题上，Apple 模型的能耗约为最好的开源构建的三分之一。代价是能力：100 道小学数学题，Apple 解出 78 道，三个开源构建在 89 到 94 道之间，成对 McNemar 检验的 p 值从 0.007 低到 0.0004；200 道知识题答对 134 道，落在对比模型中间。公开 API 在这台 Mac 上报告 8,192 token 的上下文窗口，是 Apple 文档中 4,096 的两倍。Apple 称模型是与 Google 合作定制，作者称它用 Gemini 的输出做过精调，这一条是报道，未获 Apple 官方确认。",
+          "summary_en": "Julien Simon took apart Core Advanced, Apple's larger on-device model in macOS 27, for The AI Realist. It has 20 billion parameters, of which 1 to 4 billion are active at a time, a sparse MoE; weights take about 2 bits, the experts live in a 4.95 GB flash file read in 294,912-byte blocks, and 636 MiB of model pages stay resident on the Neural Engine. Two seconds after a long request, the model plus its safety models held about 2.0 GiB of memory; an open model of the same class, Gemma 4 26B A4B, held about 15 GiB on the same Mac. On 20 math problems, Apple's model used about a third of the energy of the best open build the author ran. The cost is capability: on 100 grade-school math problems Apple solved 78, while three open builds solved 89 to 94, with paired McNemar p values from 0.007 down to 0.0004; on 200 knowledge questions it got 134 right, in the middle of the comparison set. The public API reports an 8,192-token context window on this Mac, twice the 4,096 Apple's documentation still states. Apple says the model was custom-built in collaboration with Google, and the author reports that it was refined using Gemini outputs; that detail is reported, not officially confirmed by Apple.",
+          "why": "这是第三方在一台 Mac 上的测量，不是 Apple 的 benchmark，样本也只有 100 道数学题和 200 道知识题，但结论方向很清楚：端侧模型的优势在内存和能耗，不在推理能力。2 GiB 对 15 GiB 的差距，足以让同一台机器同时跑别的应用；数学 78 对 89 到 94 的差距，也足以让它在需要算术的任务上不可用。Apple 自己建议避免数学、代码和逻辑推理，作者的数据支持这一建议。",
+          "why_en": "This is a third-party measurement on one Mac, not an Apple benchmark, and the samples are only 100 math problems and 200 knowledge questions, but the direction is clear: the on-device model's advantage is memory and energy, not reasoning. The 2 GiB versus 15 GiB gap is enough to let the same machine run other apps at the same time, and the 78 versus 89 to 94 math gap is enough to make it unusable for tasks that need arithmetic. Apple itself advises against math, code, and logical reasoning, and the author's numbers support that advice."
+        },
+        {
+          "title": "Raschka 的 11 小时推理模型课：从 0.6B 基座一路搭到 GRPO",
+          "title_en": "Raschka's 11-hour course builds a reasoning model up to GRPO",
+          "author": "Sebastian Raschka（Ahead of AI）",
+          "author_en": "Sebastian Raschka (Ahead of AI)",
+          "likes": "297",
+          "likes_label": "赞",
+          "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
+          "summary": "Sebastian Raschka 发布了一套 8 集、总时长超过 11 小时的视频课，配套仓库为 reasoning-from-scratch。课程从预训练的 Qwen3 0.6B 起步，用 Python 和 PyTorch 依次搭建：文本生成与 KV cache、推理模型评测、推理时扩展（采样与自一致性）、打分与自我修正、用 RL/RLVR 训练、GRPO，最后是蒸馏。仓库每章有对应 notebook，第 2 至 4 章可在 CPU 上运行，第 5、6 章建议用 GPU；依赖锁定在 PyTorch 2.10.0。课程重点不在从零预训练一个大模型，而在亲手写一遍推理模型外围的训练和评测循环。",
+          "summary_en": "Sebastian Raschka released an eight-video course of more than 11 hours with a companion repo, reasoning-from-scratch. It starts from a pre-trained Qwen3 0.6B and builds, in Python and PyTorch, text generation with a KV cache, evaluating reasoning models, inference-time scaling with sampling and self-consistency, scoring and self-refinement, RL/RLVR training, GRPO, and finally distillation. Each chapter has a notebook; chapters 2 through 4 run on a CPU, chapters 5 and 6 are better with a GPU, and dependencies are pinned to PyTorch 2.10.0. This is not pre-training a large model from scratch; the point is to write the training and evaluation loops around a reasoning model by hand.",
+          "why": "市面上讲推理模型的材料大多停在“采样多次再投票”，这套课把 verifier、RLVR 和 GRPO 都写成可运行的代码，价值在此。边界也要看清：0.6B 基座跑不出前沿模型的行为，11 小时是完整投入，不是周末随手看完的长度；真正的门槛在第 6 章之后，需要 GPU 和训练时间。",
+          "why_en": "Most material on reasoning models stops at sampling several times and voting, while this course turns the verifier, RLVR, and GRPO into runnable code, which is where its value is. The limits are just as clear: a 0.6B base will not reproduce frontier behavior, 11 hours is a real commitment rather than a weekend skim, and the actual barrier starts after chapter 6, where you need a GPU and training time."
+        },
+        {
+          "title": "会点鼠标不等于会干活：CUA 的瓶颈是行业 know-how",
+          "title_en": "Clicking isn't the hard part: computer-use agents lack domain know-how",
+          "author": "Yunze Xiao（独立博客）",
+          "author_en": "Yunze Xiao (independent blog)",
+          "likes": "未标注",
+          "likes_label": "博客",
+          "url": "https://algoroxyolo.github.io/blog/2026/knowing-how-is-not-knowing-what/",
+          "summary": "Yunze Xiao 这篇文章讨论 computer-use agent（CUA）为何在演示里什么都能点，进了真实业务还是干不成活。他的判断是：点击已基本解决，难的是那些没写下来的规则，比如谁有权批什么、预算怎么走、哪些步骤必须留痕。他把世界看成同一个系统的三个入口：GUI、API、CLI；奖励应读世界状态，而非看屏幕截图。任务也不是一张干净的表格，而是一堆彼此关联、格式混乱的文档。他给了一个具体例子：在一个复刻的办公室里让前沿 agent 干一周招聘，每一次点击都成功，56 个案例里仍有 35 个结果是错的。",
+          "summary_en": "Yunze Xiao's essay asks why computer-use agents that can click anything in a demo still fail at real work. His answer is that clicking is largely solved; the hard part is the unwritten rules, who can approve what, how budgets move, and which steps must leave a record. He treats the world as one system with three entry points, GUI, API, and CLI, and argues that reward should read world state rather than screenshots. The task is not a clean form but a pile of connected, messy documents. He gives one concrete example: a frontier agent working a recruiting week in a replica office got every click right, and 35 of 56 cases still ended up wrong.",
+          "why": "这是一篇观点文章，56 个案例来自作者自己的复刻环境，没有第三方复现，不能当成 CUA 的普遍失败率。但它指出的方向很难反驳：评测若只看每一步操作是否成功，就会高估 agent；真正该测的是业务结果，以及 agent 有没有遵守那些没写进界面的规则。对做 agent 产品的人来说，护城河不在点击准确率，在把行业 know-how 变成可执行的状态和检查。",
+          "why_en": "This is an opinion essay, and the 56 cases come from the author's own replica environment with no third-party reproduction, so it is not a general CUA failure rate. But the direction is hard to argue with: if an evaluation only checks whether each step succeeded, it will overrate the agent; what should be measured is the business outcome and whether the agent followed the rules that were never written into the interface. For anyone building agent products, the moat is not click accuracy but turning domain know-how into executable state and checks."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚的新闻表面上是几条独立消息，实际是三种成本。Anthropic 的招股书把“亏损”拆成账面重估和经营亏损两行，前者随估值上升而放大，后者才是生意本身；只读标题，会把会计数字当成现金流。微软的自愿离职方案是另一面：公司说省下的人力开支要拿去投 AI，成本压力已落到 Copilot 这类核心团队，而非边缘业务。Apple 的端侧模型和 Cloudflare 的缓存事故分别说明，效率和服务层的隔离也是成本：前者用内存和能耗换能力，后者用一条独立的工程线换租户安全。这三类成本混为一谈，就会在“AI 到底赚不赚钱”这个问题上反复得出相反结论；拆开看，能回答的其实是很具体的问题：哪些亏损是账面的，哪些支出是真实的，哪些能力是被效率换掉的。",
+  "meta_read_en": "Tonight's stories look like separate events, but they are three kinds of cost. Anthropic's filing splits \"loss\" into valuation marks and operating loss: the first scales with the company's valuation, the second is the business itself, and reading only the headline turns an accounting figure into cash flow. Microsoft's buyout is the other side: the company says the payroll it saves is meant to fund AI, and the pressure has reached core teams like Copilot rather than only peripheral units. Apple's on-device model and Cloudflare's cache incident show that efficiency and serving-layer isolation are costs too: one trades capability for memory and energy, the other needs a separate engineering line to keep tenants apart. Mix the three together and the question \"does AI make money\" keeps producing opposite answers; separate them and the answerable questions are concrete: which losses are book entries, which spending is real, and which capabilities were traded away for efficiency.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "Nutlope/hallmark",
+      "url": "https://github.com/Nutlope/hallmark",
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "language": "CSS",
+      "stars": 36506,
+      "stars_today": 2244
+    },
+    {
+      "rank": 2,
+      "name": "TauricResearch/TradingAgents",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "language": "Python",
+      "stars": 116203,
+      "stars_today": 1395
+    },
+    {
+      "rank": 3,
+      "name": "JetBrains/thinkrail",
+      "url": "https://github.com/JetBrains/thinkrail",
+      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+      "language": "TypeScript",
+      "stars": 2988,
+      "stars_today": 1173
+    },
+    {
+      "rank": 4,
+      "name": "makecindy/cindy",
+      "url": "https://github.com/makecindy/cindy",
+      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+      "language": "TypeScript",
+      "stars": 6560,
+      "stars_today": 1296
+    },
+    {
+      "rank": 5,
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 289903,
+      "stars_today": 896
+    },
+    {
+      "rank": 6,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
+      "language": "Rust",
+      "stars": 89281,
+      "stars_today": 1506
+    },
+    {
+      "rank": 7,
+      "name": "NVIDIA/SkillSpector",
+      "url": "https://github.com/NVIDIA/SkillSpector",
+      "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.",
+      "language": "Python",
+      "stars": 22261,
+      "stars_today": 214
+    },
+    {
+      "rank": 8,
+      "name": "pollen-robotics/microduck",
+      "url": "https://github.com/pollen-robotics/microduck",
+      "description": "A Tiny biped duck robot 🦆",
+      "language": "Rust",
+      "stars": 12455,
+      "stars_today": 843
+    },
+    {
+      "rank": 9,
+      "name": "nightly-labs/openbot",
+      "url": "https://github.com/nightly-labs/openbot",
+      "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
+      "language": "TypeScript",
+      "stars": 1524,
+      "stars_today": 176
+    },
+    {
+      "rank": 10,
+      "name": "Panniantong/Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "language": "Python",
+      "stars": 103712,
+      "stars_today": 746
+    }
+  ],
+  "ota": {
+    "learned": [
+      "观察：YouTube 九个频道里只有 anthropic-ai 的 RSS 能解析，48 小时窗口内没有新内容；按云端规则记录零条 YouTube，没有改用其他访问方式重试，也没有伪造观看摘要。",
+      "观察：财报类条目如果只读标题，容易把公允价值计量写成现金亏损；今晚的 S-1 条目因此先对读合并利润表和 MD&A，分清 GAAP 与调整后口径，再写判断。",
+      "观察：STYLE-ZH 规定头版横幅中文不超过 20 字、英文不超过 12 个词，但 quality-check.py 一直只检查横幅是否为空；翻了近 15 期，最长的一条中文横幅 30 个字符、英文 11 个词，全靠人工守。",
+      "已实施：给 quality-check.py 加了横幅长度检查，中文按汉字数、英文按词数分别计算，上限 20 和 12；用 10-11 到 10-25 的历史 issue 全部放行，用一条 34 个汉字、18 个词的测试样例确认会拦截。"
+    ],
+    "learned_en": [
+      "Observation: only the anthropic-ai channel's RSS would parse among the nine YouTube channels, and it had nothing inside the 48-hour window; the run recorded zero YouTube items, did not retry with alternate access methods, and did not invent watch summaries.",
+      "Observation: reading only the headline of an earnings item makes it easy to present fair-value measurement as a cash loss; tonight's S-1 item therefore read the income statement against the MD&A and settled the GAAP versus adjusted distinction before writing any judgment.",
+      "Observation: STYLE-ZH caps the front-page banner at 20 Chinese characters and 12 English words, but quality-check.py only checked whether the banner was empty; across the last 15 issues the longest Chinese banner ran 30 characters and the longest English one 11 words, all held by hand.",
+      "Implemented: added a banner-length check to quality-check.py, counting Chinese characters and English words separately with caps of 20 and 12; every historical issue from 10-11 through 10-25 passes, and a test sample with 34 Chinese characters and 18 English words is caught."
+    ],
+    "new_capabilities": [
+      "已验证：quality-check.py 现在会拦下中文超过 20 个汉字或英文超过 12 个词的头版横幅；发布前的自动门禁不再只检查横幅是否为空，超长横幅会像缺 hands_on 一样把 issue 留在 preview。"
+    ],
+    "new_capabilities_en": [
+      "Verified: quality-check.py now blocks a front-page banner longer than 20 Chinese characters or 12 English words; the pre-publish gate no longer only checks whether the banner is empty, and an overlong banner holds the issue at preview the same way a missing hands_on does."
+    ]
+  }
+}
