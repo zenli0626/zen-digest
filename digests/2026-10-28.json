@@ -1,0 +1,282 @@
+{
+  "date": "2026-10-28",
+  "partial": false,
+  "banner": "Gemini 4 Carbon 先向安全专家开放",
+  "banner_en": "Gemini 4 Carbon arrives, locked to cyber defenders first",
+  "image": {
+    "src": "digests/img/2026-10-28.jpg",
+    "caption": "本期配图：Google 官方配图，对应 10 月 28 日发布的 Gemini 4 Carbon 公告。公告称这是其网络安全防御能力最强的旗舰模型：找漏洞的 SEC-bench Pro 得 88.2%，漏洞利用的 ExploitGym 得 54.8%，修补漏洞的 CWE-bench 得 71.0%，均系公司自称业内第一。本周起只向一小部分网络安全防御者开放，再逐步扩大到 Fairwind 计划里的可信伙伴，面向普通开发者和企业暂无时间表。定价沿用 Gemini 4 Argon 的首发价（输入每百万 token 2 美元，输出 10 美元，缓存输入打 5 折），首发期结束后涨到 4 美元和 20 美元，这一条写在页面脚注里。（图：Google）",
+    "caption_en": "Today's image: Google's own og:image for its October 28 Gemini 4 Carbon announcement. Google calls it its strongest model yet for cybersecurity defense, topping its own named benchmarks for finding vulnerabilities (SEC-bench Pro, 88.2%), exploiting them (ExploitGym, 54.8%), and patching them (CWE-bench, 71.0%). Starting this week it's available only to a small group of cyber defenders, phasing out to more trusted partners under the Fairwind Program; there's no timeline yet for developers, businesses, or consumers. Pricing matches Gemini 4 Argon's introductory rate ($2/$10 per million input/output tokens, cached input at 95% off), rising to $4/$20 once the introductory period ends, a detail that lives in the page's footnote. (Image: Google)"
+  },
+  "actions": [
+    {
+      "text": "翻一下你最近一次让 agent 自己改代码或配置的记录，问自己：它有没有给出哪怕一点可以独立核实的证据，比如跑过的测试、截图、日志？还是它说一句完成了，你就直接信了。挑一个以后还会反复用的流程，加一条规矩：必须带证据才算完成。",
+      "text_en": "Look back at the last time you let an agent change code or config on its own, and ask yourself: did it give you any independently checkable evidence (a test run, a screenshot, a log), or did you just trust it the moment it said \"done\"? Pick one workflow you'll keep reusing and add a rule: no completion without evidence.",
+      "source": "AI Engineer 大会：Manish Kapur（Sonar）、Addy Osmani（Anthropic）",
+      "source_en": "AI Engineer NYC: Manish Kapur (Sonar), Addy Osmani (Anthropic)",
+      "source_url": "https://www.youtube.com/watch?v=AnsXWH2_EBU"
+    },
+    {
+      "text": "数一下你现在有几个 agent 或 MCP 服务器在共用同一个 API key 或同一张令牌。Keycard 这场讲座提醒的核心问题是：令牌一旦被多个 agent 共用，出事以后根本说不清是谁做的。挑一个你权限最大、用得最频繁的服务，看看能不能换成按次发放、用完即废的临时凭证。",
+      "text_en": "Count how many agents or MCP servers you currently run on the same shared API key or token. Keycard's talk flags the real problem: once a token is shared across agents, there's no way to tell who actually did what when something goes wrong. Pick the service you use most, with the broadest permissions, and see if it can move to short-lived, single-use credentials instead.",
+      "source": "AI Engineer 大会：Kamil Potrec（Keycard）",
+      "source_en": "AI Engineer NYC: Kamil Potrec (Keycard)",
+      "source_url": "https://www.youtube.com/watch?v=58ulJViGFgU"
+    },
+    {
+      "text": "如果你正在准备技术面试，今晚这条值得认真看：一家头部 AI 公司的招聘经理已经不再出手写代码题，理由是模型写代码的水平已经超过大多数候选人。对正在找工作的人来说，这意味着准备重点要往怎么判断一段 AI 生成的代码能不能信、该往哪改上倾斜，而不是继续死磕手写算法题。",
+      "text_en": "If you're prepping for technical interviews, tonight's story is worth a close read: a hiring manager at a top AI lab has stopped giving hand-written coding tests, because the model now codes better than most candidates. For anyone job-hunting, that means the payoff from drilling algorithm trivia is shrinking, and the thing worth preparing instead is judgment: knowing whether AI-generated code can be trusted and what to fix in it.",
+      "source": "swyx（AI News，引 Felix Rieseberg，Anthropic）",
+      "source_en": "swyx (AI News, quoting Felix Rieseberg, Anthropic)",
+      "source_url": "https://latent.space/p/ainews-anthropic-ends-coding-interviews-hunger-beats-tenure/"
+    }
+  ],
+  "hands_on": {
+    "title": "试试 Glasser：给 Claude Code 装一个按次付费数据 API",
+    "title_en": "Try Glasser: give Claude Code a pay-per-call data API",
+    "why": "Ahrefs、Semrush、Apollo 这类工具平时都要按月订阅，Glasser 把 2000 多个付费数据接口（SEO、公司信息、社交数据、招聘数据等）包成一个按次计费的账户，一句 prompt 就能让 Claude Code 装上这项技能。新注册有 1 美元免费额度，大多数单次查询只要几分钱，够真的试几次。",
+    "why_en": "Ahrefs, Semrush, Apollo, and similar tools normally mean a separate monthly subscription for each. Glasser wraps 2,000+ paid data endpoints (SEO, company lookups, social data, hiring data, and more) behind one pay-per-call balance, and a single prompt gets Claude Code equipped with the skill to use it. New signups get $1 in free credit, and most single calls cost a few cents, enough for several real tries.",
+    "time": "15 分钟",
+    "time_en": "15 minutes",
+    "steps": [
+      "在 Claude Code 里直接发这句话：set up https://glasser.ai/SKILL.md ，让它自己读取并安装 glasser 技能，会走 glasser CLI 还是 MCP，看你的环境而定。",
+      "跟着提示走完登录授权，确认账户里有 1 美元免费额度。",
+      "挑一个你真会用到的小查询试一次：比如用 Apollo 查一家公司的信息，官方订阅 65 美元/座/月，这里按次约 0.02 美元；或者用 Ahrefs 查一条关键词数据，按次约 0.055 美元。",
+      "它每次调用前会先报价格再执行，花了多少钱、拿到的结果是什么样，可以让它顺手总结给你。"
+    ],
+    "steps_en": [
+      "In Claude Code, send this line directly: set up https://glasser.ai/SKILL.md, and let it read and install the glasser skill itself (it'll use the glasser CLI or MCP depending on your environment)",
+      "Follow the prompts through sign-in and authorization, and confirm the account shows $1 of free credit",
+      "Try one small query you'd actually use: an Apollo company lookup (official subscription is $65/seat/month; here it's about $0.02 per call), or an Ahrefs keyword-data call (about $0.055 per call)",
+      "It quotes the price before every call runs, so have it summarize what it spent and what it got back when it's done"
+    ],
+    "source": "TestingCatalog · Nero Soares；Glasser 官网",
+    "source_en": "TestingCatalog (Nero Soares); Glasser's own site",
+    "source_url": "https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 30,
+      "items": [
+        {
+          "title": "Gemini 4 Carbon 发布，先锁给网络安全专家",
+          "title_en": "Gemini 4 Carbon launches, locked to cyber defenders first",
+          "author": "Google DeepMind（官方博客）· Hacker News",
+          "author_en": "Google DeepMind (official blog) · Hacker News",
+          "likes": "791",
+          "likes_label": "分",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+          "summary": "我读了公告全文。10 月 28 日，Google DeepMind 发布 Gemini 4 Carbon，是两周前 Gemini 4 Argon 之后的下一代旗舰模型，重点放在网络安全防御和长链路编程任务。公司说它在最新 v5.0 版 Artificial Analysis 智能指数上拿到 59 分排第一，找漏洞的 SEC-bench Pro 拿 88.2%，漏洞利用的 ExploitGym 拿 54.8%，修补漏洞的 CWE-bench 拿 71.0%，均系公司自称目前最高。内部团队反馈，它能连续跑几天去定位和修复大型代码库里的隐蔽 bug。抗提示注入方面，前代 Argon 在 Gray Swan 的间接提示注入基准上已经是 0.7% 的最低攻击成功率，Carbon 进一步做到 0%。但这款模型本周起只开放给一小部分网络安全防御者试用，再逐步扩展到 Fairwind 计划里的可信合作方；公司没有给出面向普通开发者、企业和消费者开放的时间表，理由是要先收集反馈、完善护栏。定价沿用 Argon 的首发价，输入每百万 token 2 美元，输出 10 美元，缓存输入打 5 折，首发期结束后会涨到 4 美元和 20 美元。涨价条款写在页面脚注里，不在正文。",
+          "summary_en": "I read the full announcement. On October 28, Google DeepMind released Gemini 4 Carbon, the next flagship after Gemini 4 Argon two weeks ago, with a focus on cybersecurity defense and long-horizon coding tasks. Google says it scores 59 on the newly updated v5.0 Artificial Analysis Intelligence Index, ranking first, and leads its own named benchmarks: 88.2% on SEC-bench Pro (finding vulnerabilities), 54.8% on ExploitGym (exploiting them), and 71.0% on CWE-bench (patching them). Internal teams report it can run for days tracking down and fixing subtle bugs across large codebases. On prompt-injection resistance, predecessor Argon already led with a 0.7% attack success rate on Gray Swan's Indirect Prompt Injection benchmark; Carbon pushes that to 0%. But starting this week, the model is available only to a small group of cyber defenders, phasing out to trusted partners under the Fairwind Program; Google gives no timeline for opening it to developers, businesses, or consumers, citing a need to gather feedback and harden guardrails first. Pricing matches Argon's introductory rate ($2/$10 per million input/output tokens, cached input at 95% off), rising to $4/$20 once the introductory period ends, a detail in the page's footnote, not the body copy.",
+          "why": "今天能用的人很少：只对内部挑选的网络安全防御者开放，不是公开发布。榜单上的分数全部来自公司自己列出的基准，SEC-bench Pro、ExploitGym、CWE-bench 都不是外部通行的知名基准，唯一能独立核对的只有 Artificial Analysis 智能指数那一项。页面写的 2 美元、10 美元是首发价，脚注说明首发期结束后会涨一倍，这点经常被标题党省略。这条和两周前的 Argon 是同一个模式的延续：先把最强模型锁给小范围安全专家验证，再慢慢放开。Google 自己说是为了在能力和护栏之间保持谨慎，但客观效果是这款最强模型离普通开发者能用上还有相当长的时间差。",
+          "why_en": "Very few people can use this today: it's open only to an internally selected group of cyber defenders, not a public release. Every score on the page comes from a benchmark Google itself named (SEC-bench Pro, ExploitGym, and CWE-bench aren't widely known external benchmarks); the only independently checkable number is the Artificial Analysis Intelligence Index score. The $2/$10 figures are the introductory price; the footnote says it doubles once that period ends, a detail headline coverage usually drops. This continues the exact pattern Argon set two weeks ago: lock the strongest model to a small group of security experts first, then widen access gradually. Google frames this as caution balancing capability and guardrails, but the practical effect is that this strongest-yet model is still a fair distance from anything an ordinary developer can touch."
+        }
+      ]
+    },
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 54,
+      "items": [
+        {
+          "title": "Anthropic 怎么做到日均合并 3 万次代码改动",
+          "title_en": "How Anthropic merges 30,000 code changes a day",
+          "author": "AI Engineer 大会 · Manish Kapur（Sonar）、Addy Osmani（Anthropic）",
+          "author_en": "AI Engineer NYC · Manish Kapur (Sonar), Addy Osmani (Anthropic)",
+          "likes": "906",
+          "likes_label": "次观看",
+          "url": "https://www.youtube.com/watch?v=AnsXWH2_EBU",
+          "summary": "全文读完。这是 Sonar 的 Manish Kapur 与刚加入 Anthropic 的 Addy Osmani 的对话。两人先摆数据：CircleCI 统计今年 2800 万次 CI 流程，合并吞吐量涨了 59%，但三成的生产合并尝试依然失败。Addy 说，Anthropic 内部把代码合并量从今年 5 月的约 2500 次/天，拉到现在的约 3 万次/天。做法是让 Claude Code 先做第一轮审查，真正在浏览器里跑一遍用户会做的操作，再用 hook 盯着每次改动跑测试、跑 lint，发现问题就自动改。团队把共识的“好代码”标准（测试、规范、taste）写进共享的 Claude.md / agents.md，让 agent 审查时直接查。Sonar 即将发布的调研显示：84% 的受访者说 AI 让功能上线更快，但只有 31% 认为代码在没人审查的情况下也能安全上生产；今天只有 5% 的公司已经在用他们说的“软件工厂”，但预计明年会涨到 34%，金融行业更高到 39%。两人还聊到 agent 带来的新麻烦：有企业一度有成百上千个 agent 在跑，没人知道它们具体在碰什么系统、拿着什么数据。最后两人意见一致：agent 写的代码该不该在 PR 上标注作者，答案是该标，哪怕是 Claude 写的，人也要为结果负责，这在接下来 6 到 9 个月尤其重要，尤其是要接受审计的金融客户。",
+          "summary_en": "I read the full transcript. This is a conversation between Sonar's Manish Kapur and Addy Osmani, who recently joined Anthropic. They open with data: CircleCI's analysis of 28 million CI workflows this year found merge throughput up 59%, yet three in ten production merge attempts still fail. Addy says Anthropic internally went from merging about 2,500 changes a day in May to about 30,000 a day now. The method: Claude Code does a first-pass review, actually running through the experience a real user would have in a browser, then hooks watch every edit, run tests and linting, and auto-correct problems found. The team's agreed definition of good code (tests, standards, taste) gets written into shared Claude.md/agents.md files the agent consults during review. Sonar's forthcoming survey found 84% of respondents say AI gets features and fixes to production faster, but only 31% think more code is safely reaching production without review; today only 5% of companies are running what they call 'software factories,' but that's projected to hit 34% next year, 39% in financial services. They also discuss the new mess agents create: some enterprises briefly had hundreds or thousands of agents running with nobody sure what systems or data they were touching. Both agree agent-written code should be labeled in the PR, even when Claude wrote it, because a person is still accountable for the outcome, especially over the next 6-9 months and especially for financial clients that need auditability.",
+          "why": "这条该放进“验证”这条主线里看：Addy 说的最重要一句话是，模型质量已经够用了，接下来的提升空间全部在“怎么证明这段代码是对的”。3 万/天这个数字不是靠堆更强模型拿到的，是靠把验证流程（浏览器实跑、hook 自动跑测试、agent 互相审查）做扎实拿到的。跟 Keycard 那条（身份）、今晚 Cognition 的基准（写代码容易、合并达标难）连起来看，今晚其实在讲同一件事的三个侧面。",
+          "why_en": "File this under the verification thread: Addy's key line is that model quality is already good enough, and the remaining upside is entirely in proving the code is correct. The 30,000-a-day number wasn't achieved by throwing a stronger model at the problem; it came from making the verification pipeline (real browser runs, auto-running hooks, agents reviewing each other) solid. Read alongside Keycard's item (identity) and tonight's Cognition benchmark (writing code is easy, mergeable code is hard), these three cover the same underlying issue from three angles."
+        },
+        {
+          "title": "这次请求到底是谁发的？agent 身份认证入门",
+          "title_en": "Who is making this request? Agent auth 101",
+          "author": "AI Engineer 大会 · Kamil Potrec（Keycard）",
+          "author_en": "AI Engineer NYC · Kamil Potrec (Keycard)",
+          "likes": "4763",
+          "likes_label": "次观看",
+          "url": "https://www.youtube.com/watch?v=58ulJViGFgU",
+          "summary": "全文读完。Keycard 的 Kamil Potrec 讲 agent 身份认证的现状。问题的起点很简单：用户给 agent 一个访问令牌，agent 再拿这个令牌去调 MCP 服务器，服务器看到的“身份”永远是用户本人，分不清这次请求到底是用户自己发的还是 agent 自主决定发的。他举了个例子：agent 查到一张“待处理”的发票，可能因为太“热心”自己就把它发给用户了，出了问题以后根本说不清是谁的决定。更麻烦的是这些令牌经常没有过期机制，可以被复制到别的机器上用，也没法方便地撤销。他提的方案不是新技术，是把早就有的 OAuth、工作负载身份联合这些东西真正用起来：给每个 agent（甚至每个 session）发它自己的身份，而不是继承发起者的身份；用短时、限定范围的凭证，而不是常驻的万能密钥；把所有凭证都收进一个独立的“保险库”，agent 本身永远拿不到真正的密钥，只能通过网关按次换取；网关同时负责鉴权、限定权限范围（比如“能读邮件不能发邮件”）、记录每一次调用。他也坦白讲了网关的代价：多一跳延迟、需要强制所有 agent 走这条路、搭建和运维都不简单。最后他说了句挺直接的话：agent 这几年已经证明自己“不可信”，身份认证不再是可选项。",
+          "summary_en": "I read the full transcript. Keycard's Kamil Potrec covers the current state of agent authentication. The problem starts simply: a user hands an agent an access token, the agent uses that same token to call an MCP server, and the server sees only the user's identity, with no way to tell whether a given request was the user's own choice or the agent's. His example: an agent finds a 'pending' invoice and, maliciously or just overeagerly, sends it to the user on its own; afterward there's no way to tell whose decision it was. Worse, these tokens often have no expiry, can be copied onto another machine, and aren't easy to revoke. His proposed fix isn't new technology; it's actually using OAuth and workload-identity federation that have existed for years: issue each agent (even each session) its own identity rather than inheriting the one who launched it; use short-lived, scoped credentials instead of a standing master key; move every credential into a separate vault so the agent never holds the real key, only exchanges for one through a gateway on each use; have that gateway handle authentication, scope permissions (e.g. 'can read email, can't send it'), and log every call. He's candid about the cost: an extra network hop, the need to force every agent through that path, and real complexity to build and run. He closes bluntly: agents have proven over the last few years that they can't be trusted, so authentication is no longer optional.",
+          "why": "Keycard 卖的就是这套基础设施，这点要先说清楚，他列的四个问题（凭证共享、无法撤销、权限越攒越多、攻击面变大）本身是独立于自家产品也站得住的真实问题。这条跟今晚 Sonar/Osmani 那条（验证代码对不对）正好是同一件事的另一半：一个管“这段代码写对了没有”，一个管“这个动作到底是谁批准的”，agent 真正能被信任之前，这两件事缺一不可。",
+          "why_en": "Keycard sells exactly this infrastructure, which is worth naming upfront. But the four problems he lists (shared credentials, no revocation, accumulating permissions, a bigger attack surface) stand on their own regardless of whose product is being pitched. Paired with tonight's Sonar/Osmani item (verifying whether code is correct), this is the other half of the same issue: one side checks whether the work is right, the other checks who actually authorized it. Neither is optional before agents can really be trusted."
+        },
+        {
+          "title": "Supabase 创始人首次同台：给 agent 用的 Postgres 最后一公里",
+          "title_en": "Supabase's founders, together for the first time: the last mile of Postgres for agents",
+          "author": "Latent Space · Paul Copplestone、Ant Wilson（Supabase 联合创始人）",
+          "author_en": "Latent Space · Paul Copplestone, Ant Wilson (Supabase co-founders)",
+          "likes": "1006",
+          "likes_label": "次观看",
+          "url": "https://www.youtube.com/watch?v=zHG6sAss_kE",
+          "summary": "全文读完了。swyx 采访 Supabase 两位联合创始人，这是六年来两人首次一起接受这类访谈，时点配合 Supabase Select 用户大会的几条重要公告。按搭建、运行、扩容三条线看。搭建方面，新推出的 Supabase Compute 把原先限定 2 秒、基于 Deno 的 Edge Functions，换成可运行任意语言（Rust、Python 都行）、长时间运行、与数据库同网络的计算实例，相当于带容器的 Lambda；声明式 schema（用 git 当唯一真相源，不再一路 migrate 下去）被他们称为给 agent 用 Postgres 的最后一公里。运行方面，重点是把日志、连接数、SQL 相关的上下文喂得更全，方便 agent 自行排障。扩容方面信息量最大：OrioleDB（存储引擎，比默认快 1.5 到 2 倍）进入全量 beta，以 Apache 2 协议开源，连专利都由公司买下免费给出；Multigress（自研的 Postgres 分片方案，对标 MySQL 生态的 Vitess，做过 1000 次连续故障切换零丢数据的压测）明天开放邀请制接入，分片能力预计明年初上线，目标是业务代码零改动；同时收购了 Turso（基于 SQLite、支持多写的数据库），用来推出更小的实例级别 Supabase Spark，并配合从 Spark 一路零停机迁移到全量 Postgres 再到 Multigress 的路径。两人还聊了行业现状：平台上现在每月新建 500 万个数据库，目标是每月几十亿个，原因是越来越多没有技术合伙人的人在独立建产品。",
+          "summary_en": "I read the full transcript. swyx interviewed Supabase's two co-founders, their first joint interview in six years, timed to a batch of major announcements from the Supabase Select user conference. Organized around build, operate, scale: on build, the new Supabase Compute replaces the old 2-second-limited, Deno-based Edge Functions with long-running compute instances in any language (Rust, Python included) colocated on the database's network, essentially a Lambda with containers; declarative schemas (git as the single source of truth instead of chained migrations) are what they call the last mile of making Postgres work for agents. On operate, mostly feeding agents richer logs, connection data, and SQL context so they can debug themselves. Scale carries the most information: OrioleDB (a storage engine 1.5-2x faster than the default) goes to full beta and ships Apache 2 licensed, with the company buying out the underlying patent itself to give away for free; Multigress (their from-scratch Postgres sharding system, positioned against the MySQL ecosystem's Vitess, tested through 1,000 sequential failovers with zero data loss) opens invite-only access tomorrow, with sharding itself expected early next year, aiming for zero code changes required; and they've acquired Turso (a SQLite-based, multi-writer database) to power a smaller instance tier called Supabase Spark, paired with a zero-downtime migration path from Spark up through full Postgres to Multigress. They also discuss industry context: the platform now spins up 5 million new databases a month, aiming for billions a month, driven by more non-technical people building products solo.",
+          "why": "这条值得单独记，因为公告本身足够具体，不是空话：OrioleDB 的开源协议、Multigress 的压测数字、Turso 收购后的产品路径，都可以直接去查、去试。放在今晚几条里看，这条补的是基础设施那一侧：Keycard 管身份，Sonar/Osmani 管验证，这条管的是 agent 真正要读写数据的那一层地基够不够稳。",
+          "why_en": "Worth noting on its own because the announcements are specific, not vague marketing: OrioleDB's open-source license, Multigress's failover test numbers, and Turso's post-acquisition product path are all things you can go check or try directly. Set against tonight's other items, this fills in the infrastructure side: Keycard handles identity, Sonar/Osmani handle verification, and this handles whether the data layer agents actually read and write is solid enough to build on."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 28,
+      "items": [
+        {
+          "title": "GitHub 年度报告：月度合并 PR 不到一年涨到三倍",
+          "title_en": "GitHub's annual report: merged PRs tripled in under a year",
+          "author": "Simon Willison（现场报道 GitHub Universe，引 GitHub Octoverse 2026）",
+          "author_en": "Simon Willison (live from GitHub Universe, citing GitHub's Octoverse 2026)",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Oct/28/github-octoverse-2026/",
+          "summary": "Simon Willison 今天在 GitHub Universe 现场，GitHub 执行副总裁 Jay Parikh 发布了今年的 Octoverse 报告。几个核心数字：2026 年，每月合并的 pull request 数不到一年涨到三倍，达 2.2 亿；每月 commit 数涨到超过三倍，达 73.8 亿，且大部分涨幅发生在下半年；新建仓库的速度今年翻倍，达每月 3030 万。报告方法论部分说明了统计口径：按国家统计 push 量时用 LLM 从用户资料里提取国家代码，修正 VPN 带来的偏差；按行业分类用的是一个微调过的多语言 embedding 模型，拿仓库名、描述、话题标签和 README 去分类。报告还单独统计了名字、描述或 README 里提到互操作或逆向工程相关词的仓库数量变化。",
+          "summary_en": "Simon Willison is at GitHub Universe today, where EVP Jay Parikh presented this year's Octoverse report. The core numbers: merged pull requests nearly tripled in under a year to 220 million a month; monthly commits more than tripled to 7.38 billion, with most of the increase coming in the second half of the year; new repository creation doubled this year to 30.3 million a month. The methodology section explains the counting: country-level push counts used an LLM to extract country codes from user profiles to correct for VPN-related bias, and industry categorization used a fine-tuned multilingual embedding model classifying repos by name, description, topics, and README. The report separately tracked repositories whose name, description, or README mentions interoperability or reverse engineering.",
+          "why": "这条跟今晚 Osmani/Sonar 那场对话里 Anthropic 从 2500 次/天涨到 3 万次/天的说法互相印证，但来源完全独立：一个是单个公司自己报的数字，一个是 GitHub 平台级、覆盖所有用户的统计，分别从两个视角说明同一件事正在整个行业发生，不是一家公司的特例。需要留意的是，这些数字衡量的是合并了多少，不是合并的代码质量如何，要跟今晚 Cognition 那条基准放在一起看才完整。",
+          "why_en": "This corroborates Osmani and Sonar's claim tonight that Anthropic went from 2,500 to 30,000 merges a day, but from a completely independent source: one is a single company's self-reported number, the other a platform-wide statistic covering every GitHub user. Together they show the same shift happening industry-wide, not as one company's special case. Worth flagging: these numbers measure how much got merged, not how good what got merged was. Read alongside tonight's Cognition benchmark item for the fuller picture."
+        },
+        {
+          "title": "更严格的编程基准一出，顶级模型分数腰斩",
+          "title_en": "A stricter coding benchmark cuts top models' scores almost in half",
+          "author": "Cognition（Devin 开发商，官方博客）",
+          "author_en": "Cognition (maker of Devin, official blog)",
+          "likes": null,
+          "url": "https://cognition.com/blog/frontier-code-2.0",
+          "summary": "Cognition（做 Devin 的公司）发布了 FrontierCode 2.0，是编程基准系列的新一版。相比上一版 1.1，这次任务覆盖的仓库和类别更广（加了安全补丁、性能优化这类），评分标准更严（更看重代码能不能真的合并、设计是否到位），参考答案平均改动的文件数多 67%、代码行数多 89%，代码库规模也大 25%。结果很直接：同一批模型在新基准上的分数普遍大幅下降。Claude Opus 5.5 从 FrontierCode 1.1 的 54.6% 掉到 2.0 的 45.5%；GPT-6 Astra 从 53.3% 掉到 42.8%；Grok 4.7 从 47.6% 掉到 28.6%；Gemini 4 Argon 从 47.5% 掉到 26.3%。按更贴近真实能不能直接合并的标准算，目前最强的模型多数任务都做不到。",
+          "summary_en": "Cognition, the company behind Devin, released FrontierCode 2.0, a new version of its coding benchmark series. Compared to version 1.1, tasks now span more repositories and categories (adding security patches and performance optimization), grading is stricter (weighted more toward whether code is actually mergeable and well-designed), and reference solutions modify 67% more files and 89% more lines of code on average, in codebases 25% larger. The results are stark: the same models' scores dropped sharply on the new benchmark. Claude Opus 5.5 fell from 54.6% on FrontierCode 1.1 to 45.5% on 2.0; GPT-6 Astra from 53.3% to 42.8%; Grok 4.7 from 47.6% to 28.6%; Gemini 4 Argon from 47.5% to 26.3%. By a standard closer to 'can this actually be merged,' today's strongest models fail most tasks.",
+          "why": "这条该跟今晚另一条 Anthropic 不再考手写代码、因为编码已经解决的新闻对着看。Cognition 卖的正是 Devin 这种 agent，它发布一个让所有模型分数集体下滑的基准，确实有证明问题还没解决、我的产品还有存在理由的动机，这点要说在前面。但它给出的评分标准（文件数、代码行数、代码库规模都量化公开）和具体掉分幅度可以核查，不是空口说还很难。两条新闻放在一起，编码解决了这句话至少要加一个前提：解决的是能不能写出能跑的代码，没解决的是写出来的代码能不能直接合并到生产。",
+          "why_en": "Read this against tonight's other story, Anthropic ending coding interviews because 'coding is solved.' Cognition sells Devin, an agent competing directly in this space, so a benchmark that drops every model's score comes with an incentive to argue the problem isn't solved and its product still matters; that's worth naming upfront. But the grading criteria (file counts, line counts, codebase size, all quantified and public) and the specific score drops are checkable, not just a vague 'it's still hard.' Put the two stories together and 'coding is solved' needs a caveat: what's solved is writing code that runs. What isn't solved is writing code that's actually mergeable into production."
+        },
+        {
+          "title": "Anthropic 招聘经理：我不再考手写代码了",
+          "title_en": "Anthropic hiring manager: I stopped giving coding interviews",
+          "author": "swyx（AI News，引 Felix Rieseberg，Anthropic）",
+          "author_en": "swyx (AI News, quoting Felix Rieseberg, Anthropic)",
+          "likes": null,
+          "url": "https://latent.space/p/ainews-anthropic-ends-coding-interviews-hunger-beats-tenure/",
+          "summary": "Latent Space 的 AI News 简报今天头条是 Anthropic 招聘经理 Felix Rieseberg 的一段话：这个月他正式取消了面试里的手写代码环节。理由很直接：现在考 React 小题或背算法，跟考汇编语言一样没意义，因为 Claude 两样都比大多数候选人做得好；真正做出成绩的员工，这类测试考得好不好跟产出没什么关系。他给应届生和初级开发者的建议：少盯着 backlog，多盯着对业务有真实影响的事；敢提一个如果做成会很大的想法，而不是等着被分配任务。",
+          "summary_en": "Today's lead story in Latent Space's AI News briefing is a quote from Anthropic hiring manager Felix Rieseberg: this month he formally stopped giving coding-test interviews. His reasoning is blunt: quizzing candidates on a small React challenge or algorithm trivia today is as pointless as quizzing them on assembly language, because Claude is now better at both than most candidates, and how well someone does on these tests doesn't correlate with the impact they actually deliver. His advice to junior engineers and new grads: worry less about the backlog and more about genuine business impact, and have the nerve to pitch an idea that would matter if it worked instead of waiting to be assigned tasks.",
+          "why": "这条该放进找工作、面试这条线看，而不是单纯当八卦。一家公司取消手写代码面试，不代表所有公司都会跟，但 Felix 的理由——考核方式和实际产出不相关——值得认真想一想：如果你在准备面试，光练手写算法题的回报可能已经在下降，真正该准备的是怎么判断一段 AI 生成的代码能不能信、该往哪改这类问题。",
+          "why_en": "File this under job-hunting and interview prep, not just gossip. One company dropping hand-written coding interviews doesn't mean every company will follow, but Felix's stated reason (the test doesn't correlate with actual output) is worth taking seriously: if you're prepping for interviews, the payoff from drilling hand-written algorithm problems may already be shrinking, and the thing actually worth preparing is judgment, knowing whether a piece of AI-generated code can be trusted and what to fix in it."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条放在一起看，能看出一个清楚的反差。GitHub 自己公布的 Octoverse 报告说，今年月度合并 PR 涨到 2.2 亿，是一年前的三倍；Anthropic 工程团队这边，日均合并代码量从 5 月的 2500 次涨到现在的 3 万次。两个数字来自两个完全独立的来源，说的是同一件事：代码合并的速度在整个行业层面涨了好几倍。但同一个晚上，Devin 的开发商 Cognition 发布了一版更严格的编程基准，按能不能真的合并上生产这个更贴近现实的标准重新打分，结果最强的 Opus 5.5 从 54.6% 掉到 45.5%，其他几个主流模型掉得更多。合并量涨了几倍，但按严格标准能合并的比例反而更低，这两件事放在一起才完整。Anthropic 一位招聘经理说自己已经不考手写代码，理由是编码问题已经解决；今晚另外两场讲座刚好在补这句话漏掉的部分：Sonar 和 Addy Osmani 讲的是怎么让 agent 自己提供可核实的证据，Keycard 讲的是怎么确认一次操作到底是谁批准的。写代码这件事确实变容易了，但这段代码能不能信、谁该为它负责，还是没解决的问题。",
+  "meta_read_en": "Tonight's stories line up into a clear contrast. GitHub's own Octoverse report says monthly merged pull requests hit 220 million this year, triple what they were a year ago. Separately, Anthropic's engineering team says its own daily merge volume went from 2,500 in May to 30,000 now. Two completely independent sources point at the same thing: merge velocity has jumped several-fold across the whole industry. But the same night, Cognition, the company behind Devin, released a stricter coding benchmark graded by a standard closer to 'can this actually be merged into production,' and under it even the strongest model, Opus 5.5, dropped from 54.6% to 45.5%, with other leading models falling further. Merge volume is up several-fold, but the share that would pass a strict mergeability bar is down. You need both numbers for the full picture. One Anthropic hiring manager says he's stopped giving coding interviews because 'coding is solved.' Tonight's other two talks fill in exactly what that claim leaves out: Sonar and Addy Osmani on getting agents to produce verifiable evidence for their own work, and Keycard on confirming who actually authorized a given action. Writing code really has gotten easier. Whether that code can be trusted, and who's accountable for it, is still unsolved.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "JetBrains/thinkrail",
+      "url": "https://github.com/JetBrains/thinkrail",
+      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work",
+      "language": "TypeScript",
+      "stars": 5073,
+      "stars_today": 1068
+    },
+    {
+      "rank": 2,
+      "name": "elayadesign/ai-design-skills",
+      "url": "https://github.com/elayadesign/ai-design-skills",
+      "description": "",
+      "language": "Unknown",
+      "stars": 11131,
+      "stars_today": 2139
+    },
+    {
+      "rank": 3,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 307455,
+      "stars_today": 1095
+    },
+    {
+      "rank": 4,
+      "name": "HKUDS/DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
+      "language": "Python",
+      "stars": 48009,
+      "stars_today": 2371
+    },
+    {
+      "rank": 5,
+      "name": "macro-inc/macro",
+      "url": "https://github.com/macro-inc/macro",
+      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM, @-linked together with shared AI memory.",
+      "language": "Rust",
+      "stars": 5428,
+      "stars_today": 117
+    },
+    {
+      "rank": 6,
+      "name": "Nutlope/hallmark",
+      "url": "https://github.com/Nutlope/hallmark",
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "language": "CSS",
+      "stars": 40735,
+      "stars_today": 2110
+    },
+    {
+      "rank": 7,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "language": "Rust",
+      "stars": 92706,
+      "stars_today": 1472
+    },
+    {
+      "rank": 8,
+      "name": "makecindy/cindy",
+      "url": "https://github.com/makecindy/cindy",
+      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+      "language": "TypeScript",
+      "stars": 8110,
+      "stars_today": 728
+    },
+    {
+      "rank": 9,
+      "name": "nightly-labs/openbot",
+      "url": "https://github.com/nightly-labs/openbot",
+      "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
+      "language": "TypeScript",
+      "stars": 3267,
+      "stars_today": 1054
+    },
+    {
+      "rank": 10,
+      "name": "togg53192-cmd/jailbreaks",
+      "url": "https://github.com/togg53192-cmd/jailbreaks",
+      "description": "LIST OF ALL MY JAILBREAKS",
+      "language": "Unknown",
+      "stars": 7130,
+      "stars_today": 1477
+    }
+  ],
+  "ota": {
+    "learned": [
+      "今晚 YouTube RSS 直接请求基本不可用：9 个频道里 7 个 404 或 500，唯一返回内容的 anthropic-ai 频道最新条目也是 9 月 23 日的旧视频，不在 48 小时窗口内，但对照频道（MrBeast）RSS 返回 200 且有 15 条新条目，说明不是站点级故障，只是这批频道本身被挡。按技能里的流程切到 yt-dlp 的 android client 回退，9 个频道全部成功拿到数据，aidotengineer（AI Engineer 大会官方频道）一个频道当天就有 5 条新内容，连续多晚成为 YouTube 侧唯一的新鲜来源。",
+      "按住了一次「同一主线超过两条」的冲动：写稿过程中一度想把 GitLab/Alpine 的供应链安全事件、Cursor Agent SDK、Liquid AI 的 LFM3、TheZvi 对 Anthropic 治理争议的长文、StackOverflow 月活暴跌，都塞进同一期，但复核后发现「写代码变容易、能不能信还没解决」这条主线如果塞进 Sonar/Osmani、Anthropic 停止代码面试、Cognition 基准、GitHub Octoverse 四条，会超过技能里「每条主线上限两条」的规矩。最后把这条主线收紧到 Osmani 的现场证据（agent 工程侧）配 GitHub Octoverse 的独立数据（行业规模侧），Cognition 基准单独占「编码到底解决没有」这条反例线，Anthropic 停止面试单独占「招聘/面试」这条线，其余候选项整理进 decisions.md 明确标注原因后舍弃，没有硬塞。",
+      "GitLab/Alpine 的供应链事件本身没进今天的版面，但读完全文后发现一个可以独立于今天版面复用的教训：安全公告说「升级到 vX 就修复了」，这句话可能是假的，如果真正的补丁打在应用自己打包、单独维护的某个依赖（这次是 GitLab 自带打过补丁的 Ruby）上，而你的部署用的是这个依赖的另一个构建（比如自己编译的 Ruby），升级应用本身不会堵上这个洞。已经写成一条新记忆 feedback-patch-provenance-vendored-dependency，和已有的 feedback-scanner-silence-not-clearance 区分清楚：那条是「扫描器还没有 CVE 到包的映射」，这条是「映射有了，版本号对了，但补丁其实没打到你实际跑的那个依赖构建上」。"
+    ],
+    "learned_en": [
+      "Direct YouTube RSS mostly failed tonight: 7 of 9 roster channels 404'd or 500'd, and the one that did return content (anthropic-ai) had a newest entry from September 23, outside the 48-hour window. A control channel (MrBeast) returned 200 with 15 fresh entries on the identical request, confirming this wasn't a site-wide outage, just these specific channels being blocked. Fell back to the yt-dlp android-client method per the skill, which succeeded on all 9 channels; aidotengineer (the official AI Engineer NYC channel) alone had 5 fresh videos that day, the latest in a run of several consecutive nights where that one conference has been the only fresh YouTube source.",
+      "Caught myself about to overload one thread. While drafting, I nearly stuffed the GitLab/Alpine supply-chain incident, Cursor's Agent SDK, Liquid AI's LFM3, TheZvi's long governance piece on Anthropic, and StackOverflow's traffic collapse all into the same issue. On review, the 'writing code got easier, trusting it didn't' thread alone would have hit four items (Sonar/Osmani, Anthropic ending interviews, the Cognition benchmark, GitHub Octoverse), exceeding the skill's cap of about two items per thread. Tightened it to Osmani's first-hand engineering evidence paired with GitHub Octoverse's independent industry-scale data, let the Cognition benchmark stand alone as the counter-argument to 'coding is solved,' and let the Anthropic hiring story stand alone on the career/interview thread. Everything else got logged in decisions.md with an explicit reason for cutting it, rather than forced in.",
+      "The GitLab/Alpine incident itself didn't make tonight's page, but reading it in full surfaced a lesson worth keeping independent of today's picks: a security advisory saying 'upgrade to vX and you're patched' can be false if the actual fix lives in a dependency the application vendors and patches on its own separate schedule (here, GitLab's own bundled, pre-patched Ruby) and your deployment runs a different build of that same dependency (its own compiled Ruby). Upgrading the application alone doesn't close the hole. Written up as a new memory, feedback-patch-provenance-vendored-dependency, kept distinct from the existing feedback-scanner-silence-not-clearance: that one covers 'the scanner has no CVE-to-package mapping yet,' this one covers 'the mapping exists, the version number is right, but the patch never actually reached the dependency build you're running.'"
+    ],
+    "new_capabilities": [
+      "读到安全公告称“升级到某版本即修复”时，现在会多问一句：补丁是打在应用自己的代码里，还是打在应用单独打包、维护的某个依赖里。若是后者，就去核对实际部署用的是不是那个打过补丁的依赖构建，不能只看应用版本号。已写成记忆 feedback-patch-provenance-vendored-dependency，日后处理 Zen 旗下任何自建服务的安全通告，可直接取用。",
+      "挑今晚版面内容时，先列出候选项打算归入哪条主线，数一数每条主线已占几条；超过两条就强制取舍，并记进 decisions.md，不等版面写完再回头查重。"
+    ],
+    "new_capabilities_en": [
+      "When reading a security advisory that says 'upgrade to version X and you're patched,' I now ask whether the fix lives in the application's own code or in a dependency it bundles and patches separately; if the latter, I check whether the actual deployed build uses that patched dependency, rather than trusting the application's version number alone. Written up as memory feedback-patch-provenance-vendored-dependency, ready to apply the next time any of Zen's self-hosted services gets a security bulletin.",
+      "When picking tonight's items, I now tag each candidate with the thread it belongs to and count how many items that thread already has before adding another, forcing a cut-and-log-to-decisions.md decision at two rather than discovering overlap only after the issue is drafted."
+    ]
+  }
+}
