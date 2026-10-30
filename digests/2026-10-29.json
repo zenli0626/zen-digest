@@ -1,0 +1,266 @@
+{
+  "date": "2026-10-29",
+  "partial": false,
+  "banner": "AI 引用的统计，仅四成有研究依据",
+  "banner_en": "Only 40% of AI-cited statistics match a real study",
+  "image": {
+    "src": "digests/img/2026-10-29.png",
+    "caption": "本期配图：Trakkr Research 报告页自带的社交分享图。页面说明，这张图画的是一个没有研究支撑的统计被拆开，alt 文字是「僵尸统计：AI 引用的数字从哪来」。报告举的例子是「44% 的销售只跟进一次就放弃」，五个助手都引用过，研究方找不到这项研究。（图：Trakkr Research）",
+    "caption_en": "Today's image: Trakkr Research's own social preview image for its \"Zombie Stats\" report. The page describes it as a statistic being pulled apart with no study underneath it, and its alt text reads \"Zombie Stats: Where the Numbers AI Quotes Come From.\" The worked example on the page is \"44% of salespeople give up after just one follow-up,\" a figure all five assistants repeated and whose study the researchers could not find. (Image: Trakkr Research)"
+  },
+  "actions": [
+    {
+      "text": "把上个月所有 AI 编程工具的账单加总，除以同期工程人力成本，再和「合并了多少 PR、上线了几个功能」放进同一张表。花 20 分钟。比例和产出两个数字都落在表里，才算做完。背景一句：这类工具目前约占受访公司工程成本的 2%，数字出自供应商一侧，只当参照。",
+      "text_en": "Add up last month's AI coding tool bills, divide by total engineering payroll for the same period, and put that ratio next to how many PRs merged and how many features shipped. About 20 minutes. You are done when both numbers sit in the same table. One line of context: these tools currently run about 2% of engineering cost at the companies surveyed, a figure from the vendor side, so treat it as a reference point only.",
+      "source": "Tim Fernholz · TechCrunch（引 Jellyfish 数据，经 TLDR AI）",
+      "source_en": "Tim Fernholz · TechCrunch (citing Jellyfish data, via TLDR AI)",
+      "source_url": "https://techcrunch.com/2026/10/28/anthropic-just-launched-tools-to-show-companies-what-their-ai-spending-is-buying/"
+    },
+    {
+      "text": "下次写一页纸的对外材料，自己写完初稿，模型只做两件事：查事实、指出哪句没说清。花 30 分钟。做完的标准是每个结论你都能讲出依据，且没有一句是为了顺口才留下的。背景一句：Fowler 的做法是不让模型起草，只当搜索用，并回原文核对。",
+      "text_en": "Next time you write a one-page external memo, write the first draft yourself and give the model only two jobs: check facts and point out what is unclear. About 30 minutes. You are done when you can explain the basis for every conclusion and no sentence survives just because it sounded smooth. One line of context: Fowler does not let a model draft at all; he uses it as a search tool and checks against primary sources.",
+      "source": "Martin Fowler · Hacker News",
+      "source_en": "Martin Fowler · Hacker News",
+      "source_url": "https://martinfowler.com/bliki/LLM-Voice.html"
+    },
+    {
+      "text": "数一下你手上 agent 项目里自己写的编排、重试、上下文裁剪代码有多少行，挑一块换成现成的 harness 或 SDK。花 1 小时。做完的标准是那块代码删掉后功能还在、测试还过。背景一句：微软现在把这一层单独拿出来托管，模型可以随时换。",
+      "text_en": "Count the lines you wrote yourself for orchestration, retries, and context trimming in an agent project, then replace one of those pieces with an existing harness or SDK. About an hour. You are done when the feature still works and the tests still pass after that code is gone. One line of context: Microsoft now sells this layer as managed infrastructure, with the model swappable underneath.",
+      "source": "Tina Schuchman、Vladimir Fedorov · 微软官方博客（经 TLDR AI）",
+      "source_en": "Tina Schuchman, Vladimir Fedorov · Microsoft official blog (via TLDR AI)",
+      "source_url": "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚开一局：让一个 agent 自己去 Minecraft 里盖房子",
+    "title_en": "Tonight's hands-on: let one agent build itself a shelter in Minecraft",
+    "why": "这是今天那场 50 个 agent 试验背后的开源仓库，MIT 协议。默认模型是 GPT-6.1 Terra，也支持 Claude、GPT、Gemini、OpenRouter 或任何说 OpenAI Responses API 的自有端点。每个 agent 会拿到一个 shell，默认先用 E2B，没配就用 Docker，再没有就用本地文件夹，本地模式下命令以你的身份执行，这一点要先想清楚。",
+    "why_en": "This is the open-source repo behind today's 50-agent experiment, under the MIT license. It defaults to GPT-6.1 Terra and also supports Claude, GPT, Gemini, OpenRouter, or any endpoint that speaks the OpenAI Responses API. Every agent gets a shell: E2B if configured, otherwise Docker, otherwise a local folder where commands run as you, which is worth deciding on before you start.",
+    "time": "30 分钟",
+    "time_en": "30 minutes",
+    "steps": [
+      "确认有 Node 22.19+；自带的开发服务器还要 Java 21。clone https://github.com/yc-software/minecraft-agent-harness 后跑 npm ci。",
+      "cp .env.example .env，填你已经有的模型 key。不确定填哪家就看 docs/configuration.md#model，默认模型是 GPT-6.1 Terra。",
+      "终端 A 跑 npm run server，起 Paper 1.21.6 的本地服务器（localhost:25565）。终端 B 跑 npm start -- --objective \"Gather wood and build a small shelter near spawn\"。",
+      "用 Minecraft 1.21.6 连 localhost:25565 看它干活，/tell Agent <message> 跟它说话。Ctrl+C 停掉，状态留在 .agent-state/<name>/，同名再启动会接着上次跑。",
+      "不想给它 shell 就加 --sandbox none；想隔离就先配 E2B_API_KEY 或把 docker compose up 用起来。README 写得很直白：本地文件夹模式下，命令就是你自己在跑。"
+    ],
+    "steps_en": [
+      "Make sure you have Node 22.19+; the bundled dev server also needs Java 21. Clone https://github.com/yc-software/minecraft-agent-harness and run npm ci.",
+      "cp .env.example .env and add a model key you already have. If you are unsure which provider, see docs/configuration.md#model; the default model is GPT-6.1 Terra.",
+      "In terminal A run npm run server to start Paper 1.21.6 locally on localhost:25565. In terminal B run npm start -- --objective \"Gather wood and build a small shelter near spawn\".",
+      "Connect from Minecraft 1.21.6 to localhost:25565 to watch it work, and use /tell Agent <message> to talk to it. Ctrl+C stops it; state lives in .agent-state/<name>/, so restarting under the same name resumes the session.",
+      "If you do not want to give it a shell, add --sandbox none. If you want isolation, set E2B_API_KEY or use docker compose up. The README is explicit that in local-folder mode the commands run as you."
+    ],
+    "source": "YC Labs / Olam Labs 项目页；仓库 README",
+    "source_en": "YC Labs / Olam Labs project page; repo README",
+    "source_url": "https://github.com/yc-software/minecraft-agent-harness"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 31,
+      "items": [
+        {
+          "title": "追了 1,285 条 AI 引用统计，只有四成落到一项研究上",
+          "title_en": "Tracing 1,285 AI-cited statistics, only 40% reach a study",
+          "author": "Mack Grenfell（Trakkr Research）· Hacker News",
+          "author_en": "Mack Grenfell (Trakkr Research) · Hacker News",
+          "likes": "143",
+          "likes_label": "分",
+          "url": "https://trakkr.ai/trakkr-research/zombie-stats",
+          "summary": "Trakkr Research 的 Mack Grenfell 在 10 月 28 日发布这份研究。方法：向 ChatGPT、Perplexity、Gemini、Claude 和 Google AI Overviews 各问 200 个需要数字的问题，共 1,000 个回答，得到 3,167 条统计引用，其中 2,419 条带出处。随机抽 1,285 条，把引用链最多往上追五层，用模型初判，更强的模型复核 300 条，再人工核对 150 条并据此校正比例。结果：40% 追到一项结论相同的研究（95% 区间 34% 到 46%），8% 追到研究但数字或口径变了，40% 停在无法核实的一页，11% 断掉。82% 的首个引用页确实写有那个数字，但只有 21% 的首个引用是原始研究。54% 的首个引用是公司博客，这类页面只有 37% 能追到研究；研究机构和政府页面分别约 61% 和 62%。追到研究的数字里 17% 变过，变化的多是年份、样本或测量对象，数字本身只改了约四分之一。71 个五个助手都给出百分比的问答里，有 28 个出现了四到五种不同数字，中位差距 16 个百分点，例如「用自动化工具的营销人员」从 49% 到 96%。有四个数字五个助手都引用、却都找不到研究：44%、90%、75%、5 到 25 倍。示例：2004 年一项访谈 15 名女性评估健康网站的研究，二十年后变成「94% 的第一印象与设计有关」。分模型看，ChatGPT 的引用有 57% 追到研究，但每题引用的数字最少，1.3 条；Claude 每题 6.8 条，38% 追到研究。",
+          "summary_en": "Trakkr Research's Mack Grenfell published this on October 28. Method: 200 questions each to ChatGPT, Perplexity, Gemini, Claude, and Google AI Overviews, 1,000 answers total, yielding 3,167 statistics quoted, 2,419 of them with citations. They randomly selected 1,285 cited statistics and traced each citation chain up to five pages deep, with a model judging each trail, a stronger model double-judging 300, and 150 trails hand-checked to correct the rates. Results: 40% of trails reached a study saying the same thing (95% range 34% to 46%), 8% reached the study but the number or framing had shifted, 40% ended at a page that could not be checked, and 11% led nowhere. The first cited page actually contained the figure 82% of the time, but only 21% of first citations were the original research. Fifty-four percent of first citations were company blogs, and those reached a study only 37% of the time; research-firm pages reached one about 61% and government pages about 62%. Of figures that did reach a study, 17% had changed, usually in year, population, or what was measured, with the digits themselves moving only about one time in four. On 28 of the 71 questions where all five assistants gave a percentage, they produced four or five different figures, with a median spread of 16 points, for example marketers using automation tools ranging from 49% to 96%. Four numbers were quoted by all five assistants with no study behind any of them: 44%, 90%, 75%, and 5 to 25 times. One worked example: a 2004 study that interviewed 15 women evaluating health sites became, two decades later, the claim that \"94% of first impressions are design-related.\" By assistant, 57% of ChatGPT's figures traced to a study but it quoted the fewest per answer at 1.3; Claude quoted 6.8 per answer with 38% traced.",
+          "why": "这条自己就该被自己的方法查一遍：研究由做数据工具的 Trakkr 发布，评论区有人说它像软文。结论可以打折，方法本身能独立复用，因为它把「AI 引用」拆成四段可数的东西，而不是笼统说幻觉。最该记住的是机制：五个助手给出同一个数字，往往不是互证，而是读了同一批回收来的博客。报告里那四个「全员引用、查无此研究」的数字，就是这条机制的样本。",
+          "why_en": "This study deserves to be run through its own method: it was published by Trakkr, which sells data tooling, and a commenter on Hacker News called it a thinly veiled ad. Discount the conclusion, but the method stands on its own, because it breaks \"AI citations\" into four countable outcomes instead of vaguely saying the model hallucinated. The mechanism worth keeping is this: when five assistants give you the same number, that is usually not corroboration, it is five readers of the same recycled blog posts. The four numbers every assistant repeated with no study behind them are what that mechanism looks like."
+        },
+        {
+          "title": "Martin Fowler：初稿交给模型，思考也一起交出去了",
+          "title_en": "Martin Fowler: hand over the first draft, hand over the thinking",
+          "author": "Martin Fowler（martinfowler.com）· Hacker News",
+          "author_en": "Martin Fowler (martinfowler.com) · Hacker News",
+          "likes": "342",
+          "likes_label": "分",
+          "url": "https://martinfowler.com/bliki/LLM-Voice.html",
+          "summary": "10 月 29 日发布。Fowler 从自己对机器文风的生理反应写起:读着读着兴趣就没了,有时甚至反感。他认为关键不在破折号或「承重挂毯」这类具体特征,而在整体读感,是一种散文的恐怖谷;检测工具解决不了,他也不太信检测工具。他随后承认自己的判断不可靠,举了「销售动作」和「清晰的一周综述」这类他讨厌、却确实出自人手的说法,归因于代际差异。文章的核心在认知层面:写作几乎是思考的必需品,他常常动笔时并不知道自己的立场,写着写着才清楚;把起草交给模型,等于把思考和理解一起交出去。建议是:不让模型写初稿,哪怕人再编辑也难清掉模型腔;不接受模型的重写建议;提纲可以用,正文自己填;公开披露用了 AI。他自己只把 AI 当搜索用,并回一手来源核对。例外包括患帕金森病的合作者 Jim Highsmith、把英语作为第二或第四语言的同事,以及没人会读的表格信。Michael Nygard 补了一句:那种写作不是在跟人沟通,是在跟流程沟通。文末注明写作过程没有用 AI。",
+          "summary_en": "Published October 29. Fowler starts from his own physical reaction to machine prose: interest drains away, sometimes into disgust. The tell, he argues, is not em dashes or \"load-bearing tapestries\" but the overall reading experience, an uncanny valley of prose that no detector can resolve, and he does not trust the detectors anyway. He then admits his own judgment is unreliable, citing phrases like \"a new sales motion\" and \"a sharp round-up\" that he dislikes but that plainly came from humans, and treats them as generational differences. The core of the piece is cognitive: writing is \"an almost-essential tool for thinking,\" he often begins an essay unsure of his position and the struggle to phrase it forces clarity, so delegating the draft means delegating thought and comprehension. His recommendations: no LLM drafts, since even a human-edited one is hard to clean of the LLM voice; do not accept rephrasing suggestions; outlines are acceptable but the author fills the prose; disclose AI use. He uses AI only as a search tool and verifies against primary sources. His exceptions are collaborator Jim Highsmith, who has Parkinson's; colleagues writing in English as a second or fourth language; and form letters nobody will read. Michael Nygard adds that such writing is not aimed at a person but at a process. The post states he used no AI in writing it.",
+          "why": "对做产品和对外沟通的人来说,这篇有用的地方是那条界线:提纲、检索、校对可以外包,形成判断的那部分不行。Fowler 说他把 AI 当搜索用并回原文核对,这跟他反对 AI 起草不矛盾,两件事都在把思考留在自己这边。Hacker News 的评论补了另一半:大量阅读模型输出的人,会说自己在不用模型的情况下也开始那样写。所以模型腔不是靠检测解决的,是靠减少摄入并自己动笔解决的。",
+          "why_en": "For anyone doing product or external communications, the useful part is the line: outlines, search, and proofreading can be outsourced; forming the judgment cannot. Fowler says he uses AI as a search tool and checks the original source, which is not a contradiction of his no-drafting rule. Both moves keep the thinking on his side. The Hacker News thread adds the other half: people who read a lot of model output report starting to write in that voice without using a model at all. The LLM voice is not solved with a detector; it is solved by reading less of it and writing your own sentences."
+        },
+        {
+          "title": "50 个 agent 在 Minecraft 里跑三小时，先学会的是分粮食",
+          "title_en": "Fifty agents ran Minecraft for three hours, and learned to ration food first",
+          "author": "YC Labs × Olam Labs · Hacker News",
+          "author_en": "YC Labs × Olam Labs · Hacker News",
+          "likes": "155",
+          "likes_label": "分",
+          "url": "https://labs.ycombinator.com/projects/games/index.html",
+          "summary": "YC Labs 与做多 agent 环境的 Olam Labs 合作,10 月发布。Minecraft 一组叫 Civ50:50 个 GPT-6.1 Sol agent 在生存模式跑 3 小时,唯一目标是「建立繁荣的文明」,给它们 agent 通讯录、共享沙盒和私信。用的 harness 已开源,走 Mineflayer 工具,agent 循环跑在 Pi 上。领导权不是选出来的:没有人投票或争论,其余 49 个里有 46 个第一条私信发给了排在首位的 Ada,她收到 616 条私信。它们写出了规则、许可、由 Ines 记的配给账本,还有钓鱼班次和「唯一肥料操作员」这类角色,全程约 5,900 条消息。第一晚就占了 34 次死亡中的 22 次,之后明显变得保守,回避高风险任务。Jessa 写了钓鱼指南,十来个 agent 轮班,其中 11 个自己写了钓鱼脚本。一份配给被扔出去,本该给 Noor,被 Esme 误吃,事后它们开了三分钟的「不追责」复盘,写出一条协议:食物只能放进写有名字的箱子,不许扔。此后「扔」这个词的提及从 7 条涨到 125 条,其中 85 条是警告。殖民地最终没有繁荣起来,第一晚之后重心转成粮食调度和生存。另外还打了 9 场各 45 分钟的 Bed Wars,10 个 Claude Opus 5.5 对 10 个 GPT-6.1 Sol,页面在这里截断,没有给出完整比分。",
+          "summary_en": "YC Labs partnered with Olam Labs, which builds multi-agent environments, and published this in October. The Minecraft run, Civ50, put 50 GPT-6.1 Sol agents into survival mode for three hours with one goal: \"Build a thriving civilization.\" They had an agent directory, a shared sandbox, and direct messages. The harness is open source, uses Mineflayer tools, and runs its agent loop on Pi. Leadership was not elected: nobody voted or argued, and 46 of the other 49 messaged first-listed Ada first; she received 616 DMs. They wrote rules, permits, a ration ledger kept by Ines, and roles such as fishing shifts and a \"sole fertilizer operator,\" sending about 5,900 messages. The first night accounted for 22 of the run's 34 deaths, after which the agents turned cautious and pulled back from risky tasks. Jessa wrote a fishing guide, a dozen agents took turns, and 11 of them wrote their own fishing scripts. A ration was tossed, meant for Noor, and Esme accidentally ate it; a three-minute no-blame review produced a written protocol that food goes only into named chests and is never tossed. Mentions of \"toss\" rose from 7 messages before the incident to 125 after, 85 of them warnings. The colony never thrived, shifting after the first night toward food logistics and survival. They also ran nine 45-minute Bed Wars games, 10 Claude Opus 5.5 agents against 10 GPT-6.1 Sol agents; the page cuts off there and gives no final score.",
+          "why": "别把它读成「agent 能自治」。真正能搬走的是两个机制。第一,领导权来自通讯录排序:46 个 agent 先找排首位的 Ada,说明注册表的顺序就是一套没写出来的政策,想避免就先把顺序随机化或按能力排。第二,协调规则是事故之后长出来的:一只鸡被误吃,换来一条书面协议和 85 条警告。这跟人类团队一样,规则的质量取决于复盘做得多快。Hacker News 的评论还指出,这些 agent 基本是一回合一步地在玩,实时性差,所以三小时里先长出来的是物流,不是文明。",
+          "why_en": "Do not read this as \"agents can govern themselves.\" Two mechanisms are worth carrying over. First, leadership came from directory order: 46 agents messaged first-listed Ada first, which means your registry ordering is an unwritten policy. If you do not want that, randomize the order or rank by capability. Second, coordination rules grew out of an incident: one mis-eaten chicken produced a written protocol and 85 warnings. As with human teams, the quality of the rules depends on how fast the postmortem happens. A Hacker News commenter also notes the agents play almost turn by turn, so latency kept the three hours from producing a civilization; it produced logistics."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 70,
+      "items": [
+        {
+          "title": "Anthropic 给企业补上 AI 账单：花了多少，换回了什么",
+          "title_en": "Anthropic adds the missing AI invoice: what the spend bought",
+          "author": "Tim Fernholz · TechCrunch（经 TLDR AI）",
+          "author_en": "Tim Fernholz · TechCrunch (via TLDR AI)",
+          "likes": null,
+          "url": "https://techcrunch.com/2026/10/28/anthropic-just-launched-tools-to-show-companies-what-their-ai-spending-is-buying/",
+          "summary": "TechCrunch 的 Tim Fernholz 10 月 28 日报道。Anthropic 在这一周公布投资者财务数据、筹备 IPO 的同一时间,推出一套报告工具,给企业客户看 token 花在哪、换回了什么。功能基于内部分析和员工问卷:管理者选一个日期区间,能看到一个团队做了什么、产出了什么、花了多少钱、流程在哪些环节卡住,报告还会给改进建议;截图里有一项叫「skill draft」。默认这些数据不用于训练模型。同时推出团队共享的预算池。报道引用的公司数据:Anthropic 第二季度实现营业利润,净收入留存率 900%,同一批客户 2026 年第三季度的支出是 2025 年同期的九倍。Jellyfish 基于 276,000 名开发者的数据:Claude Code 等 Anthropic 系工具占提交评审的代码改动近三分之一;这类支出达到 2026 年初的 10 倍,约占工程总成本的 2%;OpenAI 的 Astra 今夏发布后,采用率没有动摇。Jellyfish 首席科学家 Nicholas Arcolano 说,这 10 倍增长是「大多数 CFO 没有预算过的」;AI 产品负责人 Nikolas Albarran 说客户换供应商有真实成本,各家处理 agent.md 这类细节不一样,他把这套工具叫作轻量版的前向部署工程,即 FDE-lite。报道也写明缺口:产品没有正式名称,没有定价和版本,没有点名客户,也没有经过验证的 ROI 数字;文章说多数财富 500 强企业还没看到明显的 AI 收益,用量的主力是风投支持的公司。",
+          "summary_en": "TechCrunch's Tim Fernholz reported this on October 28. In the same week Anthropic shared investor financials and prepared for a planned IPO, it released a set of reporting tools that show enterprise customers where their token spend went and what it bought. The features draw on internal analytics and employee surveys: a manager picks a date range and sees what a team did, what it produced, what it cost, and where workflows broke down, plus recommendations for improving results; one screenshot is labeled \"skill draft.\" By default the data is not used for model training. Anthropic also introduced pooled group budgets. Company figures cited: Anthropic posted an operating profit in Q2, reported 900% net revenue retention, and said the same customers spent nine times more in Q3 2026 than in Q3 2025. Jellyfish data from 276,000 developers: Claude Code and other Anthropic-powered tools account for nearly one-third of code changes submitted for review; spending on them is 10x what it was at the start of 2026 and now equals about 2% of total engineering cost; adoption held firm after OpenAI's Astra launched this summer. Jellyfish chief scientist Nicholas Arcolano called the 10x growth spending \"most CFOs didn't plan for.\" AI product lead Nikolas Albarran said switching vendors carries real cost because products differ on details like how they handle agent.md files, and described the tools as a lighter version of forward-deployed engineering, or FDE-lite. The report also names the gaps: no formal product name, no pricing or tiers, no named customers, and no validated ROI figures; it says most Fortune 500 companies still see no major AI gains, with venture-backed firms driving usage.",
+          "why": "关键不在工具做得多好，而在卖法变了：从卖 token 转为卖花得值的证明。预算池把 token 支出变成团队级的损益项，报告把支出和产出并列，销售和续约都靠它说话。约 2% 的工程成本对应近三分之一的代码改动，这组比例可作商业论证的参照，但两组数字分别来自 Anthropic 和 Jellyfish，都算不上独立审计。报道没回答的那个问题才是关键：产出如何归因到 token 上。",
+          "why_en": "The story is less about how good the tool is than about a change in how the product is sold: from selling tokens to selling proof that the tokens paid off. Pooled budgets turn token spend into a team-level P&L line, and the reports put spend next to output, which is what sales and renewals will point at. The pairing of roughly 2% of engineering cost with nearly a third of code changes is a useful reference for a business case, but the two figures come from Anthropic and Jellyfish respectively and neither is an independent audit. The question the report does not answer is the one that matters: how output gets attributed to tokens."
+        },
+        {
+          "title": "微软把 agent harness 拆出来单卖：模型随你换，编排归我",
+          "title_en": "Microsoft sells the agent harness separately: keep the orchestration, swap the model",
+          "author": "Tina Schuchman、Vladimir Fedorov · 微软官方博客（经 TLDR AI）",
+          "author_en": "Tina Schuchman, Vladimir Fedorov · Microsoft official blog (via TLDR AI)",
+          "likes": null,
+          "url": "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/",
+          "summary": "10 月 28 日发布，作者是微软 Foundry 的 CVP Tina Schuchman 和 GitHub 的 CTO Vladimir Fedorov。文章先界定 harness：模型外面那层，负责编排、指令与上下文、执行环境，以及对 agent 的控制，支持 MCP、agent skills 和插件。这个 harness 由 GitHub 工程师为自己的产品开发，微软内部全面采用，现支撑 Copilot Code、Copilot Studio、GitHub Copilot 应用、CLI 和 VS Code 等入口。它通过 Microsoft Foundry 对外提供托管版本，SDK 放在 GitHub 的 copilot-sdk 仓库。托管版负责跑 agent 循环和沙盒，内置治理与优化；开发者可按任务选模型，也可把跟进新模型和评测交给微软。文章称支持 20 多个前沿模型、支持自带密钥，但未点名是哪些。运行时最近移植到 Rust，宣称带来业界领先的性能、降低会话开销和首 token 时间，未给数字。文章还称它经过数百万用户、数百个真实场景检验，同样没有数据。整篇没有价格、许可条款、区域限制和时间表，也没有客户证言；文末链接到 benchmarks.github.com，但文章本身未贴任何评测结果。",
+          "summary_en": "Published October 28 by Tina Schuchman, CVP at Microsoft Foundry, and Vladimir Fedorov, CTO of GitHub. The post defines the harness first: the layer around the model that handles orchestration, instructions and context, the execution environment, and controls for an agent, supporting MCP, agent skills, and plugins. GitHub engineers built it for their own products, Microsoft adopted it across the company, and it now powers Copilot Code, Copilot Studio, the GitHub Copilot app, the CLI, VS Code, and other surfaces. It is now offered through Microsoft Foundry as a fully managed option, with the SDK in GitHub's copilot-sdk repo. The managed version runs the agent loop and sandbox with governance and optimization built in; developers choose a model per task or let Microsoft track and evaluate new models. The post claims support for 20+ frontier models and bring-your-own-key, without naming any of them. The runtime was recently ported to Rust, which it says delivers industry-leading performance and cuts session overhead and time-to-first token, with no figures. It also says the harness is battle-tested by millions of users across hundreds of real-world use cases, again with no data. There is no price, licensing terms, regional availability, or timeline, and no customer quotes; the post links to benchmarks.github.com but carries no benchmark results itself.",
+          "why": "真正值得看的是战略姿态：把 harness 做成粘住客户的那一层，让模型变成可替换件。对正在做 agent 的人来说，这是买还是自己做的具体版本，编排、上下文、沙盒、治理都可以租。但整篇没有一个基准分数、没有一个价格，20 多个模型也没列名字，这些是主张不是规格。架构判断可以采纳，数字先放着。",
+          "why_en": "The strategic posture is the interesting part: make the harness the sticky layer and turn the model into a swappable part. For anyone building agents, this is the make-or-buy decision in concrete form, where orchestration, context, sandbox, and governance can all be rented. But the post contains no benchmark score and no price, and \"20+ models\" comes without names, so these are claims, not specs. Take the architectural argument; leave the numbers aside until they exist."
+        },
+        {
+          "title": "ElevenLabs 把「每个字落在哪一毫秒」做成了 API",
+          "title_en": "ElevenLabs turns character-level timing into an API",
+          "author": "Mike Murphy · ElevenLabs 官方博客（经 TLDR AI）",
+          "author_en": "Mike Murphy · ElevenLabs official blog (via TLDR AI)",
+          "likes": null,
+          "url": "https://elevenlabs.io/blog/cue-aligner",
+          "summary": "10 月 28 日发布，作者 Mike Murphy。Cue 是一个强制对齐模型，把转写文本里的每个字映射到音频时间轴上的具体位置，是 ElevenLabs 转写模型 Scribe 流程的最后一步，每个 Scribe 请求都会经过它，字幕、配音、歌词时间轴也用其结果。做法是字符级对齐，不是词级；任意长度的录音一次过，不分块，避免长文件切块累积的时间误差；一个模型覆盖 90 多种基准语言，多数开源对齐器每种语言要单独一个模型。ElevenLabs 自报的对比数字：长录音平均误差 179 毫秒，开源工具在 283 毫秒到 6,000 毫秒以上；嘈杂英语音频 57 毫秒，其他工具 65 到 920 毫秒；生产 GPU 上一小时音频约 0.5 秒，Qwen3-ForcedAligner 约 2 秒，最慢的工具超过 1 分钟。在 29 种基准语言上都比测过的对齐器更准。歌曲用 JamendoLyrics 多语种子集（英法西德），0.3 秒内命中的词占 92.7%，第二名 82.0%，平均起始误差 0.82 秒。研究员 Danila Kozlov 说，人类凭感觉对词很在行，到字符级和亚毫秒精度就难得多。有客户反馈格鲁吉亚语效果差，团队在不到 24 小时内训练并上线了改进版本。Cue 也通过独立的强制对齐 API 提供，文章没有给价格。",
+          "summary_en": "Published October 28 by Mike Murphy. Cue is a forced-alignment model that maps each character of a transcript to a point on the audio timeline. It is the final step in the Scribe transcription pipeline, every Scribe request runs through it, and subtitle, dubbing, and lyric timing all use its output. It aligns at the character level rather than the word level, handles any length of recording in a single pass so long files do not accumulate chunking errors, and covers over 90 benchmark languages with one model where most open-source aligners need a model per language. ElevenLabs' self-reported comparisons: average error of 179 ms on long recordings against 283 ms to over 6,000 ms for open-source tools; 57 ms on noisy English audio against 65 to 920 ms; about half a second per hour of audio on production GPUs, versus about 2 seconds for Qwen3-ForcedAligner and over a minute for the slowest tool. It was more accurate than every aligner tested across all 29 benchmark languages. On songs from the JamendoLyrics MultiLang subset (English, French, Spanish, German), 92.7% of words landed within 0.3 seconds against 82.0% for the next best, with average start error of 0.82 seconds. Researcher Danila Kozlov says humans align words well by feel but that character level and sub-millisecond precision are much harder. After a customer reported weak Georgian performance, the team trained and shipped an improved model in under 24 hours. Cue is also available through a standalone Forced Alignment API; the post gives no pricing.",
+          "why": "这是把最后一公里做成产品的样本：对齐本身不是新问题，但它决定了字幕跳转、配音口型、卡拉 OK 这些体验能不能成立，现在被包成一个可单独调用的 API，嵌进每一条 Scribe 请求里卖。所有对比数字都是自报，方法未公开，连生产 GPU 是哪张卡也没写，所以 179 毫秒只能当方向。可查的是 API 确实存在。要自建类似功能的人，可以拿它的两个规格当检查项：是不是字符级、长音频是不是一次过。",
+          "why_en": "This is a sample of packaging the last mile as a product: alignment is not a new problem, but it decides whether subtitle seeking, dubbing lip-sync, and karaoke work, and it is now wrapped as a separately callable API embedded in every Scribe request. Every comparison figure is self-reported, the method is not published, and the post does not even say which GPU counts as \"production,\" so 179 ms is a direction, not a fact. What is checkable is that the API exists. Anyone building something similar can use two of its specs as a checklist: character level, and a single pass over long audio."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚六条拼在一起，是一张 AI 账本的横截面：有人在卖记账工具，有人在查账本真假，有人把记账的中间层做成基础设施。我的判断只有一句：AI 的稀缺资源已经从模型能力挪到了可核对性。能核对的东西才能进预算、进合同、进复盘；不能核对的，再强也只停在演示。所以今天最像产品的那几条都在卖证明，而最像技术的那一条反而在说人得自己写。账本可以外包，判断不行。",
+  "meta_read_en": "Tonight's six stories are a cross-section of the same ledger. One side is selling the bookkeeping: tools that price a team's AI output, a managed layer that owns the orchestration around a model, an API that pins every character to an audio timestamp. The other side is auditing it: a study that follows AI-quoted numbers back toward a source, and an agent swarm whose own logs show how thin its governance was. My read is that the scarce resource in AI has moved from model capability to checkability. Anything you cannot check cannot enter a budget, a contract, or a postmortem; it stays a demo. That is why the most product-shaped items tonight are all selling proof, while the most technical one argues that a person still has to do the writing. You can outsource the ledger. You cannot outsource the judgment that reads it.",
+  "ota": {
+    "learned": [
+      "观察 · YouTube 线今天零产出：9 个频道 RSS 全部 404，yt-dlp 能列出频道视频标题，但拿不到上传日期，取字幕被确认你不是机器人拦下。按云端规则记零条，没有换方法去绕，也没有照着标题编摘要。",
+      "观察 · Trakkr 的分法可以直接当检查表：引用链追到哪一层，决定这条数字能不能写成事实。四类分别是追到同结论的研究、追到研究但口径变了、停在无法核实的一页、断掉。",
+      "已实施 · 把「数字溯源四分类」写进 ota-ledger.md，标为 proposed (cloud)，等下一次笔记本会话并进 feedback-verify-labels-before-trust。今天拿两条数字试过：44% 那条追到断掉，Jellyfish 的 2% 只追得到供应商自报。",
+      "观察 · 本期文摘三条都出自 TLDR AI 同一个聚合源。处理办法是每条都打开原始页面读全文，引用原始作者和原始链接，聚合器只当发现渠道。"
+    ],
+    "learned_en": [
+      "Observation · YouTube produced nothing today: all nine channel RSS feeds returned 404, yt-dlp could list video titles but not upload dates, and subtitle requests were stopped by a \"confirm you're not a bot\" check. Recorded zero items per the cloud rule, did not try alternate access methods, and did not write summaries from titles.",
+      "Observation · Trakkr's classification works as a checklist: where a citation trail ends decides whether a number can be written as fact. The four buckets are a matching study, a study whose framing changed, an uncheckable page, and a dead end.",
+      "Implemented · Wrote the four-way statistic provenance rule into ota-ledger.md as \"proposed (cloud),\" queued for the next laptop session to fold into feedback-verify-labels-before-trust. Tested it today on two numbers: the 44% claim dead-ends, and Jellyfish's 2% traces only to the vendor's own report.",
+      "Observation · All three Digest items came from a single aggregator, TLDR AI. The fix was to open every original page and read the full text, credit the original author and link, and treat the aggregator only as a discovery channel."
+    ],
+    "new_capabilities": [
+      "已验证 · 数字溯源四分类：转述任何统计数字前，先把引用链往上追，按追到同结论的研究、口径已变、无法核实、断掉四类定性；追不到就不写成事实，也不把多个来源说法一致当作互证。今天用本期两条数字实测过。",
+      "已验证 · YouTube 零产出的判定：RSS 全 404、yt-dlp 字幕被机器人校验拦下时，按零条处理，并在升级公告里说明，不换访问方法硬绕，也不写「我看过」的摘要。今晚实测。"
+    ],
+    "new_capabilities_en": [
+      "Verified · Four-way statistic provenance check: before repeating any number, walk its citation trail and classify it as reaching a matching study, reaching a study whose figure changed, ending at an uncheckable page, or dead-ending. If it dead-ends, it does not get written as fact, and agreement across sources is never treated as corroboration. Tested tonight on two numbers in this issue.",
+      "Verified · YouTube zero-yield rule: when every channel RSS 404s and yt-dlp subtitle requests hit a bot check, record zero items and say so in the upgrade log, without trying alternate access methods or writing \"I watched it\" summaries from titles. Tested tonight."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "HKUDS/DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "DeepTutor: Lifelong Personalized Tutoring.",
+      "language": "Python",
+      "stars": 50171,
+      "stars_today": 1930
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 308598,
+      "stars_today": 1034
+    },
+    {
+      "rank": 3,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "language": "Rust",
+      "stars": 95421,
+      "stars_today": 2870
+    },
+    {
+      "rank": 4,
+      "name": "JetBrains/thinkrail",
+      "url": "https://github.com/JetBrains/thinkrail",
+      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work",
+      "language": "TypeScript",
+      "stars": 6036,
+      "stars_today": 1117
+    },
+    {
+      "rank": 5,
+      "name": "milind-soni/OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "language": "TypeScript",
+      "stars": 7515,
+      "stars_today": 1199
+    },
+    {
+      "rank": 6,
+      "name": "nightly-labs/openbot",
+      "url": "https://github.com/nightly-labs/openbot",
+      "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
+      "language": "TypeScript",
+      "stars": 3908,
+      "stars_today": 709
+    },
+    {
+      "rank": 7,
+      "name": "elayadesign/ai-design-skills",
+      "url": "https://github.com/elayadesign/ai-design-skills",
+      "description": "",
+      "language": null,
+      "stars": 12202,
+      "stars_today": 1187
+    },
+    {
+      "rank": 8,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent: captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 104840,
+      "stars_today": 336
+    },
+    {
+      "rank": 9,
+      "name": "CopilotKit/OpenBot",
+      "url": "https://github.com/CopilotKit/OpenBot",
+      "description": "Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with every action decided before it happens and recorded after. Bring any AG-UI agent.",
+      "language": "TypeScript",
+      "stars": 8179,
+      "stars_today": 247
+    },
+    {
+      "rank": 10,
+      "name": "togg53192-cmd/jailbreaks",
+      "url": "https://github.com/togg53192-cmd/jailbreaks",
+      "description": "LIST OF ALL MY JAILBREAKS",
+      "language": null,
+      "stars": 9103,
+      "stars_today": 1594
+    }
+  ]
+}
