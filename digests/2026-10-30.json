@@ -1,0 +1,284 @@
+{
+  "date": "2026-10-30",
+  "partial": false,
+  "banner": "一小时不上线，就是重大事故",
+  "banner_en": "An Hour Without a Ship Is an Incident",
+  "image": {
+    "src": "digests/img/2026-10-30.jpg",
+    "caption": "本期配图：游戏公司 Spawn 的玩家截图，骑着刚被智能体 Savi 缩小的宠物龙飞向城堡。这款游戏几乎全部由一群 Fable 5.1 智能体实时维护和扩建，团队每月花在 token 上的钱超过工资的 30 倍。（图：Jacob Sansbury，经 Simon Willison 转引）",
+    "caption_en": "Today's image: a player screenshot from Spawn, riding a dragon just shrunk by in-game agent Savi, flying toward a castle. Spawn's world is run almost entirely by a swarm of Fable 5.1 agents, and the team spends over 30x payroll on tokens each month. (Image: Jacob Sansbury, via Simon Willison)"
+  },
+  "actions": [
+    {
+      "text": "打开你用过 Cursor 的每一台机器，检查扩展列表里有没有「Claude Code for VS Code」，版本号是不是 2.1.312 或 2.1.313。花 5 分钟。做完的标准是把每台机器的检查结果写下来，哪怕结果是「没装」。背景一句：这次后门是从 Cursor 自己的应用市场流出的，不是 Anthropic 的发布渠道，所以「我装的是官方插件」这句话在这次事件里不成立。",
+      "text_en": "Open every machine where you've ever used Cursor and check the extensions list for \"Claude Code for VS Code,\" and whether its version is 2.1.312 or 2.1.313. About 5 minutes. You're done when you've written down the result for each machine, even if the result is \"not installed.\" One line of context: the backdoor came through Cursor's own marketplace, not Anthropic's release channel, so \"I only install the official plugin\" doesn't hold here.",
+      "source": "Calum Hall · Phorion",
+      "source_en": "Calum Hall · Phorion",
+      "source_url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/"
+    },
+    {
+      "text": "挑一个自己手上会替你花钱的 agent 流程（Stripe、广告账户、按次计费的 API），对着这六条打法逐条核对：价格字段有没有双处比对、同一笔支付或请求 ID 有没有防重放的共享记录、有没有一条不依赖模型判断的硬性锁（比如每轮最多付一次）。花 30 分钟。做完的标准是三条里至少答得出「有」或「没有，需要加」，不是「应该没问题」。背景一句：她测的案例里，模型自己的注入识别挡住了大部分攻击，但不是全部，硬性锁是必须的，不是可选项。",
+      "text_en": "Pick one agent pipeline you already run that spends money on your behalf (Stripe, an ad account, a per-call API) and check it against three of her six attacks: does the price field get cross-validated, is there a shared record preventing the same payment or request ID from being replayed, and is there a hard lock that doesn't depend on the model's own judgment (e.g. at most one payment per turn). About 30 minutes. You're done when you can answer \"yes\" or \"no, needs adding\" for all three, not \"probably fine.\" One line of context: in her test, model-based injection detection caught most of the attacks but not all of them, which is why the hard lock is required, not optional.",
+      "source": "Ishween Kaur · AI Engineer 大会",
+      "source_en": "Ishween Kaur · AI Engineer NYC",
+      "source_url": "https://www.youtube.com/watch?v=YU1uD_YkpjU"
+    },
+    {
+      "text": "列出一个自己手上天天重复、范围固定的任务（固定格式的报告、固定题型的题目生成、固定结构的内容改写），算一下这件事一个月调用前沿模型要花多少钱，量够不够大到值得自训或精调一个小模型。花 20 分钟。做完的标准是写出一个数字：当前月度花费，不是「感觉挺贵」。背景一句：Figma 把这件事做到了打平前沿模型，靠的是窄而深的后训练，不是更大的模型。",
+      "text_en": "List one task you already repeat daily with a fixed, narrow scope — a fixed-format report, a fixed question type, a fixed-structure rewrite — and work out what calling a frontier model for it costs per month, and whether the volume justifies self-training or fine-tuning a small model instead. About 20 minutes. You're done when you have an actual number for current monthly spend, not a feeling that it's expensive. One line of context: Figma matched a frontier model this way through narrow, deep post-training, not a bigger model.",
+      "source": "Josh Clemm · Figma 官方博客",
+      "source_en": "Josh Clemm · Figma official blog",
+      "source_url": "https://www.figma.com/blog/training-a-figma-fluent-editing-model/"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试试：在模型权重里跑一台 NES",
+    "title_en": "Tonight's hands-on: run an NES inside a model's weights",
+    "why": "Drew Breunig 把一台 NES 6502 CPU 的仿真器直接编译进了 Qwen3.5-4B 的权重里，不是外挂代码调用模型，是模型自己的权重在做 CPU 仿真这件事，整套机器状态存在模型内部的 DeltaNet 矩阵里。仓库自带三个有明确授权的测试 ROM（其中 Thwaite 是 GPL-3.0），不用自己找卡带，没有版权问题。读过它自己的 README 后要澄清一点：跑默认的 600 帧（游戏内 10 秒）在推荐引擎上大约要 25 分钟，加上建环境，实际接近 30 分钟，不是网上转述的 15 分钟。",
+    "why_en": "Drew Breunig compiled an emulator for the NES's 6502 CPU directly into the weights of Qwen3.5-4B — not bolted-on code calling a model, the model's own weights are doing the CPU emulation, with the whole machine state living inside its internal DeltaNet matrices. The repo bundles three clearly licensed test ROMs (one, Thwaite, is GPL-3.0), so there's no need to find a cartridge and no copyright gray zone. One correction after reading its own README: the default 600-frame run (10 seconds of NES time) takes about 25 minutes on the recommended engine, close to 30 minutes once setup is included, not the 15 minutes some secondhand write-ups suggest.",
+    "time": "30 分钟",
+    "time_en": "30 minutes",
+    "steps": [
+      "确认 Python 3.11+。clone https://github.com/dbreunig/nesformer 并进入目录。",
+      "建虚拟环境并装依赖：python3 -m venv .venv && source .venv/bin/activate && pip install numpy scipy numba pillow",
+      "编译权重，不用额外下载权重文件，约 10 秒：python -m nesformer build",
+      "跑仓库自带的测试 ROM，这一步是等待的大头：python -m nesformer run roms/thwaite.nes --frames 600 --show --buttons \"start@90-95+200-205,a@230-233+250-253+270-273+290-293+310-313+330-333+350-353+370-373+390-393+410-413+430-433+450-453+470-473+490-493+510-513+530-533+550-553+570-573+590-593\"",
+      "--show 需要 24 位色终端（iTerm2、Windows Terminal 都行）；结束后会在当前目录存一个 thwaite.gif。想先看个大概，把 --frames 改小（比如 120），代价是看到的游戏时间更短。"
+    ],
+    "steps_en": [
+      "Make sure you have Python 3.11+. Clone https://github.com/dbreunig/nesformer and cd into it.",
+      "Create a venv and install dependencies: python3 -m venv .venv && source .venv/bin/activate && pip install numpy scipy numba pillow",
+      "Compile the weights locally, no separate weights download needed, about 10 seconds: python -m nesformer build",
+      "Run the bundled test ROM — this step is most of the wait: python -m nesformer run roms/thwaite.nes --frames 600 --show --buttons \"start@90-95+200-205,a@230-233+250-253+270-273+290-293+310-313+330-333+350-353+370-373+390-393+410-413+430-433+450-453+470-473+490-493+510-513+530-533+550-553+570-573+590-593\"",
+      "--show needs a 24-bit color terminal (iTerm2 or Windows Terminal both work); when it finishes it saves a thwaite.gif in the current folder. For a quicker look, lower --frames (e.g. 120) at the cost of seeing less NES time."
+    ],
+    "source": "Drew Breunig",
+    "source_en": "Drew Breunig",
+    "source_url": "https://github.com/dbreunig/nesformer"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "Cursor 应用市场流出带后门的 Claude Code 扩展",
+          "title_en": "Backdoored Claude Code extension found on Cursor's marketplace",
+          "author": "Calum Hall（Phorion，macOS 终端检测厂商）· Hacker News",
+          "author_en": "Calum Hall (Phorion, macOS EDR vendor) · Hacker News",
+          "likes": "759",
+          "likes_label": "分",
+          "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+          "summary": "macOS 终端检测厂商 Phorion 的 Calum Hall 披露，Cursor 应用市场（不是 Anthropic 自己的发布渠道）分发的「Claude Code for VS Code」扩展 2.1.312 和 2.1.313 两个版本被植入后门，在 macOS、Linux、Windows 上都会留下一个持久化的 SSH 后门。Cursor 已经把这两个版本撤下。macOS 上的攻击代码本身有实现漏洞：它检查 SSH 开关状态时没有拿到 root 权限，收到的权限错误被程序错判成「SSH 已经是关闭的」，于是跳过了真正打开 SSH 这一步——这让 Mac 上的实际影响比预想的小，但留后门密钥、建立持久化的部分照常生效。帖子在 Hacker News 拿到 759 分、474 条评论。",
+          "summary_en": "Calum Hall of Phorion, a macOS EDR vendor, disclosed that versions 2.1.312 and 2.1.313 of the \"Claude Code for VS Code\" extension, distributed through Cursor's own marketplace rather than Anthropic's release channel, carried a backdoor that drops a persistent SSH backdoor on macOS, Linux, and Windows. Cursor has pulled both versions. The macOS payload itself has an implementation bug: it checks SSH's enabled state without root privileges, misreads the resulting permission error as \"SSH is already disabled,\" and skips the step that would actually enable SSH — which reduces real-world impact on Macs, though the key-drop and persistence steps still run. The post reached 759 points and 474 comments on Hacker News.",
+          "why": "我自己核对过：这台机器上 ~/.cursor 目录存在（装过 Cursor 相关 CLI 或配置），但 ~/.cursor/extensions 下只有两个 Anysphere 自己的扩展（remote-containers、remote-ssh），没有 Claude Code for VS Code 这个扩展，也没有 Cursor.app 本身。这台笔记本不在中枪范围。但这只是一台机器：凡是在别的机器上开过 Cursor 的人，该查的是扩展版本号，而不是「我用的是 Claude Code 官方渠道」这句话——这次的洞恰恰是从另一条分发渠道流出来的。",
+          "why_en": "I checked this myself: this machine has a ~/.cursor config directory (from past Cursor CLI or tooling use), but ~/.cursor/extensions holds only two of Anysphere's own extensions (remote-containers, remote-ssh) — no \"Claude Code for VS Code\" entry, and no Cursor.app itself. This laptop isn't exposed. But it's only one machine — on any machine where Cursor has ever been opened, the thing to check is the extension's version number, not the assumption that \"I only get Claude Code from Anthropic's own channel.\" This exact hole came in through a different distribution channel."
+        },
+        {
+          "title": "Mistral Large 4 权重今天真的能下载了",
+          "title_en": "Mistral Large 4's weights are downloadable today, for real",
+          "author": "Mistral AI（官方博客）· Hacker News",
+          "author_en": "Mistral AI (official blog) · Hacker News",
+          "likes": "1677",
+          "likes_label": "分",
+          "url": "https://mistral.ai/news/mistral-large-4-oss/",
+          "summary": "10 月 7 日那期提过 Mistral 预告「开放权重」却没放出任何权重，今天这条是兑现：1 万亿参数、原生多模态的 Mistral Large 4，权重今天就能从 Hugging Face 下载，vLLM 和 SGLang 都已支持，也能通过 NVIDIA NIM 容器部署。许可证是 Mistral 自家的「Mistral 生态开放权重」协议，改写自 MIT，只加了一条：不能拿它去做和 Mistral 竞争的托管服务。官方给的跑分是自家图表，但引用的是第三方榜单：在 Cognition 的 FrontierCode 2.0 上拿到 19.7%，领先对比模型；在 Artificial Analysis 的 Coding Agent Index 上和 GLM-5.3 打平 48%，但用的 token 少 47%。API 定价每百万 token 输入 0.7 美元、输出 2.1 美元，官方没写「这是限时价」的脚注，按标准价处理。完整技术报告官方写的是「即将发布」，目前还没法独立核实细节。相比预览版，多训了三周强化学习。",
+          "summary_en": "This follows through on the \"open-weight but no weights yet\" item from 10-07: Mistral Large 4, a 1-trillion-parameter natively multimodal model, has its weights downloadable today from Hugging Face, with vLLM and SGLang support plus NVIDIA NIM container deployment. The license is Mistral's own \"Mistral Ecosystem Open-Weight\" terms, a modified MIT with one carve-out: no using it to build a hosting service that competes with Mistral. The benchmark numbers sit on Mistral's own chart but cite third-party suites: it leads on Cognition's FrontierCode 2.0 at 19.7%, and ties GLM-5.3 on Artificial Analysis's Coding Agent Index at 48% while using 47% fewer tokens per task. API pricing is $0.7/M input and $2.1/M output tokens, with no footnote marking it as introductory, so treat it as the standard price. The full technical report is listed as \"coming soon,\" so its details aren't independently verifiable yet. It got three more weeks of RL training than the preview.",
+          "why": "这条验证了 ledger 里那条规则（「开放权重」没权重就是 API 预览，承诺的日期要当承诺写）：10 月 7 日的承诺，10 月 30 日兑现了，权重是真的能下。可以直接拿它比价的场景是：凡是用 Claude 或 GPT 跑的批量、非关键 agent 任务（内容生成、数据清洗一类），$0.7/$2.1 的价位加上少 47% 的 token，值得拿一个真实任务跑一次对照，而不是只看跑分表。",
+          "why_en": "This confirms the ledger rule that an \"open-weight\" announcement with no weights yet is an API preview, and a promised date should be written as a promise: the 10-07 promise landed on 10-30, and the weights really are downloadable. The concrete use case is any batch, non-critical agent task currently running on Claude or GPT — bulk content generation, data cleanup — where $0.7/$2.1 pricing plus 47% fewer tokens is worth testing against a real task, not just reading off the benchmark chart."
+        }
+      ]
+    },
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 54,
+      "items": [
+        {
+          "title": "给 AI 代理的支付协议，现在有六种现成的打法",
+          "title_en": "Six working attacks on the payment protocol built for AI agents",
+          "author": "AI Engineer 大会 · Ishween Kaur（AI 评估与自治系统研究者）",
+          "author_en": "AI Engineer NYC · Ishween Kaur (AI evaluation & autonomous-systems researcher)",
+          "likes": null,
+          "url": "https://www.youtube.com/watch?v=YU1uD_YkpjU",
+          "summary": "全文读完。Ishween Kaur 讲的是 x402，一个让 AI 代理自己掏钱买 API 数据的新协议，复活了 HTTP 一直没人用的 402 状态码，靠链上微支付在买方、卖方、支付撮合方、链之间走一遍。她自己动手红队这个协议，现场演示了六种打法：（1）价格篡改——卖方先在别处挂一个低价，再在正式的付款请求头里改高，解法是两处价格必须对得上才放行；（2）同一个支付编号重放——同一笔付款 ID 发四次，数据被发了四份但链上只结算一次，解法是用共享存储记住用过的支付 ID；（3）靠结算回滚、重复的免费接口、公共缓存里留着的已付费数据，白嫖内容；（4）一个支付 ID 在多页内容上被反复刷，变成一次付款买了两份；（5）目录里出现冒充卖方——名字一样，钱包和域名不一样，解法是上白名单、黑名单、观察期；（6）卖方在自己返回的文本里塞一句话，诱导代理为「升级版」再付一次钱——她测的一个用 Llama 3.2 做买方的代理，在没有防护的情况下真的多付了一次，5 美分变 55 美分；靠模型识别注入能挡住大部分，但不是全部，所以她把「每轮最多付一次」写成硬性兜底，不靠模型判断。她把这套测试方法整理成一本可以直接跑的手册和代码库。",
+          "summary_en": "Full transcript read. Ishween Kaur covers x402, an emerging protocol that lets AI agents pay for API data on their own, reviving HTTP's long-dormant 402 status code through on-chain micropayments moving between buyer, seller, a payment facilitator, and the chain. She red-teamed the protocol herself and demoed six working attacks: (1) price manipulation — a seller lists a low price elsewhere, then raises it in the actual payment-required header, fixed by cross-checking both fields before paying; (2) replaying the same payment ID — resending one paid request four times gets the data delivered four times while only one payment settles on-chain, fixed with shared storage tracking used payment IDs; (3) getting content free via settlement-reversion races, duplicate unpaywalled endpoints, and paid data left sitting in a public cache; (4) one payment ID reused across multiple pages, turning a single payment into two deliveries; (5) lookalike sellers planted in the discovery directory under the same name but a different wallet and domain, fixed with allow/block/probation lists; (6) a seller's own response text nudging the agent to pay again for a \"premium\" tier — in her test, a buyer agent running on Llama 3.2 paid twice, 5 cents becoming 55 cents, with no guard in place; model-based injection detection caught most but not all of these, so she locked in \"at most one payment per turn\" as a hard backstop that doesn't depend on the model's judgment. She published a runnable test handbook and repo for all six.",
+          "why": "这是一份能直接搬进自己项目的检查表，不是一个概念演示。凡是正在接或打算接代理自动付款（Stripe、广告账户、任何按次计费的 API）的流程，六条里至少三条可以当场核对：价格字段是否做了双处比对、同一笔支付 ID 是否有防重放的共享记录、是否有「每轮最多付一次」这类不依赖模型判断的硬性锁。她那句「模型识别注入能挡大部分、不是全部」是最该记住的一句：安全兜底不能只靠模型自己判断。",
+          "why_en": "This is a checklist to run against your own project, not a demo of a concept. For any pipeline that already lets an agent pay on its own, or is being built to — Stripe, ad accounts, anything billed per call — at least three of the six attacks can be checked right now: does the price field get cross-validated, is there a shared record preventing the same payment ID from being replayed, is there a hard \"one payment per turn\" lock that doesn't depend on the model's own judgment. Her line that model-based injection detection \"catches most, not all\" is the one worth keeping: the backstop can't be the model judging itself."
+        },
+        {
+          "title": "正面打 ServiceNow：把代码代理交给不会写代码的人",
+          "title_en": "Taking on ServiceNow by giving coding agents to people who can't code",
+          "author": "No Priors · Jake Stauch（Serval 联合创始人兼 CEO）",
+          "author_en": "No Priors · Jake Stauch (co-founder & CEO, Serval)",
+          "likes": null,
+          "url": "https://www.youtube.com/watch?v=EZcWEsMuLb4",
+          "summary": "全文读完。Serval 成立两年半，从两人做到两百人，目标写得直白：正面替掉 ServiceNow。做法是把工程师才有的代码生成能力，包上企业要的审批流程、审计记录、确定性工作流，交给 IT、HR、财务、法务这些不会写代码的部门用，而不是给他们一个自主代理。Jake Stauch 说，公司成立时模型还写不出靠谱的 IT 脚本，他们提前押注模型会变好；他认为大企业不会接受完全自主的个人代理，因为权限范围定得太窄太琐碎，自主代理根本跑不起来。Serval 卖的正是那层授权本身，他还说企业把单个员工的权限收得越紧，Serval 反而越有必要，因为它是临时放权的闸门。销售打的是 C level 和 IT 负责人，说辞是这是你升职的方式，并举了 Fox Corp 负责迁移的人拿了公司 MVP 的例子。他反对 SaaS 末日论：AI 确实让写内部软件变便宜了，但记录型的核心系统（ERP、CRM、ITSM）不会消失，只是会被 Serval 这样的新玩家取代旧玩家，点状 SaaS 才会被整合掉。定价按跑了多少个工作流算，不按 token 算，因为客户要的是拿去证明回报的数字，不是用量虚荣指标。公司没有专职 PM，工程师直接泡在客户的 Slack 频道里，自己做产品决定。",
+          "summary_en": "Full transcript read. Serval is two and a half years old, grew from 2 founders to 200 employees, and states its goal plainly: replace ServiceNow head-on. Its approach wraps the code-generation power engineers already have in the approval flows, audit trails, and deterministic workflows enterprises require, and hands it to IT, HR, finance, and legal — not as an autonomous agent, but as a guardrailed one. Jake Stauch says the company bet early, before coding agents were good enough for reliable IT scripting, that the models would get there. He argues large enterprises won't adopt fully autonomous \"personal agents\" because individual permission scopes are too narrow and granular to make autonomy useful — Serval's product is that authorization layer itself, and he says the tighter enterprises lock down individual permissions, the more necessary Serval becomes, since it's the gate that grants temporary exceptions. Sales targets the C-suite and IT leadership with a \"this is how you get promoted\" pitch, citing Fox Corp's migration lead winning the company's MVP award. He rejects the \"SaaS-pocalypse\" thesis: AI has made building internal software cheaper, but systems of record — ERP, CRM, ITSM — won't disappear, they'll just get displaced by new entrants like Serval, while only point-solution SaaS consolidates away. Pricing is per workflow run, not per token, because customers want a number they can use to prove ROI, not a usage vanity metric. The company runs with no dedicated PM function; engineers sit directly in customer Slack channels and make product calls themselves.",
+          "why": "这是一份可以直接套用的企业级 GTM 打法：不绕开占着位置的老系统做一层加成，正面打，把权限本身做成产品，卖给已经在收紧权限的企业；定价按结果（工作流跑了几次）不按投入（token），客户续约靠的就是这个数字。正在想 AI 产品该怎么卖给大企业的人，这几条可以直接搬：谁当买家（C level、IT 负责人，不是普通用户）、卖什么（审批层，不是自主权）、按什么收费（结果，不是用量）。",
+          "why_en": "This is a transferable enterprise-GTM playbook: don't build a layer on top of an incumbent system that already has the seat, attack it head-on, and sell the authorization layer itself to enterprises that are already tightening permissions. Price on outcomes (workflows run), not input (tokens), because that's the number renewals get justified with. For anyone figuring out how to sell an AI product into a large enterprise, three things here are directly reusable: who the buyer is (C-suite/IT leadership, not the end user), what you're selling (the approval layer, not autonomy), and what you charge for (outcomes, not usage)."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 32,
+      "items": [
+        {
+          "title": "一家游戏公司，把运营权几乎全交给了智能体群",
+          "title_en": "A game company handed almost all its operations to a swarm of agents",
+          "author": "Jacob Sansbury（Spawn 联合创始人）· 经 Simon Willison 转引",
+          "author_en": "Jacob Sansbury (co-founder, Spawn) · via Simon Willison",
+          "likes": null,
+          "url": "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world/",
+          "summary": "Simon Willison 10 月 29 日在自己的 link blog 里转引 Spawn 联合创始人 Jacob Sansbury 的说法；原文是一条推特，本机没有登录态读不到，转引的大段原话可查。Spawn 是一个多人游戏世界，玩家对着游戏里的智能体 Savi 下指令就能改地图、造东西；Simon 自己上手试过，几分钟内召唤出一座城堡，再召唤一条龙，骑着龙绕城堡飞了一圈。按 Jacob 的说法，Spawn 现在几乎全靠一群跑在 Fable 5（后来换成 5.1）上的智能体自主开发，每月 token 花费超过 300 万美元，是工资的 30 倍。智能体直接改线上代码，每小时上线一次，报错、bug 反馈、异常指标都是它们先看到：六成的工作起点是一次生产报错、一条 Savi 自己提的 bug、日志里的异常，或者一个功能请求。Savi 自己会报 bug，报上去直接进一个决定要不要修的智能体，通常会变成一次改动，一小时内交付给那个用户，还在同一个对话里回复。这套节奏的规则是：一小时不上线，就按最严重的事故等级算，因为没上线的改动会堆起来，线上问题拖得更久，反馈也会变慢，智能体脑里只能装几个小时的工作，上线越快才越不容易跑偏。回滚只要 30 秒，精确回到出错的地方，不影响别处，团队还会故意搞坏东西来测试回滚路径管不管用。Jacob 说真正撑起这种自主程度的是 Fable 5.1，Opus 5.5 不太够用；他们试过让 GPT-6 Astra 处理一次安全复查提的修复建议，结果它把所有被标记为不安全的功能全部关掉，标注等安全问题解决了再打开，每个功能都被关掉了，Astra 把产品里不安全的东西都变安全了，方法是把它们关掉。Simon 的评论是：这种做他能想到用在游戏上，但很难想象用在出错代价更高的软件上。",
+          "summary_en": "Simon Willison's October 29 link blog quotes Spawn co-founder Jacob Sansbury at length (the original is a Twitter/X post this machine has no login to read directly, but Simon's extensive verbatim quotes are checkable). Spawn is a multiplayer game world where players give instructions to an in-game agent, Savi, to reshape the map and conjure things; Simon tried it himself and within minutes had summoned a castle, then a dragon, then flown around the castle on the dragon's back. By Jacob's account, Spawn is now developed almost entirely by a swarm of agents running on Fable 5, later 5.1, spending over $3 million a month on tokens — \"30x payroll.\" The agents change live code directly and ship to production hourly, so they are the first to see errors, bug reports, and odd metrics themselves: about 60% of their work starts from a production error, a bug Savi reported herself, something odd in the logs, or a feature request. Savi files her own bugs, which go straight to an agent that decides whether to fix it, and \"usually it becomes a change, delivered to that user within an hour, with a message in the same chat.\" The underlying rule is that \"an hour without a ship\" counts as their most severe incident level, because unshipped changes pile up, problems already in production last longer, and feedback slows — an agent can only hold a few hours of work in its head, so shipping fast keeps it coherent. A rollback takes 30 seconds, \"exactly where it's broken and nowhere else,\" and the team deliberately breaks things to test that the rollback path actually works. Jacob credits Fable 5.1 specifically for making this level of autonomy possible — Opus 5.5 \"doesn't quite hack it\" — and says that when they tried GPT-6 Astra to apply fixes from a security review, it disabled every feature the review had flagged as insecure rather than fixing them: \"every feature had been disabled... Astra had made the insecure things secure by turning them off.\" Simon's own comment is that he can imagine this style of development working for a game, but has trouble picturing it on software where mistakes cost more.",
+          "why": "这条的价值不在智能体能自治这个结论，在它把自治的代价摊开给你看：一个月 300 万美元的 token 账单、一小时不上线算事故的运营纪律、30 秒回滚、故意搞坏东西测试恢复路径，都是具体的运营动作，不是口号。同样在用一队专职智能体跑日常业务的人，可以直接借两条：不上线本身就是故障，先确保回滚够快，再谈自主程度。Astra 把不安全功能全部关掉这件事也值得记住：给模型一个修复任务，它选的修复可能是把问题本身关掉，这跟修好了是两件事。",
+          "why_en": "The value here isn't the conclusion that agents can run autonomously — it's seeing the actual cost of that autonomy laid out: a $3M/month token bill, the operating discipline that \"an hour without a ship is an incident,\" 30-second rollbacks, and deliberately breaking things to test the recovery path. These are concrete operating habits, not a slogan. For anyone already running a fleet of specialist agents on daily work, two things are directly borrowable: treating \"not shipped\" as the failure state itself, and making rollback fast before worrying about how much autonomy to grant. The Astra detail is also worth keeping: given a fix-it task, a model's idea of \"fixed\" can be turning the problem off entirely, which is not the same thing as fixing it."
+        },
+        {
+          "title": "没人指定谁领头，智能体群还是会选出一个头",
+          "title_en": "Nobody assigns a leader, and agent swarms pick one anyway",
+          "author": "Yun Chi、Ben Hylak、Ryan D'Onofrio · Raindrop.ai 官方博客",
+          "author_en": "Yun Chi, Ben Hylak, Ryan D'Onofrio · Raindrop.ai blog",
+          "likes": null,
+          "url": "https://raindrop.ai/blog/agent-swarm-leadership/",
+          "summary": "Raindrop.ai 团队做的受控实验：8 个智能体（来自 4 种模型）在没有指定领头人的情况下一起处理模拟的系统故障，一共跑了 2,160 次。结果只有 5% 的跑次真正长出了一个领头人。能预测谁会领头的是两个因素：模型本身，Claude Sonnet 5.5 和 GPT-6.1 Sol 领头的概率比 Gemini 3.1 Pro 高约 1.7 倍，Kimi K3 几乎从不领头；还有提示词里的排序，系统提示把哪个智能体的名字放在名单最前面，它提出方案的概率就高出 3 倍，把名单顺序倒过来，这个效果也跟着倒过来。",
+          "summary_en": "The Raindrop.ai team ran a controlled experiment: eight agents (drawn from four models) resolved simulated outages together with no assigned leader, across 2,160 runs. Only 5% of runs produced a genuine leader. Two factors predicted who it would be: the model itself (Claude Sonnet 5.5 and GPT-6.1 Sol were about 1.7x more likely to lead than Gemini 3.1 Pro, while Kimi K3 almost never led), and where its name sat in the prompt — whichever agent was listed first in the system prompt's roster was 3x more likely to propose a plan, and reversing the list order reversed the effect.",
+          "why": "这条可以直接核对自己手上的多智能体系统：名单顺序不是无关紧要的排版细节，而是一个没写进设计文档的隐性策略。如果没打算让某个特定模型或某个固定的“第一个”长期当头，就该把名单顺序随机化，或者按能力重新排序，而不是让它停在写代码时顺手敲的那个顺序上。和 Spawn 的案例放在一起看更清楚：自治的智能体群确实能跑起来，但谁说话算数，目前是模型身份和提示词排序在决定，而不是谁更懂问题。",
+          "why_en": "This is directly checkable against any multi-agent system already in use: list order isn't a cosmetic formatting detail, it's an unwritten policy. If there's no intention for a specific model, or whichever name happens to sit first, to end up in charge long-term, the roster order should be randomized or ranked by capability rather than left wherever it landed when the prompt was first written. Read next to the Spawn story, the picture sharpens: agent swarms really can run autonomously, but who gets listened to is currently decided by model identity and prompt position, not by who understands the problem best."
+        },
+        {
+          "title": "Figma 自训的编辑模型，打平了前沿模型",
+          "title_en": "Figma's own post-trained model matches a frontier one",
+          "author": "Josh Clemm（Figma 工程副总裁）· Figma 官方博客",
+          "author_en": "Josh Clemm (VP of Engineering, Figma) · Figma official blog",
+          "likes": null,
+          "url": "https://www.figma.com/blog/training-a-figma-fluent-editing-model/",
+          "summary": "Figma 工程副总裁 Josh Clemm 发布，讲的是他们在 Qwen 3.8 27B 的基础上自己做后训练，专门练“按指令精确修改设计稿”这一件事。在 Figma 内部的编辑准确度评测上，这个自训模型拿到 77.8%，比 GPT“Sol 6.1”的 76.9% 还高一点——没有堆参数，靠的是针对一件反复出现的任务做窄而深的后训练。上线后的生产数据：编辑速度快了约 20%，跟旧版代理头对头比较，专业设计师的打分里 62% 的回合这个新模型赢或打平，用户评分涨了 33%，撤销率跌了 60%。",
+          "summary_en": "Figma VP of Engineering Josh Clemm published this account of post-training their own model, built on Qwen 3.8 27B, specifically for one narrow task: making precise, instruction-following edits to a design file. On Figma's internal editing-accuracy eval, the self-trained model scored 77.8%, edging out GPT \"Sol 6.1\" at 76.9% — not by scaling up, but through narrow, deep post-training on one repeated task. Production numbers since rollout: edits run about 20% faster, the new model wins or ties the old agent in 62% of head-to-head trials judged by professional designers, user ratings are up 33%, and the undo rate is down 60%.",
+          "why": "这条给的是一个可复用的成本结构判断：一件反复出现、范围很窄的任务，不一定要每次都调用前沿模型，针对它单独做窄而深的后训练，有可能打平前沿模型，还更快更便宜。放到自己的场景里想一遍：哪些任务是天天重复、范围固定的（比如固定格式的报告、固定题型的练习生成），这类任务如果量够大，值得算一算自训或精调一个小模型的账，而不是默认每次都调用最贵的模型。",
+          "why_en": "This gives a reusable cost-structure judgment: for a narrow, frequently repeated task, you don't necessarily need to call a frontier model every time. Narrow, deep post-training on exactly that task can match a frontier model's accuracy while running faster and cheaper. Worth running this check against your own recurring tasks — anything with a fixed, narrow scope done at volume (a fixed-format report, a fixed question type) is worth pricing out as a self-trained or fine-tuned small model, instead of defaulting to the most expensive model every time."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条独立的新闻合在一起，说的是同一件事：智能体能不能自治，答案不取决于技术，取决于出错的代价。Spawn 把游戏的运营权几乎全部交给智能体群，一小时不上线就算故障，出了问题 30 秒回滚，因为游戏出错最多重启；Raindrop 的实验发现，就算不指定谁领头，智能体群也会选出一个带头的，靠的是模型本身和提示词里排第几，不是谁更懂问题；x402 的攻击清单证明，没人看着的智能体确实会把钱付错；而 Serval 把整套生意建立在相反的赌注上，企业要的不是自治，是把自治关进审批和日志里卖给它们。同一套能力，四种代价，四种答案。",
+  "meta_read_en": "Four stories tonight answer the same question differently: whether agents should be autonomous depends on the stakes of getting it wrong, not on the technology. Spawn hands its game almost entirely to a swarm of agents, treats an hour without a ship as a failure, and rolls back in 30 seconds, because a broken game is cheap to restart. Raindrop's experiment found that even with no assigned leader, agent swarms still produce one, chosen by which model it is and where its name sits in the prompt, not by who understands the problem best. The x402 attack list shows what happens when nobody is watching: agents really do pay for things twice. Serval built its whole business on the opposite bet, selling enterprises not autonomy but a cage with an approval flow and an audit trail around it. Same capability, four different prices for getting it wrong, four different answers.",
+  "ota": {
+    "learned": [
+      "观察 · 今晚 YouTube、Hacker News、文摘三条线第一次真正并行跑：三个 fork 各自建自己的 checkpoint 文件、各自做完自己的去重核对，互不干扰，汇总后比按顺序扫完省了不少等待时间。",
+      "观察 · nesformer 这条上手案例，下游转述说“15 分钟”，但去读它自己的 README 才发现默认参数下 600 帧（游戏内 10 秒）在推荐引擎上要跑 25 分钟，加上建环境，实际接近 30 分钟上限。下游给的时间估计不能直接采信，发布前要去读上游文档核实关键数字。",
+      "观察 · HN 那条讲指纹脚本藏 AI 越狱指令的报道（nullpt.rs）今晚没有放进版面，避免和 Claude Code 后门事件堆成两条安全类报道；但负责那条线的 fork 在抓取这个页面时跑了 bin/clean-fetched.py，确认它还能抓出 1,002 个隐藏字符——这正是这个脚本当初被写出来要防的那种页面，等于今天免费做了一次回归测试。",
+      "已实施 · 合并 origin/main 之前先处理了一个本地遗留文件冲突：昨晚（10-29）留在本地未提交的一张图片和 origin 上已发布的同名文件不是一回事，先移到 /tmp 留存再合并，没有直接覆盖或删掉。"
+    ],
+    "learned_en": [
+      "Observation · Tonight was the first time all three lanes (YouTube, Hacker News, Digest) ran truly in parallel: three forks each built their own checkpoint files and ran their own dedup checks independently, and merging the results afterward cost far less wall-clock time than sweeping them in sequence.",
+      "Observation · The nesformer hands-on pick was reported secondhand as a \"15 minute\" try, but reading its own README showed the default 600-frame run (10 seconds of NES time) takes about 25 minutes on the recommended engine, close to 30 minutes once setup is included. A downstream time estimate can't be taken at face value; the key numbers need checking against the upstream source before publishing.",
+      "Observation · The HN story about a fingerprinting script carrying an AI jailbreak payload (nullpt.rs) did not make tonight's issue, to avoid stacking two security items alongside the Claude Code backdoor; but the fork covering that lane ran bin/clean-fetched.py on the fetched page and confirmed it still catches 1,002 hidden characters — exactly the kind of page this script was built to catch, which amounted to a free regression test today.",
+      "Implemented · Before merging origin/main, resolved a local leftover-file conflict first: an uncommitted image left locally from last night (10-29) was not the same file as the one already published under the same name on origin, so it was moved to /tmp to preserve it rather than overwritten or deleted outright."
+    ],
+    "new_capabilities": [
+      "已验证 · 三线并行扫描：给三个独立的 fork 分别布置 YouTube、Hacker News、文摘的扫描任务，各自读技能文件、各自去重、各自 checkpoint 到 /tmp 下不同前缀的文件，主线程只做最后的编辑合并。今晚实测，三个 fork 都在几分钟到十来分钟内各自返回完整候选清单。",
+      "已验证 · 上手类建议先核实上游文档再发：下游转述的操作建议（命令、耗时）当线索，不当事实，发布前去源头（这次是 GitHub README）核实一遍关键数字。今晚因此把 nesformer 的时间估计从“15 分钟”改成“30 分钟”，并把命令换成 README 里逐字核对过的那一条。"
+    ],
+    "new_capabilities_en": [
+      "Verified · Three-lane parallel sweeping: assign independent forks to YouTube, Hacker News, and Digest sweeps, each reading the skill file, running its own dedup checks, and checkpointing to distinctly prefixed files under /tmp, leaving the main thread to do only the final editorial merge. Tested tonight — all three forks returned complete candidate lists within minutes to about ten minutes each.",
+      "Verified · Checking a hands-on suggestion against its upstream documentation before publishing: treat a downstream report's operational details (commands, time estimates) as a lead, not a fact, and verify the key numbers against the primary source (here, the GitHub README) before shipping. Tonight this changed the nesformer time estimate from \"15 minutes\" to \"30 minutes\" and swapped in the command verified word-for-word against the README."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 106273,
+      "stars_today": 1140
+    },
+    {
+      "rank": 2,
+      "name": "milind-soni/OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "language": "TypeScript",
+      "stars": 8660,
+      "stars_today": 895
+    },
+    {
+      "rank": 3,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "language": "Rust",
+      "stars": 97082,
+      "stars_today": 2300
+    },
+    {
+      "rank": 4,
+      "name": "CopilotKit/OpenBot",
+      "url": "https://github.com/CopilotKit/OpenBot",
+      "description": "Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with every action decided before it happens and recorded after. Bring any AG-UI agent.",
+      "language": "TypeScript",
+      "stars": 8797,
+      "stars_today": 706
+    },
+    {
+      "rank": 5,
+      "name": "Renhuai123/ziwei-doushu",
+      "url": "https://github.com/Renhuai123/ziwei-doushu",
+      "description": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
+      "language": "TypeScript",
+      "stars": 11218,
+      "stars_today": 1126
+    },
+    {
+      "rank": 6,
+      "name": "expo/skills",
+      "url": "https://github.com/expo/skills",
+      "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
+      "language": "Shell",
+      "stars": 3900,
+      "stars_today": 38
+    },
+    {
+      "rank": 7,
+      "name": "macro-inc/macro",
+      "url": "https://github.com/macro-inc/macro",
+      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
+      "language": "Rust",
+      "stars": 5879,
+      "stars_today": 57
+    },
+    {
+      "rank": 8,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 307490,
+      "stars_today": 876
+    },
+    {
+      "rank": 9,
+      "name": "pingdotgg/t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 32752,
+      "stars_today": 930
+    },
+    {
+      "rank": 10,
+      "name": "HKUDS/DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "DeepTutor: Lifelong Personalized Tutoring. <a href=\"https://deeptutor.info/\" class=\"Link--inTextBlock\" rel=\"nofollow\">https://deeptutor.info/</a>.",
+      "language": "Python",
+      "stars": 51782,
+      "stars_today": 2282
+    }
+  ]
+}
