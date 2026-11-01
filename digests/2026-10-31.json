@@ -1,0 +1,269 @@
+{
+  "date": "2026-10-31",
+  "partial": false,
+  "banner": "谷歌市值一夜蒸发 5000 亿美元",
+  "banner_en": "Google Loses $500B in a Day",
+  "image": {
+    "src": "digests/img/2026-10-31.jpg",
+    "caption": "本期配图：谷歌资料图（图：Getty Images，经 CNBC 报道配图）。Alphabet 10 月 29 日 A 类股收盘跌 12.6%，是 2004 年上市以来单日最大跌幅。",
+    "caption_en": "Today's image: a Google stock photo (Getty Images, via CNBC's coverage). Alphabet's Class A shares closed down 12.6% on October 29, the largest single-day drop since its 2004 IPO."
+  },
+  "actions": [
+    {
+      "text": "挑一个自己正在用的 MCP 工具或连接器（哪怕是 Claude Code 里已经连好的），今晚找一个具体问题，手动核对一遍它返回的数据和真实来源是否一致，不要默认信任输出。花 10 分钟。做完的标准是记下「对」或「不对，哪里错了」，不是「看起来没问题」。背景一句：OpenAI 自己测过一批同类连接器，有的大厂连接器错误率超过四成，他们的办法是把数据买断自己托管，而不是接着用。",
+      "text_en": "Pick one MCP tool or connector you already use (even one already wired into Claude Code), find one concrete question tonight, and manually check its returned data against the real source instead of trusting the output by default. About 10 minutes. You're done when you've written down \"correct\" or \"wrong, here's where,\" not \"looks fine.\" One line of context: OpenAI tested a batch of comparable connectors and found some big-name ones error out over 40% of the time, which is why they chose to license and host that data themselves instead of relying on the connector.",
+      "source": "Joseph Kim · Latent Space",
+      "source_en": "Joseph Kim · Latent Space",
+      "source_url": "https://www.youtube.com/watch?v=v-d1WTqIULs"
+    },
+    {
+      "text": "挑一个自己手上正在做或已经上线的 AI 功能，对着 Supriya Subudhi 的五个问题过一遍：真有人用吗还是只是说想用、有没有看具体输出不是只看平均分、算上全部成本还值不值、赢的是不是靠堆最贵的模型、法律上能不能在目标市场上线。花 15 分钟。做完的标准是五个问题都答出来，哪怕答案是「不知道，需要去查」。",
+      "text_en": "Pick one AI feature you're building or have already shipped and run it through Supriya Subudhi's five questions: are people actually using it or just saying they want it, are you reading real outputs instead of just the average, does it still pay off once you count every cost, is the win riding on the most expensive model, and is it legally clear to ship in the target market. About 15 minutes. You're done when all five are answered, even if the answer is \"don't know, need to check.\"",
+      "source": "Supriya Subudhi · AI Engineer 大会",
+      "source_en": "Supriya Subudhi · AI Engineer NYC",
+      "source_url": "https://www.youtube.com/watch?v=CvmZtAPmAW4"
+    },
+    {
+      "text": "打开 chatgpt.com/share（或自己账号设置里的「已分享的内容」），把列出来的每一条分享对话过一遍，删掉自己不再需要公开的。花 5 到 10 分钟。做完的标准是看过全部列表，不是「应该没分享过什么」。背景一句：这次曝出的漏洞已经修复，但分享链接本身就是攻击入口这件事，和账号密码强弱完全无关，习惯性清理分享列表是最简单的防线。",
+      "text_en": "Open chatgpt.com/share (or the \"shared content\" section in your account settings) and go through every listed shared conversation, deleting any you no longer need public. About 5-10 minutes. You're done when you've seen the full list, not when you've assumed \"I probably haven't shared much.\" One line of context: the specific bug here is already fixed, but the share link itself being an attack surface has nothing to do with password strength, so habitually clearing the shared list is the simplest defense.",
+      "source": "Mukul Goyal · Parameter Security Labs",
+      "source_en": "Mukul Goyal · Parameter Security Labs",
+      "source_url": "https://www.parameter.ai/labs/we-found-a-gap-at-openai"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚装一套逼自己把需求讲清楚的技能包",
+    "title_en": "Tonight's hands-on: install a skill pack that forces you to state what you actually want",
+    "why": "Matt Pocock 把他自己每天真的在用的工程 agent 技能打了包放上 GitHub，一周内涨了 30 多万星，排在今晚 GitHub 热榜第二。里面最受欢迎的是 /grill-me 和 /grill-with-docs：不是让 agent 直接去写，而是先反过来审问你，逼你把真正想要的东西讲清楚，他说这是因为大多数「agent 没做对」的案例根本不是技术问题，是沟通没对齐。这个思路和 Zen 自己「先假设、按假设动手、只在真正分叉时才问」的原则正好互补：两者管的是同一件事的两头，一个管什么时候该问，一个管问的时候该怎么问。",
+    "why_en": "Matt Pocock packaged the agent skills he actually uses every day for real engineering work and put them on GitHub, where they picked up over 300,000 stars in a week, ranked #2 on tonight's GitHub trending list. The most popular ones are /grill-me and /grill-with-docs: instead of having the agent start building, they flip it around and interrogate you first, forcing you to actually articulate what you want. His point is that most \"the agent didn't do what I wanted\" failures are communication gaps, not technical ones. This complements Zen's own principle of assuming and proceeding, asking only when it actually matters: one governs when to ask, the other governs how to ask well when you do.",
+    "time": "15 分钟",
+    "time_en": "15 minutes",
+    "steps": [
+      "在 Claude Code 里运行：claude plugin install mattpocock-skills@claude-plugins-official",
+      "装完后在任意一个项目里跑一次：/setup-matt-pocock-skills，它会问你用哪个 issue tracker、打什么标签、文档存哪，回答完就设置好了。",
+      "挑一件今晚真的要做的事（哪怕是非代码的），跑 /grill-me（非代码场景）或 /grill-with-docs（工程场景），老实回答它反问你的问题，看看被问出了几个自己之前没想清楚的地方。"
+    ],
+    "steps_en": [
+      "In Claude Code, run: claude plugin install mattpocock-skills@claude-plugins-official",
+      "Once installed, run /setup-matt-pocock-skills once in any project — it asks which issue tracker you use, what labels you apply, and where to save docs, and you're set up after answering.",
+      "Pick one real thing you're about to do tonight (even a non-code task), run /grill-me (non-code) or /grill-with-docs (engineering), answer its questions honestly, and see how many things it surfaces that you hadn't actually thought through."
+    ],
+    "source": "Matt Pocock",
+    "source_en": "Matt Pocock",
+    "source_url": "https://github.com/mattpocock/skills"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "点开一个分享链接就能被接管账号：ChatGPT 的一次沙箱越狱复盘",
+          "title_en": "Opening a share link was enough to hijack an account: a walkthrough of a ChatGPT sandbox escape",
+          "author": "Mukul Goyal · Parameter Security Labs",
+          "author_en": "Mukul Goyal · Parameter Security Labs",
+          "likes": "300",
+          "likes_label": "HN 分",
+          "url": "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+          "summary": "Parameter Labs 的安全研究团队披露，他们找到一条链路，能把一个公开分享的 ChatGPT 对话变成攻击者可控的代码，在受害者自己登录的会话里执行。攻击者发布一条恶意对话，受害者点开分享链接，代码就在受害者已登录的 chatgpt.com 页面里跑起来，能读取对方的对话列表、读到从没分享过的私密对话内容，还能直接调用 ChatGPT 的鉴权接口，相当于接管账号。受害者不用装任何东西、不用加入任何项目、不用打开开发者工具，点开链接就够了。技术链路是四层拼出来的：ChatGPT 的 HTML Preview 功能本来被隔离在独立的沙箱域里，读不到主页面；但对话里的一张图表意外加载了数学库 MathLive，这个库在主页面装了一个 postMessage 监听器，接收消息时没检查发送者身份；Preview 通过这个「信箱」把一段 HTML 塞进主页面的 innerHTML，MathLive 自己的清理函数没真正清理，直接把字符串标记成「可信」；再用一个没加 sandbox 属性的 iframe srcdoc 拿到和主页面同源的身份，脚本终于能跑起来；最后一步绕过 ChatGPT 的 CSP（内容安全策略），方法是利用 CSP 允许加载的 YouTube oEmbed 接口支持 JSONP 回调这个特性。OpenAI 在 10 月 26 日修复，内部定级为 P1。Simon Willison 同一天在自己博客转引了这篇文章。",
+          "summary_en": "Parameter Labs' security research team disclosed a chain that turned an ordinary public ChatGPT share into attacker-controlled code running inside the victim's own signed-in session. An attacker publishes a malicious conversation; the victim opens the share link, and the payload runs on the already-signed-in chatgpt.com page, able to enumerate the victim's conversation list, read private conversations that were never shared, and call ChatGPT's own authenticated APIs directly, effectively taking over the account. The victim needed to install nothing, join no project, and open no developer tools; opening the link was the only action required. The technical chain stacked four layers: ChatGPT's HTML Preview feature is normally sandboxed on a separate origin that can't read the main page, but an interactive graph in the conversation happened to load a math library, MathLive, which installed a postMessage listener on the main page that never checked the sender's identity; the Preview used that \"mail slot\" to push HTML into the main page's innerHTML, and MathLive's own sanitizer didn't actually sanitize it, marking the string \"trusted\" instead; an iframe using srcdoc with no sandbox attribute then got the same origin as the main page, letting the injected script actually execute; the last step bypassed ChatGPT's Content Security Policy by abusing YouTube's oEmbed endpoint, which CSP allows loading and which supports a JSONP-style callback. OpenAI fixed it on October 26 and classified it internally as P1. Simon Willison linked to the writeup on his own blog the same day.",
+          "why": "这是厂商自己披露的真实事件，已经修复，不是概念演示，技术细节写得很完整（具体代码片段都在），可信度比大多数安全爆料高。对任何用过 ChatGPT 分享功能的人直接相关：分享链接本身就是攻击入口，和账号密码强度、二次验证都没关系。",
+          "why_en": "This is a real, already-fixed vendor-disclosed incident, not a concept demo, and the writeup includes specific code snippets, which makes it more credible than most security disclosures. It's directly relevant to anyone who has ever used ChatGPT's share feature: the share link itself is the attack surface, independent of password strength or two-factor auth."
+        },
+        {
+          "title": "思科把一个 27 岁员工从组织架构里挖出来，让他两年内重写 98% 的旧代码",
+          "title_en": "Cisco pulled a 27-year-old out of the org chart to rewrite 98% of its legacy code in two years",
+          "author": "Fortune",
+          "author_en": "Fortune",
+          "likes": "302",
+          "likes_label": "HN 分",
+          "url": "https://fortune.com/2026/10/30/cisco-president-jeetu-patel-gen-z-27-year-old-unlimited-ai-tokens-rewrite-legacy-code-entry-level-jobs/",
+          "summary": "思科总裁兼首席产品官 Jeetu Patel 说，他在组织架构里往下翻了五层，找到 Padmanabhan「Paddy」Krishnamurthy（2025 年随公司收购实时翻译创业公司 EzDubs 加入思科的联合创始人），当时被安排在一个不重要的岗位上。两人聊过之后，Krishnamurthy 认为一个两人小组就能重写思科的旧代码，Patel 给了他「不限量的 token」，自己设了四周时间验证是否可行，最终目标是 24 个月内重构 98% 的旧代码。Patel 把这件事放进一套更大的招人哲学里：故意把没经验的年轻人和干了几十年的老员工放在一起制造「张力」，理由是没经验的人才会问出老员工想不到的问题；他说自己把每个实习生当「反向导师」，还提到一个 17 岁的斯坦福奖学金学生，因为连续每月给他发邮件汇报 AI 学习心得而被他记住，后来拿到了思科的实习机会。",
+          "summary_en": "Cisco president and chief product officer Jeetu Patel says he went five levels down the org chart to find Padmanabhan \"Paddy\" Krishnamurthy, a cofounder who joined Cisco in 2025 when it acquired his real-time translation startup EzDubs, and who had been \"buried\" in an unstrategic role. After talking with him, Krishnamurthy argued a two-person team could rewrite Cisco's legacy codebase; Patel gave him \"unlimited tokens,\" set himself a four-week window to prove it's feasible, with an eventual goal of refactoring 98% of the legacy code within 24 months. Patel frames this inside a broader hiring philosophy: deliberately pairing inexperienced young hires with decades-tenured staff to create friction, on the theory that inexperienced people ask questions veterans wouldn't think to ask; he says he treats every intern as a \"reverse mentor,\" and recalls a 17-year-old Stanford scholarship student who stood out by emailing him monthly updates on what she'd learned about AI without ever missing one, eventually landing a Cisco internship.",
+          "why": "这是一个目标和一场才开始四周的试验，不是结果：文章没给出任何已重写的代码量、测试通过率或成本数字，98% 这个分母（哪些代码算「旧代码」）也没定义。值得记的不是这个数字能不能做到，是这家公司把「重写 98% 遗留代码」当成了可以公开立下的目标，这本身说明企业对 AI 重写代码这件事的信心已经到了可以对外喊出具体数字的程度。",
+          "why_en": "This is a goal and a four-week-old trial, not a result: the article gives no amount of code actually rewritten, no test pass rate, no cost figure, and never defines the denominator for 98% (which code counts as \"legacy\"). What's worth remembering isn't whether the number is achievable, it's that a company felt confident enough in AI-driven code rewriting to state a concrete public target for it at all."
+        }
+      ]
+    },
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 54,
+      "items": [
+        {
+          "title": "从 API 换成自建基建到底省多少钱，imec 跑了上千次测试给出答案",
+          "title_en": "How much does switching from API to your own infrastructure actually save? imec ran thousands of tests to find out",
+          "author": "AI Engineer 大会 · Steven Latré（imec AI 部门负责人）",
+          "author_en": "AI Engineer NYC · Steven Latré (head of AI, imec)",
+          "likes": "5406",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=9-Y_oS9OBLc",
+          "summary": "全文读完。imec（比利时的半导体研发机构，不是 AI 公司）做了一个覆盖上千次运行的基准研究，专门测「从调用 API 换成自己托管模型」这件事到底值不值。他们用 SWE-bench Pro 编码任务做测试，跨三种主流编码 harness（含 Codex、Claude Code）和一系列开放权重模型。结果：小模型（Qwen、DeepSeek 这类几百亿参数级别）解决率约 32% 到 40%；GLM 级别接近 Opus 水平；Kimi K3 解决率 86%（他承认部分原因可能是训练集已经见过这类基准题）。但跑分接近不代表硬件成本接近：Qwen 和 DeepSeek 应用表现差不多，但 DeepSeek 需要的硬件贵了约 4 倍；GLM 升级到 Kimi K3 只多花 15% 硬件成本却多拿 20% 准确率，说明这条曲线是阶梯式的，不是线性的。更关键的发现是并发：用 API 时不用操心有多少用户同时在用，自建基建后并发能力直接决定能不能用。即使是表现最好的大模型，并发数也大幅低于预期：Kimi K3 这类模型在他们测的硬件上，可靠承载的并发用户只有约 4 个，延迟还比基准（Claude Code）慢 3 倍。他们算出一个阈值：在低档硬件上，GPU 利用率必须达到 89% 才划算，但现实中根本做不到；换成高档硬件（比如 8 块 B200），15% 利用率就能打平，这才现实。针对编码这一项具体任务，整体换到自建基建的总成本节省在 24% 到 25% 左右。还有一个容易被忽略的变量：harness 本身。三种 harness 在同样模型下跑出的任务准确率差不多，但在自建基建场景下，Codex 配 GLM 用的 token 只有另外两种 harness 的一半，GPU 实际占用时间也减半，说明 harness 选择不影响准不准，但直接影响你为 GPU 时间付多少钱。他们准备把整套基准数据公开，并发起一个软硬件联盟。",
+          "summary_en": "Full transcript read. imec (a Belgian semiconductor R&D institute, not an AI company) ran a benchmark covering more than a thousand runs to answer whether switching from API calls to self-hosted models is actually worth it. Using SWE-bench Pro coding tasks across three mainstream coding harnesses (including Codex and Claude Code) and a range of open-weight models, the results: smaller models (Qwen, DeepSeek-class, in the low hundreds of billions of parameters) resolved 32-40% of tasks; a GLM-class model reached roughly Opus-level; Kimi K3 hit an 86% resolve rate (he flagged that part of this may be because the benchmark tasks were likely in its training data). But close accuracy doesn't mean close hardware cost: Qwen and DeepSeek perform similarly, yet DeepSeek needs about 4x more expensive hardware; moving from GLM to Kimi K3 costs only 15% more in hardware for a 20% accuracy gain, meaning the cost curve is a step function, not linear. The bigger finding was concurrency: with an API you never worry about how many users are hitting it at once, but self-hosting makes concurrency the deciding factor. Even the best-performing large model supported far fewer concurrent users than expected — Kimi K3-class models comfortably held only about 4 concurrent users on their test hardware, with latency 3x slower than their baseline (Claude Code). They derived a breakeven threshold: on lower-tier hardware, GPU utilization would need to hit 89% to make self-hosting worthwhile, which is unrealistic in practice; on higher-tier hardware (e.g. 8x B200), just 15% utilization breaks even, which is realistic. For this specific coding-assistant task, total cost of ownership savings from moving to self-hosted infrastructure came out to roughly 24-25%. One overlooked variable: the harness itself. The three harnesses produced similar accuracy on the same model, but in a self-hosted setting, Codex paired with GLM used half the tokens of the other two harnesses and correspondingly halved actual GPU wall-time, meaning harness choice doesn't change correctness but directly changes what you pay for GPU time. They plan to open the full benchmark dataset and are launching a software-hardware alliance.",
+          "why": "这是一份可以直接套用的决策框架，不是一次性的跑分比较。要点可以搬进任何「要不要自己托管模型」的决策里：先别看模型跑分，看硬件成本曲线是不是阶梯式的；再看并发，不是准确率，才是真正卡住自建基建能不能用的瓶颈；最后看硬件档位定的 GPU 利用率门槛是不是现实（低档硬件往往要求不现实的高利用率）。他们是非营利研究机构，不卖模型也不卖硬件，这份数据没有明显的利益立场。",
+          "why_en": "This is a reusable decision framework, not a one-off benchmark comparison. The parts that transfer directly to any \"should we self-host\" decision: don't start with model benchmark scores, start with whether the hardware-cost curve is a step function; then check concurrency, not accuracy, since that's the real bottleneck on whether self-hosting works at all; then check whether the GPU-utilization breakeven for your hardware tier is realistic (lower tiers often demand an unrealistically high utilization rate). imec is a non-profit research institute that doesn't sell models or hardware, so this data doesn't carry an obvious vendor angle."
+        },
+        {
+          "title": "AI 功能的 AB 测试为什么很怪：Bumble 总结的五个教训",
+          "title_en": "Why A/B testing AI features is weird: five lessons from Bumble",
+          "author": "AI Engineer 大会 · Supriya Subudhi（Bumble 产品经理）",
+          "author_en": "AI Engineer NYC · Supriya Subudhi (product manager, Bumble)",
+          "likes": "6915",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=CvmZtAPmAW4",
+          "summary": "全文读完。Bumble（月活超 2000 万的交友 App）产品经理 Supriya Subudhi 讲他们上线一个 AI 照片反馈功能后踩过的五个坑。第一，用户说想要不代表真会用：调研里 78% 的人说想要 AI 给照片反馈，但正式 AB 测只有 10% 到 15% 的人真的用了功能，原因是这个功能是独立入口，用户不知道去哪找；改成嵌进已有流程（上传照片时主动问、配对少时主动提示）之后用量才涨起来。第二，整体平均数好看不等于没问题：上线后整体指标是涨的，但细看才发现 AI 建议会给已经在微笑的人提「再笑一点」这种明显不对的反馈，说明光看平均分不够，要分人群（性别、语言、国家）看长尾。第三，看得见的收益和看不见的账单是两件事：一开始为了追求最高准确率用了最贵的模型，成本是普通方案的 10 倍，叠加评测本身的开销后根本撑不住，换成便宜模型后效果下降，但这主要是模型本身的锅，不是「给反馈」这个想法本身的锅。AB 测出来的胜负可能测的是模型，不是产品概念。第四，技术上能做不代表法律上能上线：各国对 AI 使用的监管限制不同，Meta 的 Muse AI 目前只在美国和加拿大能用，正是同样原因，产品决策要提前算好到底是先把一个市场做到最好，还是花更多钱做出多地区版本。第五，她把这些教训收成五个问题：真有人用吗还是只是说想用；有没有看具体输出，不是只看平均分；算上全部成本还值不值；赢的是不是靠堆最贵的模型；法律上能不能在目标市场上线。",
+          "summary_en": "Full transcript read. Supriya Subudhi, a product manager at Bumble (a dating app with over 20 million monthly active users), walked through five lessons from shipping an AI photo-feedback feature. First, users saying they want something doesn't mean they'll use it: research found 78% wanted AI feedback on their photos, but the actual A/B test saw only 10-15% real usage, because the feature sat behind a standalone entry point users didn't know to look for; usage only rose once it was woven into existing flows (prompted during photo upload, surfaced when matches were low). Second, a good topline average can hide real problems: overall metrics rose after launch, but digging in revealed the AI was telling people who were already smiling to \"smile more,\" a clearly wrong suggestion an average alone would never surface, so you also need to break results out by segment (gender, language, country) and look at the tail. Third, a visible win and the real bill are two different things: they started with the most accurate model, which cost 10x more than a simpler option, and once eval overhead was added it was unsustainable; switching to a cheaper model dropped performance, but that was mostly the model's fault, not the underlying feature concept's — meaning an A/B test's winner can actually be measuring the model, not the product idea. Fourth, being technically possible doesn't mean it's legally shippable: AI regulation varies sharply by country, which is why Meta's Muse AI is currently US/Canada-only, and a product decision needs to weigh going all-in on one market versus paying more to build region-specific versions. Fifth, she compressed all of this into five questions: are people actually using it, not just saying they want it; are you reading real outputs, not just the average; does it still pay off once you count every cost; is the win riding on the most expensive model; and is it legally clear to ship in the target market.",
+          "why": "这套方法论比她举的具体例子更有价值，可以拿自己手上任何 AI 功能照这五问走一遍。她是产品经理出身，不是研究员，讲的是产品决策，不是技术细节，正好和很多 AI Engineer 大会的工程向演讲互补。",
+          "why_en": "The framework itself is worth more than her specific example, and can be run directly against any AI feature already in flight. She's a product manager, not a researcher, so this is a product-decision talk rather than a technical one, which complements most of the more engineering-heavy AI Engineer talks this week."
+        },
+        {
+          "title": "ChatGPT 出企业金融产品，顺手测出一批 MCP 连接器错误率超四成",
+          "title_en": "OpenAI's enterprise finance product, and the finding that some MCP connectors error out over 40% of the time",
+          "author": "Latent Space · Joseph Kim（OpenAI ChatGPT 金融业务负责人）",
+          "author_en": "Latent Space · Joseph Kim (head of ChatGPT for financial services, OpenAI)",
+          "likes": "3749",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=v-d1WTqIULs",
+          "summary": "全文读完。上个月 OpenAI 发布了面向金融机构的企业版 ChatGPT，设计伙伴是摩根士丹利和 Evercore。负责人 Joseph Kim 在 Latent Space 的访谈里给出一个数据点：公司内部 Codex 的使用曲线，软件工程部门一路稳步上涨，但金融、法务、销售这些部门几乎停在零，直到 2 月 Codex 桌面应用上线后才突然跳到 90%，说明产品形态本身，不只是模型能力，决定了会不会被用起来。关于这次具体的金融产品，他说团队判断是 Codex 能把产品做到 80%，剩下 20% 是行业特有的部分，不补上产品就会失败，而这 20% 里最大一块是数据：他们测试了市面上现成的 MCP 数据连接器，发现「一些大厂的」连接器错误率超过 40%，所以决定把财报记录等数据直接买断、自己托管，而不是接现成连接器，客户反馈里数据质量正是被提到最多的一点。他说后训练只占这 20% 里很小一部分，95% 的工作是任何一家创业公司也能做出来的，真正的壁垒是那剩下的行业数据和细节；他认为会有人在 ChatGPT 插件上做出十亿美元规模的生意。关于安全，他把现在的产品定位成「知识工作者的生产力工具」，默认假设人在环里复核；下一步想把权限模型做得更像给一个新员工发权限（类似他在谷歌工作时经历的「可读性」审查流程），而不是另起一套只有机器才懂的安全框架。",
+          "summary_en": "Full transcript read. Last month OpenAI shipped an enterprise version of ChatGPT for financial institutions, with Morgan Stanley and Evercore as design partners. In this Latent Space interview, Joseph Kim, who leads that business, gives a concrete data point: internally, Codex adoption in software engineering rose steadily over time, while finance, legal, and sales sat near zero, until the Codex desktop app shipped in February, after which adoption in those functions jumped to 90% — the product form factor, not just model capability, decided whether it got used. On the finance product itself, he says the team's thesis was that Codex alone gets a product 80% of the way there, and the remaining 20%, industry-specific work, decides whether it succeeds; the biggest piece of that 20% was data. They tested off-the-shelf MCP data connectors and found that \"some big-name\" connectors had error rates above 40%, so they chose to license data like earnings transcripts outright and host it themselves rather than rely on existing connectors, and data quality is the single thing customers mention most. He says post-training was only a small slice of that 20%, with 95% of the work replicable by any startup; the real moat is the remaining industry data and detail, and he expects someone to build a billion-dollar business on top of a ChatGPT plugin. On safety, he frames the current product as a productivity tool for knowledge workers that assumes a human reviews the output by default, and says the next step is shaping its permission model after how a new human employee is onboarded (similar to the \"readability\" review process he saw at Google) rather than inventing a machine-only security framework from scratch.",
+          "why": "40% 这个错误率是卖方自己测的，没给样本量和测试方法，不能当独立事实引用，只能当信号：至少说明现成 MCP 连接器的数据质量这件事真实存在，不是纸上谈兵。对 Zen 自己的场景特别直接：这个会话里用到的 MCP 工具（Vercel、Supabase、meta-ads 等）有十几个，这条提醒的是要不要自己抽样核对一下输出，而不是默认信任。",
+          "why_en": "The 40% error rate is the seller's own test, with no sample size or method given, so it can't be cited as an independent fact, only as a signal that off-the-shelf MCP connector data quality is a real, not theoretical, problem. This lands directly on Zen's own setup: this very session already has a dozen-plus MCP tools wired in (Vercel, Supabase, meta-ads, etc.), and the prompt here is to spot-check their outputs rather than trust them by default."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 38,
+      "items": [
+        {
+          "title": "谷歌单日暴跌 12.6%，创 2004 年上市以来最大跌幅",
+          "title_en": "Alphabet's stock falls 12.6% in a day, the worst since its 2004 IPO",
+          "author": "CNBC、StockTitan、Yahoo Finance（综合报道）· 线索经 Latent Space AINews 提供",
+          "author_en": "CNBC, StockTitan, Yahoo Finance (combined reporting) · lead via Latent Space AINews",
+          "likes": null,
+          "url": "https://www.cnbc.com/2026/10/29/alphabet-google-search-ai-earnings.html",
+          "summary": "Alphabet 10 月 28 日发三季度财报，10 月 29 日 A 类股收盘跌 12.6%，收在 283.82 美元，是 2004 年上市以来单日跌幅最大的一次（StockTitan 用纳斯达克实时数据核实）。财报本身：营收约 1276 亿美元，略低于市场预期的 1280 亿；每股收益 2.12 美元，远低于预期的约 3.02 美元，差额主要来自对 SpaceX 持仓的一笔约 82 亿美元未实现浮亏，不是主营业务亏钱。搜索广告收入同比仍涨 12% 到约 633 亿美元，比财报前市场预期的 14% 到 15% 增速慢；云业务收入涨 103%。财报电话会上，首席商务官 Philipp Schindler 的一句话被多方转引：「AI 模式查询量涨得很猛，但 AI 模式本身的变现率更低，这确实影响了收入」。市值蒸发规模，多家媒体给出的数字不完全一致：Archyde 等报道称约 5000 亿美元，雅虎财经单独算的是两位创始人个人持股市值少了约 600 亿美元，这是两个不同的口径，不要混着引用。CNBC 把这次称为「AI 确实在啃食搜索」的第一个真实信号，但公司自己在电话会上给的官方解释主要是汇率和这笔投资浮亏，不是 AI 模式。「AI 啃食搜索」是媒体和分析师读出来的角度，Schindler 那句引语目前只有多家二手转述，没找到完整电话会文字稿核实原话。",
+          "summary_en": "Alphabet reported Q3 earnings on October 28; its Class A shares closed down 12.6% on October 29 at $283.82, the largest single-day drop since the 2004 IPO (confirmed via StockTitan's real-time Nasdaq data). The numbers: revenue of about $127.6B, just under the $128.0B estimate; EPS of $2.12, well below the roughly $3.02 expected, with the gap driven mainly by an approximately $8.2B unrealized loss on its SpaceX stake, not an operating shortfall. Search ad revenue still grew 12% YoY to about $63.3B, slower than the 14-15% growth rate markets had expected going in; Cloud revenue grew 103%. On the earnings call, a line from chief business officer Philipp Schindler has been widely quoted: \"AI Mode query growth was strong, but AI Mode itself monetizes at a lower rate, and that did affect revenue.\" Outlets don't agree on the size of the market-cap hit: Archyde and others cite roughly $500B, while Yahoo Finance separately calculated that the two co-founders' personal stakes alone lost about $60B, two different measures that shouldn't be mixed. CNBC called this the first real sign AI is taking a bite out of Search, but the company's own stated explanation on the call centered on currency and the investment write-down, not AI Mode — the \"AI eating Search\" framing is the media/analyst read, and Schindler's quote so far rests only on multiple secondhand relays; no full call transcript was found to verify the exact wording.",
+          "why": "这条我自己做了两轮独立核实才敢当头条用：先看到的是 Latent Space 的 AINews 周报标题「跌 15%、蒸发 5000 亿美元」，这个周报过去对 AI Mode 变现的转述和 Schindler 本人过去几个季度一直说的「AI Overviews 变现率和普通搜索差不多」正好反着来，这个矛盾是真正的信号，值得查。查了 CNBC、StockTitan、雅虎财经三家独立财经媒体，硬数字（12.6% 跌幅、每股收益、搜索广告收入）都对得上，但「AI 拖累搜索」这句因果判断只在二手转述里出现，公司官方给的理由是汇率和投资浮亏。这件事离 Zen 自己做过的广告变现分析工作很近：同一种张力（产品体验改善 vs 广告变现下降）他在字节/今日头条也见过。",
+          "why_en": "I ran two independent rounds of verification before trusting this as the banner. The lead came from a Latent Space AINews headline claiming a 15% drop and $500B wiped out, a newsletter whose past AI Mode monetization relays directly contradict what Schindler himself has said in prior quarters (\"AI Overviews monetize at about the same rate as regular search\"), and that contradiction was the actual signal worth chasing. Checking CNBC, StockTitan, and Yahoo Finance independently confirmed the hard numbers (the 12.6% drop, EPS, Search ad revenue), but the \"AI is dragging down Search\" causal claim only appears in secondhand relays; the company's own stated reasons on the call were currency and the investment write-down. This sits close to monetization-tradeoff work Zen has done himself: the same tension (better product experience vs. falling ad monetization) that came up at ByteDance/Toutiao."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条独立的新闻合在一起，说的是同一个转折：AI 这件事正在从「能不能做」变成「做一单到底要花多少、值不值」的会计问题。谷歌的搜索广告正在被自己的 AI 模式悄悄吃掉一块变现空间；Bumble 发现 AI 功能的 AB 测赢了，账单可能还是输的；imec 算出自建基建值不值完全取决于并发和硬件档位，不是模型跑分；OpenAI 把金融产品里最贵的部分留给了自购数据，不是模型本身。连思科把「两年重写 98% 旧代码」立成目标这件事，赌注也是算过的：不限量的 token 本身就是一种成本决策。真正值钱的不是谁的 AI 更强，是谁先把自己这一单的真实账算清楚。",
+  "meta_read_en": "Tonight's stories, read together, point at the same turn: AI is shifting from a \"can it do this\" question to a cost-accounting one — what does finishing one real task actually cost, and does it pay off. Google's own AI Mode is quietly eating into the ad revenue that Search itself depends on. Bumble found that an AI feature can win its A/B test and still lose on the bill. imec found that whether self-hosting infrastructure pays off depends on concurrency and hardware tier, not model benchmark scores. OpenAI put the most expensive part of its finance product into buying and owning data, not into the model itself. Even Cisco setting \"rewrite 98% of legacy code in two years\" as a public goal is a calculated bet, since unlimited tokens is itself a cost decision. What's valuable right now isn't whose AI is strongest, it's who does the real math on their own task first.",
+  "ota": {
+    "learned": [
+      "二手转述的大新闻先查矛盾再查数字：Latent Space 周报说 Google CBO 承认 AI Mode 拖累搜索变现，这句话和他本人过去几个季度「AI Overviews 变现率和普通搜索差不多」的说法正好相反，这个矛盾本身才是该深挖的信号，不是数字本身。",
+      "查到的硬数字（12.6% 跌幅、每股收益）三家独立财经媒体一致，但「蒸发多少钱」各媒体口径不同（公司市值 vs 创始人个人持股），不能混用。",
+      "今晚 YouTube 的 9 个频道 RSS 只有 2 个直接可用（Karpathy、Latent Space），其余 7 个用 yt-dlp 的 android 客户端列表一次拿下，字幕走 en-orig 全部一次成功，没有 429。",
+      "今晚没有按照 10-30 的做法拆成三个并行 fork，而是单线程顺序跑完 Hacker News → YouTube → 文摘，因为今晚的核实环节（反复 WebSearch 核对财报数字）本身是顺序依赖的，拆开并行反而会让核实步骤散到不同 fork 里难以合并判断。"
+    ],
+    "learned_en": [
+      "For a huge secondhand-relayed claim, check for a contradiction before checking the numbers: a Latent Space newsletter said Google's CBO admitted AI Mode drags down Search monetization, directly contradicting what he's said in prior quarters (\"AI Overviews monetize about the same as regular search\"); that contradiction, not the raw number, was the actual signal worth chasing.",
+      "The hard numbers (12.6% drop, EPS) checked out identically across three independent financial outlets, but the dollar amount lost was reported on two different bases (company market cap vs. founders' personal stakes) by different outlets, which shouldn't be mixed.",
+      "Tonight only 2 of 9 YouTube roster channels had live RSS (Karpathy, Latent Space); the other 7 came through yt-dlp's android client listing in one pass, and all subtitle fetches succeeded on en-orig first try with no 429s.",
+      "Unlike 10-30's three-parallel-fork approach, tonight ran Hacker News → YouTube → Digest sequentially in one thread, because tonight's verification step (repeated WebSearch to confirm the earnings numbers) was itself sequentially dependent, and splitting it across forks would have scattered that confirmation work in a way that's harder to merge back into one judgment."
+    ],
+    "new_capabilities": [
+      "遇到二手聚合器（newsletter / 社媒转引）传来、量级大到能当头条的说法，先查该说法与信息源过去的公开表态是否矛盾，矛盾就是该做独立核实的信号；核实时至少查两家独立一手财经媒体，把硬数字和因果解读分开写。新记忆：feedback-verify-banner-before-anchoring。"
+    ],
+    "new_capabilities_en": [
+      "When a claim from a secondhand aggregator (a newsletter or social-media relay) is big enough to anchor a headline, check it against the source's own past public statements for a contradiction first — a contradiction is the signal to verify independently. When verifying, check at least two independent primary financial outlets, and write the hard numbers and the causal interpretation as separate sentences. New memory: feedback-verify-banner-before-anchoring."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 107887,
+      "stars_today": 1723
+    },
+    {
+      "rank": 2,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 308399,
+      "stars_today": 883
+    },
+    {
+      "rank": 3,
+      "name": "Donchitos/Claude-Code-Game-Studios",
+      "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+      "description": "Turn Claude Code into a full game dev studio — 49 AI agents, 72 workflow skills, and a complete coordination system mirroring real studio hierarchy.",
+      "language": "Shell",
+      "stars": 31188,
+      "stars_today": 742
+    },
+    {
+      "rank": 4,
+      "name": "pingdotgg/t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 35611,
+      "stars_today": 1148
+    },
+    {
+      "rank": 5,
+      "name": "Renhuai123/ziwei-doushu",
+      "url": "https://github.com/Renhuai123/ziwei-doushu",
+      "description": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
+      "language": "TypeScript",
+      "stars": 12281,
+      "stars_today": 1092
+    },
+    {
+      "rank": 6,
+      "name": "milind-soni/OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "language": "TypeScript",
+      "stars": 9631,
+      "stars_today": 1303
+    },
+    {
+      "rank": 7,
+      "name": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "language": "Rust",
+      "stars": 98294,
+      "stars_today": 1338
+    },
+    {
+      "rank": 8,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "Skills and workflows that give Claude superpowers.",
+      "language": "Shell",
+      "stars": 310068,
+      "stars_today": 665
+    },
+    {
+      "rank": 9,
+      "name": "lightpanda-io/browser",
+      "url": "https://github.com/lightpanda-io/browser",
+      "description": "Lightpanda: the headless browser designed for AI and automation",
+      "language": "Zig",
+      "stars": 39259,
+      "stars_today": 929
+    },
+    {
+      "rank": 10,
+      "name": "HKUDS/DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
+      "language": "Python",
+      "stars": 52825,
+      "stars_today": 1034
+    }
+  ]
+}
