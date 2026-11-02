@@ -1,0 +1,295 @@
+{
+  "date": "2026-11-01",
+  "partial": false,
+  "banner": "网站访客八成是 AI agent",
+  "banner_en": "Four in five site visitors are now AI agents",
+  "image": {
+    "src": "digests/img/2026-11-01.jpg",
+    "caption": "本期配图：AI Engineer 纽约大会上 Mintlify 联合创始人 Hamby 与 Coinbase AI 产品负责人 Lincoln Murr 的炉边对谈截图（图：AI Engineer 大会 YouTube 频道）。",
+    "caption_en": "Today's image: a still from the AI Engineer NYC fireside chat between Mintlify co-founder Hamby and Coinbase head of AI product Lincoln Murr. (Image: the AI Engineer conference's YouTube channel.)"
+  },
+  "actions": [
+    {
+      "text": "检查一下你负责或经手的系统里，有没有不能自动更新、靠人工排期打补丁的（工控设备、医疗设备、路由器、IoT、没人维护的老服务器）。花 10 分钟列个名单，标出每一台上次打补丁距今多久。做完的标准是列出具体设备和日期，不是「应该都还好」。背景一句：Anthropic 自己测出模型能在厂商发布补丁后一小时内写出能用的漏洞利用代码，过去按周按月算的补丁窗口已经不成立了。",
+      "text_en": "Check whether any system you own or touch can't auto-update and relies on manually scheduled patching (industrial equipment, medical devices, routers, IoT, an unmaintained old server). Spend 10 minutes listing them with how long it's been since each last patched. You're done when you have specific devices and dates written down, not \"probably fine.\" One line of context: Anthropic's own test found a model writing a working exploit within an hour of a vendor's patch, so the old week-or-month-long patch window no longer holds.",
+      "source": "Anthropic Red Team",
+      "source_en": "Anthropic Red Team",
+      "source_url": "https://www.anthropic.com/research/n-days"
+    },
+    {
+      "text": "挑一个你自己正在用或正在做的 AI 功能/agent，问自己：现在的测试打了接近满分吗？如果是，说明测试不够难，不是该庆祝。花 15 分钟，照 Ramakrishnan 的方法重写一道测试：先定义「如果模型能力到极致，这个任务该做成什么样」，再按这个标准写一道现在的模型大概率拿不到满分的测试。做完的标准是写出一道新测试并跑一次，不是「心里想好了」。",
+      "text_en": "Pick one AI feature or agent you're already using or building, and ask whether its current eval is scoring near 100%. If it is, that means the eval isn't hard enough, not that it's time to celebrate. Spend 15 minutes rewriting one test using Ramakrishnan's method: define what the task would look like at the model's most ambitious possible capability, then write a test against that bar that today's model probably can't fully pass. You're done when you've written and run one new test, not when you've thought about it.",
+      "source": "Ramakrishnan Lokanathan · AI Engineer 大会",
+      "source_en": "Ramakrishnan Lokanathan · AI Engineer NYC",
+      "source_url": "https://www.youtube.com/watch?v=7WUzHIF32vA"
+    },
+    {
+      "text": "如果你在设计任何「按效果付钱给别人」的合作（创作者分成、推荐费、外包佣金），试着套用 Hector 的「保底+分成」机制：定一个配额和一个保底金额，对方达到配额但分成没到保底就补齐，分成超过保底就全拿不扣回。花 15 分钟写出具体数字（配额是多少、保底是多少），不是写「以后再定」。",
+      "text_en": "If you're designing any pay-for-performance arrangement with someone (a creator commission, a referral fee, an outsourced bounty), try Hector's guaranteed-floor-plus-commission mechanic: set a quota and a guaranteed payout; if they hit quota but earn less in commission, top it up to the floor; if they earn more, they keep all of it with no clawback. Spend 15 minutes writing down the actual numbers (what quota, what floor), not \"decide later.\"",
+      "source": "Hector Serrano · Lenny's Podcast",
+      "source_en": "Hector Serrano · Lenny's Podcast",
+      "source_url": "https://www.youtube.com/watch?v=KzS5Qs7vSMg"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚去逛逛 Karpathy 用 Claude Code 花两小时搭的「HN 推荐视频站」",
+    "title_en": "Tonight: browse the HN-recommended-videos site Karpathy built in two hours with Claude Code",
+    "why": "Karpathy 受够了 YouTube 推荐算法「对中位数用户有效，对我没用」，干脆自己做了一个：从 Hugging Face 下了一份 Hacker News 评论数据集，用 Claude Code 跑 Claude Sonnet 把其中推荐过 YouTube 视频的评论筛出来，过滤掉垃圾，留下约 6454 条、跨 150 个话题、从 2007 到 2026 年的视频，套上一个类 YouTube 的界面放到自己的域名上。他说全程基本就是跟 Claude 聊，自己手动做的部分只有申请 Google Cloud API key、开一台 VPS、买域名，整个项目大约两小时。这个站不需要账号，「为你推荐」的状态存在浏览器本地。对正在学怎么用 Claude Code 搭完整小产品的人，这是一个边界清楚、规模可控的参照案例：从「有个想法」到「能用的网站」中间的每一步都写在他的博客里。",
+    "why_en": "Karpathy was fed up with YouTube's recommendations, calling the algorithm \"good for the median user, useless for me,\" so he built his own: downloaded a Hacker News comments dataset from Hugging Face, had Claude Sonnet inside a Claude Code workflow filter it down to comments that recommended a YouTube video, landed on about 6,454 videos across 150 topics from 2007 to 2026, and put them behind a YouTube-style interface on his own domain. He says the whole thing was mostly just talking to Claude; his own manual work was creating a Google Cloud API key, booting a VPS, and buying the domain, and the whole project took about two hours. No account is needed, and the \"For You\" state lives in the browser locally. For anyone learning to ship a small complete product with Claude Code, this is a clean, bounded reference case, with every step from idea to working site written up on his blog.",
+    "time": "15 分钟",
+    "time_en": "15 minutes",
+    "steps": [
+      "打开 karpathy.bearblog.dev/hacker-tube/ 读一下他写的建造过程（含用了哪些 Claude Code 功能、踩过什么坑）。",
+      "去他部署的站点逛一逛「为你推荐」feed，感受一下纯靠 HN 评论筛出来的内容和 YouTube 官方推荐有什么不一样。",
+      "如果手头正好有个「两小时能搭完」的小点子，参考他的流程（下载数据、用 Claude Code 筛选、套现成界面、部署到自己的域名）试着搭一个雏形。"
+    ],
+    "steps_en": [
+      "Open karpathy.bearblog.dev/hacker-tube/ and read his writeup of how he built it, including which Claude Code features he used and what tripped him up.",
+      "Browse the \"For You\" feed on his deployed site, and notice how content curated purely from HN comments differs from YouTube's own recommendations.",
+      "If you have a small idea that's genuinely a two-hour build, follow his recipe (download a dataset, filter it with Claude Code, wrap it in an existing UI pattern, deploy to your own domain) and try a rough version."
+    ],
+    "source": "Andrej Karpathy",
+    "source_en": "Andrej Karpathy",
+    "source_url": "https://karpathy.bearblog.dev/hacker-tube/"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 72,
+      "items": [
+        {
+          "title": "Mintlify 流量八成变成了 AI agent，Coinbase 说一年内有一亿笔 agent 自主完成的链上支付",
+          "title_en": "Mintlify's traffic is now 80% AI agents, and Coinbase logged 100 million agent-initiated on-chain payments this year",
+          "author": "AI Engineer 大会 · Hamby（Mintlify 联合创始人兼 CTO）、Lincoln Murr（Coinbase AI 产品负责人）",
+          "author_en": "AI Engineer NYC · Hamby (co-founder & CTO, Mintlify), Lincoln Murr (head of AI product, Coinbase)",
+          "likes": "4351",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=YX4Z4XqZ9Vo",
+          "summary": "全文读完。这是 AI Engineer 纽约大会上 Mintlify 联合创始人 Hamby 与 Coinbase AI 产品负责人 Lincoln Murr 的一场炉边对谈。Hamby 说 Mintlify 成立于 2022 年，比 ChatGPT 还早，当时很看重设计和前端，现在变了：agent 不看网站长什么样，只在乎页面占不占上下文窗口、内容准不准。年初 Mintlify 托管站点里 agent 访问占比大约一成，现在涨到八成，人类访问量没降，只是 agent 访问量涨得更快。Lincoln Murr 讲 Coinbase 这边的变化：agent 和稳定币支付这两条线几乎同时起来了。Coinbase 把业务尽量做成 API 给 agent 直接调用，而不是靠 agent 用浏览器点网页，理由是鉴权和安全不好控制。过去一年链上已经发生约一亿笔 agent 发起的交易，大多是 agent 自己花钱买 API 调用、付费内容或服务，不用人先去充值、拿 key 再转手给 agent。他举了个类比：现在每个网站都要你办会员卡才能消费，agent 时代应该像给 agent 一个钱包，让它自己直接付钱，哪怕只是几分之一美分。Coinbase 参与发起的支付协议 X402，联合治理方包括 Cloudflare、Stripe、Amex、万事达和 Visa。Lincoln 还提到一个概念：DAO（去中心化自治组织）过去没真正落地，大多沦为另一种官僚制度，但 agent 拿到钱和自主权之后，“自动化在中心、人在边缘”这个 DAO 最初设想的运作方式反而有可能实现。安全上，Coinbase 不让 agent 直接碰钱，所有资金移动和对客户的直接沟通都要人工审批。两人都认为 API 会是 agent 时代最基础的一层，MCP 和 CLI 是在这层之上加自然语言和终端操作的便利层，不会取代 API。关于文档写作，Hamby 说创意写作还是需要人，纯粹的技术写作（找相关 PR、汇总 Slack 讨论、整理决策、写进文档库）可以交给 AI，公司决定要不要自己维护某项能力时常常忘了算维护成本，很多企业客户的教训是“黑客松随手搭的东西，没人想维护”。",
+          "summary_en": "Read in full. A fireside chat at AI Engineer NYC between Mintlify co-founder Hamby and Coinbase head of AI product Lincoln Murr. Hamby says Mintlify was founded in 2022, before ChatGPT, when design and frontend mattered a lot; that's changed, because agents don't care what a site looks like, only whether a page fits the context window and whether the content is accurate. Agent traffic across Mintlify-hosted sites was about 10% at the start of the year and is now around 80%, with human traffic unchanged, agent traffic just growing faster. Lincoln Murr describes the parallel shift at Coinbase: agents and stablecoin payments took off at roughly the same time. Coinbase is pushing its business toward APIs agents can call directly, rather than agents clicking through a browser, because authentication and security are harder to control that way. About 100 million agent-initiated transactions have happened on-chain this past year, mostly agents paying directly for API calls, paywalled content, or services, with no human funding an account and handing over a key first. His analogy: every website today makes you sign up for a loyalty card before you can buy anything; the agent era should instead give the agent a wallet and let it pay directly, even for a fraction of a cent. Coinbase co-launched the X402 payment protocol, jointly governed with Cloudflare, Stripe, Amex, Mastercard, and Visa. Lincoln also raises the idea that DAOs (decentralized autonomous organizations) never really delivered on their original promise and mostly became another form of bureaucracy, but now that agents have money and autonomy, the DAO's original vision of \"automation at the core, humans at the edges\" may finally be achievable. On safety, Coinbase doesn't let agents touch money directly; any money movement or direct communication with clients needs human approval. Both speakers see APIs as the foundational layer of the agent era, with MCP and CLI as convenience layers for natural language and terminal use on top, not replacements for APIs. On documentation, Hamby says creative writing still needs a human, but pure technical writing (finding related PRs, summarizing Slack threads, compiling decisions, writing it into the docs) can be handed to AI; companies deciding whether to maintain a capability in-house often forget to count the maintenance cost, and a common enterprise lesson is \"something built in a hackathon that nobody wants to maintain.\"",
+          "why": "两个数字值得记：agent 访问占比从一成涨到八成用了不到一年，和 Coinbase 说的一亿笔 agent 自主支付，都是厂商自己给的口径，没有第三方审计，但方向和下面 evals 那条、Arca 那条互相印证（都在讲 agent 正在拿到更多自主权和预算）。对做产品或做内容的人来说，真正能用上的不是数字本身，是两人共同强调的一点：给 agent 设计的东西，评价标准从“好不好看”变成了“占不占上下文、好不好读、准不准”，这和给搜索引擎做 SEO 是完全不同的优化方向。",
+          "why_en": "Two numbers worth remembering: the jump from 10% to 80% agent traffic in under a year, and Coinbase's claimed 100 million agent-initiated payments, are both vendor-reported with no third-party audit, but the direction lines up with two independent items below (the evals talk and the Arca interview), both describing agents getting more autonomy and budget. The actually transferable point for anyone building product or content isn't the number itself, it's what both speakers kept repeating: the quality bar for anything built for agents shifted from \"does it look good\" to \"does it fit the context window, is it accurate, is it easy to parse\" — a completely different optimization target than SEO."
+        },
+        {
+          "title": "如果你的 AI 测试打了满分，说明你的测试出了问题",
+          "title_en": "If your AI eval scores 100%, your eval is wrong",
+          "author": "AI Engineer 大会 · Ramakrishnan Lokanathan（eslams.com 创始人，劳伦斯伯克利实验室 AI 安全研究员）",
+          "author_en": "AI Engineer NYC · Ramakrishnan Lokanathan (founder, eslams.com; AI safety researcher, Lawrence Berkeley Lab)",
+          "likes": "4885",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=7WUzHIF32vA",
+          "summary": "全文读完。Ramakrishnan 在 2022 年 GPT-3.5 刚出来时在印度一家教育公司做过一轮创业，后来被收购，现在在劳伦斯伯克利实验室做 AI 安全研究，也在 eslams.com 做一个开源项目。他提出一套给高风险 AI 应用做评测的思路，核心是“测任务，不是测答案”。第一步：先定义最有野心的成功标准，假设模型能力已经到了想象中的上限，agent 该做到什么程度，再倒推现在该测什么。如果一个评测打到 100 分，说明评测不够难，因为没有哪个模型今天能稳定拿到满分，顶尖模型一般卡在 85 到 90 分之间。第二，测完整流程，不只看开头和结尾：他举的例子是要求“只改背景颜色”，结果输出不但换了背景还多画了两只手，如果只比对“背景确实变了”，中间多出的问题会被完全漏掉。第三，建一个多维度的评测体系：自动化检查接入 CI、每次部署都跑；持续人工复核，不能把评测 agent 自己当成唯一裁判；对抗测试，主动找能让流程崩掉的场景。他正在做的方向是让模型玩游戏（下棋、围棋、扑克、合作类游戏）作为补充评测维度，理由是今天的通用大模型几乎没人专门测它们下棋下得好不好，而下棋这种要持续决策、能悔棋认错的任务，恰好补上了 SWE-bench 这类“一次性给答案”测试测不到的东西。他的 eslams.com 项目支持约 50 种游戏和 90 多个模型/供应商，2 月要办一个“AI 奥林匹克”。第四，别只加新测试，也要保留老测试：他举 Google Assistant 换成 Gemini 后，原来能设提醒的功能直接没了，新模型反而比老模型差，说明升级前没把老功能当回归测试跑一遍。第五，把真实失败变成未来的测试：客户的每一次吐槽、每一个踩坑，都该进入评测集，不能只靠内部跑分。",
+          "summary_en": "Read in full. Ramakrishnan ran an edtech startup in India when GPT-3.5 first shipped in 2022, which was later acquired; he now does AI safety research at Lawrence Berkeley Lab and runs an open-source project at eslams.com. He lays out a framework for evaluating high-stakes AI applications, centered on \"test the job, not just the answer.\" Step one: define the most ambitious possible success criteria first, assume the model's capability has reached its imagined ceiling, decide what the agent should be able to do at that point, then work backward to what to test today. If an eval scores 100%, that means it isn't hard enough, since no model today scores reliably perfect; top models typically cap out around 85-90%. Step two: test the whole workflow, not just the start and end points; his example is a request to \"only change the background,\" where the output also added two extra hands, a defect that comparing only start and end states would have completely missed. Step three: build a holistic, multi-part eval system — automated checks wired into CI that run on every deploy; continuous human review, never letting the eval agent itself be the sole judge; adversarial testing that actively hunts for scenarios that break the workflow. His current project adds game-playing (chess, Go, poker, cooperative games) as a complementary eval dimension, since almost nobody specifically tests general-purpose LLMs on chess today, and chess-style tasks requiring sustained decision-making and the ability to recognize and recover from mistakes fill a gap that one-shot benchmarks like SWE-bench don't cover. His eslams.com project supports about 50 games and 90-plus model/providers, and he's running an \"AI Olympics\" in February. Step four: don't just add new tests, keep the old ones too — his example is Google Assistant losing its reminder-setting ability after switching to Gemini, a regression that shows the old capability wasn't run as a regression test before the upgrade. Step five: turn real failures into future tests — every customer complaint and every real-world misstep should feed into the eval set, not just internal benchmark runs.",
+          "why": "这套方法本身比他举的例子更值钱，可以直接套在任何一个正在做的 AI 功能上：先问“如果这个功能做到极致该是什么样”，再看现在的测试是不是离那个标准还差很远，如果已经接近满分，说明该把门槛提高，不是该庆祝。他提到的“85 到 90 分封顶”这个说法没有给出具体数据来源，当成经验判断看就好，不要当成精确统计。",
+          "why_en": "The framework is worth more than his examples, and transfers directly onto any AI feature you're already shipping: ask what the feature would look like at its most ambitious, then check whether your current test is anywhere close to that bar; if it's already near 100%, that means raise the bar, not celebrate. His \"85-90% ceiling\" claim comes with no cited data source, so treat it as an informed opinion, not a precise statistic."
+        },
+        {
+          "title": "融了 6400 万美元做 AI 理财顾问，agent 管流程，人管签字",
+          "title_en": "A $64M AI-native wealth manager: agents run the workflow, humans sign off",
+          "author": "AI Engineer 大会 · Aman Singh（Arca AI 平台负责人）",
+          "author_en": "AI Engineer NYC · Aman Singh (head of AI platform, Arca)",
+          "likes": "3208",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=KM3VQZKjpiY",
+          "summary": "全文读完。Arca 是一家 AI 原生的财富管理公司，最近融了 6400 万美元，Aman Singh 负责内部的 AI 平台团队。他说 Arca 不是卖软件给理财顾问用的 SaaS 公司，Arca 自己就是那家理财顾问公司，agent 24 小时跑着服务客户，不是等人来提问才动。客户完全不直接接触 AI，体验到的只是「服务水平比这个行业过去能做到的高」，背后由人类顾问的温度加上 agent 的持续工作支撑。模型上目前主用 Claude，偶尔切 GPT，内部有一套跑在 harness 之上、和模型无关的基准测试，决定哪个任务配哪个模型等级，刻意不绑定单一供应商。举了一个 10 天的真实流程：客户来信说要凑 10 万美元交税，agent 先分析客户现有资产该怎么卖最优，这步全自动；但真正执行卖出、调仓这类涉及资金挪动的操作，必须人工审批，agent 只能提出方案。流程跨多天靠内部的记忆系统接续：每个客户都有一份持续更新的状态记录，谁负责什么、接下来要做什么，agent 靠这份记录「醒来」就知道当前进度，另外有一个「反思」进程定期回顾状态并更新记忆。安全上四层：简单的记录型操作 agent 可以直接执行；每次写数据库都过一遍快速模型校验；外部输入（邮件、文件、电话转写）要过提示词注入检测；任何数据外流（发邮件、网页搜索）既有确定性的 PII 检查，也有多个小模型做共识判断。所有操作，不管是 agent 做的还是人在界面上做的，都写进同一份变更日志，既满足合规审计，也反哺 agent 的记忆。生成给客户的理财方案 PDF 前，会跑一轮确定性检查（有没有暴露账号号码）加小模型检查（有没有承诺收益这类违规措辞）。他提到一个具体案例：一位还没转为客户的意向用户，agent 读完对方现有顾问的账单文件后，发现对方被多收了没披露的费用，而且对方的顾问根本不是受信托约束的 fiduciary，这类细节人工很难在规模化场景里持续盯住，但 agent 可以。关于 Anthropic 自家的「managed agents」产品，他说 Arca 看好 Anthropic 和 OpenAI 的模型本身，但不愿意把「agent 怎么积累和使用业务记忆」这个核心能力外包给别人的产品，因为这部分就是公司真正的护城河。",
+          "summary_en": "Read in full. Arca is an AI-native wealth management firm that recently raised $64M; Aman Singh leads its internal AI platform team. He says Arca isn't a SaaS company selling software to financial advisors — Arca is itself the advisory firm, with agents running 24/7 for clients rather than waiting to be asked. Clients never interact with the AI directly; what they experience is simply a level of service the industry hasn't delivered before, backed by a human advisor's warmth plus the agents' continuous work. Models today are mostly Claude, occasionally GPT, decided by an internal, model-agnostic benchmark suite that runs on top of their harness and assigns a model tier per task, deliberately avoiding lock-in to one provider. He walks through a real 10-day workflow: a client emails needing $100,000 for a tax bill; the agent analyzes the optimal way to liquidate existing holdings, fully automated, but actually executing a sale or rebalancing, anything that moves money, always needs human approval; the agent can only propose. The multi-day process is held together by an internal memory system: every client has a continuously updated state record of who owns what and what's next, so an agent \"waking up\" on a new signal knows exactly where things stand, with a separate \"reflection\" process periodically reviewing and updating that memory. Safety runs in four layers: simple record-keeping actions the agent executes directly; every database write passes a fast-model check; external inputs (email, documents, call transcripts) run through prompt-injection detection; and any data leaving the system (an email, a web search) gets both a deterministic PII check and a consensus of several small models. Every action, whether taken by an agent or a human in the UI, writes to the same changelog, satisfying compliance audit while also feeding the agent's memory. Before a client-facing financial-plan PDF is generated, it runs through a deterministic check (no raw account numbers) plus a small-model check (no promised-returns language or other compliance violations). He cites one case: a prospect who wasn't yet a client had their agent read through the existing advisor's statements and discover undisclosed fees, and that the advisor wasn't even a fiduciary — a level of attention a human can't sustain at scale, but an agent can. On Anthropic's own \"managed agents\" product, he says Arca is bullish on the Anthropic and OpenAI models themselves, but won't outsource how an agent accumulates and uses business memory to someone else's product, because that's the actual moat.",
+          "why": "最有参考价值的不是 6400 万美元或一亿这类大数字，是他讲的分权设计：分析类任务全自动，涉及钱或对外沟通的一律要人签字，而且人和 agent 的操作记同一本账，这个具体分权方式比「要谨慎」这种笼统说法更容易照抄到别的高风险场景里。",
+          "why_en": "The most transferable part isn't the dollar figures, it's the specific authority split: analysis work runs fully automated, anything touching money or external communication always needs a human signature, and human and agent actions write to the same ledger. That concrete split is easier to copy into another high-stakes setting than a generic \"be careful\" instruction."
+        },
+        {
+          "title": "WhisperFlow 怎么靠 50 个创作者和一个「保底+分成」机制把付费广告跑起来",
+          "title_en": "How WhisperFlow runs its paid ads on 50 creators and a guaranteed-floor-plus-commission mechanic",
+          "author": "Lenny's Podcast · Hector Serrano（WhisperFlow 内容与创作者增长负责人）",
+          "author_en": "Lenny's Podcast · Hector Serrano (head of content & creator growth, WhisperFlow)",
+          "likes": "16506",
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=KzS5Qs7vSMg",
+          "summary": "全文读完。Hector Serrano 19 岁时在 LinkedIn 搜“creator jobs”，进了语音转写公司 WhisperFlow，现在负责内容和付费 UGC 增长。他的核心框架是：增长先靠产品，产品真有人要、自然在涨，才该加付费和自然流量这两个杠杆；光砸钱买不来一个本来就不增长的产品。付费广告这块，WhisperFlow 每月跑 500 到 600 条广告。做法是：先在 Tribe 这类平台登记创作者群体（机制类似 TikTok Shop 的联盟分成，搬到 Meta 广告上），创作者拍视频投成广告，按广告花费或成交额抽成，不按播放量付费。但起步不能靠 Tribe 的公开大厅拉人，新品牌在那里排不上号，得先用 Instagram 关键词搜索（比如“UGC creator”加行业词）主动私信，目标每周 150 到 250 条个性化私信，换来 5 到 6 个真正靠谱的创作者，再靠这批人滚雪球。为了不让新创作者因为前几个月分成太少而流失，WhisperFlow 设计了“智能保底”：定一个视频配额（比如 25 条）配一个保底金额（比如 1500 美元），分成没到保底的补齐，超过保底的直接全拿，不扣回去。创作者群体现在稳定在 50 人左右，每周有 1000 到 1500 份申请，录取率压得很低。给创作者的创意自由度很大，Hector 说自己不写详细脚本，理由是过度规定反而扼杀创作者本能的判断力。他举过一个例子：有创作者在屋顶雨中拍键盘，配文“我的键盘想说什么”，雨滴像在打字，结尾才带出产品名，没有任何 brief，成了表现最好的广告之一。Meta 自己的广告去重系统 Andromeda 会识别相似度过高的创意并限制投放，同质化内容因此迅速失效，这也是鼓励创作者各玩各的风格的另一个原因。付款每 7 天一次，刻意做快，理由是更快的反馈能提高创作者的积极性。团队现在 120 多人，营销这条线大概 15 人，扁平，没有中间管理层。关于 AI，他的立场是“最好的营销人反而对 AI 过敏”：AI 可以用来提高内部效率，但产品真正对外的那一面（广告、设计、剪辑）尽量不要用 AI 直接产出，因为错误和 AI 味很容易被看出来，品牌翻车的代价划不来。招人上，他明确不按简历、GPA、学校选人，而是看这个人有没有真的涨过一个账号（哪怕只有一万多粉丝）、懂不懂做内容、是不是肯吃苦。他自己是 2.5 GPA、非名校、大学一级联赛踢球出身，拿这个背景反过来当证据：传统简历信号跟这份工作的好坏没什么关系。创始人出镜的内容被他当成长期品牌投资，不是短期转化渠道。他建议像经营一个系列剧一样经营创始人内容，每条内容形式可以变，但要有一条贯穿始终的公司叙事。",
+          "summary_en": "Read in full. Hector Serrano joined the voice-dictation company WhisperFlow at 19 after searching \"creator jobs\" on LinkedIn, and now leads content and paid-UGC growth. His core framework: growth starts with the product; it has to be genuinely wanted and already growing organically before paid and organic become levers worth pulling, since money alone can't make a non-growing product grow. On the paid side, WhisperFlow now runs 500-600 ads a month: creators register through a platform like Tribe (modeled on TikTok Shop's affiliate-commission mechanic, ported onto Meta ads), make videos that run as ads, and get paid a cut of ad spend or revenue rather than per view. But you can't source creators from a platform's public marketplace from day one; a new brand has no track record there, so the first move is targeted Instagram keyword search (\"UGC creator\" plus industry terms) sending 150-250 individualized DMs a week, which converts to about 5-6 genuinely good creators, who then snowball the rest. To stop new creators from quitting when early commissions are too small, WhisperFlow built a \"smart retainer\": set a video quota (e.g. 25) with a guaranteed payout (e.g. $1,500); if commission falls short of that floor, WhisperFlow tops it up; if commission exceeds the floor, the creator keeps all of it with no clawback. The creator group holds steady around 50, against 1,000-1,500 weekly applications, with a deliberately low acceptance rate. Creators get wide creative freedom; Hector avoids detailed scripts because over-specifying kills a creator's own instinct, citing one example: a creator filmed his keyboard in the rain on a rooftop, captioned \"what is my keyboard trying to say,\" with raindrops appearing to type, revealing the product only at the end — no brief at all, and it became one of their best-performing ads. Meta's own ad-deduplication system, Andromeda, detects overly similar creative and suppresses it, so homogeneous content fatigues fast, another reason to encourage distinct creator styles. Payouts run every 7 days, deliberately fast, on the theory that quicker feedback keeps creators more motivated. The company is now 120+ people, with a roughly 15-person, flat marketing team with no middle management. On AI, his stance is that \"the best marketers are allergic to AI\": fine for internal efficiency, but risky to let it directly produce the customer-facing output (ads, design, editing), since mistakes and an AI tell are easy to spot and the brand-risk cost isn't worth it. On hiring, he explicitly doesn't screen by resume, GPA, or school, looking instead at whether someone has actually grown an account (even a modest one), understands content creation, and is willing to grind — citing his own 2.5 GPA, non-prestige school, Division 1 soccer background as evidence that traditional resume signals don't predict this job. He treats founder-led content as a long-term brand investment, not a short-term conversion channel, recommending it be run like a TV series — each piece can vary in format but should tie back to one consistent company narrative.",
+          "why": "这期访谈里数字很多（30 倍营收增长、约 20 亿估值、创作者月入过万美元、月 1000 到 1500 份申请），大多出自 Hector 或主持人口头所述，没有第三方可核实，当成这家公司自己讲的故事就好，不要当成审计过的数据。真正能直接搬走的是机制本身，不是数字：保底加分成的配比可以直接套到任何“找人做内容、按效果付钱”的场景；先不靠平台公开大厅、自己去私信找前几个合作者，这条路径也适合刚起步、没有历史记录的任何团队。",
+          "why_en": "This episode is full of numbers (30x revenue growth, a roughly $2B valuation, creators earning five figures a month, 1,000-1,500 weekly applications), most stated verbally by Hector or the host with nothing third-party to check, so treat them as the company's own story, not audited data. What actually transfers is the mechanism, not the numbers: the guaranteed-floor-plus-commission structure can be copied directly into any pay-for-content arrangement, and sourcing your first handful of collaborators by direct, individualized outreach instead of a platform's public marketplace works for any team with no track record yet."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "AI 写代码到底选哪个前端框架更省钱？有人真跑了 13 套配置去测",
+          "title_en": "Which JS framework is actually cheapest for an AI coding agent? Someone benchmarked 13 setups to find out",
+          "author": "Nolan Lawson（独立开发者，前 Mozilla / Microsoft 工程师）",
+          "author_en": "Nolan Lawson (independent developer, ex-Mozilla/Microsoft)",
+          "likes": "299",
+          "likes_label": "HN 分",
+          "url": "https://nolanlawson.com/2026/10/28/the-ai-cost-of-javascript-frameworks/",
+          "summary": "Nolan Lawson 觉得，前端开发者选框架常常凭感觉；到了 agent 编程时代，「这个框架对 agent 更友好」这类说法也大多没有数据支撑。于是他做了个基准：用 Opus 5.5（高推理强度）在 13 种技术栈里各做一遍同一个用 PokéAPI 拉数据的宝可梦小应用，每套跑 5 次（Angular 跑 3 次），产出先过一致性检查，再测花费、耗时、token 数、代码行数和 Lighthouse 打分。中位数结果：每次跑的花费从 Hono+htmx 最低的 2.67 美元到 Angular 最高的 4.97 美元；耗时从 Astro 最快 8.2 分钟到 Angular 最慢 17.2 分钟；token 消耗 Nuxt 最省 385 万，Angular 最多 976 万；前端实际下发的 JS 体积 Astro 是 0KB，Vanilla 7KB，Hono+htmx 18KB，Next.js 142KB；首屏加载 Astro 最快 810 毫秒，几个对比对象里 Next.js 最慢 2090 毫秒；代码行数 Hono+htmx 最少 1370 行，Angular 最多 2009 行。Lighthouse 的无障碍分所有框架都是满分，性能分大多在 97 到 100 之间，这套分数反而没把框架差异测出来。他强调几个限制：只测了一种偏内容型的应用，不代表交互型应用的结果；同一套配置多次跑之间波动也不小；Lighthouse 天然偏向多页应用（MPA），对单页应用（SPA）不公平；花费是按 Claude Code 的 API 等值价格算的，不是真实账单；有些 agent 压根没用上提供的 MCP 或 skill。结论：agent 花的钱大体跟着代码量和 token 用量走，框架需要的代码越多，或者 agent 要从零学一个新框架（比如 SvelteKit v3 或 Gracile），成本就越高；对内容为主的站点，像 Astro、Hono+htmx 这类多页应用风格的框架，比单页应用更便宜也加载更快；纯手写 Vite 反而不是最省的，说明一个有良好生态支持的框架能帮 agent 省钱，而不是框架越少越省。",
+          "summary_en": "Nolan Lawson thinks frontend developers often pick frameworks by vibes, and in the agent-coding era, claims that a framework is \"more agent-friendly\" are usually just as unsupported, so he built his own benchmark: Opus 5.5 (high effort) built the same small PokéAPI-driven Pokémon app across 13 stacks, each run 5 times (Angular 3 times), outputs checked for conformance, then measured for cost, time, token count, lines of code, and Lighthouse scores. Median results: cost per run from Hono+htmx's lowest $2.67 to Angular's highest $4.97; time from Astro's fastest 8.2 minutes to Angular's slowest 17.2 minutes; tokens from Nuxt's lowest 3.85M to Angular's highest 9.76M; JS shipped to the browser from Astro's 0 KiB to Vanilla's 7 KiB, Hono+htmx's 18 KiB, and Next.js's 142 KiB; largest contentful paint from Astro's fastest 810ms to Next.js's slowest 2090ms among those compared; lines of code from Hono+htmx's smallest 1,370 to Angular's largest 2,009. Lighthouse accessibility scored 100 for every framework, and performance scores mostly clustered at 97-100, so that metric didn't separate frameworks much at all. He flags several caveats: only one, content-heavy app type was tested, not interactive apps; results vary noticeably between runs of the same setup; Lighthouse inherently favors multi-page apps (MPAs) over single-page apps (SPAs); the cost figures are API-equivalent Claude Code pricing, not real spend; and some agents never used the available MCPs or skills at all. Takeaway: agent cost tracks mostly with code volume and token use, so a framework that requires more code, or one the agent has to learn from scratch (like SvelteKit v3 or Gracile), costs more; for content-heavy sites, MPA-style frameworks like Astro and Hono+htmx were cheaper and loaded faster than SPA-style ones; and plain Vanilla Vite wasn't actually the cheapest, suggesting a well-supported framework helps an agent save money rather than having no framework at all.",
+          "why": "这是作者自己花钱做的小规模实测，13 套配置里大多只跑了 5 次，方差没有完全消掉，结论别当成放之四海而皆准的排名，但方法本身值得抄：下次要给 agent 选技术栈前，先问「这套栈需要 agent 写多少代码、要不要从零学」，而不是先问「这个框架是不是最流行」。",
+          "why_en": "This is the author's own small-scale, self-funded test: most of the 13 setups only ran 5 times each, so variance isn't fully washed out, and the ranking shouldn't be read as universal. The method is what's worth copying: before picking a stack for an agent to build in, ask how much code the agent will have to write and whether it has to learn the framework from scratch, not which framework is currently most popular."
+        },
+        {
+          "title": "OpenAI 宣布 12 月起 ChatGPT 和 Codex 的用量额度合并计算",
+          "title_en": "OpenAI says ChatGPT and Codex usage limits will share one quota starting December",
+          "author": "OpenAI 官方帮助中心",
+          "author_en": "OpenAI Help Center",
+          "likes": "217",
+          "likes_label": "HN 分",
+          "url": "https://help.openai.com/en/articles/20001625-understanding-chatgpt-and-codex-usage-limits",
+          "summary": "OpenAI 在帮助中心更新了一篇说明：从 12 月起，Plus、Pro 和 Business 订阅的用量额度会在 ChatGPT 和 Codex 之间共用，原因是公司准备把原本只在 Work 里的 agent 能力并入主力 ChatGPT 产品。计费单位改成 token（模型处理和生成的信息单元），用得多少取决于选的模型和任务复杂度，普通的即时聊天不占用量。公司说大多数用户的额度刷新频率不会比现在更频繁地被卡到，用户可以在设置里的「用量」页看到合并后的剩余额度和刷新时间，额度用完可以等刷新、升级订阅，或者买额度包继续用。",
+          "summary_en": "OpenAI updated a help-center article: starting in December, Plus, Pro, and Business plans' usage allowance will be shared across ChatGPT and Codex, as the company folds the agentic capabilities currently only in Work into the main ChatGPT product. Billing switches to tokens, the units of information a model processes and generates, so usage depends on the model chosen and the task's complexity; plain instant chat draws from no allowance. The company says most users shouldn't need to wait for resets more often than they do now, and combined remaining usage and reset times will be visible under Settings → Usage; hitting the limit means waiting for a reset, upgrading the plan, or buying credits.",
+          "why": "这条信息来自 OpenAI 自己的帮助中心，不是第三方转述，细节也给得具体（生效时间、计费单位、在哪看余量），可信度高。对同时在用 ChatGPT 和 Codex 的人是直接的行动提示：12 月前先去看一眼自己现在两边分别用了多少，心里有个底，免得合并后额度突然吃紧却不知道是哪边用超了。",
+          "why_en": "This comes from OpenAI's own help center, not a secondhand relay, and the details are specific enough (effective timing, billing unit, where to check remaining usage) to trust directly. For anyone using both ChatGPT and Codex, the direct action is to check current separate usage on each before December, so a sudden post-merge crunch doesn't come as a surprise with no idea which side caused it."
+        },
+        {
+          "title": "5 个 270 亿参数的小模型组队，编程测试上赢了单次调用的 Fable 5",
+          "title_en": "A team of five 27B-parameter models beat a single Fable 5 call on a coding benchmark",
+          "author": "Memdoor 项目（开源多 agent 编程工具）",
+          "author_en": "Memdoor (open-source multi-agent coding tool)",
+          "likes": "425",
+          "likes_label": "HN 分",
+          "url": "https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve",
+          "summary": "Memdoor 是一个开源的多 agent 编程命令行工具，这次放出一个示例工作流：用 5 个 Qwen3.8-27B 模型组队，照搬另一篇研究（代号 GVS5H）原作者公开的提示词和流程，重跑了 LiveCodeBench Hard 的前 10 道题，每题跑 5 次。结果：Memdoor 这套 5 模型团队平均拿到 10 题里的 9.8 题，原作者自己的 harness 是 9.6 题，单次调用的 Fable 5 只拿到 8.0 题（这个差距和原作者在全部 100 题上测出的差距方向一致：对应全量的 92.4% 对 90.4%）。Memdoor 把全部 50 次运行（每一次请求、回复、程序和打分结果）公开发布，工作流用 YAML 写，没有写死具体用哪个模型，换成别的模型或本地模型都能跑。",
+          "summary_en": "Memdoor is an open-source multi-agent coding CLI tool, and this release publishes a sample workflow: a team of five Qwen3.8-27B models, following the prompts and loop the original authors of another study (codenamed GVS5H) made public, rerunning the first 10 LiveCodeBench Hard problems, five passes each. Result: Memdoor's 5-model team averaged 9.8 of 10, the original authors' own harness scored 9.6, and a single Fable 5 call scored 8.0 — a gap consistent in direction with what the authors measured across their full 100 problems (92.4% vs. 90.4%). Memdoor published all 50 runs in full (every request, reply, program, and grader output); the workflow is written in YAML and names no specific model, so it runs equally well against a different model or a local one.",
+          "why": "这条信息两头都要打折看：对比的是原作者自己选的 10 道题子集，不是全部 100 题随机抽样，而且发布者就是 Memdoor 自己的开发者，有动机把自己的工具测好看；但「把运行细节全公开」这件事本身是少数 AI 工具敢做的，值得单独记一笔。真正有用的是这个模式：比起换一个更大的模型，先试试用几个便宜模型组队、把流程写清楚，可能性价比更高。",
+          "why_en": "Discount this from both directions: the comparison uses the authors' own 10-problem subset, not a random sample of the full 100, and the publisher is Memdoor's own developer, who has an incentive to make the tool look good. But publishing every run's full detail is something few AI tool vendors bother doing, worth noting on its own. The transferable pattern: before reaching for a bigger single model, try pairing a few cheap models into a well-specified team workflow first — it may be the better cost-performance trade."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 47,
+      "items": [
+        {
+          "title": "Anthropic 自己测的：补丁发布后一小时内，模型已经写出能用的漏洞利用代码",
+          "title_en": "Anthropic's own test: within an hour of a patch, the model already had a working exploit",
+          "author": "Anthropic Red Team（官方研究）",
+          "author_en": "Anthropic Red Team (official research)",
+          "likes": null,
+          "url": "https://www.anthropic.com/research/n-days",
+          "summary": "Anthropic 的红队测试了「N-day」漏洞（补丁已公开，但许多系统尚未安装）能否被 AI 自动武器化。Firefox 部分：选取 148 和 149 版中已公开至少 90 天的 18 个安全补丁，只向模型提供公开 diff（剔除维护者编写的回归测试）、组件名、Mozilla 的严重性评级，以及打补丁前后两个版本的 jsshell 构建，不提供漏洞报告原文或复现代码。6 个模型中，Mythos Preview（Anthropic 内部代号的新模型）表现最突出：12 分钟内写出第一个可致程序崩溃的 PoC，40 分钟内写出 13 个，并做出能从沙箱外读取随机密钥的完整漏洞利用（不止于崩溃），首个完整利用用时不到一小时，12 小时内完成 8 个。对照组：Opus 4.8 仅做出 2 个完整利用，Opus 4.6 和 Sonnet 4.6 各 1 个，其余模型均未做出。作者计算，Mythos Preview 首个利用出现的时间，比 Firefox 148 正式向用户推送该补丁早约 18 天。Windows 内核部分：测试 2026 年 1 至 2 月的 21 个本地提权漏洞，提供二进制文件、公开调试符号、Ghidra 反编译和官方公告，模型在真实 Windows Server 2025 虚拟机上操作。Mythos Preview 做出 18 个可致系统蓝屏的 PoC（其中 13 个是微软标注「不太可能被利用」的漏洞），完整提权利用做出 8 个，花费约 15700 美元，平均每个约 2000 美元。作者按 Windows Autopatch 的真实节奏计算：企业设备平均 7 天内九成装上补丁，强制重启在第 11 天，而 Mythos Preview 完成全部 8 个利用用时比这一窗口还短。报告结论：变化不在「能否做到」，而在速度和规模——一个人用几千美元、一个下午就能把一个月的补丁全部武器化，过去按月计算的「补丁窗口」现在要按小时算。建议：防御方加快打补丁速度；厂商设法缩短从发布补丁到用户实际安装的时间（举了 Firefox 改为每周发布小版本的例子）；长期应将关键组件换成 Rust 等内存安全语言，减少此类漏洞的供给。",
+          "summary_en": "Anthropic's red team tested whether \"N-day\" vulnerabilities (publicly patched but not yet applied everywhere) can be automatically weaponized by AI. On Firefox: 18 security patches from versions 148 and 149, public for at least 90 days, with the model given only the public diff (the maintainer's own regression test removed), the component name, Mozilla's severity rating, and AddressSanitizer-instrumented jsshell builds before and after the fix, no advisory text or reproducer. Across 6 models, Mythos Preview (an Anthropic internal codename for a new model) stood out: a first crash PoC in 12 minutes, 13 within 40 minutes, and a full working exploit (reading a secret from outside the sandbox, not just crashing the program) in under an hour, with 8 exploits produced within 12 hours. By comparison, Opus 4.8 produced only 2 full exploits, Opus 4.6 and Sonnet 4.6 one each, and the rest none. The authors calculate that Mythos Preview's first exploit arrived about 18 days before Firefox 148 shipped that patch to users. On the Windows side: 21 local privilege-escalation kernel vulnerabilities from January-February 2026, with binaries, public debug symbols, a Ghidra decompilation, and the Microsoft advisory given, agents operating on a real Windows Server 2025 VM. Mythos Preview produced 18 PoCs causing a blue screen (13 of them bugs Microsoft itself rated \"exploitation unlikely\"), and 8 full privilege-escalation chains for about $15,700 total, roughly $2,000 each. Using real Windows Autopatch timelines, the authors note 90% of enrolled devices get the patch within 7 days and forced reboots hit on day 11; Mythos Preview finished all 8 chains faster than that window. The report's conclusion: what's changing isn't whether this is possible, it's speed and scale — a lone operator with a few thousand dollars can weaponize a month's worth of patches in an afternoon, turning the old month-long \"patch window\" into an hour-long one. Recommendations: defenders should patch faster; vendors should shrink the gap between releasing a patch and users actually installing it (citing Firefox's move to roughly weekly point releases); and long-term, critical components should move to memory-safe languages like Rust to reduce the supply of this class of bug in the first place.",
+          "why": "这是厂商自己公开的研究，方法写得很细（给模型什么、不给什么、如何判定成功），可信度高于多数「AI 能黑进 XX」的新闻稿。但需注意：这是实验室条件下的测试，未覆盖目标发现、投递、躲避检测等环节，真实攻击链条比报告范围更长。对任何管理无法自动更新设备（工控、医疗、IoT）的人，这条新闻意味着：过去「补丁出了，再等等也行」的窗口期已基本不存在。",
+          "why_en": "This is the vendor's own published research with a detailed methodology (exactly what the model was and wasn't given, how success was graded), more credible than most \"AI can hack X\" press releases, but it's also a lab-conditions test that didn't cover target discovery, delivery, or detection evasion, so a real attack chain is longer than what this report measured. For anyone managing devices that can't auto-update (industrial control, medical, IoT), the takeaway is that the old \"the patch is out, we can wait a bit\" window is basically gone."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条放在一起，讲的是同一件事：无论是写文档给 agent 看、理财交给 agent 跑、找漏洞让模型自动打，还是给创作者分钱，真正决定结果好坏的都不是模型本身有多大，是围着它搭的那层东西。Mintlify 和 Coinbase 发现 agent 看文档和看网站的标准完全不同；Ramakrishnan 说测试设计得够不够狠，比模型分数更重要；Arca 把「人在哪一步必须签字」想清楚了，而不是简单说「要有人在环」；Hector 靠一个具体的保底机制留住创作者，不是靠喊「要善待创作者」；连 nolanlawson 和 Memdoor 这两条都在说，省钱不是靠换更大的模型，是靠选对框架、搭对多 agent 流程。坏消息也是同一个规律的反面：Anthropic 测出来的不是模型变聪明了才可怕，是围绕模型的自动化流程，把原来按月算的补丁窗口压成了按小时算。模型是原材料，harness 才是产品。",
+  "meta_read_en": "Tonight's stories, read together, point at the same thing: whether it's writing docs for agents to read, handing a financial workflow to an agent, automating exploit-writing, or paying creators, what actually decides the outcome isn't how big the model is, it's what's built around it. Mintlify and Coinbase found that agents judge documentation by a completely different bar than they judge a website. Ramakrishnan says how hard your eval is designed matters more than the model's score on it. Arca worked out exactly which step needs a human signature, instead of just saying \"keep a human in the loop.\" Hector keeps creators with one specific guaranteed-floor mechanic, not by saying \"treat creators well.\" Even nolanlawson and Memdoor are both saying the same thing about cost: you save money by picking the right framework or the right multi-agent workflow, not by swapping in a bigger model. The bad news tonight is the same pattern from the other side: what Anthropic measured isn't that the model got smarter, it's that the automation built around it compressed a month-long patch window into an hour-long one. The model is the raw material. The harness is the product.",
+  "ota": {
+    "learned": [
+      "今晚没有 Chrome/claude-in-chrome 接入，X 和小红书都跳过了，靠 YouTube 和文摘两条全 headless 的线凑够平台数，不需要 partial：真正的瓶颈不是信息不够，是能摆上台面的 verified 来源不够多。",
+      "YouTube 的 RSS 今晚 9 个频道加 3 个 control 全部 404，sweep-lanes.mjs 一次性确认是整线挂掉，而非「今晚没新内容」；改用 yt-dlp 的 android client 列频道，9 个全部成功，4 条字幕走 en-orig 全部首次成功，未遇 429。",
+      "今晚 HN 的 Firebase topstories 里有 4 条与过去 2 天发过的完全同 URL（Mistral Large 4、phorion.io 后门、YC Labs 的 Minecraft/Bed Wars、parameter.ai 的 ChatGPT 漏洞），说明这几天 HN 前台确实在反复把老故事顶上去，不是新闻变多了，核对链接这一步比平时更重要。",
+      "Lenny's 播客这期转写 2 万字，超过 1.5 万字阈值，照流程拆成 3 段分给 3 个并行子 agent 各自记笔记，再自己读笔记并在需要时回查原文，而不是自己从头读完全文，用时明显缩短。"
+    ],
+    "learned_en": [
+      "No Chrome/claude-in-chrome access tonight, so X and RedNote were skipped; YouTube and the Digest lane (both fully headless) carried the platform count without needing partial — the real bottleneck wasn't information scarcity, it was having enough verifiable sources to put on the page.",
+      "YouTube RSS 404'd on all 9 roster channels plus 3 controls tonight; sweep-lanes.mjs confirmed in one pass that this was a full outage, not a quiet news night. Falling back to yt-dlp's android client to list channels worked on all 9, and all 4 picked videos' subtitles came through on en-orig on the first try with no 429s.",
+      "Tonight's HN Firebase topstories pull had 4 exact-URL repeats of stories already published in the prior 2 days (Mistral Large 4, the phorion.io backdoor, YC Labs' Minecraft/Bed Wars project, parameter.ai's ChatGPT bug) — HN's front page is genuinely recycling the same stories this week rather than news volume being unusually high, so the dedup check mattered more than usual tonight.",
+      "Lenny's Podcast transcript ran 20k words, over the 15k-word offload threshold, so it was split into 3 chunks handed to 3 parallel sub-agents to note-take, then read back through the notes (spot-checking the raw transcript where needed) instead of reading the full transcript myself — noticeably faster."
+    ],
+    "new_capabilities": [
+      "从 Arca（AI 原生理财顾问公司）的访谈里学到一个能直接照搬的治理模式：agent 每次写数据库，都要先过一遍快速模型校验和确定性检查（比如有没有暴露账号号码），人和 agent 的改动全部记进同一份变更日志。Zen 手头有一批会写数据库、会联系家庭和学校的 BY agent，可以照这个模式查两件事：写之前有没有校验，人和 agent 的改动是不是记在一本账上，而不是只在工具描述里写一句“谨慎处理”。新记忆：feedback-write-verify-log-agent-writes。"
+    ],
+    "new_capabilities_en": [
+      "Learned a directly reusable governance pattern from the Arca (AI-native wealth manager) interview: every agent database write gets a fast-model check plus a deterministic check (e.g. no raw account numbers), and every change, human or agent, writes to the same changelog. Zen runs a string of BY agents that write to databases or contact families/schools; worth checking each one for \"is there a check before the write\" and \"do human and agent changes land in the same ledger,\" rather than relying on a tool description that just says \"handle carefully.\" New memory: feedback-write-verify-log-agent-writes."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 109373,
+      "stars_today": 1526
+    },
+    {
+      "rank": 2,
+      "name": "lightpanda-io/browser",
+      "url": "https://github.com/lightpanda-io/browser",
+      "description": "Lightpanda: the headless browser designed for AI and automation",
+      "language": "Zig",
+      "stars": 40213,
+      "stars_today": 825
+    },
+    {
+      "rank": 3,
+      "name": "shiyu-coder/Kronos",
+      "url": "https://github.com/shiyu-coder/Kronos",
+      "description": "Kronos: A Foundation Model for the Language of Financial Markets",
+      "language": "Python",
+      "stars": 45435,
+      "stars_today": 630
+    },
+    {
+      "rank": 4,
+      "name": "pingdotgg/t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 38174,
+      "stars_today": 3094
+    },
+    {
+      "rank": 5,
+      "name": "milind-soni/OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "language": "TypeScript",
+      "stars": 10598,
+      "stars_today": 922
+    },
+    {
+      "rank": 6,
+      "name": "public-apis/public-apis",
+      "url": "https://github.com/public-apis/public-apis",
+      "description": "A collective list of free APIs",
+      "language": "Python",
+      "stars": 494676,
+      "stars_today": 324
+    },
+    {
+      "rank": 7,
+      "name": "cjpais/Handy",
+      "url": "https://github.com/cjpais/Handy",
+      "description": "A free, open source, and extensible speech-to-text application that works completely offline.",
+      "language": "Rust",
+      "stars": 36613,
+      "stars_today": 339
+    },
+    {
+      "rank": 8,
+      "name": "Donchitos/Claude-Code-Game-Studios",
+      "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+      "description": "Turn Claude Code into a full game dev studio — 49 AI agents, 72 workflow skills, and a complete coordination system mirroring real studio hierarchy.",
+      "language": "Shell",
+      "stars": 32365,
+      "stars_today": 967
+    },
+    {
+      "rank": 9,
+      "name": "kornia/kornia",
+      "url": "https://github.com/kornia/kornia",
+      "description": "🐍 Geometric Computer Vision Library for Spatial AI",
+      "language": "Python",
+      "stars": 11823,
+      "stars_today": 101
+    },
+    {
+      "rank": 10,
+      "name": "beenuar/AiSOC",
+      "url": "https://github.com/beenuar/AiSOC",
+      "description": "Open-source AI Security Operations Center: alert fusion, LLM-agent triage, MITRE ATT&CK investigation, and a replayable decision ledger for every agent step. Self-hostable, runs with no API keys, MIT licensed. Ships an MCP server for Claude, Cursor and Continue.",
+      "language": "Python",
+      "stars": 6263,
+      "stars_today": 446
+    }
+  ]
+}
