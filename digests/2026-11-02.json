@@ -1,0 +1,298 @@
+{
+  "date": "2026-11-02",
+  "partial": false,
+  "banner": "法律 AI 的护城河：数据都看不见",
+  "banner_en": "Legal AI's moat: it can't see its own data",
+  "image": {
+    "src": "digests/img/2026-11-02.jpg",
+    "caption": "本期配图：Latent Space Pod 对话 Legora CTO Jacob Lauritzen 那期节目的封面（图：Latent Space Pod YouTube 频道）。",
+    "caption_en": "Today's image: the cover frame from Latent Space Pod's interview with Legora CTO Jacob Lauritzen. (Image: Latent Space Pod's YouTube channel.)"
+  },
+  "actions": [
+    {
+      "text": "挑一个你正在推或正在用的 AI 项目/功能，照 Nahari 的六条过一遍清单：有没有只盯着一两个具体问题（不是四十个）？有没有重新设计流程，而不是给旧流程套工具？决策人有没有亲自用过工具再谈改造？有没有定好「90 天不见效就停」的杀死指标？花 15 分钟把四条逐一写下「是/否」和缺口。做完的标准是写出具体答案，不是「大概还行」。",
+      "text_en": "Pick one AI project or feature you're pushing or using, and run it through four of Nahari's six checks: are you focused on one or two specific problems (not forty)? Did you redesign the process instead of bolting a tool onto the old one? Has the decision-maker actually used the tool before redesigning the workflow? Is there a 90-day kill metric defined? Spend 15 minutes writing a yes/no plus the gap for each. Done means specific answers written down, not \"seems fine.\"",
+      "source": "Adam Nahari · AI Engineer 大会",
+      "source_en": "Adam Nahari · AI Engineer Summit",
+      "source_url": "https://www.youtube.com/watch?v=vUJDyDnqT4c"
+    },
+    {
+      "text": "如果手头有正在跑的 agent/自动化任务，尤其是带时间压力的（抢票、实时交易、客服响应），去 realtimeagents.org 的排行榜查一下同类任务在「真实时钟」模式下的实际通过率，别只看论文里暂停时钟的分数。做完的标准是写下真实时钟下的具体数字，再决定要不要照原计划上线。",
+      "text_en": "If you have an agent or automation running a time-sensitive task (ticket-sniping, real-time trading, live customer response), check realtimeagents.org's leaderboard for how that task type performs under the real wall-clock condition, not the paused-clock number quoted in the paper. Done means you've written down the actual wall-clock number before deciding whether to ship as planned.",
+      "source": "Jack Clark · Import AI",
+      "source_en": "Jack Clark · Import AI",
+      "source_url": "https://importai.substack.com/p/import-ai-479-spacewar-low-latency"
+    },
+    {
+      "text": "如果在跟踪任何靠举债扩产能做 AI 基建的公司（云厂商、芯片供应商、数据中心运营商），去查一下它最新的信用违约互换（CDS）点差和债券收益率变化，而不是只看营收/订单公告。做完的标准是写下具体点差数字和同比变化，不是「应该还好」。",
+      "text_en": "If you're tracking a company funding its AI infrastructure buildout with debt (a cloud vendor, chip supplier, data-center operator), check its latest credit-default-swap spread and bond yield instead of just the revenue/order headlines. Done means you've written down the actual spread number and its year-over-year change, not \"probably fine.\"",
+      "source": "CNBC",
+      "source_en": "CNBC",
+      "source_url": "https://www.cnbc.com/2026/11/02/oracle-files-to-sell-20-billion-in-new-stock-bonds-to-finance-ai-buildout.html"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试试 Momentic 刚出测试版的免费 AI QA agent「Mo」",
+    "title_en": "Tonight: try Momentic's free AI QA agent \"Mo,\" out of beta today",
+    "why": "Mo 今天刚出测试版，免费版不需要信用卡，官方说法是一个能自己跑你的网页/App 找 bug 并生成复现步骤的 agent。如果手头有个正在维护的小项目，三步内就能看到它实际找到了什么——这比它自称「比 Devin 强三倍」的跑分更有参考价值。",
+    "why_en": "Mo just exited beta today; the free tier needs no credit card, and it's an agent that tests your own web app/App and generates bug repro steps automatically. If you have a side project running, you can see real findings in three steps — more informative than trusting its self-reported \"3x better than Devin\" benchmark.",
+    "time": "20 分钟",
+    "time_en": "20 minutes",
+    "steps": [
+      "打开 momentic.ai，用免费版注册（不需要信用卡）。",
+      "把 Mo 指向一个你正在跑的小项目（网页或 App 的 URL/仓库），让它跑一轮自动探索。",
+      "看它给出的 bug 列表和复现步骤，挑一个判断是不是真 bug——自己验证一下，别直接信它的跑分。"
+    ],
+    "steps_en": [
+      "Open momentic.ai and sign up for the free tier (no credit card needed).",
+      "Point Mo at a small project you're actively running (a web app URL or repo) and let it do one automated exploration pass.",
+      "Look at the bug list and repro steps it returns, and judge for yourself whether one is a real bug — verify it yourself rather than trusting its benchmark."
+    ],
+    "source": "Momentic（Launch HN）",
+    "source_en": "Momentic (Launch HN)",
+    "source_url": "https://momentic.ai/"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 63,
+      "items": [
+        {
+          "title": "Legora CTO：我们的 agent 基本看不到任何数据",
+          "title_en": "Legora's CTO: our agent basically can't see any data",
+          "author": "Latent Space Pod · Jacob Lauritzen（Legora CTO）",
+          "author_en": "Latent Space Pod · Jacob Lauritzen (CTO, Legora)",
+          "likes": 990,
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=bJBEFzlKPoQ",
+          "summary": "法律 AI 公司 Legora（原名 Leia，YC24）CTO Jacob Lauritzen 说，他们最大的工程难题不是模型，是完全看不到数据——客户资料属于律所的客户，连 OpenAI 那种「点个反馈」都做不到。原话是：「我们的业务基本就是看不到任何 trace，也看不到任何数据，因为全是保密的。」他们的解法是养一个「法律工程师」团队——有计算机背景又在大律所干过的律师，靠他们的直觉去逼近用户到底在做什么，把失败模式归类做成评估集。这个团队从最初 3 名工程师加 3 名法律工程师，涨到现在接近 100 名，他说本以为 20 个人就够用，现在 100 个还是不够。产品上有两个主力：agent 本体和「表格审阅」（把几万份合同铺成表格，一列一个问题批量提取）。他提到一个具体指标：某次模型换代后，引用准确率从 70% 跳到 99%，Legora 自己什么都没改。公司两周前刚完成 5.5 亿美元 E 轮融资，估值 88 亿美元。模型选择上他们做「模型套利」，用 Gemini 做转录（法律术语识别比 Whisper/11Labs 准），大客户现场配「前向部署工程师」写定制集成。他还说初级律师没有消失，只是角色变了——用 agent 的律师现在被叫「法律工程师」，已经成了行业通用词。Latent Space 同期也发了一篇配套文章，讲的是同一次访谈。",
+          "summary_en": "Legora (formerly Leia, YC24) CTO Jacob Lauritzen told Latent Space Pod that their hardest engineering problem isn't the model — it's that they can't see any trace data at all, because it all belongs to the law firm's clients. His exact words: \"basically our business is we can't look at any traces basically... it's super confidential so we can't look at it.\" Their fix: a \"legal engineer\" team — lawyers with CS backgrounds who worked at big firms — who approximate what users are actually doing and turn failure modes into eval sets. That team grew from 3 engineers plus 3 legal engineers to nearly 100; he says he once thought 20 would always be enough, and now 100 still isn't. Two flagship products: the agent itself and \"tabular review\" (dump tens of thousands of contracts into a spreadsheet, one column per question, bulk-extract across all of them). One concrete metric he cites: citation accuracy jumped from 70% to 99% across a single model release, with zero changes on Legora's side. The company closed a $550M Series E at an $8.8B valuation two weeks before this interview. On models, they practice \"model arbitrage\" — Gemini for transcription (better at legal jargon than Whisper/11Labs), with forward-deployed engineers embedded at big clients. Junior lawyers haven't disappeared, he says — the role shifted; \"legal engineer\" is now industry-wide shorthand. Latent Space also published a companion writeup on the same interview.",
+          "why": "这条把「企业的数据根本看不到」这个具体工程约束讲透了——给的解法（近似评估团队、模型套利、法律工程师角色）是可复制的落地打法，不是又一条「agent 很强」的宣传；88 亿估值说明这套打法目前被资本市场买账。",
+          "why_en": "This names a specific, under-discussed engineering constraint — building a product where you literally can't see your own traces — and the fixes (an approximation eval team, model arbitrage, a hybrid \"legal engineer\" hire) are a transferable applied-AI playbook, not another capability pitch; the $8.8B valuation says capital markets are buying this approach too."
+        },
+        {
+          "title": "AI 试点撬不动利润，真正管用的是这六件事",
+          "title_en": "Your AI Pilots Won't Move the P&L. Here's What Will",
+          "author": "AI Engineer 大会 · Adam Nahari（Apollo Global Management）",
+          "author_en": "AI Engineer Summit · Adam Nahari (Apollo Global Management)",
+          "likes": 5982,
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=vUJDyDnqT4c",
+          "summary": "Apollo Global Management 的 Adam Nahari 说，90% 的企业都在用 AI，但只有 6% 看到实质的利润影响。他的结论：每做一次 AI 转型，工程只占五分之一，剩下五分之四是变革管理。他把企业里的 AI 分三层——通用生产力工具（人人有，利润会被竞争抹平）、领域专用 AI、和嵌入核心业务流程的 AI（这一层才真正留在利润里）。他拿一家货运航空公司举例：排班员原本 15 分钟才能找到一个合法换班方案，现在优化引擎一分钟内给出全部方案并排序。他给出六条具体动作：只挑一两个问题而不是四十个；重新设计整个流程而不是给旧流程套工具；CEO 必须公开背书才投钱；让一线员工参与设计，不是空降；先让高管自己用过 AI 再谈重新设计工作流；立项前先定好「杀死」指标（90 天不见效就停）。",
+          "summary_en": "Apollo's Adam Nahari: 90% of businesses use AI, but only 6% see material EBIT impact. His model — for every AI transformation, engineering is one-fifth of the work; change management is the other four-fifths. He frames enterprise AI in three layers: general productivity tools (commoditized, gains get competed away), domain-specific AI, and AI embedded in core operational workflows (the only layer where gains stick in margin). His example: a cargo airline's crew scheduler used to take 15 minutes to find one legal reshuffle; an optimization engine now ranks every option in under a minute. His six moves: pick one or two problems, not forty; redesign the whole process instead of bolting a tool onto the old one; don't fund it without public CEO buy-in; build with frontline staff, not around them; make executives use the tools themselves before redesigning workflows; set kill metrics (a 90-day no-value-no-continue gate) before the pilot starts.",
+          "why": "这是今晚信噪比最高的一条——不是讲模型多强，是讲为什么「工具都好用但利润不动」，给的六条动作可以直接拿去套用在任何企业 AI 立项上，不是空泛的方法论。",
+          "why_en": "Highest signal-to-noise item tonight — not another \"the model is great\" story but a direct answer to why tools work and P&L doesn't move, with six concrete moves transferable to any enterprise AI initiative, not abstract theory."
+        },
+        {
+          "title": "OpenAI 总裁：攻防两端的网络安全能力在同步滚动上升",
+          "title_en": "OpenAI's president: offensive and defensive cyber capability are ratcheting up together",
+          "author": "No Priors · Greg Brockman（OpenAI 总裁）",
+          "author_en": "No Priors · Greg Brockman (President, OpenAI)",
+          "likes": 385,
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=79M2vFJ1JiQ",
+          "summary": "OpenAI 总裁 Greg Brockman 在 No Priors 节目上说，前沿模型的网络安全能力正在「滚动式」提升——每次模型发布，普通人能拿到的攻击能力都在变强，他提到韩国出现过由模型驱动的银行高调被黑事件。他的立场是：防守方必须抓住这个窗口期，OpenAI 正通过 Daybreak 项目，负责任地让防守方用上最强模型去找漏洞、修漏洞。他说得很直接：人类写的每一行代码本质上都不安全，这是行业一直知道却没解决的事。",
+          "summary_en": "OpenAI President Greg Brockman, on No Priors, says frontier AI's cyber capability is on a ratcheting curve — every model release raises the attack capability available to ordinary people, citing high-profile model-driven bank hacks in South Korea. His position: defenders need to use this window now, and OpenAI's Daybreak program is meant to responsibly give defenders access to frontier models to find and fix vulnerabilities. His framing is blunt: nearly every line of human-written code was insecure to begin with, and the industry has always known it.",
+          "why": "这是 OpenAI 高层就模型能力扩散速度最直接的一次公开表态,把防守方的窗口期讲成了一个具体项目 (Daybreak),而非泛泛的安全焦虑。韩国银行被黑的细节他没有展开,这部分只能当作未核实的引述。",
+          "why_en": "A rare, blunt on-record framing from OpenAI's own president of the capability-diffusion risk, tied to a named concrete program (Daybreak) rather than generic safety hand-wringing — though the South Korea bank-hack detail wasn't elaborated on, treat that specific claim as an unverified aside.",
+          "flag": "韩国银行被黑的细节未独立核实",
+          "flag_en": "The South Korea bank-hack detail is an unverified aside"
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "Oracle 发债 200 亿美元搞 AI 基建，股价当天还是跌了 8.8%",
+          "title_en": "Oracle files to raise $20B for its AI buildout — stock drops 8.8% anyway",
+          "author": "CNBC · Hacker News",
+          "author_en": "CNBC · Hacker News",
+          "likes": 164,
+          "likes_label": "HN 分",
+          "url": "https://www.cnbc.com/2026/11/02/oracle-files-to-sell-20-billion-in-new-stock-bonds-to-finance-ai-buildout.html",
+          "summary": "Oracle 申请发行 100 亿美元普通股,外加 100 亿美元优先票据,官方说法是为人工智能基建融资,具体用途写的是资本开支、还债和未来投资,没有点名 Stargate 或 OCI。Oracle 今年早些时候就预告过,要在 2026 年融 450-500 亿美元用于 AI 基建,上周投资者日又提了一次;消息落地当天股价仍跌了 8.8%,今年以来累计跌 33%,过去 12 个月跌了一半。截至 8 月底,账上总债务已达 1253.4 亿美元,大部分是优先票据;五年期信用违约互换利差报 292,同比涨 265%,已逼近高收益垃圾债的定价区间;标普 7 月已将评级降至 BBB-,离垃圾级只差一档;2031 年到期的 4.95% 债券收益率涨到 7.276%。",
+          "summary_en": "Oracle filed to raise $20B — $10B in common stock, $10B in senior notes — explicitly to finance its AI buildout, though the stated use of proceeds is generic (capex, debt repayment, future investments; Stargate/OCI aren't named). This is part of the $45-50B in 2026 AI-infrastructure financing Oracle already previewed earlier this year and again at last week's investor day, but the stock still fell 8.8% on the news — down 33% year-to-date, down 50% over 12 months. Total debt hit $125.34B by end of August, mostly senior notes; the five-year CDS spread is at 292, up 265% year-over-year and pricing closer to high-yield junk; S&P cut Oracle to BBB- in July, one notch above junk; the 4.95% bond due 2031 now yields 7.276%.",
+          "why": "市场早就知道这笔钱要来,股价还是跌了。真正的信号从来不是融资公告本身,而是信用违约互换和债券收益率这些硬指标:投资人对 Oracle 靠举债堆 AI 基建这条路线,耐心正在变薄。",
+          "why_en": "The market knew this raise was coming and the stock still fell — the real signal was never the financing announcement itself but the hard credit metrics (CDS spread, bond yield), which show investor patience with debt-funded AI infrastructure building is thinning."
+        },
+        {
+          "title": "一份反推出来的估算：Anthropic 的增长在 8、9 月踩了刹车",
+          "title_en": "A reverse-engineered estimate: Anthropic's growth braked hard in August-September",
+          "author": "Henry Blodget（Regenerator newsletter）· Hacker News",
+          "author_en": "Henry Blodget (Regenerator newsletter) · Hacker News",
+          "likes": 171,
+          "likes_label": "HN 分",
+          "url": "https://www.regenerator1.com/p/anthropics-growth-just-flattened",
+          "summary": "作者拿公开的季度数字反推出月度估算,并非 Anthropic 自己公布。已知数据:一季度营收 48 亿美元,二季度 116 亿,三季度 168 亿 (三季度数字据 NYT 报道,是透露给投资人的)。以 7 月年化营收 650 亿反推,7 月单月约 54 亿;三季度总数减掉 7 月,8、9 月合计约 114 亿,月均 57 亿,比 7 月只高一点。二季度月均增量约 7.6 亿,三季度月均增量降到约 5.8 亿。作者还注意到,Anthropic 投资者会上没有给出 9 月的年化数字,认为这本身就是信号。他列了几种可能:8 月本是淡季、产能到顶、AI 支出整体降温、客户转去用更便宜的中国模型。他把这些与 Anthropic 临近 IPO 的估值、以及 CoreWeave 这类靠举债扩产能的云厂商联系起来。",
+          "summary_en": "This entire piece is the author's own back-of-envelope monthly estimate built from public quarterly figures, not an Anthropic disclosure. Known numbers: Q1 revenue $4.8B, Q2 $11.6B, Q3 $16.8B (the Q3 figure was \"reportedly\" shared with investors, per NYT). Anchoring July off its $65B annualized run-rate implies about $5.4B for July alone; subtracting that from Q3's total puts August+September combined at about $11.4B, averaging $5.7B/month — only modestly above July. Average monthly growth fell from about $760M in Q2 to about $580M in Q3. The author also flags that Anthropic gave no September annualized number at its investor meeting, reading that omission as a signal. Possible causes he lists: normal August seasonality, capacity limits, a broader AI-spending cooldown, and customers shifting to cheaper Chinese models. He ties this to Anthropic's pre-IPO valuation and to neoclouds like CoreWeave that have borrowed heavily against assumed continued demand growth.",
+          "why": "通篇都是估算,不是 Anthropic 公布的数字。反推方法本身的误差可能很大,但它点出的问题值得记住:投资者会上为什么没有给 9 月数字。",
+          "why_en": "This entire piece is an estimate, not an Anthropic disclosure — the reverse-engineering method carries real error bars, but the specific gap he flags (why no September annualized number was given) is a concrete, trackable question worth remembering.",
+          "flag": "反推估算,非公司披露数字",
+          "flag_en": "Reverse-engineered estimate, not company-disclosed data"
+        },
+        {
+          "title": "预训练阶段投毒 0.1% 数据，就能在 agent 里种后门",
+          "title_en": "Poisoning 0.1% of pretraining data plants a working backdoor in an agent",
+          "author": "论文作者（arXiv 预印本）· Hacker News",
+          "author_en": "Paper authors (arXiv preprint) · Hacker News",
+          "likes": 92,
+          "likes_label": "HN 分",
+          "url": "https://arxiv.org/abs/2610.37741",
+          "summary": "研究者从零预训练了 Qwen3 的 0.6B、1.7B、4B 三个规模,再后训练成命令行 agent。预训练语料里只要混入 0.1% 的投毒数据,就能在 agent 里种下远程代码执行后门:触发条件出现时执行攻击者指定的命令,其余时候表现正常。4B 模型在 0.1% 投毒率下攻击成功率约 92%。投毒比例压到 0.0005%,后门依然有效。更麻烦的是,模型越大,后门越容易被种进去,规模放大并不自动更安全。",
+          "summary_en": "Researchers pretrained Qwen3 from scratch at 0.6B, 1.7B, and 4B parameters, then post-trained each into a CLI agent. Poisoning just 0.1% of the pretraining corpus plants a remote-code-execution backdoor — the agent runs an attacker-chosen command when triggered, otherwise behaves normally. The 4B model hits roughly 92% attack success rate at that poison rate. Even at 0.0005% poisoning, the backdoor still works. Worse: susceptibility increases with model size — bigger models are more vulnerable, not more robust.",
+          "why": "这该当作一条供应链安全警示来读,而不是说模型学会了搞破坏。它说明的是预训练数据本身的脆弱性,以及放大模型规模并不会自动带来更强的抗投毒能力;任何给 agent 产品挑训练数据的人都该把这一点考虑进去。",
+          "why_en": "Read as a supply-chain security finding, not agency language — this is about the fragility of the pretraining-data pipeline itself, and the finding that scaling up doesn't make models more resistant to poisoning should inform anyone sourcing or vetting training data for agent products."
+        },
+        {
+          "title": "Momentic 的 AI QA 工程师「Mo」今天出测试版",
+          "title_en": "Momentic's AI QA agent \"Mo\" exits beta",
+          "author": "Momentic（YC W24）· Hacker News",
+          "author_en": "Momentic (YC W24) · Hacker News",
+          "likes": 130,
+          "likes_label": "HN 分",
+          "url": "https://momentic.ai/",
+          "summary": "Mo 是一个端到端测试网页、iOS、Android 应用的 AI agent,能自己把产品跑一遍找 bug,给出复现步骤,还能把这次运行直接变成 PR 里的回归测试。可以从编码 agent、App 内、PR 评论或一个 qa 命令行工具里直接唤起它。今天的更新日志写的是 Mo 已经出测试版:免费版不需要信用卡,企业版走销售对接,带 SSO/RBAC、SOC 2 Type 2 认证和合同里写明的可用性 SLA。Momentic 自己做了一个 QA Bench,让 Mo 和 Codex、Claude Code、Devin 在 Gitea、Metabase、Twenty、Saleor 四个项目里各测 20 个区域,每区域 60 分钟:Mo 找到约 269 个标记 bug,第二名只有约 86 个,差了三倍。",
+          "summary_en": "Mo is an AI agent that tests web, iOS, and Android apps end to end, finds bugs with repro steps, and turns each run into a regression test attached to a PR. It can be kicked off from a coding agent, inside the app, from a PR comment, or via a qa CLI. Today's changelog says \"Mo is out of beta.\" The free tier needs no credit card; enterprise goes through sales and adds SSO/RBAC, SOC 2 Type 2, and a contractual uptime SLA. Momentic ran its own \"QA Bench,\" testing Mo against Codex, Claude Code, and Devin across 20 areas each of Gitea, Metabase, Twenty, and Saleor, 60 minutes per area: Mo found about 269 labeled bugs versus about 86 for the next-best agent — roughly 3x.",
+          "why": "这是一条产品发布,不是研究。QA Bench 的数字由 Momentic 自己测、自己评分、自己公布,方法论完全没有公开,拿来当 Mo 比 Devin 强三倍的证据之前得打个问号。",
+          "why_en": "This is a product launch, not research — the QA Bench numbers are self-run, self-graded, and self-published by Momentic with no disclosed methodology. Treat \"3x better than Devin\" as a vendor claim, not an audited result.",
+          "flag": "供应商自测跑分,未经审计",
+          "flag_en": "Vendor-reported benchmark, unaudited"
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 12,
+      "items": [
+        {
+          "title": "Realtime-Bench：暂停时钟能拿 70-80 分，真实时钟掉到 36 分",
+          "title_en": "Realtime-Bench: 70-80% with the clock paused, 36% in real wall-clock time",
+          "author": "Jack Clark（Import AI）",
+          "author_en": "Jack Clark (Import AI)",
+          "url": "https://importai.substack.com/p/import-ai-479-spacewar-low-latency",
+          "summary": "德州大学奥斯汀分校、俄亥俄州立、UIUC、NVIDIA、西北大学和 Steadyworks 联合做了一个新基准,专门测模型在拖延就会输的实时任务里表现如何:50 个任务,30 个网页任务 (旅行、电商、服务、安全) 加 20 个游戏任务。测三种时钟模式:真实时钟,反映实际推理延迟;暂停时钟,可以无限思考,测纯能力上限;token 时钟,按生成的 token 数推进模拟时间,想得越多拖得越久。测了 OpenAI、Anthropic、Google、DeepSeek、Kimi 等一众模型,最好成绩是 GPT-6 Astra(高推理档) 在真实时钟下的 36% 通过率;换成暂停时钟,同样这批高推理模型能冲到 70% 甚至 80%。",
+          "summary_en": "A new benchmark from UT Austin, Ohio State, UIUC, NVIDIA, Northwestern, and Steadyworks measures how models perform on tasks where delay itself causes failure — 50 tasks total, 30 web tasks (travel, e-commerce, service, security) plus 20 game tasks. Three clock conditions: wall clock (real inference latency), paused clock (unlimited thinking time, a capability ceiling), and token clock (simulated time advances per generated token, so more deliberation costs more time). Tested OpenAI, Anthropic, Google, DeepSeek, and Kimi models; best result was GPT-6 Astra (high reasoning) at 36% pass rate under the real wall clock — the same high-reasoning models hit 70-80% once the clock is paused.",
+          "why": "这个基准量化了一个常被忽略的落差：模型「能想清楚」和「能在真实时间压力下做对」是两回事。36% 对 80% 的差距直接说明，今天的 agent 还不该被派去做实时交易、抢票这类真正分秒必争的任务。",
+          "why_en": "This quantifies a gap that's easy to hand-wave past — \"can reason correctly\" and \"can act correctly under real time pressure\" are different capabilities, and the 36% vs 80% gap is a concrete reason not to deploy today's agents on genuinely time-critical tasks like live trading or ticket-sniping."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条放在一起，能看出一个共同的套路：表面讲的是 AI 能力，实际决定结果的是一层看不见的东西。Legora 说自己「看不到任何数据」，真正的护城河是替代数据可见性的那支法律工程师团队，不是模型。Apollo 的 Nahari 说 90% 的企业都在用 AI，但利润只有 6% 的企业动了，因为工程只占五分之一，剩下五分之四是没人愿意做的变革管理。Realtime-Bench 把这层「看不见的东西」量化了：同一批模型暂停时钟能拿 80 分，换成真实时钟掉到 36 分——能推理对，不等于能在真实时间压力下做对。连安全那条也是同一个逻辑反过来讲：预训练阶段投毒 0.1% 的数据就能种后门，而且模型越大越容易被种进去，规模本身不会自动带来安全感。Oracle 的债更是把这套逻辑摆在了明面上——市场早就知道这 200 亿要来，股价还是跌，因为真正的信号从来不是融资公告本身，是信用违约互换和债券收益率这些硬指标。今晚的提醒是：判断一条 AI 新闻真正说了什么，得往公告背后那层看。",
+  "meta_read_en": "Tonight's stories share a pattern once you line them up: each is ostensibly about AI capability, but what actually determines the outcome is a hidden second layer. Legora says it can't see any of its own data — its real moat is the team of legal engineers that substitutes for that missing visibility, not the model. Apollo's Nahari says 90% of businesses use AI but only 6% see profit impact, because engineering is only a fifth of the work; the other four-fifths is change management nobody wants to do. Realtime-Bench quantifies that same hidden layer directly: the same models score 80% with the clock paused and 36% under real wall-clock time — reasoning correctly and acting correctly under time pressure are different capabilities. Even the security story runs the same logic in reverse: poisoning just 0.1% of pretraining data plants a backdoor, and bigger models are more susceptible, not more protected — scale alone buys no safety. Oracle's debt raise puts this in plain sight: the market already knew the $20B was coming and the stock still fell, because the real signal was never the financing announcement itself, it's the credit metrics underneath it. Tonight's rule: to know what an AI headline actually says, look past the announcement to the layer underneath it.",
+  "ota": {
+    "learned": [
+      "今晚 9 个 YouTube 频道里 7 个 RSS 直接可用（OpenAI、Zara Zhang 两个 404，用控制频道 MrBeast 验证过不是全站故障），没有触发 429，字幕一次拿到 en-orig。",
+      "今晚三条 Hacker News 条目的 HN 分是事后补查出来的，不是子代理汇报里自带的——Momentic 130 分、Oracle 债务新闻 164 分、Anthropic 增长放缓估算 171 分、投毒后门论文 92 分，都是按标题关键词重新用 Algolia 查出来的。",
+      "负责 Hacker News/newsletter 扫描的子代理在复述 Legora 访谈时，凭空写出「1800+ 客户、18 个月做到 1 亿美元 ARR」这个具体数字——追问它回去对照原始 transcript 和 Latent Space 原文才发现这两个数字根本不存在，实际应披露的是「5.5 亿美元 E 轮、88 亿估值」。子代理汇报里出现的硬数字（融资、营收、客户数），哪怕它说自己「读了全文」，也不能直接信，得让它指回原文的具体句子或链接才能用。新记忆：feedback-subagent-hard-number-provenance。"
+    ],
+    "learned_en": [
+      "Tonight 7 of 9 YouTube roster channels had live RSS (OpenAI and Zara Zhang 404'd, confirmed channel-specific via a MrBeast control fetch); no 429s, subtitles came through on en-orig on the first try.",
+      "HN point counts for tonight's three Hacker News items were backfilled after the fact, not carried in the sub-agent's own report — Momentic 130, Oracle debt story 164, Anthropic growth-deceleration estimate 171, pretraining-backdoor paper 92, all re-queried via Algolia by title keyword.",
+      "A sub-agent running the Hacker News/newsletter sweep reported a specific hard number for the Legora interview — '1,800+ customers, $100M ARR in under 18 months' — that turned out not to exist anywhere in the transcript or the Latent Space writeup when a follow-up fork checked the primary source; the real disclosed figure was a $550M Series E at an $8.8B valuation. A sub-agent's confident report can state a hard number that was never in the source material, even when it says it 'read the full thing' — treat such numbers as unverified until the sub-agent quotes the exact source line or URL. New memory: feedback-subagent-hard-number-provenance."
+    ],
+    "new_capabilities": [
+      "对子代理汇报里出现的任何硬数字（融资额、营收、客户数、估值）多加一道核查：让产出汇报的子代理（或另开一个核查用子代理）指出该数字在原始素材里的具体位置（原文句子/链接），不能只因为它说「已读全文」就采信。今晚在 Legora 融资数字上实测过一次，抓出一个凑空数字。"
+    ],
+    "new_capabilities_en": [
+      "Added a verification step for any hard number (funding amount, revenue, customer count, valuation) that shows up in a sub-agent's report: have the reporting sub-agent (or a fresh checking sub-agent) point to the number's exact location in the primary material (the quoted line or URL) before using it — don't accept it just because the sub-agent says it 'read the full thing.' Tested live tonight on the Legora funding figure and caught one fabricated number."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "vercel-labs/agent-desktop",
+      "url": "https://github.com/vercel-labs/agent-desktop",
+      "description": "Computer use CLI for AI agents",
+      "language": "Rust",
+      "stars": 10033,
+      "stars_today": 2275
+    },
+    {
+      "rank": 2,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 110826,
+      "stars_today": 1803
+    },
+    {
+      "rank": 3,
+      "name": "D4Vinci/Scrapling",
+      "url": "https://github.com/D4Vinci/Scrapling",
+      "description": "The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl!",
+      "language": "Python",
+      "stars": 93020,
+      "stars_today": 706
+    },
+    {
+      "rank": 4,
+      "name": "hyprwm/Hyprland",
+      "url": "https://github.com/hyprwm/Hyprland",
+      "description": "Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks.",
+      "language": "C++",
+      "stars": 39978,
+      "stars_today": 509
+    },
+    {
+      "rank": 5,
+      "name": "Donchitos/Claude-Code-Game-Studios",
+      "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+      "description": "Turn Claude Code into a full game dev studio — 49 AI agents, 72 workflow skills, and a complete coordination system mirroring real studio hierarchy.",
+      "language": "Shell",
+      "stars": 33647,
+      "stars_today": 1379
+    },
+    {
+      "rank": 6,
+      "name": "FlashML-org/FreeToken",
+      "url": "https://github.com/FlashML-org/FreeToken",
+      "description": "FreeToken brings datacenter-scale model serving to your desktop. Run massive models locally, fast and efficiently.",
+      "language": "Python",
+      "stars": 16128,
+      "stars_today": 653
+    },
+    {
+      "rank": 7,
+      "name": "pingdotgg/t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 42143,
+      "stars_today": 3229
+    },
+    {
+      "rank": 8,
+      "name": "shiyu-coder/Kronos",
+      "url": "https://github.com/shiyu-coder/Kronos",
+      "description": "Kronos: A Foundation Model for the Language of Financial Markets",
+      "language": "Python",
+      "stars": 46040,
+      "stars_today": 857
+    },
+    {
+      "rank": 9,
+      "name": "kornia/kornia",
+      "url": "https://github.com/kornia/kornia",
+      "description": "Geometric Computer Vision Library for Spatial AI",
+      "language": "Python",
+      "stars": 12157,
+      "stars_today": 412
+    },
+    {
+      "rank": 10,
+      "name": "JustVugg/colibri",
+      "url": "https://github.com/JustVugg/colibri",
+      "description": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk.",
+      "language": "C",
+      "stars": 46630,
+      "stars_today": 675
+    }
+  ]
+}
