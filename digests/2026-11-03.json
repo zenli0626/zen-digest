@@ -1,0 +1,283 @@
+{
+  "date": "2026-11-03",
+  "partial": false,
+  "banner": "头条说谷歌掐搜索，公告说 AI 默认关",
+  "banner_en": "Headline said Google cuts search; its post says AI defaults off",
+  "image": {
+    "src": "digests/img/2026-11-03.jpg",
+    "caption": "本期配图：谷歌官方博客「AI 学习时代」K-12 管控更新公告的主图（图：Google 官方博客）。",
+    "caption_en": "Today's image: the hero image from Google's own blog post announcing the K-12 AI-controls update. (Image: Google's official blog.)"
+  },
+  "actions": [
+    {
+      "text": "用 ChatGPT 或 Codex 的话，去 chatgpt.com/settings/data-controls 查一下「Improve the model for everyone」这个开关，特别是如果你之前特意关过它。已有多个用户反映这个开关会在无人操作的情况下自行打开。查完的标准是记下当前开关状态，而不是“应该还关着”。",
+      "text_en": "If you use ChatGPT or Codex, check the \"Improve the model for everyone\" toggle at chatgpt.com/settings/data-controls — especially if you deliberately turned it off before. Multiple users report it getting switched back on with nobody touching it. Done means you've written down the toggle's actual current state, not \"it should still be off.\"",
+      "source": "Hacker News 用户报告",
+      "source_en": "User reports on Hacker News",
+      "source_url": "https://news.ycombinator.com/item?id=50352757"
+    },
+    {
+      "text": "手头有正在跑的 agent 或大量调用模型 API 的任务，就去对应平台的用量后台查一下 prompt 缓存命中率（cache hit rate）。按 Artificial Analysis 的实测，同一个任务的缓存命中率从正常值掉到零，成本能从 21 美元涨到 200 美元以上。查完的标准是写下具体命中率百分比，而不是“应该开着”。",
+      "text_en": "If you're running an agent or making heavy model API calls, check the prompt cache-hit rate in that provider's usage dashboard. Per Artificial Analysis's benchmark, the same task's cost went from $21 to over $200 when cache-hit rate dropped from normal to zero. Done means you've written down the actual hit-rate percentage, not \"it should be on.\"",
+      "source": "George Cameron · Artificial Analysis · AI Engineer 大会",
+      "source_en": "George Cameron · Artificial Analysis · AI Engineer Summit",
+      "source_url": "https://www.youtube.com/watch?v=prGP0huECPo"
+    },
+    {
+      "text": "关注靠举债扩产能做 AI 基建的公司（云厂商、芯片供应商、数据中心运营商），花几分钟查一下它最新一期财报里「长期购买承诺」或「经营租赁义务」这类表外条目的具体金额，别只看营收或订单公告。查完的标准是写下具体数字和占总资产的比例，而不是“规模应该不小”。",
+      "text_en": "If you're tracking a company funding its AI buildout with debt (a cloud vendor, chip supplier, data-center operator), spend a few minutes checking its latest filing's \"long-term purchase commitments\" or \"operating lease obligations\" line items instead of just the revenue/order headlines. Done means you've written down the actual dollar figure and its share of total assets, not \"it's probably big.\"",
+      "source": "Kohei Yamada · 日经亚洲",
+      "source_en": "Kohei Yamada · Nikkei Asia",
+      "source_url": "https://asia.nikkei.com/business/technology/artificial-intelligence/us-tech-giants-hidden-ai-debt-swells-90-to-3.2tn-in-6-months"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚查一下：Postman 有没有偷偷往你的 Claude Code/Codex 装插件",
+    "title_en": "Tonight: check whether Postman silently installed plugins into your Claude Code/Codex",
+    "why": "一个开发者排查发现，只要打开一次本地已装的 Postman 桌面客户端，它就自动给 Codex 和 Claude Code 各装了一个插件、加了一条启动钩子，还让安装程序自己批准了那条钩子的信任记录——没问过你，就让它成为你写 API 代码时的默认流程。GitHub issue 被标成 severe，评论区一片“这是不是在装恶意软件”的反应。检查和清理都不需要专业工具，几分钟能看完。",
+    "why_en": "A developer investigating found that simply opening an already-installed Postman desktop app caused it to auto-install a plugin and a startup hook into both Codex and Claude Code, with the installer approving its own hook's trust record — effectively making itself the default workflow for API work without ever asking. The GitHub issue is flagged severe, and the comment thread reads like people discovering malware. Checking and cleaning up takes a few minutes with no special tools.",
+    "time": "10 分钟",
+    "time_en": "10 minutes",
+    "steps": [
+      "装过 Postman 桌面客户端（哪怕很久没打开），就打开终端查 `~/.claude/plugins/installed_plugins.json` 和 `~/.claude/settings.json` 里有没有出现 `postman` 字样。",
+      "再查 Codex 的 `~/.codex/config.toml`，看 `[plugins]` 或 `[marketplaces]` 里有没有 `postman`，顺手看一眼 `~/.local/bin` 里是不是多了个 postman 的 CLI。",
+      "查到了，就去 Postman 自己的设置里找卸载或移除集成的选项，或者直接删掉上面那几个配置文件里对应的 postman 条目；删完重启 Claude Code / Codex，确认钩子提示消失。"
+    ],
+    "steps_en": [
+      "If you've ever installed the Postman desktop app (even if you haven't opened it in a while), check `~/.claude/plugins/installed_plugins.json` and `~/.claude/settings.json` for any mention of \"postman\".",
+      "Also check Codex's `~/.codex/config.toml` for a `postman` entry under `[plugins]` or `[marketplaces]`, and glance at `~/.local/bin` for an unexpected postman CLI binary.",
+      "If you find one, look in Postman's own settings for an uninstall/remove-integration option, or manually remove the postman entries from those config files, then restart Claude Code/Codex and confirm the hook prompts are gone."
+    ],
+    "source": "Postman GitHub issue #14370",
+    "source_en": "Postman GitHub issue #14370",
+    "source_url": "https://github.com/postmanlabs/postman-app-support/issues/14370"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 72,
+      "items": [
+        {
+          "title": "Warp创始人：我们把AI编程成本从每个PR 80美元压到15美元",
+          "title_en": "Warp's founder: we cut AI coding cost from $80 to $15 per PR",
+          "author": "Latent Space Pod · Zach Lloyd（Warp 创始人）",
+          "author_en": "Latent Space Pod · Zach Lloyd (Warp's founder)",
+          "likes": 1046,
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=LL0YmIyBKSU",
+          "summary": "Warp 创始人 Zach Lloyd 讲他说的“软件工厂”：把谁负责什么、走什么流程、调用哪些 MCP 全部写成代码（他们内部是一份 YAML），这样整个开发流程变得可版本化、可回滚，agent 自己也能对工厂定义提 PR 改进自己。他给了具体数字：Warp 刚开始用这套方法时，每个 PR 成本大概 80 美元（因为分诊 agent 用了不该用的高阶模型，子 agent 数量也开太多），调完之后压到 15-20 美元，过去一个月 PR 吞吐量涨了 40%，而且没有推高“被打回”的比例。他的建议很直接：5-10 个工程师以下的团队别折腾这套东西，直接用 Claude Code 或 Codex 的订阅就够了；5-10 人以上，团队定制化的成本才值得；超大型、已经有自己基建的公司（他举了 Uber、Ramp）反而不是好客户。他还提了一个容易被忽略的经济账：很多小公司用“转订阅”的办法绕过官方 API 计费——一个 200 美元的订阅能换到约 8000 美元等值的 API 用量，比直接按 token 付费便宜 5 到 50 倍，但他说这做法不可扩展，公司规模一大基本撑不住。",
+          "summary_en": "Warp's founder Zach Lloyd lays out what he calls a \"software factory\": define who does what, what workflow steps happen, and which MCPs get called all as code (internally, a YAML file) so the whole dev process becomes versioned, revertible, and self-improving — coding agents can even file pull requests against the factory's own definition. He gives real numbers: Warp's early cost was about $80 per PR, because its triage agent was using a model more powerful than it needed and spinning up too many sub-agents; after tuning, that fell to $15-20 per PR, with PR throughput up 40% over the past month and no increase in revert rate. His advice is blunt: teams under 5-10 engineers shouldn't bother — just use a Claude Code or Codex subscription; above that size the customization cost starts paying off; and very large companies with existing bespoke infrastructure (he names Uber and Ramp) are a poor fit. He also flags an economics quirk worth knowing: small companies often rotate a stack of $200 subscription plans instead of paying for API access directly, getting roughly $8,000 of equivalent API usage for $200 — 5 to 50 times cheaper than metered pricing — though he says it doesn't scale once a company grows.",
+          "why": "$80 到 $15 一个 PR 是实测数字，不是宣传语；“5-10 人以下别折腾”这条建议反而是卖方自己在劝退小客户，比大多数产品推介更值得信。",
+          "why_en": "$80 to $15 per PR is a measured number, not a marketing line; the \"don't bother under 5-10 engineers\" advice is the vendor talking a small customer out of buying, which is more trustworthy than most product pitches."
+        },
+        {
+          "title": "不开缓存，AI agent跑一个任务能贵10倍",
+          "title_en": "Without caching, an AI agent task can cost 10x more",
+          "author": "AI Engineer 大会 · George Cameron（Artificial Analysis 联合创始人）",
+          "author_en": "AI Engineer Summit · George Cameron (co-founder, Artificial Analysis)",
+          "likes": 2777,
+          "likes_label": "播放",
+          "url": "https://www.youtube.com/watch?v=prGP0huECPo",
+          "summary": "独立 AI 跑分机构 Artificial Analysis 的联合创始人 George Cameron 拆解了一个 agent 任务的真实成本构成。他们用一个“浏览上千个文件、写报告/PPT/视频”的基准测试，Opus 完成一个任务平均要花 21 美元，其中单次模型调用 13 美分，但跑完全程要走 165 步；真正烧钱的是输入 token 数量和缓存命中率，而不是去年大家盯着的“推理 token 有多少”。他给出一个具体对照：同样这个任务，如果缓存命中率是零（prompt caching 没配置好，或自己搭的推理服务没开），成本从 21 美元直接涨到超过 200 美元，整整 10 倍。他把任务分成两类：“无限收益型”（越聪明的模型效果越好，比如分析成本驱动因素）和“有限收益型”（模型聪明到某个程度后再堆智能也没用，比如查“上个月订阅花了多少钱”，便宜模型配对的 MCP 给出的答案和贵模型一样），建议先判断任务属于哪一类再决定要不要为智能多花钱。",
+          "summary_en": "George Cameron, co-founder of independent AI benchmarking firm Artificial Analysis, breaks down what actually drives an agent task's cost. Using their own benchmark (an agent browsing thousands of files to produce reports, slide decks, and marketing videos), a task with Opus costs about $21 on average — a single model call is 13 cents, but completing the task takes 165 steps. The real cost drivers are input token volume and cache-hit rate, not reasoning-token count, which was last year's focus. His concrete comparison: the same task, with cache-hit rate at zero (prompt caching misconfigured, or a self-hosted inference setup that never enabled it), jumps from $21 to over $200 — a full 10x. He splits tasks into two buckets: \"unlimited-intelligence\" tasks (a smarter model keeps helping, e.g. analyzing cost drivers) and \"limited-intelligence\" tasks (intelligence stops mattering past some point — e.g. \"how much did I spend on subscriptions last month\" gets the same correct answer from a cheap model with the right MCP as from an expensive one) — and recommends deciding which bucket a task falls into before paying for more intelligence.",
+          "why": "$21 到 $200 的十倍差距是真实跑分，不是厂商自夸；如果手头有在跑的 agent/API 任务，花两分钟查一下自己的缓存命中率，比换模型更可能省钱。",
+          "why_en": "The $21-to-$200, 10x gap is a measured benchmark, not a vendor's self-praise; if you're running an agent or API workload, checking your own cache-hit rate is more likely to save money than switching models."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 40,
+      "items": [
+        {
+          "title": "谷歌给中小学账号把AI默认关掉",
+          "title_en": "Google defaults AI off for K-12 student accounts",
+          "author": "Google 官方博客 · 经 Hacker News 讨论纠偏",
+          "author_en": "Google's own blog · corrected via Hacker News discussion",
+          "likes": 558,
+          "likes_label": "HN 分",
+          "url": "https://blog.google/products-and-platforms/products/education/ai-learning-era-updates-2026/",
+          "summary": "《纽约时报》一篇报道的标题被转成「谷歌要给拒绝用 AI 的学校断搜索」，上了 Hacker News 热榜前列（558 分）。翻到谷歌 10 月发的官方博客才发现实际说法完全不同：Gemini、Gemini Notebook、Gemini in Classroom 和 Google Search 里的 AI 功能，对 K-12 学生账号默认全部关闭，要管理员手动打开才能用，具体细则「未来几个月」才公布。谷歌做的是把 AI 默认关掉、改成管理员 opt-in，不是反过来拿搜索要挟学校用 AI。HN 排名第一的评论直接贴了这条公告纠偏，底下的讨论转向另一个更常见的担忧：谷歌把传统搜索、Gemini 笔记本这些产品捆在一起，关 AI 往往连带关掉一些老功能，就像 Gmail 的智能收件箱不能单独关掉生成式 AI。",
+          "summary_en": "A New York Times headline got rephrased into \"Google will turn off search for schools that reject AI\" and climbed to the top of Hacker News (558 points). Reading Google's own blog post from the thread shows a different story: Gemini, Gemini Notebook, Gemini in Classroom, and the AI features inside Google Search are now off by default for K-12 student accounts, and administrators have to turn them on manually; Google says it will share rollout specifics \"in the coming months.\" In other words, Google made AI opt-in and off by default — the opposite of coercing schools into using it. The top-voted HN comment posted the actual announcement as a correction; the thread then drifted into a more familiar complaint, that bundling AI features with older functionality (like Gmail's smart inbox, which can't be disabled without also killing generative features) makes a clean opt-out hard.",
+          "why": "头条写的是威胁，公告写的是默认关闭，两者几乎反着说——这正是今晚另一条 Qwen/Astra 争议在讲的同一个教训：判断一条新闻该信哪个版本，得去翻原始公告或论文，不能只看转述标题。",
+          "why_en": "The headline framed this as a threat; the announcement says the opposite — AI off by default. That's the same lesson as tonight's Qwen/Astra story: to know which version of a claim to trust, open the primary announcement or paper, not the headline built on top of it."
+        },
+        {
+          "title": "「Astra能读写权重改好Qwen」这篇被拆穿了",
+          "title_en": "The \"Astra can edit Qwen's weights\" claim doesn't hold up",
+          "author": "Matthew Honnibal（spaCy 作者）· 经 Hacker News",
+          "author_en": "Matthew Honnibal (spaCy's creator) · via Hacker News",
+          "likes": 910,
+          "likes_label": "HN 分",
+          "url": "https://honnibal.dev/blog/astra-read-write-misleading",
+          "summary": "一篇匿名博客（rikiyat.github.io）声称 GPT-6 Astra 能直接读懂神经网络的原始权重，看出它训练来干什么，还能不靠梯度改权重把 Qwen3.5-0.8B 的数学成绩从 7.9% 拉到 48.1%，只改了 0.016% 的权重。spaCy 作者 Matthew Honnibal 把八个实验逐条拆开核对，发现摘要暗示的是同一种能力，实际只有两个小实验（1.7 万到 17 万参数的网络）是真的直接读原始权重；Qwen 那个最吸睛的结果，其实是让模型写 Python 代码去分析权重，还跑了最多 50 轮练习题——更像一个会写代码的工程师在干活，不是什么读心术。另外两组实验里，Astra 从零权重直接写出的游戏网络在 Breakout 上赢了 PPO（517 分打 25 分），但在 Seaquest 和 Asterix 上都输了。Simon Willison 当晚在自己的 4-bit 量化 Qwen 3.8 27B 本地跑了同一套识别游戏的 prompt（命令和超时参数都贴了出来），3/4 猜对，印证「读权重猜游戏」这部分能力在小模型上确实存在，但他没有测试改权重那部分，所以最耀眼的数字依然没人独立复现。",
+          "summary_en": "An anonymous blog post (rikiyat.github.io) claimed GPT-6 \"Astra\" can read a network's raw weights to tell what it was trained to do, and can edit weights without gradients to raise Qwen3.5-0.8B's math score from 7.9% to 48.1% by touching just 0.016% of its weights. spaCy's creator Matthew Honnibal went through all eight experiments one by one and found the abstract implies a single unified capability, but only two small experiments (17K-172K parameters) actually read raw weights directly. The headline Qwen result instead had the model write Python code to analyze the weights and run up to 50 passes of practice problems — closer to an ML engineer's workflow than mind-reading. In two other experiments, Astra wrote game-playing networks from scratch (zero-initialized weights) and beat PPO on Breakout (517 vs. 25) but lost on Seaquest and Asterix. The same night, Simon Willison ran the same game-identification prompts locally on a 4-bit quantized Qwen 3.8 27B (commands and timeout settings included in his post) and got 3 of 4 right — confirming the \"read weights, guess the game\" piece holds up on a small model, though he didn't test the weight-editing claim, so the headline number is still unreplicated independently.",
+          "why": "这篇不是在说 Astra 没用，是在说「摘要讲的是一种能力，实验做的是另一种」——同样的拆穿方法，今晚也该拿去套在谷歌中小学那条新闻上。",
+          "why_en": "The point isn't that Astra is useless — it's that the abstract implies one capability while the experiments establish a narrower one. The same debunking method applies to tonight's Google K-12 story."
+        },
+        {
+          "title": "有人发现ChatGPT/Codex的训练开关又被悄悄打开了",
+          "title_en": "Users say ChatGPT/Codex's training toggle got silently re-enabled",
+          "author": "rbanffy 等用户报告 · Hacker News",
+          "author_en": "User reports via rbanffy et al. · Hacker News",
+          "likes": 434,
+          "likes_label": "HN 分",
+          "url": "https://news.ycombinator.com/item?id=50352757",
+          "summary": "一个用户发帖说，他们公司一直小心地在 Codex/Claude Code 等工具里关掉「数据共享」选项防止泄露代码，但前几天同事发现 Codex 里这个开关自己又被打开了，没人手动开过。帖主贴出了具体检查路径：chatgpt.com/settings/data-controls，找「Improve the model for everyone」那一项。评论区至少一人（chriskanan）确认自己也遇到同样情况——此前两次申请关闭训练都被确认生效，结果又被打开了，帖主自己也指出这件事以前就有人报告过（链到一条更早的 HN 帖子）。目前只是用户端观察，OpenAI 没有公开回应或解释原因，只能当作「用户报告的现象」，不是官方确认的事实。评论区还有人提到类似问题也发生在 Gemini（「Keep Activity」这个开关同样把保存历史和训练数据绑在一起）和 Claude（有用户称反馈被自动提交又训练上去）。",
+          "summary_en": "A user posted that their company carefully disables \"data sharing\" in Codex/Claude Code and similar tools to avoid leaking code, but coworkers recently noticed the setting in Codex had been silently flipped back on, with nobody having re-enabled it on purpose. The post includes the exact check: go to chatgpt.com/settings/data-controls and look for \"Improve the model for everyone.\" At least one commenter (chriskanan) confirmed the same thing happened to them — two earlier requests to disable training had been confirmed, then it got switched on again — and the original poster noted this has been reported before (linking an older HN thread). This remains a user-side observation; OpenAI hasn't publicly responded or explained it, so treat it as a reported pattern, not a confirmed fact. Commenters also raised similar concerns about Gemini (where \"Keep Activity\" bundles saved history with training data) and Claude (a user reporting feedback getting auto-submitted and then trained on).",
+          "why": "这事目前没有官方说法，先别当成定论，但检查成本几乎是零——花一分钟翻一下自己账号的这个开关，比等 OpenAI 回应划算。",
+          "why_en": "There's no official explanation yet, so don't treat this as settled — but checking your own toggle costs about a minute, which is cheaper than waiting for OpenAI to respond.",
+          "flag": "「又被打开」目前只是用户报告，没有官方确认或解释",
+          "flag_en": "\"Re-enabled\" is a user-reported pattern, not an OpenAI-confirmed fact"
+        },
+        {
+          "title": "美国科技巨头的隐性AI债务半年涨了九成，到3.2万亿美元",
+          "title_en": "US tech giants' hidden AI debt grew 90% in six months, to $3.2T",
+          "author": "Kohei Yamada · 日经亚洲 · 经 Hacker News",
+          "author_en": "Kohei Yamada · Nikkei Asia · via Hacker News",
+          "likes": 244,
+          "likes_label": "HN 分",
+          "url": "https://asia.nikkei.com/business/technology/artificial-intelligence/us-tech-giants-hidden-ai-debt-swells-90-to-3.2tn-in-6-months",
+          "summary": "日经亚洲报道，谷歌和 Meta 等美国科技巨头为 AI 投入积累的「隐性债务」（资产负债表外、跟 AI 相关的承诺和义务）过去六个月几乎翻了一倍，涨了约九成，到大约 3.2 万亿美元，子标题提到这些承诺和义务已经达到相关公司资产的八成。文章没有逐项列出这 3.2 万亿到底包不包括哪些具体项目（云产能长期采购合同、数据中心租赁等常是这类表外义务的大头），也没公开完整的计算方法，只说投资者对「看不到头的支出」越来越不安。配图是亚马逊的一座 AI 数据中心。半年前日经曾报过「五家美国科技巨头隐性债务到 1.65 万亿美元」，但文章没确认这次统计的公司范围是否和上次完全一致，两个数字不能直接拿来算增长率。",
+          "summary_en": "Nikkei Asia reports that US tech giants including Google and Meta have built up roughly $3.2 trillion in \"hidden\" AI debt — off-balance-sheet commitments and obligations tied to AI buildouts — almost doubling (about 90%) over six months; the subhead says these commitments now reach 80% of the companies' assets. The article doesn't itemize what counts toward the $3.2T (long-term cloud-capacity purchase commitments and data-center leases are the usual components of this kind of off-balance-sheet obligation) or publish its full methodology, saying only that investors are increasingly uneasy about \"seemingly unending spending.\" The accompanying photo shows an Amazon AI data center. Nikkei reported a comparable $1.65T figure for five US tech giants six months earlier, but the article doesn't confirm the company set matches this time, so the two numbers shouldn't be treated as a clean growth rate.",
+          "why": "标题的「九成」和「3.2 万亿」听起来很吓人，但文章自己都没说清楚统计口径和上次是否一致——这类数字值得记下来追踪，但不该直接当成可比的时间序列来引用。",
+          "why_en": "The \"90%\" and \"$3.2T\" headline numbers are alarming, but the article itself doesn't confirm the methodology matches the earlier comparison — worth tracking, but not citable as a clean time series yet."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 51,
+      "items": [
+        {
+          "title": "美国人口普查局把「AI」这个词换成了「超级智能」",
+          "title_en": "The US Census Bureau renamed \"AI\" to \"Super Intelligence\" in its survey",
+          "author": "Simon Willison",
+          "author_en": "Simon Willison",
+          "url": "https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/",
+          "summary": "美国人口普查局的一项企业调查（BTOS，商业趋势与展望调查）从 10 月 19 日那批数据开始，把问卷里的「人工智能」/「AI」字样全部换成了「超级智能」或「SI」，依据是一项编号 14434 的行政命令。调查原文写着这是「以前叫人工智能（AI）」的替代说法。Simon Willison 注意到这事，是因为他在追踪 Apollo Global Management 去年 9 月做的一张图——用 BTOS 数据看企业 AI 采用率是不是在放缓。他说这不是第一次改问卷口径：2025 年底就把问题从「生产产品或服务时用没用 AI」改成「公司任何业务环节用没用 AI」，口径一变，数字自然不能直接比。按新的宽口径，250 人以上大企业回答「用了」的比例从去年 9 月约 12%，涨到今年 2 月约 30%，10 月约 40%；1-4 人的小企业是 23.3%。下一批用新「超级智能」措辞的数据下周四才出，他说现在还不知道光换个名字会不会影响企业怎么回答。",
+          "summary_en": "The US Census Bureau's Business Trends and Outlook Survey (BTOS) replaced every instance of \"Artificial Intelligence\" or \"AI\" in its question wording with \"Super Intelligence\" or \"SI,\" starting with the October 19 collection, citing Executive Order 14434. The survey text itself calls this a replacement for what was \"formerly referred to as Artificial Intelligence or AI.\" Simon Willison noticed this while updating a chart he's tracked since an Apollo Global Management analysis last September, which used BTOS data to argue US corporate AI adoption was slowing. He notes this isn't the first wording change — in late 2025 the question shifted from AI use \"in producing goods or services\" to AI use \"in any business function,\" making the before/after numbers not directly comparable. Under the broader wording, the share of large firms (250+ employees) answering yes rose from about 12% last September to about 30% by February and about 40% by October; the smallest firms (1-4 employees) were at 23.3%. The first results under the new \"Super Intelligence\" wording aren't out until next Thursday, and Willison says it's an open question whether the rename alone will change how businesses answer.",
+          "why": "一个行政命令能让联邦统计口径里的「AI」一夜变成「超级智能」，这件事本身比任何采用率数字都更说明「AI」这个词现在被谁定义、怎么用——跟踪这张图的人，下周四就能看到换名字会不会改变企业怎么回答。",
+          "why_en": "An executive order renaming \"AI\" to \"Super Intelligence\" inside a federal statistical survey, overnight, says more about who gets to define the term right now than any adoption number does — anyone tracking this chart will find out next Thursday whether the rename itself changes how businesses answer."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条放在一起看，其实是同一件事：默认值被谁改了，你自己并不知道。打开一次 Postman，Codex 和 Claude Code 就被装了插件和启动钩子，安装器还顺手批准了自己装的钩子。有人发现 OpenAI 的训练开关又被悄悄打开，官方没解释。谷歌给中小学账号把 Gemini 和 Search 里的 AI 功能默认关掉，新闻标题却写成谷歌要掐断搜索。连 Qwen 能不能看懂自己的权重这件事，原始论文的摘要和 Honnibal 拆开实验一条条核对后也对不上。今晚管用的办法从来不是信通稿或标题，是去翻设置页，看原始日志，读实验细节。",
+  "meta_read_en": "Tonight's stories share one thread: defaults get changed without you knowing. Open Postman once, and it installs plugins and startup hooks into both Codex and Claude Code — and the installer approves its own hook. Someone noticed OpenAI's training toggle got silently flipped back on, with no explanation. Google defaults Gemini and Search's AI features off for K-12 accounts, but headlines wrote it up as Google cutting off search. Even whether Qwen can actually read its own weights doesn't hold up — the paper's abstract implies one unified ability, but Honnibal's experiment-by-experiment breakdown finds most of it doesn't check out. The only thing that works tonight isn't trusting a press release or a headline — it's opening the settings page, reading the raw log, checking the experiment details.",
+  "ota": {
+    "learned": [
+      "今晚没有 Chrome/claude-in-chrome 接入，用 ToolSearch 确认了这个会话里确实没有这个工具——靠 YouTube 和文摘（含 Hacker News）两条全 headless 的线凑够两个平台，不需要 partial。",
+      "YouTube 9 个频道里，OpenAI、No Priors 的 RSS 直接可用，加一个对照频道（Google for Developers）确认不是整站故障；其余 7 个（Karpathy、Anthropic、Dwarkesh Patel、Latent Space Pod、AI Engineer、Lenny's、Zara Zhang）用 yt-dlp 的 android client 回退，全部成功，没有触发 429。No Priors 那条新视频实际是 49 秒的短片预告，不是完整节目，按惯例跳过没有当 item 用。",
+      "查 Postman 那条安全事件时，顺手检查了本机的 ~/.claude/plugins/installed_plugins.json、~/.claude/settings.json、~/.codex/config.toml、~/.local/bin——干净，没有被装插件。",
+      "给纽约时报那篇「谷歌要掐学校搜索」的报道找原文时，WebFetch、scrapling 直连、scrapling 走 r.jina.ai 三层都失败——最后这层是因为 r.jina.ai 自己被 NYT 的匿名访问滥用拦截（跟一个完全不相关的大选页面的流量共享同一条拦截规则），不是针对这篇文章。换成谷歌自己 10 月发的官方博客公告后发现，标题「谷歌要掐搜索」讲反了：谷歌做的是把 K-12 账号的 AI 功能默认关掉。把这条加进了 SKILL.md 的 WebFetch/scrapling 升级顺序里。"
+    ],
+    "learned_en": [
+      "No Chrome/claude-in-chrome access tonight, confirmed via ToolSearch that the tool genuinely isn't available this session — relied on YouTube and Digest (including Hacker News) as the two fully-headless lanes, enough platforms that no partial flag was needed.",
+      "Of the 9 YouTube roster channels, OpenAI and No Priors had live RSS; a control channel (Google for Developers) confirmed it wasn't a sitewide outage. The other 7 (Karpathy, Anthropic, Dwarkesh Patel, Latent Space Pod, AI Engineer, Lenny's, Zara Zhang) used the yt-dlp android-client fallback, all successful, no 429s. No Priors's new video turned out to be a 49-second teaser clip, not a full episode, so it was skipped per the existing short-clip rule.",
+      "While checking the Postman security story, also checked this machine's own ~/.claude/plugins/installed_plugins.json, ~/.claude/settings.json, ~/.codex/config.toml, and ~/.local/bin — clean, no plugins installed.",
+      "Looking for the primary source behind the NYT \"Google cuts school search\" story, all three escalation tiers failed — WebFetch, scrapling direct, and scrapling via r.jina.ai — the last one because r.jina.ai itself got blocked by NYT's own anonymous-abuse filter, triggered by unrelated traffic on a same-day election page, not by anything about this specific article. Switching to Google's own October blog post instead revealed the headline had it backwards: Google made AI off-by-default for K-12 accounts. Added this failure mode to SKILL.md's WebFetch/scrapling escalation order."
+    ],
+    "new_capabilities": [
+      "给 daily-digest 技能的 WebFetch/scrapling 升级顺序加了一条：r.jina.ai 本身可能被目标站点的匿名流量滥用拦截挡住，和直接 403 是两种不同的失败，遇到这种情况不用再重试这一层，直接换成更好的第一手文档（比如官方博客/公告原文），而不是退到 HN/Algolia 评论拼凑。"
+    ],
+    "new_capabilities_en": [
+      "Added a line to the daily-digest skill's WebFetch/scrapling escalation order: r.jina.ai can itself be blocked by a target site's anonymous-abuse filter, a different failure mode from a direct 403 — when that happens, don't retry this tier, go straight to a better primary document (e.g. the company's own blog/announcement) instead of falling back to HN/Algolia comment reconstruction."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 111966,
+      "stars_today": 1139
+    },
+    {
+      "rank": 2,
+      "name": "vercel-labs/agent-desktop",
+      "url": "https://github.com/vercel-labs/agent-desktop",
+      "description": "Computer use CLI for AI agents",
+      "language": "Rust",
+      "stars": 12907,
+      "stars_today": 3791
+    },
+    {
+      "rank": 3,
+      "name": "max-sixty/worktrunk",
+      "url": "https://github.com/max-sixty/worktrunk",
+      "description": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
+      "language": "Rust",
+      "stars": 10534,
+      "stars_today": 438
+    },
+    {
+      "rank": 4,
+      "name": "JustVugg/colibri",
+      "url": "https://github.com/JustVugg/colibri",
+      "description": "A hierarchical inference engine for frontier MoE models: hot experts on the GPU (CUDA, Vulkan), warm ones in RAM, cold ones streamed from NVMe. Written in C, runs on the hardware you already own.",
+      "language": "C",
+      "stars": 47272,
+      "stars_today": 802
+    },
+    {
+      "rank": 5,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 311520,
+      "stars_today": 1164
+    },
+    {
+      "rank": 6,
+      "name": "p-e-w/heretic",
+      "url": "https://github.com/p-e-w/heretic",
+      "description": "Training-free language model modification: Remove censorship, suppress slop, reduce sycophancy, and more",
+      "language": "Python",
+      "stars": 38841,
+      "stars_today": 701
+    },
+    {
+      "rank": 7,
+      "name": "spotify/portal-ai-plugins",
+      "url": "https://github.com/spotify/portal-ai-plugins",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 3060,
+      "stars_today": 91
+    },
+    {
+      "rank": 8,
+      "name": "floci-io/floci",
+      "url": "https://github.com/floci-io/floci",
+      "description": "Light, fluffy, and always free - The AWS Local Emulator alternative",
+      "language": "Java",
+      "stars": 28853,
+      "stars_today": 482
+    },
+    {
+      "rank": 9,
+      "name": "Usagi-org/ai-goofish-monitor",
+      "url": "https://github.com/Usagi-org/ai-goofish-monitor",
+      "description": "基于 Playwright 和 AI 实现的闲鱼多任务实时/定时监控与智能分析系统，配备了功能完善的后台管理 UI。帮助用户从闲鱼海量商品中，找到心仪产品。",
+      "language": "Python",
+      "stars": 16475,
+      "stars_today": 228
+    },
+    {
+      "rank": 10,
+      "name": "anomalyco/hex",
+      "url": "https://github.com/anomalyco/hex",
+      "description": "Local voice dictation for mac, windows and linux",
+      "language": "Rust",
+      "stars": 4621,
+      "stars_today": 410
+    }
+  ]
+}
