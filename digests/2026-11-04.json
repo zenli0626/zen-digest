@@ -1,0 +1,279 @@
+{
+  "date": "2026-11-04",
+  "partial": false,
+  "banner": "AI 的账单，搬进机房和补丁里",
+  "banner_en": "AI's bill moves into racks and patches",
+  "image": {
+    "src": "digests/img/2026-11-04.png",
+    "caption": "本期头版配图：Namespace 官方博客「Mac at any scale」的题图。文章讲的是把 MacBook 装进机架，为 iOS 构建和 coding agent 提供 macOS 实例。（图：Namespace 官方博客）",
+    "caption_en": "This issue's front-page image: the banner from Namespace's own blog post \"Mac at any scale,\" which describes racking MacBooks to provide macOS instances for iOS builds and coding agents. (Image: Namespace's official blog)"
+  },
+  "actions": [
+    {
+      "text": "打开 Conductor，把还在云端的工作区转回本地，并在「设置 → 账户 → 导出数据」里下载全部数据备份。花 10 分钟。做完的标准是本地能打开原工作区、导出包已经落盘；记住两个日子：11 月 13 日云端转只读，11 月 20 日开始删数据。",
+      "text_en": "Open Conductor, move any cloud workspaces back to local, and download a full data export from Settings → Account → Export data. Ten minutes. Done means the local workspace opens and the export file is saved; note the two dates: the cloud goes read-only on November 13, and data deletion starts November 20.",
+      "source": "Conductor 官方公告 · 经 Hacker News",
+      "source_en": "Conductor's official announcement · via Hacker News",
+      "source_url": "https://www.conductor.build/announcement"
+    },
+    {
+      "text": "去你负责的服务器或博客后台，确认 PHP 已经打上 PHP2Shell 补丁；没打就今晚打，打完再跑一次版本检查。花 10 分钟。做完的标准是补丁版本号或主机商的修复记录能对上，自动安全更新保持开启。",
+      "text_en": "On any server or blog you run, confirm PHP has the PHP2Shell patch; if it doesn't, patch it tonight and re-check the version. Ten minutes. Done means the patched version number or your host's remediation record matches, and automatic security updates stay on.",
+      "source": "Dina Genkina · IEEE Spectrum · 经 Hacker News",
+      "source_en": "Dina Genkina · IEEE Spectrum · via Hacker News",
+      "source_url": "https://spectrum.ieee.org/ai-in-cybersecurity-php2shell-vulnerability"
+    },
+    {
+      "text": "如果你在做面向消费者的 AI 产品，打开主界面，数一数有几个模式切换（聊天/工作、快速/深度这类），挑一个最容易被用户选错的，写下一句「选错会损失什么」。花 15 分钟。做完的标准是产出一句能直接带进产品评审的判断，而不是一张功能清单。",
+      "text_en": "If you're building a consumer AI product, open the main screen, count the mode toggles (chat/work, fast/deep, and so on), pick the one users are most likely to get wrong, and write one sentence on what choosing wrong costs them. Fifteen minutes. Done means you have a judgment you can take straight into a product review, not a feature inventory.",
+      "source": "Alex Kantrowitz · Big Technology（经 TLDR AI）",
+      "source_en": "Alex Kantrowitz · Big Technology (via TLDR AI)",
+      "source_url": "https://www.bigtechnology.com/p/openai-chatgpt-search-is-about-20"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚把最常用的 AI 任务降到最低推理档，跑一遍对照",
+    "title_en": "Tonight: run your most common AI task at the lowest reasoning setting, then compare",
+    "why": "Vals 用 7 个模型、8 项基准跑了三档推理强度：四款模型在最低档保住了至少 80% 的分数，成本却不到一半；Claude Opus 5.5 是 80% 的分数、16% 的成本。但法律研究、代码迁移这类任务最吃推理，最低档会明显掉分。今晚用你自己的一个任务验证一下，比直接照搬榜单更有用。",
+    "why_en": "Vals ran seven models across eight benchmarks at three reasoning levels: four models kept at least 80% of their score at the lowest setting for less than half the cost, and Claude Opus 5.5 kept 80% of its score at 16% of the cost. But legal research and code migration gain the most from higher effort, so the lowest setting does lose real points there. Testing one of your own tasks tonight is more useful than copying the leaderboard.",
+    "time": "15 分钟",
+    "time_en": "15 minutes",
+    "steps": [
+      "打开 https://www.vals.ai/blogs/reasoning-effort，找到和你工作最接近的基准，记下它在最低档和高档之间的分差。",
+      "挑一个你每天都会让模型做的任务，用同一个提示词跑两次：一次把推理档位设成最低，一次设成最高。OpenAI Responses API 的写法是 `reasoning: {\"effort\": \"low\"}` 和 `reasoning: {\"effort\": \"high\"}`，其余参数不变。",
+      "把两次的输出和 token 成本并排记下来；如果低档的输出够用，明天就把这类任务默认降到低档，法律研究、代码迁移这类高分差任务继续用高档。"
+    ],
+    "steps_en": [
+      "Open https://www.vals.ai/blogs/reasoning-effort and find the benchmark closest to your work; note the score gap between its lowest and highest setting.",
+      "Pick a task you hand to a model every day and run the same prompt twice: once at the lowest reasoning setting, once at the highest. With the OpenAI Responses API that's `reasoning: {\"effort\": \"low\"}` versus `reasoning: {\"effort\": \"high\"}`, with every other parameter unchanged.",
+      "Record the two outputs and token costs side by side. If the low setting is good enough, make it the default for that task tomorrow, and keep the high setting for legal research and code migration, where the gap is largest."
+    ],
+    "source": "Vals AI · How Much Does Reasoning Effort Affect Score and Cost?",
+    "source_en": "Vals AI · How Much Does Reasoning Effort Affect Score and Cost?",
+    "source_url": "https://www.vals.ai/blogs/reasoning-effort"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 119,
+      "items": [
+        {
+          "title": "AI 两周挖出 PHP 漏洞，补丁写了两个月",
+          "title_en": "AI found a PHP exploit in two weeks; the patch took two months",
+          "author": "Dina Genkina · IEEE Spectrum · 经 Hacker News",
+          "author_en": "Dina Genkina · IEEE Spectrum · via Hacker News",
+          "likes": 1089,
+          "likes_label": "HN 分",
+          "url": "https://spectrum.ieee.org/ai-in-cybersecurity-php2shell-vulnerability",
+          "summary": "PHP2Shell 是一个影响 WordPress、Drupal 等站点的 PHP 漏洞，受影响的包括 NASA、维基百科和白宫的网站。底层的「内存不足」错误早在 2024 年就报给了 PHP 基金会，当时只被当成会崩溃的小问题。今年，安全公司 Calif 在 OpenAI 赞助的独立审计中，用 AI 工具辅助，两周内把它变成了可执行任意代码的利用链；补丁则由四名工程师花了两个月才写完。IEEE Spectrum 的报道把这件事放进「40 年人类写的旧代码正在被 AI 重新暴露」的框架里：找漏洞比修漏洞快，是防守方现在最大的结构性劣势。哥伦比亚大学的 Suman Jana 说，利用漏洞需要大量具体推理，人做起来很痛苦，AI 恰好擅长这个；约翰霍普金斯大学的 Matthew Green 则判断，在真正严重的事故发生前，补丁投入不会跟上。",
+          "summary_en": "PHP2Shell is a PHP vulnerability affecting sites built on WordPress, Drupal, and similar stacks, including NASA, Wikipedia, and the White House. The underlying out-of-memory bug was reported to the PHP Foundation back in 2024 and treated as a minor crash. This year, during an independent audit by security firm Calif sponsored by OpenAI, a researcher using AI tools turned it into an exploit chain that could run arbitrary code, in about two weeks; four engineers then spent two months writing the patch. IEEE Spectrum frames the story as 40 years of human-written legacy code being re-exposed by AI: finding bugs is now faster than fixing them, the defenders' structural disadvantage. Columbia's Suman Jana says exploitation requires a lot of specific reasoning that is painful for humans and that AI happens to be good at; Johns Hopkins's Matthew Green predicts patch funding won't catch up until something genuinely bad happens.",
+          "why": "这条不是「AI 又发现漏洞」的猎奇新闻，是维护成本的账单：攻击方用 AI 把找漏洞的边际成本压到接近零，防守方还得靠四名工程师花两个月写补丁。开源项目没有收入，这个不对称只会扩大；对普通用户，唯一能立刻做的是别拖安全更新。",
+          "why_en": "This isn't an \"AI finds bugs now\" novelty story; it's a maintenance-cost bill. Attackers can use AI to push the marginal cost of finding a bug toward zero, while defenders still need four engineers and two months to write a patch. Open-source projects have no revenue to fund that, so the asymmetry only widens. For everyone else, the one immediate move is to stop deferring security updates."
+        },
+        {
+          "title": "Conductor 加入 Meta，云端 11 月 20 日关停",
+          "title_en": "Conductor joins Meta, and its cloud shuts down November 20",
+          "author": "Conductor 官方公告 · 经 Hacker News",
+          "author_en": "Conductor's official announcement · via Hacker News",
+          "likes": 122,
+          "likes_label": "HN 分",
+          "url": "https://www.conductor.build/announcement",
+          "summary": "Conductor 团队 11 月 4 日宣布加入 Meta。时间表写得很细：当天起停止新用户注册，现有免费用户不能升级，付费用户保留功能但免费；11 月 13 日 Conductor Cloud 转为只读，旧对话还能看、数据还能导出，活跃订阅者会收到退款；11 月 20 日开始删除云端用户数据。本地版 Conductor 继续收到新模型和关键修复，直到 2027 年初；团队说新东西会在明年年初出来。公告还写明，他们从未出售或训练过用户数据。",
+          "summary_en": "Conductor's team announced on November 4 that it is joining Meta. The timeline is specific: new sign-ups stop that day, existing free users cannot upgrade, and paid users keep their features for free; on November 13, Conductor Cloud becomes read-only, with old chats readable and data exportable, and active subscribers get refunds; on November 20, the company begins deleting cloud user data. Local Conductor will keep receiving new models and critical fixes until early 2027, and the team says something new is coming early next year. The announcement also states that it has never sold or trained on user data.",
+          "why": "这类公告最该看的不是「加入 Meta」四个字，是日期和数据的处置方式。云端 16 天后开始删数据，本地版也只撑到 2027 年初；如果你的工作流建在 Conductor Cloud 上，现在不迁，之后就没有窗口了。",
+          "why_en": "The part worth reading in an announcement like this isn't \"joining Meta\" — it's the dates and what happens to your data. The cloud starts deleting data in 16 days, and the local app only lasts into early 2027. If your workflow lives in Conductor Cloud, the migration window is now, not later."
+        },
+        {
+          "title": "OpenAI 收购 Pierre，Codex 的 diff 工具要并进来",
+          "title_en": "OpenAI buys Pierre, folding its diff tools into Codex",
+          "author": "OpenAI 官方博客 · 经 Hacker News",
+          "author_en": "OpenAI's official blog · via Hacker News",
+          "likes": 196,
+          "likes_label": "HN 分",
+          "url": "https://openai.com/index/openai-to-acquire-pierre/",
+          "summary": "OpenAI 宣布将收购 Pierre Computer Company，也就是 Code Storage 和 Trees、Diffs 这几个开源工具背后的团队。Codex 应用里浏览文件、审代码用的就是 Trees 和 Diffs；Pierre 最近还发布了能在代码流式输出时实时更新的语法高亮工具 Highlights。OpenAI 在同一周早些时候刚介绍了内部源码管理后端 Pando，说 Git 本身也要适应 agent 并行工作的节奏。公告说 Pierre 的开源项目会继续开源，Code Storage 的客户在交易完成后还能继续用，功能会逐步并入 Codex；交易金额没有披露，还需监管批准。",
+          "summary_en": "OpenAI announced it will acquire Pierre Computer Company, the team behind Code Storage and the open-source Trees and Diffs tools. The Codex app already uses Trees to browse files and Diffs to review changes; Pierre recently shipped Highlights, a syntax highlighter that updates as code streams in. Earlier the same week, OpenAI described Pando, its in-house source-control backend, and said Git itself needs to adapt to agents working in parallel. The announcement says Pierre's open-source projects will stay open-source, Code Storage customers can keep using the service after closing while its features move into Codex; no deal terms were disclosed, and the acquisition still needs regulatory approval.",
+          "why": "把 Conductor 加入 Meta 和这笔收购合在一起看，平台买的不只是团队，是 agent 写代码时必经的那几个入口：并行工作区、diff、代码存储。独立工具一旦成为 agent 工作流的默认入口，要么被收编，要么得自己找到分发。",
+          "why_en": "Put this next to Conductor joining Meta and the pattern is clear: platforms are buying not just teams but the entry points agents pass through while writing code — parallel workspaces, diffs, code storage. Once an independent tool becomes the default entry point in an agent workflow, it either gets absorbed or has to find its own distribution."
+        },
+        {
+          "title": "为了给 agent 一台 Mac，他们在机架里塞满 MacBook",
+          "title_en": "To give agents a Mac, they packed MacBooks into server racks",
+          "author": "Namespace 官方博客 · 经 Hacker News",
+          "author_en": "Namespace's official blog · via Hacker News",
+          "likes": 412,
+          "likes_label": "HN 分",
+          "url": "https://namespace.so/blog/mac-at-any-scale",
+          "summary": "Namespace 在官方博客里复盘了把 MacBook 装进数据中心的缘由。客户要构建和测试 iOS 应用，而 iOS 模拟器和 Xcode 只能在 macOS 上跑，coding agent 也需要一台 Mac。Mac Mini 的供货周期把他们逼到这一步：一月下单，七月才到货；Apple 又不会给所有设备同时更新芯片，Mac Mini 等了十个月才拿到 M5。每台 MacBook 要接 IP KVM、外置 10G 网卡和电源，一个货架四十八条线；FileVault 重启后还会卡在解锁提示，最后靠 `fdesetup authrestart` 这类办法绕过。更硬的天花板是 Apple 的限制：每台物理 Mac 最多跑两台 macOS 虚拟机，所以实例只能按半台机器切。",
+          "summary_en": "Namespace's blog explains why it ended up putting MacBooks in its data centers. Customers need to build and test iOS apps, and the iOS Simulator and Xcode only run on macOS, so their coding agents need a Mac too. Mac Mini supply delays pushed them here: orders placed in January arrived in July, and Apple doesn't refresh every device at once, so the Mac Mini waited ten months for M5. Each MacBook needs an IP KVM, an external 10G network card, and power — forty-eight cables per shelf — and FileVault can get stuck at the unlock prompt after a reboot, worked around with things like `fdesetup authrestart`. The harder ceiling is Apple's limit of two macOS virtual machines per physical Mac, so instances can only be sliced in halves.",
+          "why": "AI agent 的算力讨论大多停在 GPU，这条提醒的是另一种短缺：要跑 iOS 构建，Mac 本身就是稀缺资源，而且被 Apple 的授权和供货节奏卡着。做移动端 agent 产品的人，基础设施成本里得单独留一行给 Mac。",
+          "why_en": "Most AI compute talk stops at GPUs. This is a reminder of a different shortage: if you need iOS builds, Macs themselves are the scarce resource, constrained by Apple's licensing and supply cadence. Anyone building mobile-facing agents should budget a separate line for Mac capacity.",
+          "flag": "Namespace 是销售 Mac CI 服务的厂商，文章是自家运营复盘",
+          "flag_en": "Namespace sells Mac CI services; this is its own operational write-up"
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 98,
+      "items": [
+        {
+          "title": "推理档位降下来，分数掉得比成本慢",
+          "title_en": "Drop the reasoning tier; scores fall slower than costs",
+          "author": "Derrick Liang · Vals AI（经 TLDR AI）",
+          "author_en": "Derrick Liang · Vals AI (via TLDR AI)",
+          "url": "https://www.vals.ai/blogs/reasoning-effort",
+          "summary": "Vals 让 7 个实验室的旗舰模型在 8 项基准上各跑三档推理强度：最低、中间、以及榜单用的最高档。最低档并没有把分数拉低太多：7 个模型里有 4 个保住了至少 80% 的分数，成本不到一半；Claude Opus 5.5 是 80% 的分数、16% 的成本。56 个「模型 × 基准」组合里有 22 个，较低档位在更低成本下拿到与最高档相同的分数。真正吃推理的任务很集中：法律研究从最低到最高平均涨 19.2 分，代码迁移涨 15.6 分，终端任务涨 12.1 分；EMB 是 0 分，HLAB 只涨 3.3 分。即便事后按每个任务挑最划算的档位，也只比统一用最高档多 6.0 分，成本却是最高档的 64%，而全部用最低档只要 29%。",
+          "summary_en": "Vals ran the flagship models from seven labs across eight benchmarks at three reasoning levels: lowest, middle, and the highest setting used on its leaderboard. The lowest setting did not collapse scores: four of the seven models kept at least 80% of their score for less than half the cost, and Claude Opus 5.5 kept 80% at 16% of the cost. In 22 of the 56 model-by-benchmark pairs, a lower setting matched the highest setting's score at lower cost. The tasks that genuinely need reasoning are concentrated: legal research gained a median 19.2 points from lowest to highest, code migration 15.6, terminal tasks 12.1; EMB gained zero and HLAB only 3.3. Even picking the cheapest setting that got the best score on each task, with hindsight, adds just 6.0 points over the leaderboard setting, at 64% of its cost — while using the lowest setting everywhere costs 29%.",
+          "why": "这是一张可以直接拿去改默认值的成本表：日常抽取、分类、问答，先跑最低档；法律研究、代码迁移这类任务再升档。真正要警惕的不是降档会掉分，是不分任务一律用最高档白付的那部分钱。",
+          "why_en": "This is a cost table you can use to change defaults: run routine extraction, classification, and Q&A at the lowest setting first, and escalate for legal research and code migration. The thing to worry about isn't that lowering effort loses points; it's the money wasted by running everything at the highest setting regardless of task.",
+          "flag": "结果基于每项基准约一半任务、每个设置一次运行，分数有噪声；榜单档位的运行来自更早的月份",
+          "flag_en": "Results use about half the tasks per benchmark and one run per setting, so scores are noisy; leaderboard-setting runs come from earlier months"
+        },
+        {
+          "title": "两个人、21,038 美元，训出一个能发布的文生图模型",
+          "title_en": "Two people, $21,038, and a text-to-image model they released",
+          "author": "Linum 研究团队 · 经 TLDR AI",
+          "author_en": "Linum research team · via TLDR AI",
+          "url": "https://www.linum.ai/field-notes/pjit-21k",
+          "summary": "Linum 是一个两人的研究实验室，目标是自己做视频生成模型。他们用自研的 Pyramid-JiT 架构训练了一个文生图模型：660M 个样本，8,415 个 H100 小时，按每小时 2.5 美元算，预训练 20,348 美元，后训练 690 美元，总计 21,038 美元。模型在采样时约 2.18B 参数，权重和代码以 Apache 2.0 放出，页面上有 249 张样例。关键设计是去掉 VAE，直接在像素空间压缩，把注意力上下文窗口缩小 4 倍，用更少的样本收敛。团队说这只是一个通往视频模型的压力测试，不是要马上商用的成品。",
+          "summary_en": "Linum is a two-person research lab building its own video-generation models. It trained a text-to-image model on its Pyramid-JiT architecture: 660M samples, 8,415 H100-hours at $2.50 per hour, $20,348 for pretraining plus $690 for post-training, $21,038 total. The model has about 2.18B parameters at sampling time; weights and code are released under Apache 2.0, with 249 sample images on the page. The key design choice is dropping the VAE and compressing in pixel space, cutting the attention context window by 4x and converging with fewer samples. The team calls it a pressure test on the way to a video model, not a finished commercial product.",
+          "why": "这个数字把「训练一个能发布的多模态模型」的门槛拉到了一个两人实验室能碰的范围。它不代表前沿能力，但代表一类新对手：不追榜单，靠架构效率把单位成本压下来，再用开放权重换分发。",
+          "why_en": "That number pulls \"train a releasable multimodal model\" into range for a two-person lab. It doesn't represent frontier capability, but it does represent a new kind of competitor: not chasing leaderboards, but cutting unit cost through architecture efficiency and using open weights to buy distribution.",
+          "flag": "成本是团队自报的算力账单，只算 H100 租用费，不含人力和数据成本",
+          "flag_en": "The cost is the team's self-reported compute bill, covering H100 rental only, not labor or data costs"
+        },
+        {
+          "title": "ChatGPT 周活到 12 亿，搜索量约谷歌的两成",
+          "title_en": "ChatGPT hits 1.2B weekly users, search volume about 20% of Google's",
+          "author": "Alex Kantrowitz · Big Technology（经 TLDR AI）",
+          "author_en": "Alex Kantrowitz · Big Technology (via TLDR AI)",
+          "url": "https://www.bigtechnology.com/p/openai-chatgpt-search-is-about-20",
+          "summary": "OpenAI 的 ChatGPT 消费产品负责人 Adam Fry 在纽约一场晚宴上给出了一组数字：ChatGPT 的周活跃用户从 10 亿涨到 12 亿，只用了两个月，平均每月新增 1 亿；搜索类查询量约为谷歌的五分之一；每周生成 15 亿张图片；语音模式（听写加对话）合计周活 2.5 亿。他还说，ChatGPT 顶部的 Chat 和 Work 两个模式很快会合并，那个让人犹豫的开关会消失。Fry 没有解释「搜索量」的统计口径，也没有给出收入或付费用户数据。",
+          "summary_en": "Adam Fry, who leads ChatGPT's consumer product, gave a set of numbers at a dinner in New York: ChatGPT's weekly active users went from 1 billion to 1.2 billion in two months, roughly 100 million added per month; search-like query volume is about one-fifth of Google's; users generate 1.5 billion images per week; voice mode, counting dictation and conversation, has 250 million combined weekly users. He also said ChatGPT's Chat and Work modes will soon merge, and the confusing toggle at the top will go away. Fry did not explain how \"search volume\" is counted, and gave no revenue or paid-user figures.",
+          "why": "这些是 OpenAI 单方面给出的数字，口径没公开，不能当成审计过的市场份额。但方向很清楚：消费 AI 的入口已经大到可以和搜索正面比，产品竞争会从「再做一个新入口」转向「把聊天、工作、搜索收进同一个界面」。",
+          "why_en": "These are OpenAI's own numbers with no disclosed methodology, so they aren't audited market share. But the direction is clear: consumer AI's entry point is now large enough to compare directly with search, and product competition shifts from launching another entry point to folding chat, work, and search into one interface.",
+          "flag": "数字来自 OpenAI 单方，未披露统计口径和付费用户数",
+          "flag_en": "Figures are OpenAI's own; methodology and paid-user numbers were not disclosed"
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚的七条放在一起，AI 的竞争线正从模型能力挪向两处：入口和账单。上游平台在买工具链的入口，下游用户则要替推理档位、构建机器和旧代码的补丁买单。能力本身越来越便宜，把它稳定交付出去的那套东西越来越贵。对做产品的人，接下来值得投入的不是追下一次模型发布，而是把每个环节的成本和依赖写成可检查的账本。",
+  "meta_read_en": "Taken together, tonight's seven stories mark a shift in AI competition from model capability to two places: the entry point and the bill. Platforms upstream are buying the entry points to the toolchain, while users downstream pay for reasoning tiers, build machines, and patches to old code. Capability itself keeps getting cheaper; the machinery that delivers it reliably keeps getting more expensive. For anyone building AI products, the next investment worth making isn't chasing the next model release, it's writing every layer's cost and dependency into a ledger you can actually check.",
+  "ota": {
+    "learned": [
+      "观察（云端）：YouTube 的 RSS 这次不是某个频道的问题，9 个频道加 3 个控制目标全部返回 404；`node bin/sweep-lanes.mjs` 把整条线判成 DOWN，所以本期记录 0 条 YouTube，没有换用其他抓取方式，也没有写任何「已看」的摘要。",
+      "观察：HN 的 Algolia front_page 查询只回了 7 条，换成 Firebase topstories 拉 119 条、按分数扫前 60 条，才拿到当晚的完整榜单；文摘侧 TLDR AI 的 11 月 4 日内容在窗口内，Latent Space 11 月 4 日的 AINews 是幕后/quiet day 内容，没有可用条目，Ahead of AI 最新一篇是 10 月 24 日。",
+      "已实施（云端）：把今天的升级写进 ota-ledger.md，标记为 proposed (cloud)，留待下次笔记本会话时采纳；本环境不能改 ~/.claude，因此没有创建或修改 skill/memory。",
+      "观察：Vals 的实测把「最低推理档位」这句经验变成了按任务族的分档表：日常抽取、分类、问答可以用低档，法律研究、代码迁移、终端任务值得升档；这是对台账 2026-07-19「eval-gated effort escalation」的细化，并非重复。"
+    ],
+    "learned_en": [
+      "Observation (cloud): the YouTube failure wasn't channel-specific. All nine roster channels plus three control targets returned 404, and `node bin/sweep-lanes.mjs` judged the whole lane DOWN. This issue therefore records zero YouTube items; no alternate access method was tried, and no \"watched it\" summary was written.",
+      "Observation: HN's Algolia front_page query returned only 7 hits, so I switched to Firebase topstories, pulled 119 stories, and scanned the top 60 by score to get the night's full ranking. On the digest side, TLDR AI's November 4 edition was inside the window; Latent Space's November 4 AINews was a behind-the-scenes / quiet-day post with nothing usable; Ahead of AI's latest item was October 24.",
+      "Implemented (cloud): today's upgrade is appended to ota-ledger.md, tagged proposed (cloud) — adopt on next laptop session. This environment cannot modify ~/.claude, so no skill or memory was created or changed.",
+      "Observation: Vals's measurements turn \"use the lowest reasoning tier\" from a rule of thumb into a task-family map: routine extraction, classification, and Q&A can run low, while legal research, code migration, and terminal tasks are worth escalating. This refines the ledger's 2026-07-19 \"eval-gated effort escalation\" line rather than repeating it."
+    ],
+    "new_capabilities": [
+      "已验证（Vals AI，2026-11-03）：按任务族设推理升级阈值——默认从最低档起步，只有法律研究、代码迁移、终端任务、税务 agent、vibe coding 这类在 Vals 实测中分差最大的任务才升到高档；日常抽取、分类、问答不跟着升。调用意图：「先用最低推理档跑；只有任务落在高分差族、且低档输出没通过检查时，才升一档。」落地状态：已写入 ota-ledger.md 的 proposed (cloud) 条目，等下一次笔记本会话写进 daily-digest / agent 工作流。"
+    ],
+    "new_capabilities_en": [
+      "Verified (Vals AI, 2026-11-03): set reasoning-escalation thresholds by task family — start at the lowest tier by default, and only escalate to a higher tier for task families where Vals measured the largest gap (legal research, code migration, terminal tasks, tax-agent work, vibe coding); routine extraction, classification, and Q&A do not get escalated. Invoke intent: \"start at the lowest reasoning tier; escalate one step only when the task is in a high-gap family and the low-tier output fails its check.\" Status: written into ota-ledger.md as a proposed (cloud) entry, pending adoption into the daily-digest / agent workflow at the next laptop session."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "NVIDIA/auto-ontology",
+      "url": "https://github.com/NVIDIA/auto-ontology",
+      "description": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
+      "language": "Python",
+      "stars": 5268,
+      "stars_today": 2050
+    },
+    {
+      "rank": 2,
+      "name": "max-sixty/worktrunk",
+      "url": "https://github.com/max-sixty/worktrunk",
+      "description": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
+      "language": "Rust",
+      "stars": 11092,
+      "stars_today": 531
+    },
+    {
+      "rank": 3,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 313443,
+      "stars_today": 1379
+    },
+    {
+      "rank": 4,
+      "name": "floci-io/floci",
+      "url": "https://github.com/floci-io/floci",
+      "description": "Light, fluffy, and always free - The AWS Local Emulator alternative",
+      "language": "Java",
+      "stars": 29685,
+      "stars_today": 1090
+    },
+    {
+      "rank": 5,
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "language": "TypeScript",
+      "stars": 112934,
+      "stars_today": 1172
+    },
+    {
+      "rank": 6,
+      "name": "vercel-labs/agent-desktop",
+      "url": "https://github.com/vercel-labs/agent-desktop",
+      "description": "Computer use CLI for AI agents",
+      "language": "Rust",
+      "stars": 15317,
+      "stars_today": 2470
+    },
+    {
+      "rank": 7,
+      "name": "github/spec-kit",
+      "url": "https://github.com/github/spec-kit",
+      "description": "💫 Toolkit to help you get started with SDD or any other process!",
+      "language": "Python",
+      "stars": 147367,
+      "stars_today": 808
+    },
+    {
+      "rank": 8,
+      "name": "The-PR-Agent/pr-agent",
+      "url": "https://github.com/The-PR-Agent/pr-agent",
+      "description": "🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.",
+      "language": "Python",
+      "stars": 14811,
+      "stars_today": 280
+    },
+    {
+      "rank": 9,
+      "name": "harry0703/MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "description": "利用 AI 大模型和自动化工作流，输入主题或关键词，一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow。",
+      "description_en": "Generate HD short videos from a topic or keyword with an AI workflow.",
+      "language": "Python",
+      "stars": 139088,
+      "stars_today": 617
+    },
+    {
+      "rank": 10,
+      "name": "garrytan/gstack",
+      "url": "https://github.com/garrytan/gstack",
+      "description": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+      "language": "TypeScript",
+      "stars": 139393,
+      "stars_today": 290
+    }
+  ]
+}
