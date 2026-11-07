@@ -1,0 +1,284 @@
+{
+  "date": "2026-11-06",
+  "partial": false,
+  "banner": "Claude Code 产品负责人转投 OpenAI",
+  "banner_en": "Claude Code's product lead joins OpenAI",
+  "image": {
+    "src": "digests/img/2026-11-06.jpg",
+    "caption": "本期配图：Cat Wu，时任 Claude Code 产品负责人，2026 年 5 月在 Anthropic 伦敦 Code w/ Claude 活动上；图片来自 The Next Web 的报道，图注原文如此（Credit: Anthropic）。",
+    "caption_en": "Today's image: Cat Wu, then head of product for Claude Code, at Anthropic's Code w/ Claude event in London in May 2026, from The Next Web's report, which credits the image to Anthropic."
+  },
+  "actions": [
+    {
+      "text": "挑一个你每天都要打分的任务（线索质量、客服回复、数据合并结果），给便宜模型的输出加一个 0 到 1 的置信度字段，只把 30% 到 90% 这一段交给最强的模型复核。花 20 分钟在一个任务上搭起来。完成的标准是跑 50 条样本，记下升级比例、每千条成本，和全用强模型的账单摆在一起。Hightouch 今天在身份合并任务上就是这么分流的，准确率没怎么掉，成本降到四分之一左右。",
+      "text_en": "Pick one task you score every day (lead quality, support replies, data merges), add a 0-to-1 confidence field to the cheap model's output, and send only the 30%-90% band to your strongest model for review. Spend 20 minutes wiring it up on that one task. Done means running 50 samples and writing down the escalation rate and cost per 1,000 next to the all-strong-model bill. Hightouch did exactly this on identity resolution today: accuracy barely moved and cost fell to about a quarter.",
+      "source": "Hightouch 工程博客",
+      "source_en": "Hightouch engineering blog",
+      "source_url": "https://hightouch.com/blog/llm-judges-identity-resolution"
+    },
+    {
+      "text": "打开你负责的站点后台；如果挂在 Cloudflare 上，进 Security Analytics，找到 Personal Assistants 分类和 agent 列表，把过去 24 小时请求量最高的三个 agent 记下来，再对其中一个设一条访问策略（放行、只拦广告页或全站拦截）。花 15 分钟。完成的标准是写下三个 agent 的名字、请求量和错误数，并留下一条你改过的策略；没有 Cloudflare 的话，就从服务器日志里按 user-agent 把同样的三列扫一遍。",
+      "text_en": "Open the backend for a site you run. If it is on Cloudflare, go to Security Analytics, find the Personal Assistants category and the agent list, write down the three agents with the most requests in the last 24 hours, and set one access policy for one of them (allow, block only on ad pages, or block site-wide). Spend 15 minutes. Done means you have the three agents' names, request volumes, and error counts written down, plus one policy you changed. If you are not on Cloudflare, scan your server logs by user-agent for the same three columns.",
+      "source": "Cloudflare 官方博客",
+      "source_en": "Cloudflare's blog",
+      "source_url": "https://blog.cloudflare.com/trusted-agent-delegation"
+    },
+    {
+      "text": "选一个低风险仓库，给 PR 打开 Devin Review 的自动审查，并设一个每 PR 花费上限；先只跑一周，不改人工审查流程。花 15 分钟配置。完成的标准是至少一个 PR 上出现自动审查结果，且后台能看到这次审查的实际花费；一周后拿「找到的 bug 数 / 花掉的钱」和现在的人工审查比。Cognition 说单次审查已经降到几毛钱，先用一个仓库验证它在你代码库上的真实成本。",
+      "text_en": "Pick a low-risk repository and turn on automatic Devin Review for pull requests, with a per-PR spend cap. Run it for one week without changing your human review process. Spend 15 minutes on setup. Done means at least one PR has an automatic review and the dashboard shows what that review cost; after a week, compare bugs found per dollar against your current manual review. Cognition says a single review is down to cents, so use one repository to test what it actually costs on your codebase.",
+      "source": "Cognition · Devin 官方博客",
+      "source_en": "Cognition · Devin's blog",
+      "source_url": "https://devin.ai/blog/devin-review-2"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚拿两张图，测一下 Pangram 的 AI 检测",
+    "title_en": "Tonight, test Pangram's AI detector on two images",
+    "why": "Pangram 今天发布 Image 1.0，官方给的分数很高，还能用热图标出图里哪一块是 AI 做的。数字是厂商自测，最靠谱的验证是拿自己手上的图跑一遍：一张确定的真照片，一张 AI 生成或改过的图，看它怎么判、热力图落在哪里。做内容、广告审核、创作者工具的人，十分钟就能知道这个工具现在能不能进自己的流程。",
+    "why_en": "Pangram released Image 1.0 today. The vendor's numbers are high, and the tool can show a heatmap of which part of an image looks AI-made. Those are vendor-run figures, so the real test is to run two of your own images through it: one photo you know is real, and one AI-generated or edited image, then see how it rules and where the heatmap lands. For people working on content, ad review, or creator tools, ten minutes tells you whether it belongs in your workflow yet.",
+    "time": "10 分钟",
+    "time_en": "10 minutes",
+    "steps": [
+      "打开 https://www.pangram.com/image-detection ，这是 Pangram 的图片检测页。",
+      "先传一张你确定的真实照片，再传一张 AI 生成或改过的图，记下两次的判定和置信度。",
+      "看热力图：它会标出模型认为有 AI 痕迹的区域，对照你自己知道的那张图被改过的地方，看定位准不准。",
+      "如果结果有意思，装上它的 Chrome 扩展，去信息流里随手测一张转发图，看压缩之后还认得出来吗。"
+    ],
+    "steps_en": [
+      "Open https://www.pangram.com/image-detection, Pangram's image detection page.",
+      "Upload a photo you know is real, then an image that was AI-generated or edited, and note the verdict and confidence for each.",
+      "Read the heatmap: it marks the regions the model thinks carry AI traces. Compare that with the parts you know were changed, and see how precise the localization is.",
+      "If the results are interesting, install the Chrome extension and try one re-shared image from your feed, to see whether it still detects a compressed copy."
+    ],
+    "source": "Pangram 官方博客 · Introducing Pangram Image 1.0",
+    "source_en": "Pangram's blog · Introducing Pangram Image 1.0",
+    "source_url": "https://www.pangram.com/blog/introducing-pangram-image-1-0"
+  },
+  "sources": [
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 33,
+      "items": [
+        {
+          "title": "Claude Code 的产品负责人去了 OpenAI",
+          "title_en": "Claude Code's product lead joins OpenAI",
+          "author": "The Next Web · 经 Latent Space AINews 线索",
+          "author_en": "The Next Web · surfaced via Latent Space AINews",
+          "url": "https://thenextweb.com/news/cat-wu-claude-code-anthropic-openai-core-products",
+          "summary": "Cat Wu 本周宣布加入 OpenAI，负责 Core Products 的产品管理，向 Thibault Sottiaux 汇报，和 Nick Turley（企业产品）、Ashley Alexander（消费产品）搭档。她先说自己上周五已离开 Anthropic；她 2024 年 8 月加入时，Claude Code 还是内部小工具，后来成了这条产品线的产品负责人。OpenAI 向 Business Insider 确认了聘用，Anthropic 拒绝置评。她走的时间点很近：Anthropic 计划本月晚些时候上市，修订后的招股书列出 170 亿美元收入；同一条 Claude Code 线上，Thariq Shihipar 10 月也宣布离开。有人问她是不是为了提前卖股票，她说「不知道」，并说这「不是我的考虑因素」。",
+          "summary_en": "Cat Wu announced this week that she is joining OpenAI to lead product management for Core Products, reporting to Thibault Sottiaux and working with Nick Turley on enterprise products and Ashley Alexander on consumer products. She first said her last day at Anthropic was the previous Friday; she joined in August 2024, when Claude Code was still a small internal tool, and became its head of product. OpenAI confirmed the hire to Business Insider, and Anthropic declined to comment. The timing is tight: Anthropic plans to list later this month, its amended IPO filing shows $17 billion in revenue, and another Claude Code colleague, Thariq Shihipar, announced his departure in October. Asked whether leaving would let her sell shares earlier, she said she had \"no idea\" and that it \"wasn't a factor for me.\"",
+          "why": "这条的分量不在人事本身，在时间点。Anthropic 准备上市，Claude Code 是它最重要的产品线之一，产品负责人却在路演前去了对手那里。对做产品的人，更值得看的是 OpenAI 的用人方向：把核心产品（Codex 就在这个组）的产品管理交给她，说明它下一阶段的重点不是再发一个模型，是把 agent 做成普通人能用的产品。",
+          "why_en": "What matters here isn't the personnel move itself, it's the timing. Anthropic is heading into its IPO, Claude Code is one of its most important product lines, and its product lead left for a rival before the roadshow. For people who build products, the more interesting signal is OpenAI's hiring direction: it handed product management for Core Products, which includes Codex, to someone who took a small internal tool and turned it into a commercial product. That suggests the next phase is not another model launch, but making agents usable by ordinary people."
+        },
+        {
+          "title": "Cloudflare 想把 agent 的访问变成可识别的对象",
+          "title_en": "Cloudflare wants agent traffic to be identifiable",
+          "author": "Cloudflare 官方博客 · 经 TLDR AI",
+          "author_en": "Cloudflare's blog · via TLDR AI",
+          "url": "https://blog.cloudflare.com/trusted-agent-delegation",
+          "summary": "Cloudflare 的文章称，远程托管的个人 agent 成了新的中间人：站点看到的是 agent，不是背后的人，一个 agent 可以替很多用户行动，出了事却很难追责。文章提出 Trusted Agent Delegation 框架，核心是三个问题：你是谁、你值不值得信、谁为这次行动负责。身份上偏向 Web Bot Auth，让 agent 给请求签名；隐私上提到 Privacy Pass、MOLE 这类不暴露用户身份的令牌；站点侧则需要机器可读的声明，写明哪些动作允许 agent 做。文章同时宣布 TAD 联盟，并列出 Cloudflare 客户本周就能用的三件事：Security Analytics 把 Personal Assistants 单列成流量类别，列出每个 agent 的请求量、路径和错误；AI Crawler and Agent access policies 可按 agent 放行或拦截；Account Abuse Protection（早期访问）会在登录和注册时显示请求是否来自个人 agent、是哪一个，还能只针对被滥用的账号下 WAF 规则，而不封掉这个 agent 后面的所有正常用户。",
+          "summary_en": "Cloudflare's post argues that remotely hosted personal agents are a new kind of intermediary: a site sees the agent, not the person behind it, so one agent can act for many users and accountability gets hard to assign when something goes wrong. Its Trusted Agent Delegation framework centers on three questions: who is acting, whether they are trustworthy, and who answers for the action. For identity it favors Web Bot Auth, which lets an agent sign its requests; for privacy it points to token schemes such as Privacy Pass and MOLE that avoid exposing the user's identity; sites also need a machine-readable way to declare which actions agents may take. Cloudflare announced a TAD coalition and listed three things customers can use this week: Security Analytics now breaks out Personal Assistants as a traffic category and lists each agent's request volume, paths, and errors; AI Crawler and Agent access policies allow or block agents per site or per page; and Account Abuse Protection (early access) shows at login and signup whether a personal agent made the request and which one, and can apply a WAF rule to the abused account's Hashed User ID without blocking every legitimate user behind that agent.",
+          "why": "这不是一篇纯标准倡议，它把 agent 流量从一团模糊的机器人流量拆成了可以按来源、按账号处理的对象。对做网站、SaaS、广告或内容产品的人，实际影响是：agent 流量会越来越难用一律封掉处理，因为里面既有真实用户委托，也有滥用；先把自己的流量看清楚、按 agent 设策略，比等标准落地更现实。",
+          "why_en": "This isn't just a standards proposal. It breaks \"agent traffic\" out of the vague bot bucket into objects you can handle by source and by account. For people running websites, SaaS, ads, or content products, the practical shift is that agent traffic will be harder to treat with a blanket block, because it contains both genuine user delegation and abuse. Seeing your own traffic clearly and setting per-agent policies is more useful now than waiting for the standards to land."
+        },
+        {
+          "title": "审一个 PR，现在只要 0.25 到 0.75 美元",
+          "title_en": "Reviewing a PR now costs 25 to 75 cents",
+          "author": "Cognition · Devin 官方博客 · 经 TLDR AI",
+          "author_en": "Cognition · Devin's blog · via TLDR AI",
+          "url": "https://devin.ai/blog/devin-review-2",
+          "summary": "Cognition 称，从 8 月到现在，Devin Review 审一个 PR 的成本降了 82%，典型一次 0.25 到 0.75 美元；按客户平均，修掉一个 bug 的成本约 2.25 美元。降本来自模型组合和 harness 优化，质量没有跟着掉：每个 PR 平均找到的 bug 从 1.22 个升到 1.32 个。它现在默认只审 PR 里改动的部分，约 80% 的 PR 审一次不到 1 美元，还能设每个 PR 的花费上限；中位延迟从 139 秒降到 94 秒。另外新增 Devin Review Ultra 档位，给计费、安全这类漏一个 bug 代价更高的代码用；Custom Reviewers 进入 beta，可以把团队自己的检查规则做成 reviewer。",
+          "summary_en": "Cognition says the cost of a Devin Review per PR has dropped 82% since August, to a typical $0.25 to $0.75; across customers, each bug that gets fixed costs about $2.25. The savings came from a better mix of models and harness optimizations, and quality did not suffer: bugs found per PR rose from 1.22 to 1.32. Devin Review now reviews only the changed parts of a PR by default, about 80% of PRs cost less than $1 to review, and teams can set a per-PR spend limit. Median latency fell from 139 seconds to 94 seconds. A new Ultra effort level targets code where a missed bug is expensive, such as billing or security, and Custom Reviewers, now in beta, lets teams turn their own checks into reviewers.",
+          "why": "这条的意义不在又多了一个 AI 代码审查，而在把代码审查变成了可以按次计价、按 PR 设上限的计量服务。对带团队的人，这会改变一个默认假设：以前只在重要 PR 上跑人工审查，是因为审查时间贵；当单次成本降到几毛钱，问题变成哪些 PR 值得跑更贵的档位，而不是要不要审。",
+          "why_en": "The point isn't \"another AI code reviewer.\" It's that code review is becoming a metered service with a per-PR price and a per-PR cap. For people managing teams, that changes a default assumption: manual review was reserved for important PRs because reviewer time was expensive. When a pass costs cents, the question becomes which PRs deserve the more expensive setting, not whether to review at all."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "便宜的裁判先看，拿不准再叫 Opus",
+          "title_en": "A cheap judge first, escalate to Opus only when unsure",
+          "author": "Hightouch 工程博客 · Hacker News",
+          "author_en": "Hightouch engineering blog · via Hacker News",
+          "likes": 352,
+          "likes_label": "HN 分",
+          "url": "https://hightouch.com/blog/llm-judges-identity-resolution",
+          "summary": "身份合并最费人的一步，是判断一组记录到底是不是同一个人。人工抽样一小时只能看约 50 个身份，要估准过度合并率，得抽 1000 个以上。Hightouch 用 pseudopeople 造了 1000 个身份，一半是同一个人带噪声记录，一半是错误合并，然后测了 Opus 5.5、Gemini 3.1 Pro、GPT-6 Sol、GPT-6 Luna 和决策模型 Jev。单独看，Jev 准确率 95.6%，每千条 0.05 美元、0.15 秒；Opus 5.5 是 99.0%、3.86 美元、2.2 秒。关键在置信度校准：Jev 的错大多落在 50% 附近，Luna 的错却常带着 90% 以上的自信。于是他们让 Jev 先判，只把置信度在 30% 到 90% 的那部分交给 Opus 复核，准确率到 98.8%，每千条 0.88 美元，约为全程用 Opus 的四分之一。更难的一组测试里，这套混合做到 95.3% 和 2.94 美元，Opus 单独是 95.1% 和 5.39 美元。作者也说明，这是合成数据上的单一任务基准。",
+          "summary_en": "The most labor-intensive step in identity resolution is deciding whether a set of records describes one real person. A human can review about 50 identities an hour, and estimating the over-merge rate precisely takes more than 1,000 samples. Hightouch used pseudopeople to generate 1,000 identities, half of them one person with noisy records and half deliberate over-merges, then tested Opus 5.5, Gemini 3.1 Pro, GPT-6 Sol, GPT-6 Luna, and a decision model called Jev. On their own, Jev scored 95.6% accuracy at $0.05 per 1,000 identities and 0.15 seconds each; Opus 5.5 scored 99.0% at $3.86 and 2.2 seconds. The key difference was confidence calibration: most of Jev's errors came with confidence near 50%, while Luna's errors often arrived with 90%-plus confidence. So they let Jev judge first and sent only the 30%-90% confidence band to Opus for a second look. That reached 98.8% accuracy at $0.88 per 1,000, about a quarter of Opus alone. On a harder test set, the hybrid hit 95.3% at $2.94, versus 95.1% at $5.39 for Opus alone. The authors note this is one task on synthetic data.",
+          "why": "这篇真正有用的不是小模型也能用，而是怎么判断哪一次该花大钱。很多团队的做法是二选一：全用便宜模型，或全用最强模型。Hightouch 的对比说明，校准好的便宜模型可以当分流器，把贵模型的预算集中到真正拿不准的样本上；校准差的模型分数再高，也不适合做这件事。放到自己的评分、审核、清洗流程里，这是可以直接抄的结构。",
+          "why_en": "The useful part isn't \"small models are good enough.\" It's how to decide which call deserves the expensive model. Many teams choose one of two defaults: all cheap, or all strongest. Hightouch's comparison shows a well-calibrated cheap model can act as a router, concentrating the expensive model's budget on the cases that are genuinely uncertain. A poorly calibrated model is a bad router even if its headline score is higher. This is a structure you can copy directly into your own scoring, review, or data-cleaning pipeline.",
+          "flag": "单一合成数据任务（身份合并），不是跨任务的通用结论",
+          "flag_en": "One synthetic-data task (identity resolution), not a general cross-task conclusion."
+        },
+        {
+          "title": "Anthropic 上市估值预期，最低谈到 1.1 万亿美元",
+          "title_en": "Anthropic IPO valuation talk slips as low as $1.1 trillion",
+          "author": "Bloomberg · Hacker News",
+          "author_en": "Bloomberg · via Hacker News",
+          "likes": 241,
+          "likes_label": "HN 分",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-06/anthropic-ipo-valuation-expectations-pressured-after-ai-rout",
+          "summary": "据 Bloomberg 11 月 6 日报道，Anthropic IPO 的潜在买家在讨论的估值区间降到约 1.2 万亿到 1.3 万亿美元，部分投资者谈到低至 1.1 万亿美元。10 月初，投资人对公允价值的预期还高到 2 万亿美元；10 月中下旬看过最新财务数据后，降到 1.4 万亿到 1.5 万亿。这次下修发生在 AI 股票大跌之后：周四纳斯达克 100 指数跌 6.4%，单日蒸发 2.3 万亿美元市值，创下单日纪录，VIX 升到 2025 年 4 月以来最高。报道提到，民主党横扫国会带来的数据中心扩张监管风险，也加重了担忧。正式路演预计下周开始，最终区间未定，Anthropic 不予置评。",
+          "summary_en": "Bloomberg reported on November 6 that prospective Anthropic IPO buyers are discussing a valuation range of roughly $1.2 trillion to $1.3 trillion, with some investors weighing a value as low as $1.1 trillion. In early October, investors put fair value as high as $2 trillion; after reviewing the latest financials in mid-to-late October, they revised that to $1.4 trillion to $1.5 trillion. The cut followed a selloff in AI stocks: the Nasdaq 100 fell 6.4% on Thursday, wiping out $2.3 trillion in market value in a single day, a record, and the VIX rose to its highest level since April 2025. The report also cites concerns that a Democratic sweep of Congress could bring more scrutiny of data-center expansion. Formal marketing is expected to begin next week, the final range is not set, and Anthropic declined to comment.",
+          "why": "10 月 26 日递 S-1 时，807 亿美元净亏损和估值重估还是账面故事；今天的进展是，上市前的价格区间第一次被市场往下拽。对看 AI 公司的人来说，这条比单个模型发布有用：公开市场愿意给闭源模型公司的倍数，会跟着整体 AI 交易的波动走，不只看公司自己的收入曲线。",
+          "why_en": "When Anthropic filed its S-1 on October 26, the $80.7 billion net loss and valuation writedown were still a bookkeeping story. Today's development is that the market has pulled down the pre-IPO price range for the first time. For anyone watching AI companies, this is more useful than another model launch: the multiple public markets are willing to pay for a closed-model company moves with the broader AI trade, not just with the company's own revenue curve.",
+          "flag": "报道基于知情人士，最终定价未定",
+          "flag_en": "Based on people familiar with the matter; final pricing is not set."
+        },
+        {
+          "title": "一年走了两年的进度：METR 说 Anthropic 跨过了加速线",
+          "title_en": "METR says Anthropic has crossed the acceleration line",
+          "author": "Ajeya Cotra · Planned Obsolescence · Hacker News",
+          "author_en": "Ajeya Cotra · Planned Obsolescence · via Hacker News",
+          "likes": 212,
+          "likes_label": "HN 分",
+          "url": "https://www.planned-obsolescence.org/p/ai-is-dramatically-accelerating-ai",
+          "summary": "METR 在 8 月 12 日到 10 月 29 日对 Anthropic 做了一次高权限评估，结论是：截至 2026 年 10 月，Anthropic 在定义明确的任务上提升模型能力的速度，大约是 2024 年 3 月到 2025 年 10 月那段时间的两倍，真实值可能在 1.3 倍到 3 倍之间。用 AECI（Anthropic 版的 Epoch Capabilities Index）衡量，2025 年 10 月以来分数增速是之前的 1.9 倍，95% 置信区间 1.5 到 2.8 倍，相当于过去一年走了大约两年的历史进度。METR 认为大部分加速可能来自 Anthropic 用 AI 做研发，但同时说不确定性很大，其他因素在 2025 年底也可能起了很大作用。报告还提示，Anthropic 行使了删改权，METR 认为最有信息量的证据大部分被删掉了。Anthropic 在 S-1 里说，可能「很快」达到 RSP 定义的「AI 导致显著加速」门槛。Ajeya Cotra 据此认为门槛已经跨过，并做了一个粗略外推：如果继续复合，一年内会指向超级智能；她同时强调这个外推对参数非常敏感。HN 评论区有人提醒，被加速的主要是可测量、可训练的那部分研究。",
+          "summary_en": "METR ran a high-access evaluation of Anthropic from August 12 to October 29. Its conclusion: as of October 2026, Anthropic is likely improving model capabilities on well-specified tasks at about twice the rate it did between March 2024 and October 2025, with the true value plausibly anywhere from 1.3x to 3x. On AECI, Anthropic's version of the Epoch Capabilities Index, scores have grown at an estimated 1.9x the pre-October-2025 rate (95% confidence interval 1.5x to 2.8x), implying roughly two years of historical progress in the past year. METR thinks most of the acceleration is likely attributable to Anthropic using AI to do R&D, but it also says uncertainty is high and other factors probably mattered in late 2025. The report notes that Anthropic exercised redaction rights and that most of the evidence METR found most informative was redacted. Anthropic's S-1 says it may \"imminently meet\" the RSP threshold for \"dramatically accelerated progress due to AI.\" Ajeya Cotra concludes the threshold has already been crossed, and offers a rough extrapolation: if acceleration compounds, a naive model points to superintelligence within a year. She stresses that the extrapolation is very sensitive to its assumptions. Commenters on Hacker News noted that the acceleration is concentrated in the measurable, trainable parts of research.",
+          "why": "这条的价值不在「AI 要失控了」这种标题，在它把「AI 加速 AI 研发」从口号变成了一个带误差范围的估计，而不是一句断言。对做 AI 产品的人，更实际的含义是：如果上游能力的提升速度真的变了，今天按季度做的路线图、评测节奏和成本假设都会偏保守。反过来，报告里被删掉的证据也提醒，这个估计目前主要靠 METR 的判断，不是所有人都能复核。",
+          "why_en": "The value here isn't the \"AI is about to go out of control\" framing. It's that \"AI accelerating AI research\" has moved from a slogan to an estimate with an error bar, not an assertion. For people building AI products, the practical implication is that if the rate of upstream capability improvement has really changed, quarterly roadmaps, evaluation cadences, and cost assumptions made today will look too conservative. The redactions are the counterweight: the estimate currently rests largely on METR's judgment, and not everyone can check it.",
+          "flag": "2 倍是估计值，区间 1.3-3 倍；多数关键证据被 Anthropic 删改，未独立复核",
+          "flag_en": "The 2x figure is an estimate, range 1.3x-3x; most key evidence was redacted by Anthropic and has not been independently reviewed."
+        },
+        {
+          "title": "AI 图片检测做到 99.96%，还能标出哪一块",
+          "title_en": "AI image detection hits 99.96%, and maps where",
+          "author": "Pangram · Hacker News",
+          "author_en": "Pangram · via Hacker News",
+          "likes": 145,
+          "likes_label": "HN 分",
+          "url": "https://www.pangram.com/blog/introducing-pangram-image-1-0",
+          "summary": "Pangram 发布 Image 1.0 和更快的 Image Flash 1.0。Image 1.0 在 100 张真实照片的「合成镜像」上测：用 12 个前沿图像生成器，按接近原图的提示各生成一张，共 1200 张，官方说准确率 99.96%，并新增热力图，能标出图片里哪一块是 AI 生成或改过的。它把最低可检测分辨率从 512×512 降到 256×256，低于 512 的结果会附带置信度降低的提示。Flash 1.0 主攻视频：在 DF26 基准上拿到 98.7%，比第二名高 29 个百分点；Pangram 还用 129 条真实社交视频生成 1529 条合成镜像做对比。官方同时提供 Chrome 扩展和 API。以上都是厂商自测口径，独立复现还没有。",
+          "summary_en": "Pangram released Image 1.0 and a faster Image Flash 1.0. Image 1.0 was tested on synthetic mirrors of 100 real photos: 12 frontier image generators produced one image each from prompts matched to the original, 1,200 images total, and Pangram reports 99.96% accuracy. It adds a heatmap that localizes which part of an image was AI-generated or edited. The minimum detectable resolution drops from 512x512 to 256x256, with a lower-confidence disclaimer below 512. Flash 1.0 targets video: it scores 98.7% on the DF26 benchmark, a 29-point lead over the next-best detector, and Pangram also built 1,529 synthetic mirrors from 129 real social-media videos for a comparison test. A Chrome extension and API are available. All figures are the vendor's own; independent replication has not been published.",
+          "why": "检测工具的价值不只在厂商报的那个准确率，在于它把「哪一块」也标出来了。对做内容平台、广告审核、创作者工具的人，定位能力比一个整图的是或否更有用：可以只拦被改动的区域，或者把证据给用户看。反过来，厂商自测的高分也提醒，上线前要拿自己平台上的压缩图、截图、二次转发图去测，真实链路最容易把检测率打下来。",
+          "why_en": "The value isn't only the accuracy number. It's that the tool also marks where the AI content is. For people building content platforms, ad review, or creator tools, localization is more useful than a whole-image yes or no: you can block only the edited region, or show the evidence to a user. The vendor-reported score is also a reminder to test on your own platform's compressed images, screenshots, and re-shared copies before shipping, since the real distribution is where detection rates usually fall.",
+          "flag": "厂商自测，未独立复现；评论区有人指出 Pangram 文本检测的 AI 占比校准不准，图像与视频模型是否同样未验证",
+          "flag_en": "Vendor-run benchmark, not independently replicated; commenters say Pangram's text-detection percentage is poorly calibrated (\"X% AI\" is not a literal share), and whether the image/video models share that issue is untested."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚最值钱的一条线索，不是哪家模型又强了，是「判断」本身开始被单独标价。Anthropic 在上市前被下修估值、产品一号位转身去对手那里，市场重新算的是同一笔账：模型能力可以追上，把能力变成可靠产品的那层判断不容易复制。另一头，置信度、单次价格、身份、真伪，连「AI 有没有在加速 AI 研究」的幅度，今天几条线索都在把这些原本靠人拍脑袋的东西变成可计量的零件。能力越便宜，替「该不该花、算不算好、谁来负责」定价的人越值钱。",
+  "meta_read_en": "The most valuable thread tonight isn't that another model got stronger. It's that judgment itself is being priced separately. Anthropic's valuation was marked down before its IPO and its founding product lead walked to a rival; the market is recalculating the same thing: model capability can be caught up, but the judgment that turns capability into a reliable product is harder to copy. On the other side, confidence levels, per-unit prices, identity, authenticity, even the measured rate at which AI is accelerating AI research, several threads today are turning things people used to eyeball into countable parts. The cheaper capability gets, the more valuable the people who price the calls: whether to spend, whether it's good enough, who answers for it.",
+  "ota": {
+    "learned": [
+      "观察：Hightouch 在身份合并任务上测了一个两级评审结构：便宜模型先判，只把 30%-90% 置信度区间交给 Opus 复核，准确率 98.8%、每千条 0.88 美元；全程 Opus 是 99.0%、3.86 美元。关键不是小模型够用，是校准好的小模型能当分流器。",
+      "观察：这是对台账 2026-07-19「eval-gated effort escalation」和 2026-11-04「按任务族升档」的下一步。前两条按任务类型决定要不要升档，这一条按单次样本的置信度决定，粒度更细。",
+      "观察（云端）：YouTube 这次是部分可用。9 个频道里只有 AI Engineer 的 RSS 返回 200，其余 8 个 404/500；对一条新视频跑 yt-dlp，返回「Sign in to confirm you're not a bot」。按本环境的规则记录 0 条 YouTube，没有换客户端或代理重试，也没有写任何代读摘要。",
+      "已实施（云端）：把「置信度区间分流」写成 proposed (cloud) 升级，追加到 ota-ledger.md，等下一次笔记本会话采纳；本环境不能改 ~/.claude，所以没有创建或修改 skill/memory。",
+      "观察（云端）：按 America/New_York 计算，今天为 2026-11-06（运行时 UTC 已到 11-07），与 CI 的 TZ=America/New_York 判断一致。"
+    ],
+    "learned_en": [
+      "Observation: Hightouch tested a two-tier review setup on identity resolution. The cheap model judges first, and only the 30%-90% confidence band goes to Opus for a second look: 98.8% accuracy at $0.88 per 1,000, versus 99.0% at $3.86 for Opus alone. The point is not that a small model is good enough; it is that a well-calibrated small model can act as a router.",
+      "Observation: this is the next step from the ledger's 2026-07-19 \"eval-gated effort escalation\" line and the 2026-11-04 task-family escalation map. Those two decide whether to escalate by task type; this one decides by the confidence on each individual sample, which is a finer grain.",
+      "Observation (cloud): YouTube was partially reachable today. Only the AI Engineer channel's RSS returned 200; the other eight returned 404/500. A yt-dlp run on a fresh video returned \"Sign in to confirm you're not a bot.\" Per this environment's rules, I recorded zero YouTube items, did not switch clients or proxies, and wrote no watch summaries.",
+      "Implemented (cloud): the confidence-band routing upgrade is written into ota-ledger.md as a proposed (cloud) entry for the next laptop session to adopt. This environment cannot edit ~/.claude, so no skill or memory was created or changed.",
+      "Observation (cloud): today's issue date is 2026-11-06 by America/New_York, even though the run started on 2026-11-07 UTC. This matches the CI guard's TZ=America/New_York check."
+    ],
+    "new_capabilities": [
+      "已验证（Hightouch 公开基准，2026-11-06；单一合成任务，未独立复现）：按置信度区间分流。先让便宜模型判断并输出 0-1 置信度，只把落在 30%-90% 区间的样本交给强模型复核。启用前先检查便宜模型的错误是否集中在低置信度；校准差的模型（错误常带高置信度）不能当分流器。调用意图：「先用最便宜的模型跑一遍，只把置信度落在中间区间的样本升级给强模型；如果便宜模型的错误不集中在低置信度，换模型或改成全量复核。」",
+      "已验证（本机，2026-11-06）：YouTube 部分可用时的停止规则。先逐频道测 RSS，只有返回 200 的频道才尝试取字幕；yt-dlp 返回「Sign in to confirm you're not a bot」就记 0 条并停止，不换客户端、不换代理、不写代读摘要。调用意图：「YouTube 只给多少拿多少；Bot 墙出现时立即停止，记录零条，不重试。」"
+    ],
+    "new_capabilities_en": [
+      "Verified (Hightouch public benchmark, 2026-11-06; one synthetic task, not independently replicated): confidence-band routing. Have the cheap model judge first and emit a 0-to-1 confidence, and send only the 30%-90% band to the stronger model. Before using it, check whether the cheap model's errors cluster at low confidence; a poorly calibrated model (errors arriving with high confidence) should not be used as the router. Invoke intent: \"Run the cheapest model first, escalate only the middle confidence band to the strong model; if the cheap model's errors are not concentrated at low confidence, change models or review everything.\"",
+      "Verified (this machine, 2026-11-06): a stop rule for partial YouTube availability. Test each channel's RSS first and attempt a transcript only on channels that return 200. If yt-dlp returns \"Sign in to confirm you're not a bot,\" record zero items and stop; do not switch clients or proxies, and do not write watch summaries. Invoke intent: \"Take whatever YouTube gives; when the bot wall appears, stop immediately, record zero, and do not retry.\""
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "zed-industries/zed",
+      "url": "https://github.com/zed-industries/zed",
+      "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
+      "language": "Rust",
+      "stars": 93686,
+      "stars_today": 306
+    },
+    {
+      "rank": 2,
+      "name": "NVIDIA/auto-ontology",
+      "url": "https://github.com/NVIDIA/auto-ontology",
+      "description": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
+      "language": "Python",
+      "stars": 9134,
+      "stars_today": 2015
+    },
+    {
+      "rank": 3,
+      "name": "rails/rails",
+      "url": "https://github.com/rails/rails",
+      "description": "Ruby on Rails",
+      "language": "Ruby",
+      "stars": 59038,
+      "stars_today": 142
+    },
+    {
+      "rank": 4,
+      "name": "mpv-player/mpv",
+      "url": "https://github.com/mpv-player/mpv",
+      "description": "🎥 Command line media player",
+      "language": "C",
+      "stars": 37892,
+      "stars_today": 37
+    },
+    {
+      "rank": 5,
+      "name": "rust-lang/rust",
+      "url": "https://github.com/rust-lang/rust",
+      "description": "Empowering everyone to build reliable and efficient software.",
+      "language": "Rust",
+      "stars": 121476,
+      "stars_today": 192
+    },
+    {
+      "rank": 6,
+      "name": "react/react",
+      "url": "https://github.com/react/react",
+      "description": "The library for web and native user interfaces.",
+      "language": "JavaScript",
+      "stars": 252274,
+      "stars_today": 248
+    },
+    {
+      "rank": 7,
+      "name": "angular/angular",
+      "url": "https://github.com/angular/angular",
+      "description": "Deliver web apps with confidence 🚀",
+      "language": "TypeScript",
+      "stars": 101382,
+      "stars_today": 135
+    },
+    {
+      "rank": 8,
+      "name": "symfony/symfony",
+      "url": "https://github.com/symfony/symfony",
+      "description": "The Symfony PHP framework",
+      "language": "PHP",
+      "stars": 31444,
+      "stars_today": 128
+    },
+    {
+      "rank": 9,
+      "name": "prometheus/prometheus",
+      "url": "https://github.com/prometheus/prometheus",
+      "description": "The Prometheus monitoring system and time series database.",
+      "language": "Go",
+      "stars": 67205,
+      "stars_today": 148
+    },
+    {
+      "rank": 10,
+      "name": "google/skills",
+      "url": "https://github.com/google/skills",
+      "description": "Agent Skills for Google products and technologies",
+      "language": "Python",
+      "stars": 22868,
+      "stars_today": 534
+    }
+  ]
+}
