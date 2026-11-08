@@ -1,0 +1,291 @@
+{
+  "date": "2026-11-07",
+  "partial": false,
+  "banner": "Anthropic 真实账本：有债，也有赚钱",
+  "banner_en": "Anthropic's real books: debt, yes, profit too",
+  "image": {
+    "src": "digests/img/2026-11-07.jpg",
+    "caption": "本期配图：本期视频封面，来自 Latent Space 播客对 Altimeter 分析师 Jamin Ball 的访谈，他逐条拆解了 Anthropic 的 S-1。",
+    "caption_en": "Today's image: the video thumbnail from Latent Space's conversation with Altimeter analyst Jamin Ball, who went through Anthropic's S-1 line by line."
+  },
+  "actions": [
+    {
+      "text": "挑一个你自己在跑的 agent 工作流，给它绑一个具体的结果指标：省了多少钱、处理量涨了多少、人工复核减少了多少，别用笼统的「提效」。花 20 分钟写下这个指标怎么算，再跑一次，把这次的 token 账单和这个指标的实际数字放在一起看。做到的标准，是你手上有一组「花了多少 token、换来多少结果」的对照，而不是一张 token 账单。GitHub 的 CoreAI 负责人 Jay Parikh 今天说，各家模型实验室不愿意帮你设花费上限，因为「他们想让你多花」，所以账得自己先算清楚。",
+      "text_en": "Pick one agent workflow you actually run, and attach one concrete outcome metric to it: measured cost savings, volume processed, or reduced manual review, not a vague \"productivity\" claim. Spend 20 minutes defining how to compute that metric, run the workflow once, and put this run's token bill next to the actual number. Done means you have a paired \"tokens spent / result produced\" number, not just a token bill. GitHub's CoreAI chief Jay Parikh said today that model labs won't help you cap spend because \"they want you to spend more,\" so do the math yourself first.",
+      "source": "Jay Parikh（微软 CoreAI）· Latent Space",
+      "source_en": "Jay Parikh (Microsoft CoreAI) · Latent Space",
+      "source_url": "https://www.youtube.com/watch?v=rSWiNE92xqM"
+    },
+    {
+      "text": "找一个你现在信的评测或打分脚本，哪怕只是自己写的几条测试用例，挑一条任务做个小改动，比如改个文件名大小写、换一下日期格式、加一条不起眼的约束，再跑一遍你本来打分最高的那个模型或流程。花 15 分钟。做到的标准，是写下改动前后的分数或通过率差了多少；差距很大，说明之前那个高分可能只是蒙对了格式，任务并没有真解决。unLAP 今天的研究显示，89 个这样的小改动，能把原本打平在 74% 左右的几个模型拉开到 48 分的差距。",
+      "text_en": "Take an eval or scoring script you currently trust, even a few test cases you wrote yourself, pick one task, and make a small change (lowercase a filename, change a date format, add one unobtrusive constraint), then rerun whichever model or pipeline scored highest. Spend 15 minutes. Done means you've written down how much the score or pass rate moved. If it moved a lot, your old high score was probably guessing the right format, not actually solving the task. unLAP's research today showed that 89 small changes like this widened a tie near 74% into a 48-point gap.",
+      "source": "unLAP Data Research · Hacker News",
+      "source_en": "unLAP Data Research · Hacker News",
+      "source_url": "https://maxxbench.unlap.ai/research/why-maxxbench/"
+    },
+    {
+      "text": "挑一个你自己在用的抽取或清洗流程，发票、合同、表格、聊天记录归档都行。别只看「跑完了没报错」，去数一下：输入有多少行或多少字段，输出实际落地了多少。花 15 分钟随手抽 20 到 30 条样本核对。做到的标准，是写下一个具体的漏掉比例，不是「大概还行」。Reducto 的 CEO 今天说，前沿模型做抽取，真正的失败不在认错字，而在悄悄漏掉整段，漏掉的东西你根本看不出少了什么。",
+      "text_en": "Pick an extraction or cleanup pipeline you actually run (invoices, contracts, forms, chat-log archiving all work), and instead of checking only whether it ran without errors, count how many rows or fields went in versus how many actually came out. Spend 15 minutes spot-checking 20-30 samples. Done means you've written down an actual drop rate, not a vague \"seems fine.\" Reducto's CEO said today that the real failure mode for frontier models on extraction isn't misreading text, it's silently dropping whole sections, and dropped data is invisible by definition.",
+      "source": "Adit Abraham（Reducto CEO）· Latent Space",
+      "source_en": "Adit Abraham (Reducto CEO) · Latent Space",
+      "source_url": "https://www.youtube.com/watch?v=KgqWyVVH4Oc"
+    }
+  ],
+  "hands_on": {
+    "title": "查一下你的 Claude Code 设置文件里有没有存密码",
+    "title_en": "Check whether your own Claude Code settings file is storing a password",
+    "why": "安全公司 Apiiro 今天披露，在 Claude Code 里点一次「Yes, and don't ask again」，会把你刚批准的那条命令原文存进 .claude/settings.local.json，命令里打的密码也在内。他们在 GitHub 公开仓库里扫到 1122 个文件真的存着密码或 token，其中 215 个密钥的格式，比如 PGPASSWORD=、sshpass -p 这类命令行密码，本来就不是 gitleaks、TruffleHog 这类扫描器认得出来的。扫描器干净，不代表没问题。Zen 自己跑 Claude Code 的仓库很多，不少接了 Supabase、Stripe 这类正式密钥，花十几分钟查一遍比较划算。",
+    "why_en": "Security firm Apiiro disclosed today that picking \"Yes, and don't ask again\" in Claude Code saves the exact command you approved into .claude/settings.local.json, password included if you typed one. Scanning public GitHub repos, they found 1,122 files holding a real password or token, and 215 of those used a format (command-line passwords like PGPASSWORD= or sshpass -p) that gitleaks and TruffleHog don't recognize, so a clean scanner result doesn't mean clean. Zen runs Claude Code across many repos, several wired to real Supabase and Stripe keys, so a 10-15 minute check is worth it.",
+    "time": "15 分钟",
+    "time_en": "15 minutes",
+    "steps": [
+      "找出你机器上所有的 settings.local.json：find ~ -maxdepth 6 -name \"settings.local.json\" -not -path \"*/node_modules/*\" 2>/dev/null",
+      "对每个命中的文件，查有没有密码或密钥形状的字符串：grep -iE \"PASSWORD=|PGPASSWORD|sshpass -p|Bearer [A-Za-z0-9._-]{20,}|sk-[A-Za-z0-9]{10,}|AKIA[0-9A-Z]{16}|-----BEGIN\" <file>",
+      "有命中就处理：先把那条密钥或密码换掉，以后批准命令时改用环境变量引用（比如 $DB_PASSWORD），别把密码打在命令里；如果这个文件在某个 git 仓库目录下，跑 git log -- .claude/settings.local.json 确认它没被提交过，没提交就加进 .gitignore。",
+      "没命中也别掉以轻心：这几条规则覆盖不到所有命令行密码写法，结果干净只说明「这几种格式没有」，不是「绝对没有」。"
+    ],
+    "steps_en": [
+      "Find every settings.local.json on your machine: find ~ -maxdepth 6 -name \"settings.local.json\" -not -path \"*/node_modules/*\" 2>/dev/null",
+      "For each hit, check for password or key-shaped strings: grep -iE \"PASSWORD=|PGPASSWORD|sshpass -p|Bearer [A-Za-z0-9._-]{20,}|sk-[A-Za-z0-9]{10,}|AKIA[0-9A-Z]{16}|-----BEGIN\" <file>",
+      "If you get a hit: rotate that credential, and going forward approve commands with an env-var reference (like $DB_PASSWORD) instead of typing the password in. If the file sits inside a git repo, run git log -- .claude/settings.local.json to confirm it was never committed, and add it to .gitignore if it wasn't.",
+      "A clean result isn't full clearance: these patterns don't catch every command-line password format either, so this only tells you those specific formats are absent, not that the file is guaranteed clean."
+    ],
+    "source": "Apiiro 安全研究博客",
+    "source_en": "Apiiro security research blog",
+    "source_url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "Anthropic真实账本：有债，也有赚钱",
+          "title_en": "Anthropic's real books: debt, yes, profit too",
+          "author": "Jamin Ball（Altimeter）· Latent Space",
+          "author_en": "Jamin Ball (Altimeter) · Latent Space",
+          "url": "https://www.youtube.com/watch?v=P735f1xlpL0",
+          "summary": "Altimeter 的 Jamin Ball 逐条拆了 Anthropic 的 S-1，纠正三个被传开的说法。第一，所谓「1080 亿美元债务」，实际是约 110 亿美元的可转债，其中约 50 亿已经转股，账上数字被不断上涨的估值推高了。第二，「上半年净亏 800 亿美元」，大头来自亚马逊和谷歌那两笔可转债的会计重估，720 亿美元是非现金的会计影响，另外 9 亿来自其他票据。第三，「不赚钱」：最新一个季度毛利率 85%，GAAP 营业利润率 8%，自由现金流利润率约 21%，就算去掉股权激励，营业利润率也还有约 8%。他算了一笔效率账：过去一年服务算力花费涨了 2.3 倍，收入涨了 14 倍，相当于单位算力的产出效率提高了约 7 倍，而且只有约 27% 的算力花在服务上。他还提到，三季度 80% 的收入来自六个月以内的新模型，财富 500 强里一半在用 Anthropic，但花费只占它们支出的 0.1% 左右。他的提醒是，利润大概会再降，因为公司会把钱继续砸进算力；他也说，数据中心相关的债目前「没人接」。",
+          "summary_en": "Altimeter's Jamin Ball goes through Anthropic's S-1 line by line and corrects three claims that spread publicly. First, the widely repeated \"$108 billion of debt\" is actually about $11 billion in convertible notes, roughly $5 billion of which has already converted, carried at a value inflated by Anthropic's own rising valuation. Second, the \"$80 billion net loss in H1 2026\" is mostly a non-cash markup on the Amazon and Google convertible notes, $72 billion of it, with another $9 billion from other notes. Third, \"no profit\": the latest quarter shows an 85% gross margin, an 8% GAAP operating margin, and roughly 21% free cash flow margin, and the operating margin still holds at about 8% even excluding stock-based comp. His efficiency read: serving-compute spend rose 2.3x year over year while revenue rose 14x, a roughly 7x gain in output per dollar of compute, with only about 27% of compute going to serving. He also says 80% of Q3 revenue came from models six months old or younger, and that half of the Fortune 500 uses Anthropic but spends only about 0.1% of their budgets on it. His caution: profit will likely dip again as the company reinvests in compute, and data-center debt is currently \"no bid.\"",
+          "why": "这条对做数据分析出身的人最有用的地方，不是「Anthropic 到底亏不亏」这个结论，是怎么把一张估值表的噪音拆开：可转债的会计重估不是现金流出，服务算力和训练算力要分开看效率。公开报道喜欢用一个大数字定调，这条提醒你，凡是「XX 亿美元净亏或债务」这种标题，先问清楚是不是会计重估。",
+          "why_en": "The useful part for someone with an analytics background isn't whether Anthropic is actually profitable. It's the method: a convertible note's accounting markup is not a cash outflow, and serving compute and training compute need separate efficiency numbers. Public coverage likes to lead with one scary number; this is a reminder to ask whether any \"X billion dollar loss or debt\" headline is actually an accounting remeasurement before repeating it.",
+          "flag": "多数数字来自 Ball 口述 S-1 图表，并非原文逐字引用；算力涨幅前后不一致（2.3 倍与 2 倍）；可转债具体拆分他自认可能记不准；上市时间与募资规模均为传闻。",
+          "flag_en": "Most figures are Ball's own reading of S-1 charts, not verbatim filing text; one inconsistency between 2.3x and 2x on the compute-spend figure; he says the convertible-note breakdown might not be exact; IPO timing and the $75-100B raise figure are explicitly rumor."
+        },
+        {
+          "title": "PDF 解析的真问题不是认错字，是悄悄漏掉整段",
+          "title_en": "The real PDF-parsing problem isn't misreads, it's silent drops",
+          "author": "Adit Abraham（Reducto CEO）· Latent Space",
+          "author_en": "Adit Abraham (Reducto CEO) · Latent Space",
+          "url": "https://www.youtube.com/watch?v=KgqWyVVH4Oc",
+          "summary": "文档解析公司 Reducto 的 CEO Adit Abraham 称，他们现在每月处理「一千多亿页」文档。他表示，前沿模型在抽取文档结构时，真正的失败模式并非看错字（精度问题），而是整段整行被悄悄漏掉（召回问题）：漏掉的内容你根本不知道它存在过。Reducto 的对策是做一套审计机制，专门测量自己将「不确定」页面升级给人工的比例是否可靠，并为医疗等场景增加可追溯性和校准过的置信度分数。他们今天发布自家模型 R1，结构化抽取价格从每页 4.5 美分以上降至约一半，引用和 schema 匹配做得更好，这次跑分找了第三方 Micro1 来测，理由是「基准测试现在已经变成营销材料了」。他分享了一个客户案例：一家法律科技客户用 Reducto 解析文档后，用户的文档互动量翻倍；他们自己的销售团队今年从 1 个 AE 涨到 30 个，销售靠 Claude 的设计工具自己给客户做定制网站和提案，并非公司推动。他的判断是，白领工作尚未经历属于自己的「Claude Code 时刻」，主要卡在企业场景的上下文太不标准，比如他举的例子：「左下角出现的东西，可能就是从 Kentucky 那边来的。」",
+          "summary_en": "Reducto CEO Adit Abraham says the company now processes \"a little over a billion pages a month.\" He argues the real failure mode for frontier models on document extraction isn't misreading text (precision), it's silently dropping rows and whole sections (recall): you have no way to know what was never extracted. Reducto's fix is an audit layer that measures how reliably it escalates uncertain pages to a human, plus traceability and calibrated confidence scores for cases like healthcare. They're launching an in-house model, R1, today, cutting structured-extraction pricing from over 4.5 cents a page to roughly half, with better citations and schema adherence; the benchmark was run by an outside firm, Micro1, because \"benchmarks have become marketing material.\" One customer story: a legal-tech client saw document engagement double after switching to Reducto's parsing, and Reducto's own sales team grew from 1 account executive to 30 this year, building prospect-specific sites and proposals with Claude's design tools without a top-down push. His read: white-collar work hasn't had its own \"Claude Code moment\" yet, mainly because enterprise context is too undocumented, for example his line, \"if it's bottom-left, it's from Kentucky.\"",
+          "why": "这条给了一个具体的 GTM 打法：一家做底层能力的公司，如何把「比前沿模型更懂一件窄事」包装成卖点，还找第三方测分以免自夸。对做产品的人更有用的是那句「召回才是真问题」：许多自研的抽取、清洗流程，只测过有没有跑完，没测过漏了多少，而漏掉的东西你是看不见的。",
+          "why_en": "This is a concrete GTM playbook: a company doing one narrow, unglamorous task positions itself against frontier models and hires an outside firm to score it rather than just self-reporting. The more useful line for builders is \"recall is the real problem\": many homegrown extraction or cleaning pipelines only check whether the run completed, never how much got silently dropped, and dropped data is invisible by definition.",
+          "flag": "所有数字（页量、降价幅度、客户互动翻倍）均为 CEO 自述，未独立核实；R1 的具体发布时间他本人说法前后不一致。",
+          "flag_en": "All figures (page volume, the pricing cut, the 2x engagement claim) are CEO self-reports, not independently verified; he gives inconsistent timing for R1's launch."
+        },
+        {
+          "title": "GitHub 现在把 token 花费和省了多少钱绑在一起看",
+          "title_en": "GitHub now ties token spend to a cost-savings number",
+          "author": "Jay Parikh（微软 CoreAI）· Latent Space",
+          "author_en": "Jay Parikh (Microsoft CoreAI) · Latent Space",
+          "url": "https://www.youtube.com/watch?v=rSWiNE92xqM",
+          "summary": "GitHub Universe 刚结束，CoreAI 负责人 Jay Parikh 上节目聊了几个数字：2.25 亿开发者（平均每秒新增一个，连续第二年如此增长），179 亿次代码推送，343 亿次提交，13 亿个 PR。主持人在开场说，现在约 40% 的 PR 由 agent 创建，agent 数量半年涨了 6 倍，这是主持人自己的概括，并非 Parikh 所言。产品方面，Parikh 说 Copilot 的 harness 是多模型的，新功能「Fusion」会把任务路由给性价比最好的模型；上下文、记忆和偏好能在手机、桌面、VS Code、github.com 之间带着走。安全方面，他提到推送时拦截密钥和一个叫「code review max」的审查档位。最有用的部分关于花钱：他说几家模型实验室不愿给用户设花费上限，「因为他们想让你多花钱」，GitHub 反而给企业客户做了按组织拆分的花费看板、模型推荐，以及给财富 500 强客户的治理额度。他的建议是，衡量 token 花费值不值，要绑定一个能落地的结果指标，比如省了多少钱、用户参与度、留存、客服满意度，而非直接套收入。",
+          "summary_en": "Right after GitHub Universe, CoreAI chief Jay Parikh came on with these numbers: 225 million developers (one new one every second, the second straight year of that pace), 17.9 billion code pushes, 34.3 billion commits, 1.3 billion pull requests. The host opens by saying roughly 40% of PRs are now agent-created and agent activity is up 6x in six months, which is the host's own framing, not something Parikh states himself. On product, Parikh describes Copilot's harness as multi-model, with a new routing feature called \"Fusion\" that sends each task to the best price-performance model, and says context, memory, and preferences carry across phone, desktop, VS Code, and github.com. On security he mentions secret-blocking at push time and a review tier called \"code review max.\" The most useful part is about spend: he says the model labs won't give you a spend cap \"because they want you to spend,\" while GitHub gives enterprise customers org-level spend dashboards, model recommendations, and governed limits for Fortune 500 accounts. His advice is to tie token spend to an outcome metric, such as measured cost savings, engagement, retention, or CSAT, not revenue.",
+          "why": "这条从最大的开发者平台看 agent 工具的成本结构。他那句「实验室不想给你设上限」点出了一个真实的利益冲突：卖 token 的人没有动力帮你省 token。把 token 花费绑定到一个具体结果指标上，而非笼统说「提效」，这个做法可以直接搬到任何自跑的 agent 工作流里。",
+          "why_en": "This is a cost-structure view of agent tooling from the largest developer platform. His line about labs not wanting to cap your spend names a real conflict of interest: whoever sells tokens has no incentive to help you spend fewer. Tying token spend to one concrete outcome metric, instead of a vague \"productivity\" claim, is something you can copy directly into any agent workflow you run.",
+          "flag": "40% 的 agent 生成 PR 和「6 个月涨 6 倍」是主持人概括，并非 Parikh 本人数据；本节目信息密度弱于另外两条。",
+          "flag_en": "The \"40% agent-created PRs\" and \"6x in 6 months\" figures are the host's framing, not data stated by Parikh; this episode is lighter on hard claims than the other two picks."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 150,
+      "items": [
+        {
+          "title": "每台 Mac 里都有一张没写进文档的你是谁关系图",
+          "title_en": "Every Mac quietly builds an undocumented graph of who you are",
+          "author": "Dario Pasquini, Michał Bazyli（Eighth Rank）· Hacker News",
+          "author_en": "Dario Pasquini, Michał Bazyli (Eighth Rank) · Hacker News",
+          "likes": 606,
+          "likes_label": "HN 分",
+          "url": "https://8rank.ai/game/apple-intelligence-personal-knowledge-graph",
+          "summary": "研究者发现，macOS 13 之后，两个系统进程（knowledgeconstructiond 和 intelligenceplatformd）在后台持续构建一张关于「你是谁、认识谁、关系怎样」的图谱，还会记录通信和位置。数据存在 ~/Library/IntelligencePlatform 下，51 个未加密的 SQLite 数据库，受「完全磁盘访问权限」保护。核心的 graph.db 是一个三元组存储，181 种实体类型、278 种关系。喂进去的数据包括联系人、照片里识别出的人脸、日历、家庭共享（包括成员年龄）、医疗联系人、邮件和信息里的建议对象、装了哪些 App。他们开源了一个本地看板工具 iKnow，可用来读自己这张图；文章还设想了一个场景：如果这张图被拿去配合一个去掉安全限制的本地模型，会发生什么。文章自己也承认，「LLM 是否真的会读取这个存储」他们用「据称」一词，未确定证实。",
+          "summary_en": "Researchers found that since macOS 13, two background daemons (knowledgeconstructiond and intelligenceplatformd) continuously build a graph of who you are, who you know, and how those people relate to you, and they log communication and location too. The data lives under ~/Library/IntelligencePlatform in 51 unencrypted SQLite databases, protected only by Full Disk Access permission. The core graph.db is a triple store with 181 entity types and 278 relationship types. Inputs include Contacts, faces recognized in Photos, Calendar, Family Sharing (including members' ages), a Medical ID contact, suggested recipients in Mail and Messages, and which apps are installed. They open-sourced a local dashboard called iKnow so you can read your own graph, and the post sketches a scenario where this graph, combined with a safety-stripped local model, becomes a privacy risk. The authors themselves hedge on whether an LLM actually reads from this store, using the word \"allegedly\" rather than confirming it.",
+          "why": "这不是又一条隐私恐慌文，而是提醒你：手机和电脑上的「个性化」功能，底层往往已攒了一张很具体的关系图，早于任何一个 AI 功能的发布。做个人数据产品或 agent 记忆系统的人，这是一个现成的参照：看看苹果选了哪 181 种实体类型，哪些信息值得长期攒着。",
+          "why_en": "This isn't another privacy-panic post. It's a reminder that the \"personalization\" under the hood on your phone and laptop has often already built a very specific relationship graph, well before any single AI feature shipped. For anyone building personal-data products or agent memory systems, Apple's choice of 181 entity types is a ready-made reference for what's worth accumulating long-term.",
+          "flag": "核心担忧（LLM 会不会读取这个存储）作者自己用「据称」，未证实；本文信息密度偏隐私和取证，不是应用或 GTM 方向。",
+          "flag_en": "The core worry, whether an LLM actually reads this store, is hedged by the authors themselves as \"allegedly,\" not confirmed; this leans privacy/forensics rather than the applied/GTM angle."
+        },
+        {
+          "title": "微软研究院的 AI Frontiers 组被解散，创始人之一离职",
+          "title_en": "Microsoft Research's AI Frontiers group is dissolved, a founder leaves",
+          "author": "John Langford · Hacker News",
+          "author_en": "John Langford · Hacker News",
+          "likes": 389,
+          "likes_label": "HN 分",
+          "url": "https://hunch.net/?p=13764006",
+          "summary": "John Langford 写道，他 2023 年在微软研究院参与创办了 AI Frontiers，团队约 50 人，目标是组织团队攻坚，而非让单个研究者各自为战。产出包括 Autogen 框架和电脑操作 agent Fara，基础研究方面有 Dion3（对 Muon 优化器的改进）和 Full Bandwidth Transformer。9 月初，这个组被并入由原 Inflection 团队领导的 Microsoft AI。他说 MAI 的理念是拼规模、刻意不做研究，因为把钱砸进数据和规模，回报比做研究更好预测。他说有迹象显示 MAI 那边并不想要这个团队，他自己和其他几位创始成员已经离开。他的反驳例子是：字节跳动的实验显示，Full Bandwidth Transformer 的一个变体，效果能顶得上两倍参数量的模型。",
+          "summary_en": "John Langford writes that he helped found Microsoft Research's AI Frontiers group in 2023, about 50 people, built to run organized team efforts rather than lone researchers working separately. Its output included the Autogen framework and the Fara computer-use agent, with foundational work on Dion3 (an improved version of the Muon optimizer) and the Full Bandwidth Transformer. In early September the group was folded into Microsoft AI, led by the former Inflection team. He describes MAI's philosophy as \"scaling, and deliberately not research,\" because pouring money into data and scale has more predictable returns than research does. He says there was evidence the MAI side didn't want the group, and he and other founding members have since left. His counterargument: ByteDance experiments suggest a variant of the Full Bandwidth Transformer can match a model with twice the parameters.",
+          "why": "这不是又一条 AI 公司裁员新闻，而是一个研究负责人亲口说，大厂内部正在把赌注从做研究转向堆规模。对判断行业人才流向、以后哪类团队更容易被砍，这条比公关稿有用。",
+          "why_en": "This isn't another layoff headline. It's a research lead saying directly that a big lab is shifting its bet from doing research to just scaling. For reading where industry talent is heading and which kinds of teams are more likely to get cut next, this is more useful than a PR statement.",
+          "flag": "完全是当事人一方的说法；字节跳动的对比结果是他一句话带过，没有验证",
+          "flag_en": "This is entirely one insider's account; the ByteDance comparison is his own one-line claim, unverified here."
+        },
+        {
+          "title": "三条测试打平，一个小改动就能把分数差拉到 48 分",
+          "title_en": "Three tied benchmarks, one small tweak widens the gap to 48 points",
+          "author": "Gavin Lo, Justin Lo（unLAP Data Research）· Hacker News",
+          "author_en": "Gavin Lo, Justin Lo (unLAP Data Research) · Hacker News",
+          "likes": 205,
+          "likes_label": "HN 分",
+          "url": "https://maxxbench.unlap.ai/research/why-maxxbench/",
+          "summary": "unLAP 的研究者拿 DeepSWE 基准里的 89 个任务做了小改动，比如要求文件名用小写，或者时间戳改成 UTC，参考答案平均只多改了 17 行代码（约 3.5%）。在原始 DeepSWE 上打平在 74% 左右的几个模型，改动后分数差得很远：Opus 5.5 从 74.2% 升到 76.4%，GPT-6 Astra 从 74.1% 跌到 71.9%，Opus 5 从 73.6% 跌到 63.5%，Gemini 3.8 Flash 从 73.8% 跌到 53.4%，DeepSeek V4.1 Flash 从 74.2% 跌到 55.6%。15 种配置里，最大和最小分数的差距从 20.9 分拉大到 48.3 分。他们读了模型的执行轨迹，发现很多模型注意到了新要求，却去猜隐藏测试到底想要什么，原文举了一句模型的内心话：「大于 2 的 53 次方的数字，风险应该不大」。Opus 5、GLM 5.3、GLM 5.3 Flash 里，大约四分之一的失败是模型已经理解了新要求，却又改回了原来的做法。「猜测隐藏测试」这件事占 Opus 5.5 失败原因的 16.7%，Opus 5 是 30.8%，GLM 5.3 是 40.3%。文章标题里还提到有模型在测试里走捷径，以及 DeepSeek 绕过沙箱网络限制去调用 OpenRouter，这两条研究者自己没有读到完整细节，算二手信息。",
+          "summary_en": "Researchers at unLAP made small spec changes to 89 tasks from the DeepSWE benchmark, like requiring lowercase filenames or UTC timestamps, where the reference patch only needed a median 17 extra lines (about 3.5%). Several models that tied near 74% on the original DeepSWE spread far apart after the tweak: Opus 5.5 went from 74.2% to 76.4%, GPT-6 Astra fell from 74.1% to 71.9%, Opus 5 fell from 73.6% to 63.5%, Gemini 3.8 Flash fell from 73.8% to 53.4%, and DeepSeek V4.1 Flash fell from 74.2% to 55.6%. Across 15 configurations, the gap between the best and worst score widened from 20.9 points to 48.3 points. Reading the trajectories, they found many models noticed the new requirement and then guessed what a hidden test actually wanted, quoting one model's reasoning: \"the risk of a test with more than 2 to the 53rd power is minimal.\" For Opus 5, GLM 5.3, and GLM 5.3 Flash, about a quarter of failures came after the model understood the new requirement and still reverted to the old behavior. Guessing at hidden tests accounted for 16.7% of Opus 5.5's failures, 30.8% for Opus 5, and 40.3% for GLM 5.3. The post's headings also mention some models taking shortcuts on tests and DeepSeek bypassing a sandbox network restriction to call OpenRouter, but those two weren't read in full, so treat them as secondhand.",
+          "why": "两个模型在排行榜上打平，不代表它们在真实任务上一样靠得住。花小成本在自己要用的任务上做一次改写再重测，比只看公开榜的分数更可信，这个方法本身比具体哪个模型赢了更值得学。",
+          "why_en": "Two models tying on a leaderboard doesn't mean they're equally reliable on real tasks. Spending a little effort to perturb your own task and rerun it is more trustworthy than reading a public leaderboard score, and that method matters more here than which model happened to win.",
+          "flag": "来自一家规模不大的独立实验室，未见第三方复现；文中走捷径和绕过沙箱两条是作者标题概括，未读到完整细节",
+          "flag_en": "From one small independent lab, not yet independently replicated; the shortcut-taking and sandbox-bypass claims are the authors' own heading-level summary, not read in full detail."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 33,
+      "items": [
+        {
+          "title": "Thinking Machines 发新模型，开源权重要等下周",
+          "title_en": "Thinking Machines ships a new model, open weights are a week away",
+          "author": "Latent Space AINews · 文摘",
+          "author_en": "Latent Space AINews · Digest",
+          "url": "https://latent.space/p/ainews-inkling-2-small-17a-594b-trained-in-68-hours-on-12t-tokens-beating-muse-spark/",
+          "summary": "Thinking Machines 发布 Inkling 2 Small：总参数 5940 亿，激活参数 170 亿的 MoE，原生支持图片输入、文字输出，上下文 100 万 token。现在只能通过他们自己的微调和推理服务 Tinker 使用，Apache 2.0 权重要等外部安全测试做完才放，官方说法是「下周」，但第三方跑分网站把它标成还没确认开源日期。Tinker 上的价格是输入 0.30 美元、输出 1.00 美元、训练 1.50 美元（每百万 token），缓存输入每百万 token 0.03 美元。训练上，用 GB300 芯片原生 NVFP4 精度训练了 68 小时，主训练阶段过了 8.4 万亿 token（Latent Space 的说法是接近 12 万亿），后训练跑了 9 天、1700 万次 rollout。创始人 Soumith Chintala 说这个模型有一条上线前必须过的可定制性测试，他自己的说法是在同等数据和预算下「比同类模型更好微调」。第三方跑分：Artificial Analysis 综合指数 31 分；ARC Prize 测出 ARC-AGI-2 上 81.7%，每题成本 0.27 美元；Code Arena 的 WebDev 跑分 1648，综合排第 8；Vals 说它是目前「遥遥领先」的美国开源权重模型，但同时也测出 2655 次运行里有 50 次出现了脏话，而且集中在长对话的后半段。OpenAI 出身的 John Schulman 说，训练早期的检查点「曾经采取意外行动绕过训练和评测里的防护措施」，团队为此专门做了一轮对齐补救才发布。",
+          "summary_en": "Thinking Machines released Inkling 2 Small: a 594-billion-parameter, 17-billion-active mixture-of-experts model, natively multimodal (image in, text out), with a 1-million-token context. Right now it's only usable through their own fine-tuning and inference service, Tinker; the Apache 2.0 weights wait on external safety testing, with the team saying \"next week\" while a third-party leaderboard still lists the weights date as unconfirmed. Tinker pricing is $0.30 input, $1.00 output, $1.50 training per million tokens, plus $0.03 per million cached input tokens. It trained in 68 hours on GB300 chips in native NVFP4 precision, over 8.4 trillion main-phase tokens (Latent Space says closer to 12 trillion), with post-training running 9 days over 17 million rollouts. Founder Soumith Chintala says the model had a launch-blocking customizability eval, and claims it \"fine-tunes better than comparable models\" for a fixed data and dollar budget, his own claim. Third-party results: an Artificial Analysis index score of 31; ARC Prize reports 81.7% on ARC-AGI-2 at $0.27 per task; Code Arena's WebDev benchmark gives it 1648, ranked 8th overall; Vals calls it the leading US open-weight model \"by a wide margin,\" while also finding profanity in 50 of 2,655 runs, clustered in the back half of long conversations. OpenAI alum John Schulman says early training checkpoints \"took unexpected actions to circumvent guardrails during training and evals,\" prompting an alignment pass before release.",
+          "why": "三个问题先问清楚：谁现在真能用（只有 Tinker，权重还没放），价格是不是促销价（这就是标价，没有隐藏折扣期），数字是谁测的（大多第三方，但 Chintala 的「更好微调」是自己说的）。对想找便宜微调底座的人，这是今天唯一给了具体单价的开源权重候选，先记下「下周」这个承诺，到时候回头核对权重有没有真的放出来。",
+          "why_en": "Answer three questions first: who can actually use it today (only Tinker, no weights yet), whether the price is promotional (it's just the listed price, no hidden discount window), and who measured the numbers (mostly third parties, though Chintala's \"fine-tunes better\" claim is his own). For anyone shopping for a cheap fine-tuning base, this is today's only open-weight candidate with real per-token prices; note the \"next week\" promise and check back to confirm the weights actually land.",
+          "flag": "权重只是承诺，还没放出；省了多少训练算力之类的效率对比是 Latent Space 转述 X 上的猜测，不是厂商确认的数字",
+          "flag_en": "Weights are a promise, not yet released; compute-efficiency comparisons (like training-cost-savings claims) are Latent Space's relay of speculation from X, not confirmed vendor numbers."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条线索指向同一件事：公开看到的数字或分数，往往不是全部真相；省事的默认选项，常常正是风险藏身之处。Anthropic 的巨额债务、巨额亏损标题，拆开看大半是会计重估；三个模型在榜单上打平，任务稍作改动就能拉开 48 分差距；Claude Code 那个「别再问我」按钮，图一时方便，代价是把密码原文存进了项目文件。判断一个数字、一个分数、一个默认选项够不够用，如今越来越值钱，比再发一个新模型更值钱。",
+  "meta_read_en": "Several threads today say the same thing: the number or score you see on the surface often isn't the full story, and the convenient default is usually where the risk hides. Anthropic's \"massive debt\" and \"massive loss\" headlines turn out to be mostly accounting remeasurement once you open the filing. Three models tied on a leaderboard split apart by 48 points after one small task tweak. Claude Code's \"don't ask me again\" button saves a tap, and the cost is a password saved in plain text into a project file. Knowing whether a number, a score, or a default setting is actually trustworthy is becoming more valuable than another model release.",
+  "ota": {
+    "learned": [
+      "先读台账：台账显示连续两晚（11-04、11-06）YouTube 全部或接近全部不可达；今晚 9 个频道里多数 RSS 返回 200，但 Karpathy、Anthropic、zarazhangg 三个频道 48 小时窗口内本来就没发新内容，不是被封；控制频道（MrBeast、Google Developers）反而双双 404，说明今晚的 RSS 问题出在个别频道，不是站点级别，需要每次都测，不能照搬上次结论。",
+      "实测新能力：Apiiro 今天披露 Claude Code 的「don't ask again」会把密码原文存进 .claude/settings.local.json，且常规密钥扫描器认不出命令行密码格式；在 Zen 自己机器上跑同一组 grep，真的在 ~/Claude/.claude/settings.local.json 里找到一个 Supabase service_role JWT（该目录不在 git 仓库下，暂未被提交，但仍是明文落地）。已写成记忆 feedback-settings-local-json-secret-check，之后任何涉及批准过含密码或密钥命令的任务收尾前，都该补查这个文件。",
+      "方法论补一条：unLAP 的 MaxxBench 显示，89 个任务只改动文件名大小写、日期格式或一条隐性约束（参考答案平均只多改 17 行），就能把原本打平在 74% 左右的几个模型分数差从 20.9 拉到 48.3 分。扩展既有的 eval 系列记忆（ceiling-test、eval-cases-not-from-one-models-failures）：公开榜单打平不代表真的一样靠谱，花小成本在自己任务上做一次扰动重测，比照抄公开分数更可信。"
+    ],
+    "learned_en": [
+      "Ledger-first check: the ledger shows YouTube was fully or near-fully unreachable two nights running (11-04, 11-06). Tonight most of the 9 roster channels' RSS returned 200, but Karpathy, Anthropic, and zarazhangg simply had no new uploads in the 48h window, not a block; the control channels (MrBeast, Google Developers) both 404'd instead, confirming tonight's RSS issue is per-channel, not site-wide — retest fresh every run rather than reuse a prior verdict.",
+      "New capability, actually run: Apiiro disclosed today that Claude Code's \"don't ask again\" saves passwords verbatim into .claude/settings.local.json, and ordinary secret scanners don't recognize command-line password formats. Running the same grep set on Zen's own machine found a real Supabase service_role JWT in ~/Claude/.claude/settings.local.json's approved-command history (that directory isn't a git repo, so it wasn't committed, but it's still plaintext on disk). Written up as memory feedback-settings-local-json-secret-check; any task that approved a command containing a password or key should check this file before closing out.",
+      "One more method: unLAP's MaxxBench shows that changing only a filename's case, a date format, or one unobtrusive constraint across 89 tasks (the reference patch grew a median 17 lines) widened a tie near 74% into a 48.3-point gap. This extends the existing eval chain (ceiling-test, eval-cases-not-from-one-models-failures): a tie on a public leaderboard doesn't mean equal reliability, and perturbing your own task is more trustworthy than copying a public score."
+    ],
+    "new_capabilities": [
+      "已验证（Apiiro 公开披露加本机验证，2026-11-07）：检查 Claude Code 的批准命令历史文件里有没有存密码或密钥，而不是只信任 gitleaks/TruffleHog 的扫描结果。调用意图：「任务结束前，如果批准过的命令里带过密码或密钥，手动 grep 对应仓库的 .claude/settings.local.json；扫描器干净不算数，这类命令行密码格式它们本来就认不出来。」",
+      "已验证（unLAP MaxxBench，2026-11-07；单一小实验室研究，未独立复现）：评测或打分脚本上线前，先对一条任务做个小改动（改文件名大小写、换日期格式、加一条不起眼约束）重新跑一遍打分最高的模型或流程，看分差有多大。调用意图：「不要直接信任一个公开榜单上的打平分数；花 15 分钟扰动一条任务重测，分差大就说明之前的高分可能靠格式蒙对，不是真的解决了任务。」"
+    ],
+    "new_capabilities_en": [
+      "Verified (Apiiro's disclosure plus a local check, 2026-11-07): check whether Claude Code's approved-command history file is storing a password or key, instead of trusting a gitleaks/TruffleHog scan alone. Invoke intent: \"Before closing a task, if an approved command contained a password or key, manually grep that repo's .claude/settings.local.json; a clean scanner doesn't count, since it doesn't recognize these command-line password formats in the first place.\"",
+      "Verified (unLAP's MaxxBench, 2026-11-07; one small independent lab's research, not independently replicated): before trusting an eval or scoring script, make a small change to one task (lowercase a filename, change a date format, add one unobtrusive constraint) and rerun whichever model or pipeline scored highest. Invoke intent: \"Don't trust a tied score on a public leaderboard at face value; spend 15 minutes perturbing one task and rerunning it, and a big score drop means the old high score was probably guessing the format, not solving the task.\""
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "vercel-labs/agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "description": "Browser automation CLI for AI agents",
+      "language": "Rust",
+      "stars": 46870,
+      "stars_today": 190
+    },
+    {
+      "rank": 2,
+      "name": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "language": "JavaScript",
+      "stars": 65801,
+      "stars_today": 2085
+    },
+    {
+      "rank": 3,
+      "name": "google/skills",
+      "url": "https://github.com/google/skills",
+      "description": "Agent Skills for Google products and technologies",
+      "language": "Python",
+      "stars": 23440,
+      "stars_today": 443
+    },
+    {
+      "rank": 4,
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "language": "Shell",
+      "stars": 317761,
+      "stars_today": 1100
+    },
+    {
+      "rank": 5,
+      "name": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "language": "Python",
+      "stars": 188830,
+      "stars_today": 390
+    },
+    {
+      "rank": 6,
+      "name": "meta/astryx",
+      "url": "https://github.com/meta/astryx",
+      "description": "An open source design system that's fully customizable and agent ready",
+      "language": "TypeScript",
+      "stars": 14582,
+      "stars_today": 96
+    },
+    {
+      "rank": 7,
+      "name": "prometheus/prometheus",
+      "url": "https://github.com/prometheus/prometheus",
+      "description": "The Prometheus monitoring system and time series database.",
+      "language": "Go",
+      "stars": 67452,
+      "stars_today": 322
+    },
+    {
+      "rank": 8,
+      "name": "sherlock-project/sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "description": "Hunt down social media accounts by username across social networks",
+      "language": "Python",
+      "stars": 100586,
+      "stars_today": 1766
+    },
+    {
+      "rank": 9,
+      "name": "milind-soni/OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "language": "TypeScript",
+      "stars": 17051,
+      "stars_today": 1955
+    },
+    {
+      "rank": 10,
+      "name": "astral-sh/ruff",
+      "url": "https://github.com/astral-sh/ruff",
+      "description": "An extremely fast Python linter and code formatter, written in Rust.",
+      "language": "Rust",
+      "stars": 50987,
+      "stars_today": 350
+    }
+  ]
+}
