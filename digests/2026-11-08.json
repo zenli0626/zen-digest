@@ -1,0 +1,261 @@
+{
+  "date": "2026-11-08",
+  "partial": false,
+  "banner": "284B 模型跑进 64GB 内存，无需显卡",
+  "banner_en": "A 284B model runs in 64GB of RAM, no GPU",
+  "image": {
+    "src": "digests/img/2026-11-08.png",
+    "caption": "本期配图：GitHub 为 synchopate/llama-modchip 仓库自动生成的社交卡片。该项目让 284B 参数的 DeepSeek-V4-Flash 在 64GB 纯 CPU 内存上运行，不需要显卡。",
+    "caption_en": "Today's image: GitHub's auto-generated social card for the synchopate/llama-modchip repository, which runs a 284B-parameter DeepSeek-V4-Flash on a pure 64GB CPU with no GPU."
+  },
+  "actions": [
+    {
+      "text": "把你正在跑的 AI 项目或账单拆成两栏：一次性建设成本，和每月经常性的推理、存储、人力成本。花 20 分钟，把过去三个月的账按这两栏重记一遍，再算一个「只算经常性成本」的单位成本。做到的标准，是你手上有一个和对外宣传的总投入分开看的单位经济数字。AI 成本讨论里最常见的混淆，就是把建数据中心的一次性投入和每次推理的经常性成本加成一个吓人的总额。",
+      "text_en": "Split your own AI project or bill into two columns: one-time build cost, and recurring monthly inference, storage, and people cost. Spend 20 minutes re-sorting the last three months into those two columns, then compute a unit cost using only the recurring side. Done means you have a unit-economics number that is separate from the headline total spend. The most common confusion in AI-cost discussions is adding one-time data-center build to per-inference recurring cost and arriving at one scary total.",
+      "source": "Matteo Raso · Hacker News",
+      "source_en": "Matteo Raso · Hacker News",
+      "source_url": "https://matteoraso.github.io/im-not-convinced-the-ai-bubble-exists.html"
+    },
+    {
+      "text": "挑一个你怀疑「太慢」的小工具或函数，让 agent 用两种实现各写一版，用你自己的真实输入各跑 1 万次，记下每行的耗时和产物体积。花 20 分钟。做到的标准，是你能指出慢在哪一行、换实现能省多少，而不是只凭感觉换技术栈。Simon Willison 今天用这个方法给 SQLite 的 parse_number() 做了 C 和 Rust 两版对照，发现 C 版只有 14KB，手写解析后每行 16 到 19 纳秒，比 Rust 版快约一倍。",
+      "text_en": "Pick a small tool or function you suspect is too slow, and have an agent write two implementations; run each 10,000 times on your own real input, and record per-row time and artifact size. Spend 20 minutes. Done means you can point to the line that's slow and say how much a different implementation saves, instead of switching stacks on a hunch. Simon Willison used exactly this method today to compare C and Rust versions of SQLite's parse_number(): the C build was 14KB and, after a hand-written parser, ran at 16 to 19 ns per row, about twice as fast as Rust.",
+      "source": "Simon Willison · 文摘",
+      "source_en": "Simon Willison · Digest",
+      "source_url": "https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚把 agent 的活搬进一个 git 队列，再给自己一个收件箱",
+    "title_en": "Tonight, move your agent work into a git-backed queue and give yourself one inbox",
+    "why": "同时开几个 agent 会话时，最容易丢的不是代码，是「我刚才做到哪、下一步等谁」。Sergey Kuhne 的做法是把工作排成一个放在 git 里的优先队列：每张票是一个 markdown 文件，状态是提交的快照；agent 只处理人标了可以安全构建的票，敏感代码开分支先问；所有需要人判断的事进一个 owner inbox。关键动作是关票，做完一个决定就把它放回队列，让上下文跟着关掉。今晚先搭一个最小版本，不用写完整的自动化。",
+    "why_en": "When you're running several agent sessions at once, what gets lost first isn't the code. It's \"where was I, and whose turn is it next.\" Sergey Kuhne's setup puts the work into a priority queue that lives in git: each ticket is a markdown file, the state is a committed snapshot, the agent only builds tickets a human has marked safe, sensitive code goes on a branch and asks first, and every judgment lands in an owner inbox. The key move is closing the ticket: make one decision, put it back in the queue, and let the context close with it. Tonight, build the smallest version, without the full automation.",
+    "time": "25 分钟",
+    "time_en": "25 minutes",
+    "steps": [
+      "建一个只放队列的 git 仓库：mkdir agent-queue && cd agent-queue && git init",
+      "在仓库里建 tickets/ 目录，每张票一个 markdown 文件。文件头固定四行：status: todo、owner: agent、safe_to_build: yes、one_line: 一句话说明要改什么。人需要判断时把 owner 改成 me；没把握的票把 safe_to_build 写成 no。",
+      "写一个最小收件箱脚本 list-inbox.sh：grep -rl '^owner: me' tickets/ | xargs -r grep -l -E '^status: (review|blocked)'，先只把「等我判断」的票列出来。",
+      "让 agent 每轮只处理 status: todo 且 safe_to_build: yes 的票；做完把 status 改成 review，把改了什么、为什么、跑了哪些测试写回票里；碰敏感代码先开分支并停下来问。",
+      "你每天只打开 list-inbox.sh 的输出，一次处理一张票：读改动和理由，给裁决，把票改回 status: done 并 git commit。做完的标准，是你不再翻终端历史回忆做过什么，队列本身就是记录。"
+    ],
+    "steps_en": [
+      "Create a git repo that holds only the queue: mkdir agent-queue && cd agent-queue && git init",
+      "Create a tickets/ directory, one markdown file per ticket. Use a fixed four-line header: status: todo, owner: agent, safe_to_build: yes, one_line: what needs to change in one sentence. Set owner to me when a human has to decide; set safe_to_build to no when you're not sure.",
+      "Write a minimal inbox script, list-inbox.sh: grep -rl '^owner: me' tickets/ | xargs -r grep -l -E '^status: (review|blocked)' to list only the tickets waiting on your judgment.",
+      "Have the agent work only tickets with status: todo and safe_to_build: yes each cycle. When it finishes, set status to review and write back what changed, why, and which tests ran. On sensitive code, branch first and stop to ask.",
+      "Each day, open only the output of list-inbox.sh and handle one ticket at a time: read the change and the reason, give a verdict, set status back to done, and git commit. Done means you no longer scroll through terminal history to reconstruct what happened; the queue is the record."
+    ],
+    "source": "Sergey Kuhne 的博客（sergeykuhne.com）",
+    "source_en": "Sergey Kuhne's blog (sergeykuhne.com)",
+    "source_url": "https://sergeykuhne.com/blog/fighting-ai-brain-fry"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "284B 的 DeepSeek 跑进 64GB 内存，全程不用显卡",
+          "title_en": "A 284B DeepSeek runs in 64GB of RAM, no GPU at all",
+          "author": "synchopate · Hacker News",
+          "author_en": "synchopate · Hacker News",
+          "likes": 372,
+          "likes_label": "HN 分",
+          "url": "https://github.com/synchopate/llama-modchip",
+          "summary": "这个项目把 DeepSeek-V4-Flash 压到 1.71 bpw，模型文件 56.56 GiB，在 256K 上下文下峰值内存 57.61 GiB，一台 16 核 Zen 5、64GB 内存的机器就能跑，不需要显卡。作者自测预填充 44.36 tok/s，解码 9.1 到 14.7 tok/s；同一个项目还提供 30B 的 Nemotron-3.5-A3B 版本，模型 14.35 GiB，3.75 bpw，16 到 32GB 内存的笔记本就能跑。仓库 10 月 29 日才建，用的是 Apache-2.0，当前版本 v2.4.0。它没有走标准的 llama.cpp 路线，自己改了 64 块大小的量化格式和 DeepSeek 的算子，所以原版 llama.cpp、Ollama、LM Studio 会报 unknown tensor type 40，要用仓库自带的预编译二进制。",
+          "summary_en": "The project squeezes DeepSeek-V4-Flash down to 1.71 bits per weight: a 56.56 GiB model file with a 57.61 GiB peak memory footprint at 256K context, running on a 16-core Zen 5 machine with 64GB of RAM and no GPU. The author's own measurements are 44.36 tok/s prefill and 9.1 to 14.7 tok/s decode. The same repo also ships a 30B Nemotron-3.5-A3B variant at 14.35 GiB and 3.75 bits per weight, which runs on a 16 to 32GB laptop. The repo was created on October 29, is Apache-2.0, and is at v2.4.0. It doesn't use stock llama.cpp: it adds a custom 64-block quantization format and DeepSeek-specific kernels, so upstream llama.cpp, Ollama, and LM Studio reject the files with \"unknown tensor type 40.\" You need the bundled prebuilt binary.",
+          "why": "这条的真正变化不是「又一个本地模型」，是把 284B 的 MoE 塞进了普通 CPU 内存。MoE 每次只激活 13.17B 参数，加上 1.71 bpw 的极端量化，才换来了 64GB 这个门槛。代价是质量。作者没有给出和全精度版本在同一批任务上的对照，1.71 bpw 对长上下文和代码任务的影响还是未知数。对做产品的人，这打开了一种选项：把对成本敏感、对质量要求不极端的活，放到本地或离线跑，按 token 计费的那部分账单可以砍掉。",
+          "why_en": "The real change here isn't \"another local model.\" It's that a 284B mixture-of-experts model now fits in ordinary CPU memory. Only 13.17B parameters activate per token, and 1.71 bits per weight gets it under the 64GB line. The cost is quality: the author gives no comparison against the full-precision model on the same tasks, so the effect of 1.71 bpw on long-context and coding work is still unknown. For product builders, it opens an option: move cost-sensitive work that doesn't need top-tier quality onto a local or offline machine, and cut the per-token bill for that slice.",
+          "flag": "所有速度数字都是作者在一台 16 核 Zen 5、64GB 内存机器上的自测，没有第三方复现；1.71 bpw 对输出质量的影响没有对照评测；项目 10 月 29 日才建仓，代码还很新。",
+          "flag_en": "All speed figures are the author's own benchmarks on one 16-core Zen 5, 64GB machine, not independently reproduced; there is no quality comparison for the 1.71-bpw quantization; the repo was created on October 29 and the code is still very new."
+        },
+        {
+          "title": "Anthropic 把 agent 记忆拆成三件事：捕获、巩固、判断该存什么",
+          "title_en": "Anthropic splits agent memory into capture, consolidation, and judgment",
+          "author": "Anthropic Engineering · Hacker News",
+          "author_en": "Anthropic Engineering · Hacker News",
+          "likes": 177,
+          "likes_label": "HN 分",
+          "url": "https://www.anthropic.com/research/components-of-agent-memory",
+          "summary": "Anthropic 把 agent 记忆分成几块：会话当下捕获重要事件；离线时用「做梦」整理日志、改错、写笔记；再判断什么值得存。最后一块最容易被忽略。在 CL-Bench 1.0 的数据库问答任务里,Claude Sonnet 4.6 只写下一堆没验证的猜测；Opus 4.7 把笔记合并成一份参考文档,标出哪些事实查过、哪些还没；Sonnet 5 在评分器确认后才标已确认,答错就写更正；Opus 5 第一个把闭环走完,大多数条目都带一条规则、它是怎么知道这条规则成立的,以及踩过的坑。Pokémon Red 的对照更直接。Sonnet 3.7 写了 413 个文件、225 个文件夹,只拿到 1 枚徽章；Fable 5 只写了 9 个文件、2 个文件夹,外加一个 global.md,拿到 4 枚。差别不在存得多,在于只存屏幕上读不到的策略和规则。",
+          "summary_en": "Anthropic breaks agent memory into pieces: capture salient events during a session, use \"dreaming\" offline to reorganize logs, correct mistakes, and write notes, and judge what is worth saving. That last piece is the easiest to skip. On a CL-Bench 1.0 database Q&A task, Claude Sonnet 4.6 only wrote down a pile of untested guesses; Opus 4.7 consolidated its notes into one reference document and marked which facts it had checked and which it hadn't; Sonnet 5 marked an answer confirmed only after the grader checked it, and wrote a correction when it was wrong; Opus 5 was the first to close the loop, with most entries carrying a rule, how it knew the rule was true, and the traps it had hit. The Pokémon Red comparison is blunter. Sonnet 3.7 wrote 413 files across 225 folders and earned one badge; Fable 5 wrote nine files in two folders plus a global.md and earned four. The difference isn't storing more, it's storing only the strategy and rules you can't read off the screen.",
+          "why": "这条的价值不在又一套记忆架构,而在于给「记忆好坏」一把可检查的尺子:一条记忆该不该留,看它是不是环境每轮都会告诉你的东西。余额、当前位置、当前文件名,每轮都能重读,存下来只会过时；策略、计划、验证过的规则,不写就消失。任何自己维护 CLAUDE.md 或记忆文件的人,都能直接用上。先删掉那些复述环境状态的条目,再给留下的每条补上「我是怎么知道它成立的」。",
+          "why_en": "The value here isn't another memory architecture. It's a checkable test for whether a memory entry deserves to exist: would the environment tell you this again next turn? A balance, a current location, a current filename can all be re-read every turn, so storing them only goes stale; a strategy, a plan, a validated rule disappears if you don't write it down. That applies directly to anyone maintaining a CLAUDE.md or a memory folder: first delete the entries that restate environment state, then add \"how I know this is true\" to each one that survives.",
+          "flag": "厂商自测,没有外部复现；CL-Bench 1.0 是窄任务,Pokémon 是游戏；模型代际对比用的是 Anthropic 自家模型,不能直接外推到别的模型。",
+          "flag_en": "Vendor-run research with no external replication; CL-Bench 1.0 is a narrow task and Pokémon is a game; the model-generation comparison uses Anthropic's own models, so it doesn't transfer directly to other model families."
+        },
+        {
+          "title": "四种 agent 记忆格式互不相认，有人提议照 OpenTelemetry 定个规范",
+          "title_en": "Four agent-memory formats can't read each other; a proposal borrows OpenTelemetry's playbook",
+          "author": "Mads Thines（LoreKit）· Hacker News",
+          "author_en": "Mads Thines (LoreKit) · Hacker News",
+          "likes": 175,
+          "likes_label": "HN 分",
+          "url": "https://www.lorekit.io/blog/open-agent-memory-format",
+          "summary": "作者把现在常见的记忆存放方式归成四类:仓库里的 AGENTS.md 或 CLAUDE.md( Cursor 的 .cursor/rules 也算这一类)、agent 通过 Anthropic 记忆工具写到 /memories 的文件、GitHub Copilot 存在仓库侧的事实、memory MCP 服务器维护的 JSONL 知识图谱。他说这四类互相读不了:CI 里的 agent 学到一条经验,编辑器的 agent 拿不到,换一个工具又要重学。他提出的办法不是再做一个记忆工具,而是照 OpenTelemetry 的四层结构定一份共享规范:数据模型、语义约定、传输协议、参考实现；厂商在规范之上竞争存储、查询和分析。他也承认自己维护的 LoreKit 就是这类工具之一,这个提案不是「LoreKit 已经解决了」,而且 MCP 和 AGENTS.md 现在都归 Linux 基金会的 Agentic AI Foundation。",
+          "summary_en": "The author groups the common ways agent memory gets stored today into four families: an AGENTS.md or CLAUDE.md in the repo (Cursor's .cursor/rules belongs here too), files an agent writes to /memories through Anthropic's memory tool, facts GitHub Copilot keeps on its side, and a JSONL knowledge graph maintained by a memory MCP server. These families can't read each other, he argues: a lesson a CI agent learns never reaches the editor agent, and the next tool starts over. His fix isn't another memory tool. It's a shared spec modeled on OpenTelemetry's four layers: a data model, semantic conventions, a transport protocol, and reference implementations, with vendors competing above that on storage, querying, and analysis. He discloses that LoreKit, the tool he maintains, is one of these tools, and says this isn't a claim that LoreKit has solved it; MCP and AGENTS.md both now sit under the Linux Foundation's Agentic AI Foundation.",
+          "why": "如果你在做 agent 产品,这条给的是一个不太舒服的判断:记忆层本身很难成为护城河,因为每家公司都在写自己的格式,最后总会有人来定标准。真正能留下的是规范之上的东西,比如检索质量、权限、审计、和具体工作流的绑定。反过来,如果你现在把团队的经验都锁在某个工具的私有记忆里,迁移成本会随着条目变多而上涨。先问一句:这些记忆能不能导出成一份别的工具也读得懂的文本?",
+          "why_en": "For anyone building an agent product, this offers an uncomfortable read: the memory layer itself is a weak moat, because every company is writing its own format and someone eventually sets a standard. What survives is what sits above the spec: retrieval quality, permissions, audit trails, and ties to a specific workflow. Conversely, if your team's lessons are locked inside one tool's private memory, the migration cost grows with every entry. Ask first whether those memories can be exported as text another tool can read.",
+          "flag": "作者是 LoreKit 的维护者,提案有立场,但文中主动披露了；共享规范目前只是提案,没有厂商采纳；四种格式的描述是 2026 年末的快照,变化很快。",
+          "flag_en": "The author maintains LoreKit, so the proposal has a stake, which he discloses in the post; the shared spec is still only a proposal with no vendor adoption; the four-format snapshot is late-2026 and changing fast."
+        },
+        {
+          "title": "「AI 泡沫」的反方：大部分支出是一次性基建，不是经常性成本",
+          "title_en": "The AI-bubble counterargument: most of the spend is one-off capex, not opex",
+          "author": "Matteo Raso · Hacker News",
+          "author_en": "Matteo Raso · Hacker News",
+          "likes": 56,
+          "likes_label": "HN 分",
+          "url": "https://matteoraso.github.io/im-not-convinced-the-ai-bubble-exists.html",
+          "summary": "作者认为「AI 是泡沫」的论证有一个前提没被说清:现在这一轮支出必须一直维持下去。他引用的数字是,AI 公司已经承诺至少 3 万亿美元,已经花掉约 1.9 万亿美元,合计约 5 万亿美元；但这些钱主要花在一次性建数据中心,不是每年都要重付的运营成本。建完之后,支出会掉下来。他还引用 Anthropic 的 S-1,说公司每花 1 美元算力能换回 2.08 美元收入,而且已经开始覆盖算力和基建的合计投入。文章承认 AI 公司的债务和支出通过复杂工具处理,外人很难看清真实数字,这一点本身对泡沫论有利；他的反方论证是,如果真到了紧要关头,公司可以立刻停掉免费额度、暂停昂贵的研究。",
+          "summary_en": "The author argues that the \"AI is a bubble\" case rests on an unstated premise: that the current level of spending has to keep going. He cites figures showing AI companies have committed at least $3 trillion and have already spent about $1.9 trillion, roughly $5 trillion in total, but says most of that goes into one-off data-center construction rather than recurring operating costs. Once the buildout is done, the spending falls. He also cites Anthropic's S-1 as saying the company brings in $2.08 of revenue for every $1 of compute, and has started covering its combined compute and infrastructure investment. The post concedes that AI companies' debt and spending run through complex vehicles, making the real numbers hard to see from outside, which is itself a point for the bubble side; his counter is that in a pinch, companies can immediately cut free tiers and pause expensive research.",
+          "why": "这条有用的地方不在结论,而在把「资本开支」和「运营开支」分开。很多关于 AI 成本的讨论把建数据中心的一次性投入和每次推理的经常性成本混在一起,得出一个吓人的总额。对做产品的人,这个区分可以直接用在自己的账上:一次性建设花了多少,每月的推理和存储花多少,两栏分开记,才知道单位经济到底长什么样。作者对 S-1 的读法是他的解释,不是原文引用,看到 2.08 这个数字时要把这层加上。",
+          "why_en": "The useful part isn't the conclusion; it's separating capex from opex. A lot of AI-cost discussion mixes the one-time data-center build with the recurring cost of each inference and arrives at one scary total. For product builders, the distinction transfers directly to your own books: record one-time build cost and monthly inference and storage cost in two separate columns, and only then do you know what unit economics actually look like. The author's reading of the S-1 is his interpretation, not a verbatim quote, so put that caveat on the $2.08 figure.",
+          "flag": "3 万亿、1.9 万亿、5 万亿都是作者引用或估算,未在此独立核实；2.08 美元是作者对 Anthropic S-1 的解读；文章没有处理数据中心折旧、更新周期和产能是否能填满,这几点仍是泡沫论的核心。",
+          "flag_en": "The $3T, $1.9T, and $5T figures are the author's citations or estimates, not independently verified here; the $2.08 number is his reading of Anthropic's S-1; the post doesn't address data-center depreciation, refresh cycles, or whether the capacity gets filled, which remain the core of the bubble case."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 5,
+      "items": [
+        {
+          "title": "同一个 parse_number()，C 版 14KB、快过 Rust，差在一次手写解析",
+          "title_en": "The same parse_number(): C is 14KB and beats Rust, thanks to one hand-written parser",
+          "author": "Simon Willison · 文摘",
+          "author_en": "Simon Willison · Digest",
+          "url": "https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/",
+          "summary": "Simon Willison 想给 SQLite 加一个 parse_number() 函数，把 -$1,234.56 或 12.5% 这样的字符串转成能求和、能排序的数字。他让 Claude Opus 5.5 分别用 C 和 Rust 写扩展，先得到一个反直觉的结果：Rust 版更快，但体积大得多，用 rusqlite 是 321KB，用 sqlite-loadable-rs 是 298KB，C 版只有 14KB。原因是 C 依赖的 strtod() 在解析小数时慢。他再让 Claude 手写一个 C 的快速路径，结果在 200 万行上每行的净成本，新 C 版在混合数据、纯整数、纯小数三类上分别是 19、16、18 纳秒，rusqlite 是 46、36、55 纳秒，sqlite-loadable-rs 是 41、32、47 纳秒。四版在 800 万次模糊测试里结果一致。整套调查是他在遛狗时起的念头，用普通 Claude 聊天完成，最后让 Claude 把过程写成 simonw/research 里的研究报告。",
+          "summary_en": "Simon Willison wanted a parse_number() function for SQLite that turns strings like -$1,234.56 or 12.5% into numbers you can sum and sort. He had Claude Opus 5.5 write the extension in C and in Rust, and the first result was counterintuitive: the Rust version was faster but much larger, 321KB with rusqlite and 298KB with sqlite-loadable-rs, versus 14KB for C. The reason C was slower on decimals is that it relied on strtod(). He then had Claude write a hand-rolled C fast path. Over 2 million rows, the new C version's net cost per row was 19, 16, and 18 ns on mixed, integer-only, and decimal-only data; rusqlite was 46, 36, and 55 ns; sqlite-loadable-rs was 41, 32, and 47 ns. All four versions matched across 8 million fuzz checks. The whole investigation started while he was walking the dog, ran in ordinary Claude chat, and ended with Claude writing it up as a research report in simonw/research.",
+          "why": "这条值得看的不是 C 赢了 Rust，而是把一个模糊的性能问题变成了可验证的小实验：先写两个实现，量体积和速度，发现反直觉的地方，再针对那一处改，最后用模糊测试确认行为一致。整个过程没有大工程，一个下午的对话就能跑完。对做产品的人，这是一种可以直接复用的方法。遇到「这个库是不是太慢」的问题，别急着换技术栈，先让 agent 写出两个最小实现，用你自己的真实输入量一遍。",
+          "why_en": "What's worth reading here isn't that C beat Rust. It's the method: turn a vague performance question into a small falsifiable experiment. Write two implementations, measure both size and speed, find the counterintuitive part, fix that one part, then fuzz to confirm the behavior still matches. No big project is needed; a conversation and an afternoon can do it. For product builders, it's a directly reusable habit: when you wonder whether a library is too slow, don't switch stacks first. Have an agent write two minimal implementations and measure them on your own real input.",
+          "flag": "单机、单作者的一次基准，没有第三方复现；「快一倍」随数据形状变化，纯小数上差距最大；报告由 Claude 整理，数字来自作者自己的运行。",
+          "flag_en": "A one-author benchmark on one machine, not independently replicated; the \"twice as fast\" varies with the data shape, with the biggest gap on decimal-heavy rows; the write-up was assembled by Claude, with the numbers coming from the author's own runs."
+        },
+        {
+          "title": "斯坦福这门课把「去年的作业」改成给开源项目交补丁，让维护者来审",
+          "title_en": "Stanford's new AI-engineering course replaced last year's homework with patches to open-source projects, reviewed by maintainers",
+          "author": "Latent Space · 文摘",
+          "author_en": "Latent Space · Digest",
+          "url": "https://latent.space/p/cs146s/",
+          "summary": "斯坦福的 CS146S「现代软件开发者」上到第二轮时，Mihail Eric 发现去年的九次作业加一个毕设，很多已经能被学生用一个 prompt 做完。他问了一屋子的斯坦福大二、大三学生怎么写代码，所有人都在用 agent。于是这次作业改成给开源项目贡献补丁，由仓库维护者本人来审。这个改动把作业的重点从「能不能实现」挪到了「这个改动是不是维护者想要的、代码为什么这样跑、还会破坏什么」，也就是一个初级工程师跟资深工程师对话时真正要学的东西。节目里还提到 Geoffrey Litt 的 explain-diff 技能。把 agent 写的 diff 变成可视化的讲解，再反过来考你，哪一处你必须重新打开代码才能回答。Monaco 那边的做法是「买来学，自己建来留」：代码审查产品评估后留下 Devin，但 agent 的工作空间自己建，因为要跑产品、复现故障、测补丁，细节取决于自家云怎么搭。他们做了一个 Hal，工程师可以问它什么坏了、让它开 PR，销售可以问同一个系统产品怎么工作，一个答案是一个可审的改动，另一个是一段能给客户的解释。节目引用 Faros 的研究说，AI 采用率高的团队合并的 PR 多了 98%，但审查时间长了 91%，瓶颈挪到了代码审查。",
+          "summary_en": "By the second run of Stanford's CS146S, \"The Modern Software Developer,\" Mihail Eric found that many of last year's nine assignments and capstone could now be one-shotted by students. He asked a room of Stanford sophomores and juniors how they coded; everyone was already using an agent. So this time, part of the homework is contributing a patch to an open-source project, reviewed by the repo's own maintainer. That moves the assignment from \"can you implement it\" to \"does the maintainer want it, why does the code behave this way, and what else might break,\" which is the conversation where a junior engineer actually learns from a senior one. The episode also points to Geoffrey Litt's explain-diff skill: turn an agent-written diff into a visual walkthrough, then quiz yourself on which question you have to reopen the code to answer. At Monaco, the rule is \"buy to learn, build to keep\": the team evaluated code-review products and kept Devin, but built its own agent workspaces, because an agent needs somewhere to run the product, reproduce a failure, and test the patch, and the details depend on how the company's cloud is set up. They built Hal: an engineer can ask what broke and have it open a PR, while a salesperson can ask the same system how the product works; one answer is a reviewable change, the other is an explanation you can give a customer. The episode cites a Faros study finding that teams with high AI adoption merged 98% more PRs while review time grew 91%, moving the bottleneck to code review.",
+          "why": "这条给了一个判断「哪些活可以交给 agent」的具体分界线：能一次写完的是实现，不能交的是「维护者想不想要、为什么这样跑、还会破坏什么」这三问。对带团队的人，这比一句「AI 会写代码了」有用。面试和作业都该往这三问上挪，否则招进来的人只会给 agent 派活，不会判断活该不该做。对做产品的人，Monaco 的「买来学、自己建来留」也是一条现成的取舍标准，通用的、能快速验证的买，和自家云、自家流程绑死的自己建。",
+          "why_en": "This gives a concrete line for deciding what to hand to an agent: implementation can be one-shotted, but the maintainer's wanting it, why the code behaves this way, and what else it breaks cannot. For people managing teams, that's more useful than \"AI can write code now\": interviews and assignments should move toward those three questions, or the people you hire will only know how to assign work to agents, not how to judge whether the work should exist. For product builders, Monaco's \"buy to learn, build to keep\" is a ready-made rule: buy what's generic and quick to validate, build what's tied to your own cloud and workflow.",
+          "flag": "这是访谈，不是对照实验；Faros 的 98% 和 91% 来自节目引用，未在此独立核对；「买来学、自己建来留」是 Monaco 一家的选择，不代表通用结论。",
+          "flag_en": "An interview, not a controlled experiment; the Faros 98% and 91% figures come from the episode's citation and weren't independently checked here; \"buy to learn, build to keep\" is Monaco's own choice, not a general conclusion."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天这几条放在一起，像是在划同一条线：模型本身越来越像可以采购的部件，真正决定用得好不好的，是它外面那圈你控制的边界。模型能不能在你的机器上跑，记忆存在谁的文件里、能不能带走，账单里哪些是一次性投入、哪些会每月重来，哪些判断必须留给人，这些都不在模型的参数里。连记忆这种最像模型能力的东西，今天讨论的也是格式、导出和谁来定标准。能力继续变便宜，边界不会自动变清楚。",
+  "meta_read_en": "Put today's stories together and they draw the same line: the model itself is increasingly a part you can buy, and what determines whether it works well is the ring of boundaries you control around it. Whether the model runs on your own machine, whose files the memory sits in and whether you can take it with you, which costs are one-time and which come back every month, which judgments stay with a human: none of that lives in the model's parameters. Even memory, the layer that looks most like a model capability, is being discussed today as a question of formats, exports, and who sets the standard. Capability keeps getting cheaper; the boundaries don't get clearer on their own.",
+  "ota": {
+    "learned": [
+      "观察（云端）：YouTube 这条线今晚完全不可达。9 个频道的 RSS 全部返回 404，对 watch URL 跑 yt-dlp 直接撞上「Sign in to confirm you're not a bot」。按本环境的规则记录 0 条 YouTube，没有换客户端或代理重试，也没有写任何「已看」摘要。",
+      "观察：Anthropic 把 agent 记忆拆成捕获、离线巩固（dreaming）和「判断什么值得存」三块，并用 CL-Bench 1.0 的数据库问答和 Pokémon Red 做对照。最有用的不是架构名，是那条判断标准。环境每轮会重新告诉你的状态（余额、位置、当前文件名）不要写进长期记忆，只写不写就会消失的策略、计划和验证过的规则。",
+      "观察：LoreKit 作者将现有记忆存放方式归为四类，指出彼此不可互读，提议参照 OpenTelemetry 的四层结构制定共享规范。作者本人是 LoreKit 维护者，文中已主动披露；该提案尚无厂商采纳。MCP 与 AGENTS.md 目前归 Linux 基金会的 Agentic AI Foundation 管理。",
+      "已实施（云端）：将「离线巩固 + 只存不可重读的判断」作为 proposed (cloud) 升级写入 ota-ledger.md，待下一次笔记本会话采纳。本环境无法修改 ~/.claude，故未创建或修改 skill/memory。",
+      "观察（云端）：按 America/New_York 时区计算，今天为 2026-11-08，运行时 UTC 已到 11-09。"
+    ],
+    "learned_en": [
+      "Observation (cloud): YouTube was completely unreachable tonight. All nine roster channels' RSS returned 404, and a yt-dlp run against a watch URL hit \"Sign in to confirm you're not a bot.\" Per this environment's rules I recorded zero YouTube items, did not switch clients or proxies, and wrote no \"watched it\" summaries.",
+      "Observation: Anthropic split agent memory into capture, offline consolidation (dreaming), and judging what is worth saving, and tested it on a CL-Bench 1.0 database Q&A task and Pokémon Red. The useful part isn't the architecture's name; it's the test: don't write environment state that will be re-read next turn (a balance, a location, the current filename) into long-term memory, and do write the strategy, plans, and validated rules that disappear if you don't.",
+      "Observation: LoreKit's author groups today's memory storage into four families, shows they can't read each other, and proposes a shared spec modeled on OpenTelemetry's four layers. He discloses that he maintains LoreKit; no vendor has adopted the proposal yet, and MCP and AGENTS.md currently sit under the Linux Foundation's Agentic AI Foundation.",
+      "Implemented (cloud): the \"offline consolidation plus store only what can't be re-read\" upgrade is written into ota-ledger.md as a proposed (cloud) entry for the next laptop session. This environment cannot edit ~/.claude, so no skill or memory was created or changed.",
+      "Observation (cloud): by America/New_York the issue date is 2026-11-08, while the runner's UTC clock had already rolled to 11-09."
+    ],
+    "new_capabilities": [
+      "已验证（Anthropic 研究，2026-11-06；厂商自测，未独立复现）：记忆巩固的取舍标准。只把环境不会重新告知、必须自行推算的策略、计划和验证过的规则写入长期记忆；能每轮从文件、屏幕或工具输出重读的状态（余额、位置、当前文件名）不要存，否则记忆会随环境变化而过时，检索时还需分辨哪条已失效。调用意图：「每轮结束前，先问这条记忆下一轮能否直接重读；能重读的删掉，不能重读的写成『规则 + 我是怎么知道它成立的 + 踩过的坑』。」落地状态：已写入 ota-ledger.md 的 proposed (cloud) 条目，待下一次笔记本会话写入 daily-digest 的记忆维护流程。"
+    ],
+    "new_capabilities_en": [
+      "Verified (Anthropic research, 2026-11-06; vendor-run, not independently replicated): a test for memory consolidation. Write into long-term memory only the strategy, plans, and validated rules that the environment won't tell you again and that you had to work out; do not store state you can re-read every turn from a file, screen, or tool output (a balance, a location, the current filename), because that memory goes stale as the environment changes and you then spend time working out which entries no longer hold. Invoke intent: \"Before closing a turn, ask whether this memory can be re-read next turn; delete it if it can, and if it can't, write it as 'the rule + how I know it's true + the traps I hit.'\" Status: written into ota-ledger.md as a proposed (cloud) entry, pending adoption into the daily-digest memory-maintenance routine at the next laptop session."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "sherlock-project/sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "description": "Hunt down social media accounts by username across social networks",
+      "language": "Python",
+      "stars": 103971,
+      "stars_today": 2373
+    },
+    {
+      "rank": 2,
+      "name": "dsx-ai-factory/nvke",
+      "url": "https://github.com/dsx-ai-factory/nvke",
+      "description": "NVIDIA Kubernetes Engine (NVKE). A management plane for GPU Kubernetes on bare metal.",
+      "language": "Go",
+      "stars": 887,
+      "stars_today": 345
+    },
+    {
+      "rank": 3,
+      "name": "milind-soni/OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "language": "TypeScript",
+      "stars": 18425,
+      "stars_today": 1439
+    },
+    {
+      "rank": 4,
+      "name": "anthropics/claude-quickstarts",
+      "url": "https://github.com/anthropics/claude-quickstarts",
+      "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+      "language": "Python",
+      "stars": 19488,
+      "stars_today": 32
+    },
+    {
+      "rank": 5,
+      "name": "vercel-labs/agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "description": "Browser automation CLI for AI agents",
+      "language": "Rust",
+      "stars": 47716,
+      "stars_today": 815
+    },
+    {
+      "rank": 6,
+      "name": "meta/astryx",
+      "url": "https://github.com/meta/astryx",
+      "description": "An open source design system that's fully customizable and agent ready",
+      "language": "TypeScript",
+      "stars": 17089,
+      "stars_today": 875
+    },
+    {
+      "rank": 7,
+      "name": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "language": "Python",
+      "stars": 189744,
+      "stars_today": 792
+    },
+    {
+      "rank": 8,
+      "name": "google-deepmind/mujoco",
+      "url": "https://github.com/google-deepmind/mujoco",
+      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+      "language": "C++",
+      "stars": 16469,
+      "stars_today": 41
+    },
+    {
+      "rank": 9,
+      "name": "ranxianglei/billion-context",
+      "url": "https://github.com/ranxianglei/billion-context",
+      "description": "上下文压缩插件，面向长达数月的单次会话（数十亿 token）、小上下文窗口（100K 上下文足够）及节省 token（token 用量降至五分之一）。billion-context is all you need",
+      "language": "TypeScript",
+      "stars": 5235,
+      "stars_today": 460
+    }
+  ]
+}
