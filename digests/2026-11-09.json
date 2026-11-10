@@ -1,0 +1,316 @@
+{
+  "date": "2026-11-09",
+  "partial": false,
+  "banner": "高盛收回交易员的 Claude Code 权限",
+  "banner_en": "Goldman pulls Claude Code from traders",
+  "image": {
+    "src": "digests/img/2026-11-09.png",
+    "caption": "本期配图：State of AI 报道配图，原文标题为《高盛正把 Claude Code 从银行家和交易员手中收回》。",
+    "caption_en": "Today's image: State of AI's own illustration for its report, headlined \"Goldman Sachs Is Pulling Claude Code From Its Bankers and Traders.\""
+  },
+  "actions": [
+    {
+      "text": "打开你自己正在运行的一个代码库，花 10 分钟搜一遍最近改过的几个文件，看有没有同一个逻辑在两处以上重复实现。做到的标准是你能列出至少一处重复，或者确认没有。今晚这条 Reddit 帖子里最具体的抱怨，就是同一个 helper 函数在四个地方被重复写，这是 agent 编程最容易悄悄累积的债。",
+      "text_en": "Open a codebase you're actively running and spend 10 minutes checking the files you've changed recently for the same logic reimplemented in two or more places. Done means you can name at least one duplicate, or confirm there isn't one. Tonight's Reddit thread's most concrete complaint was the same helper function rewritten in four places, exactly the kind of debt that quietly compounds under agent-driven coding.",
+      "source": "u/thelifeline（r/ClaudeCode）· 经 Hacker News",
+      "source_en": "u/thelifeline (r/ClaudeCode) · via Hacker News",
+      "source_url": "https://www.reddit.com/r/ClaudeCode/comments/1xq2n3t/a_year_after_the_100_ai_mandate_nobody/"
+    },
+    {
+      "text": "拿 Robinhood 这套三层框架照一下你自己正在用 agent 处理的一类重复性工作：哪些决定属于“涉敏感数据的授权”“改变业务含义的迁移”“agent 自己说不准的判断”这三类，必须留给人。花 15 分钟列出来，检查你现在的流程是不是真的把这三类挡在了 agent 能自己拍板的范围之外，而不是嘴上说说。",
+      "text_en": "Hold Robinhood's three-category framework up against one recurring type of agent-handled work you already run: which decisions fall under sensitive-data grants, migrations that change business meaning, or anything the agent isn't confident about, and must stay with a human. Spend 15 minutes listing them, and check whether your current process actually keeps those three categories out of the agent's own authority, not just in theory.",
+      "source": "Jas（Robinhood 数据平台）· AI Engineer 大会",
+      "source_en": "Jas (Robinhood data platform) · AI Engineer",
+      "source_url": "https://www.youtube.com/watch?v=MQiojLnK-E0"
+    },
+    {
+      "text": "打开你自己账号里连了 AI 助手的 app 清单（Gemini 的 Connected Apps，或任何类似设置），花 10 分钟看一遍哪些 app 连着，里面有没有含机密或敏感信息的内容。如果有，断开或者换一个不放机密信息的账号连。做到的标准，是你明确知道自己到底连了什么，而不是“应该没连什么重要的”。",
+      "text_en": "Open the list of apps connected to any AI assistant on your own accounts (Gemini's Connected Apps, or an equivalent setting) and spend 10 minutes checking what's connected and whether any of it holds confidential or sensitive content. If it does, disconnect it or move it to an account that doesn't carry anything sensitive. Done means you actually know what's connected, not that you assume nothing important is.",
+      "source": "thisisme6598 · Hacker News",
+      "source_en": "thisisme6598 · Hacker News",
+      "source_url": "https://github.com/thisisme6598/gemini_files/"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚把一个真实任务交给 OpenRouter 的 Auto Code 路由",
+    "title_en": "Tonight, run one real task through OpenRouter's Auto Code router",
+    "why": "你现在大概是手动指定用哪个模型做编程任务。OpenRouter 新出的 Auto Code 路由会自己判断任务类型、难度、要不要看代码库，再在价格、服务商健康度、缓存状态里选一个模型，换模型前还会先算值不值得丢掉已有的 prompt 缓存。公测里它在五个基准上和 Opus 5.5 打平，但每个任务成本低 74%。今晚拿一个你本来就要手动跑的真实编程任务试一次，自己记成本和结果，不要只信这个 74% 的数字。",
+    "why_en": "Right now you probably hand-pick which model handles a coding task. OpenRouter's new Auto Code router judges task type, difficulty, and whether it needs codebase context itself, then picks a model weighing price, provider health, and cache state, checking first whether switching is even worth losing the existing prompt cache. In beta it matched Opus 5.5 on five benchmarks at 74% less cost. Tonight, run one real coding task you'd otherwise hand-route through it, and record the cost and result yourself. Don't just take the 74% number on faith.",
+    "time": "15 分钟",
+    "time_en": "15 minutes",
+    "steps": [
+      "去 openrouter.ai 注册或登录，拿一个 API key（如果你还没有）。",
+      "挑一个你今晚本来就要做的真实编程任务，不要专门造一个简单任务去测。",
+      "用 curl 发一个请求，把 model 字段写成 \"openrouter/auto-code\"：curl https://openrouter.ai/api/v1/chat/completions -H \"Authorization: Bearer $OPENROUTER_API_KEY\" -H \"Content-Type: application/json\" -d '{\"model\": \"openrouter/auto-code\", \"messages\": [{\"role\": \"user\", \"content\": \"<你的真实任务>\"}]}'",
+      "看返回里实际选用的是哪个模型，记下这次的 token 用量和你自己判断的输出质量。",
+      "拿你平时手动选的模型跑同一个任务，对比成本和结果，把两次的数字写下来。做完的标准，是你手上有一组真实对比，不是只信官方的 74%。"
+    ],
+    "steps_en": [
+      "Sign up or log in at openrouter.ai and get an API key if you don't have one.",
+      "Pick one real coding task you'd be doing tonight anyway. Don't invent an easy test task.",
+      "Send a request with curl, setting model to \"openrouter/auto-code\": curl https://openrouter.ai/api/v1/chat/completions -H \"Authorization: Bearer $OPENROUTER_API_KEY\" -H \"Content-Type: application/json\" -d '{\"model\": \"openrouter/auto-code\", \"messages\": [{\"role\": \"user\", \"content\": \"<your real task>\"}]}'",
+      "Check which model it actually picked in the response, and note token usage and your own judgment of output quality.",
+      "Run the same task through whatever model you'd normally hand-pick, and compare cost and result. Done means you have your own real comparison, not just the vendor's 74% claim."
+    ],
+    "source": "OpenRouter 官方公告",
+    "source_en": "OpenRouter's own announcement",
+    "source_url": "https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "Robinhood的数据PR，六成不用人工审",
+          "title_en": "60% of Robinhood's data PRs now merge with no human review",
+          "author": "Jas（Robinhood 数据平台）· AI Engineer 大会",
+          "author_en": "Jas (Robinhood data platform) · AI Engineer",
+          "url": "https://www.youtube.com/watch?v=MQiojLnK-E0",
+          "summary": "Robinhood 给数据管道的 PR 评审搭了三层。脚本先查事实：schema 注册表、血缘关系、权限标签、性能有没有退步。agent 接着读代码，找脚本看不到的风险，比如一个下游 job 的血缘根本没记录。人只保留三类决定：涉及敏感数据的授权、改变业务含义的迁移、agent 自己说不准的判断。到 8 月 31 日，六成 PR 不用人审，人工评审量降了 75%，每月省 132 小时，事故率降了三成，漏判率大约 2%。agent 从不对那三类决定拍板，永远只建议。",
+          "summary_en": "Robinhood built a three-layer reviewer for its data-pipeline PRs. Scripts check facts first: schema registry, lineage, permission tags, performance regressions. An agent then reads the code for risks the scripts can't see, like a downstream job whose lineage was never recorded. Humans keep exactly three categories: sensitive-data grants, migrations that change business meaning, and anything the agent itself isn't confident about. As of August 31, 60% of PRs merge with no human review, manual review time is down 75%, the team saves 132 hours a month, incidents are down 30%, and the miss rate is about 2%. The agent never rules on those three categories; it only recommends.",
+          "why": "这是“X% 自动化”里少见把分母说清楚的例子。不是泛泛的 AI 自动化，是限定在数据管道 PR 这一类活，而且明确留了三类必须人审的口子，不是裸的自动化率。数字是 Robinhood 自测，没有第三方审计。",
+          "why_en": "A rare case where an 'X% automated' claim actually names its denominator. It's scoped to one task class, data-pipeline PRs, with three hard-coded categories that always go to a human, not a blanket automation rate. The numbers are Robinhood's own measurement, with no third-party audit.",
+          "flag": "60%、75%、132 小时、降三成、2% 都是 Robinhood 自己截至 8 月 31 日的统计，没有第三方复核。",
+          "flag_en": "The 60%, 75%, 132-hours, 30%, and 2% figures are Robinhood's own measurement as of August 31, not independently audited."
+        },
+        {
+          "title": "谷歌前沿产品负责人：按60/20/20建产品",
+          "title_en": "Google's frontier-model product lead: build in a 60/20/20 split",
+          "author": "Tulsee Doshi（Google 前沿模型产品负责人）· Lenny's Podcast",
+          "author_en": "Tulsee Doshi (Google, head of product for frontier models) · Lenny's Podcast",
+          "url": "https://www.youtube.com/watch?v=qGf2Yvan4Wg",
+          "summary": "Tulsee Doshi 讲了她带团队的办法：六成功能现在就能用，直接上线；两成差一点但能看到苗头；两成是赌模型会追上去的方向。这比传统“只做能跑的 MVP”更激进。她招产品经理看重两件事：懂模型的脾气，愿意自己写 eval、看原始数据，而不是看面试表现。她还划了条线：AI 该出数据，人该出洞见，文档里把这两样混在一起，就是“AI 废话”泛滥的根源。",
+          "summary_en": "Tulsee Doshi describes her build rule: ship the 60% that works today, ship the 20% that's close but imperfect, and bet on the 20% that depends on where the model is headed. That's more aggressive than the classic 'only ship a working MVP.' Her hiring bar for product managers now is understanding a model's quirks and being willing to write evals and read raw data, not traditional interview performance. She also draws a line: AI should supply data, humans should supply insight, and mixing the two in a document is why AI-written text has become unreadable.",
+          "why": "“模型会吃掉你搭的 harness”和 60/20/20 都是能直接搬进产品节奏会的框架。她的意思是，要定期把自建的流程和工具全部拆掉，只用裸模型重新测一遍，看它现在能不能直接顶上。",
+          "why_en": "'The model will eat your harness for breakfast' and the 60/20/20 split are both frameworks you could bring straight into a product-planning meeting. Her point: periodically strip out every custom tool and workflow you've built and retest the bare model alone, to see whether it can now do the job directly.",
+          "flag": "60/20/20 是 Doshi 个人带团队的方法，不是谷歌官方对外的产品流程。",
+          "flag_en": "The 60/20/20 split is Doshi's own team practice, not an official Google product process."
+        },
+        {
+          "title": "金融基准Atlas：模型接手真实投行建模，不到两成及格",
+          "title_en": "Atlas benchmark: models take over real IB modeling, under 20% pass",
+          "author": "Handshake AI · Latent Space Pod",
+          "author_en": "Handshake AI · Latent Space Pod",
+          "url": "https://www.youtube.com/watch?v=v5IJwVnTxzg",
+          "summary": "Handshake AI 给金融任务搭了个叫 Atlas 的基准。agent 要接手真实投行分析师的活，自己从邮件、OneNote、聊天记录里找线索，建一个几千个公式联动的 LBO 模型。现有模型普遍不到两成正确率。一次测试里，一个模型 36 分钟做完一个人要 15 小时的活，但在处理“338(h)(10) 税务选择”这一行时悄悄用错了商誉处理方式，这一行错误往下污染了 2600 个公式，模型自检时还告诉自己“没问题，可以发了”。一位银行家原话是：如果 95% 对，那就是 100% 错，因为改错的时间不比重新做少。Handshake 自己访谈发现，多数银行家宁愿从零开始，也不愿意从这种输出改起。",
+          "summary_en": "Handshake AI built a finance benchmark called Atlas: an agent takes over a real investment-banking analyst's job, hunting through email, OneNote, and chat logs for context, then building an LBO model with thousands of interlocking formulas. Frontier models score under 20%. In one run, a model finished in 36 minutes what takes a human 15 hours, but it silently mishandled goodwill treatment on one line of a '338(h)(10) tax election,' and that single line poisoned 2,600 downstream formulas while the model's own self-check still said it was fine to send. A banker's framing: if it's 95% right, it's 100% wrong, because fixing it takes as long as redoing it. Handshake's own interviews found most bankers would rather start from scratch than correct this kind of output.",
+          "why": "Handshake 卖的正是修复这个问题的数据和评测服务，所以「不到两成」这个数字本身也是在给自己的产品打广告。分开看：模型算错商誉这件事是演示里真实发生的，不到两成的比率是供应商自测，没有第三方复核。",
+          "why_en": "Handshake sells the data and eval service that fixes exactly this gap, so the 'under 20%' figure is also a pitch for its own product. Split it apart: the goodwill miscalculation is a fact demonstrated live; the under-20% rate is vendor-measured, with no third-party replication.",
+          "flag": "不到两成的准确率、36 分钟对 15 小时都是 Handshake 自己的基准和访谈结果，没有独立复现；Handshake 本身是卖这类数据和评测服务的公司。",
+          "flag_en": "The under-20% accuracy and the 36-minutes-vs-15-hours figures both come from Handshake's own benchmark and interviews, with no independent replication; Handshake sells the data/eval service this story is about."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 150,
+      "items": [
+        {
+          "title": "高盛收回交易员的Claude Code权限",
+          "title_en": "Goldman pulls Claude Code from traders",
+          "author": "State of AI 编辑部 · Hacker News",
+          "author_en": "State of AI Editorial · Hacker News",
+          "likes": 883,
+          "likes_label": "HN 分",
+          "url": "https://www.thestateofai.com/news/goldman-sachs-claude-code-traders-bankers",
+          "summary": "高盛 10 月更新内部指引，把 Anthropic 的 Claude Code 和微软的 GitHub Copilot 收回给工程师专用，交易员和银行家不能再用。他们原本靠这些工具追踪客户流、建市场模型。彭博社报道说，这是审查过生产力和风险之后做的决定，跨交易、量化、工程的「strats」岗位仍保留访问权限。讽刺的是，高盛是 Anthropic 这次 IPO 的主承销商之一，今年 4 月还因为同样的顾虑禁了香港银行家用 Claude。",
+          "summary_en": "Goldman's October internal guidance pulled Anthropic's Claude Code and Microsoft's GitHub Copilot back to engineers only, cutting off traders and bankers who had used them to track client flows and build market models. Bloomberg reports the decision followed a productivity and risk review; \"strats\" roles spanning trading, quant, and engineering keep access. The irony: Goldman is one of the lead underwriters on Anthropic's own IPO, and it banned Hong Kong bankers from using Claude back in April for similar reasons.",
+          "why": "这并非在说 AI 不好用，是企业把「好用」和「可审计」分开定价。同一家机构一边收紧内部使用权限，一边承销着做这工具的公司上市。",
+          "why_en": "This isn't a capability failure. It's an institution pricing 'useful' and 'auditable' as two separate things, from the same bank that is underwriting the vendor's IPO.",
+          "flag": "决策细节和「strats 保留访问权限」来自彭博社报道的转述，高盛没有公开声明具体理由。",
+          "flag_en": "The decision details and the note that 'strats' keep access come from Bloomberg's reporting; Goldman has not issued its own public statement of the specific reasoning."
+        },
+        {
+          "title": "Anthropic发布Fable 5.2和Mythos 5.2",
+          "title_en": "Anthropic ships Claude Fable 5.2 and Mythos 5.2",
+          "author": "Anthropic 官方 · Hacker News（独立评测：Artificial Analysis）",
+          "author_en": "Anthropic · Hacker News (independent score: Artificial Analysis)",
+          "likes": 956,
+          "likes_label": "HN 分",
+          "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+          "summary": "Anthropic 今天发布 Claude Fable 5.2 和 Mythos 5.2，底层是同一个模型，Fable 面向所有用户开放，Mythos 要申请才能用，目前只开放给生命科学和网络安全验证项目。官方说比 5.1 快三成，定价降到每百万输入 token 8 美元、输出 40 美元，快速模式 16/80 美元。独立评测机构 Artificial Analysis 给了 65 分，在 74 个同价位模型里排第一，但同时指出它明显慢（中位数每个任务 46.4 分钟，别的模型中位数 12.7 分钟），也明显贵（中位数的 4 倍）。",
+          "summary_en": "Anthropic shipped Claude Fable 5.2 and Mythos 5.2 today, the same underlying model split two ways: Fable is open to everyone, Mythos requires an application and is currently limited to life-sciences and cybersecurity verification programs. Anthropic says it is 30% faster than 5.1, priced at $8/$40 per million input/output tokens, $16/$80 in fast mode. Independent benchmark Artificial Analysis scores it 65, the top of 74 models in its price class, but also flags it as notably slow (46.4 minutes median per task against a 12.7-minute median elsewhere) and notably expensive (4x the median).",
+          "why": "谁能用：Fable 今天就能用，Mythos 要申请。谁测的：速度和降价的说法来自 Anthropic 自己，65 分这个排名来自第三方 Artificial Analysis，不是自夸。",
+          "why_en": "Who can use it today: Fable, right now; Mythos needs an application. Who measured it: the speed and pricing claims are Anthropic's own; the 65 score and its rank are independently measured, not a vendor claim.",
+          "flag": "「快三成」是 Anthropic 自己的说法；65 分排名第一来自 Artificial Analysis，但同一份评测也指出它更慢更贵，两边都要看。",
+          "flag_en": "The '30% faster' line is Anthropic's own claim; the rank-1 score of 65 is Artificial Analysis's independent measurement, but the same benchmark also flags it as slower and pricier, so read both sides."
+        },
+        {
+          "title": "谷歌改口：Gemini连的邮箱文件也会被人工审",
+          "title_en": "Google reverses course: Gemini's connected files get human review too",
+          "author": "thisisme6598 · Hacker News",
+          "author_en": "thisisme6598 · Hacker News",
+          "likes": 418,
+          "likes_label": "HN 分",
+          "url": "https://github.com/thisisme6598/gemini_files/",
+          "summary": "一份 GitHub 仓库记录下来：谷歌在 10 月 16 日悄悄改了 2023 年那条承诺，当时说个人内容不会被人工审阅。现在官方帮助文档明确写着，连了 Workspace 的 Drive 和邮箱内容会进入人工审核流程，还提醒用户别把含机密信息的 app 连进 Gemini。作者自己做的复现实验更值得注意：不用 @Drive、@Gmail 这类标签，只是在对话里提到行程、账单之类的话题，Gemini 也会在后台自动调用 Connected Apps 去拉文件，而且结果是概率性的，同一个问题问四次，可能拿到四种不同结果，从不检索到直接拉全文都有。",
+          "summary_en": "A GitHub writeup documents that Google quietly reversed, on October 16, its 2023 promise that personal content would not be seen by human reviewers. Google's help docs now say content from a connected Drive or inbox enters human review, and warn users not to connect apps with confidential information. More notable: the author's own reproduction shows Gemini triggers background Workspace lookups with no @mention at all, just an ambient reference to a trip or a bill, and the result is probabilistic: the same question asked four times can return four different outcomes, from no retrieval to a full-file pull.",
+          "why": "两件事要分开看。人工审核的政策是谷歌自己披露的改动，帮助文档的措辞变化是可查的事实。无提示自动检索这件事是一个独立开发者复现出来的技术现象，谷歌官方没有确认这个具体机制。",
+          "why_en": "Two separate claims here. The human-review policy is Google's own disclosed change, verifiable in its help docs. The no-mention autonomous retrieval is one developer's reproduction, not something Google has confirmed.",
+          "flag": "人工审核政策变化可在谷歌帮助文档里核实；无提示自动检索的概率性结果来自作者一人的复现，样本量不明，谷歌未证实这个机制。",
+          "flag_en": "The human-review policy change is verifiable in Google's own help docs; the probabilistic no-mention retrieval comes from one developer's own reproduction with an unstated sample size, and Google has not confirmed the mechanism."
+        },
+        {
+          "title": "全员AI编程一年后，没人看得懂自己的代码库",
+          "title_en": "A year into a 100% AI-coding mandate, nobody understands the codebase",
+          "author": "u/thelifeline（r/ClaudeCode）· 经 Hacker News",
+          "author_en": "u/thelifeline (r/ClaudeCode) · via Hacker News",
+          "likes": 110,
+          "likes_label": "HN 分",
+          "url": "https://www.reddit.com/r/ClaudeCode/comments/1xq2n3t/a_year_after_the_100_ai_mandate_nobody/",
+          "summary": "一家公司一年前下了「全员用 AI 编程」的指令，发帖的人说现在代码库已经没人真正懂了。同一个 helper 函数在四个地方被重复实现，改一行代码要用的 token 越来越多，边缘情况的 bug 开始冒出来。HN 评论区分成两派。一派说这是没做好上下文工程，CLAUDE.md、架构文档、重复代码检测都没配好；另一派说这是结构性问题，「九成好代码、一成乱来」会一层层叠加，到第一百次 PR 就收不住了。原帖本身因为 Reddit 登录墙没能直接抓到，以下内容来自 HN 热评对原帖具体说法的转述和回应。",
+          "summary_en": "A year into a company's \"all coding goes through AI\" mandate, the poster says nobody truly understands the codebase anymore: the same helper function is reimplemented in four places, each change costs more tokens than the last, and edge-case bugs are surfacing. HN's comments split into two camps: one says this is a context-engineering failure (no CLAUDE.md, no architecture docs, no duplicate-code detection configured), the other says it's structural (\"90% good code, 10% chaos\" compounds PR after PR until it's unrecoverable by the hundredth). The original post itself couldn't be fetched directly due to Reddit's login wall; this is reconstructed from HN's top comments quoting and responding to its specific claims.",
+          "why": "两派说的其实是同一件事：代码库失控不是模型能力不够，是公司有没有把「先搜已有实现、记下架构决定」这类规则写进 agent 的操作规范里。",
+          "why_en": "Both camps are converging on the same point: the codebase spiraling isn't a model-capability problem. It's whether the organization encoded rules like 'search for an existing implementation first, log architecture decisions' into the agent's own operating rules.",
+          "flag": "原帖内容因 Reddit 登录墙未能直接核实，这里基于 HN 热评的转述和回应重建，细节可能有偏差。",
+          "flag_en": "The original post's content could not be verified directly due to Reddit's login wall; this is reconstructed from HN's top comments and may carry some inaccuracy."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 14,
+      "items": [
+        {
+          "title": "OpenRouter重做路由，编程专用版成本降74%",
+          "title_en": "OpenRouter rebuilds its router; the coding-specific version cuts cost 74%",
+          "author": "Brian Thomas（OpenRouter）· 经 TLDR AI",
+          "author_en": "Brian Thomas (OpenRouter) · via TLDR AI",
+          "url": "https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/",
+          "summary": "OpenRouter 重做了跑了三年的 Auto Router。新版本在跑分上最多快四倍，路由决策本身的 p90 延迟从 1.96 秒降到 0.65 秒。这次单独拆出一个给编程用的 Auto Code 路由，在五个基准上和 Claude Opus 5.5 打平，但每个任务的成本低 74%。路由逻辑会看 11 个信号，包括任务类型、难度、要不要看图、要不要懂代码库，再加实时价格、服务商健康度、缓存状态；换模型前会先算一算，值不值得丢掉已经建好的 prompt 缓存，公测期内平均每十轮对话里有九轮没换模型。比起老路由，无效工具调用少了四倍。",
+          "summary_en": "OpenRouter rebuilt its three-year-old Auto Router from scratch. The new version is up to 4x better on benchmarks, with routing-decision latency at the 90th percentile down from 1.96 seconds to 0.65 seconds. It also split out a coding-specific Auto Code router that matches Claude Opus 5.5 on five benchmarks at 74% less cost per task. The routing logic weighs 11 signals, task type, difficulty, whether vision or codebase knowledge is needed, plus live pricing, provider health, and cache state, and checks whether switching models is even worth losing the existing prompt cache before it does. In beta, the router stayed on the same model for about nine of every ten turns. Invalid tool calls dropped 4x compared to the old router.",
+          "why": "这正是今晚写进记忆的那套「按任务家族分层，再按单样本置信度细分」路由逻辑的生产级实现。OpenRouter 多加的那个变量，换模型前先算值不值得丢缓存，是那套规则之前没覆盖到的。",
+          "why_en": "This is a production implementation of exactly the tiered-escalation-plus-confidence-routing logic written into tonight's own memory update. OpenRouter's extra variable, checking whether switching is worth losing the prompt cache, is a piece that chain hadn't covered yet.",
+          "flag": "四倍跑分提升、74% 成本降低、延迟数字都是 OpenRouter 自己的公测结果，没有第三方复核。",
+          "flag_en": "The 4x benchmark gain, the 74% cost cut, and the latency figures are all OpenRouter's own beta results, not independently audited."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条放在一起，说的是同一件事：模型自己说「没问题」，不再是能信的信号。Handshake 的基准里，模型算错了一处税务处理，污染了两千六百个公式，自检时还觉得没问题。这正是今晚写进记忆的那套分层升级逻辑想拦住的东西：先让便宜模型判一遍，把拿不准的那段交给更强的模型或人。高盛收回交易员用 Claude Code 的权限，Robinhood 把 agent 能拍板的范围砍到「脚本能查清的事实」，谷歌的 Workspace 检索概率性地拉文件，没人能稳定预测它什么时候会拉。这些都不是在说模型不够强，是在说没人敢把模型自己的判断当成最后一道闸。护城河从「模型会不会」搬到了「谁来确认模型说的没问题是真的没问题」。",
+  "meta_read_en": "Put today's stories together and they say the same thing: a model's own \"looks fine to me\" is no longer something you can trust. In Handshake's benchmark, a model silently botched a tax treatment that poisoned 2,600 downstream formulas, and its own check still said it was fine to send. That's exactly what the tiered escalation and confidence-routing logic written into tonight's own memory is meant to catch: let a cheap model judge first, and hand only the uncertain part to something stronger or to a person. Goldman pulled Claude Code from traders. Robinhood capped what its agents can decide down to facts a script can verify. Google's Workspace retrieval pulls files probabilistically, and nobody can reliably predict when it will fire. None of this says the models aren't capable enough. It says nobody is willing to treat the model's own verdict as the last checkpoint. The moat has moved from whether a model can do the work to who confirms that its all-clear is actually true.",
+  "ota": {
+    "learned": [
+      "今晚没有 Chrome/claude-in-chrome 接入（ToolSearch 确认没有对应工具），靠 YouTube、Hacker News、文摘三条全 headless 的线，不需要 partial。",
+      "YouTube RSS 今晚 9 个频道加 MrBeast 对照频道全部 404，判定为真实的整线故障，不是安静周；换用 yt-dlp 的 android client 全部成功，字幕走 en-orig 没有触发 429。",
+      "发现并修复了 bin/ledger-index.py 的一个 bug：11 月 1 日起 ota-ledger.md 的条目格式从「- 日期（上下文）」变成了「**日期 ...**」开头，脚本只认旧格式，8 天的条目（11-01 到 11-08）被静默漏掉，没有任何报错。补了第二条正则，重新生成后索引覆盖到 173 条、11-08。",
+      "采纳了两条待认领的 cloud proposal：把 Vals AI（11-04）按任务家族的升档收益表和 Hightouch（11-06）的置信度区间分流，合并写成新记忆 feedback-tiered-effort-escalation-ladder.md，因为这条规则从 7 月 19 日起只活在 ota-ledger.md 的文字里，从没升级成可检查的记忆文件；把 11-08 那条「离线巩固」提案写成 feedback-memory-index-cap-and-dreaming.md 的一条追加，应用到这个 skill 自己的 OTA/ledger 写法上，而不是开新文件。",
+      "YouTube 和 Hacker News+文摘两条 sweep 是作为并行的后台 fork 跑的，各自独立做了和上 7 期 issue 的 URL/作者/域名去重，再回来给主会话汇总。",
+      "文摘里的 OpenRouter Auto Router 条目，正好是今晚写进记忆的分层升级逻辑的生产级实现，多了一个「换模型前先算值不值得丢缓存」的变量，这条只记在该条目的 why 里，没有单独开一条 ledger 规则（单个案例，等第二个独立案例出现再考虑升级）。"
+    ],
+    "learned_en": [
+      "No Chrome/claude-in-chrome available tonight (confirmed via ToolSearch), so headless only; YouTube, Hacker News, and 文摘 cleared three platforms on their own, no partial needed.",
+      "YouTube RSS was down tonight on all 9 roster channels plus the MrBeast control, a real outage rather than a quiet week; falling back to yt-dlp's android client worked for all 9, and en-orig subtitle fetches hit no 429s.",
+      "Found and fixed a bug in bin/ledger-index.py: starting November 1, ota-ledger.md's entry format switched from \"- date (context)\" to a bold-leading \"**date ...**\" format, which the script's regex didn't match, silently dropping 8 days of entries (11-01 through 11-08) with no error. Added a second regex and regenerated; the index now covers 173 entries through 11-08.",
+      "Adopted two pending cloud proposals: merged Vals AI's (11-04) per-task-family escalation gains and Hightouch's (11-06) confidence-band routing into a new memory file, feedback-tiered-effort-escalation-ladder.md, since that chain had lived only in ota-ledger.md prose since July 19 and never got promoted to a checkable memory. Wrote 11-08's offline-consolidation proposal as a dated addendum to feedback-memory-index-cap-and-dreaming.md, applying it to this skill's own OTA/ledger-writing step, rather than opening a new file.",
+      "Ran the YouTube sweep and the Hacker News/文摘 sweep as two parallel background forks, each independently running its own 7-day dedup against the last 7 issues' URLs/authors/domains before reporting back.",
+      "The 文摘 item on OpenRouter's Auto Router turned out to be a production-grade implementation of tonight's own adopted escalation-ladder memory, plus one variable (whether switching is worth losing the prompt cache) that chain hadn't covered. Noted only in that item's own why field, not spun into a separate ledger rule yet, since it's a single case; worth revisiting if a second independent example shows up."
+    ],
+    "new_capabilities": [
+      "已实施：把「按任务家族升档、再按单样本置信度分流」这条从 7 月 19 日起散落在 ledger 里的规则，正式写成一份可检查的记忆文件 feedback-tiered-effort-escalation-ladder.md。调用意图：先用最低档位，只给测出高收益的任务家族升档；升档后，也只把置信度中段的样本再送给更强的模型或人，不是整批升档。",
+      "已实施：daily-digest 的 OTA 步骤新增一项检查。每轮 OTA 关闭前，先自查：即将写入的 ledger 条目和 memory，是在复述做过什么，还是真写成了「规则 + 如何验证其成立 + 踩过的坑」。环境每轮能重读到的状态，不写进记忆。",
+      "已实施：bin/ledger-index.py 现在能识别两种 ledger 条目格式（旧的「- 日期（…）」与新的「**日期 …**」），不会再静默漏掉条目。"
+    ],
+    "new_capabilities_en": [
+      "Implemented: promoted the \"escalate by task family, then route by per-sample confidence\" rule, which had lived only in ledger prose since July 19, into a checkable memory file, feedback-tiered-effort-escalation-ladder.md. Invoke intent: start at the lowest tier, escalate only task families with a measured gain; inside an escalated family, escalate only the mid-confidence-band samples to a stronger model or a human, not the whole batch.",
+      "Implemented: the daily-digest skill's own OTA step now carries an added check — before closing out a run, ask whether the ledger entry and memory about to be written just narrate what happened, or are actually written as \"the rule, how I know it's true, and the traps I hit\"; don't store state the environment will tell you again next turn.",
+      "Implemented: bin/ledger-index.py now recognizes both ledger-entry formats (the old \"- date (...)\" and the new bold-leading \"**date ...**\"), so entries no longer get silently dropped from the index."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "language": "Python",
+      "stars": 191063,
+      "stars_today": 1038
+    },
+    {
+      "rank": 2,
+      "name": "meta/astryx",
+      "url": "https://github.com/meta/astryx",
+      "description": "An open source design system that's fully customizable and agent ready",
+      "language": "TypeScript",
+      "stars": 20226,
+      "stars_today": 3278
+    },
+    {
+      "rank": 3,
+      "name": "sherlock-project/sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "description": "Hunt down social media accounts by username across social networks",
+      "language": "Python",
+      "stars": 107186,
+      "stars_today": 4267
+    },
+    {
+      "rank": 4,
+      "name": "google-deepmind/mujoco",
+      "url": "https://github.com/google-deepmind/mujoco",
+      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+      "language": "C++",
+      "stars": 16939,
+      "stars_today": 574
+    },
+    {
+      "rank": 5,
+      "name": "anthropics/claude-quickstarts",
+      "url": "https://github.com/anthropics/claude-quickstarts",
+      "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+      "language": "Python",
+      "stars": 20044,
+      "stars_today": 551
+    },
+    {
+      "rank": 6,
+      "name": "garrytan/gbrain",
+      "url": "https://github.com/garrytan/gbrain",
+      "description": "Garry Tan's personal knowledge/agent brain",
+      "language": "TypeScript",
+      "stars": 32187,
+      "stars_today": 216
+    },
+    {
+      "rank": 7,
+      "name": "vercel-labs/agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "description": "Browser automation CLI for AI agents",
+      "language": "Rust",
+      "stars": 48529,
+      "stars_today": 916
+    },
+    {
+      "rank": 8,
+      "name": "ruvnet/RuView",
+      "url": "https://github.com/ruvnet/RuView",
+      "description": "Agent orchestration and view layer toolkit",
+      "language": "TypeScript",
+      "stars": 103499,
+      "stars_today": 172
+    },
+    {
+      "rank": 9,
+      "name": "ZhuLinsen/daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "description": "Daily automated stock analysis pipeline",
+      "language": "Python",
+      "stars": 68914,
+      "stars_today": 506
+    },
+    {
+      "rank": 10,
+      "name": "homeassistant-ai/ha-mcp",
+      "url": "https://github.com/homeassistant-ai/ha-mcp",
+      "description": "MCP server for Home Assistant",
+      "language": "Python",
+      "stars": 6025,
+      "stars_today": 31
+    }
+  ]
+}
