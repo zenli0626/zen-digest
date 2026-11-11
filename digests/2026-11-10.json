@@ -1,0 +1,299 @@
+{
+  "date": "2026-11-10",
+  "banner": "ChatGPT 把答案做成了货架",
+  "banner_en": "ChatGPT turns answers into a storefront",
+  "image": {
+    "src": "digests/img/2026-11-10.jpg",
+    "caption": "本期配图:OpenAI DevDay 2026 发布「ChatGPT 里的企业」功能 (图:OpenAI)。",
+    "caption_en": "Today's image: OpenAI DevDay 2026, announcing \"Businesses in ChatGPT\" (image: OpenAI)."
+  },
+  "actions": [
+    {
+      "text": "拿 40 条你的 LLM 评委打过分的输出,自己手工再判一遍,按评委给的分数档分别算一致率,不要只算总数。LinkedIn 的团队拿 180 到 200 条人工评审对照自家评委,评委打 1 分的一致率约 55%,2 分约 57%,3 分约 80%;评委最苛刻的 37 次里有 31 次是 1 分。做到的标准,是写下每个分数档各自的一致率,哪一档低,先改哪一档的评分说明。",
+      "text_en": "Take 40 outputs your LLM judge has scored, re-grade them by hand, and compute agreement per score level, not one overall number. LinkedIn compared its judge with 180 to 200 human reviews: agreement was about 55% when the judge said 1, 57% for 2, 80% for 3, and 31 of its 37 \"too harsh\" calls were 1s. Done means you have an agreement figure for each score level and you fix the rubric text of the weakest level first.",
+      "source": "Saloni Gandhi、Ziwei Guo（LinkedIn）· AI Engineer",
+      "source_en": "Saloni Gandhi and Ziwei Guo (LinkedIn) · AI Engineer",
+      "source_url": "https://www.youtube.com/watch?v=yH7_SIIgI-Y"
+    },
+    {
+      "text": "挑一个你在跑的「从固定清单里选一项」的 LLM 调用 (分类、路由、打标签),加一个影子模式:旧模型的结果照常生效,便宜的新模型同时跑一遍,两边结果写进同一张表。一周后只看两者不一致的那几十条。做到的标准,是手里有 50 条分歧样本和你对每条的判断。亚马逊内部工单系统就是这样把 Sonnet 4.6 换成小模型的。",
+      "text_en": "Pick one LLM call you run that picks from a fixed list (classification, routing, labeling) and add a shadow mode: the old model's answer stays in effect, a cheaper model runs alongside, and both land in one table. After a week, read only the cases where they disagree. Done means you hold 50 disagreement samples with your verdict on each. Amazon's internal ticketing team swapped Sonnet 4.6 for a small model this way.",
+      "source": "Carr Onstott、Mehul Jaiswal · Strands Agents 博客",
+      "source_en": "Carr Onstott and Mehul Jaiswal · Strands Agents blog",
+      "source_url": "https://strandsagents.com/blog/amazon-saves-millions-replacing-sonnet-with-strands-decider/"
+    },
+    {
+      "text": "如果你在招做 AI 工作的工程师,试一次「先不通话」的第一轮:让候选人交一段约 45 分钟的整屏录像,内容是在自己维护的项目里发一个功能的 PR,不给任何指导。你自己先看 3 段,再决定要不要让模型帮着排序。做到的标准,是你能不看简历、只凭录像把这 3 个人排出先后。Untangle 的创始人 Ryan Carson 就这样招人,他说最后一轮 16 小时的录像他全看了,模型排的第一名其实是对的,是他一开始没信。",
+      "text_en": "If you are hiring engineers for AI work, try a first round with no calls: ask candidates for a roughly 45-minute full-screen recording of shipping one feature as a PR on a project they already maintain, with no guidance. Watch 3 yourself before letting a model help rank. Done means you can rank those 3 people from the recordings alone, without résumés. Untangle's founder Ryan Carson hires this way; he said he watched all 16 hours of the final-round videos, and the model's number one was right and he had not trusted it at first.",
+      "source": "Ryan Carson（Untangle）· AI Engineer",
+      "source_en": "Ryan Carson (Untangle) · AI Engineer",
+      "source_url": "https://www.youtube.com/watch?v=BTtyguoPvBU"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试:用同一组固定提示词连跑三次,量出「模型被削弱了」的噪声范围",
+    "title_en": "Try tonight: rerun fixed prompts three times to measure the noise band behind \"the model got nerfed\"",
+    "why": "今天 Hacker News 上一条 780 多分的帖子说 Opus 5.5 在 11 月 3 日之后思考方式变了。有人在评论里用 9 月的同一个基准、同样的提示词和设置重跑:批处理最大档输出 255,957 个 token,现在是 243,707;xhigh 档是 86,096,现在是 107,333,多了约 25%。同一个模型自己跑两次就能差这么多,所以单次对比说明不了什么。先量出你自己任务的波动范围,以后感觉变差时才有东西可对照。这是一个小脚本,我没有替你跑过,字段名如果报错,先打印 d.keys() 看一眼。",
+    "why_en": "A Hacker News thread with 780-plus points today says Opus 5.5's thinking changed after November 3. One commenter reran their September benchmark with the same prompts and settings: the Batch API max run wrote 255,957 tokens then and 243,707 now, and xhigh went from 86,096 to 107,333, about 25% more. One model against itself varies that much, so a single before-and-after comparison proves little. Measure the noise band on your own tasks first, so \"it feels worse\" has something to be checked against. This is a small script I have not run for you; if a field name errors, print d.keys() first.",
+    "time": "20 分钟",
+    "time_en": "20 min",
+    "steps": [
+      "mkdir -p ~/claude-drift && cd ~/claude-drift,把 3 条你真实工作里的提示词写进 prompts.txt,一行一条,以后不要改。",
+      "把这一行存成 run.sh:while IFS= read -r p; do claude -p \"$p\" --model opus --output-format json | python3 -c 'import sys,json; d=json.load(sys.stdin); print(d[\"total_cost_usd\"], d[\"usage\"][\"output_tokens\"])'; done < prompts.txt >> runs-$(date +%F).txt",
+      "bash run.sh 连跑 3 次。每条提示词的 3 个 token 数之间的最大差,就是你的噪声范围。",
+      "一周后再跑一次,只有超出噪声范围的变化才算数。"
+    ],
+    "steps_en": [
+      "mkdir -p ~/claude-drift && cd ~/claude-drift, then put 3 prompts from your real work into prompts.txt, one per line, and never edit them.",
+      "Save this line as run.sh: while IFS= read -r p; do claude -p \"$p\" --model opus --output-format json | python3 -c 'import sys,json; d=json.load(sys.stdin); print(d[\"total_cost_usd\"], d[\"usage\"][\"output_tokens\"])'; done < prompts.txt >> runs-$(date +%F).txt",
+      "Run bash run.sh three times. The largest gap between the three token counts for a prompt is your noise band.",
+      "Run it again in a week; only a change outside the band counts."
+    ],
+    "source": "Hacker News 讨论串（Opus 5.5 是否被削弱）",
+    "source_en": "Hacker News thread (is Opus 5.5 nerfed?)",
+    "source_url": "https://news.ycombinator.com/item?id=50422069"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": 9,
+      "items": [
+        {
+          "title": "ChatGPT里，生意也能认领了",
+          "title_en": "Businesses can now claim a profile inside ChatGPT",
+          "author": "OpenAI 官方 · DevDay 2026",
+          "author_en": "OpenAI · DevDay 2026",
+          "url": "https://openai.com/index/introducing-businesses-chatgpt/",
+          "summary": "OpenAI 在开发者日上线「ChatGPT 里的企业」功能。企业先在 Business Hub 认领自己的资料,补充信息,能看到被提及次数和网站点击这类数据。再往前一步是 Business Agent,用户在 ChatGPT 里点开一家商家,可以直接跟它的智能体聊细节、比价、问哪个型号适合自己,目前只给美国的电商和在线服务类企业内测。商家还能把这个智能体设成广告位,接到 ChatGPT Ads 里。",
+          "summary_en": "OpenAI launched \"Businesses in ChatGPT\" at DevDay. Companies can claim their profile in Business Hub, keep info current, and see mention/click insights. The next layer, Business Agents, lets a user tap into a business's own agent inside a chat to compare products or ask follow-ups — beta, limited to eligible US ecommerce/online-service businesses. Businesses can sponsor their Business Agent as an ad placement through ChatGPT Ads.",
+          "why": "这是 ChatGPT 从「回答问题」变成「卖货渠道」的关键一步。免费认领对所有 ChatGPT 覆盖地区企业开放,但真正带转化的 Business Agent 只给美国电商/在线服务类企业内测。",
+          "why_en": "The step that turns ChatGPT from an answer engine into a sales channel. Free claiming is open everywhere ChatGPT operates, but the part that actually converts, Business Agents, is beta-only, US-only.",
+          "flag": "Business Agent 的效果、转化率、内测范围目前都是 OpenAI 自己的描述,没有定价、没有第三方数据;周活 12 亿这个规模数字 11 月 4 日已经报过,不是新信息。",
+          "flag_en": "Business Agent's effectiveness, conversion rate, and beta scope are OpenAI's own description with no pricing or third-party data disclosed; the 1.2B weekly-user figure already ran in our Nov 4 issue, not new."
+        },
+        {
+          "title": "一条告警，拉起 900 个 agent 任务",
+          "title_en": "One alert launched 900 agent tasks",
+          "author": "Joey Wang（Harvey）· AI Engineer 大会",
+          "author_en": "Joey Wang (Harvey) · AI Engineer",
+          "url": "https://www.youtube.com/watch?v=ktbAVYsAxpk",
+          "summary": "Harvey 内部有一个云端 agent 平台,上个月平均每分钟都有一个 agent 启动,约 460 人在用,累计 1 万多个 PR 由 agent 写成。Wang 说这场讲的不是模型,是模型周围的东西:「跟进循环」(CI 失败后 agent 读失败信息再推一版修复)10 月初对所有人打开,后端 PR 里五分之四合并前走过这个循环;命令行每月启动约 6,500 个任务。然后是三次出问题。8 月一次发版带了 bug,每个工作区触发一条告警,有人配了「每条告警都@agent」的流程,平时约 50 个任务,那天约四小时启了约 900 个,都在查同一个 bug,修法是把重复告警并入已开的调查。10 月一位工程师从命令行一次交出约 950 个任务,约三小时把集群占满,别人的任务排在后面;四天后上线公平启动队列,300 个任务突发测试里启动延迟从近 2 秒降到 70 毫秒。同月 PR 数量一个月涨约 60%,合并时间从 15 到 30 分钟变成一小时以上,合并队列经常得关掉,这个还没解决,目前只有二十分之一的合并带有「已验证」的证据。定时自动化约 110 人在用,默认连续失败 5 次自动关闭,带预算或到期日。",
+          "summary_en": "Harvey runs an internal cloud-agent platform: last month an agent started roughly every minute, about 460 people used it, and over 10,000 PRs have been written by agents. Wang said the talk is about what surrounds the model. A \"follow-up loop\" (after CI fails, the agent reads the failure and pushes another fix) went live for everyone in early October, and four of five agent PRs merged into the backend went through it; the CLI alone started about 6,500 tasks a month. Then three breakages: in August a release shipped a bug that fired one alert per workspace, and a workflow tagged the agent on every alert — about 50 tasks on a normal day became about 900 in four hours, all chasing the same bug, fixed by folding repeat alerts into the open investigation. In October one engineer handed over about 950 tasks from the CLI at once, filling the cluster for three hours; four days later a fair-launch queue shipped, cutting launch latency from nearly 2 seconds to 70ms in a 300-task burst test. That same month PR volume rose about 60%, merge times went from 15-30 minutes to over an hour, and the merge queue had to be switched off at times — still unsolved, with only 1 in 20 merges carrying \"verified\" proof. Scheduled automations (about 110 users) now auto-disable after 5 failures in a row and carry a budget or expiry date.",
+          "why": "对象是自己搭 agent 触发器的人：告警、命令行、定时任务三种入口，一旦放开，每一种都需要单独设上限。损失来自没人限制一个触发源能启动多少任务，与模型好坏无关。",
+          "why_en": "For anyone wiring agent triggers: alerts, CLI and schedules each need their own cap once they are open. The damage here came from nothing limiting how many tasks one trigger could start, not from model quality.",
+          "flag": "每分钟一个 agent、460 人使用、一万多 PR、合并延迟等数字，都是 Harvey 自己披露，没有第三方审计；合并队列拥堵「还没解决」是 Wang 自己承认的。",
+          "flag_en": "The per-minute agent rate, 460 users, 10,000-plus PRs and merge-latency figures are all Harvey's own disclosure with no outside audit; the unsolved merge-queue congestion is Wang's own admission."
+        },
+        {
+          "title": "一个只管理、不写代码的 agent 带 20 个，招人改看录屏",
+          "title_en": "A manager agent that never codes runs 20 builders, and hiring runs on screen recordings",
+          "author": "Ryan Carson（Untangle）· AI Engineer 大会",
+          "author_en": "Ryan Carson (Untangle) · AI Engineer",
+          "url": "https://www.youtube.com/watch?v=BTtyguoPvBU",
+          "summary": "Untangle 做家事法律 AI 助理，卖给家事律所。Carson 说他们的编码全在云端 agent（用 Devin）里做：人在最上面定优先级、见客户，下面是「工程经理」会话，从 Linear 工单板领活，一张工单对应一个 PR，不写任何代码，同时带 5 到 25 个、通常约 20 个建造者会话。他从不进建造者的会话，所有话都经经理转达。他特别强调：经理不能靠自觉去巡查，要配一个自动化，每 15 分钟强制它读一遍所有子会话，因为模型的行为不是确定的。每个建造者有评审 agent，最多循环 3 轮，还有重要问题就往上交；另有 QA 子会话，每个建造者录一段功能运行和测试通过的视频，必须由人在电脑上看，不能图省事在手机上放行。多个经理会话之间会互相发消息，另设一个合并队列经理，负责数据库迁移编号这类会撞车的东西。招聘上，不做预筛和视频面试，候选人交约 45 分钟整屏录像，在自己维护的应用里发一个功能的 PR；排序 agent 排名，前五名拿固定报酬做 16 小时的付费项目，录屏后再让模型选；最后才打电话。他说第一次他不信模型排的第一名，后来发现模型是对的。",
+          "summary_en": "Untangle sells an AI paralegal to family-law firms. Carson said all their coding happens in cloud agents (Devin): humans set priorities and talk to customers, and below them sit \"engineering manager\" sessions that pull from a Linear board, one ticket per PR, never write code, and run 5 to 25 (typically about 20) builder sessions at once. He never enters a builder session; everything goes through the manager. One point he stressed: do not trust the manager to check in on its own — an automation forces it to read every child session every 15 minutes, because model behavior is not deterministic. Each builder has a review agent capped at 3 rounds before escalating, plus a QA child session, and every builder records a video of the feature working and tests passing, which a human must watch on a laptop, not wave through from a phone. Manager sessions message one another, and a merge-queue manager handles collisions like database migration numbers. On hiring: no pre-screens or video interviews; candidates submit a roughly 45-minute full-screen recording of shipping a PR, a ranking agent orders them, the top five get a fixed fee for a 16-hour paid project, again recorded and ranked by a model, and a call comes last. He said he distrusted the model's first-place pick the first time and later concluded it was right.",
+          "why": "可以借的是两个机制：靠定时脚本而不是靠模型自觉去巡查；用没有预设框架的录像代替面试。",
+          "why_en": "Two mechanisms are worth lifting: patrol by scheduled script instead of the model's own diligence, and unscripted recordings instead of interviews.",
+          "flag": "Devin 是 Cognition 的产品，Carson 是它的付费用户；约 20 个并行建造者、3 轮评审上限等数字都是他自己口述，没有对照组。",
+          "flag_en": "Devin is Cognition's product and Carson is a paying user; the ~20 parallel builders and 3-round review cap are his own account, with no comparison group."
+        },
+        {
+          "title": "Claude Code选邮件服务，64次挑中Resend，不是SendGrid",
+          "title_en": "Claude Code picked Resend over SendGrid 64 times out of 102",
+          "author": "Zeno Rocha（Resend 联合创始人兼CEO）· Latent Space Pod",
+          "author_en": "Zeno Rocha (Resend co-founder/CEO) · Latent Space Pod",
+          "url": "https://www.youtube.com/watch?v=bdIoODXsu8k",
+          "summary": "一项研究统计了模型在 102 次邮件服务推荐里选了谁：Claude Code 把 Resend 排第一的次数是 64 次，SendGrid 只拿到 7 次第一，但作为备选出现了 55 次。节目现场测了一次：主持人拿一个已经接好 Cloudflare 邮件的项目问要不要再加个邮件服务，模型直接答「加 Resend」。Rocha 说 Resend 从早期就盯着这件事：先放出一个免费的 React Email 模板库，开发者当时用 SendGrid 发信，但代码里已经嵌进了 Resend 的组件，等真要换供应商时转换成本已经先降了一轮。现在他们把同一套打法搬到 agent 身上：定价页加个 .md 后缀，模型一次请求就能拿到可读的价目表，不用去解析网页里的滑块；MCP 服务器从上线时不到 20 个工具涨到 80 多个，目标是让在聊天界面里操作的人能做到网页后台能做的所有事，邀请同事、查用量、管账单都算在内。Rocha 提到一个具体的坑：某个工具调用返回的内容太大，装不进上下文，单纯减少工具数量解决不了，他建议把自己每天都在调的那个工具的返回结果整个展开看一遍，量一下模型实际用了多少。Resend 现在有 430 万用户、12 万付费客户，保留免费层，另设专门的追踪域名，防止一个客户发钓鱼邮件连累其他客户的链接被平台拉黑。",
+          "summary_en": "A study tracked which provider models recommended across 102 email-service picks: Claude Code put Resend first 64 times, SendGrid first only 7 times, though SendGrid showed up as an alternative 55 times. On-show test: the host took a project already wired with Cloudflare email and asked whether to add another email service, and the model answered \"add Resend.\" Rocha says Resend has targeted this since early on: it first shipped a free React Email template library, so developers sending through SendGrid already had Resend's code in their repo, lowering the switching cost before they ever needed to switch. They're applying the same playbook to agents now: appending .md to the pricing page URL returns a table a model can read in one request instead of parsing a slider; their MCP server grew from under 20 tools at launch to more than 80, so someone working from a chat client can do everything the dashboard can, including inviting teammates, checking usage, and managing billing. Rocha named a concrete trap: one tool call returned a result too large for the context window, and cutting the tool count alone wouldn't have fixed it; he suggests expanding the result of whatever tool you call every day and measuring how much of it the model actually uses. Resend now has 4.3 million users and 120,000 paying customers, keeps a free tier, and runs dedicated tracking domains so one customer's phishing email doesn't get another customer's legitimate links blocklisted.",
+          "why": "这是少见的从「被 agent 推荐」倒推产品设计的真实案例：给定价页加 .md、把入门模板做成嵌入式分发渠道，这两条都能直接搬。",
+          "why_en": "A rare real example of working backward from \"getting recommended by an agent\" into product design — appending .md to pricing pages and turning an onboarding template into an embedded distribution channel are both directly copyable.",
+          "flag": "研究只测了 Claude Code 一个模型，102 次推荐样本不大；Rocha 说的「60% 以上」是他自己在节目里的口头数字，没有披露方法论。",
+          "flag_en": "The study measured only Claude Code, and the 102-recommendation sample is small; Rocha's \"60%+\" is his own on-air figure with no disclosed methodology."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": 90,
+      "items": [
+        {
+          "title": "亚马逊内部工单：用决定模型替掉 Sonnet 4.6，每百万张工单成本约从 2.2 万美元降到 500 美元",
+          "title_en": "Amazon's ticketing system swapped Sonnet 4.6 for a decision model: about $22,200 to $500 per million tickets",
+          "author": "Strands Agents 团队（含两位亚马逊工程师）· 经 Hacker News",
+          "author_en": "Strands Agents team (with two Amazon engineers) · via Hacker News",
+          "likes": 70,
+          "likes_label": "HN 分",
+          "url": "https://strandsagents.com/blog/amazon-saves-millions-replacing-sonnet-with-strands-decider/",
+          "summary": "两位亚马逊工程师把内部工单系统里给工单打标签的 Sonnet 4.6，换成 Strands Decider（一个 Gemma 4 E4B 构建的「决定模型」：给它状态和一组选项，只返回每个选项的概率和置信度，不生成文字）。任务是把各种工单（客户升级、容量申请、告警、安全发现）归进 20 类。文中数字：每次调用 4,215 毫秒降到 897 毫秒；每张工单 token 从 6,724 降到 2,010；按公开价格，每百万张工单约 22,200 美元对约 500 美元，降幅 98%。换之前用三档开关（只用 Sonnet、两者同时跑但生效的是 Sonnet、只用新模型）在真实流量上比较，再逐条看分歧。还有个意外：同样内容的 JSON 换了键的顺序，输出概率最多差 0.19，所以现在统一排序后再发。",
+          "summary_en": "Two Amazon engineers replaced Sonnet 4.6 as the ticket labeler in an internal system with Strands Decider, a \"decision model\" built on Gemma 4 E4B: given a state and a set of options it returns a probability for each option plus a confidence, generating no text. The job is sorting tickets (customer escalations, capacity requests, alarms, security findings) into 20 categories. Reported figures: per-call time from 4,215ms to 897ms; tokens per ticket from 6,724 to 2,010; at published prices about $22,200 versus about $500 per million tickets, a 98% cut. Before switching they used a three-way setting (Sonnet only, both running with Sonnet's answer applied, new model only) on live traffic and reviewed disagreements. One surprise: the same JSON with keys in a different order moved output probabilities by up to 0.19, so every request now sends sorted keys.",
+          "why": "把一个贵的生成步骤换成便宜的分类问题，靠的是先在真实流量上并排跑，这个方法本身比省下的钱更值得学。",
+          "why_en": "Swapping an expensive generation step for a cheap classification problem, by running old and new side by side on live traffic first — the method itself is worth more than the savings number.",
+          "flag": "这是 Strands 官方博客，Strands 卖的正是这个模型；成本和延迟是实测，质量只有一句话「跟原来一样好」，没有准确率数字。HN 评论按差额反推「省几百万」约对应每年 9,200 万张工单。",
+          "flag_en": "This is the Strands project's own blog, and Strands sells this model. Cost and latency are measured; quality gets one sentence (\"just as well\"), no accuracy figure. An HN commenter backed out the \"millions saved\" claim to roughly 92 million tickets a year."
+        },
+        {
+          "title": "Fireworks AI 被黑，Notion聊天记录外泄",
+          "title_en": "Fireworks AI breach exposed Notion chat logs",
+          "author": "Fireworks AI 官方安全公告 · Notion 帮助中心 · 经 Hacker News",
+          "author_en": "Fireworks AI security bulletin · Notion Help Center · via Hacker News",
+          "url": "https://www.notion.com/help/security-incident-involving-a-third-party-ai-vendor",
+          "summary": "Fireworks AI（给企业提供模型推理托管的供应商）10 月 23 日被人通过它自家研发机器用的第三方云服务商打进内部系统，第二天就有人用这条路径碰到了 Fireworks 的生产客户数据，10 月 25 日起没再发现新的入侵迹象。这次事件比 10 月 9 日第一次公告时报的范围大：当时只知道评测任务用的密钥被看到，现在确认账单信息、部分客户的密钥、数据集和没训完的模型权重也被碰过。调查认定攻击者是为了偷 token 转卖给非法路由网关干的（LLMJacking），不是针对单一客户。Notion 是受影响客户之一，不到 1% 的工作区被牵连，泄露的是通过 Fireworks 跑的 AI 功能留下的聊天记录原文，工作区主理人现在能在后台下载一份受影响内容的清单。",
+          "summary_en": "Fireworks AI, which sells LLM inference hosting to businesses, was breached on October 23 through a third-party cloud provider that hosted its own R&D machines; by the next day the same access path reached production customer data, with no further intrusion found since October 25. The scope is larger than its October 9 first bulletin: back then only secrets used in evaluation jobs were known to be touched, but Fireworks has now confirmed billing information and, for some customers, secrets, datasets, and incomplete model weights were accessed too. The investigation ties it to a financially motivated group reselling stolen token access to LLM routing gateways (LLMJacking), not an attack aimed at one customer. Notion is among the affected customers: under 1% of its workspaces were hit, and what leaked was the literal chat transcript text from AI features that ran through Fireworks. Affected workspace owners can now download a CSV of exactly what was exposed.",
+          "why": "产品若使用第三方托管模型或 agent 功能，Notion 的做法值得借鉴：给客户一份可下载、可核对的受影响数据清单，而非一句笼统的“已通知受影响用户”。",
+          "why_en": "For any product built on a third-party hosted model or agent feature, the part worth copying is Notion's own handling: a downloadable, verifiable list of exactly what was exposed, not a vague \"affected users have been notified.\"",
+          "flag": "范围披露分两次，10 月 9 日首次通报与 11 月这次确认的范围不一致，说明厂商最初自己也没摸清；攻击动机（转卖给非法路由网关）是调查方结论，未经第三方复核。",
+          "flag_en": "Scope disclosure came in two rounds that don't match — the Oct 9 bulletin and this November confirmation — suggesting the vendor itself didn't have the full picture at first; the stated motive (reselling to rogue routing gateways) is the investigators' own conclusion, unverified by a third party."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": 95,
+      "items": [
+        {
+          "title": "Logic Pro开卖加量包，AI用超了掏50美元",
+          "title_en": "Logic Pro sells a $50 AI usage pack when you hit the limit",
+          "author": "The Verge（经 TLDR AI）",
+          "author_en": "The Verge (via TLDR AI)",
+          "url": "https://www.theverge.com/tech/1030084/apple-intelligence-usage-packs-ai-features-creator-studio-logic-pro",
+          "summary": "苹果给 Logic Pro 加了一项“买更多用量”的一次性内购，49.99 美元。Logic Pro 里的 AI 助理能按一句话起新曲、从哼唱建声轨、给现有项目提修改意见，这些功能底层调用 OpenAI 或 Gemini 的云端模型，苹果一直设用量上限。购买后的加量额度按苹果账号走，不支持家庭共享，当月没用完自动滚存至下月，但从购买日起 12 个月后过期。目前仅 Logic Pro 可买，苹果称本月内会扩至 Pixelmator Pro、Final Cut Pro、Motion；Pages、Keynote、Numbers 则另在接入苹果自己的聊天助手。",
+          "summary_en": "Apple added a one-time $49.99 in-app purchase to Logic Pro called Buy More Usage. Its AI assistant can start a new song from a prompt, build a vocal track from a hum, or suggest edits to an existing project, running on OpenAI's or Google Gemini's cloud models behind the scenes, which is why Apple caps usage. The extra usage is tied to the Apple Account that bought it, doesn't work with Family Sharing, rolls over unused month to month, and expires 12 months after purchase. Only Logic Pro has this option today; Apple says Pixelmator Pro, Final Cut Pro and Motion get it this month, while Pages, Keynote and Numbers are separately gaining access to Apple's own chat assistant.",
+          "why": "这是苹果首次在自己 app 内直接按 AI 用量收费，采用一次性加量包而非涨订阅价，这个定价形态值得做 AI 产品定价的人参考。",
+          "why_en": "Apple's first time charging directly for AI usage inside one of its own apps, using a one-time top-up instead of raising the subscription price — a pricing shape worth studying for anyone pricing AI features.",
+          "flag": "目前仅 Logic Pro 可买，苹果称本月会扩至其他 Creator Studio 应用，具体日期未给。",
+          "flag_en": "Only Logic Pro has this today; Apple says other Creator Studio apps get it this month, with no specific date given."
+        },
+        {
+          "title": "Anthropic破例自己买发电机，34亿美元",
+          "title_en": "Anthropic breaks its own rule, buys $3.4B of turbines",
+          "author": "Tim De Chant · TechCrunch（经 TLDR AI，原始报道 Financial Times）",
+          "author_en": "Tim De Chant · TechCrunch (via TLDR AI, original report Financial Times)",
+          "url": "https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/",
+          "summary": "Anthropic 一直偏好租算力、不买硬件，S-1 文件披露过到 2029 年 5 月每月付给 xAI 12.5 亿美元租用其算力。这次却直接从卡特彼勒买下一批天然气轮机，总价 34 亿美元，发电能力达 1.7 吉瓦。据《金融时报》报道，这批轮机原为设备商 OnePWR 几年前订购，但一直没找到钱付尾款；Anthropic 本想从 OnePWR 手中接手，结果绕过中间商直接与卡特彼勒谈判。天然气轮机目前订货要排到 2030 年代初，接电网的排队也差不多长，这单更像是无路可走，也可能是不想把这批产能让给同行抢走。谷歌、亚马逊、微软、Meta 都在自建天然气电厂绕开公共电网。",
+          "summary_en": "Anthropic has generally preferred renting compute over buying hardware, disclosing in its S-1 that it pays xAI $1.25 billion a month through May 2029 for computing power. This time it bought $3.4 billion of natural gas turbines directly from Caterpillar, capable of generating up to 1.7 gigawatts. Per a Financial Times report, equipment supplier OnePWR had ordered the turbines years earlier but couldn't secure financing to complete the purchase; Anthropic had planned to buy them from OnePWR but went straight to Caterpillar instead. Gas turbine orders now stretch into the early 2030s, and grid interconnection queues run about as long — the purchase looks like a last resort, or possibly a move to keep the capacity away from a competitor. Google, Amazon, Microsoft and Meta are all building their own gas plants to skip the public grid.",
+          "why": "一家靠租算力起家的公司被迫买重资产，说明电力比芯片更卡脖子；直接找制造商绕开资金链断掉的中间商，也是可参考的采购思路。",
+          "why_en": "A company that has grown up renting compute being forced into buying heavy physical assets signals that power, not chips, is the tighter bottleneck right now. Going straight to the manufacturer instead of a financially stuck middleman is also a sourcing move worth noting.",
+          "flag": "细节（OnePWR 融资失败、34 亿美元价格）来自《金融时报》经 TechCrunch 转述的报道，并非 Anthropic 官方公告；气价“三倍”是分析师预测，不是已发生的事实。",
+          "flag_en": "The details (OnePWR's failed financing, the $3.4B price) come from a Financial Times report relayed via TechCrunch, not an Anthropic announcement; the \"triple\" gas-price figure is an analyst's forecast, not an observed fact."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条合在一起，说的是同一层：AI 正在变成要花钱打理的基础设施。ChatGPT 把答案做成货架，于是 Resend 这类公司开始专门研究怎么让模型推荐自己，这是同一件事的两头。苹果直接给 AI 用量标了价，Anthropic 为了电，破例自己掏钱买发电机，说明电费和算力账单已经绕不开。模型本身越来越便宜，但模型下面那层事，谁来接住一条告警引发的 900 个任务，谁来确认评委真的靠谱，还是要人自己搭。",
+  "meta_read_en": "Tonight's stories sit at the same layer: AI is turning into infrastructure someone has to pay for and manage. ChatGPT turned its answers into a storefront, so companies like Resend are now studying how to get recommended by the model itself — two ends of the same shift. Apple put a direct price on AI usage, and Anthropic broke its own rent-don't-buy rule to buy gas turbines, both signs that the power and compute bill can no longer be waved away. The model keeps getting cheaper, but the layer underneath it — who catches the 900 tasks one alert can trigger, who checks whether a judge is actually reliable — still has to be built by hand.",
+  "ota": {
+    "learned": [
+      "今晚 YouTube RSS 全部 9 个频道加 3 个对照频道都是 LIVE（先用 sweep-lanes.mjs 确认），没有走 yt-dlp 备用路径。",
+      "发现一个凌晨 2 点 05 分那场会话留下的完整 build.py（/tmp/digest-2026-11-10/build.py），banner、items、actions、hands_on、ota 都写好了，连两条 OTA memory（feedback-shadow-mode-model-swap、feedback-llm-judge-rubric-evidence 第三个数据点）都已实际写入 memory 目录，只是最后一步 json.dump 从未执行，到今晚 9 点 digests/2026-11-10.json 仍不存在。采纳了它的 Amazon/Strands 条目、3 条 actions 和 Opus-5.5 漂移脚本 hands_on，按“freshness recheck”规则换掉了它选的头条：它写稿时 OpenAI DevDay 的“ChatGPT 里的商家”还没发布，这条比它选的 Harvey 会场故事更新更重，改放入正文当第二条。",
+      "两条并行 sweep（YouTube、HN+文摘）各自独立去重，结果在 Zeno Rocha/Resend 那条上撞车：一个从播客字幕认出，一个从文章认出，是同一期节目。按“跨平台去重”规则合并成一条，没有当两条发。",
+      "在 daily-digest/SKILL.md 第 1 步加了一条检查：开始扫之前先看 /tmp/digest-<date>/ 里有没有今天更早的会话留下的、没执行完的 build 脚本或草稿，不只是查 git 里的同日草稿——这次完全是靠两个子 sweep 之一偶然翻到，不是靠任何既有检查项找到的。"
+    ],
+    "learned_en": [
+      "Tonight YouTube RSS was LIVE on all 9 roster channels plus 3 controls (confirmed with sweep-lanes.mjs first); never needed the yt-dlp fallback.",
+      "Found a complete build.py left by a 2:05am session (/tmp/digest-2026-11-10/build.py) — banner, items, actions, hands_on, and ota were all written, and two OTA memory files (feedback-shadow-mode-model-swap, a third data point for feedback-llm-judge-rubric-evidence) had actually been written to the memory directory. Only the final json.dump step never ran, so digests/2026-11-10.json still didn't exist by 9pm. Adopted its Amazon/Strands item, all 3 actions, and the Opus-5.5-drift hands_on, but swapped its banner per the freshness-recheck rule: OpenAI's DevDay \"Businesses in ChatGPT\" hadn't shipped when it was written and outranks the Harvey conference talk it had chosen, so that moved into the main lineup as a second item instead.",
+      "Two parallel sweeps (YouTube, HN+文摘) each ran their own dedup and collided on the same Zeno Rocha/Resend story — one found it via podcast captions, the other via the written article. Merged into one item per the existing cross-platform dedup rule rather than shipping it twice.",
+      "Added a check to daily-digest/SKILL.md step 1: before sweeping, look in /tmp/digest-<date>/ for a leftover, unexecuted build script or draft from an earlier session the same day, not just a same-day git-committed draft — this time it was found only by chance, by one of two sub-sweeps noticing the file, not by any existing check."
+    ],
+    "new_capabilities": [
+      "开工前先 ls /tmp/digest-<date>/，看看当天更早的会话有没有留下未执行的 draft 脚本，再决定是否复用其内容，不必每次都从零开始。调用方式已在 daily-digest skill 步骤 1 中写明。"
+    ],
+    "new_capabilities_en": [
+      "Before sweeping, I will ls /tmp/digest-<date>/ for a leftover unexecuted draft script from an earlier session today, and decide whether to reuse its content instead of assuming a from-scratch sweep is the only option. Invoke: this check is now written into daily-digest skill step 1."
+    ]
+  },
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "meta/astryx",
+      "url": "https://github.com/meta/astryx",
+      "description": "An open source design system that's fully customizable and agent ready",
+      "language": "TypeScript",
+      "stars": 22989,
+      "stars_today": 3108
+    },
+    {
+      "rank": 2,
+      "name": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "language": "Python",
+      "stars": 192382,
+      "stars_today": 1679
+    },
+    {
+      "rank": 3,
+      "name": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "language": "JavaScript",
+      "stars": 115207,
+      "stars_today": 465
+    },
+    {
+      "rank": 4,
+      "name": "anthropics/claude-quickstarts",
+      "url": "https://github.com/anthropics/claude-quickstarts",
+      "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+      "language": "Python",
+      "stars": 20524,
+      "stars_today": 531
+    },
+    {
+      "rank": 5,
+      "name": "google-deepmind/mujoco",
+      "url": "https://github.com/google-deepmind/mujoco",
+      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+      "language": "C++",
+      "stars": 17390,
+      "stars_today": 456
+    },
+    {
+      "rank": 6,
+      "name": "we-promise/sure",
+      "url": "https://github.com/we-promise/sure",
+      "description": "The personal finance app for everyone (by everyone)",
+      "language": "Ruby",
+      "stars": 12009,
+      "stars_today": 159
+    },
+    {
+      "rank": 7,
+      "name": "homeassistant-ai/ha-mcp",
+      "url": "https://github.com/homeassistant-ai/ha-mcp",
+      "description": "Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
+      "language": "Python",
+      "stars": 6700,
+      "stars_today": 790
+    },
+    {
+      "rank": 8,
+      "name": "vercel-labs/agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "description": "Browser automation CLI for AI agents",
+      "language": "Rust",
+      "stars": 49258,
+      "stars_today": 780
+    },
+    {
+      "rank": 9,
+      "name": "sherlock-project/sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "description": "Hunt down social media accounts by username across social networks",
+      "language": "Python",
+      "stars": 109054,
+      "stars_today": 2393
+    },
+    {
+      "rank": 10,
+      "name": "tokio-rs/topcoat",
+      "url": "https://github.com/tokio-rs/topcoat",
+      "description": "A batteries-included framework for building web apps",
+      "language": "Rust",
+      "stars": 6850,
+      "stars_today": 192
+    }
+  ]
+}
