@@ -1,0 +1,286 @@
+{
+  "banner": "美联航禁第三方 AI 订票",
+  "banner_en": "United blocks third-party AI booking agents",
+  "image": {
+    "src": "digests/img/2026-11-11.jpg",
+    "caption": "本期要图：美联航 11 日起限制第三方 AI 代理访问订票系统（图：CBS News / Getty Images）。",
+    "caption_en": "Front-page image: United Airlines restricts third-party AI agents from its booking system starting Nov 11 (image: CBS News / Getty Images)."
+  },
+  "actions": [
+    {
+      "text": "给 orchestrator 的提示加一条硬规定：子 agent 必须回 completed / failed / partial / unknown 之一，附证据和副作用清单；它报的任何比率，编排端用原始计数重算一遍。Konda 的例子：改前 1000 次请求 10 个错，改后 600 次 6 个错，子 agent 称错误率下降，重算后两边都是 1%。超时按 unknown 处理，写操作先读回结果再重试。",
+      "text_en": "Add one hard rule to your orchestrator prompt: every sub-agent answers completed, failed, partial or unknown, with evidence and a list of side effects, and the orchestrator recomputes any rate from raw counts. Konda's example: 10 errors in 1,000 requests before, 6 in 600 after; the sub-agent said the rate fell, and recomputed both are 1%. Treat a timeout as unknown, and read back a write before retrying it.",
+      "source": "Girish Konda（微软）· AI Engineer 大会",
+      "source_en": "Girish Konda (Microsoft) · AI Engineer",
+      "source_url": "https://www.youtube.com/watch?v=DxP5aW4VknQ"
+    },
+    {
+      "text": "代码或数据放在 Val Town 上的人：12 月 10 日前导出代码，2027 年 1 月 10 日前搬走 sqlite 和 blob 数据。12 月 10 日起进入只读（官方说明里 sqlite 和 blob 存储不在只读范围内），其余服务 1 月 10 日关闭，开源安排在 2027 年 2 月 1 日。官方给了迁到 Cloudflare、Vercel、Netlify、Render 的指南。",
+      "text_en": "If you host code or data on Val Town: export your code before Dec 10 and move sqlite and blob data off before Jan 10, 2027. Read-only mode starts Dec 10 (the notice excludes sqlite and blob storage from it), everything else ends Jan 10, and open-sourcing is set for Feb 1, 2027. The team published migration guides for Cloudflare, Vercel, Netlify and Render.",
+      "source": "Val Town 官方博客（Steve Krouse）",
+      "source_en": "Val Town blog (Steve Krouse)",
+      "source_url": "https://blog.val.town/winding-down"
+    },
+    {
+      "text": "收到任何 AI 扫描器给的漏洞报告，先随机抽 10 条自己复现，再决定怎么排期，不要用厂商报的「真阳性率」。curl 维护者已评估的 34 份 Anthropic 报告里，19 份被判不是漏洞，6 份是低危，9 份还没结论。",
+      "text_en": "When an AI scanner hands you vulnerability reports, reproduce 10 random ones yourself before you plan any work, and ignore the vendor's true-positive rate. Of 34 Anthropic reports the curl maintainer has assessed, 19 were judged not vulnerabilities, 6 were low severity and 9 are still open.",
+      "source": "VulnCheck 博客 · 经 Hacker News",
+      "source_en": "VulnCheck blog · via Hacker News",
+      "source_url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试：用 Chrome 团队的 Modern Web Guidance 扫一遍前端项目，找出 agent 爱写的旧写法",
+    "title_en": "Try tonight: scan a front-end project with Chrome's Modern Web Guidance for the legacy patterns coding agents love to write",
+    "why": "它是 Chrome、Edge、Firefox 和 MDN 团队共同维护的一组 agent 技能，由命令行把「现代网页平台写法」按需塞进 agent 的上下文。README 的理由是：训练数据里旧代码太多，agent 常常写出本来用原生 API 就能解决的臃肿 JavaScript。它自带评测面板，但效果数据由项目方自己提供，我没有复测。",
+    "why_en": "It is a set of agent skills maintained by the Chrome, Edge, Firefox and MDN teams; a CLI feeds modern web-platform patterns into the agent's context on demand. The README's argument is that training data is full of legacy code, so agents write bloated JavaScript where a native API would do. It ships an eval dashboard, but those results come from the project itself and I did not rerun them.",
+    "time": "20 分钟",
+    "time_en": "20 min",
+    "steps": [
+      "进入一个有前端代码的项目目录（没有就随便找个旧的网页项目）。",
+      "先只读扫描：npx modern-web-guidance@latest legacy-scan .  列出代码里的旧写法。",
+      "查一条具体指南：npx modern-web-guidance@latest search \"animate a dialog modal backdrop\"，再用 retrieve \"animate-to-from-top-layer\" 取全文。",
+      "觉得有用再装：npx modern-web-guidance@latest install，按交互向导选你的 agent。",
+      "让 agent 改一个弹窗或动画，对比装之前和装之后它写出的代码量。"
+    ],
+    "steps_en": [
+      "Open a project with front-end code (any old web project will do).",
+      "Read-only scan first: npx modern-web-guidance@latest legacy-scan .  It lists legacy patterns in the code.",
+      "Look up one guide: npx modern-web-guidance@latest search \"animate a dialog modal backdrop\", then retrieve \"animate-to-from-top-layer\" for the full text.",
+      "If it looks useful, install: npx modern-web-guidance@latest install and pick your agent in the wizard.",
+      "Ask your agent to rework one dialog or animation and compare how much code it writes before and after."
+    ],
+    "source": "GitHub：GoogleChrome/modern-web-guidance（命令取自 README，npm 上版本为 1.0.0，我没有执行）",
+    "source_en": "GitHub: GoogleChrome/modern-web-guidance (commands from the README; npm lists v1.0.0; I did not run them)",
+    "source_url": "https://github.com/GoogleChrome/modern-web-guidance"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9 个频道，约 54 条上传，读了 3 份全文转写",
+      "items": [
+        {
+          "title": "Konda（微软）：子 agent 就是分布式系统，交接要有状态、证据和重算",
+          "title_en": "Microsoft's Konda: sub-agents are a distributed system, so handoffs need a status, evidence and a recompute",
+          "author": "Girish Konda（微软）· AI Engineer 大会",
+          "author_en": "Girish Konda (Microsoft) · AI Engineer",
+          "likes": "新发布",
+          "likes_label": "11 月 10 日",
+          "url": "https://www.youtube.com/watch?v=DxP5aW4VknQ",
+          "summary": "Konda 是微软的资深工程师，他在自己的开源项目 MCP Pacemaker 里碰到的问题，归成四类：子 agent 半途失败却回一段像成功的文字；一个 worker 写进共享上下文的推断被另外两个当成事实读走，三份结果「一致」其实只是同一句没核实的话；并发启动没有上限；重试把带副作用的任务整个再跑一遍。他的对策叫 SAFE：每条事实带来源版本和读取时间，过了 5 分钟的限期就要重读；写操作有唯一身份，批准只管那一次动作，做完要读回确认；每个下游有并发预算，被拒绝算失败；每次交接都落在明确状态上，超时只记为「未知」。他自己的实现里，冷启动通过闸门每次放两个，最多等 15 秒；会话数到上限后最多等 10 秒，再拒绝。他承认局限：这套规则不保证事实为真，不给出恰好一次的投递，也不能回滚；只给人读的草稿用不着它，多个编排者的场景也不适用。",
+          "summary_en": "Konda, a principal engineer at Microsoft, groups the problems he hit in his open-source MCP Pacemaker project into four: a sub-agent fails halfway and returns text that looks like success; one worker writes an inference into shared context and two others read it as fact, so three results \"agree\" while resting on one unchecked sentence; concurrent starts have no cap; and a retry re-runs a task with its side effects. His fix is called SAFE: every fact carries its source version and read time and is re-read once a 5-minute limit passes; each write has its own identity, an approval covers that one action, and the result is read back; each downstream gets a concurrency budget and a refusal counts as a failure; every handoff ends in a named state and a timeout is recorded only as unknown. In his own bridge, cold starts pass a gate two at a time and wait at most 15 seconds, and at the session cap a new session waits up to 10 seconds and is then refused. He lists the limits himself: it does not make facts true, does not give exactly-once delivery, cannot roll anything back, is overhead for drafts a person reads first, and does not fit setups with several orchestrators.",
+          "why": "对象是让子 agent 去碰真实系统的人。这是一个人从自己项目里总结的做法，讲座没有给出前后对比的实测，当成清单用，别当标准。它补的缺口很具体：现在多数编排循环只读子 agent 返回的文字，读不出对方到底做了多少。",
+          "why_en": "For anyone letting sub-agents touch real systems. This is one person's practice distilled from his own projects, with no before-and-after measurement in the talk, so use it as a checklist, not a standard. The gap it fills is concrete: most orchestration loops only read the text a sub-agent returns and cannot see how much work was behind it."
+        },
+        {
+          "title": "OpenAI 开发者日：先用一个 agent，多一个 agent 多一份 token，不一定更快",
+          "title_en": "OpenAI DevDay: start with one agent; each extra agent adds tokens without guaranteeing speed",
+          "author": "Raj、Eric（OpenAI 应用工程与开发者体验团队）· DevDay 2026",
+          "author_en": "Raj and Eric (OpenAI applied engineering and DX) · DevDay 2026",
+          "likes": "新发布",
+          "likes_label": "11 月 11 日",
+          "url": "https://www.youtube.com/watch?v=nAubbmlhPfI",
+          "summary": "讲座先回顾 Codex 怎么一步步让模型自己跑完长任务：把「压缩上下文」训练进模型，再用 --goal 把目标存在对话之外，让它不会被压缩掉，最后把「坚持到做完」训练进 GPT-6 系列，不再需要外面的循环去喊「继续」。给开发者的建议有四条：长任务先用一个 agent，给清楚的目标和检查办法，有理由再加；加一个 agent 会明显增加 token 用量，并不保证更快更好；按难度分档，日常活交给中档模型，卡住了请高档模型，杂活丢给小模型（讲座里的档名是 Soul、Astra、Luna，转写可能有误）；agent 之间别定太多层级规则，会互相等批准，他们叫「中层管理税」。最后一条是让 agent 维护一份紧凑的工作日志，写总目标、进行中的事和你每次插话与它们的关系，压缩三四次后才不会丢掉你中途的补充。结尾提到 Navier-Stokes 那件事用了 1 万个 agent，数字 09 月 08 日一期已报道，这里不再展开。",
+          "summary_en": "The talk first retraces how Codex got models to finish long tasks alone: compaction was trained into the model, then --goal stored the objective outside the conversation so it survives compaction, and finally persistence was trained into the GPT-6 series so no outer loop has to shout \"continue\". Four tips for builders. Start long tasks with one agent, a clear goal and a way to check its work, and add more only for a reason; each extra agent raises token use and does not guarantee a faster or better result. Tier by difficulty: a mid-tier model for routine work, a higher tier when it is stuck, a small model for busywork (the talk names the tiers Soul, Astra and Luna; the transcript may be garbled). Do not stack hierarchy rules between agents, because they stall waiting for approval, which Eric calls the middle-management tax. Last, have the agent keep a compact work log of the goal, the running work and how each of your mid-run steers relates to them, so steers survive three or four compactions. The close mentions the Navier-Stokes effort with 10,000 agents; those numbers ran in the Sep 8 issue and are not repeated here.",
+          "why": "OpenAI 卖 Codex，token 开销、速度和质量都是厂商自述，讲座没有给对照数据。可用的只有做法：单 agent 起步、分档、写工作日志，这三条在自己的任务上几分钟就能试。内部模型和 Ultra 模式讲座没说谁能用，别当成今天就能买到的东西。",
+          "why_en": "OpenAI sells Codex, so the claims about token cost, speed and quality are vendor-reported, with no comparison data in the talk. What is usable is the practice: start with one agent, tier the models, keep a work log, each testable on your own tasks in minutes. The talk does not say who can use the internal model or the Ultra mode, so do not treat them as available today."
+        },
+        {
+          "title": "Cline 的 Ara Khan：让 agent 连跑 17 小时自己改 harness，但讲座没给最终分数",
+          "title_en": "Cline's Ara Khan: an agent ran 17 hours rewriting its own harness, but the talk gives no final score",
+          "author": "Ara Khan（Cline）· AI Engineer 大会",
+          "author_en": "Ara Khan (Cline) · AI Engineer",
+          "likes": "新发布",
+          "likes_label": "11 月 11 日",
+          "url": "https://www.youtube.com/watch?v=iK9gmxXyBR0",
+          "summary": "Cline 的创始工程师说，Kimi K3 配 Cline 在 Terminal Bench 2.1 上拿了 77.5%，模型发布论文却称能到 85% 以上。于是他们让一个编码 agent 自己调 harness：并行起 89 个沙箱容器跑完整套题，把失败分类，改 harness，再跑，连续 17 小时没人干预。它找出的问题有循环检测缺失、后台进程占用过久、文件索引错误。这位工程师没有报最终分数，转写里出现的基线数字也对不上，所以这里不引。讲座后半段转向职业建议：他引用 OpenAI 的说法，称其模型自己重写了生产内核，服务成本降 20%，这是二手转述，我没有核对原文。结论是选「模型越强越受益、又不会被下一版模型一键抹掉」的问题。",
+          "summary_en": "Cline's founding engineer says Kimi K3 with Cline scored 77.5% on Terminal Bench 2.1, while the model's release paper claims 85% or more, so they had a coding agent tune the harness itself: 89 sandboxed containers run the full task set in parallel, failures are bucketed, the harness is edited, and the run repeats, for 17 hours with nobody stepping in. The problems it found include missing loop detection, background processes running too long, and file-index errors. The speaker never states a final score, and the baseline figure in the transcript does not add up, so it is not quoted here. The second half turns to career advice: he cites OpenAI saying its model rewrote its own production kernels for a 20% lower serving cost, which is secondhand and I did not check the original. His takeaway is to pick problems that gain from stronger models but are not erased by the next release.",
+          "why": "Cline 卖的就是这个 harness，所以「自动调参有效」这个说法没有第三方数据，也没有最终分数。能带走的是流程：整套题并行跑、失败分桶、改完再跑，它也说明实时调参容易过拟合，要在更宽的题集上验证。",
+          "why_en": "Cline sells this harness, so \"automatic tuning works\" has no third-party data and no final score. What carries over is the process: run the full suite in parallel, bucket failures, edit, rerun. He also notes that tuning in real time overfits, so changes need checking on a broader set."
+        }
+      ],
+      "swept_en": "9 channels, about 54 uploads listed, 3 full transcripts read"
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "前 60 条热榜（Firebase topstories，9 点重新抓取）",
+      "items": [
+        {
+          "title": "美联航禁止第三方 AI 代理帮订机票，理由是信不过它们的操作",
+          "title_en": "United Airlines bars third-party AI agents from booking flights, citing trust and compliance risk",
+          "author": "Megan Cerullo（CBS MoneyWatch）· 经 Hacker News",
+          "author_en": "Megan Cerullo (CBS MoneyWatch) · via Hacker News",
+          "likes": "381 分",
+          "likes_label": "约 365 条评论",
+          "url": "https://www.cbsnews.com/news/united-airlines-bans-ai-agents-booking-flights/",
+          "summary": "美联航 11 日起更新订票条款，禁止 Meta Muse、OpenAI 旗下代理等第三方个人 AI 助手代为订票、改签或值机。理由有两条：这类工具要拿到账号的支付信息等凭证，公司说分享账号凭证给第三方 AI 助手可能泄露敏感信息，这些工具的操作可能造成意外购票、账号变更或误用里程；用 AI 代理值机可能违反联邦规定，比如要求乘客本人现场确认行李不含违禁品。美联航正在自家平台和旅行社、聚合平台两条路上收紧访问权限。分析师 Henry Harteveldt 说，美联航这么做也是想拦住比价聚合网站之外又多出来的一层中间商，减少 AI 机器人批量搜索航班带来的成本。美联航的票仍能在 Kayak、Hopper、Google Flights 等聚合平台上订到；对比之下，西南航空选的是另一条路，让自己的航班信息能被 ChatGPT 用户直接查到。",
+          "summary_en": "United updated its booking terms on Nov 11 to bar third-party personal AI assistants, including Meta's Muse and an OpenAI-linked agent, from booking, changing or checking in on a traveler's behalf. Its stated reasons: such tools need account credentials including payment information, and \"sharing account credentials with personal, third-party AI assistants can expose sensitive information\" and risk unintended purchases, account changes or misused miles; and using an AI agent to check in could violate federal rules such as requiring travelers to confirm in person that their luggage carries no banned substances. United is tightening access both directly on its own platforms and indirectly through travel agencies and aggregators. Aviation analyst Henry Harteveldt says the move also blocks yet another intermediary beyond price-comparison sites and cuts the cost of AI bots flooding United with flight searches. United fares remain bookable through aggregators like Kayak, Hopper and Google Flights; Southwest, by contrast, made its own flight inventory viewable to ChatGPT users directly.",
+          "why": "这是美联航自己的政策公告，条款范围以它为准。往前一步看，这条新闻和今天另外两条（Konda 的交接清单、VulnCheck/curl 的核实差距）其实是同一件事的不同侧面：谁都在收紧允许 AI 代理拿到多少信任和多少权限。对把产品建在「AI 代理能帮用户完成交易」这个假设上的人，这是一个真实的收紧信号。",
+          "why_en": "This is United's own policy notice, so the scope follows it. Zoomed out, this story and two others tonight (Konda's handoff checklist, VulnCheck/curl's verification gap) are different faces of the same thing: everyone is tightening how much trust and access an AI agent gets by default. For anyone building a product on the assumption that an AI agent can transact for its user, this is a real tightening signal."
+        },
+        {
+          "title": "VulnCheck：Glasswing 七个月，Anthropic 账本上 3.8 万条发现，只有 217 条标为已修复",
+          "title_en": "VulnCheck: seven months into Glasswing, Anthropic's ledger lists 37,966 findings and only 217 marked fixed",
+          "author": "Patrick Garrity（VulnCheck）· 经 Hacker News",
+          "author_en": "Patrick Garrity (VulnCheck) · via Hacker News",
+          "likes": "382 分",
+          "likes_label": "约 177 条评论",
+          "url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update",
+          "summary": "VulnCheck 自己的开源仓库统计到 442 个可归到 Anthropic 的 CVE，占今年 93,450 个 CVE 的约 0.5%，其中只有 2 个出现在已被利用的清单里。Anthropic 11 月 2 日的公开账本显示 37,966 条发现，已公开 7,349 条（19.4%），标为已修复 217 条，重复约 1,650 条，撤回 419 条，自称真阳性率 94.2%。和 9 月 8 日相比，发现多了 11,813 条，修复只多 15 条。另一端是 curl：Anthropic 的扫描器给了 45 份报告，已发布的 34 份里，维护者判 19 份不是漏洞，6 份低危，9 份待评估。",
+          "summary_en": "VulnCheck's own open-source tracker counts 442 CVEs attributable to Anthropic, about 0.5% of this year's 93,450, and only 2 of them appear on its exploited-in-the-wild list. Anthropic's public ledger as of Nov 2 shows 37,966 findings, 7,349 public (19.4%), 217 marked fixed, roughly 1,650 duplicates and 419 withdrawn, with a claimed true-positive rate of 94.2%. Since Sep 8 the ledger added 11,813 findings and only 15 fixes. On the maintainer side, Anthropic's scanner sent curl 45 reports; of the 34 published so far, the maintainer judged 19 not vulnerabilities, 6 low severity and 9 still open.",
+          "why": "三层要分开读。已观察到的：账本里的计数和 curl 的 34 份判定。VulnCheck 自己算出的：0.5% 和 2 个被利用。外推的：「项目失败」这个结论。VulnCheck 卖已被利用漏洞的情报，口径偏向「有没有人真用过」。HN 上有评论指出，账本只覆盖 Anthropic 对开源包的披露，合作方在自己私有代码里的发现不在其中；这是评论者的说法，我没法核实。",
+          "why_en": "Read it in three layers. Observed: the ledger counts and curl's 34 verdicts. VulnCheck-measured: the 0.5% and the 2 exploited. Extrapolated: the verdict that the project is failing. VulnCheck sells exploited-vulnerability intelligence, so its lens is \"has anyone actually used it\". One HN commenter says the ledger only covers Anthropic's disclosures for open-source packages, not partners' findings in their private code; that is the commenter's claim and I could not verify it."
+        },
+        {
+          "title": "Val Town 宣布关停：1 月 10 日起所有服务结束，2027 年 2 月 1 日开源",
+          "title_en": "Val Town is shutting down: all services end Jan 10, open-sourcing Feb 1, 2027",
+          "author": "Steve Krouse（Val Town）· 经 Hacker News",
+          "author_en": "Steve Krouse (Val Town) · via Hacker News",
+          "likes": "358 分",
+          "likes_label": "约 214 条评论",
+          "url": "https://blog.val.town/winding-down",
+          "summary": "Val Town 是在线跑小段 JavaScript 的托管平台。创始人 11 月 10 日发信，说没能在云计算这块竞争过。当天停止新注册和升级，计费暂停，现有订阅免费服务到结束，已预付年费的按比例退款。时间表：12 月 10 日进入只读（sqlite 和 blob 存储不含在内），1 月 10 日其余服务结束，2027 年 2 月 1 日开源。官方给了迁到 Cloudflare、Vercel、Netlify、Render 的指南，并说现在的大模型很擅长做这类迁移。",
+          "summary_en": "Val Town hosts small JavaScript snippets that run online. On Nov 10 its founder wrote that the team could not compete in cloud computing. New signups and upgrades stopped that day, billing is paused, existing subscriptions are served free until the end, and annual prepayers get a partial refund. Timeline: read-only on Dec 10 (sqlite and blob storage excluded), all other services end Jan 10, open-sourcing on Feb 1, 2027. The team published migration guides for Cloudflare, Vercel, Netlify and Render and says today's LLMs are good at this kind of migration.",
+          "why": "这是官方公告，日期和范围以它为准。评论里有人说 Val Town 融资约 700 万美元，并认为这类「给最终用户编程」的平台很难在投资人要求的两三年内做出回报，这是评论者的看法，没有数据。对用户的实际含义在 今日可行动 第二条。",
+          "why_en": "This is the official notice, so dates and scope follow it. One commenter says Val Town raised about $7M and argues that end-user-programming platforms struggle to pay back within the two or three years investors allow; that is the commenter's view with no data behind it. What it means for users is in action 2."
+        },
+        {
+          "title": "英伟达传将换帅，股价盘后跌超 9%",
+          "title_en": "Nvidia weighs ousting Huang; stock drops over 9% after hours",
+          "author": "CNBC（转引《华尔街日报》《纽约时报》）· 经 Hacker News",
+          "author_en": "CNBC (citing WSJ, NYT) · via Hacker News",
+          "likes": "527 分",
+          "likes_label": "约 776 条评论，另有 NYT 独立报道 211 分",
+          "url": "https://www.cnbc.com/2026/11/11/nvidia-jensen-huang-affair-employee.html",
+          "summary": "《华尔街日报》11 日报道，英伟达董事会准备撤换 CEO 黄仁勋，最快当天开会决定。消息传出后，英伟达股价盘后一度跌超 9%；本周该股此前已跌 7%，为连续第六周下滑，市场将其解读为近期国会选举后数据中心建设前景转弱所致。同日，《纽约时报》报道黄仁勋与一名直接向他汇报的高管、公司医疗业务副总裁 Kimberly Powell 有往来，两人今年 3 月在圣何塞一家酒店被拍到有亲密举动；这是《纽约时报》的转述，英伟达和 Powell 均未回应 CNBC 的置评请求。黄仁勋本人上周已在内部邮件中承认对妻子不忠并致歉，这部分是他自己写的。另据《纽约时报》援引美国情报部门的评估，黄仁勋此前另一段关系的对象 Alice Huang 被认为可能是中国国家安全部的情报人员，公司董事会已请律所 Wachtell, Lipton 介入独立调查；这一说法来自情报转述，没有公开证据，按未证实处理。《华尔街日报》原文有付费墙，我没能读到全文，以上转引自 CNBC 的报道。",
+          "summary_en": "The Wall Street Journal reported on Nov 11 that Nvidia's board is preparing to oust CEO Jensen Huang, with a board meeting possible as soon as that day. Nvidia shares fell more than 9% after hours on the news; the stock had already dropped 7% this week, its sixth straight weekly decline, which commentary linked to post-midterm worries about data-center buildout. The same day, the New York Times reported Huang had a relationship with Kimberly Powell, Nvidia's VP of healthcare, who reports to him, and that the two were seen being affectionate at a San Jose hotel in March; this is the Times' reporting, and neither Nvidia nor Powell responded to CNBC's request for comment. Huang himself admitted in a staff email last week to being \"unfaithful\" to his wife and apologized, which is his own statement. Separately, the Times reported that U.S. intelligence officials believe a woman from an earlier relationship, Alice Huang, may be an intelligence operative for China's Ministry of State Security; Nvidia's board has hired the law firm Wachtell, Lipton to investigate, and this specific claim is secondhand from intelligence sourcing with no public evidence, so treat it as unconfirmed. The original WSJ article is paywalled and I could not read it directly; the above is relayed through CNBC's report.",
+          "why": "英伟达几乎是今天全部大模型训练和推理的芯片供应商，换帅传闻直接牵动整条 AI 基建的稳定性预期，这是股价大跌的原因，属于确有影响的市场事件。黄仁勋本人承认的不忠部分是他自己邮件里写的，算确认事实；换帅与情报指控部分都还在报道阶段，没有官方结论，按未证实处理，这里只写来源说了什么，不代入结论。",
+          "why_en": "Nvidia supplies nearly all the chips behind today's model training and inference, so an ouster rumor directly shakes confidence in AI infrastructure stability, which is the real reason the stock moved. Huang's own admission of infidelity is a confirmed fact because he wrote it himself; the ouster and intelligence-affiliation claims are still at the reporting stage with no official conclusion, so they are flagged as unconfirmed here rather than treated as settled.",
+          "flag": "换帅决定和\"被怀疑为中国情报人员\"这两点均为媒体报道，未经官方证实。",
+          "flag_en": "Both the ouster decision and the \"suspected intelligence operative\" claim are media reports, not officially confirmed."
+        }
+      ],
+      "swept_en": "top 60 Firebase topstories, refetched fresh at 9pm"
+    }
+  ],
+  "meta_read": "今天好几处撞在同一个问题上：谁的操作、谁的数能被信，要自己核实，不能看报告就信。子 agent 回「完成」，编排端按原始计数重算，错误率其实没变。Glasswing 账本自称真阳性率 94.2%，curl 已评估的 34 份里 19 份不算漏洞。美联航干脆不让第三方 AI 代理碰订票流程，理由也是同一条：它拿着你的账号信息做的操作，没人能替你核实。出数字或做操作的一方，和核对结果的一方，应该是两个人（或两段代码），这比换更强的模型便宜。",
+  "meta_read_en": "Several items tonight run into the same problem: whoever performs an action or reports a number needs independent checking, not just a glance at the report. A sub-agent says \"done\", and the orchestrator recomputes from raw counts and finds the rate did not change. Anthropic's ledger claims a 94.2% true-positive rate, while curl rejected 19 of the 34 reports it has assessed. United Airlines simply stopped letting third-party AI agents touch its booking flow, for the same reason: nobody can verify on your behalf what an agent does with your account. The party that produces a number or performs an action, and the party that checks it, should be two different people or two different pieces of code — that costs less than switching to a stronger model.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "meta/astryx",
+      "url": "https://github.com/meta/astryx",
+      "description": "An open source design system that's fully customizable and agent ready",
+      "language": "TypeScript",
+      "stars": 25097,
+      "stars_today": 2776
+    },
+    {
+      "rank": 2,
+      "name": "ZhuLinsen/daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+      "language": "Python",
+      "stars": 70323,
+      "stars_today": 278
+    },
+    {
+      "rank": 3,
+      "name": "GoogleChrome/modern-web-guidance-src",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 1809,
+      "stars_today": 159
+    },
+    {
+      "rank": 4,
+      "name": "shadcn/improve",
+      "url": "https://github.com/shadcn/improve",
+      "description": "Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
+      "language": null,
+      "stars": 10936,
+      "stars_today": 361
+    },
+    {
+      "rank": 5,
+      "name": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "language": "JavaScript",
+      "stars": 115989,
+      "stars_today": 787
+    },
+    {
+      "rank": 6,
+      "name": "vercel-labs/agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "description": "Browser automation CLI for AI agents",
+      "language": "Rust",
+      "stars": 49907,
+      "stars_today": 708
+    },
+    {
+      "rank": 7,
+      "name": "we-promise/sure",
+      "url": "https://github.com/we-promise/sure",
+      "description": "The personal finance app for everyone (by everyone)",
+      "language": "Ruby",
+      "stars": 13004,
+      "stars_today": 1078
+    },
+    {
+      "rank": 8,
+      "name": "homeassistant-ai/ha-mcp",
+      "url": "https://github.com/homeassistant-ai/ha-mcp",
+      "description": "Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
+      "language": "Python",
+      "stars": 7397,
+      "stars_today": 645
+    },
+    {
+      "rank": 9,
+      "name": "openai/codex-security",
+      "url": "https://github.com/openai/codex-security",
+      "description": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: <a href=\"https://www.npmjs.com/package/@openai/codex-security\" class=\"Link--inTextBlock\" rel=\"nofollow\">https://www.npmjs.com/package/@openai/codex-security</a>",
+      "language": "TypeScript",
+      "stars": 11788,
+      "stars_today": 52
+    },
+    {
+      "rank": 10,
+      "name": "TheAlgorithms/Java",
+      "url": "https://github.com/TheAlgorithms/Java",
+      "description": "All Algorithms implemented in Java",
+      "language": "Java",
+      "stars": 67051,
+      "stars_today": 51
+    }
+  ],
+  "ota": {
+    "learned": [
+      "先读台账（ota-ledger-index.md）和今天早些时候的记录：`overnight/daily-digest` 分支在凌晨 2:06 已经自己提交了一版今天的期刊（YouTube + Hacker News），但只在它自己的分支上，没有合进 main，也没有发到 origin。按 SKILL.md 对\"同日已有草稿\"和\"过夜分支草稿\"的两条规则处理：没有整体 git merge 那个分支（它对别的日期有自己独立演进的历史），只把草稿内容当候选，重新核实新鲜度。今晚 9 点重新抓了一遍 Firebase topstories（500 条，取前 60 条看分数），发现凌晨草稿完全没有的两条大新闻：美联航当天下午禁止第三方 AI 代理订票（381 分），和英伟达传换帅股价跌超 9%（527 分）。前者直接改了头条和配图，后者作为新增条目加入，标了未证实的部分。VulnCheck/curl 和 Val Town 两条经 `bin/check-domain-reuse.py` 核对，过去 7 天没有重复，原样保留。",
+      "黄仁勋换帅这条新闻本身也考虑过当头条，但决定不用：核心事实是个人关系和情报指控，不是 AI 应用/产品新闻，题材本身容易写成八卦腔，和这份刊物\"不要小报腔\"的要求冲突。改成一条带 flag 的普通条目，只写市场影响（股价跌超 9%），把换帅决定和情报指控都标成\"媒体报道，未证实\"，不下结论。",
+      "读过 Konda 的讲座后，把他的 SAFE 交接清单写成了一条记忆：以后给子 agent 派活，要求回传状态、证据、做了和没做的事、副作用，超时记为未知，带写操作的任务不盲目重试，并把它报的比率用原始计数重算。",
+      "OpenAI 讲座里的「工作日志」技巧也写成了记忆：长任务反复压缩上下文后，把总目标、进行中的事、每次插话与它们的关系记在一个短文件里。",
+      "今天放掉的候选：Foldable Flight、AlphaProof Code（研究类，不在应用与 GTM 取向内）、「AI 让代码库变脆」（和 11 月 9 日的 Reddit 条目是同一话题）、Fable 5.2 与 Mythos 5.2（11 月 9 日已报）、Fireworks/Notion 泄露（11 月 10 日已报）、Claude Whiteboards/Sheets/Data（只读到产品页，没有可核实的细节）、Apple 本地模型应用（9to5mac 一篇预告）、玛雅遗址 AI 发现（929 分但是单人博客自述，没找到第三方核实，未纳入）。X、小红书今晚没有登录态可用，文摘 newsletter 今晚没有抽时间扫。"
+    ],
+    "learned_en": [
+      "Read the ledger (ota-ledger-index.md) and today's earlier record first: the `overnight/daily-digest` worktree branch had already committed a draft for today (YouTube + Hacker News) at 2:06am, but only on its own branch, never merged to main or pushed to origin. Followed SKILL.md's rules for both a \"same-day prior-run draft\" and an \"overnight worktree branch draft\": no wholesale git merge of that branch (it has its own independently-evolving history for other dates), just treated its content as a candidate and re-checked freshness. A fresh 9pm pull of Firebase topstories (500 ids, scanned the top 60 by score) turned up two big stories the 2am draft had no way to know about: United Airlines banning third-party AI booking agents that same afternoon (381 points), and Nvidia stock dropping over 9% on ouster reports (527 points). The first replaced the banner and the image; the second was added as a new, flagged item. The VulnCheck/curl and Val Town items were rechecked against the last 7 days with bin/check-domain-reuse.py, came back clean, and were kept as-is.",
+      "Also considered the Nvidia/Huang story for the banner slot and decided against it: its core facts are a personal relationship and an intelligence allegation, not AI-application or product news, and that subject matter reads as tabloid no matter how carefully it is phrased, which conflicts with this paper's own no-tabloid-register rule. Kept it as one flagged regular item instead, reporting only the market impact (the >9% stock drop) and marking both the ouster decision and the intelligence claim as \"reported, not confirmed,\" without drawing a conclusion.",
+      "After Konda's talk I wrote his SAFE handoff list into a memory: when I delegate to sub-agents, I will ask for a status, evidence, what was and was not done, and side effects; treat a timeout as unknown; not blindly retry tasks with writes; and recompute any rate it reports from raw counts.",
+      "The work-log tip from the OpenAI talk is also a memory now: on long tasks that compact repeatedly, keep the goal, the active streams and how each mid-run steer relates to them in one short file.",
+      "今日撤下：Foldable Flight、AlphaProof Code（研究性质，与应用及 GTM 方向不符）、“AI 使用会生成脆弱代码库”（与 11 月 9 日 Reddit 条目同题）、Fable 5.2 与 Mythos 5.2（11 月 9 日报道）、Fireworks/Notion 泄露事件（11 月 10 日报道）、Claude Whiteboards/Sheets/Data（仅读了产品页，无可核实细节）、苹果本地模型应用（仅一篇 9to5mac 预览），以及“AI agent 发现未测绘的玛雅遗址”一帖（929 分，但只是单一自述博客，未找到第三方验证，故不收录）。今晚 X 与小红书均无可用登录会话，文摘通讯录本轮未扫。"
+    ],
+    "new_capabilities": [
+      "给子 agent 派活时，按交接状态合同回传 completed / failed / partial / unknown，附证据和副作用；超时记为未知；写操作先读回再重试；它报的比率要重算。用法：任何 Agent 并行派活的提示里都带上这几项，规则见记忆 feedback-subagent-handoff-status-contract。尚未实战使用。",
+      "跑过夜或多小时的长任务时，在检查点目录旁维护一份 worklog.md，记总目标、进行中的事、每次插话的影响；上下文压缩后先读它再继续。用法见记忆 feedback-compact-work-log-for-steers。尚未实战使用。"
+    ],
+    "new_capabilities_en": [
+      "When I delegate to sub-agents I will use the handoff status contract: ask for completed, failed, partial or unknown with evidence and side effects, treat a timeout as unknown, read a write back before retrying, and recompute the rates they report. To invoke it, put those fields in any parallel Agent brief; the rule is in the memory feedback-subagent-handoff-status-contract. Not yet used in practice.",
+      "On overnight or multi-hour runs I will keep a worklog.md beside the checkpoint dir (goal, active streams, effect of each mid-run steer) and reread it after context compaction. See the memory feedback-compact-work-log-for-steers. Not yet used in practice."
+    ]
+  }
+}
