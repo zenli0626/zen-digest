@@ -1,0 +1,261 @@
+{
+  "date": "2026-11-12",
+  "banner": "黄仁勋辞任英伟达 CEO",
+  "banner_en": "Jensen Huang resigns as Nvidia's CEO",
+  "image": {
+    "src": "digests/img/2026-11-12.jpg",
+    "caption": "黄仁勋 10 月 8 日在华盛顿美国和平研究所接受特朗普颁发的国家科学奖章，11 月 12 日辞任英伟达 CEO（图：AP Photo/Julia Demaree Nikhinson）。",
+    "caption_en": "Jensen Huang receives the National Medal of Science from President Trump at the U.S. Institute of Peace on Oct. 8; he resigned as Nvidia's CEO on Nov. 12 (image: AP Photo/Julia Demaree Nikhinson)."
+  },
+  "actions": [
+    {
+      "text": "如果你的流程里有 agent 编排，不妨把干写代码、跑测试这类执行活的模型换成 Gemini 4 Hydrogen：100 万 token 上下文统一计费，输入每百万 token 1.5 美元、输出 7.5 美元，今天起在 AI Studio 和 Gemini API 里就能直接调用，不用等审批。",
+      "text_en": "If your pipeline already splits judgment from execution, try swapping the execution model for Gemini 4 Hydrogen: flat pricing across its full 1M-token context, $1.50 per million input tokens and $7.50 per million output, callable today in AI Studio and the Gemini API with no waitlist.",
+      "source": "Google 官方博客",
+      "source_en": "Google's own blog",
+      "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+    },
+    {
+      "text": "如果你也让 agent 批量写测试，给它配一个不知道原 agent 怎么想的独立审核 agent，专门查三件事：有没有碰 production 代码、有没有删或静音测试、有没有人为加长等待来骗过 CI。Duolingo 这条审核线已经查了约 1200 个 PR，拦下 73 个。",
+      "text_en": "If agents write tests for you in bulk, add a separate reviewer agent that never sees the original agent's reasoning, checking only three things: did it touch production code, did it delete or silence a test, did it add an artificially long wait to game CI. Duolingo's version has reviewed about 1,200 PRs and rejected 73.",
+      "source": "Kush Agrawal（Duolingo）· AI Engineer 大会",
+      "source_en": "Kush Agrawal (Duolingo) · AI Engineer",
+      "source_url": "https://www.youtube.com/watch?v=D_4Rn6uLdQM"
+    },
+    {
+      "text": "对 ANT 感兴趣的话，今晚就能做的是去嘉信、E*TRADE、Fidelity、Robinhood 或 SoFi 的经纪账户里确认申购资格。定价预计 11 月 18 日出，19 日开始交易，申购资格和配额都不保证，但账户要提前开好。",
+      "text_en": "If you're curious about ANT, the thing to do tonight is confirm IPO-request eligibility in a Schwab, E*TRADE, Fidelity, Robinhood or SoFi brokerage account. Pricing is expected Nov. 18 and trading starts Nov. 19, with no guarantee of eligibility or allocation, but the account needs to be ready beforehand.",
+      "source": "Anthropic IPO 官方路演页",
+      "source_en": "Anthropic's own IPO roadshow page",
+      "source_url": "https://ipo.anthropic.com/us/"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试：在会话里跑一次 /doctor，看 Opus 5.5 不再需要 CLAUDE.md 里哪些话",
+    "title_en": "Try tonight: run /doctor in your own session to see what Opus 5.5 no longer needs from your CLAUDE.md",
+    "why": "Anthropic 的 Claude Code 工程师 Lydia Hallie 在 AI Engineer 的讲座里说，老的最佳实践里「重要！」「绝对不要！」之类强调语气，放到 Opus 5.5 这代模型里反而会让它走偏、多打工具调用、结果更差。她提到有个命令能自动核对 CLAUDE.md 和 skill 文件，挑出当前模型已经不需要提醒的内容。她念的命令词现场转写不清楚，这里不照抄原话；我在本机 claude --help 里确认了 doctor 这个子命令确实存在，官方说明是「可以修复问题的全面检查，在会话里用 /doctor 跑」。具体是否带针对特定模型的审计参数，今晚没能在非交互环境里验证，建议直接在会话里敲 /doctor 看它都检查什么。她同时提到两条直接能用的硬规则：hook 脚本要用 exit code 2 才能让 Claude 返回去修，用 1 只会被当成已完成；npm test 一类命令本身安全，但它背后拉起的依赖和子进程不受权限规则管，只有开 sandbox 才能让操作系统接管限制。",
+    "why_en": "Anthropic's own Claude Code engineer Lydia Hallie said at AI Engineer that old best-practice habits, writing \"IMPORTANT!\" or \"NEVER!\" into CLAUDE.md, can actually push today's Opus 5.5 off track, adding tool calls and making results worse. She mentions a command that automatically checks CLAUDE.md and skill files for what the current model no longer needs (the exact command name was unclear in the auto-captions, so it's not quoted verbatim here; this machine's own claude --help confirms a doctor subcommand exists, described as \"a full checkup that can also fix issues... run /doctor in a session,\" though I could not verify tonight in a non-interactive shell whether it takes a model-specific audit flag; worth just typing /doctor in a session and seeing what it checks). Two other rules are directly usable: a hook script needs exit code 2, not 1, to send Claude back to fix something; and a command like npm test is itself safe, but the dependencies and child processes it pulls in are not covered by permission rules, only by turning on the sandbox so the OS enforces the limit.",
+    "time": "10 分钟",
+    "time_en": "10 min",
+    "steps": [
+      "打开一个你平时在用的 Claude Code 项目。",
+      "在交互会话里敲 /doctor，看它报出哪些关于权限、CLAUDE.md 或 skill 的建议。",
+      "对照你的 CLAUDE.md，找有没有「重要」「绝对不要」这类强调语气的行，试着删掉一条，看 Claude 下一次回复是不是一样准。",
+      "如果你有 hook 脚本，检查失败时的 exit code 是不是 2（不是 1）。",
+      "跑一个会调依赖的命令（比如 npm test），确认有没有开 sandbox 限制它能读写的范围；没开的话去 settings 里看怎么加。"
+    ],
+    "steps_en": [
+      "Open a Claude Code project you actually use.",
+      "In an interactive session, type /doctor and see what it flags about permissions, CLAUDE.md or skills.",
+      "Check your CLAUDE.md for lines with \"IMPORTANT\" or \"NEVER\" and try deleting one to see if Claude's next response is just as accurate.",
+      "If you have hook scripts, confirm their failure exit code is 2, not 1.",
+      "Run a command that pulls in dependencies (like npm test) and check whether sandbox mode is limiting what it can read or write; if not, look at settings for how to turn it on."
+    ],
+    "source": "Lydia Hallie（Anthropic Claude Code团队）· AI Engineer 大会",
+    "source_en": "Lydia Hallie (Anthropic Claude Code team) · AI Engineer",
+    "source_url": "https://www.youtube.com/watch?v=vlfCjWuv4es"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9 个频道 RSS 全部 404（含对照频道，确认是平台级故障非冷清周），yt-dlp 回退成功取 7 个频道，48 小时窗口内有新内容的 3 个频道，读了 5 份全文转写",
+      "swept_en": "all 9 roster channels' RSS 404'd (including a control channel, confirming a platform-wide outage, not a quiet week); yt-dlp fallback succeeded on 7 channels, 3 had fresh uploads in the 48h window, 5 full transcripts read",
+      "items": [
+        {
+          "title": "代码免费后，维护账单才刚开始",
+          "title_en": "Agents made code free; the maintenance bill just started",
+          "author": "Dmitry Buykin（马士基）· AI Engineer 大会",
+          "author_en": "Dmitry Buykin (Maersk) · AI Engineer",
+          "likes": "新发布",
+          "likes_label": "11 月 11 日",
+          "url": "https://www.youtube.com/watch?v=oeknLUsN_GE",
+          "summary": "马士基工程师 Dmitry Buykin 讲自己维护一个由 agent 大量写代码的生产系统的经历：代码量涨得失控后他删掉了没人用的测试和模板，整个项目重写一遍，结果丢了一些还在用的东西。重写也没撑住，agent 接着写，混乱又长回来。他后来定下的办法是每周做小规模清理，把判断力嵌进反馈回路，而不是定期推倒重来。几条做法：把提示词、agent 说明和测试都当「文档」去管理，用「改一句话看测试会不会变红」的办法检验这些文档有没有用；模型能看到的信息范围由运行时决定，不让模型自己选要加载什么，否则它会把看到的所有东西都当成要处理的理由；重复出现的操作路径固化成代码工具，只固化「做什么判断」，不固化「具体步骤」，否则 agent 会在工具里再跑一遍本该省掉的步骤；关键操作要能回放到真实任务上重跑，没有真实任务走到的分支就按未覆盖处理；一个 agent 写的代码由另一个不带它推理过程的 agent 单独审核，这样审核方不会被说服附和。他也提到一个代价：系统的设计最终会刻上纠正它的那个人的习惯和偏见，而不是写代码那个 agent 的。",
+          "summary_en": "Maersk engineer Dmitry Buykin describes maintaining a production system where agents write most of the code: when the codebase grew out of control he deleted unused tests and boilerplate and rewrote the whole project, losing some pieces still in use. The rewrite didn't hold either; agents kept writing and the mess grew back. His eventual fix is small weekly cleanups with judgment built into feedback loops, instead of periodic full rewrites. Specific practices: treat prompts, agent instructions and tests all as \"prose\" to be engineered, and test whether that prose still matters by changing one line and checking whether a test turns red; the runtime, not the model, decides what the model can see, because letting a model choose what to load makes it treat everything visible as a reason to act; a repeated action path gets turned into a code tool only when it's confirmed to repeat, and the tool should encode the decision, not the steps, or the agent re-runs steps the tool was meant to skip; critical writes get replayed against real past tasks, and any branch no real task ever reaches counts as uncovered; code written by one agent gets reviewed by a second agent that never sees the first one's reasoning, so it can't be talked into agreeing. He names one cost of this himself: the system ends up encoding the habits and biases of whoever keeps correcting it, not of the agent that wrote the code.",
+          "why": "讲座用「灭霸打指」做比喻，具体数字很少，核心是方法论而非测得的效果，能直接搬的是三条：审核 agent 不给它看推理过程；关键改动在真实任务上回放验证；提示词和测试也要像代码一样做变更测试。放在今晚一起看，它和下一条 Duolingo 互为印证：一边是如何让 agent 规模化写测试，一边是写出来之后怎么防止系统失控，两者说的是同一条生产线的两端。",
+          "why_en": "The talk leans on a Thanos-gauntlet metaphor and offers few hard numbers; it's a methodology, not a measured result. Three things are directly reusable: have a review agent check work without seeing the original reasoning; replay critical changes against real past tasks; and mutation-test your prompts and tests the same way you'd test code. Read next to the Duolingo item below, the two cover opposite ends of the same production line: scaling agents to write tests, and keeping the system from spiraling once they do."
+        },
+        {
+          "title": "Duolingo让agent写了22.5万行单测，MVVM覆盖率从9%到59%",
+          "title_en": "Duolingo had agents write 225,000 lines of unit tests, raising MVVM coverage from 9% to 59%",
+          "author": "Kush Agrawal（Duolingo）· AI Engineer 大会",
+          "author_en": "Kush Agrawal (Duolingo) · AI Engineer",
+          "likes": "新发布",
+          "likes_label": "11 月 11 日",
+          "url": "https://www.youtube.com/watch?v=D_4Rn6uLdQM",
+          "summary": "Duolingo 平台团队的工程师 Kush Agrawal 介绍了他们如何用 agent 给 iOS 代码库补测试。背景：iOS 仓库 2019 年有 20 万行代码，如今接近 200 万行；今年已有 250 多人提交代码，不少是后端、Android 工程师，甚至 PM 和设计师，靠的是 Cursor、Claude Code 这类工具。今年 3 月整体单测覆盖率只有 11%，8 个月后升到 24%，MVVM 那部分代码从 9% 升到 59%。具体做法是一个由 Temporal 编排的循环：先挑出需要测试的文件，按文件类型、大小打分，view model 和 repository 优先；agent 读仓库里的测试规范写测试，开 PR；CI 通不过就再派 agent 按日志修，通过了就按 git blame 找原作者审核。真正起作用的是三道防线：把 agent 跑在 Mac 机器上本地 build 和 lint，减少无谓的 CI 失败（此前 lint 失败占比一度到 13.6%）；规定 agent 只能改测试、mock、fake、stub 文件，碰了别的文件直接关掉 PR；再用另一个 LLM 专门审这些测试 PR，挡住 production 代码被改、测试被删或静音、人为加长等待这几种作弊方式。这个审核 agent 已查了约 1200 个 PR，拒了 73 个。目前这条流水线已合并 700 多个 PR，写了 22.5 万行测试代码，占同期新增 Swift 代码的 10%。工程师说，这个「识别—写—验证—解决—迭代」的循环不只适用于测试，公司已在往迁移 MVVM、Swift UI 等任务上复用。",
+          "summary_en": "Duolingo platform engineer Kush Agrawal describes using agents to backfill unit tests on the iOS codebase. Context: the iOS repo grew from 200K lines in 2019 to nearly 2M lines today, and more than 250 people have contributed this year alone, including backend and Android engineers, PMs and designers using tools like Cursor and Claude Code. Overall unit-test coverage was 11% in March; eight months later it's 24%, and the MVVM slice went from 9% to 59%. The system is a Temporal-orchestrated loop: a selector scores files (by type and size, prioritizing view models and repositories), an agent reads the repo's own testing spec and writes tests, opens a PR, and a separate agent fixes CI failures from logs; once green, the file's git-blame owner is auto-assigned to review. Three guardrails made it actually work: running agents on Mac runners so they build and lint locally, cutting wasted CI failures (lint failures had hit 13.6% of PRs); a hard rule that an agent-written PR may only touch test, mock, fake or stub files, or it gets closed; and a separate LLM-as-judge agent that reviews every test PR for production-code edits, deleted or silenced tests, and artificially long waits — it has reviewed about 1,200 PRs and rejected 73. The pipeline has merged over 700 PRs, adding 225,000 lines of test code, about 10% of all new Swift code in the same period. Agrawal says the identify-write-verify-resolve-iterate loop isn't specific to testing and Duolingo is already reusing it for MVVM and SwiftUI migration work.",
+          "why": "文中的数字（11% 到 24%，9% 到 59%，700 多个 PR，22.5 万行）都来自 Duolingo 自己的工程博客，没有第三方复核，但这是公开可查的生产系统，不是厂商推介。可以照着抄的是那条「写文件限制 + 独立 LLM 审核 + git blame 找人」的流水线设计，比空喊「让 agent 写测试」具体得多。",
+          "why_en": "The numbers (11% to 24%, 9% to 59%, 700+ PRs, 225K lines) all come from Duolingo's own data, with no third-party audit, but this is a documented production system, not a vendor pitch. What's directly copyable is the pipeline design itself: restrict agent writes to test files, add an independent LLM reviewer, and auto-assign by git blame; much more concrete than just saying \"have agents write tests.\""
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "前 40 条热榜（Firebase topstories，上午 9 点重新抓取）",
+      "swept_en": "top 40 Firebase topstories, refetched fresh at 9pm",
+      "items": [
+        {
+          "title": "黄仁勋辞任英伟达CEO，克雷斯代理",
+          "title_en": "Jensen Huang resigns as Nvidia CEO; Kress named interim chief",
+          "author": "Kelvin Chan、Matt Sedensky · 美联社 · 经 Hacker News",
+          "author_en": "Kelvin Chan and Matt Sedensky · AP · via Hacker News",
+          "likes": "2981 分",
+          "likes_label": "约 2807 条评论",
+          "url": "https://apnews.com/article/nvidia-megaspeed-china-singapore-huang-5403f152a601cf82ce939f1d24fffa0f",
+          "summary": "英伟达 11 日宣布黄仁勋辞任 CEO，开盘股价跌 14%，收盘跌约 4%。公司任命首席财务官柯蕾特·克雷斯（Colette Kress）代理 CEO。她 2013 年起任 CFO，此前在思科三年、微软十三年。公司同时新设董事会主席一职，由企业家兼风险投资人哈维·琼斯（Harvey C. Jones）出任。英伟达没有为黄仁勋的离任准备过接班方案，董事会称会同时考虑内部和外部候选人。导火索是一连串婚外情报道：董事会周日宣布就黄仁勋与一名涉嫌中国间谍的女性的关系展开调查，当时仍表态支持他；周三深夜又传出他与一名直接向他汇报的员工有亲密关系，路透社援引匿名信源报道了第二起。黄仁勋本人上周已在内部邮件中承认对妻子不忠。国会议员仍要求问询他：参议院民主党领袖舒默要求国会就国家安全问题向他问责；众院外委会主席马斯特说，如果必要会发传票强制他到场。特朗普周四仍称黄仁勋「做得很棒」，同时确认 FBI 在调查。1993 年，黄仁勋和两位工程师在圣何塞一家 Denny's 餐厅构思出英伟达，此后带领公司 33 年，使其成为标普指数里市值最高公司之一；据福布斯估算，他个人财富超 1500 亿美元。",
+          "summary_en": "Nvidia announced on Nov. 12 that Jensen Huang resigned as CEO; shares fell 14% at the open and closed down about 4%. The company named CFO Colette Kress interim CEO; she has held the role since 2013 after three years at Cisco and thirteen at Microsoft. The board also created its first-ever chairman role, filled by entrepreneur and investor Harvey C. Jones. Nvidia had no succession plan in place, and the board says it will consider both internal and external candidates. The trigger was a string of affair reports: the board announced an investigation on Sunday into Huang's relationship with a woman suspected of being a Chinese spy, while still voicing confidence in him; late Wednesday, reports surfaced of a second relationship, this time with an employee who reported directly to him, per Reuters' anonymously sourced account. Huang himself had already admitted infidelity to his wife in a staff email last week. Lawmakers still want to question him: Senate Democratic leader Schumer is demanding answers on national-security grounds, and House Foreign Affairs Chairman Brian Mast says a subpoena will follow if needed. Trump still called Huang's work \"fantastic\" on Thursday while confirming the FBI is investigating. Huang co-founded Nvidia with two engineers at a San Jose Denny's in 1993 and led it for 33 years into one of the most valuable companies in the S&P 500; Forbes estimates his personal fortune at more than $150 billion.",
+          "why": "这是美联社自己的报道，事实以它为准：辞职、代理 CEO 人选、新设董事长职位都是公司公告的内容，算确认事实。换帅决定由黄仁勋自己宣布，不是传闻；他与两起婚外情的关联，以及第二段关系中那名女性被美方情报部门怀疑参与为中国递送信息，仍停留在媒体报道和国会问询阶段，没有法院或监管结论，这里只写各方说了什么。英伟达几乎供应着今天全部大模型的训练和推理芯片，公司三十年来第一次没有现成的接班人，这是这条新闻真正牵动行情的地方，不是八卦本身。",
+          "why_en": "This is AP's own reporting, so the facts follow it: the resignation, the interim CEO choice and the new chairman role are all company announcements, so count as confirmed. The departure itself was announced by Huang; his connection to the two affairs, and the suspicion that the woman in the first relationship may have passed information for China per U.S. intelligence assessments, remain at the reporting and congressional-inquiry stage with no court or regulatory finding, so this only states what each side has said. Nvidia supplies nearly all the chips behind today's model training and inference, and for the first time in thirty years it has no ready successor; that is what actually moves markets here, not the affair itself.",
+          "flag": "黄仁勋与被怀疑为中国情报人员的往来，以及他与下属的第二段关系，均为媒体援引匿名信源的报道，未经法院或监管机构证实。",
+          "flag_en": "Huang's ties to a woman suspected of being a Chinese intelligence asset, and his second relationship with a subordinate, are both media reports from anonymous sources, not confirmed by any court or regulator."
+        },
+        {
+          "title": "Anthropic 公布IPO路演数据：三季度营收170亿美元，净亏233亿美元",
+          "title_en": "Anthropic's IPO roadshow: $17B Q3 revenue, $23.3B net loss",
+          "author": "Anthropic 官方 IPO 路演页 · 经 Hacker News",
+          "author_en": "Anthropic's own IPO roadshow page · via Hacker News",
+          "likes": "825 分",
+          "likes_label": "约 806 条评论",
+          "url": "https://ipo.anthropic.com/us/",
+          "summary": "Anthropic 的 IPO 路演页披露，三季度（截至 9 月 30 日）营收 170 亿美元，同比增长超过 12 倍；年化收入在 10 万美元以上的客户超过 1.19 万家，同比也涨超 12 倍；调整后营业利润率 15%，但账面净亏损 233 亿美元，原因是可转换票据、衍生负债和 SAFE 协议因估值上升产生 219 亿美元的非现金费用。路演从 11 月 10 日开始，定价预计 11 月 18 日出炉，股票代码 ANT，预计 11 月 19 日在纳斯达克挂牌，散户可通过嘉信、E*TRADE、Fidelity、Robinhood、SoFi 申购。页面列的客户案例里，法律科技公司 Legora 称 Claude Code 使用量在该公司扩大了 14 倍（从约 50 个席位到全公司 700 个），乐天（Rakuten）称自主编码一次运行能到 7 小时以上，新功能上线时间从 24 天压缩到 5 天。",
+          "summary_en": "Anthropic's IPO roadshow page discloses Q3 (through Sept. 30) revenue of $17.0B, up more than 12x year over year; customers with over $100K in trailing-twelve-month revenue topped 11,900, also up more than 12x; adjusted operating margin is 15%, but the company posted a $23.3B net loss, driven by a $21.9B non-cash charge from rising valuations on convertible notes, derivative liabilities and SAFEs. The roadshow began Nov. 10, pricing is expected Nov. 18, and shares are set to list on Nasdaq under \"ANT\" on Nov. 19, open to retail investors through Schwab, E*TRADE, Fidelity, Robinhood and SoFi. Among its customer case studies, legal-tech firm Legora says its Claude Code usage grew 14x (from about 50 seats to 700 company-wide), and Rakuten says it now runs autonomous coding sessions over 7 hours long and cut new-feature time-to-market from 24 days to 5.",
+          "why": "这些数字来自 Anthropic 自己提交给 SEC 的招股文件和路演页，属于受监管披露，比一般的厂商自述更有法律约束力；但客户案例（14 倍、7 小时、24 天到 5 天）仍是公司挑出来的成功样本，不是独立调研。对正在用 Claude Code 的人，这组数字说明公司增长主要靠企业大客户堆起来，不是靠免费用户规模；对想申购 ANT 的人，11 月 18 日前经纪商账户要先开通资格确认。",
+          "why_en": "These numbers come from Anthropic's own SEC-filed prospectus and roadshow page, a regulated disclosure with more legal weight than ordinary vendor claims, but the customer cases (14x, 7 hours, 24 to 5 days) are still company-picked success stories, not independent research. For anyone already on Claude Code, the numbers show the growth is concentrated in large enterprise accounts, not free-tier scale; for anyone considering buying ANT, a brokerage account needs eligibility confirmed before Nov. 18."
+        },
+        {
+          "title": "Google 发布 Gemini 4 Hydrogen，主打agent执行速度",
+          "title_en": "Google ships Gemini 4 Hydrogen, built for fast agent execution",
+          "author": "Koray Kavukcuoglu（Google DeepMind）· Google 官方博客 · 经 Hacker News",
+          "author_en": "Koray Kavukcuoglu (Google DeepMind) · Google's own blog · via Hacker News",
+          "likes": "469 分",
+          "likes_label": "约 299 条评论",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+          "summary": "Google 今天把 Gemini 4 Hydrogen 开放给所有层级：AI Studio、Gemini API、企业版 Gemini、Gemini app、搜索,以及 Google AI Pro/Ultra 订阅者在 Antigravity 里都能用。定价按 100 万 token 上下文统一收费,输入每百万 token 1.5 美元,输出 7.5 美元。Artificial Analysis Intelligence Index 上,默认高思考档打 51 分,略高于旗舰 Argon 的 50 分,拉到最高档能到 54 分;官方强调卖点是执行任务比同级模型更快,不在跑分最高。Google 同时在 Antigravity 里推出 Orchestrator:一个会话里自动在 Carbon(负责架构判断) 和 Hydrogen(负责写代码、跑测试、验证) 之间切换,Terminal-Bench 4.0 上任务成功率接近 Carbon,平均少耗 24% 配额、快 19%。",
+          "summary_en": "Google made Gemini 4 Hydrogen available today across every tier: AI Studio, the Gemini API, Gemini for business, the Gemini app, Search, and for Google AI Pro/Ultra subscribers inside Antigravity. Pricing is flat across its full 1-million-token context: $1.50 per million input tokens, $7.50 per million output tokens. On the Artificial Analysis Intelligence Index it scores 51 at its default high-thinking setting, just above flagship Argon's 50, reaching 54 at its highest setting, but Google frames its real selling point as faster task execution within its class, not the top benchmark score. Google also launched Orchestrator inside Antigravity: it automatically switches between Carbon (architectural judgment) and Hydrogen (writing code, running tests, verifying) within one session, reaching near-Carbon success rates on Terminal-Bench 4.0 while using 24% less quota on average and finishing 19% faster.",
+          "why": "全层级今天可用和定价都是 Google 自己公布的,算确定事实;跑分取自第三方 Artificial Analysis 的榜,但 Orchestrator 省 24% 配额、快 19% 这组数字是 Google 自己在 Terminal-Bench 上测的,没有第三方复核。这条和今晚另外两条并排看:Google 用 Carbon 判断、Hydrogen 执行,Anthropic 本周的新功能也是强模型当主控、弱模型干活 (见今日上手),同一个分工思路今天在两家公司同时出现。",
+          "why_en": "\"Available today across every tier\" and the pricing are Google's own confirmed facts; the benchmark score comes from third-party Artificial Analysis, but the 24%-quota, 19%-faster numbers for Orchestrator are Google's own Terminal-Bench measurement, with no independent recheck. Read alongside two other items tonight: Google splits judgment (Carbon) from execution (Hydrogen), and Anthropic's own new setup this week pairs a strong model as controller with a cheaper one doing the work (see hands_on) — the same division of labor showed up at two companies independently today."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天好几条新闻在说同一件事的不同版本:强模型和弱模型各干什么活,已从口号变成具体的工程决定。Google 把 Carbon 留给架构判断,Hydrogen 专写代码跑测试;Anthropic 的 Claude Code Projects 让 Fable 当主控判断做完没做完,Opus 去执行;Duolingo 和马士基讲的是另一半:哪些判断必须留给人,哪些可以固化成代码。三家公司今天各自独立给出同一个答案:分工的边界不在算力强弱,在错了能不能撤回。能撤回的交给模型,撤不回的留给代码规则或人。",
+  "meta_read_en": "Several stories tonight are different versions of the same thing: which work goes to a strong model and which to a cheap one has stopped being a slogan and become a specific engineering decision. Google keeps Carbon for architectural judgment and routes execution to Hydrogen; Anthropic's Claude Code Projects has Fable judge whether a task is actually done while Opus does the work; Duolingo and Maersk describe the other half of the same question, which judgments must stay human and which can be hardened into code. Three companies landed on the same answer independently today: the line isn't drawn by how powerful a model is, it's drawn by whether a mistake can be undone. What's reversible goes to the model; what isn't stays in a code rule or a person's hands.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "GoogleChrome/modern-web-guidance-src",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+      "description": "Keep your coding agent up to date with the latest web best practices",
+      "language": "TypeScript",
+      "stars": 3099,
+      "stars_today": 739
+    },
+    {
+      "rank": 2,
+      "name": "openai/codex-security",
+      "url": "https://github.com/openai/codex-security",
+      "description": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: <a href=\"https://www.npmjs.com/package/@openai/codex-security\" class=\"Link--inTextBlock\" rel=\"nofollow\">https://www.npmjs.com/package/@openai/codex-security</a>",
+      "language": "TypeScript",
+      "stars": 12466,
+      "stars_today": 643
+    },
+    {
+      "rank": 3,
+      "name": "nvm-sh/nvm",
+      "url": "https://github.com/nvm-sh/nvm",
+      "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
+      "language": "Shell",
+      "stars": 96022,
+      "stars_today": 63
+    },
+    {
+      "rank": 4,
+      "name": "pookjw/HermesEnabler",
+      "url": "https://github.com/pookjw/HermesEnabler",
+      "description": "Enable Hermès Watch Faces on any Apple Watch devices",
+      "language": "Objective-C",
+      "stars": 1554,
+      "stars_today": 218
+    },
+    {
+      "rank": 5,
+      "name": "we-promise/sure",
+      "url": "https://github.com/we-promise/sure",
+      "description": "The personal finance app for everyone (by everyone)",
+      "language": "Ruby",
+      "stars": 13958,
+      "stars_today": 967
+    },
+    {
+      "rank": 6,
+      "name": "QwenLM/qwen-code",
+      "url": "https://github.com/QwenLM/qwen-code",
+      "description": "An open-source AI coding agent that lives in your terminal.",
+      "language": "TypeScript",
+      "stars": 29845,
+      "stars_today": 151
+    },
+    {
+      "rank": 7,
+      "name": "ashhart/TensorFold",
+      "url": "https://github.com/ashhart/TensorFold",
+      "description": "LLM Inference Engine for Metal, CUDA and Vulkan.",
+      "language": "Zig",
+      "stars": 1954,
+      "stars_today": 54
+    },
+    {
+      "rank": 8,
+      "name": "nodejs/node",
+      "url": "https://github.com/nodejs/node",
+      "description": "Node.js JavaScript runtime ✨🐢🚀✨",
+      "language": "JavaScript",
+      "stars": 123607,
+      "stars_today": 62
+    },
+    {
+      "rank": 9,
+      "name": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "language": "JavaScript",
+      "stars": 116704,
+      "stars_today": 816
+    },
+    {
+      "rank": 10,
+      "name": "meta/astryx",
+      "url": "https://github.com/meta/astryx",
+      "description": "An open source design system that's fully customizable and agent ready",
+      "language": "TypeScript",
+      "stars": 26612,
+      "stars_today": 1830
+    }
+  ],
+  "ota": {
+    "learned": [
+      "YouTube RSS 今晚 9 个频道外加对照频道全部 404,同一请求确认是平台级故障,并非冷清周;yt-dlp 加 android client 能回退成功,9 个里取到 7 个,48 小时窗口内只有 AI Engineer 大会 (aidotengineer)、OpenAI、No Priors 三个频道有新内容,No Priors 那条实际是 142 字的短片段,信息量太低没收录。",
+      "核对了今晚一条讲座主张:Claude Code 有个 doctor prompt audit 命令。本机 claude --help 确认 doctor 子命令确实存在,但现场转写没法确认具体审计参数,只能报部分核实。顺手把 SKILL.md 里原本只覆盖 CVE 场景的核对自己机器规则,扩到覆盖任何工具/功能主张,已写进 SKILL.md。",
+      "黄仁勋这条新闻昨天 (11 日) 被判定不适合当头条,当时只是个人关系加一条未证实的换帅传闻。今天变成公司正式公告的辞职、代理 CEO、新设董事长,是 confirmed 的公司治理事件,和昨天不是同一类素材,所以今天用作头条,flag 里只保留仍未证实的部分 (第二段婚外情、间谍指控)。",
+      "今晚没有 Chrome/claude-in-chrome 可用 (ToolSearch 确认),X 和小红书没扫;YouTube 加 Hacker News 两个平台、5 条内容已过多样性门槛,不算缺口。",
+      "放掉的候选:No Priors 两条生物医药播客 (制药话题偏离应用/GTM 取向);HN 上中国前沿模型带有被管制 GPU 的指纹 (172 分,取证类,今晚篇幅优先给了三条更大的商业新闻);aidotengineer 另外两条讲座 (Intel 的 SKILL.md 评估方法、Anthropic Lydia Hallie 的 Claude Code 最佳实践更新) 没有做成独立条目,前者写成新记忆,后者进了今晚的 hands_on,避免同一主题进两个板块。"
+    ],
+    "learned_en": [
+      "All 9 roster channels plus a control channel 404'd on YouTube RSS tonight, confirmed as a platform-wide outage (not a quiet week) via the identical request; the yt-dlp + android-client fallback worked, pulling 7 of 9, with fresh uploads inside the 48h window only on AI Engineer (aidotengineer), OpenAI and No Priors — the No Priors hit was a 142-word clip, too thin to use.",
+      "Checked tonight's one checkable talk claim (a Claude Code command auto-captioned as \"doctor prompt audit\"): claude --help on this machine confirmed a real doctor subcommand, but the specific audit flag wasn't verifiable from the caption or a non-interactive shell, so it's reported as partially confirmed. Generalized SKILL.md's CVE-only \"check your own machine\" rule to cover any tool/feature claim — written into SKILL.md tonight.",
+      "The Jensen Huang story was judged unfit for the banner yesterday (Nov 11), when it was only a personal relationship plus an unconfirmed ouster rumor. Today it's a formal company announcement: resignation, interim CEO, a new chairman role — a confirmed governance event, different in kind from yesterday's material, so it became tonight's banner, with the flag reserved for what's still unconfirmed (the second affair, the espionage allegation).",
+      "No Chrome/claude-in-chrome available tonight (confirmed via ToolSearch), so X and RedNote went unswept; YouTube plus Hacker News, 5 items, already clears the diversity gate, so this isn't logged as a gap.",
+      "Cut candidates: two No Priors biotech podcast episodes (off the applied/GTM tilt); an HN forensics post on Chinese frontier models carrying export-controlled GPU fingerprints (172 points, deprioritized for three bigger business stories tonight); two other aidotengineer talks (Intel's SKILL.md-evaluation method, Anthropic's Lydia Hallie on updated Claude Code best practices) were not made into standalone items — the first became a new memory, the second became tonight's hands_on, to avoid the same thread claiming two homes."
+    ],
+    "new_capabilities": [
+      "核对某个 CLI 命令或功能是否存在这类主张时,不再只在 CVE 场景下才去查自己的机器,任何工具功能主张都先在本机验证一条命令。用法见 daily-digest/SKILL.md 第 2 节 2026-11-12 新增的那条。",
+      "评估一份 skill 文件是否还值它占的 token,可以用拆成 20-30 个问答项、带技能和不带技能两组各跑一次、裁判模型打分、分宽松和严格两档的方法,不必凭感觉删改。用法见记忆 feedback-skill-evaluation-items-method,尚未实战跑过。"
+    ],
+    "new_capabilities_en": [
+      "When a claim is about whether some CLI command or feature exists, I now check my own machine for any tool/feature claim, not only CVE-shaped ones. Invoke via the 2026-11-12 addition in daily-digest/SKILL.md section 2.",
+      "To test whether a skill file still earns its token cost, split it into 20-30 question/answer items, run with and without the skill loaded, score with a judge model, and check both a lenient and a strict pass. See memory feedback-skill-evaluation-items-method; not yet run in practice."
+    ]
+  }
+}
