@@ -1,0 +1,246 @@
+{
+  "date": "2026-11-14",
+  "banner": "程序员联署，向 AI 水货宣战",
+  "banner_en": "Engineers declare war on AI slop",
+  "image": {
+    "src": "digests/img/2026-11-14.jpg",
+    "caption": "《反水货宣言》的发布卡片。这份宣言仿照 2001 年的敏捷宣言格式，由 AI Engineer Code Summit 的演讲者和参会者联合执笔，11 月 13 日由 Dex 在闭幕演讲上公布。（图：Latent Space）",
+    "caption_en": "The launch card for \"The No AI Slop Manifesto.\" Modeled on the 2001 Agile Manifesto's format, it was co-written by speakers and attendees at the AI Engineer Code Summit and unveiled by Dex in the closing keynote on November 13. (Image: Latent Space)"
+  },
+  "actions": [
+    {
+      "text": "下次你纠正 agent 写的代码时，先别急着把这条规则写进 CLAUDE.md 或 rules 文件。想一想能不能直接写成一条 lint 规则、一道类型检查，或者干脆在架构上禁掉那种写法。写成代码的规则，下一次 agent 不会再犯；写成文字的规则，agent 大概率会忘。",
+      "text_en": "Next time you correct something an agent wrote, don't reach for CLAUDE.md or a rules file first. Check whether it can be a lint rule, a type check, or an architecture choice that bans the pattern outright instead. A rule written in code holds the next time; a rule written in prose is the one the agent forgets.",
+      "source": "Lauren Tan（Potato，SpaceXAI / Grokbot）· AI Engineer Code Summit",
+      "source_en": "Lauren Tan (Potato, SpaceXAI / Grokbot) · AI Engineer Code Summit",
+      "source_url": "https://www.youtube.com/watch?v=O_zcc6Xl12g"
+    },
+    {
+      "text": "下次看到一个「需求旺盛」的增长故事，不管是不是 AI 芯片，花两分钟查一下：投资人和买家是不是同一拨人。如果一家公司投钱给自己的客户，客户再拿这笔钱回头买它的产品，这个「旺盛」就要打个问号。",
+      "text_en": "Next time you see a \"demand is booming\" growth story, AI chips or anything else, spend two minutes checking whether the investor and the buyer are the same party. If a company funds its own customers and those customers turn around and spend that money buying its product, the \"booming\" part deserves a second look.",
+      "source": "《华尔街日报》· 经 techpowerup / Wccftech · 经 Hacker News",
+      "source_en": "The Wall Street Journal · via techpowerup / Wccftech · via Hacker News",
+      "source_url": "https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试：用你自己的 anon key，查一遍自己应用的数据库权限",
+    "title_en": "Try tonight: use your own anon key to check your app's own database permissions",
+    "why": "德国安全公司 Crissy Field 扫了 15.9 万个 Lovable 搭的应用，发现用 Supabase 做数据库的那批里，三成在首次打开或简单的只读请求下就能拿到含邮箱的表，里头有护照号、聊天记录、合同、工资单。这不是 Lovable 一家的问题，是「AI 把写应用的门槛降到几乎为零，但数据库权限这道题从来不会自动做对」这件事的一个样本。不管你的应用是不是用 AI 生成的，不管用的是 Supabase 还是别的 Postgres 托管，这道检查都值得自己动手做一遍，而不是假设平台或框架已经替你管好了。",
+    "why_en": "German security firm Crissy Field scanned 159,041 apps built on Lovable and found that among the ones using Supabase as their database, 30% exposed tables containing email addresses through nothing more than the page loading or a simple read-only request, some of it passport numbers, chat logs, contracts, payroll data. This isn't a Lovable-specific bug. It's one sample of a bigger fact: AI has pushed the cost of building an app toward zero, but database permissions were never something that gets right by default. Whether or not your app was AI-generated, and whether it runs on Supabase or any other hosted Postgres, this check is worth doing yourself instead of assuming the platform or framework already handled it.",
+    "time": "20 分钟",
+    "time_en": "20 min",
+    "steps": [
+      "打开你的 Supabase 项目控制台，进 Authentication → Policies，看一眼哪些表开了 RLS（Row Level Security），哪些还没开。",
+      "找出你的匿名/publishable key（在 Project Settings → API 里）。",
+      "用这个 key 直接发一个只读请求试试，比如 curl \"https://<你的项目>.supabase.co/rest/v1/<表名>?select=*\" -H \"apikey: <你的 anon key>\"，看看不登录能不能拿到数据。",
+      "重点查那些存了邮箱、电话、地址、证件号、聊天记录的表，不要只查你记得的那几张。",
+      "如果某张不该公开的表能被读到，给它加一条基于 auth.uid() 的 RLS 策略，再重复第三步确认已经拦住了。"
+    ],
+    "steps_en": [
+      "Open your Supabase project dashboard, go to Authentication → Policies, and check which tables have Row Level Security (RLS) turned on and which don't.",
+      "Find your anon / publishable key (under Project Settings → API).",
+      "Make a plain read-only request with that key, e.g. curl \"https://<your-project>.supabase.co/rest/v1/<table>?select=*\" -H \"apikey: <your anon key>\", and see what comes back without logging in.",
+      "Focus on tables holding emails, phone numbers, addresses, ID numbers, or chat logs, not just the ones you remember building.",
+      "If a table that shouldn't be public returns rows, add an RLS policy scoped to auth.uid() and repeat step 3 to confirm it's actually blocked now."
+    ],
+    "source": "Crissy Field GmbH（德国应用安全公司）",
+    "source_en": "Crissy Field GmbH (German application security firm)",
+    "source_url": "https://www.crissyfield.de/research/lovable-en/"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9 个频道 RSS 再次全站 404（含对照频道，确认平台级故障），yt-dlp 回退全部成功；按精确到秒的 48 小时窗口，只有 3 条真正新鲜，其中 2 条和昨天条目是同一支视频（重新顶上热门，不是新内容），实际新的只有 1 条，读了全文转写",
+      "swept_en": "all 9 roster channels' RSS 404'd again (control channel included, confirming a platform-wide outage), yt-dlp fallback succeeded on all 9; inside a second-precision 48h window only 3 uploads were fresh, 2 of which were the exact same videos already covered yesterday (resurfacing, not new), leaving exactly 1 genuinely new upload, full transcript read",
+      "items": [
+        {
+          "title": "一个月 3000 个 PR，Grokbot 工程师把「水货」变成金子",
+          "title_en": "3,000 PRs in a month: a Grokbot engineer turns \"slop\" into gold",
+          "author": "Lauren Tan（Potato，SpaceXAI / Grokbot 团队）· AI Engineer Code Summit",
+          "author_en": "Lauren Tan (Potato, SpaceXAI / Grokbot team) · AI Engineer Code Summit",
+          "likes": "9.68 万次观看",
+          "likes_label": "2530 赞",
+          "url": "https://www.youtube.com/watch?v=O_zcc6Xl12g",
+          "summary": "Lauren Tan（花名 Potato）在 SpaceXAI 做 Grokbot，她上个月一个人把 3000 个 PR 推上了生产。她说以前只有少数「编码机器」式的工程师才追求数量，比如那位一个周末重写整个 Google 地图的 Brett Taylor，但 agent 出现后人人都能是编码机器。她的办法是一个倒金字塔：最底层是代码本身的硬约束（类型系统、lint、架构设计），往上是验证（跑时验证和形式化验证），最上面才轮到写成文字的规则（rules、skills、agents.md），文字层要尽量薄，只留给真正需要判断力的事。具体做法：在他们的 Electron 客户端框架 Dune 里，直接禁用了 React 的 useEffect（agent 很容易用错），禁了 99% 的代码注释（agent 常把注释当成不改正确做法的借口，而且注释没有强制力），把渲染线程和主线程的代码目录强制分开并用依赖分析工具挡住违规 import。验证这块，他们开始用 TLA+ 对通知同步这类关键流程做模型检查，用 Lean 证明自己写的虚拟化库不会闪烁，还用一个叫 Bombadil 的库做属性测试，这几样都已经抓到过真实 bug。团队现在把大部分 token 花在验证上，而不是生成代码本身。效果是：上个月团队整体推了 11000 个 PR，10 月有 227 个「路人」贡献者各提交过至少一个 PR，PR 回滚率稳定在 0.5% 左右，客户端的启动、输入延迟等多项性能指标还在变好。新版本发布时，Grokbot 会自动拉起一个 Cursor agent 去模糊测试整个应用，找到 bug 就直接开 PR 修复并自动合并，不需要人看。",
+          "summary_en": "Lauren Tan (handle: Potato) works on Grokbot at SpaceXAI, and last month she personally shipped 3,000 pull requests to production. She notes that before agents, only a few \"coding machine\" engineers chased that kind of volume, citing Brett Taylor's famous weekend rewrite of Google Maps, but agents have made everyone a coding machine now. Her framework is an inverted pyramid: the base layer is hard constraints in the codebase itself (type systems, lint rules, architecture), the next layer is verification (runtime and formal), and only at the top, kept as thin as possible, do you reach for prose rules (rules files, skills, agents.md), reserved for things that genuinely require judgment. Concretely: in their Electron client framework Dune, they banned React's useEffect outright (agents misuse it constantly), banned 99% of code comments (agents use comments as an excuse to justify not fixing the real problem, and comments carry no enforcement), and physically separated renderer-thread and main-thread code into different top-level directories, blocked by a dependency-graph linter. On verification, they've started using TLA+ to model-check critical flows like cross-device notification sync, Lean to prove their own custom virtualization library won't flicker, and a property-testing library called Bombadil, all of which have already caught real bugs. Most of the team's token spend now goes to verification, not code generation. The payoff: the team shipped 11,000 PRs last month overall, 227 \"drive-by\" contributors opened at least one PR in October, the PR revert rate holds steady around 0.5%, and multiple client performance metrics (startup time, input latency) have kept improving. On every new release, Grokbot now automatically spins up a Cursor agent to fuzz the whole app, open fix PRs for anything it finds, and auto-merge them with no human review.",
+          "why": "这些数字都是她自己团队的一面之词，没有第三方审计，但具体到了「禁了哪个 React hook」「用了哪个形式化验证工具」这种可以直接照抄的细节，不是空泛的「我们很重视质量」。她也是今晚《反水货宣言》的联署人之一，这条讲座基本是宣言里「我们优化系统而不是修补产出」这条原则的一次完整实操。",
+          "why_en": "These numbers are her own team's account with no third-party audit, but they come down to specific, copyable details, which React hook got banned, which formal-verification tool was used, not a vague claim about caring about quality. She's also one of the co-signers of tonight's No AI Slop Manifesto, and this talk is essentially a full working example of the manifesto's own principle of \"improving the system over patching the output.\""
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Firebase topstories 前 90 条，check-domain-reuse.py 核对后排除黄仁勋辞职、Gemini 4 Hydrogen（与昨天完全同一 URL，重新顶上热榜）和中国前沿模型 GPU 指纹（11-12 已拒收，今天查无新事实）三条，读了 2 篇全文",
+      "swept_en": "top 90 Firebase topstories, check-domain-reuse.py flagged and excluded three resurfacing stories with no new facts (Jensen Huang's resignation and Gemini 4 Hydrogen, both exact-URL repeats of yesterday; the Chinese-frontier-model GPU fingerprint piece, already declined on 11-12 with nothing new today), 2 articles read in full",
+      "items": [
+        {
+          "title": "芯片卖不完怎么办？英伟达被曝自己掏钱养客户",
+          "title_en": "Too many chips, not enough buyers? Nvidia allegedly funded its own customers",
+          "author": "《华尔街日报》· 经 techpowerup / Wccftech · 经 Hacker News",
+          "author_en": "The Wall Street Journal · via techpowerup / Wccftech · via Hacker News",
+          "likes": "1036 分",
+          "likes_label": "约 621 条评论",
+          "url": "https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
+          "summary": "《华尔街日报》一篇新报道（经 techpowerup、Wccftech 转引）称，英伟达今年 8 月一场内部财务会议上，黄仁勋冲着首席财务官、现任代理 CEO 科莱特·克雷斯发火，说她「像车灯前的鹿」。起因是克雷斯推动缩减公司的循环融资协议，此前她还推动缩小英伟达与 OpenAI 那笔 2500 亿美元、俄亥俄数据中心的交易。报道描述的情况是：英伟达向台积电下的芯片订单量，已超出既有买家能消化的规模，公司面临一波卖不出去的库存压力。黄仁勋的应对是继续加码投资一批小型云服务商，这些公司拿到投资后再回头采购英伟达的 GPU，一边消化过剩产能，一边维持「市场需求旺盛」的信号。克雷斯指出的问题在于，这批被投的小云服务商本身多买不起英伟达的芯片，钱绕一圈，最后仍是个财务窟窿。",
+          "summary_en": "A new Wall Street Journal report (relayed via techpowerup and Wccftech) says Nvidia held an internal finance meeting this past August where Jensen Huang berated CFO and now-acting-CEO Colette Kress as a \"deer in the headlights,\" after she pushed to scale back the company's circular financing agreements and had earlier pushed to shrink Nvidia's reported $250 billion Ohio data center deal with OpenAI. The report's account: Nvidia's chip orders from TSMC had outgrown what existing buyers could absorb, leaving the company sitting on inventory it couldn't move. Huang's response was to keep investing in small cloud providers, who would then turn around and buy Nvidia GPUs with that money, working through the oversupply while keeping up appearances of \"strong demand.\" Kress's objection was that many of those small cloud providers couldn't actually afford Nvidia's chips on their own, meaning the money just circled back to the same financial hole.",
+          "why": "原始报道在《华尔街日报》付费墙后，此处经两层转述（techpowerup 转引 Wccftech 转引 WSJ），具体对话无法独立核实，只能当「据报道」处理。但循环融资这个模式本身是可检验的红旗：出钱的人和买东西的人是同一拨，表面的需求旺盛就要打折扣。这条判断标准不限于芯片行业，看任何增长故事时都用得上。",
+          "why_en": "The original reporting sits behind The Wall Street Journal's paywall, and this account passes through two layers of relay (techpowerup citing Wccftech citing WSJ), so the specific quoted dialogue can't be independently verified and should be read as \"reportedly.\" But circular financing itself is a checkable red flag: when the funder and the buyer are the same party, an apparent \"booming demand\" signal deserves a discount, and that test applies well beyond chips to any growth story."
+        },
+        {
+          "title": "德国安全团队扫了 15.9 万个 Lovable 应用，三成在裸奔",
+          "title_en": "German researchers scanned 159,000 Lovable apps, 30% were wide open",
+          "author": "Crissy Field GmbH（德国应用安全公司）· 经 Hacker News",
+          "author_en": "Crissy Field GmbH (German application security firm) · via Hacker News",
+          "likes": "650 分",
+          "likes_label": "约 279 条评论",
+          "url": "https://www.crissyfield.de/research/lovable-en/",
+          "summary": "德国应用安全公司 Crissy Field 与《商报》Handelsblatt 合作，用 Common Crawl 的存档数据，分析了 2025 年 12 月至 2026 年 9 月间搭建的 15.9 万个 Lovable 应用。Lovable 是 2023 年成立于斯德哥尔摩的 AI 建站平台，主打「不用懂技术，一句话描述就能变成网页应用」。15.9 万个应用里，3.45 万个用 Supabase 做数据库，其中 2.4664 万个网站一打开就直接往外发 Supabase 的数据库记录，无需登录。光这一点不算问题，可能本来就打算公开展示。研究团队进一步发了几个只读请求，在 2.4664 万个网站中的 7403 个（约三成）里，找到含邮箱地址的表，共 1.056 万张。具体案例包括：一个德国生活方式论坛暴露了超过 8 万份含姓名、邮箱、出生日期、性别的档案；超过 20 万条聊天记录可被读取；多家活动主办方和餐厅的票务、订餐记录（含邮箱、电话、地址、支付信息、票号）可无登录访问；一家物业管理公司暴露了 AI 生成的内部邮件摘要，含租户和业主的敏感信息；最严重的一起，一家服务商暴露了超过 1000 条身份证件记录，包括护照号、有效期和国籍；此外还有合同、发票、私人相册、WhatsApp 聊天记录等。研究团队强调，30% 这个比例只适用于他们实际深入检查的 2.4664 万个网站，不代表 Lovable 全部应用；邮箱也只是识别个人数据的粗略信号，不是确切的泄露率。他们已联系 Lovable 告知这些发现，没有证据显示数据已被滥用。",
+          "summary_en": "German application security firm Crissy Field, working with the newspaper Handelsblatt, used Common Crawl archive data to analyze 159,041 apps built on Lovable between December 2025 and September 2026. Lovable is a Stockholm-founded AI website builder (2023) that markets itself as letting anyone turn a plain-language description into a web app with no technical knowledge. Of those 159,041 apps, 34,545 used Supabase as their database, and 24,664 of those sites sent Supabase database records out as soon as the page loaded, with no login required. That alone isn't necessarily a problem, the data might be meant to be public. But by making a few additional read-only requests, the researchers found tables containing email addresses, 10,560 tables in total, across 7,403 of those 24,664 sites (about 30%). Specific cases included a German lifestyle forum exposing more than 80,000 profiles with full names, emails, birth dates and gender; more than 200,000 accessible chat messages; multiple event organizers' and restaurants' ticket and order records (emails, phone numbers, addresses, payment details, ticket codes) reachable without login; a property management company exposing AI-generated summaries of internal emails containing sensitive tenant and owner information; and, most seriously, a service provider exposing more than 1,000 identity-document records, including passport numbers, expiration dates and nationalities, plus contracts, invoices, personal photo albums and WhatsApp messages. The researchers caution that the 30% figure applies only to the 24,664 sites they actually checked further, not to all Lovable apps, and that emails are a rough proxy for personal data, not a confirmed leak rate. They notified Lovable of the findings and found no evidence the data has been misused.",
+          "why": "这是一家做应用安全咨询生意的公司发的研究报告，方法和局限写得比较清楚（样本不代表全体，邮箱只是粗略信号），不是纯粹的营销稿；但他们本身也是潜在审计服务的卖方，报告挑的案例自然是最触目惊心的几个。真正可核实、可直接照抄的是检查方法本身：用自己的 anon key 发只读请求，看看不登录能拿到什么。这是任何人都能在自己应用上立刻重复的测试，不必等第三方审计。",
+          "why_en": "This is a research report from a company that sells application-security consulting; the methodology and limitations are spelled out reasonably clearly (the sample isn't representative, emails are only a rough proxy), so it isn't pure marketing, but the firm is also a potential seller of the audits it's implicitly pitching, and the cases chosen are naturally the most alarming ones. What's directly verifiable and copyable is the check itself: make a read-only request with your own anon key and see what comes back without logging in, a test anyone can repeat on their own app immediately, no third-party audit required."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "Latent Space 今日 AINews 简报（头条即《反水货宣言》），Import AI 本周未更新，TLDR AI 今日刊尚未发布、昨日刊内容与 11-13 已报重复，Simon Willison 今日两条均为小版本更新，太短未收",
+      "swept_en": "today's Latent Space AINews briefing (its own lead story is the No AI Slop Manifesto), Import AI hadn't published this week, TLDR AI's 2026-11-14 edition wasn't live yet and its 11-13 edition repeated stories already covered, Simon Willison's two posts today were both minor plugin version bumps, too thin to use",
+      "items": [
+        {
+          "title": "AIE Code 峰会闭幕演讲，十几位工程师联署《反水货宣言》",
+          "title_en": "At the AIE Code Summit's closing keynote, a dozen-plus engineers sign the No AI Slop Manifesto",
+          "author": "Dex 代表 AI Engineer Code Summit 2026 与会者 · 经 Latent Space AINews",
+          "author_en": "Dex, on behalf of AI Engineer Code Summit 2026 attendees · via Latent Space AINews",
+          "likes": "216 分（Hacker News）",
+          "likes_label": "约 129 条评论",
+          "url": "https://www.slopmanifesto.com/",
+          "summary": "2001 年，17 位工程师和项目负责人在犹他州雪鸟滑雪场碰头，写出了后来改变整个行业做软件方式的《敏捷宣言》。11 月 13 日，AI Engineer Code Summit 的闭幕演讲上，Dex 公布了一份仿同样格式写的《反水货宣言》，联署人包括 swyx、Kent C. Dodds，以及今晚另一条讲 Grokbot 的 Lauren Tan 在内十几位工程师。宣言先给「水货」下了定义：自己投入的精力，比要求读者理解它所花的精力还少。宣言强调，用 AI 本身不等于水货；水货是把 AI 的产出直接传递出去，却不对质量或读者的体验负责。核心是五条取舍：看结果不看产出，看懂不看快，看自己的判断不看模型的第一版，看做得好不好不看做得省不省力，看能不能改系统不看能不能应付过去。其中专门有一条写给审稿人自己：agent 审查、linter、验证器有用，但不够，人仍然要读一部分输出，具体读哪部分取决于这件事的风险有多大；一次性 prompt 和「氛围编程」本身不是坏事，水货坏在它毁掉了产出、可维护性或团队的时间精力这些真正的结果。宣言发布当天就被 Hacker News 顶上首页。",
+          "summary_en": "In 2001, 17 software engineers and leaders met at a ski lodge in Snowbird, Utah and wrote the Agile Manifesto, which went on to change how most of the industry builds software. On November 13, at the AI Engineer Code Summit's closing keynote, Dex unveiled a manifesto modeled on the same format: the No AI Slop Manifesto, co-signed by a dozen-plus engineers including swyx, Kent C. Dodds, and Lauren Tan, who also appears tonight in the Grokbot item. The manifesto first defines slop: putting less effort into producing something than you're asking the reader to spend understanding it. It's explicit that using AI doesn't itself make something slop, slop happens when AI output gets passed along without anyone taking responsibility for its quality or the reader's experience. Its core is five value trade-offs: outcomes over output, understanding over speed, your own thinking over a model's first draft, better work over easier work, improving the system over patching the output. One resolution is aimed squarely at reviewers themselves: agent reviews, linters and verifiers are useful but not sufficient, humans still need to read some subset of the output, and how much depends on the stakes; one-shot prompts and vibe coding aren't bad in themselves, slop is specifically when it undermines a real outcome, a usable product, a maintainable system, or the team's own time. The manifesto reached Hacker News's front page the same day it was published.",
+          "why": "这不是厂商公告，是一群一线工程师自发联署的文档，Hacker News 上单独也拿到 216 分、129 条评论，说明圈内确有共鸣，不只是会议现场的即兴表态。值得一提（原文如此）的是，宣言里明确说「没人把这件事想明白了」，没有把自己包装成一套可照搬的完整方法论；这种留有余地的态度本身比内容更少见。",
+          "why_en": "This isn't a vendor announcement, it's a document a group of working engineers signed on their own initiative, and it separately picked up 216 points and 129 comments on Hacker News, suggesting real resonance beyond the room at the conference. Worth noting: the manifesto explicitly says \"none of us has this figured out\" and doesn't package itself as a complete methodology to copy wholesale, that kind of acknowledged uncertainty is rarer than the content itself."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚四条新闻分成两半。一半在主动搭架子，解决「谁来对结果负责」：反水货宣言把「改系统而不是修补产出」写成了联署文件；Lauren Tan 把这句落实为禁用某个 React hook、禁掉大部分注释、用 TLA+ 和 Lean 做形式化验证，每周几千个 PR 的回滚率反而压到 0.5%。另一半是没搭这个架子、代价已经显现的案例：英伟达据报道靠投资小云服务商、再让它们回头买自己的芯片，维持「需求旺盛」的信号，财务上这是拿无人兜底的循环贷款掩盖供需真相；Lovable 上三成被查的 Supabase 应用把邮箱、护照号、聊天记录直接挂在公网上，因为「AI 帮你把应用做出来」从来不等于「AI 帮你把权限配对了」。四条并置，能自己判断、能被验证的部分越来越便宜，但判断和验证本身不会因为生产变快而跟着变便宜。不花这笔钱的人，账迟早要还。",
+  "meta_read_en": "Tonight's four stories split into two halves. One half is actively building the scaffolding for who's accountable for the outcome: the No AI Slop Manifesto turns \"improve the system, not patch the output\" into a document people signed their names to, and Lauren Tan turns that same line into something concrete, banning a specific React hook, banning most comments, running TLA+ and Lean as formal verification, and getting the PR revert rate down to 0.5% while shipping thousands a week. The other half is what happens when nobody builds that scaffolding and the bill comes due: Nvidia reportedly funded small cloud providers so they'd buy its own chips back, propping up a \"demand is booming\" signal with a circular loan nobody was really backing; 30% of the Supabase-backed Lovable apps researchers checked had emails, passport numbers and chat logs sitting open on the public internet, because AI helping you build an app was never the same thing as AI configuring its permissions correctly. Put together, the parts that can judge and verify themselves keep getting cheaper to produce, but judgment and verification themselves don't get cheaper just because production got faster, and whoever skips paying for it settles the bill later.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "backnotprop/plannotator",
+      "url": "https://github.com/backnotprop/plannotator",
+      "description": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
+      "language": "TypeScript",
+      "stars": 11166,
+      "stars_today": 408
+    },
+    {
+      "rank": 2,
+      "name": "GoogleChrome/modern-web-guidance-src",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+      "description": "Keep your coding agent up to date with the latest web best practices",
+      "language": "TypeScript",
+      "stars": 6096,
+      "stars_today": 1231
+    },
+    {
+      "rank": 3,
+      "name": "tradermonty/claude-trading-skills",
+      "url": "https://github.com/tradermonty/claude-trading-skills",
+      "description": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
+      "language": "Python",
+      "stars": 4854,
+      "stars_today": 553
+    },
+    {
+      "rank": 4,
+      "name": "ChromeDevTools/chrome-devtools-mcp",
+      "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "description": "Chrome DevTools for coding agents",
+      "language": "TypeScript",
+      "stars": 56335,
+      "stars_today": 664
+    },
+    {
+      "rank": 5,
+      "name": "alibaba/open-code-review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+      "language": "Go",
+      "stars": 51463,
+      "stars_today": 893
+    },
+    {
+      "rank": 6,
+      "name": "QwenLM/qwen-code",
+      "url": "https://github.com/QwenLM/qwen-code",
+      "description": "An open-source AI coding agent that lives in your terminal.",
+      "language": "TypeScript",
+      "stars": 30365,
+      "stars_today": 64
+    },
+    {
+      "rank": 7,
+      "name": "dream-num/univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
+      "language": "TypeScript",
+      "stars": 30788,
+      "stars_today": 61
+    },
+    {
+      "rank": 8,
+      "name": "louislam/uptime-kuma",
+      "url": "https://github.com/louislam/uptime-kuma",
+      "description": "A fancy self-hosted monitoring tool",
+      "language": "JavaScript",
+      "stars": 93921,
+      "stars_today": 45
+    },
+    {
+      "rank": 9,
+      "name": "block/buzz",
+      "url": "https://github.com/block/buzz",
+      "description": "A hive mind communication platform",
+      "language": "Rust",
+      "stars": 37358,
+      "stars_today": 49
+    },
+    {
+      "rank": 10,
+      "name": "tailscale/tailcat",
+      "url": "https://github.com/tailscale/tailcat",
+      "description": "like netcat, but over Tailscale's data plane, without Tailscale's control plane",
+      "language": "Go",
+      "stars": 9512,
+      "stars_today": 33
+    }
+  ],
+  "ota": {
+    "learned": [
+      "今晚没有 Chrome/claude-in-chrome 可用（ToolSearch 确认没有对应工具），靠 YouTube、Hacker News、文摘三条全 headless 的线，不需要 partial。git fetch 发现 origin/main 领先一个 11-13 的「newsletter sent」标记提交，fast-forward 后没有同日草稿冲突。",
+      "YouTube RSS 9 个频道加对照频道再次全部 404，yt-dlp 加 android client 全部成功；按精确到秒的 48 小时窗口，3 条看起来新鲜，但其中 2 条（Mozilla/Pwn2Own、Dwarkesh 的 RSI 视频）其实是昨天已经用过的同一支视频重新顶上频道列表，不是新内容，只有 aidotengineer 的 Lauren Tan 讲座是真新的，读了全文转写。",
+      "Hacker News 今天排前面的黄仁勋辞职、Gemini 4 Hydrogen 两条，查过是和昨天完全相同的 URL，没有新事实；一条中国前沿模型带 GPU 指纹的取证帖（376 分）11-12 已经以 172 分拒收过一次，今天重新查也没有新事实，再次不收，避免同一条没有进展的故事被「重新顶上热榜」骗进版面。",
+      "把 Lauren Tan 讲座里「倒金字塔」的做法（纠正 agent 时先想能不能写成代码里的硬约束，而不是先写进 rules/skills 这类文字规则）直接用在了这个 skill 自己身上：发现 SKILL.md 第 3b 步「配图必须下载到本地，不能跨域直链」这条规则一直只是一段文字，从没写成检查脚本。已经给 bin/validate-digest.py 加了一条校验：image.src 如果是 http(s) 直链或者文件本地不存在，直接拦截发布，不再靠每晚自己记得这条规则。",
+      "Lovable/Supabase 这条的核实方法本身可以直接用在 Zen 自己任何一个用 Supabase 的项目上：用 anon key 发只读请求，看不登录能拿到什么。这条没有另开一条 action，直接做成了今晚的 hands_on，避免给同一个主题开两个入口。"
+    ],
+    "learned_en": [
+      "No Chrome/claude-in-chrome tools surfaced via ToolSearch this session, so headless-only: YouTube, Hacker News and 文摘 cleared the diversity gate on their own, no partial needed. `git fetch` found origin/main one commit ahead (an 11-13 newsletter-sent marker, not a same-day draft); fast-forwarded with no conflict.",
+      "YouTube RSS 404'd platform-wide again tonight (control channel included); the yt-dlp + android-client fallback succeeded on all 9 roster channels. Inside a second-precision 48h window, 3 uploads looked fresh, but 2 of them (the Mozilla/Pwn2Own video, Dwarkesh's RSI essay) were the exact same videos already covered yesterday resurfacing in the channel listing, not new content. Only aidotengineer's Lauren Tan talk was genuinely new; read in full.",
+      "Tonight's top-ranked Hacker News stories on Jensen Huang's resignation and Gemini 4 Hydrogen checked out as the exact same URLs as yesterday with no new facts; a forensics post on Chinese frontier models carrying export-controlled GPU fingerprints (376 pts) had already been declined once on 11-12 at 172 points, and still had nothing new today, so it was declined again, to avoid letting a story with zero actual progress sneak in just because it re-climbed the rankings.",
+      "Applied Lauren Tan's own \"inverted pyramid\" principle (when correcting an agent, check whether it can be a hard constraint in code before writing it as prose in rules/skills) to this very skill: found that SKILL.md step 3b's \"the front-page image must be downloaded locally, never hotlinked cross-origin\" rule had only ever existed as a paragraph, never as a checkable script. Added a check to bin/validate-digest.py that now blocks publishing if image.src is an http(s) URL or the file doesn't exist on disk, so the rule no longer depends on remembering it every night.",
+      "The Lovable/Supabase verification method is directly reusable on any of Zen's own Supabase-backed projects: hit it with the anon key and see what a read-only request returns without logging in. This didn't get a separate action; it became tonight's hands_on instead, so the same thread doesn't get two entry points."
+    ],
+    "new_capabilities": [
+      "bin/validate-digest.py 现在会检查 image.src：如果是跨域直链或者本地文件不存在，直接拦截发布，不再是一条只存在于 SKILL.md 里的文字规则。用法：发布前跑 python3 bin/validate-digest.py --strict digests/<date>.json 会自动带上这条检查。"
+    ],
+    "new_capabilities_en": [
+      "bin/validate-digest.py now checks image.src and blocks publishing if it's a cross-origin hotlink or the local file doesn't exist, turning what used to be a SKILL.md-only prose rule into an enforced check. Usage: this check runs automatically as part of python3 bin/validate-digest.py --strict digests/<date>.json before every publish."
+    ]
+  },
+  "partial": false
+}

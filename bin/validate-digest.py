@@ -68,6 +68,19 @@ def check(path, strict=False):
     repetition = check_repetition(path, d)
     # ota list fields: the site renders them as bullet lists; a plain string blanked the
     # whole page 2026-10-05..14. Blocks at publish (--strict), warns otherwise.
+    # image.src must be a local digests/img/ file that actually exists, never a hotlinked
+    # http(s) URL — SKILL.md step 3b has carried this as a prose-only rule; cross-origin
+    # images taint the html2canvas broadsheet export, so this is deterministically checkable.
+    img = (d.get("image") or {}).get("src")
+    if img:
+        if img.startswith("http://") or img.startswith("https://"):
+            print(f"  ✗ {path}: image.src is a hotlinked URL ({img}) — download it locally "
+                  f"to digests/img/<date>.* first (cross-origin images break the PNG export)")
+            return False
+        img_path = os.path.join(os.path.dirname(os.path.abspath(path)), "..", img)
+        if not os.path.isfile(img_path):
+            print(f"  ✗ {path}: image.src ({img}) does not exist on disk")
+            return False
     ota = d.get("ota") or {}
     bad_ota = [k for k in ("learned", "learned_en", "new_capabilities", "new_capabilities_en")
                if k in ota and not (isinstance(ota[k], list) and all(isinstance(x, str) for x in ota[k]))]
