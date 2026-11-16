@@ -1,0 +1,238 @@
+{
+  "date": "2026-11-15",
+  "banner": "黄仁勋谋划重返英伟达",
+  "banner_en": "Jensen Huang plots a comeback at Nvidia",
+  "image": {
+    "src": "digests/img/2026-11-15.jpg",
+    "caption": "2026 年 4 月 30 日，黄仁勋在斯坦福大学 CS153 课堂的一次炉边谈话上。英伟达内部正为谁该坐 CEO 这把椅子吵成一团。（图：Anders Eidesvik，CC BY-SA 4.0，via Wikimedia Commons）",
+    "caption_en": "Jensen Huang at a fireside chat in Stanford's CS153 course (April 30, 2026). Nvidia is now fighting over who should hold the CEO seat. (Photo: Anders Eidesvik, CC BY-SA 4.0, via Wikimedia Commons)"
+  },
+  "actions": [
+    {
+      "text": "下次往 agent 的某个决策环节里塞一次 LLM 调用之前，先问自己：这步真需要一个会推理的大模型，还是可以用一个又小又快的窄范围分类器，直接嵌进代码逻辑？前者容易出错且慢，后者更容易验证，也更可靠。",
+      "text_en": "Next time you're about to wire an LLM call into some decision point in an agent, ask first: does this step really need a reasoning model, or would a small, fast, narrow classifier embedded directly in your code do it more reliably? The latter is easier to verify and harder to get subtly wrong.",
+      "source": "Diogo Almeida（TypeSafe AI 联合创始人兼CEO，原 OpenAI RLHF/InstructGPT 团队成员）· AI Engineer Code Summit",
+      "source_en": "Diogo Almeida (co-founder and CEO, TypeSafe AI; formerly on OpenAI's RLHF/InstructGPT team) · AI Engineer Code Summit",
+      "source_url": "https://www.youtube.com/watch?v=Cyt3LU8TyNc"
+    },
+    {
+      "text": "如果你发布过大段 AI 生成、自己没细读也没怎么改的代码，花两分钟查一下你贴的 license。别想当然地认为「反正是 AI 写的，没有版权，爱怎么用怎么用」就万事大吉：Thaler v. Perlmutter 和 Doe v. GitHub 这两起判例谁都没说过这句话，具体怎么判要看你改了多少、用在哪个法域。",
+      "text_en": "If you've published a chunk of code that's mostly AI output you never closely read or modified, spend two minutes checking the license you put on it. Don't assume \"AI wrote it, so no one owns it, use it however\" settles the question: neither Thaler v. Perlmutter nor Doe v. GitHub actually says that, and the real answer depends on how much you changed and which jurisdiction you're in.",
+      "source": "Jakub T. Jankiewicz（独立开源开发者）· 经 Hacker News 讨论（判例由评论区 viraptor 等人指出）",
+      "source_en": "Jakub T. Jankiewicz (independent open-source developer) · via Hacker News discussion (case law pointed out by commenter viraptor and others)",
+      "source_url": "https://jakub.jankiewicz.org/blog/ai-code-open-source/"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试：装一个 Meta 的 Muse，看看「灵感」和「目标」两个标签页",
+    "title_en": "Try tonight: install Meta's Muse and see what the Ideas and Goals tabs actually do",
+    "why": "这期对话里，Muse 的产品负责人 Mona Sarantakos 提到两个设计细节：大部分人第一次打开 agent 产品，都会卡在「不知道该打第一句话」上，Muse 的解法是做一个「灵感」标签页，放几个一键启动的任务模板；还有一个「目标」标签页，是扎克伯格把产品定位从「替你完成任务」改成「帮你对齐你真正想做的事」之后才有的。这两个设计有没有用，自己装一个试一次，比听播客准。至于「App Store 排名第一」「史上增长最快的 AI 消费应用」这类说法，是主持人和扎克伯格转述的，本期没有独立数据核实，当成营销话术听就好。",
+    "why_en": "In this interview, Muse's product lead Mona Sarantakos described two design details: most people freeze the first time they open an agent app because they don't know what to type, so Muse built an \"Ideas\" tab with one-tap task templates; there's also a \"Goals\" tab that exists only because Zuckerberg pushed the product's framing from \"complete tasks for you\" to \"help you make progress on what you actually care about.\" Whether either actually works is better judged by trying it yourself than by listening to a podcast. As for claims like \"#1 in the App Store\" or \"the fastest-growing AI consumer product ever,\" those came from the host and Zuckerberg secondhand with no independent numbers in this episode, so take them as marketing framing.",
+    "time": "20分钟",
+    "time_en": "20 min",
+    "steps": [
+      "到 App Store 搜「Muse from Meta」免费下载（需要 iOS 18 以上），或者在电脑浏览器打开 muse.ai 登录（目前只对美区开放）。",
+      "别自己瞎打第一句话，先点开「灵感」标签页，挑一个预设任务模板，点开始。",
+      "找到「目标」功能，告诉 Muse 你这周真正想推进的一件事，看它会不会主动回头跟进、给建议。",
+      "试一个购物类的请求（Mona 说这是「意料之外的头号用例」），给够细节，看它会不会自己决定去哪几家店买、要不要拆成多笔订单。",
+      "过程里留意它什么时候会停下来等你确认（发邮件、下单之前），这是 Meta 自己说的安全设计，亲自看一次比看介绍准。"
+    ],
+    "steps_en": [
+      "Search \"Muse from Meta\" on the App Store and download it free (needs iOS 18+), or open muse.ai in a browser and log in (US-only for now).",
+      "Don't type a blank first message. Open the Ideas tab first, pick a preset task template, and tap to start it.",
+      "Find the Goals feature and tell Muse one real thing you're trying to make progress on this week. See whether it follows up or surfaces anything useful on its own.",
+      "Try a shopping request (Mona's described \"surprise #1 use case\"), give it enough detail, and see whether it decides where to buy and whether it splits the order across stores.",
+      "Notice where it stops and asks you to confirm before acting (sending an email, placing an order). That's Meta's own stated safety design, worth seeing firsthand rather than taking their word for it."
+    ],
+    "source": "Mona Sarantakos（Meta Superintelligence Labs 产品副总裁，Muse 产品负责人）· Lenny's Podcast",
+    "source_en": "Mona Sarantakos (VP of Product, Meta Superintelligence Labs; product lead for Muse) · Lenny's Podcast",
+    "source_url": "https://www.youtube.com/watch?v=WY0cdD4gNoQ"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9 个频道 RSS 里 3 个（Andrej Karpathy、OpenAI、Dwarkesh Patel）正常返回，另外 6 个加对照频道一起 404，是最近几周头一次不是整站性故障。对 6 个 404 的用 yt-dlp 的 android 客户端回退，再用精确到秒的 48 小时窗口筛新。Andrej Karpathy、OpenAI 的最新条目都在窗口外；Dwarkesh Patel 有 2 条新的，但都是 45-100 秒的短片段，太薄没收；aidotengineer 有 2 条新的，一条是 11-14 已经用过的同一支视频（Lauren Tan）重新顶上列表，另一条（Diogo Almeida）是真新的；Lennys Podcast 有 1 条新的（Mona Sarantakos）。两条都读了全文转写，Lenny's 这期 18280 词超过 15k 字阈值，拆成 3 块交给 3 个 sonnet 子代理各自记要点，再合成一条。",
+      "swept_en": "Of the 9 roster channels, 3 (AndrejKarpathy, OpenAI, DwarkeshPatel) returned normal RSS; the other 6 plus a control channel all 404'd, the first time in several weeks this wasn't a total platform outage. Used yt-dlp's android-client fallback for the 404'd 6, then filtered everything by a second-precision 48h window. The newest entries from AndrejKarpathy and OpenAI both fell outside the window. DwarkeshPatel had 2 fresh uploads but both were 45-100 second clips, too thin to use. aidotengineer had 2 fresh entries: one was the exact same video (Lauren Tan) already used in the 11-14 issue resurfacing in the listing, the other (Diogo Almeida) was genuinely new. LennysPodcast had 1 fresh upload (Mona Sarantakos). Read both transcripts in full; Lenny's ran 18,280 words, over the 15k-word offload threshold, so it was split into 3 chunks and handed to 3 parallel sonnet sub-agents for note-taking before synthesis.",
+      "items": [
+        {
+          "title": "RLHF之父说：现在的AI都在讨好人类，不是在干活",
+          "title_en": "RLHF's co-creator says today's AI is optimized to please you, not to work",
+          "author": "Diogo Almeida（TypeSafe AI 联合创始人兼CEO，原 OpenAI RLHF/InstructGPT 团队成员）· AI Engineer Code Summit",
+          "author_en": "Diogo Almeida (co-founder and CEO, TypeSafe AI; formerly on OpenAI's RLHF/InstructGPT team) · AI Engineer Code Summit",
+          "likes": "9193 次观看",
+          "likes_label": "126 赞",
+          "url": "https://www.youtube.com/watch?v=Cyt3LU8TyNc",
+          "summary": "Diogo Almeida 曾是 OpenAI 参与发明 RLHF 和 InstructGPT 的工程师之一，现在是 TypeSafe AI 的联合创始人兼 CEO，他做的产品叫 Jev，九月刚推出就成了 Latent Space 当年下载量最高的一期播客。他在 AI Engineer Code Summit 的演讲里提出一个说法：今天所有的大模型都被 RLHF 训练成了「讨好人类」，而不是「可靠地干活」。他打了个比方：和 ChatGPT 打交道，95% 的时间它是爱因斯坦，5% 的时间它是憨豆先生，如果你分不清哪次是哪个，就没法拿它做自动化，只能拿它当需要人盯着的助理用。他说这正是为什么 AI 做深度研究这种「人盯着看一眼就行」的任务表现惊艳，却连自动化点餐这种「必须做对」的简单任务都经常翻车。他给出的方向是「system one 模型」：不是会推理的大模型，而是又小又快、只返回一个分类或打分结果的窄范围模型，直接嵌进代码逻辑里跑，而不摆在界面上让人聊天。他打了个比方：蓝色 LED 发明之前，红绿 LED 只能做指示灯；蓝色 LED 一出现，直接催生了白光照明和各种显示屏，不是简单的「颜色多了一种」，而是打开了一整片新设计空间。他认为可靠的窄范围模型对软件的意义也是这样，相当于给「与、或、非」这组逻辑门加了第四种。演讲里他点了几个具体方向：怎么让多个 agent 共享状态，而不是每次从零摸索代码库；怎么把「规则的精神」而不是「规则的字面」编码进系统（他拿选民和政客之间的委托代理问题打比方）；怎么做快到能在坏事发生前就拦下的实时安全检查。谈到「AI 水货」的根源，他认为问题不是 AI 不可靠本身，而是不可靠的 AI 被拿去做决策之后，代价被转嫁给了别人。",
+          "summary_en": "Diogo Almeida was part of OpenAI's team that invented RLHF and InstructGPT. He's now co-founder and CEO of TypeSafe AI, maker of a product called Jev that became Latent Space's most-downloaded podcast episode of the year when it launched in September. At the AI Engineer Code Summit, he argued that today's large language models are all trained by RLHF to please humans, not to work reliably. His analogy: with ChatGPT, you get Einstein 95% of the time and Mr. Bean 5% of the time, and if you can't tell which is which, you can't automate anything with it, only use it as an assistant that needs a human watching. That's why AI is remarkable at tasks like deep research, where a human glancing at the output is fine, but still fails at simple tasks like automating a drive-through order, where the output has to be correct, not just plausible. His proposed direction is \"system one models\": not reasoning LLMs, but small, fast, narrow models that return a single classification or score, wired directly into application code rather than sitting in a chat interface. His analogy: before the blue LED existed, red and green LEDs were only good for indicator lights; once blue arrived, it didn't just add \"one more color,\" it enabled white lighting and every modern display, opening an entire new design space. He argues reliable narrow models do the same for software, calling it effectively a fourth logic gate alongside AND, OR and NOT. He named several concrete frontiers: agents sharing state instead of each rediscovering the same codebase patterns from scratch, encoding \"the spirit of a rule\" rather than just its letter (using the principal-agent problem between voters and politicians as an analogy), and real-time security checks fast enough to catch a bad action before it finishes, not after. On the root of AI slop, his view is that the problem isn't that AI is unreliable, it's that unreliable AI gets used for decisions anyway and the cost of being wrong gets pushed onto someone else.",
+          "why": "这是他自己产品的销售话术。他在台上也承认，团队让他别把某些细节讲出去，因为那是他们的护城河，可见这条信息并不中立。但同一场大会的另一篇独立报道（Latent Space 记者 Richard MacManus 现场所写，不是 Almeida 自己说的）证实，这不只是一个人的说辞：Glean、UiPath、Workday 的工程师各自在台上讲了他们如何把同类窄范围快模型直接嵌进产品代码，UiPath 的例子是用它给几千个文档片段打分排序，全程不到一秒。两边独立来源对上了，说明把小模型当成代码里的一个判断调用、而不是大模型聊天，至少在这批工程师的实践里确实在发生，不只是一家创业公司的愿景稿。",
+          "why_en": "This is his own product's sales pitch, and he admits on stage that his team told him not to reveal certain details because it's their competitive edge, so this isn't a neutral account. But a separate, independently written report from the same conference (by Latent Space's own Richard MacManus, not Almeida) corroborates it isn't just one person's claim: engineers from Glean, UiPath and Workday each described on stage wiring the same kind of narrow, fast model directly into their product code. UiPath's example used it to rank and score thousands of document chunks in under a second. The two independent sources line up, suggesting that treating a small model as a single judgment call inside your code, rather than a chat interface powered by a big model, is actually happening in these engineers' practice, not just a startup's vision deck."
+        },
+        {
+          "title": "Meta产品副总裁复盘Muse：从树莓派周末到App Store第一",
+          "title_en": "Meta's VP of Product on building Muse, from a Raspberry Pi weekend to the App Store",
+          "author": "Mona Sarantakos（Meta Superintelligence Labs 产品副总裁）· Lenny's Podcast",
+          "author_en": "Mona Sarantakos (VP of Product, Meta Superintelligence Labs) · Lenny's Podcast",
+          "likes": "11726 次观看",
+          "likes_label": "136 赞",
+          "url": "https://www.youtube.com/watch?v=WY0cdD4gNoQ",
+          "summary": "Mona Sarantakos 在 Meta 做了十年产品，现在是 Muse 的产品负责人，这是她第一次上播客。她说 Muse 的起点是今年初（一月底二月初），Nat Friedman 给几个人发消息，说他在用一个叫 OpenClaw 的智能体工具，彻底改变了他对个人超级智能的想象。那个周末孩子都去滑雪比赛了，她借了一个树莓派（苹果店当时没有 Mac mini），把邮箱、日历、家庭自动化全接了进去，整整两天都在跟它对话。周一早上，agent 自己翻遍学校通知和各种信息源，整理出一份简报。她形容提示词特别短，效果却像魔法。从那之后到 9 月正式发布，花了大概七个月。她说分三个阶段：先搞清楚这东西到底是什么，再死磕可靠性、安全和防护，最后是每加一个新功能（比如给了浏览器权限）都会打开一片新的攻击面，得重新补安全。团队内部的说法是信任是必须的，爪子就是法律。团队一开始只有十个人左右，发布时也没涨到一百人，全程只有四个产品经理。一条硬性规定是系统提示词和行为规范必须纯手写，一个字都不能让 AI 代笔，哪怕团队平时大量用 agent 辅助做别的事也不能破这条线。她说购物是没人提前预判到的头号用例，反而内部看好的家庭自动化方向没有起来。激活新用户最有效的办法不是打广告，是让一个已经在用的人当面给朋友演示，自己掏出手机刷给别人看，比广告好用得多。她还讲了个细节：吉祥物 Jolly 发布前一周差点被换成一个正经的企业 logo，是扎克伯格自己喜欢它，加上团队坚持认为跟一个有人味的东西聊天比对着企业 logo 说话更像回事，才留了下来。主持人 Lenny 多次把 Muse 形容为 App Store 排名第一、史上增长最快的 AI 消费应用，这些说法来自 Lenny 自己的研究和扎克伯格的转述，本期节目没有给出独立数据核实。",
+          "summary_en": "Mona Sarantakos has spent ten years at Meta and now leads product for Muse; this was her first podcast appearance. She said Muse started in late January or early February this year, when Nat Friedman messaged a few people saying he was using an agent tool called OpenClaw that had \"completely changed how I think about personal superintelligence.\" That weekend, with her kids away at a ski race, she borrowed a Raspberry Pi (the Apple Store was out of Mac minis) and gave it access to her email, calendar and home automation, talking to it for two straight days. By Monday morning the agent had combed through school newsletters and other sources on its own and put together a briefing, which she describes as feeling like magic despite how short the prompt had been. From there to the September launch took about seven months, in three phases by her account: figuring out what the product even was, then grinding on reliability, safety and security, and finally discovering that every new feature (giving it browser access, for instance) opened a new attack surface that needed its own security work. Internal mottos included \"Trust is a must\" and \"The claw is the law.\" The team started at around ten people and stayed under a hundred through launch, with only four product managers on the entire product. One hard rule: system prompts and behavioral specs must be entirely handwritten, not one word of AI assistance, even though the team used agents heavily for other parts of the build. She said shopping turned out to be the top use case nobody predicted, while home automation, which the team had internally bet on, underperformed. The most effective way to get new users wasn't advertising, it was an existing user demoing it in person to a friend by pulling out their phone, which she said worked far better than any ad campaign. One detail: the mascot \"Jolly\" nearly got swapped for a corporate logo a week before launch, and survived only because Zuckerberg personally liked it and the team insisted that talking to something with personality feels more real than talking to a corporate logo. Host Lenny repeatedly described Muse as \"#1 in the App Store\" and \"the fastest-growing AI consumer product in history,\" claims from Lenny's own research and secondhand remarks from Zuckerberg, with no independent data cited in this episode.",
+          "why": "访谈里的流程细节（团队规模、手写系统提示词这条硬规定、购物意外成为头号用例、吉祥物差点被换掉）都是 Mona 自己讲自己做的事，可信度比较高。但排名第一、史上增长最快这类数字，来自主持人转述和扎克伯格的说法，本期节目没有给出任何第三方审计或具体数字来源，只能当宣传语听，不能当事实引用。值得记一笔的是那条手写系统提示词的硬规定：一个每天用 agent 辅助开发大量功能的团队，偏偏在定义这个 agent 该怎么表现这件事上，划了一条绝对不许 AI 插手的线，这条线划在哪，比用不用 AI 这个问题本身更值得想清楚。",
+          "why_en": "The process details in this interview (team size, the hard rule on handwritten system prompts, shopping as an unpredicted top use case, the mascot nearly getting swapped) are Mona describing her own team's own work, which makes them fairly credible. But the superlatives, \"#1 in the App Store,\" \"fastest-growing ever,\" come from the host's framing and secondhand remarks from Zuckerberg, with no third-party audit or specific numbers cited anywhere in the episode, so treat them as marketing language, not fact. What's worth remembering is the handwritten-system-prompt rule: a team that uses agents heavily to help build most of the product still draws an absolute line against letting AI touch the one artifact that defines how the agent itself should behave. Where you draw that line matters more than whether you use AI at all."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Firebase topstories 前 90 条，人工翻了前 30 条按分排序。排除两条重复故事：Lovable/Supabase 数据泄露（和 11-14 完全同一 URL 重新顶上热榜）、中国前沿模型 GPU 指纹取证（11-12、11-14 已两次拒收，这次还是没有新事实）。黄仁勋复出的消息，Reuters 原文被验证码墙挡住，改用 HN 评论区另一条链接指向的 USNews 转载读到全文。评论区一条声称财政部长贝森特说英伟达必须对外招聘 CEO 的说法，链接本身也被验证码墙挡住，WebSearch 也查不到任何独立报道，没有写进当晚内容。读了 2 篇全文。",
+      "swept_en": "Top 90 Firebase topstories, manually scanned the top 30 by score. Excluded two resurfacing stories with nothing new: the Lovable/Supabase data-exposure piece (the exact same URL as 11-14, re-climbing the rankings) and the Chinese-frontier-model GPU-fingerprint forensics post (already declined twice, 11-12 and 11-14, still no new facts). For the Jensen Huang comeback story, the original Reuters page was blocked by a CAPTCHA wall; found the full text instead via a USNews wire reprint linked from an HN comment. A separate top comment claiming Treasury Secretary Bessent said Nvidia's board must hire an outside CEO linked a Reuters URL that was itself CAPTCHA-walled, and WebSearch turned up no independent reporting of that claim anywhere, so it was left out of tonight's issue. Read 2 articles in full.",
+      "items": [
+        {
+          "title": "黄仁勋谋划重返英伟达CEO",
+          "title_en": "Jensen Huang weighs a comeback as Nvidia CEO",
+          "author": "路透社 / 《美国新闻与世界报道》，引述《金融时报》",
+          "author_en": "Reuters / U.S. News & World Report, citing the Financial Times",
+          "likes": "136 分（Hacker News）",
+          "likes_label": "约 123 条评论",
+          "url": "https://www.usnews.com/news/top-news/articles/2026-11-15/jensen-huang-discusses-comeback-as-nvidia-ceo-with-allies-ft-reports",
+          "summary": "黄仁勋上周四辞去英伟达 CEO，原因是被曝出有婚外情，其中一段牵涉一名疑似中国间谍，这让外界重新质疑英伟达先进 AI 芯片对华出口的把关是否到位。辞职让这家芯片巨头陷入一场危机，冲击了他一手带起来的整个 AI 产业。据《金融时报》周日援引知情人士报道，黄仁勋已经和几位亲信谈过重返 CEO 的可能性。一名黄仁勋的盟友告诉《金融时报》，他们正组建一个硅谷高管作战室，游说黄仁勋回归，并打算争取白宫支持，这名盟友说：除了几家前沿实验室，科技圈但凡说得上话的人都喜欢黄仁勋。这条消息发布前几天，《金融时报》刚报道英伟达董事会接触过 Arm 首席执行官雷内·哈斯，把他列为黄仁勋的潜在继任者人选。英伟达没有在非工作时间回应置评请求。",
+          "summary_en": "Jensen Huang stepped down as Nvidia's CEO last Thursday after revelations of extramarital affairs, including one involving a woman believed to be a Chinese spy, reopening questions about whether the company's export controls on its advanced AI chips to China held up. The resignation plunged the chipmaker into crisis and sent shockwaves through an AI industry Huang helped bankroll. The Financial Times reported Sunday, citing people familiar with the matter, that Huang has discussed the possibility of returning with several confidants. One Huang ally told the FT they're assembling a \"war room\" of Silicon Valley executives to lobby for his return and plan to seek support from the White House, saying \"everyone that matters in tech outside the frontier labs loves Jensen.\" The report follows an earlier FT story that Nvidia's board had approached Arm CEO Rene Haas as a potential successor. Nvidia didn't respond to a request for comment outside business hours.",
+          "why": "这条消息经两层转述（路透社引述《金融时报》匿名消息源），具体对话和作战室的说法目前只有一方信源，没有第二家媒体独立证实。但黄仁勋辞职的起因，也就是婚外情牵涉疑似中国间谍、进而引出出口管制问题，是英伟达自己在辞职公告里承认过的事实，不是传闻。这条新闻的看点不是他会不会回来，是辞职才几天，游说复出的阵仗已经摆开，说明这场危机离收场还远。",
+          "why_en": "This passes through two layers of relay (Reuters citing the Financial Times' anonymous sources), and the specific dialogue and \"war room\" framing currently rest on a single outlet with no independent second source. But the reason Huang resigned, an affair involving a suspected Chinese spy that reopened export-control questions, is something Nvidia itself acknowledged in its own resignation announcement, not just a rumor. The real story isn't whether he comes back. It's that only days after he stepped down, a lobbying campaign for his return is already underway, which says how far this crisis still is from settled."
+        },
+        {
+          "title": "AI写的代码到底该不该开源？",
+          "title_en": "Should AI-generated code be open source?",
+          "author": "Jakub T. Jankiewicz（独立开源开发者）· Hacker News",
+          "author_en": "Jakub T. Jankiewicz (independent open-source developer) · Hacker News",
+          "likes": "1094 分（当晚全站最高分）",
+          "likes_label": "Hacker News",
+          "url": "https://jakub.jankiewicz.org/blog/ai-code-open-source/",
+          "summary": "独立开发者 Jakub T. Jankiewicz 在博客里提出一个说法：凡是主要靠 AI 生成、开发者自己没细读、也没怎么改的代码，都应该开源，或者直接放进公有领域。他给了两条理由。第一条是伦理：训练这些模型用了从 GNU 项目和自由软件运动开始积累的海量开源代码，很多未经许可直接抓取，还有大量来自 Stack Overflow 这类要求署名的知识共享许可内容。把这些集体知识变成闭源代码，他称之为“洗证书”。第二条是法律：纯 AI 生成的代码不是人写的。按美国“猴子自拍”案确立的先例（美国版权局后来援引这个先例处理 AI 问题），非人类不能拥有版权，维基共享资源因此要求纯 AI 生成的图片必须标为公有领域。他也承认各国法律不一样，比如英国就给计算机生成作品一定程度的版权保护。这篇博客当晚冲上 Hacker News 全站最高分。评论区很快出现反驳：有人指出，如果 AI 生成的代码本来就不受版权保护，那给它贴一个开源许可证本身没有意义，因为根本没有权利可以“许可”出去；还有人引用两起真实判例：Doe v. GitHub 认定 LLM 的输出不会自动继承训练数据里开源许可证的署名要求，Thaler v. Perlmutter 则确认纯 AI 生成的内容拿不到版权，但这两起判例说的都不是作者文中那个意思。",
+          "summary_en": "Independent developer Jakub T. Jankiewicz argues in a blog post that any code mostly generated by AI, which the developer never closely reads or substantially modifies, should be released as open source or placed directly into the public domain. He gives two reasons. The ethical one: these models were trained on a massive corpus of open-source code accumulated since the GNU Project and the Free Software Movement, much of it scraped without permission, plus large amounts of Stack Overflow-style content released under Creative Commons licenses that require attribution. Turning that collective knowledge into proprietary closed-source code is, in his words, \"license laundering.\" The legal one: purely AI-generated code isn't written by a human, and under the precedent set by the U.S. \"Monkey Selfie\" case (later cited by the U.S. Copyright Office on AI questions), non-humans can't hold copyright, which is why Wikimedia Commons already requires purely AI-generated images to be tagged public domain. He acknowledges laws differ by country; the UK, for instance, grants limited copyright to computer-generated works. The post hit the top spot on Hacker News that night. Pushback appeared quickly in the comments: one commenter pointed out that if AI-generated code isn't copyrightable to begin with, slapping an open-source license on it is meaningless, since there's no right to license away in the first place. Others cited two actual court rulings: Doe v. GitHub held that LLM output doesn't automatically inherit the attribution requirements of open-source licenses in its training data, and Thaler v. Perlmutter confirmed purely AI-generated content can't receive copyright at all, but neither ruling says what the post's argument assumes it does.",
+          "why": "这篇文章的伦理论证（训练数据未经许可、该还给开源社区）站得住，但法律论证经不起细看：顶楼评论一针见血地指出，如果 AI 生成的代码真的不受版权保护，“开源许可证”这个框架本身就用错了地方，因为开源许可证本来就是版权所有者才能发的东西。Doe v. GitHub 和 Thaler v. Perlmutter 这两起真实判例也被评论区搬出来，说明“AI 写的所以可以随便用”目前在法律上远没有作者说的那么简单。这条值得记住的不是结论，是提醒：看到一篇文章援引某个判例时，去查一下那个判例原文到底判了什么，经常和转述的不是一回事。",
+          "why_en": "The ethical argument here (the training data wasn't licensed and the debt is owed back to the open-source community) holds up, but the legal argument doesn't survive close reading. The top comment makes the sharp point that if AI-generated code really isn't copyrightable, framing the fix as an \"open source license\" is itself a category error, since an open-source license is something only a copyright holder can issue. Commenters also surfaced two real rulings, Doe v. GitHub and Thaler v. Perlmutter, showing the law on \"AI wrote it so anyone can use it\" is nowhere near as settled as the post implies. What's worth keeping from this isn't the conclusion. It's the reminder to actually go check what a cited court case ruled, because it's often not what the summary claims."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚四条新闻合在一起问的是同一个问题：判断权该交给谁，什么时候可以不要人盯着。英伟达这边，黄仁勋因为个人丑闻下台才几天，一边是盟友组“作战室”游说他回来，一边是外界质疑一家涉及出口管制审查的公司，CEO 的去留该不该由几个硅谷大佬的私下游说来决定。AI 代码该不该开源这条，问的是另一种判断权：AI 生成的东西到底算谁的，法律目前给不出干脆的答案，判例和直觉经常对不上。真正有意思的对照出现在另外两条里：Jev 的创造者 Diogo Almeida 主张，现在的大模型之所以离不开人盯着，是因为 RLHF 把它们训练成了讨好人类的样子，他想做更窄、更可靠的模型，可靠到不再需要人在旁边把关；而 Meta 自己的 Muse 团队给出了相反的答案，哪怕整个产品大量用 agent 辅助开发，系统提示词和行为规范这一项，还是划了一条“必须纯手写”的红线，一个字都不让 AI 碰。两边都在回答同一个问题：什么时候可以把决定权交出去，什么时候必须有人攥着不放。谁对谁错现在说不好，但这条线划在哪，比要不要用 AI 本身更值得想清楚。",
+  "meta_read_en": "Tonight's four stories all circle the same question: who gets to make the call, and when is it safe to stop having a human check. At Nvidia, only days after Jensen Huang stepped down over a personal scandal, allies are building a \"war room\" to lobby for his return while critics ask whether the leadership of a company under export-control scrutiny should be decided by private lobbying from a handful of Silicon Valley executives. The AI-code-open-source debate asks a different version of the same question: who actually owns something AI generated, and the law doesn't have a clean answer yet, court rulings and gut instinct keep disagreeing. The sharper contrast is between the other two stories. Jev's creator Diogo Almeida argues today's large models need constant human supervision because RLHF trained them to please people rather than work reliably, and his answer is to build narrower, more reliable models that no longer need a human watching. Meta's own Muse team gave the opposite answer: even though the whole product was built with heavy agent assistance, they drew an absolute line around one artifact, the system prompt and behavioral spec, that must be handwritten with zero AI involvement. Both are answering the same question: when can you hand the decision over, and when does a human have to keep holding it. Which side is right isn't settled yet, but where you draw that line matters more than whether you use AI at all.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "dream-num/univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
+      "language": "TypeScript",
+      "stars": 26086,
+      "stars_today": 988
+    },
+    {
+      "rank": 2,
+      "name": "ag-ui-protocol/ag-ui",
+      "url": "https://github.com/ag-ui-protocol/ag-ui",
+      "description": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
+      "language": "TypeScript",
+      "stars": 17936,
+      "stars_today": 355
+    },
+    {
+      "rank": 3,
+      "name": "google-labs-code/stitch-skills",
+      "url": "https://github.com/google-labs-code/stitch-skills",
+      "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
+      "language": "TypeScript",
+      "stars": 9342,
+      "stars_today": 247
+    },
+    {
+      "rank": 4,
+      "name": "backnotprop/plannotator",
+      "url": "https://github.com/backnotprop/plannotator",
+      "description": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
+      "language": "TypeScript",
+      "stars": 11894,
+      "stars_today": 866
+    },
+    {
+      "rank": 5,
+      "name": "ChromeDevTools/chrome-devtools-mcp",
+      "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "description": "Chrome DevTools for coding agents",
+      "language": "TypeScript",
+      "stars": 57013,
+      "stars_today": 717
+    },
+    {
+      "rank": 6,
+      "name": "alibaba/open-code-review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+      "language": "Go",
+      "stars": 52162,
+      "stars_today": 691
+    },
+    {
+      "rank": 7,
+      "name": "Tencent/LoopForge",
+      "url": "https://github.com/Tencent/LoopForge",
+      "description": "Self-hosted workflows for coding-agent delivery. Orchestrate CodeBuddy, Codex and Claude Code with scripts and human approval gates. Includes local workflows for coding assistants.",
+      "language": "Go",
+      "stars": 1576,
+      "stars_today": 423
+    },
+    {
+      "rank": 8,
+      "name": "ggml-org/ggml",
+      "url": "https://github.com/ggml-org/ggml",
+      "description": "Tensor library for machine learning",
+      "language": "C++",
+      "stars": 15936,
+      "stars_today": 43
+    },
+    {
+      "rank": 9,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 6511,
+      "stars_today": 98
+    },
+    {
+      "rank": 10,
+      "name": "GoogleChrome/modern-web-guidance-src",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+      "description": "Keep your coding agent up to date with the latest web best practices",
+      "language": "TypeScript",
+      "stars": 7248,
+      "stars_today": 1219
+    }
+  ],
+  "ota": {
+    "learned": [
+      "今晚 ToolSearch 再次没找到 claude-in-chrome/computer-use 相关工具，X 和小红书两条没碰；但 YouTube RSS 这次不是全站 404：9 个频道里 3 个（AndrejKarpathy、OpenAI、DwarkeshPatel）正常返回，另外 6 个加对照频道一起 404，是最近几周头一次出现部分性故障，不是整站宕机，提醒自己以后不能默认“RSS 一 404 就是全部 404”，要看清楚到底几个频道挂了。",
+      "git fetch 发现 origin/main 干净，没有同日草稿；/tmp/digest-2026-11-15/ 也没有残留的旧草稿脚本。",
+      "黄仁勋复出的消息本身可信（USNews 转载自路透社，内容扎实，辞职原因是英伟达自己辞职公告里认过的事），但 HN 评论区一条声称财政部长贝森特说英伟达必须对外招聘 CEO 的说法，链接本身也被验证码墙挡住，WebSearch 也查不到任何独立报道，所以没有写进当晚内容。这提醒自己：HN 热门评论里带链接的“爆料”，不等于链接本身真的支持那个说法，必须自己点开验证或搜索核实，不能只信评论区转述。",
+      "完成了一次 18280 词的长文本拆分实操：Lenny's Podcast 这期按 skill 里 15k 字阈值拆成 3 块，并行发给 3 个 sonnet 子代理各自记要点、标 [CLAIM] 和 [SELF-PROMO]，自己再读三份笔记合成一条内容，没有把整段原文过一遍主上下文。",
+      "把刚才那条 HN 评论验证的教训写进了 daily-digest skill 本身：在 X 的“谣言多，引用前先核实”那段后面，加了一条“HN 评论区带链接的说法也要先打开链接或搜索核实，不能因为挂了链接就当成已核实”的规则，附了今晚这个具体案例。"
+    ],
+    "learned_en": [
+      "今晚 ToolSearch 仍未找到 Chrome/claude-in-chrome 工具，X 和小红书都没有尝试。YouTube RSS 这次不算全面中断：9 个名单频道里 3 个（AndrejKarpathy、OpenAI、DwarkeshPatel）返回正常 RSS，其余 6 个加一个对照频道均 404，这是几周来首次部分而非全平台的 RSS 故障。下次注意：别一见 RSS 404 就断定全部 404，先看有几个频道真的失败。",
+      "`git fetch` found `origin/main` clean with no same-day draft; `/tmp/digest-2026-11-15/` had no leftover draft script from an earlier session either.",
+      "The Jensen Huang comeback story itself checks out (USNews's wire reprint of Reuters, solid content, and the resignation cause is something Nvidia's own announcement acknowledged), but a separate top HN comment claiming Treasury Secretary Bessent said Nvidia must hire an outside CEO linked a Reuters URL that was itself CAPTCHA-walled, and WebSearch found no independent reporting of that specific claim anywhere, so it was left out of tonight's issue. Lesson: a top HN comment linking a URL as \"proof\" doesn't mean the URL actually supports the claim; it has to be opened or searched to verify, not just trusted because a link is attached.",
+      "Ran a real instance of the long-transcript offload pattern: Lenny's Podcast episode (18,280 words) crossed the skill's 15k-word threshold, so it was split into 3 chunks and handed to 3 parallel sonnet sub-agents to take notes tagged [CLAIM] and [SELF-PROMO], then synthesized from their three note files rather than reading the full transcript through the main context.",
+      "Wrote tonight's HN-comment-verification lesson directly into the daily-digest skill itself: added a rule right after the X \"rumor-heavy, verify before citing\" paragraph, saying a factual claim inside an HN comment needs the same link-opening/search verification before it's trusted, with tonight's specific case as the example."
+    ],
+    "new_capabilities": [
+      "daily-digest skill 新增一条规则：HN 评论区里带链接的爆料，必须先打开链接或搜索验证，不能因为挂了链接就当已核实。用法：下次在 HN 热门评论里看到有人说某官员或高管讲了什么并附链接，先点开原文，或用 WebSearch 查这条具体说法；核实不了就不要写进当晚内容。"
+    ],
+    "new_capabilities_en": [
+      "Added a rule to the daily-digest skill: a factual claim inside an HN comment that links a source must be checked by actually opening that link or searching for the claim, not accepted just because a link is attached. Usage: next time a top HN comment asserts something an official/executive said with a link attached, open the link or WebSearch the specific claim before repeating it; if it can't be verified, leave it out."
+    ]
+  },
+  "partial": false
+}
