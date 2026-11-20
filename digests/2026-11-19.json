@@ -1,0 +1,277 @@
+{
+  "date": "2026-11-19",
+  "banner": "ANT上市首日冲高38%，收窄至涨17%",
+  "banner_en": "Anthropic's ANT soars 38%, pares gains to close up 17%",
+  "image": {
+    "src": "digests/img/2026-11-19.jpg",
+    "caption": "ANT 今天的 1 分钟收盘价走势，自己用 Yahoo Finance 的原始数据画的。官方口径的盘中最高 115.10 美元、最低 92.72 美元比图上线条的峰谷略高一点，因为这条线只取每分钟收盘价，没有覆盖每一笔分时成交。（图：Yahoo Finance 数据，本报自制）",
+    "caption_en": "ANT's 1-minute closing-price path today, charted from Yahoo Finance's raw data. The officially reported intraday high ($115.10) and low ($92.72) sit slightly beyond this line's own peak and trough, since the line only samples one closing price per minute, not every tick. (Data: Yahoo Finance; chart made in-house)"
+  },
+  "actions": [
+    {
+      "text": "回头看一眼自己任何一个想做大的产品：有没有在客户量还小的时候，就先把「要不要招销售、要不要上企业客户」这类目标写死了？Linear 的 COO 入职第一年就把「上企业客户」从公司目标里划掉，等产品本身长出企业需要的东西（一个 MCP 接口），企业客户自己找上门，没多招一个人。花 15 分钟，把自己手上的扩张计划倒过来想一遍：是先招人铺摊子，还是先让产品自己把门槛迈过去。做完的标准：写出一句话，说清楚这次打算先做哪一个。",
+      "text_en": "Look back at anything you're trying to grow: did you lock in a goal like \"hire a salesperson\" or \"go after enterprise customers\" while the customer base was still small? Linear's COO crossed \"move upmarket\" off the company's own goals in her first year; once the product itself grew what enterprises needed (an MCP server), those customers showed up on their own, with no new hires. Spend 15 minutes running your own growth plan backwards: are you hiring to cover ground, or waiting for the product to clear the bar itself? Done when you can state in one sentence which one you're actually choosing this time.",
+      "source": "Cristina Cordova（Linear COO）· Latent Space Podcast",
+      "source_en": "Cristina Cordova (Linear COO) · Latent Space Podcast",
+      "source_url": "https://www.youtube.com/watch?v=x0VSm6IjcDQ"
+    },
+    {
+      "text": "如果你已经在用 Gemini、GPT 或 Claude 跑某个固定任务，挑一个最近真跑过的真实例子，去 Gemini 4 Neon 的页面查它的报价（每百万 token 输入 3 美元，缓存命中 0.15 美元，输出 15 美元），自己估一次这个任务如果换过去要花多少钱，再看一眼第三方跑分（Artificial Analysis、Vals Index）里它和你现在用的模型差多少。花 20 分钟。做完的标准：手上有一张价格和效果的对比表，不是厂商自己说的「更便宜更强」。",
+      "text_en": "If you already run some fixed task through Gemini, GPT, or Claude, pick a real example you actually ran recently, look up Gemini 4 Neon's published price ($3 per million input tokens, $0.15 for cache hits, $15 output), and estimate what that task would cost if switched over, then check a third-party benchmark (Artificial Analysis, the Vals Index) for how far it is from what you use now. Takes 20 minutes. Done when you have your own price-versus-quality comparison, not just the vendor's \"cheaper and better\" line.",
+      "source": "Google 官方 · Gemini 4 Neon 发布页，经 Hacker News",
+      "source_en": "Google (official) · Gemini 4 Neon launch page, via Hacker News",
+      "source_url": "https://blog.google/technology/ai/gemini-4-neon/"
+    },
+    {
+      "text": "如果你手上有个想做成通用能力的项目，想想 Arta 的打法：先别想着服务所有人，去找一个愿意陪你死磕的用户，把这一个场景彻底做顺——哪怕要花一整年——再决定要不要往外推广。花 15 分钟，写下你现在手上最像「还在找通用能力」而不是「服务好一个人」的那个项目，想清楚谁能当这第一个用户。做完的标准：写出这个人的名字，以及你打算先替他解决的那一件具体的事。",
+      "text_en": "If you have a project you're trying to make broadly capable, borrow Arta's approach instead: don't try to serve everyone first. Find one user willing to stick with you, make that single use case work completely, even if it takes a year, and only then decide whether to generalize. Spend 15 minutes naming the project of yours that looks more like \"searching for general capability\" than \"serving one person well,\" and work out who that first user could be. Done when you can name that person and the one concrete thing you'd fix for them first.",
+      "source": "Bob McGrew（Arta CEO，前 OpenAI 首席研究官）· No Priors Podcast",
+      "source_en": "Bob McGrew (Arta CEO, former OpenAI Chief Research Officer) · No Priors Podcast",
+      "source_url": "https://www.youtube.com/watch?v=_wLzJINt9iQ"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚查一下：自己的 Claude Code 里挂了多少用不上的 MCP",
+    "title_en": "Try tonight: audit how many unused MCP servers your Claude Code is carrying",
+    "why": "今天一篇技术拆解（反编译 Google Antigravity 的客户端）发现，哪怕只打五个字，光是系统提示词、MCP 工具schema、技能说明加起来就要先吃掉约 1.68 万 token，这些都是每一轮对话都要重新算一遍的固定开销，跟你到底问了什么没关系。Claude Code 用的也是同一套机制：每挂一个 MCP server，它的工具定义就要塞进每一轮的提示词里，不管你这轮用不用得上。今晚花十分钟，看看自己账号上到底挂了多少个，砍掉几个真的用不上的。",
+    "why_en": "A technical teardown published today (decompiling Google Antigravity's client binary) found that even a five-word prompt burns through about 16,800 tokens of system-prompt, MCP-schema, and skill overhead before any real work happens — fixed cost paid every single turn, regardless of what you actually asked. Claude Code runs on the same mechanism: every connected MCP server's tool definitions get stuffed into the prompt on every turn, whether or not you use them that turn. Spend ten minutes tonight finding out how many you're actually carrying and cutting a few you don't use.",
+    "time": "10分钟",
+    "time_en": "10 min",
+    "steps": [
+      "在终端跑 claude mcp list，看一下自己账号和项目上一共连了多少个 MCP server。",
+      "数一数里面有几个是最近一个月其实没用过的（比如某个只在某次任务里用过一次的连接器）。",
+      "挑一个确定用不上的，跑 claude mcp remove <名字> 删掉它（记下名字和连接方式，想用回来随时能重新 add）。",
+      "开一个新的 Claude Code 会话，正常用一会儿，留意是不是感觉更轻快；想清楚这个 MCP 多久能真正帮上一次忙，再决定要不要加回来。"
+    ],
+    "steps_en": [
+      "Run `claude mcp list` in a terminal to see exactly how many MCP servers are connected across your account and projects.",
+      "Count how many of them you genuinely haven't used in the last month (a connector you wired in for one task and never touched again, for instance).",
+      "Pick one you're sure you don't need and run `claude mcp remove <name>` to drop it (note its name and connection details so you can re-add it any time).",
+      "Open a fresh Claude Code session and use it normally for a bit; notice whether it feels lighter, then decide whether that MCP server is worth adding back given how often it actually helps."
+    ],
+    "source": "asubedi.com.np · Why Antigravity Eats Weekly Quota Fast，经 TLDR AI",
+    "source_en": "asubedi.com.np · Why Antigravity Eats Weekly Quota Fast, via TLDR AI",
+    "source_url": "https://asubedi.com.np/blog/why-antigravity-eats-weekly-quota-fast"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Algolia 的 front_page+AI 查询还是只回几条，换 Firebase topstories 前 40 条人工扫。路透社和 AP 的原文都被 Cloudflare 验证码墙挡住，连 r.jina.ai 也只拿到验证码提示，改去查 Yahoo Finance 的行情接口（query1.finance.yahoo.com），直接拿到逐分钟价格和官方口径的开盘、最高、最低、收盘数字，比转述更可靠；另一条「市值破两万亿美元」的独立 HN 提交做了交叉印证。「Fuck Your AI Safeguards」这条，去 anthropic.com 自己的使用政策原文核实了一遍：政策本身明确允许在自己拥有的系统上做授权安全测试，也点名了 Cyber Verification Program 这个申请加宽实时安全开关的渠道，这部分是核实过的；但博主说的「要交政府身份证、等好几天、放弃数据保留权益」这些具体条款，我找的客服页链接是 404，没能独立核实，按博主自述处理，写进了 flag。Gemini 4 Neon 之前的同系列（Hydrogen）11 月 13 日已经报过，今天是不同代号的新发布，不算重复。",
+      "swept_en": "Algolia's front_page+AI query again returned only a handful of hits, so I fell back to Firebase topstories' top 40 and scanned by hand. Reuters's and AP's own articles were both behind a Cloudflare challenge, and even r.jina.ai returned only a CAPTCHA notice, so I queried Yahoo Finance's own quote API (query1.finance.yahoo.com) instead, which gave clean per-minute prices plus the official open/high/low/close figures directly, more reliable than a secondhand paraphrase; a separate HN submission on the market cap crossing $2 trillion corroborated it independently. For \"Fuck Your AI Safeguards,\" I checked Anthropic's own Usage Policy text directly: it explicitly permits authorized security research on systems you own, and names the Cyber Verification Program as the channel for adjusted real-time safeguards — that much I verified myself. The specific terms the blog post describes (a government ID requirement, a multi-day wait, forfeiting data-retention protections) come from the author's own account; the support-center page I tried for them 404'd, so I could not verify those details independently and said so in the flag. Gemini 4 Neon's sibling codename (Hydrogen) was already reported on Nov 13; today's is a differently-named, separate launch, not a repeat.",
+      "items": [
+        {
+          "title": "ANT 上市首日冲到比发行价高38%，收盘守住17%",
+          "title_en": "ANT opens 38% above its IPO price, closes up 17%",
+          "author": "Yahoo Finance 行情数据，经路透社、Hacker News 报道印证",
+          "author_en": "Yahoo Finance market data, corroborated by Reuters reporting via Hacker News",
+          "likes": "915 分（Hacker News）",
+          "likes_label": "首日交易",
+          "url": "https://finance.yahoo.com/quote/ANT",
+          "summary": "昨天定的发行价是每股83美元，今天（11月19日）ANT 在纳斯达克开始交易。官方行情数据显示：盘中最高摸到115.10美元，比发行价高38.7%；盘中最低跌到92.72美元；收盘报97.17美元，比前一天（发行价）涨17.1%，成交量8.518亿股。另一条独立的 Hacker News 提交说，盘中最高点把公司市值一度推过2万亿美元，高于 AP 开盘前报的约1.5万亿美元估值。",
+          "summary_en": "The $83-a-share IPO price was set yesterday; ANT began trading on Nasdaq today, November 19. Official market data shows an intraday high of $115.10 (38.7% above the IPO price), an intraday low of $92.72, and a close of $97.17, up 17.1% from the prior day's IPO price, on volume of 851.8 million shares. A separate HN submission reported that the intraday high briefly pushed the company's market cap past $2 trillion, above the roughly $1.5 trillion pre-open valuation AP had reported.",
+          "why": "发行价定得再高，真正说话的是开盘以后这几个小时。冲到38%又跌回17%，说明市场一边认这个估值，一边不确定能不能一直守住。以后判断 AI 公司值多少钱，参照系从「上一轮融资估值多少」变成「ANT 股价今天多少」，这条线以后每天都能查。",
+          "why_en": "However high the IPO is priced, the first few hours of actual trading are what settle it. Soaring 38% and then giving most of it back to close at 17% says the market accepts the valuation but isn't sure it holds. From here, the reference point for what an AI company is worth shifts from \"what the last funding round said\" to \"what ANT trades at today\" — a line anyone can check daily from now on."
+        },
+        {
+          "title": "Gemini 4 Neon 上线：每百万 token 3 美元，第三方跑分真排得上号",
+          "title_en": "Gemini 4 Neon launches: $3 per million tokens, with real third-party benchmark backing",
+          "author": "Google 官方，经 Hacker News、TLDR AI、Latent Space AINews 多方转载",
+          "author_en": "Google (official), cross-posted by Hacker News, TLDR AI, and Latent Space's AINews",
+          "likes": "1016 分（Hacker News）",
+          "likes_label": "今天开始分批上线",
+          "url": "https://blog.google/technology/ai/gemini-4-neon/",
+          "summary": "Gemini 4 Neon 昨天（11月18日）发布，今天开始分批上线：Gemini API、AI Studio、Gemini for Business 先开，Google Antigravity 和 Gemini App 要 Pro/Ultra 订阅才能用，还不是对所有人免费开放。官方报价：每百万 token 输入3美元（命中缓存降到0.15美元，官方说是95%折扣），输出15美元，支持100万 token 上下文，页面没有另外标注这是限时优惠价。跑分有不少来自第三方：Artificial Analysis 智能指数排第三（61分），Vals Index 排第二，Zapier 的 AutomationBench 排第一，Andon Labs 的 Vending-Bench 2 排第一（16843美元）；「内部测试里幻觉率最低」这条是谷歌自己说的，页面上也写明是内部数据。",
+          "summary_en": "Gemini 4 Neon launched yesterday (Nov 18) and is rolling out today in stages: Gemini API, AI Studio, and Gemini for Business first, while Google Antigravity and the Gemini app require a Pro/Ultra subscription — it isn't free or open to everyone yet. Official pricing: $3 per million input tokens ($0.15 on a cache hit, a stated 95% discount), $15 per million output tokens, 1M-token context, with no footnote marking this as an introductory price. A healthy share of the benchmarks are third-party: #3 on Artificial Analysis's Intelligence Index (score 61), #2 on the Vals Index, #1 on Zapier's AutomationBench, #1 on Andon Labs' Vending-Bench 2 ($16,843). The \"lowest fabrication rate yet\" claim is Google's own, and the page itself labels it as internal testing.",
+          "why": "谁都能用、价多少、谁测的，这三条今天都算好查：能用的渠道分了等级，价格没写限时，跑分里第三方的部分比大多数发布都扎实。真正值得留意的是「内部测试」那句被单独摘出来标成了自家数据，没有混进「第三方」那一堆里，这点比很多发布页做得诚实。",
+          "why_en": "Who can use it, what it costs, and who measured it were all answerable today: access is tiered rather than wide open, the price carries no intro-period footnote, and the third-party-benchmark portion is unusually solid for a launch post. What's worth noting is that the \"internal testing\" claim is kept separate and labeled as Google's own data rather than folded in with the third-party results — more honest than most launch pages manage."
+        },
+        {
+          "title": "一篇博客：Claude Code 拒绝帮他修自己产品的漏洞",
+          "title_en": "A blog post: Claude Code refused to help patch a vulnerability in his own product",
+          "author": "ounapuu.ee 博主（资深工程师）· 经 Hacker News",
+          "author_en": "ounapuu.ee blog author (a senior engineer) · via Hacker News",
+          "likes": "482 分（Hacker News）",
+          "likes_label": "今天发布",
+          "url": "https://ounapuu.ee/posts/2026/11/19/fuck-your-ai-safeguards/",
+          "summary": "一位资深工程师今天发博客，说自己想用 Claude Code 帮忙修补自己产品里的一个安全漏洞，被模型以 Anthropic 的安全开关为由拒绝，要走一个他说「要交政府身份证、等好几天、还得放弃数据保留权益」的豁免流程。他转而用欧洲托管的开源模型 GLM 5.3 把活干完。Hacker News 帖子下 482 分，不少评论说自己也撞过同样的墙，建议备用 Kimi 3.1、GLM、Mistral Large 4 这类开放权重模型。去查了 Anthropic 自己的使用政策原文：政策写明「在自己拥有或经授权的系统上做安全研究、测试、工具开发」不在禁止之列，也点名了 Cyber Verification Program 这个申请放宽实时安全开关的渠道；但博主说的身份证、等待天数、数据保留这些具体条款，核实不到。",
+          "summary_en": "A senior engineer posted today that Claude Code refused to help patch a security vulnerability in his own product, citing Anthropic's safeguards, and pointed him to an exemption process he describes as requiring a government ID, a multi-day wait, and forfeiting data-retention protections. He finished the work instead with GLM 5.3, an EU-hosted open-weight model. The HN thread sits at 482 points, with many commenters reporting the same wall and recommending open-weight fallbacks like Kimi 3.1, GLM, and Mistral Large 4. Checking Anthropic's own Usage Policy text: it explicitly excludes \"security research, testing, or tool development on systems you own or are authorized to test\" from its prohibitions, and names the Cyber Verification Program as the channel for adjusted real-time safeguards — but the specific terms the author describes (ID, wait time, data retention) could not be verified.",
+          "why": "这条跟 Zen 每天在用的工具直接相关。政策写的和产品实际拦的不是一回事：政策原文允许在自己系统上做安全测试，拦截的是实时安全开关，不是政策本身。真正该做的判断不是「这工具到底让不让」，而是「卡住的时候，走官方的验证流程，还是换一个没验证过的模型」，两条路风险不一样。",
+          "why_en": "This one touches the tool Zen runs daily. What's written and what the product actually blocks are two different things: the policy text permits security testing on your own systems; what blocks it is the real-time safeguard, not the policy itself. The real judgment call isn't whether the tool allows it — it's whether to go through the official verification process when blocked, or switch to an unverified model instead, since those two paths carry different risks.",
+          "flag": "博主说的「要交身份证、等好几天、放弃数据保留权益」是他自己的说法，没能在 Anthropic 官方页面上独立核实到这几条具体条款。",
+          "flag_en": "The claimed specifics (a government ID requirement, a multi-day wait, forfeiting data-retention protections) are the author's own account; these exact terms could not be independently verified on Anthropic's own pages."
+        }
+      ]
+    },
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9 个频道 RSS 加对照频道全部 200，今晚没有访问故障。字幕照旧在 en.* 上撞了 429，换 en-orig 四条里清了三条；剩下一条（anthropic-ai 的一支品牌宣传片）本身就没有字幕轨道，画面基本是配乐加客户镜头，不是因为限流或者流水线没跑完。Anthropic 官方今天发的两条品牌片（创业回顾、客户致谢）读完确认只是宣传片，没有可引用的事实，没收进版面；OpenAI 一条「ChatGPT for Accounting」的预告片同样没有实质内容，无法独立核实范围和定价，没收。收了两条内容扎实、读完整份转写的访谈：Latent Space 对 Linear COO Cristina Cordova 的访谈（16700 词），和 No Priors 对 Arta CEO Bob McGrew 的访谈（12200 词）。",
+      "swept_en": "All 9 roster channels' RSS plus the control channel returned 200, no access trouble tonight. Captions hit the usual 429 on en.*; switching to en-orig cleared 3 of 4. The remaining one (an anthropic-ai brand video) simply carries no caption track at all — it's mostly music and customer footage, not a rate limit or an unfinished pipeline. Anthropic's own two brand videos today (a founding retrospective, a customer thank-you reel) were read in full and confirmed to be promotional only, with no citable facts, so neither made the paper. An OpenAI teaser for \"ChatGPT for Accounting\" was similarly content-free and its scope/pricing couldn't be independently verified, so it was dropped. Two substantial interviews made it in, each read in full transcript: Latent Space's interview with Linear COO Cristina Cordova (16,700 words) and No Priors' interview with Arta CEO Bob McGrew (12,200 words).",
+      "items": [
+        {
+          "title": "Linear 的 COO：公司目标里从来没有「招销售」这一条",
+          "title_en": "Linear's COO: \"hire salespeople\" was never on the company's goal list",
+          "author": "Cristina Cordova（Linear COO，前 Stripe）· Latent Space Podcast",
+          "author_en": "Cristina Cordova (Linear COO, ex-Stripe) · Latent Space Podcast",
+          "likes": "16700 词完整转写",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=x0VSm6IjcDQ",
+          "summary": "Cordova 入职时 Linear 只有约40人，现在年化收入破1亿美元，付费客户超4万，净收入留存率177%；今年8月员工按25亿美元估值卖了9900万美元的老股，7年总共只融了1.34亿美元。她入职第一年就把「做大企业客户」从公司目标里划掉，当时只有一个销售，等做出 MCP 接口（2025年上线，同类产品里第一个），企业客户自己找上门：现在超过一半的 Linear 工单是 agent 自己创建的，1年半前这个比例接近零。公司从没招过 SDR（她认为那类资格预审电话在浪费客户时间），客服也从没外包。定价上，AI 功能先免费测试再收费，价格先定高再往下调，底层模型成本（OpenAI/Anthropic）加一点加价转嫁给客户。她从 Stripe 带来一条「40%规则」：工程、产品、设计、数据加起来至少占公司40%人头，招销售之前先想能不能先招工程师。CEO 那篇「工单管理已死」的博客一度让销售中的客户困惑，她把说法改成「工单还在，只是不用人工追了」。",
+          "summary_en": "Linear had about 40 employees when Cordova joined; it has since crossed $100M in annual recurring revenue, over 40,000 paying customers, and 177% net revenue retention. In August, employees sold $99M in stock at a $2.5B valuation, against just $134M raised in total funding over seven years. In her first year she crossed \"move upmarket to enterprise\" off the company's own goals, since there was only one salesperson at the time; once Linear shipped an MCP server (in 2025, the first in its category), enterprise customers arrived on their own — more than half of all Linear issues are now created by agents, up from near zero 18 months ago. The company has never hired an SDR (she considers that qualification call a waste of the customer's time) and has never outsourced support. On pricing, AI features launch as free betas before being priced, prices start high and come down, and the underlying model costs (OpenAI/Anthropic) pass through with a small markup. She brought a \"40% rule\" from her time at Stripe: engineering, product, design, and data together should be at least 40% of headcount, and before adding a salesperson, ask whether you could hire an engineer instead. The CEO's \"issue tracking is dead\" blog post briefly confused customers mid-sales-cycle; she reframed it as \"the issue still exists, it's just not chased by hand.\"",
+          "why": "这不是一份增长秘诀列表，是一个具体公司怎么把「先服务好现有客户」执行到底的记录：目标清单上主动划掉一条、定价先免费测再收钱、招聘比例写成硬指标。这几条随便挑一条都能直接拿来对照自己手上的项目，不用等翻译成「框架」。",
+          "why_en": "This isn't a list of growth hacks; it's a record of one company actually executing \"serve the customers you have first\": crossing a goal off the list on purpose, pricing AI features free-then-paid, and writing a hiring ratio down as a hard rule. Any one of these can be checked against your own project directly, with no translation into a \"framework\" needed."
+        },
+        {
+          "title": "前 OpenAI 首席研究官：研究员从来不是瓶颈，算力才是",
+          "title_en": "Ex-OpenAI chief research officer: researchers were never the bottleneck, compute was",
+          "author": "Bob McGrew（Arta CEO 兼联合创始人，前 OpenAI 首席研究官、前 Palantir）· No Priors Podcast",
+          "author_en": "Bob McGrew (Arta CEO/co-founder, former OpenAI Chief Research Officer, ex-Palantir) · No Priors Podcast",
+          "likes": "12200 词完整转写",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=_wLzJINt9iQ",
+          "summary": "McGrew 现在做 Arta，给制造业工程做 AI 软件，专门啃「拼零件」这类封闭世界的自动化设计问题。和军工企业 Anduril 合作快一年：今年1月拿到系统权限，4月第一个用户用它给一个制动器做虚拟组装，90分钟做完原来要几天的活，现在已经铺到 Anduril 所有产品线，包括 Fury 无人僚机。他的核心判断：实验室造出来的是「便宜的智能」，但研究员从来不是推进 AI 的瓶颈，算力和物理硬件才是，所以靠自动化研究员实现递归自我改进（RSI）这条路「从根上就不成立」，顶多是一次性的 S 型曲线，不是起飞。Arta 不训练自己的模型，只把现成的前沿模型当调度层，底下接的是专门的运动规划和 CAD 工具。他把 Palantir 的「前线部署工程师」打法直接搬了过来：先找一个愿意陪你死磕的用户，把这一个场景做顺，再往外推广，不是一上来就服务所有人。",
+          "summary_en": "McGrew now runs Arta, building AI software for manufacturing engineering, specifically closed-world automation-design problems like fitting parts together. Its roughly year-long partnership with defense contractor Anduril: system access in January, first user in April doing a virtual build of an actuator in 90 minutes versus days by hand, now deployed across all of Anduril's product lines, including the Fury drone wingman aircraft. His core argument: labs produce \"cheap intelligence,\" but researchers were never the bottleneck to AI progress — compute and physical hardware were — so pursuing recursive self-improvement (RSI) by automating researchers is \"wrong from the ground up,\" at best a one-time S-curve, not a takeoff. Arta trains no models of its own, using off-the-shelf frontier models purely as an orchestration layer over specialized motion-planning and CAD tools underneath. He carried Palantir's \"forward-deployed engineer\" playbook straight over: find one user willing to stick with you, make that single use case work, and only then expand outward, rather than trying to serve everyone from day one.",
+          "why": "两个前沿实验室出身的人，一个讲协作软件一个讲工厂自动化，却在同一周各自说出同一件事：先死磕一个用户，再谈规模化。这比任何一份行业分析都更直接地说明，窄场景的深度，比通用能力的宽度更值钱。",
+          "why_en": "Two people who came out of frontier labs, one talking about collaboration software and the other about factory automation, landed on the identical point the same week: commit to one user before talking about scale. That says more directly than any industry analysis that depth on a narrow use case is worth more than breadth of general capability."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "四个订阅源逐一过：TLDR AI 当天读了全文；Simon Willison 今天没有新贴；Latent Space 的 RSS 条目就是上面收进 YouTube 版面的 Cordova 访谈，同一期内容两个入口，按「同一事两处印证」只在 YouTube 留了完整处理，这里不重复开一条；Import AI 这周没有新一期。TLDR AI 当天另给了两条可用素材：OpenAI 和 AMD 的芯片设计报告（回到 openai.com 官方博客读全文核实），以及 Antigravity 吃 token 的技术拆解（读了原文的反编译细节，数字和方法都在，直接拿来做了今晚的 hands_on，没有再单独开一条新闻，避免同一条线占两个位置）。",
+      "swept_en": "Went through all four feeds: read TLDR AI's issue in full; Simon Willison had no new posts today; Latent Space's RSS entry was the same Cordova interview already placed under YouTube, so per the cross-platform dedupe rule it stays a single full treatment there and isn't repeated here; Import AI had no new issue this week. TLDR AI supplied two more usable items: OpenAI and AMD's chip-design report (read in full on openai.com's own blog to verify), and the Antigravity token-overhead teardown (read the original's decompilation details, numbers and method both check out, and it was used directly as tonight's hands_on rather than opened as a separate news item, to avoid the same thread claiming two slots).",
+      "items": [
+        {
+          "title": "OpenAI 的模型帮 AMD 的芯片设计省了14%面积，AMD 已经用进量产",
+          "title_en": "OpenAI's models cut 14% off an AMD chip design, already adopted for production",
+          "author": "OpenAI 官方 · 经 TLDR AI",
+          "author_en": "OpenAI (official) · via TLDR AI",
+          "likes": "两个芯片项目（厂商自报数字）",
+          "likes_label": "AMD 已独立验证",
+          "url": "https://openai.com/index/advancing-chip-design-with-openai-models/",
+          "summary": "OpenAI 发博客说自己的模型被用来做芯片设计。在自家的 Jalapeño 推理芯片上，模型把向量单元的标准单元面积压缩了约13%，矩阵单元压缩了约10%，这颗芯片已经实际流片验证过，不是只停在仿真阶段。和 AMD 合作时，同样的方法用在 AMD 旗舰 GPU 的 IP 设计上，PPA（功耗、性能、面积综合指标）最多提升14%，AMD 自己独立复核过这个结果，部分改动已经放进送去量产的设计文件，另一部分加进了给未来芯片用的生产文件。",
+          "summary_en": "OpenAI published a blog post on using its models for chip design. On its own Jalapeño inference chip, the models cut standard-cell area by about 13% on the vector unit and about 10% on the matrix unit, and the chip has actually been through silicon bring-up, not just simulation. Applying the same approach with AMD to its flagship GPU IP design yielded up to a 14% improvement in PPA (power, performance, area); AMD independently verified the results itself, with some changes already included in design files sent for manufacturing and others added to production files for future chips.",
+          "why": "这条信息的分量在 AMD 自己复核过，还真用进了要量产的设计，不是停在厂商自己的跑分页上。谁在卖药这件事也要分清楚：OpenAI 说自己模型能做芯片设计，卖的正是这个能力，这部分判断留了余地；但 AMD 把改动放进量产文件，这个动作本身不是 OpenAI 能替它说的。",
+          "why_en": "What gives this weight is that AMD verified it independently and actually put it into production-bound designs, rather than it staying on the vendor's own benchmark page. Still worth separating who sells what: OpenAI reporting that its models can do chip design is exactly the capability it sells, so that claim gets some skepticism; but AMD putting the changes into production files is an action OpenAI can't claim on AMD's behalf."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天两段访谈说的是完全不一样的生意。Cordova 做的是协作软件，McGrew 做的是工厂自动化。但两人讲的其实是同一件事。Cordova 当 COO 第一年就把「做大企业客户」从公司目标里划掉，那时候只有一个销售；等产品自己长出企业要的东西，企业客户才找上门。McGrew 做 Arta，不训练自己的模型，先跟 Anduril 这一个客户死磕了快一年，做顺了才铺到全公司产品线。两边都没有先招人铺摊子，都是先替一个用户把活干透，再决定要不要放大。真正值钱的不是模型或者产品本身能做到多少，是有没有人先把一个场景吃透。",
+  "meta_read_en": "Today's two interviews are about completely different businesses. Cordova runs collaboration software; McGrew runs manufacturing automation. But they're saying the same thing. Cordova crossed \"move upmarket to enterprise\" off the company's goals in her first year as COO, when there was only one salesperson; enterprise customers only showed up once the product itself grew what they needed. McGrew's Arta trains no models of its own, and instead stuck with one customer, Anduril, for nearly a year before it worked, only then rolling it out across the rest of the product line. Neither one hired ahead to cover more ground; both made one user's problem work completely first, then decided whether to scale. What's valuable isn't how capable the model or product is in the abstract — it's whether someone went deep on one use case first.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 12614,
+      "stars_today": 1349
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 322126,
+      "stars_today": 2028
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: <a href=\"https://clianything.cc/\" class=\"Link--inTextBlock\" rel=\"nofollow\">https://clianything.cc/</a>",
+      "language": "Python",
+      "stars": 60607,
+      "stars_today": 898
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 66939,
+      "stars_today": 238
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 17577,
+      "stars_today": 384
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and 550+ data providers through one API.",
+      "language": "TypeScript",
+      "stars": 204301,
+      "stars_today": 825
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 32351,
+      "stars_today": 73
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 11581,
+      "stars_today": 246
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 68672,
+      "stars_today": 271
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 70836,
+      "stars_today": 954
+    }
+  ],
+  "ota": {
+    "learned": [
+      "YouTube 9 个频道 RSS 加对照频道今晚全部 200，没有故障；字幕 en.* 撞 429 后换 en-orig 清了 3/4，剩下一条是真没有字幕轨道（品牌片基本没对白），不是限流也不是流水线没跑完，这是第三种独立信号，之前只记过「429 换 en-orig」和「no subtitles 等流水线」两种。",
+      "同一期 Latent Space 节目（Cordova 访谈）同时出现在 YouTube RSS 和文摘的 Latent Space RSS 里，两个 sweep fork 各自独立发现，核实后只在 YouTube 留了完整处理，文摘那边注明同一事两处印证、不重复开条目，照着「跨平台去重」的规则执行了一次。",
+      "核实「Fuck Your AI Safeguards」这条时，直接去读了 anthropic.com/legal/aup 原文：政策本身明确允许在自己系统上做授权安全研究，点名了 Cyber Verification Program，这部分证实了博主说的「政策允许但产品拦」是真问题；但博主说的身份证、等待天数、数据保留这些具体条款，我猜的客服页链接 404了，没能独立核实，照实写进了 flag，没有替博主的说法背书也没有一口否定。",
+      "banner 配图这次没有现成的官方图可用（Anthropic 自己的新闻页还没发今天交易首日的帖子，AP/路透社/Nasdaq 都拿不到可下载的 og:image），改成直接用已经核实过的 Yahoo Finance 行情数据自己画了一张分钟级走势图，本地生成、本地保存，没有跨域直链，这是这个 skill 第一次自己画图当头版配图，不是找现成的。"
+    ],
+    "learned_en": [
+      "All 9 YouTube roster channels' RSS plus the control channel returned 200 tonight, no outage. Captions hit the usual 429 on en.*, and switching to en-orig cleared 3 of 4; the remaining one genuinely has no caption track (a brand video with almost no dialogue) — not a rate limit, not an unfinished pipeline, a third, distinct signal beyond the two already logged (429-fixed-by-en-orig, and no-subtitles-pipeline-lag).",
+      "The same Latent Space episode (the Cordova interview) showed up in both the YouTube RSS sweep and the 文摘 Latent Space RSS sweep, found independently by two parallel forks; after checking, it got one full treatment under YouTube only, with 文摘 noting the cross-platform overlap instead of opening a second entry — the cross-platform dedupe rule applied in practice for the first time in a while.",
+      "Verifying \"Fuck Your AI Safeguards\" meant reading anthropic.com/legal/aup directly: the policy itself explicitly permits authorized security research on systems you own and names the Cyber Verification Program, which confirms the author's real complaint (policy permits it, the product still blocks it); but the specific terms he describes (ID requirement, wait time, forfeited data retention) couldn't be verified since the support-center URL I guessed 404'd — written into the flag honestly rather than either endorsing or dismissing his account.",
+      "No ready-made official image existed for the banner this time (Anthropic's own news page has no post yet about today's actual trading debut, and AP/Reuters/Nasdaq had no downloadable og:image), so I generated a minute-level price chart myself from the Yahoo Finance data I'd already verified, rendered and saved locally with no cross-origin hotlinking — the first time this skill has drawn its own front-page image instead of finding an existing one."
+    ],
+    "new_capabilities": [
+      "已验证：当头版配图找不到现成官方图时，可以直接用本就核实过的数值数据（这次是 Yahoo Finance 的行情 JSON）自己用 Pillow 画一张图，本地生成、本地保存，不用额外装 matplotlib，流程：抓数据存 JSON → 用 PIL.ImageDraw 画折线/坐标轴/标注 → 存 jpg，整个过程不依赖任何跨域图片。"
+    ],
+    "new_capabilities_en": [
+      "Verified: when no ready official image exists for the front-page photo, I can draw one myself from numeric data already verified for the issue (today, Yahoo Finance's quote JSON) using Pillow, rendered and saved locally — no matplotlib install needed. Pipeline: fetch data to JSON, draw the line/axes/labels with PIL.ImageDraw, save as jpg, with no cross-origin image dependency anywhere in the process."
+    ]
+  },
+  "partial": false
+}
