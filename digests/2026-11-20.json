@@ -1,0 +1,277 @@
+{
+  "date": "2026-11-20",
+  "banner": "黎曼猜想：Claude 给出证明",
+  "banner_en": "Claude claims a proof of the Riemann Hypothesis",
+  "image": {
+    "src": "digests/img/2026-11-20.jpg",
+    "caption": "黎曼猜想认为，ζ 函数所有非平凡零点都落在复平面的这条临界线 Re(s)=1/2 上，图中黑点是已知的几个零点位置。本报自制示意图，并非证明本身。",
+    "caption_en": "The Riemann Hypothesis claims every nontrivial zero of the zeta function sits on this critical line, Re(s)=1/2, in the complex plane. The black dots mark several of its known zeros. In-house illustrative diagram, not a depiction of the proof itself."
+  },
+  "actions": [
+    {
+      "text": "审查任何 AI 写的代码前，先数一下每个“看起来只有一行”的调用背后实际触发了几次外部请求。这条可以直接加进团队的 code review 清单。",
+      "text_en": "Before approving any AI-written code, count how many real external calls hide behind each one-line-looking call. Add this straight to your team's code-review checklist.",
+      "source": "Mani Doraisamy 个人博客",
+      "source_en": "Mani Doraisamy's personal blog",
+      "source_url": "https://manidoraisamy.com/developer-to-architect.html"
+    },
+    {
+      "text": "如果团队要让 AI agent 对接第三方支付或 API，别只跑一次 demo 就验收。专门做一个“验收 agent”，照着 Stripe 的思路去挑错误处理、幂等性、签名校验这些不出错就看不出来的细节。",
+      "text_en": "If your team is letting an AI agent wire up a third-party payment or API integration, don't accept it off one demo run. Build a dedicated \"acceptance agent,\" following Stripe's approach, to specifically hunt for error-handling, idempotency, and signature-verification misses — the stuff that only breaks under load.",
+      "source": "Stripe 官方工程博客",
+      "source_en": "Stripe's engineering blog",
+      "source_url": "https://stripe.dev/blog/stripe-integration-evals-methodology"
+    },
+    {
+      "text": "自己的 vibe-coded 项目可以试试这个分法：把生成的代码当成不用读的“引擎”，另开一个用人话写清楚每个功能该做什么的“说明书”文件夹，出问题改说明书，不碰引擎代码。",
+      "text_en": "For your own vibe-coded project, try splitting it the way Thariq does: treat the generated code as an opaque \"engine\" you never read, and keep a separate, plain-English \"spec\" folder describing what each piece should do. When something's wrong, edit the spec, not the engine.",
+      "source": "Thariq Shihipar（独立研究者，前 Anthropic）· AI Engineer Code Summit",
+      "source_en": "Thariq Shihipar (independent, ex-Anthropic) · AI Engineer Code Summit",
+      "source_url": "https://www.youtube.com/watch?v=xRJMiaUoD_8"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试一下：Inkling 2 Mini，笔记本就能跑的开源编程模型",
+    "title_en": "Try tonight: Inkling 2 Mini, an open-weight coding model small enough for a laptop",
+    "why": "Thinking Machines 今天发布 Inkling 2 Mini，264 亿参数（34 亿激活），体积小到笔记本就能跑，编程类跑分在百亿参数以下的开放权重模型里排第一。不用下载，网页里就能直接试。",
+    "why_en": "Thinking Machines released Inkling 2 Mini today — 26.4B parameters (3.4B active), small enough to run on a laptop, leading sub-100B open-weight models on coding benchmarks. No download needed; you can try it directly in the browser.",
+    "time": "10 分钟",
+    "time_en": "10 minutes",
+    "steps": [
+      "打开 https://tinker.thinkingmachines.ai/playground?utm_source=blog&utm_campaign=inkling_2_mini_model_release，不用注册，不用下载，直接在网页里丢给它一个真实的编程或带工具调用的任务。",
+      "如果想在自己电脑上跑，去 huggingface.co/thinkingmachines/Inkling-2-Mini 下载权重和模型卡。"
+    ],
+    "steps_en": [
+      "Open https://tinker.thinkingmachines.ai/playground?utm_source=blog&utm_campaign=inkling_2_mini_model_release — no signup, no download, just hand it a real coding or tool-calling task in the browser.",
+      "To run it locally, grab the weights and model card from huggingface.co/thinkingmachines/Inkling-2-Mini."
+    ],
+    "source": "Thinking Machines 官方发布",
+    "source_en": "Thinking Machines' own release",
+    "source_url": "https://thinkingmachines.ai/news/inkling-2-mini/"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Algolia 的 front_page+AI 查询又只回了 3 条，换成 Firebase topstories 扫了前 40 条，不按标题关键词过滤，人工看了一遍。check-domain-reuse.py 跑过今晚候选 URL，全部清；ota-ledger.md 也查过，没有撞上之前的辟谣记录。黎曼猜想那条证明本身没有官方可下载的配图，《科学美国人》配的是通用数学插画，没拿来用。",
+      "swept_en": "Algolia's front_page+AI query again returned only 3 hits, so I fell back to Firebase topstories' top 40 and scanned by hand, ignoring title keywords. Ran check-domain-reuse.py over tonight's shortlisted URLs — all clear — and grepped ota-ledger.md for prior debunks, none hit. The Riemann Hypothesis story itself has no official downloadable image; Scientific American's own art is a generic stock illustration, not used.",
+      "items": [
+        {
+          "title": "Anthropic 数学家称用 Claude 证明黎曼猜想",
+          "title_en": "Anthropic mathematician claims Claude-assisted proof of the Riemann Hypothesis",
+          "author": "Joseph Howlett · 《科学美国人》· 经 Hacker News",
+          "author_en": "Joseph Howlett · Scientific American · via Hacker News",
+          "likes": "2371 分（Hacker News）",
+          "likes_label": "今天发布的证明",
+          "url": "https://www.scientificamerican.com/article/anthropic-mathematician-claims-to-prove-riemann-hypothesis-most-famous-problem-in-all-of-math/",
+          "summary": "Anthropic 内部数学家 Levent Alpöge 11 月 20 日在个人网站发文，称自己和 Claude 一起证明了黎曼猜想的推广版本（Generalized Riemann Hypothesis），这是数论里悬赏一百万美元、167 年没人解开的头号难题。证明用 Lean 写成代码，几小时内就能机器核验对错。MIT 数学家 Andrew Sutherland 当天独立把证明编译进了 Lean，智利天主教大学的 Hector Pasten 和 DeepMind 访问学者 Carlo Pagano 也都给出了正面但谨慎的评价，强调证明是否成立还要数学界慢慢啃。10 月 OpenAI 那批数学结果里已经有一条摸到了黎曼猜想的边，这次如果坐实，相当于 AI 在一年内吞下了整个数论最后一块硬骨头。",
+          "summary_en": "Anthropic mathematician Levent Alpöge posted on his personal site that he and Claude proved the Generalized Riemann Hypothesis — the $1M, 167-year-old crown problem of number theory. The proof is written in Lean, a machine-checkable proof language. MIT's Andrew Sutherland independently compiled it the same day; mathematicians at Chile's Pontifical Catholic University and a DeepMind visiting researcher gave cautiously positive first reads, stressing the proof still needs the math community's slow scrutiny. OpenAI's October math dump already nicked the edge of this problem — if this holds, AI closed out number theory's hardest open question within a year.",
+          "why": "核验情况要分清楚：现在只是“Lean 代码能编译”，不是“证明逻辑被社区审完”，这是两件事，后者通常要几周到几个月。发布者是 Anthropic 自己的员工，用自家模型证自家模型多厉害，这层利益关系要摆在明面上说，不能让“Anthropic 数学家”听起来像中立背书。真正值钱的信号是三位跟 Anthropic 没有关系的数学家（Sutherland、Pasten、Pagano）各自独立给出了正面初步反应。",
+          "why_en": "Two things to keep separate: the Lean code compiling is not the same as the community having checked the proof's logic, which usually takes weeks to months. The claimant works for Anthropic and used Anthropic's own model — that conflict of interest needs naming, not laundering as neutral credibility. The real signal is that three mathematicians with no Anthropic tie (Sutherland, Pasten, Pagano) each independently gave a cautiously positive first read.",
+          "flag": "证明目前只在 Lean 里编译通过，数学界还没有做实质审查；提出证明的人是 Anthropic 员工，用自家公司的模型，这层利益关系单独说明。",
+          "flag_en": "The proof currently only compiles in Lean and hasn't had substantive community review yet; the claimant is an Anthropic employee using Anthropic's own model, a conflict of interest worth stating on its own."
+        },
+        {
+          "title": "Claude 自己组 agent 跑六周，解开两个黑洞物理公开难题",
+          "title_en": "Claude ran a 6-week agent swarm, solved two open black-hole physics problems",
+          "author": "Anthropic 官方 · 经 Hacker News",
+          "author_en": "Anthropic · via Hacker News",
+          "likes": "553 分（Hacker News）",
+          "likes_label": "六周 agent 研究",
+          "url": "https://www.anthropic.com/research/claude-black-hole-physics",
+          "summary": "Anthropic 研究员 Hongbin Chen 8 月让 Claude 列出 22 个黑洞和量子引力领域的公开问题，然后给每个问题开一个 agent，agent 之间能互相看进度、互相接茬，六周里基本没人管。两个问题被啃下来：一个是 2003 年物理学家设好步骤、但因为计算量太大一直没人算完的 Hawking-Page 相变计算，Claude 的多个副本分头独立算、互相核对，证实了相变在弱耦合区依然是突变而不是渐变；另一个是给三维量子引力的“最轻黑洞质量上限”定出精确数值（c/9.1266），并证明这个上限不能再压低，用到的方法还跟 OpenAI 一个模型今年早些时候证过的一个球体堆积结果重合验证。论文用 Lean 做了形式化核验，物理学家做了人工复核。",
+          "summary_en": "Anthropic researcher Hongbin Chen had Claude list 22 open problems in black-hole and quantum-gravity physics in August, then spun up one agent per problem; the agents ran largely unsupervised for six weeks, reading each other's progress. Two problems fell: a 2003 Hawking-Page phase-transition calculation too large to finish by hand, solved by multiple Claude copies working independently and cross-checking each other, and an exact ceiling on the lightest possible black hole mass in 3D quantum gravity (c/9.1266), proven optimal using a method that also reproduced an OpenAI model's sphere-packing result from earlier this year. Both were Lean-verified and checked by human physicists.",
+          "why": "这条跟上面的黎曼猜想不是同一件事，团队不同、研究月份不同、论文也不同，但两条新闻同一天出现，说明的是同一个趋势：不是单个模型答一道题，是能自己拆问题、分头跑、互相对表的 agent 群。这是今年 AI 在硬科学里真正变了的地方。这篇是 Anthropic 一手研究博客，细节（22 个问题、六周、agent 互相读进度）写得很具体，不是公关稿式的笼统表述。",
+          "why_en": "Not the same story as the Riemann item above — different team, different months of work, different papers — but the two landing the same day point at the same shift: not one model answering one question, but agent swarms that split a problem, run in parallel, and cross-check each other. That's the real change in AI-for-hard-science this year. This is Anthropic's own first-party research post with concrete specifics, not PR-grade vagueness."
+        },
+        {
+          "title": "一篇博客：AI 把程序员悄悄提成了架构师，却没人告诉他们",
+          "title_en": "A blog post: AI quietly promoted developers into architects, and never told them",
+          "author": "Mani Doraisamy · 个人博客 · 经 Hacker News",
+          "author_en": "Mani Doraisamy · personal blog · via Hacker News",
+          "likes": "301 分（Hacker News）",
+          "likes_label": "今天发布",
+          "url": "https://manidoraisamy.com/developer-to-architect.html",
+          "summary": "作者发现同事给一个 Google 表单插件做的日志功能卡了 15 秒才加载，查下去发现是同事“vibe coding”让 AI 写的：AI 写了一串 try/catch，想拿用户邮箱拿不到就退而求其次拿 ID，每一步看起来就是一行代码，背后却各自是一次 Google 服务器调用。作者的结论是，AI 把“怎么写”这件事变得几乎免费，但“要不要这么写、这么写对不对”一点没变容易，这恰恰是架构师干的事。很多团队让人用 AI 写代码之后，悄悄把写代码的人变成了要对系统设计负责的架构师，却没人正式告诉他们，也没人给配套的判断力训练。",
+          "summary_en": "The author traced a 15-second load time in a colleague's Google Forms add-on back to AI-generated try/catch chains — each one-liner silently triggering its own Google API call as it fell back from email to user ID to a bare log line. His point: AI made writing code nearly free, but knowing whether a given way of writing it is the right call is exactly as hard as before — that's an architect's job. Teams that hand AI the keyboard have quietly promoted their developers into architects without telling them, or training the judgment that comes with it.",
+          "why": "对 Zen 这边直接可用：这是一条具体的“AI 写代码，谁来把关”案例，不是空谈。可检查的教训是，review AI 生成的代码时，数一数每个“看起来一行”的调用背后实际触发了几次外部请求，这条本身就能当团队 code review 清单的一项。",
+          "why_en": "Directly usable: a concrete case study, not an abstract argument, for \"who vets AI-written code.\" The checkable lesson — count how many real API calls sit behind each one-line fallback chain before shipping it — is itself a code-review checklist item."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "四个订阅源逐一过：TLDR AI 当天给了 Stripe 评测这条，回到 stripe.dev 原文读全文核实；Simon Willison 今天没有新贴；Latent Space 这期写的是“veri-coding”形式化验证，跟黎曼猜想证明用 Lean 这条线重合，为了不在同一个 Lean 话题上占第三个位置，没收，留在 decisions.md；Import AI 这周没有新一期。另外用 Thinking Machines 今天发布的 Inkling 2 Mini 做了今晚的 hands_on，没再单独开一条新闻。",
+      "swept_en": "Went through all four feeds: TLDR AI supplied the Stripe item, verified by reading the original on stripe.dev in full; Simon Willison had no new posts today; Latent Space's piece on \"veri-coding\" formal verification overlaps the same Lean thread as the Riemann proof story, so it was dropped to avoid a third item on that one topic (logged in decisions.md); Import AI had no new issue this week. Thinking Machines' Inkling 2 Mini, released today, was used directly as tonight's hands_on rather than opened as a separate news item.",
+      "items": [
+        {
+          "title": "Stripe 自建评测，专测编程 agent 接的支付集成靠不靠谱",
+          "title_en": "Stripe built its own eval for how well coding agents integrate Stripe",
+          "author": "Stripe 官方 · 经 TLDR AI",
+          "author_en": "Stripe · via TLDR AI",
+          "likes": "Stripe 官方方法论",
+          "likes_label": "今天发布",
+          "url": "https://stripe.dev/blog/stripe-integration-evals-methodology",
+          "summary": "Stripe 自己搭了一套评测（Stripe evals），用一个“扮演客户”的 agent 给编程 agent 提真实场景的需求，再评分最终接出来的 Stripe 集成质量。结论很直接：现在的编程 agent 配上顶尖模型，确实能端到端跑出一个能用的 Stripe 集成，但不代表它守住了所有最佳实践，常见翻车点是错误处理、幂等性、webhook 签名校验这类不出错就看不出来的细节。Stripe 把这套评测结果反过来用，去调整自己给 agent 的文档和提示，让 agent 更容易接对这些最佳实践。",
+          "summary_en": "Stripe built its own benchmark (Stripe evals) where a role-playing agent hands a coding agent realistic integration requirements, then grades the resulting integration's quality. The finding: frontier-model coding agents can ship a working end-to-end Stripe integration, but \"working\" doesn't mean it follows best practice — the usual misses are error handling, idempotency, and webhook signature verification, exactly the things that only break under load. Stripe is using the eval results to tune its own docs and prompts so agents land on the right pattern more often.",
+          "why": "这是支付基础设施厂商自己测“AI 接自己产品好不好用”的一手方法论，对任何要靠 AI agent 接第三方支付或 API 的团队，这套评测框架可以直接搬过去用：不是跑一次 demo 就算通过，而是专门做一个“验收 agent”去挑刺。测的东西也分得清楚，“端到端能跑通”和“跑对最佳实践”是两件分开报告的事，没有混成一个百分数。",
+          "why_en": "A payments-infrastructure vendor's own methodology for testing whether AI correctly integrates its product — directly copyable by any team shipping AI-agent integrations against third-party payment or API surfaces: don't grade on a single demo run, build an acceptance agent that specifically hunts for misses. The denominator stays clean too — \"ships end-to-end\" and \"follows best practice\" are reported as two separate things, never blended into one percentage."
+        }
+      ]
+    },
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9 个频道 RSS 加对照频道（Google Developers）全部 200，今晚没有访问故障，不用走 yt-dlp 回退。字幕在 en.* 上撞了 429，4 条里换 en-orig 全部清掉；另一条（anthropic-ai 的 72 秒品牌片）本身就没有字幕轨道，不是限流也不是流水线没跑完，是第三种独立信号。读了 Dwarkesh Patel 对谈 Paul Christiano 的最新一条片段，查 ota-ledger.md 发现是 11 月 17 日已经核实过并辟谣的同一条 Slack 泄露说法（Anthropic 公开反驳过时间线和范围），没有新进展，没收。同一频道（AI Engineer Code Summit）今晚另有一条 Warp CEO 的演讲，跟本期已收的架构师、Stripe 两条同属“AI 写代码谁把关”这条线，为了不让一条线占三个位置，没收。",
+      "swept_en": "All 9 roster channels' RSS plus the control channel (Google Developers) returned 200, no access trouble tonight, no yt-dlp fallback needed. Captions hit the usual 429 on en.*; switching to en-orig cleared all 4. One video (an anthropic-ai 72-second brand clip) simply has no caption track at all — a third, independent signal, not a rate limit or an unfinished pipeline. Read the latest Dwarkesh Patel × Paul Christiano clip and found via ota-ledger.md it repeats the same Slack-breach claim already investigated and disputed on 2026-11-17 (Anthropic contested both the timeline and scope); no new development, dropped. The same channel (AI Engineer Code Summit) also had a Warp CEO talk tonight that overlaps the same \"who vets AI-written code\" thread as this issue's architect-blog and Stripe items; dropped to avoid a third item on that thread.",
+      "items": [
+        {
+          "title": "离职 Anthropic 后，他公开复盘三次判断失误",
+          "title_en": "After leaving Anthropic, he publicly reviews three predictions he got wrong",
+          "author": "Thariq Shihipar（独立研究者，前 Anthropic）· AI Engineer Code Summit",
+          "author_en": "Thariq Shihipar (independent, ex-Anthropic) · AI Engineer Code Summit",
+          "likes": "3628 词完整转写",
+          "likes_label": "30 小时前发布",
+          "url": "https://www.youtube.com/watch?v=xRJMiaUoD_8",
+          "summary": "Thariq Shihipar 今年离开 Anthropic，在 AI Engineer Code Summit 上公开列出自己判断错的三件事：“Bash 就够了”（现在 MCP、code mode、skills 都已经把纯命令行工具调用挤到一边）、“React 就够了”（模型现在写 Swift、HTML、Figma JSON 一样好，没有哪个框架真的锁死了模型）、以及他曾经担心扩散模型会让人类的审美判断变得不重要（没有发生，LLM 现在是通过代码、Blender、Photoshop 做艺术，人还攥着控制权）。他把 2026 年定义为软件的“工业化”阶段（可靠性、“软件工厂”），认为 2027 应该是“文艺复兴”，可靠性一旦解决，真正拉开差距的是审美和判断力，不是原始能力。他现场演示了自己 vibe coding 一个游戏时的做法：把生成出来的代码当成不用读的“引擎”文件夹，另开一个用人话写清楚每个角色、每个能力该做什么的“说明书”文件夹，出问题改说明书，不碰引擎代码。",
+          "summary_en": "Thariq Shihipar left Anthropic this year and, on stage at the AI Engineer Code Summit, listed three predictions he got wrong: \"Bash is all you need\" (MCP, code mode, and skills have since displaced pure CLI tool use), \"React is all you need\" (models now write Swift, HTML, and Figma JSON equally well — no single framework locked models in), and his fear that diffusion models would make human taste in art irrelevant (it didn't happen — LLMs now make art through code, Blender, and Photoshop, keeping humans in control). He frames 2026 as software's \"industrialization\" phase (reliability, \"software factories\") and argues 2027 should be a \"renaissance\" — once reliability is solved, taste and judgment become the real differentiator, not raw capability. He demos his own habit for a vibe-coded game: treat the generated code as an opaque \"engine\" folder he never reads, and keep a separate, plain-English \"spec\" folder defining what each character and ability should do — editing the spec, never the engine, when something's wrong.",
+          "why": "他离开 Anthropic 后公开承认三次判断失误，这种事后复盘比“当初说对了”本身更有参考价值，尤其是“没有单一框架或工具会锁死模型”这条，提醒做产品决策时别押注在某个模型当下偏好的技术栈上。他的人类可读 spec 文件夹做法，是今天少见的、普通人能直接照抄的具体技巧。",
+          "why_en": "A public account of three wrong predictions from someone who just left Anthropic is useful precisely because retrospective misses are rarer content than \"I called it\" claims — especially \"no single tool or framework will lock models in,\" a caution against betting a product roadmap on one model's current tool preference. His human-readable spec-folder habit is a rare, directly copyable technique."
+        },
+        {
+          "title": "Gemini 产品负责人：懂模型的“手感”现在是 PM 的硬指标",
+          "title_en": "Gemini's head of product: reading a model's \"vibes\" is now a PM hiring bar",
+          "author": "Tulsee Doshi（Gemini 产品负责人）· Lenny's Podcast",
+          "author_en": "Tulsee Doshi (Head of Product, Gemini) · Lenny's Podcast",
+          "likes": "142 词完整转写",
+          "likes_label": "3 小时前发布",
+          "url": "https://www.youtube.com/watch?v=HiDkG7MYSgg",
+          "summary": "Tulsee Doshi 在 Lenny's Podcast 的一段短访谈里说，Google 现在招 PM 会专门找“懂模型手感”的人：每天真用模型、自己动手测能力边界、自己搭 eval、自己钻进数据里看，而不是只读报告。",
+          "summary_en": "In a short clip from Lenny's Podcast, Tulsee Doshi says Google now specifically hires PMs for \"understanding the vibes\" of models — people with daily hands-on use, who stress-test capabilities themselves, build their own evals, and get into the data directly, not just read reports.",
+          "why": "这条直接对上 Zen 的 PM 背景：Gemini 产品负责人把“天天真用模型、自己建 eval”列成招 PM 的硬指标，不是加分项，是具体可以拿来对照自己工作方式的一句话标准。",
+          "why_en": "Direct match for a PM reader: Gemini's own head of product names daily hands-on model use and building your own evals as a baseline hiring bar for PMs, not a nice-to-have — a concrete one-line standard to check your own habits against."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天两条硬科学新闻说的是同一件事：AI 研究 agent 不再是回答单独一道题，而是自己拆解问题、分头跑、互相核对结果，再用 Lean 这种能机器核验的语言把答案钉死。黎曼猜想的证明和黑洞物理那两个难题，解法路径几乎一样。这条路径本身，可能比哪道题先被攻破更重要。",
+  "meta_read_en": "Today's two hard-science stories are really one story: AI research agents aren't answering single questions anymore. They split a problem apart, run pieces in parallel, cross-check each other, then lock the answer down in a machine-checkable language like Lean. The Riemann Hypothesis proof and the two black-hole problems used almost the same method. That method might matter more than which problem fell first.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 14344,
+      "stars_today": 1622
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 322867,
+      "stars_today": 890
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: <a href=\"https://clianything.cc/\" class=\"Link--inTextBlock\" rel=\"nofollow\">https://clianything.cc/</a>",
+      "language": "Python",
+      "stars": 61419,
+      "stars_today": 773
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 67705,
+      "stars_today": 847
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 17858,
+      "stars_today": 299
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+      "language": "TypeScript",
+      "stars": 205314,
+      "stars_today": 1241
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 32580,
+      "stars_today": 246
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 11797,
+      "stars_today": 217
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 69306,
+      "stars_today": 636
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 71465,
+      "stars_today": 681
+    }
+  ],
+  "ota": {
+    "learned": [
+      "发现 2026-11-19 那期的 ota.learned 虽然写进了当天的 JSON，却从来没有被追加进 ota-ledger.md，索引里也没有对应条目，意味着往后每次“先读 ledger”的步骤都看不到那天学到的东西。已经把内容补记进 ota-ledger.md 并重新生成了索引。",
+      "采纳了 2026-11-18 云端那次提出、但一直没有在本地会话落地的做法：给每个要派出去的子 agent 写清楚目标、可核对的成功标准、预算和需要批准的动作，回来后再核对它自己报的数字。今晚两个 sweep fork（YouTube、HN+文摘）都是这么派的。",
+      "同一频道（AI Engineer Code Summit）连续多天都有候选内容，这次主动只挑了其中信息密度更高的一条（Thariq 的复盘），把另一条（Warp CEO 的演讲）让给了别的线，不是因为内容不好，是因为跟本期另外两条已经占满的“AI 代码质量”主题重复。",
+      "把 Christiano 在 Dwarkesh 节目里又讲了一遍的 Slack 泄露说法，在 ota-ledger.md 里查到是 11 月 17 日已经核实过并被 Anthropic 公开反驳的旧说法，不是新进展，直接没收，不用重新验证一遍。"
+    ],
+    "learned_en": [
+      "Found that 2026-11-19's ota.learned content was written into that night's JSON but never appended to ota-ledger.md or reflected in the index — meaning every later \"read the ledger first\" step was blind to what that run learned. Backfilled it into ota-ledger.md and regenerated the index.",
+      "Adopted a practice proposed on a 2026-11-18 cloud run that had never landed on a laptop session: brief every spawned subagent with its outcome, checkable success criteria, a budget, and what needs approval, then reconcile its self-reported numbers after it returns. Tonight's two sweep forks (YouTube, HN+文摘) were both dispatched this way.",
+      "The same channel (AI Engineer Code Summit) had multiple days of candidate content running; tonight only the higher-information-density pick (Thariq's retrospective) was kept, and a second candidate (the Warp CEO talk) was cut — not for quality, but because it overlapped the \"AI code quality\" thread already filled by two other items.",
+      "Checked Christiano's repeated Slack-breach claim (on the latest Dwarkesh clip) against ota-ledger.md and found it was already investigated and disputed by Anthropic on 2026-11-17 — no new development, so it was dropped without re-verifying from scratch."
+    ],
+    "new_capabilities": [
+      "有了 bin/check-domain-reuse.py 加 ota-ledger.md 的组合查法之后，对任何“高分但可疑”的候选故事，可以在读正文之前就先筛掉重复和已辟谣的，不用等读完才发现白读。",
+      "两个 sweep fork 第一次都拿到了明确写死的“不许做”边界（不写最终 JSON、不发布），减少了后续合并时要处理的冲突。",
+      "本报自己画示意图这件事（11 月 19 日第一次做股价走势图，今晚第二次做数学示意图）从偶然做法变成一个可以重复用的选项：遇到 banner 没有干净配图的情况，先想“能不能自己画一张准确的”，再退回去找现成图。"
+    ],
+    "new_capabilities_en": [
+      "With bin/check-domain-reuse.py plus an ota-ledger.md grep as a combined check, any \"high-scoring but suspicious\" candidate story can be screened for repeats and prior debunks before reading the full body, not after wasting the read.",
+      "Both sweep forks were given an explicit \"do not\" boundary for the first time (don't write the final JSON, don't publish), cutting down on merge conflicts afterward.",
+      "Drawing the paper's own illustrative diagram (a price chart on 11-19, a math diagram tonight) has gone from an improvised one-off to a repeatable option: when the banner has no clean existing image, consider drawing an accurate one in-house before falling back to searching for an existing photo."
+    ]
+  },
+  "partial": false
+}
