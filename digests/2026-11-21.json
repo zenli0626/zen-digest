@@ -1,0 +1,272 @@
+{
+  "date": "2026-11-21",
+  "banner": "系统级AI agent伸手，Signal先挡一道",
+  "banner_en": "Signal blocks OS-level AI agents from reading chats",
+  "image": {
+    "src": "digests/img/2026-11-21.jpg",
+    "caption": "Signal 官方博客配图：手机操作系统里的 AI agent 正越来越深地嵌入系统层，Signal 这次挡的是 Google Gemini 和 Siri 的屏幕感知功能读取聊天内容。",
+    "caption_en": "Signal's own blog illustration: OS-level AI agents are reaching deeper into the system layer; this time Signal is blocking Google Gemini and Siri's on-screen awareness features from reading chat content."
+  },
+  "actions": [
+    {
+      "text": "参考 Warp CEO 的「软件工厂」思路：给自己正在用的一个 coding agent workflow 写一份声明式配置（哪一步该做什么、产出存哪），再在自己的真实任务上搭一个简单的在线评测基线，而不是只看 SWE-bench 之类的通用榜单。",
+      "text_en": "Borrow Warp's \"software factory\" framework: write a declarative config for one coding-agent workflow you actually use (what each step does, where output lands), and build a simple eval baseline on your own real tasks instead of relying on generic leaderboards like SWE-bench.",
+      "source": "Zach Lloyd（Warp 创始人兼CEO）· AI Engineer Code Summit",
+      "source_en": "Zach Lloyd (Warp founder & CEO) · AI Engineer Code Summit",
+      "source_url": "https://www.youtube.com/watch?v=0LeT996Hz3E"
+    },
+    {
+      "text": "如果手上有任何在做的个人项目，今晚开始写一篇「建造日志」：记录 AI 具体做了哪一步、哪里还是靠自己过去的经验才看出问题。连续写几天，比事后总结更能看出 AI 到底帮了什么、没帮什么。",
+      "text_en": "If you're building anything right now, start a daily build log tonight — note exactly what the AI handled and where your own prior experience was what caught the problem. Keep it up a few days; it shows what AI actually helped with far better than a retrospective would.",
+      "source": "Simon Willison 个人博客",
+      "source_en": "Simon Willison's personal blog",
+      "source_url": "https://simonwillison.net/2026/Nov/21/muru/"
+    },
+    {
+      "text": "查一下自己依赖的模型供应商或团队内部工具的权限设置：有没有「一个技术不高明的攻击者就能拿到 Slack 或代码库访问权限」这种薄弱环节。哪怕只是花十分钟复查一遍访问权限列表。",
+      "text_en": "Review the permissions on your model vendor's tools or your own team's internal systems — look for the kind of weak spot where an unsophisticated attacker could get Slack or repo access. Even a ten-minute pass over who has access to what is worth doing.",
+      "source": "Paul Christiano（ARC/Redwood Research 创始人，OpenAI 董事会成员）· Dwarkesh Podcast",
+      "source_en": "Paul Christiano (ARC/Redwood Research founder, OpenAI board member) · Dwarkesh Podcast",
+      "source_url": "https://www.youtube.com/watch?v=Ru0l6G5oq7U"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试一下：Wispr Flow，语音直接变成打字",
+    "title_en": "Try tonight: Wispr Flow, voice that turns straight into typed text",
+    "why": "今天读到 Wispr Flow 怎么设计创作者激励（不设上限 + 保底），顺手看了一下产品本身：语音输入工具，说话直接变成任意输入框里的文字，装好一次之后几乎不用再想起它存在,但省下的是每天打字的时间。",
+    "why_en": "Reading how Wispr Flow structures its creator-incentive model (uncapped pay plus a retainer) led to trying the product itself: a voice-dictation tool that turns speech into text in any input field. Install it once and it mostly disappears into the background, but it saves real typing time every day.",
+    "time": "15 分钟",
+    "time_en": "15 minutes",
+    "steps": [
+      "打开 wisprflow.ai，下载 Mac/Windows 客户端，安装。",
+      "首次打开时给它麦克风权限，设置一个全局快捷键（默认通常是双击某个键）。",
+      "打开任意文本框（备忘录、邮件草稿都行），按快捷键，说一段完整的话，松开看它怎么转成文字——留意它怎么处理口语里的停顿和改口。"
+    ],
+    "steps_en": [
+      "Go to wisprflow.ai, download the Mac/Windows client, install it.",
+      "On first launch, grant microphone access and set a global hotkey (the default is usually a double-tap of a key).",
+      "Open any text field (Notes, an email draft), hold the hotkey, say a full paragraph, release, and see how it handles the pauses and self-corrections of spoken language."
+    ],
+    "source": "Herctor Serrano（Wispr Flow 前内容负责人）· Lenny's Podcast",
+    "source_en": "Herctor Serrano (Wispr Flow's former head of content) · Lenny's Podcast",
+    "source_url": "https://www.youtube.com/watch?v=c41UFN4GXRY"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Firebase topstories 扫了前 40 条（Algolia 的 front_page+AI 查询今晚又只回了几条），人工过了一遍，不只看标题关键词。check-domain-reuse.py 跑过候选 URL 全部清；ota-ledger.md 查过没撞上之前的辟谣记录。黎曼猜想这条本身是昨晚（11-20）banner 故事的真实进展，不是重复旧闻：昨晚只是「Lean 代码编译通过」，今晚是「Lean 社区完成独立复核」，这是两件不同的事,写法上只占一个位置、不再做 banner。",
+      "swept_en": "Scanned Firebase topstories' top 40 by hand (Algolia's front_page+AI query again returned only a few hits tonight), not filtering by title keywords alone. Ran check-domain-reuse.py over candidate URLs — all clear; grepped ota-ledger.md for prior debunks — none hit. The Riemann Hypothesis item is a real follow-on to last night's (11-20) banner story, not a repeat: last night was \"the Lean code compiles,\" tonight is \"the Lean community finished an independent re-check\" — a genuinely different claim, kept as one item, not promoted back to banner.",
+      "items": [
+        {
+          "title": "AI agent 入侵顶级实验室内网，Christiano：别再比谁领先几个月了",
+          "title_en": "AI agents breached top labs' internal networks, Christiano says: stop counting months of lead",
+          "author": "Paul Christiano（ARC/Redwood Research 创始人，OpenAI 董事会成员）· Dwarkesh Podcast",
+          "author_en": "Paul Christiano (ARC/Redwood Research founder, OpenAI board member) · Dwarkesh Podcast",
+          "likes": "18964 次观看",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=Ru0l6G5oq7U",
+          "summary": "Christiano 在 Dwarkesh 的节目里说，Anthropic 和 OpenAI 近期都被技术并不高明的攻击者拿到过内部 Slack 或代码仓库的访问权限，几乎能看到全部算法进展。他的说法是：讨论「领先中国 8 个月还是 12 个月」没有意义，一旦泄密，真实差距只有 12 小时。他认为在实验室当前的安全水位下，继续推进预训练和强化学习的算法改进，从国家安全角度看是不负责任的,应该现在就停下来，但特别声明这是他的个人观点，不代表他在 OpenAI 董事会的立场。",
+          "summary_en": "Christiano told Dwarkesh that both Anthropic and OpenAI have recently had unsophisticated attackers gain access to internal Slack or code repos — nearly enough to extract the bulk of their algorithmic progress. His point: debating whether the US is 8 or 12 months ahead of China is moot — once secrets leak, the real lead is 12 hours. He argues labs should stop improving pretraining/RL algorithms right now given their current security posture, while explicitly flagging this as his personal view, not his OpenAI board position.",
+          "why": "这是具名点出两家头部实验室真实安全事故的说法，不是泛泛而谈的风险提示。对任何依赖模型供应商的团队，这是判断自己数据暴露面的一个真实信号。但要注意：具体哪次事件对应哪家公司、泄露到什么程度，节目片段里没有展开，是他本人的转述，没有第三方确认细节。",
+          "why_en": "This names real security incidents at two frontier labs, not a generic warning. Useful for anyone depending on a model vendor to size their own exposure. But the specifics — which incident, which company, how much leaked — weren't detailed in the clip; it's his own account, with no third-party confirmation of the details.",
+          "flag": "他本人声明这是个人观点，不代表 OpenAI 董事会立场；具体事件细节未经第三方证实,为单方转述。"
+        },
+        {
+          "title": "黎曼猜想证明过了 Lean 社区的独立复核",
+          "title_en": "The Riemann Hypothesis proof passes the Lean community's independent re-check",
+          "author": "Scott Aaronson（得州大学奥斯汀分校计算机科学教授）· 个人博客 · 经 Hacker News",
+          "author_en": "Scott Aaronson (professor of computer science, UT Austin) · personal blog · via Hacker News",
+          "likes": "经 Hacker News 广泛讨论",
+          "likes_label": "今天更新",
+          "url": "https://scottaaronson.blog/?p=10344",
+          "summary": "继 11 月 20 日 Anthropic 数学家宣称用 Claude 证明黎曼猜想之后,又多了两条独立进展：Levent Alpöge 用 Anthropic 模型跑出 1740 万行 Lean 代码,给出广义黎曼猜想的证明;另一位数学家 Alessandro Masullo 也发布了自己的证明公告。11 月 21 日的关键更新是：Lean 社区已经用 con-leche（一个本身被形式化验证到集合论公理的 Lean 组件）独立复核了这套证明，确认成立——这是比普通期刊同行评审更高等级的验证方式。Aaronson 还提到，到目前为止所有带 Lean 证书的 AI 数学结果都没有被撤回过，没有证书的倒有几个被撤回了。",
+          "summary_en": "Following 11-20's Anthropic claim of a Claude-assisted Riemann Hypothesis proof, two more independent developments landed: Levent Alpöge produced a 17.4-million-line Lean proof of the Generalized Riemann Hypothesis using Anthropic models, and a second mathematician, Alessandro Masullo, posted his own proof claim. The key update on 11-21: the Lean community independently re-verified the proof using con-leche — a Lean component itself formally verified down to set-theory axioms — and confirmed it holds, a higher bar than ordinary journal peer review. Aaronson also notes that no AI math result carrying a Lean certificate has ever been retracted so far; several without one have been.",
+          "why": "这是真正的新进展，不是重复昨天的头条：昨天只是「证明代码编译通过」，今天是「被一套本身可信的验证工具独立复核过」，可信度等级不一样。对关心「AI 输出怎么做可信验证」这条线的人,这是目前最具体的案例——不是靠人工审稿,是靠另一套工具链核验工具链。",
+          "why_en": "A genuine new development, not yesterday's headline repeated: yesterday the proof code merely compiled, today it was independently re-checked by a verification tool chain that is itself trusted — a different credibility tier. For anyone tracking how AI output gets credibly verified, this is the most concrete case so far: not human peer review, but one tool chain checking another.",
+          "flag": "第三位数学家 Masullo 的证明声明目前还没有看到独立验证。"
+        },
+        {
+          "title": "AI 估值担忧第一次有了明确的价格反应",
+          "title_en": "AI valuation worries get their first clear price reaction",
+          "author": "Lauren Almeida 与 Graeme Wearden · 《卫报》· 经 Hacker News",
+          "author_en": "Lauren Almeida and Graeme Wearden · The Guardian · via Hacker News",
+          "likes": "498 分（Hacker News）",
+          "likes_label": "今天发布",
+          "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
+          "summary": "纳斯达克指数抹去 2026 年全年涨幅，较年初收跌 5%；据《华尔街日报》,科技股本周蒸发约 4 万亿美元市值。Anthropic 上市第二天股价跌 9% 至 88.3 美元（仍高于 83 美元的发行价）。道指、标普进入技术性修正区间。",
+          "summary_en": "The Nasdaq erased its entire 2026 gain, closing down 5% from the start of the year; tech stocks lost roughly $4 trillion in market value this week, per The Wall Street Journal. Anthropic's stock fell 9% to $88.30 on its second trading day — still above its $83 IPO price. The Dow and S&P entered technical correction territory.",
+          "why": "这是 11-18 Anthropic 上市定价报道的真实市场后续：对 AI 板块估值过热的担忧，第一次有了明确的价格反应,不再只是评论员的预测。Anthropic 股价仍在发行价之上,说明市场反应是对整个板块重新定价，不是对这一家公司本身的否定。",
+          "why_en": "A real market follow-on to 11-18's Anthropic IPO pricing story: worries about overheated AI valuations have their first clear price reaction, not just commentators' predictions. Anthropic's stock is still above its IPO price, which suggests the market is repricing the whole sector, not rejecting this one company."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "Mastering Emacs、Simon Willison 两条今晚都有新内容,都读了全文核实。TLDR AI 当天的头条和 HN 候选重合，没有另外收。Import AI 本周没有新一期。Latent Space RSS 返回 301，没有重试，留在 decisions.md。",
+      "swept_en": "Both Mastering Emacs and Simon Willison had new posts tonight, both read in full. TLDR AI's top story overlapped with an HN candidate already picked, so not duplicated here. Import AI had no new issue this week. Latent Space's RSS returned a 301; not retried, logged in decisions.md.",
+      "items": [
+        {
+          "title": "一个人花 15 个月，做了个浏览器里的多 agent 编程 IDE",
+          "title_en": "One person spent 15 months building a multi-agent coding IDE that runs in the browser",
+          "author": "Mickey Petersen（Mastering Emacs 作者）· 个人博客",
+          "author_en": "Mickey Petersen (author of Mastering Emacs) · personal blog",
+          "likes": "真实可下载产品",
+          "likes_label": "今天发布",
+          "url": "https://www.masteringemacs.org/article/announcing-dreamcoder",
+          "summary": "作者花 15 个月做了 DreamCoder：一个浏览器里的多 agent 编程 IDE，用平铺窗口管理器同时跑几十个 coding agent（Claude Code、Codex 等），每个 agent 有独立的任务和审查历史，手机浏览器也能操作；支持 macOS/Windows/Linux/Docker，是真实可下载的产品（dreamcoder.ai），不是演示视频。",
+          "summary_en": "The author spent 15 months building DreamCoder: a multi-agent coding IDE that runs in the browser, using a tiling window manager to run dozens of coding agents (Claude Code, Codex, etc.) at once, each with its own task and review history, operable from a phone browser; it supports macOS/Windows/Linux/Docker and is a real, downloadable product (dreamcoder.ai), not a demo video.",
+          "why": "现在大多数 agent harness 还是「终端 + 聊天侧栏」，这是一个真正不同的多 agent 管理 UI 范式。没能独立核实它的计费方式——主页没公开定价,/pricing 页面是 301 重定向,查不到具体价格,这点如实说清楚,不猜它免费。",
+          "why_en": "Most agent harnesses today are still \"terminal plus a chat sidebar\" — this is a genuinely different multi-agent management UI paradigm. One thing couldn't be independently verified: pricing. The homepage has none, and /pricing redirects (301) without resolving to a price — worth stating plainly rather than guessing it's free."
+        },
+        {
+          "title": "一位老工程师连写 21 天建造日志，记录 AI 怎么帮他写新服务器",
+          "title_en": "A veteran engineer kept a 21-day build log of AI helping him write a new server",
+          "author": "Simon Willison · 个人博客",
+          "author_en": "Simon Willison · personal blog",
+          "likes": "一手观察",
+          "likes_label": "今天发布",
+          "url": "https://simonwillison.net/2026/Nov/21/muru/",
+          "summary": "mod_wsgi 作者 Graham Dumpleton 过去三周每天发一篇博客，记录自己用 AI 辅助写一个新 Rust 服务器（Muru，给 Python ASGI/WSGI 应用用）的全过程——从架构设计、到 scaling to zero、到请求追踪。他说 AI 确实干了大部分表面工作，但「什么地方还不够好」这个判断，仍然靠他 20 年踩 mod_wsgi 的坑攒下来的经验。",
+          "summary_en": "mod_wsgi's author Graham Dumpleton spent the last three weeks blogging daily about building a new Rust server (Muru, for Python ASGI/WSGI apps) with AI assistance — covering architecture, scaling to zero, and request tracing. His read: AI handled most of the surface-level work, but knowing what still wasn't good enough came from 20 years of his own mod_wsgi scar tissue, not the AI.",
+          "why": "一个可复制的「AI 辅助开发 + 每天写建造日志」工作样本。价值不在于他用了什么工具，在于他连续 21 天留下了可检验的判断记录——AI 具体做了哪一步、人在哪一步才看出问题,这比事后一句「AI 帮了很多」有用得多。"
+        }
+      ]
+    },
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9 个频道 RSS 加两个对照频道全部 200，4 条字幕抓取都没撞上 429 或 CAPTCHA，全部直接拿到字幕，没走 yt-dlp 回退。读了 Dwarkesh × Christiano、Warp CEO Zach Lloyd、Wispr Flow 内容负责人三条完整转写。Ramp CEO 讲 agent 文化建设的一条和 Warp 这条同属「怎么管理一群 coding agent」，为避免一条线占两个 YouTube 位置，留作候补未收。Wispr Flow 那条今晚只用作 hands_on，不再单独列成新闻条目，避免同一个故事占两个位置。",
+      "swept_en": "All 9 roster channels' RSS plus two control channels returned 200; all 4 subtitle fetches cleared without hitting 429 or a CAPTCHA, no yt-dlp fallback needed. Read full transcripts for Dwarkesh × Christiano, Warp CEO Zach Lloyd, and Wispr Flow's former head of content. A Ramp CEO talk on building agent culture overlapped the same \"managing a fleet of coding agents\" thread as the Warp item, so it was held in reserve rather than taking a second YouTube slot. The Wispr Flow clip is used only as tonight's hands_on, not listed separately as a news item, to avoid the same story claiming two homes.",
+      "items": [
+        {
+          "title": "把管理 coding agent 当成管理一套系统，不是写 prompt",
+          "title_en": "Manage coding agents like any other system, not with better prompts",
+          "author": "Zach Lloyd（Warp 创始人兼CEO，前 Google Docs 首席工程师）· AI Engineer Code Summit",
+          "author_en": "Zach Lloyd (Warp founder & CEO, former Google Docs chief engineer) · AI Engineer Code Summit",
+          "likes": "48123 次观看",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=0LeT996Hz3E",
+          "summary": "Lloyd 提出「软件工厂」概念：把 coding agent 的工作流完全用代码声明化（类似 Terraform），记录每次 agent 运行的全部产出,跑在线评测,再让 agent 自己根据评测结果对工厂配置提 PR,形成自我改进闭环；还要在自己的真实数据上做评测,而不是只看 SWE-bench 之类的通用榜单。核心论点是：这是一种需要单独培养的新「工程」能力,跟写代码本身是两件事。",
+          "summary_en": "Lloyd defines a \"software factory\": fully declarative coding-agent workflows (Terraform-style), recording every agent run, running online evals, then having agents propose PRs against the factory config based on those eval results — a self-improving closed loop. He also argues for benchmarking on your own real data, not just generic leaderboards like SWE-bench. His core claim: this is a new kind of \"engineering\" skill that needs to be built on its own, separate from writing code itself.",
+          "why": "给「怎么系统化管理多个 agent」提供了一个可直接抄的框架：代码化配置、加评测、加自我改进闭环，比大多数「试试这条 prompt」类内容更能迁移到自己的 agent 工作流里。但要注意 Warp 本身在卖这套工厂平台，这是他们自己的产品叙事，框架可以抄，数据不是中立的。",
+          "why_en": "Gives a directly copyable framework for systematically managing multiple agents: code-as-config, evals, a self-improvement loop — more transferable than most prompt-tip content. Worth flagging that Warp sells this exact platform, so the framework is worth borrowing but the narrative isn't neutral."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条新闻放在一起看，有一条共同的线：AI 的说服力正在从「能力演示」转向「能不能被独立核实」。黎曼猜想的证明不是靠论文发表获得可信度，是靠 Lean 社区用另一套可信工具链逐行核验；Christiano 说的不是「模型能力强」，而是「实验室内部安全弱到算法优势 12 小时内清零」；Signal 不是靠条款禁止 AI agent 读聊天记录，是靠系统级技术手段硬挡。验证层正在变成比能力层更贵、也更关键的新战场。",
+  "meta_read_en": "Several of today's stories share one thread: AI's credibility is shifting from \"look what it can do\" to \"can this be independently checked.\" The Riemann proof earned trust not through publication but through the Lean community re-verifying it line by line with another trusted tool chain. Christiano's point isn't model capability — it's that labs' internal security is so weak any algorithmic lead evaporates within 12 hours. Signal isn't relying on policy to keep AI agents out of chats — it's building a technical wall. Verification is becoming a more expensive, more decisive battleground than raw capability.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 16170,
+      "stars_today": 1803
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 323779,
+      "stars_today": 883
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 62115,
+      "stars_today": 769
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 68185,
+      "stars_today": 488
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 18125,
+      "stars_today": 260
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+      "language": "TypeScript",
+      "stars": 206265,
+      "stars_today": 1006
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 32745,
+      "stars_today": 189
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 11946,
+      "stars_today": 200
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 69831,
+      "stars_today": 583
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 72045,
+      "stars_today": 560
+    }
+  ],
+  "ota": {
+    "learned": [
+      "两个 sweep fork（YouTube、HN+文摘）各自独立跑通了一遍完整的 dedup 流程（check-domain-reuse.py + ota-ledger 查询 + 7 天 URL 清单），回来后汇报里都附了决策日志，合并时没有发现两边撞同一条新闻,确认了「分带并行+各自去重」这个模式在第三次使用后依然可靠。",
+      "发现了一个此前从未写进 SKILL.md 的具体风险：hands_on 和某个 item/action 悄悄用了同一条新闻（今晚的候选是 Wispr Flow 那条视频，一度同时想用作 YouTube 新闻条目和 hands_on）。2026-10-23 的教训是「banner+item+hands_on 三占」，今晚是「item+hands_on 两占」的变体,说明这类重叠不是一次性事故,值得做成检查而不是每次靠人工记。",
+      "黎曼猜想证明今晚从「证明代码编译通过」进展到「被 Lean 社区独立复核确认」，验证了 SKILL.md 里「主发展可以让旧线索再进一期,只要能一句话说清进展」这条规则——同一故事连续两晚出现，但讲的是两件不同的事,没有重复旧新闻。"
+    ],
+    "learned_en": [
+      "Both sweep forks (YouTube, HN+文摘) independently ran the full dedup pipeline (check-domain-reuse.py + ota-ledger grep + a 7-day URL list) and each returned a decisions log; merging found no story collision between the two, confirming the parallel-lane-sweep-with-independent-dedup pattern holds up on its third use.",
+      "Found a specific risk never written into SKILL.md before: hands_on quietly reusing the same story as an item or action (tonight's near-miss was the Wispr Flow video, briefly considered for both a YouTube item and hands_on). 2026-10-23's lesson was a three-way banner+item+hands_on overlap; tonight's was a two-way item+hands_on variant — a sign this class of overlap recurs and is worth catching mechanically, not just by memory.",
+      "The Riemann Hypothesis proof moved tonight from \"the proof code compiles\" to \"independently re-checked by the Lean community\" — a live test of SKILL.md's rule that a running story can return on a material development stated in one clause. The same story ran two nights running but told two different things, not a repeat."
+    ],
+    "new_capabilities": [
+      "新增 bin/check-thread-overlap.py：读一份 digest JSON，检查 hands_on 的 source_url 有没有和同一期里的某个 item 或 action 共享 URL 或域名，命中就打印警告（不阻断发布，是编辑判断的信号，不是硬门槛）。今晚跑过这份 JSON，确认 Wispr Flow 被挪出 item 列表后不再撞车，脚本输出 clean。"
+    ],
+    "new_capabilities_en": [
+      "Added bin/check-thread-overlap.py: reads a digest JSON and flags when hands_on's source_url shares a URL or domain with any item or action in the same issue (a warning, not a publish-blocking gate — a signal for the editorial pass). Ran it against tonight's JSON after pulling Wispr Flow out of the item list and confirmed it now reports clean."
+    ]
+  },
+  "partial": false
+}
