@@ -1,0 +1,281 @@
+{
+  "date": "2026-11-22",
+  "banner": "「人人是AI builder」，一月就撤",
+  "banner_en": "\"Everyone's an AI builder\" didn't survive a month",
+  "image": {
+    "src": "digests/img/2026-11-22.jpg",
+    "caption": "Lenny's Podcast 节目画面：Atlassian AI与产品工艺负责人Sherif Mansour，讲他们怎么把PM和设计师全换成AI builder、一个月后又改回来的实验。",
+    "caption_en": "Still from Lenny's Podcast: Atlassian's Head of AI & Product Craft, Sherif Mansour, on the experiment where they moved PMs and designers into pure \"AI builder\" roles, then reverted a month later."
+  },
+  "actions": [
+    {
+      "text": "给自己正在用的coding agent工作流定个位：现在更像Zach Lloyd说的「工厂」（代码化配置+在线评测+自我改进闭环），还是Armin Ronacher说的「作坊」（靠自己持续看懂系统）？挑一条今晚就补上明显缺的那一半。",
+      "text_en": "Place your own coding-agent workflow: closer to Zach Lloyd's \"factory\" (declarative config, online evals, a self-improving loop) or Armin Ronacher's \"workshop\" (staying able to understand the system yourself)? Pick whichever half is clearly missing and patch it tonight.",
+      "source": "Armin Ronacher（Earendil）与 Zach Lloyd（Warp）· AI Engineer Code Summit",
+      "source_en": "Armin Ronacher (Earendil) and Zach Lloyd (Warp) · AI Engineer Code Summit",
+      "source_url": "https://www.youtube.com/watch?v=JNexz3Tbiu8"
+    },
+    {
+      "text": "如果有产品或agent在走OpenRouter之类的推理聚合层，去查一下自己接的端点有没有在被下架、或者被移出Zero Data Retention名单的那批里面。",
+      "text_en": "If a product or agent of yours routes through OpenRouter or a similar aggregator, check whether your endpoint is among the ones off-boarded or dropped from the Zero Data Retention list.",
+      "source": "OpenRouter 官方博客",
+      "source_en": "OpenRouter official blog",
+      "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "text": "查一下自己手头有没有任务被默认丢给顶级大模型，其实一两个billion参数的小模型就够用——挑一个子任务换成本地小模型试试，看效果和速度差多少。",
+      "text_en": "Check whether any of your tasks default to a frontier model when a one- or two-billion-parameter model would do — swap one subtask to a local small model and see how much speed and quality actually differ.",
+      "source": "Ahmad Osman（Osmantic 创始人兼CEO）· AI Engineer Code Summit",
+      "source_en": "Ahmad Osman (founder & CEO, Osmantic) · AI Engineer Code Summit",
+      "source_url": "https://www.youtube.com/watch?v=GKSQYbELDzw"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚试一下：扮演AI的手下，玩一局反过来的agent游戏",
+    "title_en": "Try tonight: play the human subagent in a role-reversed AI game",
+    "why": "想知道「被agent下指令是什么感觉」，这比看评论更直接：manager是真的大模型（Claude/GPT/Gemini/DeepSeek任选），你扮演它生成出来的下属，收到带90秒倒计时的指令，它收到的回报跟平时agent的报告长得一样。免费挡位当晚就能玩。",
+    "why_en": "Wondering what it feels like to be managed by an agent? This is more direct than reading a take about it: the manager is a real LLM (pick Claude, GPT, Gemini, or DeepSeek), and you play the subagent it spawns, taking instructions on a 90-second clock that get reported back in the same shape as a normal agent report. The free tier is playable tonight.",
+    "time": "15-20 分钟",
+    "time_en": "15-20 minutes",
+    "steps": [
+      "打开 https://github.com/gulivan/worker755 看README了解玩法，或直接去 worker755.com 用免费挡位试玩（每天送几次用便宜模型的机会）。",
+      "选一个manager模型（免费挡位用默认的就行），开一局，它会给你任务队列和带90秒倒计时的指令。",
+      "照它的指令行动，或者选择不照做，看它怎么把你的回报写成跟平时agent报告一样的格式——留意自己当「下属」时的真实感受，跟平时指挥agent完全是两件事。"
+    ],
+    "steps_en": [
+      "Open https://github.com/gulivan/worker755 and read the README, or go straight to worker755.com and try the free tier (a few daily shifts on a cheap model).",
+      "Pick a manager model (the default is fine on the free tier) and start a shift — it hands you a task queue and instructions on a 90-second clock.",
+      "Comply or don't, and watch it write your report back in the same format a subagent's report would use — notice what it actually feels like to be the one taking orders, which is nothing like what it feels like to give them."
+    ],
+    "source": "gulivan（独立开发者）· Show HN",
+    "source_en": "gulivan (independent developer) · Show HN",
+    "source_url": "https://github.com/gulivan/worker755"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9个频道RSS加2个对照频道全部200，没有故障。字幕抓取第一轮5条全部撞429（连对照用的三天前旧视频也撞了，排除了「只是新视频没处理完」这个可能），换成单独用en-orig顺序逐条抓，全部成功。48小时窗口内5条候选，两条（Wispr Flow、Tulsee Doshi）已经在前几期用过，排除；两条Lenny's短片字幕只有两三百字，是预告片级别，内容太薄没收。留了3条，分属三条不同的线：agent管理哲学（Ronacher对Lloyd）、本地AI性价比（Osman）、AI builder实验（Mansour）。Christiano在Dwarkesh节目里讲的「黑客拿到Anthropic全部Slack权限」说法不在本次窗口内，ota-ledger.md里2026-11-17已经记录过Anthropic官方反驳的时间线和范围，没有重新考虑。",
+      "swept_en": "All 9 roster channels plus 2 control channels returned 200, no outage. The first subtitle-fetch batch (5 videos) all hit 429 — including a 3-day-old control video, ruling out \"fresh upload, pipeline not done yet.\" Switching to en-orig alone, fetched sequentially, cleared all 5. 5 candidates fell inside the 48h window; two (Wispr Flow, Tulsee Doshi) were already used in prior issues and excluded; two Lenny's clips had only 200-300 words of captions — teaser-length, too thin to use. Kept 3, on three distinct threads: agent-management philosophy (Ronacher vs. Lloyd), local-AI economics (Osman), and the AI-builder experiment (Mansour). Christiano's \"hackers got full Slack access to Anthropic\" claim on Dwarkesh's show fell outside this window anyway, and ota-ledger.md already recorded Anthropic's public rebuttal of its timeline and scope on 2026-11-17 — not reconsidered.",
+      "items": [
+        {
+          "title": "为什么\"人人都该是AI builder\"，Atlassian自己试了一个月就放弃了",
+          "title_en": "Atlassian tried \"everyone's an AI builder\" for a month, then dropped it",
+          "author": "Sherif Mansour（Atlassian AI与产品工艺负责人）· Lenny's Podcast",
+          "author_en": "Sherif Mansour (Head of AI & Product Craft, Atlassian) · Lenny's Podcast",
+          "likes": "10494 次观看",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=hRtmV1mCBSE",
+          "summary": "Mansour讲了Atlassian自己做的一个实验：把几个产品团队里的PM和设计师都换成「AI builder」角色，不设专门的PM或设计岗。头几周团队反馈「从没这么快过」，一个月后又全部改回传统分工，原因是产出速度从来不是瓶颈，方向才是。他内部写过一篇文章叫「掌舵不是划船」：团队已经有几十上百个工程师、产出变便宜之后，真正稀缺的是决定该做什么、不该做什么。他还提前分享了一份即将发布的招聘市场报告：PM目前是科技公司开放职位最多的岗位，设计和用户研究岗位基本没涨，全球科技公司的用户研究开放职位只有108个（这是Atlassian自己的数字，报告还没正式发布）。他提出一个PM能力三角：偏业务的「总经理型」、偏数据的「科学家型」、偏体验直觉的「艺术家型」，说「艺术家型」正在升值，因为大家用同样的AI工具时，判断力和审美才是真正的差异点。内部数据还显示新人更愿意尝试新工具（38%，同样是Atlassian自己的数字），但资深员工更擅长一眼认出AI糊弄的产出，所以他建议新老混搭，不只招新人。",
+          "summary_en": "Mansour describes an internal Atlassian experiment: moving PMs and designers on a few product teams into pure \"AI builder\" roles with no dedicated PM or designer. The first few weeks felt like the fastest the team had ever moved; a month in, they reverted, because throughput was never the bottleneck — direction was. He wrote an internal post titled \"direct the ship, don't row it\": once a team has dozens or hundreds of engineers and output gets cheap, what's actually scarce is deciding what to build and what not to. He previewed an unreleased hiring-trends report: PM is currently the most-open role at tech companies, while design and user-research roles stayed flat — only 108 open user-research roles globally (Atlassian's own figure, report not yet published). He lays out a PM-skill triangle — a business-focused \"general manager,\" a data-focused \"scientist,\" an intuition-focused \"artist\" — arguing \"artist\" PMs are gaining value because once everyone has the same AI tools, taste and judgment become the real differentiator. Internally, juniors adopt new tools faster (38%, also Atlassian's own number) but seniors are better at spotting AI slop at a glance, so his advice is to mix both rather than just hire juniors.",
+          "why": "这是对PM背景的人最直接可用的一条：不是泛泛而谈「AI改变产品管理」，是一家公司真的试过把PM换成builder、一个月后又改回来的具体案例，加上招聘市场的具体数据。108、38%这两个数字来自Atlassian自己即将发布的报告，还没正式公开，属于自报数据，暂时没法独立核实。",
+          "why_en": "The most directly usable item here for a PM background: not a vague \"AI is changing product management\" take, but a concrete case of a company that actually tried replacing PMs with builders and reverted a month later, backed by specific hiring-market numbers. The 108 and 38% figures are Atlassian's own unpublished report — self-reported, not yet independently checkable.",
+          "flag": "108和38%两个数字来自Atlassian自己即将发布的报告，不是独立机构统计，暂时无法交叉核实。",
+          "flag_en": "The 108 and 38% figures come from Atlassian's own soon-to-publish report, not an independent source — not yet cross-verifiable."
+        },
+        {
+          "title": "别急着盖软件工厂，先把作坊搭好",
+          "title_en": "Build the workshop before the software factory",
+          "author": "Armin Ronacher（Earendil，构建coding agent harness）· AI Engineer Code Summit",
+          "author_en": "Armin Ronacher (Earendil, builds a coding-agent harness) · AI Engineer Code Summit",
+          "likes": "33906 次观看",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=JNexz3Tbiu8",
+          "summary": "Ronacher说他们的coding agent核心工具集一年没变过，能力提升全部来自模型本身变强。他给出几个真实数据：agent单次运行时长的90百分位，去年12月（Opus 4.6）是两分半钟，现在超过14分钟；每次任务需要纠正的次数一路走低；agent现在明显更爱直接用Bash而不是别的工具。他说真正重要的是三件事：知道什么时候该顶住agent的方案，保持对系统本身的理解（他提到自己非工程师的儿子也能提交PR，但质量差距很明显），把节奏控制在自己还跟得上的范围内。他还提醒，GitHub和不少老网站正被agent流量推着走，根本没准备好接这个量。他把这套思路叫「作坊」，跟Zach Lloyd前一天讲的「软件工厂」（代码化配置、在线评测、自我改进闭环）正好是两种不同的应对方式。",
+          "summary_en": "Ronacher says his company's coding-agent harness hasn't changed its core toolset in a year — all the capability gains came from the underlying models improving. His own data: the 90th-percentile session length went from 2.5 minutes last December (on Opus 4.6) to over 14 minutes now; corrections needed per session keep dropping; agents now clearly favor Bash over other tools. His three things that actually matter: knowing when to push back against what an agent proposes, keeping your own understanding of the system (his non-engineer son submits PRs too, but the quality gap is obvious), and pacing yourself to stay within what you can still follow. He also flags that GitHub and many older sites are getting hit by agent traffic they were never built for. He calls this the \"workshop\" approach — a direct counterpoint to Zach Lloyd's \"software factory\" talk the day before (declarative config, online evals, a self-improving loop).",
+          "why": "不是在吵谁对谁错，是同一个会议里两种真实在用的管理思路放在一起看：Lloyd的工厂模式适合标准化流程，Ronacher的作坊模式强调人对系统的理解不能丢。两条思路可以同时抄一部分。",
+          "why_en": "Not a right-vs-wrong debate — two real, currently-in-use management approaches from the same conference, more useful seen together: Lloyd's factory model suits standardized pipelines, Ronacher's workshop model insists the human's own understanding of the system can't be delegated away. Worth borrowing pieces of both.",
+          "flag": "他提到一个德语词形容「失控生长」，字幕没转写清楚具体是哪个词，没有强行猜。",
+          "flag_en": "He named a German word for \"uncontrolled growth\" that the auto-captions didn't transcribe cleanly; not guessing which word it was."
+        },
+        {
+          "title": "本地AI现在到底能跑多快",
+          "title_en": "How fast local AI actually runs now",
+          "author": "Ahmad Osman（Osmantic 创始人兼CEO）· AI Engineer Code Summit",
+          "author_en": "Ahmad Osman (founder & CEO, Osmantic) · AI Engineer Code Summit",
+          "likes": "10633 次观看",
+          "likes_label": "昨天发布",
+          "url": "https://www.youtube.com/watch?v=GKSQYbELDzw",
+          "summary": "Osman引用OpenRouter数据说，从2026年2月起，agent产生的token量就一直超过人类，再也没变回来过。他自己实测：用一个270亿参数的本地模型（Qwen 3.6 27B）跑推理，解码速度每秒51个token，比云端GPT-5.5的34个token还快，答案质量相近。他现场演示了自己上周末花6小时（Claude Opus 5.5编排，两块RTX Pro 6000做素材标注，MacBook剪辑）全自动做出来的一段开场视频。他的判断：现在很多任务根本不需要顶级模型，一两个billion参数的专用小模型就够用，公司账单上大部分钱花在闭源大模型，但实际消耗的token大部分来自开源小模型。他也提到不同测评体系互相矛盾（有的榜单说Haiku 5.5强于DeepSeek v4.1 flash，跟实际用感完全不符），「到底信哪个benchmark」本身就是个问题。",
+          "summary_en": "Osman cites OpenRouter data showing agents have generated more tokens than humans every month since February 2026, with no reversal since. He ran his own test: a local 27-billion-parameter model (Qwen 3.6) decoded at 51 tokens/second, faster than GPT-5.5 via the cloud at 34 tokens/second, with comparable answer quality. He demoed an intro video he built fully autonomously over one weekend (6 hours, Claude Opus 5.5 orchestrating, two RTX Pro 6000s tagging footage, a MacBook editing). His read: most tasks don't need frontier models — one- or two-billion-parameter specialized models are enough, even though most company spend goes to closed frontier models while most actual token volume runs on small open models. He also flags that benchmark suites contradict each other (one index ranks Haiku 5.5 above DeepSeek v4.1 flash, which doesn't match his hands-on experience) — which benchmark to trust is itself an open question.",
+          "why": "他自己卖的就是本地推理优化平台，所以「本地模型已经够用」这个结论他有直接利益，数字可信（引用了具体来源：OpenRouter、Artificial Analysis index），但判断（该不该买GPU、该信哪个benchmark）要跟他的生意分开看。",
+          "why_en": "He sells a local-inference optimization platform, so \"local models are already good enough\" is a conclusion he has a direct stake in. The underlying numbers are sourced (OpenRouter, the Artificial Analysis index) and credible, but his judgment calls (whether to buy a GPU, which benchmark to trust) should be read apart from his own business."
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Algolia的front_page+AI查询今晚又只回了3条，按规则换成Firebase topstories取前90条（含对照），人工过了一遍前40，不只看标题关键词。黎曼猜想相关的帖子今晚同时占了榜首几条（Alpöge原始PDF 2907分、Masullo公告2447分、Lean社区正式声明1213分），直接读了Lean社区官方博客原文和Ravi Vakil博客的更新原文，没有只信标题或分数。check-domain-reuse.py跑过全部候选URL清；ota-ledger.md查过，确认Christiano的「12小时拿下Slack」说法和9月的「AEF-1三方联署」说法都是已经被证伪过的旧说法，今晚都没有重新出现。",
+      "swept_en": "Algolia's front_page+AI query again returned only 3 hits tonight; fell back to Firebase topstories' top 90, manually scanned the top 40 rather than filtering by title keywords alone. Riemann-related posts dominated the top of tonight's board (Alpöge's own PDF at 2907 points, Masullo's announcement at 2447, the Lean community's official statement at 1213) — read the Lean blog's own post and Ravi Vakil's blog update directly rather than trusting titles or points alone. Ran check-domain-reuse.py over all candidates, all clear; grepped ota-ledger.md and confirmed two prior debunks (Christiano's 12-hour Slack claim, September's AEF-1 cosign claim) didn't resurface.",
+      "items": [
+        {
+          "title": "黎曼猜想证明再进一步：Lean社区正式确认，另一份人工证明被挑出问题",
+          "title_en": "Riemann Hypothesis: Lean community formally confirms one proof, flaws found in a second",
+          "author": "Lean与Mathlib社区（官方联合声明，获Lean FRO与Mathlib Initiative认可）；另据Ravi Vakil（斯坦福数学教授）博客更新",
+          "author_en": "Lean and Mathlib communities (joint statement, endorsed by the Lean FRO and Mathlib Initiative); update also drawn from Ravi Vakil's (Stanford math professor) blog",
+          "likes": "2907 分（Hacker News，Alpöge原始论文帖）",
+          "likes_label": "今天发布",
+          "url": "https://leanprover-community.github.io/blog/posts/riemann-hypothesis/",
+          "summary": "Lean与Mathlib社区今天发布联合声明，正式确认Levent Alpöge这份1700多万行的黎曼猜想证明是对的，声明由Lean FRO和Mathlib Initiative背书。社区列出四条标准全部满足：命题本身已经收进Mathlib并经过数论专家核对；几十人各自编译了这份代码，结果一致；两套独立工具（comparator和con-leche –compare）确认证明的命题和Mathlib里的黎曼猜想完全一致；导出的证明文件被Lean官方内核、con-leche、con-ron等多个检查器核验过，其中con-leche和con-ron本身带有相对集合论的正确性证明，专门用来防止有人靠Lean逻辑本身的漏洞伪造证明。同一天，另一条黎曼猜想相关的消息走向相反：斯坦福数学教授Ravi Vakil在自己博客更新说，数学家Alessandro Masullo那份没有用AI、纯人工完成的广义黎曼猜想证明，被几位数学家借助不同AI模型的帮助找出了问题，目前还没解决，证明策略是否成立现在没法下结论。",
+          "summary_en": "The Lean and Mathlib communities issued a joint statement today, endorsed by the Lean FRO and the Mathlib Initiative, formally confirming Levent Alpöge's 17-million-plus-line Riemann Hypothesis proof is correct, listing four satisfied criteria: the statement is now part of Mathlib and vetted by number theorists; dozens independently compiled the code with matching results; two independent tools (comparator and con-leche –compare) confirmed the proved theorem exactly matches Mathlib's statement; and the exported proof was checked by Lean's own kernel plus the con-leche/con-ron checkers, which carry their own formal proof (relative to set theory) that they can't accept a false proof. The same day brought opposite news on a separate claim: Stanford math professor Ravi Vakil updated his blog to say mathematician Alessandro Masullo's all-human, no-AI proof of the Generalized Riemann Hypothesis had problems identified by several mathematicians with the help of different AI models — unresolved, with no verdict yet on whether the proof strategy holds.",
+          "why": "这是验证层本身开始分裂成两条路的清晰例子：同一周内，一份用AI辅助写出来的证明被另一套工具链（Lean）验证通过，一份完全靠人工写的证明反而被AI模型协助挑出漏洞。结论不是AI证明更可信或人工证明更可信，是谁用了更扎实的复核手段才更可信，跟证明本身是不是AI写的关系不大。",
+          "why_en": "A clean example of the verification layer splitting into two tracks: in the same week, an AI-assisted proof got checked out by a separate tool chain (Lean), while a fully human-written proof had its flaws caught with AI assistance. The lesson isn't that AI proofs or human proofs are inherently more trustworthy — it's that whoever used the more rigorous check wins credibility, nearly independent of who wrote the original draft.",
+          "flag": "Masullo的证明目前被认为有问题，具体缺陷和能否修复还没有定论；Vakil本人说这很可能是他最后一次更新，之后问题请直接联系Brian Conrad。",
+          "flag_en": "Masullo's proof is currently considered to have problems; the specific flaws and whether they're fixable remain undetermined. Vakil says this will likely be his final update."
+        },
+        {
+          "title": "OpenRouter曝光多家推理服务商的数据处理事故",
+          "title_en": "OpenRouter discloses data-handling incidents across inference providers",
+          "author": "OpenRouter 官方博客 · 经 Hacker News",
+          "author_en": "OpenRouter official blog · via Hacker News",
+          "likes": "280 分（Hacker News）",
+          "likes_label": "今天发布",
+          "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+          "summary": "安全研究员Dragos本周报告说，部分通过OpenRouter接入的推理服务商没有真正遵守自己承诺的数据处理政策。OpenRouter证实自己本身没有被攻破，但调查发现具体服务商确实有问题：已经下架3家服务商，把125个端点从「零数据保留」（ZDR）资格里移除，并通知了所有可能受影响的客户。已经公开发声明的服务商包括Together（承认2026年6月到7月间存在提示词泄露事故）、Phala（发了初步事故报告）、Novita（关于MiniMax请求的隐私说明）和Atlas Cloud。OpenRouter说接下来会把研究员的测试方法变成持续性检查，并要求端点恢复ZDR资格前先提供合规证明。",
+          "summary_en": "Security researchers at Dragos reported this week that some inference providers accessible through OpenRouter weren't actually upholding their own stated data-processing policies. OpenRouter confirmed it itself wasn't breached, but found real problems at specific providers: off-boarded 3 providers, removed 125 endpoints from Zero Data Retention (ZDR) eligibility, and notified all potentially affected customers. Providers with public statements include Together (a June–July 2026 prompt-leakage incident), Phala, Novita, and Atlas Cloud. OpenRouter will turn the researchers' testing method into an ongoing check and require compliance proof before restoring any removed endpoint's ZDR status.",
+          "why": "如果有agent或产品在走OpenRouter之类的推理聚合层，这是一条该立刻查的消息：自己用的端点有没有在被下架或被移出ZDR名单的列表里。要注意这是OpenRouter自己披露的事故，数字（3家、125个端点）是它自己给的，不是第三方审计结果，但它把每家服务商的公开声明都列出来了，可以逐条去查原文。",
+          "why_en": "If you route an agent or product through OpenRouter or a similar aggregator, check now whether your endpoint is among the off-boarded providers or the 125 removed from ZDR. Worth flagging: this is OpenRouter's own self-disclosed incident, not a third-party audit — though it links each provider's own statement for independent checking.",
+          "flag": "「3家」「125个」都是OpenRouter自己给的数字，不是第三方审计复核过的。",
+          "flag_en": "The \"3 providers\" and \"125 endpoints\" figures are OpenRouter's own count, not independently audited."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "Import AI本周没有新一期（最新还是11月16日的481期）；TLDR AI最新一期内容跟已经收录的HN条目重合，没有另外收；Simon Willison今天唯一的新帖是CSS相关，跟AI无关，没有收。Latent Space的AINews栏目今晚也在追黎曼猜想这条新闻，但同时发现了一篇独立的深度报道，关于形式化验证正在变成一条生意，读了全文，跟HN的黎曼猜想条目是互补而不是重复——一个讲事件（两份证明命运相反），一个讲事件背后的生意（谁在卖验证服务、谁在用）。",
+      "swept_en": "Import AI had no new issue this week (still #481 from Nov 16); TLDR AI's newest edition overlapped ground already collected from HN, not duplicated here. Simon Willison's only new post today is CSS-related, unrelated to AI, not used. Latent Space's AINews column is also chasing the Riemann story tonight, but a separate deep-dive on formal verification becoming a real business was found and read in full — complementary to, not a repeat of, the HN item: one covers the event (two proofs, opposite outcomes), the other covers the business behind it (who sells verification, who uses it).",
+      "items": [
+        {
+          "title": "形式化验证正在变成一条生意：从Lean到veri-coding",
+          "title_en": "Formal verification is becoming a business: from Lean to \"veri-coding\"",
+          "author": "Richard MacManus · Latent Space",
+          "author_en": "Richard MacManus · Latent Space",
+          "likes": "原创深度报道",
+          "likes_label": "11月20日发布",
+          "url": "https://latent.space/p/formal-verification/",
+          "summary": "这篇文章梳理了「形式化验证」怎么从数学新闻变成一条正在成型的生意：Harmonic、Theorem、Axiom Math和新出现的&Truth都在卖「用数学证明代码没问题」这件事。&Truth联合CEO、斯坦福教授Clark Barrett说，自己联合开发的cvc5求解器已经在亚马逊的agentic开发环境Kiro里每天被调用几十亿次。Anthropic跟Theorem合作的研究给了一个效率数字：在36个验证任务上，Opus 5.5用比Opus 5少40%的token，拿到50%的解出率。&Truth自己提出「veri-coding」这个说法：开发者以后花更多时间写规格、审规格，而不是写代码或审代码，因为验证层会接住正确性。",
+          "summary_en": "This piece traces how \"formal verification\" is turning from isolated math news into a business that's visibly forming: Harmonic, Theorem, Axiom Math, and new entrant &Truth are all selling \"mathematically proving code is correct.\" &Truth's co-CEO, Stanford professor Clark Barrett, says the cvc5 solver he co-created is already called billions of times a day inside Amazon's agentic dev environment Kiro. Anthropic's own research with Theorem gives an efficiency number: on 36 verification tasks, Opus 5.5 hit a 50% solve rate using 40% fewer tokens than Opus 5. &Truth coins \"veri-coding\": developers spend more time writing and reviewing specs rather than code, since the verification layer catches correctness.",
+          "why": "这条信息把黎曼猜想这类孤立的新闻,连成了一条可以验证的商业趋势：形式化验证不只是数学圈的热闹，是真有人在卖、真有大公司在用（亚马逊）、真有效率数字（Opus 5.5的token节省）在支撑。对判断「验证层」这个方向是不是只是炒作,比单看一次证明有用。",
+          "why_en": "This connects isolated news like the Riemann proof into a checkable business trend: formal verification isn't just mathematicians' excitement — real companies are selling it, a real large company is using it (Amazon), and a real efficiency number (Opus 5.5's token savings) backs it. More useful for judging whether \"the verification layer\" is hype than looking at one proof alone.",
+          "flag": "文中提到的几家公司（Harmonic、Theorem、Axiom Math、&Truth）都是在卖这套验证服务，文章本身也带了付费赞助位，读的时候要知道这不是中立第三方评测。",
+          "flag_en": "The companies named (Harmonic, Theorem, Axiom Math, &Truth) are all selling this exact verification service, and the article carries paid sponsorship slots — not neutral third-party testing."
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条新闻合在一起看，有一条共同的线：产出变便宜之后，稀缺的东西从「做出来」转移到「判断对不对、验证过没有」。Atlassian试了一个月「人人是AI builder」又收手，发现瓶颈从来不是谁打字快，是谁知道该做什么;Ronacher说管好一群coding agent靠的是自己还看得懂系统，不是靠更花哨的流程;Lean社区用另一套可信工具链核验了黎曼猜想的证明，同一天另一份人工证明反而被AI协助挑出漏洞，验证层正变成一条真实的生意。能力层越便宜，判断力和验证能力就越贵。",
+  "meta_read_en": "Several of today's stories share one thread: once output gets cheap, what's scarce shifts from making things to knowing whether they're right. Atlassian tried letting everyone be an \"AI builder\" and reverted within a month, discovering the bottleneck was never typing speed but knowing what to build. Ronacher says managing a fleet of coding agents comes down to still understanding your own system, not a fancier pipeline. The Lean community used a separate, trusted tool chain to verify the Riemann proof, while the same day a human-only proof had its flaws caught with AI's help — verification is turning into a real business. As the capability layer gets cheaper, judgment and verification get more expensive.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 17907,
+      "stars_today": 1716
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 324201,
+      "stars_today": 788
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 62818,
+      "stars_today": 699
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 68712,
+      "stars_today": 473
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 18470,
+      "stars_today": 294
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+      "language": "TypeScript",
+      "stars": 207080,
+      "stars_today": 915
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 32892,
+      "stars_today": 163
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 12096,
+      "stars_today": 158
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 70336,
+      "stars_today": 518
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 72767,
+      "stars_today": 668
+    }
+  ],
+  "ota": {
+    "learned": [
+      "两个sweep fork（YouTube、HN+文摘）今晚各自带着明确的任务书出发：目标、7天去重清单、ota-ledger里的已证伪说法清单、成功标准,这是「agent任务书+回来核对自报数字」这条模式第二次正式使用,两边回来的报告都附了完整的决策日志和swept说明,不用再逐条盘问。",
+      "HN+文摘的fork自己在报告里主动提出「worker755这条应该收作hands_on还是item，不要自己决定」，而不是像之前几次一样直接写进item列表、靠主session事后用check-thread-overlap.py抓出冲突——这是子agent第一次在交稿前主动避让线索重叠，而不是留给后道工序去发现。",
+      "黎曼猜想这条线今晚第三次出现，但讲的是第三件不同的事：11-20是「证明代码编译通过」，11-21是「被Lean社区独立复核」，今晚是「被Lean社区正式确认+另一份人工证明反而被挑出问题」，每晚都有可以一句话说清的真实进展，没有变成重复旧闻。"
+    ],
+    "learned_en": [
+      "Both sweep forks (YouTube, HN+文摘) launched tonight with an explicit mission brief: goal, the 7-day dedup list, ota-ledger's known-debunked claims, and success criteria — the second formal use of \"brief the agent, reconcile its self-reported numbers after\" — both came back with full decision logs and swept notes, no follow-up interrogation needed.",
+      "The HN+文摘 fork proactively flagged in its own report that worker755 should be decided as hands_on-vs-item by the parent rather than deciding unilaterally — the first time a sweep fork caught a thread-overlap risk before handoff, instead of writing it straight into the item list and relying on the main session's check-thread-overlap.py to catch it afterward.",
+      "The Riemann Hypothesis thread appeared a third night running, but told a third distinct thing each time: 11-20 was \"the proof code compiles,\" 11-21 was \"independently re-checked by the Lean community,\" tonight is \"formally confirmed by Lean, while a separate human-only proof got flagged as flawed\" — a real one-clause development each night, not a repeat."
+    ],
+    "new_capabilities": [
+      "暂无新脚本/新技能实现——今晚是对已有模式（任务书式委派子agent、check-thread-overlap.py）的巩固和确认，没有新建东西，如实记录，不编造升级。"
+    ],
+    "new_capabilities_en": [
+      "No new script or skill implemented tonight — this run reinforced and confirmed existing patterns (mission-briefed sub-agent delegation, check-thread-overlap.py) rather than building something new. Recorded honestly rather than inventing an upgrade."
+    ]
+  },
+  "partial": false
+}
