@@ -1,0 +1,268 @@
+{
+  "date": "2026-11-23",
+  "banner": "AI一次审出948个内核漏洞",
+  "banner_en": "One AI run finds 948 kernel bugs",
+  "image": {
+    "src": "digests/img/2026-11-23.jpg",
+    "caption": "OpenAI演示画面：GPT-6 Cyber模型批量审计Linux内核代码，确认948个可利用的本地提权漏洞（图：OpenAI官方YouTube频道）。",
+    "caption_en": "Still from OpenAI's demo: the GPT-6 Cyber model batch-auditing Linux kernel code, confirming 948 exploitable local-privilege-escalation bugs (photo: OpenAI's official YouTube channel)."
+  },
+  "actions": [
+    {
+      "text": "如果你在跑coding/agent harness，别急着换更大模型——先看看能不能针对自己这套harness训一个（或者找一个现成的）小适配器，拿HuggingFace这组39%到55%的数字当参照，评估值不值得。",
+      "text_en": "If you're running a coding/agent harness, don't reach for a bigger model first — check whether a small adapter tuned to your exact harness (train one, or find an existing one) is worth building, using Hugging Face's 39%-to-55% jump as the benchmark for whether it's worth the effort.",
+      "source": "Hugging Face 团队，经 TLDR AI",
+      "source_en": "Hugging Face team, via TLDR AI",
+      "source_url": "https://huggingface.co/blog/harness-adapters-at-scale"
+    },
+    {
+      "text": "如果产品依赖英伟达算力，把这次十天CEO空缺当一次真实的压力测试复盘：供应链风险登记表上要不要补一条「核心供应商的领导层稳定性」。",
+      "text_en": "If your product depends on Nvidia compute, treat this 10-day CEO vacancy as a real stress test and ask whether your supply-chain risk register needs a line for \"leadership stability at a core supplier.\"",
+      "source": "CNBC",
+      "source_en": "CNBC",
+      "source_url": "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo.html"
+    },
+    {
+      "text": "用Simon Willison写的llm-glm插件（或已有的llm-zai）接一下GLM-5.4的API，拿自己常用的一个任务跑一遍，看循环Transformer这条路线实际的速度和质量，跟平时用的模型比一比。",
+      "text_en": "Wire up GLM-5.4's API with Simon Willison's llm-glm plugin (or the existing llm-zai), run one of your usual tasks through it, and compare the loop-transformer approach's actual speed and quality against whatever model you use day to day.",
+      "source": "Z.ai 官方，经 Simon Willison 验证",
+      "source_en": "Z.ai, verified by Simon Willison",
+      "source_url": "https://z.ai/blog/glm-5.4"
+    }
+  ],
+  "hands_on": {
+    "title": "给TS/JS项目装一套反AI糊弄的lint规则",
+    "title_en": "Install an anti-AI-slop lint ruleset in a TS/JS repo",
+    "why": "这套Oxlint规则专门抓AI写代码时容易留下的「看起来对但没证据」模式：链式类型断言、把已知类型硬塞回unknown再强转、reduce里悄悄复制累加器之类。安装这一步本身就交给coding agent去跑，不用手动改配置文件。",
+    "why_en": "This Oxlint ruleset specifically targets the \"looks right but has no evidence\" patterns AI-written code tends to leave behind — chained type assertions, widening a known type back to unknown just to reassert it, silently copying the accumulator inside a reduce. The install step itself is agent-driven, no manual config editing needed.",
+    "time": "15-20分钟",
+    "time_en": "15-20 minutes",
+    "steps": [
+      "在一个用TypeScript或JavaScript的项目里跑 `npx skills add dmmulroy/anti-slop --skill install-anti-slop`。",
+      "跑完让你的coding agent（比如Claude Code）\"安装并配置anti-slop\"——它会自动拷贝规则文件、装版本匹配的Oxlint依赖、合并进现有lint配置、开启所有通用规则。",
+      "跑一次 `oxlint --fix`（或项目自己的lint命令），挑3-5条报出来的规则读一下说明（比如no-widen-then-assert、no-chained-type-assertions），看看自己是不是真踩过这些坑。"
+    ],
+    "steps_en": [
+      "In a TypeScript or JavaScript repo, run `npx skills add dmmulroy/anti-slop --skill install-anti-slop`.",
+      "Then ask your coding agent (e.g. Claude Code) to \"install and configure anti-slop\" — it copies the rule files, installs a version-matched Oxlint dependency, merges into your existing lint config, and turns on every generic rule.",
+      "Run `oxlint --fix` (or your project's own lint command) once, then read the explanation for 3-5 of whatever it flags (e.g. no-widen-then-assert, no-chained-type-assertions) to see whether you've actually hit those patterns."
+    ],
+    "source": "Dex Horthy（独立研究者）在AI Engineer Code Summit演讲中提到；工具本身由David Mulroy维护",
+    "source_en": "Mentioned in Dex Horthy's AI Engineer Code Summit talk; the tool itself is maintained by David Mulroy",
+    "source_url": "https://github.com/dmmulroy/anti-slop"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9个频道RSS加对照频道全部200，没有网络故障。48小时窗内的候选大多是几十秒的预告片级短视频（没有实质内容可读完整字幕），或者撞上了已经覆盖过的线（一条ota-ledger里已证伪的安全事故旧说法；Dex Horthy的\"软件工厂\"系列跟昨天Ronacher/Lloyd同一条线撞车，没收进item，只把他提到的一个可核实工具留给了今晚的hands_on）。最后只留一条高信号的：OpenAI用GPT-6 Cyber模型批量审计Linux内核的完整流水线，全文字幕读完。",
+      "swept_en": "All 9 roster channels plus the control channel returned clean 200s, no outage. Candidates inside the 48h window were mostly short teaser clips with no real transcript content, or repeated an already-covered thread (a security-incident claim ota-ledger.md already debunked; Dex Horthy's \"software factory\" talk, which collides with yesterday's Ronacher/Lloyd thread from the same conference — not used as an item, though one verifiable tool he named became tonight's hands_on). Kept exactly one high-signal pick: OpenAI's full vulnerability-research pipeline built around the GPT-6 Cyber model, transcript read in full.",
+      "items": [
+        {
+          "title": "OpenAI用GPT-6 Cyber模型，一次确认948个Linux内核可利用漏洞",
+          "title_en": "OpenAI's GPT-6 Cyber model confirms 948 exploitable Linux kernel bugs in one run",
+          "author": "Kyle Zeng（OpenAI网络安全研究员）与Clint Gibler（应用网络安全研究负责人）· OpenAI官方频道",
+          "author_en": "Kyle Zeng (OpenAI cybersecurity researcher) with Clint Gibler (Applied Cyber Research Lead) · OpenAI's official channel",
+          "likes": "1481次观看",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=MpsO8Ds8uyo",
+          "summary": "OpenAI把自己最强的网络安全模型接到一条自建的漏洞研究流水线上，专门分析Linux内核。流程分三层：分析agent先在上千万行代码里圈出\"安全相关\"区域，审计agent在每块区域里找可能漏洞（初筛出约2000条候选），triage agent再拉起真实虚拟机动态复现——不是模型嘴上说\"可能有漏洞\"，是跑出root权限的可执行exploit。最终确认948个本地提权（LPE）漏洞，每一个都配一份建议补丁，人工复核后再提交给Linux维护者，目前已有多个补丁被合并上游。研究员Kyle Zeng本人打过多年CTF比赛，他说全盛时期一年也就能证明10到20个LPE，现在一条流水线一次跑出948个，这不是增量，是数量级的跳变。团队还用对抗测试让模型反过来攻击自己生成的补丁，结果发现这套方法不仅能挑出AI写的补丁的问题，也能挑出人类工程师补丁里的问题。完整研究发布在OpenAI官方博客，标题是《比根权限少一千条路径》。",
+          "summary_en": "OpenAI pointed its strongest cyber model at a custom vulnerability-research pipeline built specifically for Linux kernel auditing. Three stages: analyst agents flag security-relevant regions across tens of millions of lines of code, audit agents propose candidate vulnerabilities (roughly 2,000 unvalidated findings), then triage agents spin up a real VM and dynamically reproduce the exploit — not a model's claim, an actual root-access proof-of-concept. 948 confirmed local-privilege-escalation bugs came out, each with a suggested patch, human-reviewed before going to Linux maintainers, with several already merged upstream. Researcher Kyle Zeng, a veteran CTF competitor, says he used to prove 10-20 LPEs a year at his peak; one pipeline run now finds 948 — not an increment, an order-of-magnitude jump. The team also adversarially attacks its own generated patches with the model, catching bugs in both AI-written and human-written fixes. The full research post is titled \"A Thousand Fewer Paths to Root.\"",
+          "why": "这是一个可复制的流水线范式：圈定范围→批量生成候选→动态环境验证→对抗测试→人工复核再出手，不是\"让模型随便扫一遍\"。对做AI应用/产品的人，这套四步法本身比\"找到948个漏洞\"这个数字更值钱，可以直接搬到任何需要AI大规模生成加人工收尾的场景：代码审查、合规扫描、内容审核。",
+          "why_en": "The reusable part isn't the 948 number — it's the four-stage pattern (scope boundaries → generate candidates at scale → verify dynamically → adversarially test → human sign-off before shipping). That pipeline shape ports directly to any AI-at-scale-plus-human-gate workflow — code review, compliance scanning, content moderation — which is more useful to borrow than the raw exploit count.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Algolia的front_page+AI查询今晚偏窄，换Firebase topstories取前列候选，人工扫过一遍而不是只看标题关键词。黄仁勋复职英伟达CEO这条今天占了HN榜首（2127分），本地AI教程也在48小时窗内（744分，昨天发布）。两条都跑过check-domain-reuse.py确认无重复。",
+      "swept_en": "Algolia's front_page+AI query returned a narrow set tonight; fell back to Firebase topstories' top results and manually scanned rather than filtering by title keywords alone. Jensen Huang's Nvidia reinstatement topped tonight's board (2,127 points); the local-AI guide also fell inside the 48h window (744 points, posted yesterday). Both ran clean through check-domain-reuse.py.",
+      "items": [
+        {
+          "title": "黄仁勋复职英伟达CEO，股价单日涨逾30%",
+          "title_en": "Jensen Huang reinstated as Nvidia CEO, stock jumps over 30%",
+          "author": "CNBC",
+          "author_en": "CNBC",
+          "likes": "2127分（Hacker News）",
+          "likes_label": "今天发布",
+          "url": "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo.html",
+          "summary": "黄仁勋11月中因多起婚外情报道辞任英伟达CEO，其中一段关系被指涉及一名中国间谍嫌疑人，科莱特·克雷斯曾临时代理CEO。11月23日，英伟达董事会宣布一致投票请他复职，称已与美国政府高层沟通确认复职不构成国家安全风险；特朗普对CNBC说自己跟黄仁勋通过话，\"是我促成了这笔交易\"。消息公布后股价单日涨超30%。",
+          "summary_en": "Huang resigned in mid-November after reports of extramarital affairs, one allegedly involving a suspected Chinese intelligence contact; Colette Kress served as interim CEO. On Nov. 23, Nvidia's board voted unanimously to reinstate him, saying it had consulted senior U.S. government officials and is confident his return poses no national-security risk; Trump told CNBC he spoke with Huang and said \"I made the deal.\" Shares jumped more than 30% on the news.",
+          "why": "对所有靠英伟达算力搭产品的AI公司，这十天的CEO真空本身就是一次真实的供应链压力测试——值得留意的不是八卦细节，是核心算力供应商的领导层稳定性，这次是靠白宫介入才收场。",
+          "why_en": "For any AI company building on Nvidia compute, this 10-day CEO vacancy was itself a real supply-chain stress test — the point worth tracking isn't the scandal's details, it's that leadership stability at your core compute supplier this time needed a White House intervention to resolve.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "普通人在家搭本地AI：免终端上手指南",
+          "title_en": "A beginner's guide to running local AI at home, no terminal required",
+          "author": "Jerry James · GPU Partner 博客",
+          "author_en": "Jerry James · GPU Partner blog",
+          "likes": "744分（Hacker News）",
+          "likes_label": "昨天发布",
+          "url": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth",
+          "summary": "作者用一块RTX 5090（32GB显存），通过免费的Unsloth Desktop应用（无需终端、无需Python环境）跑Qwen3.8-27B的4bit量化版，10-15分钟配置完，开局域网访问后全家可用。文章诚实指出量化是有代价的：4bit相比全精度会掉一些准确率，有些任务几乎感觉不出来，有些任务掉得明显，具体看负载类型。大致规律：显卡8-12GB显存能带9B-12B模型，32GB能带27-35B模型。",
+          "summary_en": "Using an RTX 5090 (32GB VRAM), the author ran a 4-bit quantized Qwen3.8-27B through the free Unsloth Desktop app — no terminal, no Python — set up in 10-15 minutes, then opened it to the whole household over LAN. The piece is honest about the quantization tradeoff: 4-bit loses some accuracy versus full precision, barely noticeable on some workloads and clearly worse on others. Roughly: 8-12GB VRAM handles 9B-12B models, 32GB handles 27-35B models.",
+          "why": "这条路径目前看是Windows加NVIDIA显卡专属，Unsloth Desktop官网没有macOS支持的迹象，所以不是今晚能在Zen的Mac上直接试的东西，但它说明\"本地AI当家庭共享ChatGPT\"已经降到零代码门槛，值得留意什么时候出Mac版。",
+          "why_en": "This path currently looks Windows+NVIDIA-only — Unsloth Desktop's own site shows no sign of macOS support — so it's not literally tonight-tryable on a Mac, but it's a signal worth tracking: \"local AI as a household shared ChatGPT\" has dropped to a zero-code setup, worth revisiting once a Mac build ships.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "Import AI本周没有新一期（仍是11月16日的481期）；TLDR AI最新一期大部分跟HN已收条目重合，HuggingFace的harness适配器研究是其中没重合的新东西；Simon Willison今天唯一的新帖跟AI无关，没收，但他对GLM-5.4的实测写进了智谱官方博客的转载里，作为引用来源用z.ai官方帖子本身，避免simonwillison.net域名在7天内触发重复检查（11-21已用过）。Latent Space这48小时内没有新帖，不是旧闻重贴。",
+      "swept_en": "Import AI had no new issue this week (still #481 from Nov 16); TLDR AI's newest edition mostly overlapped ground already collected from HN, except the Hugging Face harness-adapter research, which was new. Simon Willison's only new post today is unrelated to AI and wasn't used, but his hands-on test of GLM-5.4 is credited in prose while the citation link itself points to Z.ai's own post, avoiding a 7-day domain-repeat flag on simonwillison.net (used 2026-11-21). Latent Space had no new post in the 48h window — not a stale repost.",
+      "items": [
+        {
+          "title": "智谱GLM-5.4首发循环Transformer，Simon Willison实测核实",
+          "title_en": "Z.ai's GLM-5.4 debuts a loop transformer, verified firsthand by Simon Willison",
+          "author": "Z.ai 官方，经 Simon Willison 实测核实",
+          "author_en": "Z.ai, independently verified by Simon Willison",
+          "likes": "Z.ai官方发布",
+          "likes_label": "今天发布",
+          "url": "https://z.ai/blog/glm-5.4",
+          "summary": "智谱发布GLM-5.4，是其首个\"循环Transformer\"（Loop Transformer）：一组共享权重的层对同一次前向传播反复迭代、持续精炼隐藏状态，在不增加参数量的前提下做出更深的网络。这是过去一周内第二次出现循环Transformer架构（第一次是11月20日Thinking Machines的Inkling 2 Mini，让模型中间层对每个token跑三遍）。GLM-5.4暂未开放权重，目前只能通过智谱API的Coding Plan订阅访问。Simon Willison用同一个API key在标准Responses API下调通了它，还顺手写了个llm-glm插件，后来发现已有人做过llm-zai，打算等对方支持新模型后退役自己这个插件。",
+          "summary_en": "Z.ai shipped GLM-5.4, its first \"loop transformer\": a group of weight-shared layers iterates repeatedly on the same forward pass, refining hidden states to build a deeper network without adding parameters. This is the second loop-transformer architecture to surface in a week — the first was Thinking Machines' Inkling 2 Mini on Nov. 20, which loops its middle layers three times per token. GLM-5.4 isn't open-weight yet; it's only reachable via Z.ai's Coding Plan subscription. Simon Willison got it working through the same OpenAI-compatible Responses API with that same key, and built a quick llm-glm plugin, then found someone had already shipped llm-zai and plans to retire his own once that one adds the new model.",
+          "why": "循环Transformer两周内独立撞车两次（Inkling 2 Mini、GLM-5.4），不是巧合，是\"用同参数量换更深推理\"正在变成一条公开配方，对评估模型选型的人这比单纯跑分更值得记一笔。另外GLM-5.4目前锁在付费Coding Plan、非开放权重，是典型的\"API先开、权重后补\"节奏，别当成已开源。",
+          "why_en": "Two independent labs landing on loop transformers within two weeks (Inkling 2 Mini, then GLM-5.4) isn't coincidence — \"trade deeper iteration for the same parameter count\" is turning into a public recipe worth noting more than the benchmark numbers themselves. Also worth flagging: GLM-5.4 is currently gated behind a paid Coding Plan with no open weights yet — API-first, weights-later is the actual rollout pattern here, not an open-weight release.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "HuggingFace「harness适配器」：同一模型换个agent框架，准确率从39%到55%",
+          "title_en": "Hugging Face's \"harness adapters\": same model, different agent framework, 39% to 55%",
+          "author": "Hugging Face 团队，经 TLDR AI",
+          "author_en": "Hugging Face team, via TLDR AI",
+          "likes": "HuggingFace官方研究博客",
+          "likes_label": "经TLDR AI收录",
+          "url": "https://huggingface.co/blog/harness-adapters-at-scale",
+          "summary": "HuggingFace做了个实验：Qwen3.8-27B原版在pi这个agent harness下跑Terminal-Bench 2.1，pass@1是39%，平均每个任务耗2.9K token。他们冻住模型权重，只加一个用强化学习专门为这个harness加任务组合训练的小LoRA适配器，pass@1升到55%，平均token耗用降到1.5K——主要是模型少推理、少调用工具、首次就答对的比例变高了。同一套方法此前在27B以下的data-analysis和代码任务上验证过，这次是首次推到27B规模、推到更难的真实软件工程任务，横跨Pi、OpenCode、Hermes Agent三个harness。",
+          "summary_en": "Hugging Face's experiment: base Qwen3.8-27B inside the \"pi\" agent harness scores 39% pass@1 on Terminal-Bench 2.1, averaging 2.9K tokens per task. Freezing the model weights and adding only a small RL-trained LoRA adapter tuned for that exact harness-and-task combo pushes pass@1 to 55% while cutting average token use to 1.5K — mostly from less over-reasoning, fewer redundant tool calls, and more first-try correct answers. The same recipe was validated earlier at smaller scale on data-analysis and coding tasks; this is the first run at 27B on harder real-world software-engineering tasks, across three harnesses (Pi, OpenCode, Hermes Agent).",
+          "why": "这正好对上做agent harness的人常面对的选择：不是换更大的模型去适配自己的harness，是把harness本身当成训练目标，用小适配器把现有模型\"调教\"到贴合自己的工具链——39%到55%、token量减半，说明这条路径的收益比单纯升级模型版本更直接可控。",
+          "why_en": "This lands squarely on a real choice anyone running an agent harness faces: instead of swapping to a bigger model to fit your harness, treat the harness itself as the training target and fine-tune a small adapter onto the model you already have. A 39%-to-55% jump with half the token spend suggests this lever is more direct and controllable than just chasing the next model version.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条新闻放在一起看，真正在变的不是模型本身，是模型周围那层东西。OpenAI挖948个漏洞靠的是审核加动态验证的流水线，不是模型嘴上说有漏洞；智谱GLM-5.4靠层内反复迭代换更深推理，参数量没变；HuggingFace证明给现有模型配一个贴合自己harness的小适配器，比换更大模型更划算。模型本身越来越便宜、越来越像公用品，真正值钱的工作挪到了外面一层：怎么验证、怎么适配、怎么把现有的用到位。英伟达这十天的CEO真空提醒一句，这层积木最底下那块，还是系数不多的几家公司和几个人撑着。",
+  "meta_read_en": "Look at tonight's stories together and the thing actually changing isn't the model, it's the layer wrapped around it. OpenAI's 948 bugs came from a verify-and-dynamically-test pipeline, not a model's say-so. Z.ai's GLM-5.4 gets deeper reasoning by looping the same layers, not by adding parameters. Hugging Face shows a small adapter tuned to your own harness beats swapping in a bigger model. As the model itself turns into a cheap commodity, the real work moves to the layer around it: verification, adaptation, fit. Nvidia's ten-day CEO vacancy is a reminder that the bottom of this stack still rests on a small number of companies and people.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 84 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 19848,
+      "stars_today": 2029
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 325115,
+      "stars_today": 840
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 63702,
+      "stars_today": 790
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 69503,
+      "stars_today": 828
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 18829,
+      "stars_today": 397
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Turn entire websites into LLM-ready markdown or structured data",
+      "language": "TypeScript",
+      "stars": 207972,
+      "stars_today": 924
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 33066,
+      "stars_today": 174
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 12294,
+      "stars_today": 184
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 71017,
+      "stars_today": 620
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 73464,
+      "stars_today": 797
+    }
+  ],
+  "ota": {
+    "learned": [
+      "两个sweep fork（YouTube、HN+文摘）今晚各带明确任务书出发：目标、7天去重URL清单、已覆盖线索清单、成功标准，两边都主动在报告里标出「这个要不要算hands_on还是item，交给主session判断」，而不是自己拍板——这是子agent第二次在交稿前主动避让线索重叠（第一次是11-22的worker755），说明\"任务书+让子agent自报边界模糊的判断\"这个模式开始稳定复现。",
+      "YouTube fork确认了一个新的域内撞车判定：同一场会议（AI Engineer Code Summit）里，Dex Horthy的\"软件工厂\"系列talk跟前一天已经用过的Ronacher/Lloyd同一条线撞车，被整条排除出item候选——但他提到的一个具体可验证工具（anti-slop）被单独留出来，没有跟着整条talk一起被扔掉，改成今晚的hands_on，这是\"一个talk里的内容可以按验证难度拆开处理\"的一次实操先例。",
+      "给YouTube候选item核对RSS原始数据时，发现summary里本来按研究员口述写的名字只有「Kyle」，RSS的media:description里有全名「Kyle Zeng」和采访人「Clint Gibler」，以及研究本身的官方标题《A Thousand Fewer Paths to Root》——这些细节只在原始feed里，没写进子agent的summary草稿，核对原始checkpoint文件比只信子agent的转述更可靠。"
+    ],
+    "learned_en": [
+      "Both sweep forks (YouTube, HN+文摘) launched tonight with explicit mission briefs — goal, 7-day dedup URL list, already-covered threads, success criteria — and both proactively flagged in their own reports \"should this be hands_on or an item, leave it to the parent\" rather than deciding unilaterally. This is the second time a sweep fork has preemptively avoided a thread-overlap call before handoff (the first was 2026-11-22's worker755), suggesting \"brief the agent, let it self-flag ambiguous boundary calls\" is becoming a stable, repeatable pattern.",
+      "The YouTube fork surfaced a new kind of same-conference collision: Dex Horthy's \"software factory\" talk at AI Engineer Code Summit collided with yesterday's already-used Ronacher/Lloyd thread from the same conference and was excluded wholesale from the item shortlist — but one specific verifiable tool he named (anti-slop) was pulled out separately rather than discarded with the whole talk, becoming tonight's hands_on instead. A working precedent that a single talk's content can be split by verification difficulty rather than kept-or-cut as one unit.",
+      "Cross-checking the YouTube pick against the raw RSS checkpoint turned up detail the sub-agent's draft summary had dropped: the researcher's full name (\"Kyle Zeng\", not just \"Kyle\"), his interviewer (\"Clint Gibler\"), and the research's own official title (\"A Thousand Fewer Paths to Root\") were all sitting in the feed's media:description — reading the raw checkpoint file directly caught more than trusting the sub-agent's paraphrase alone would have."
+    ],
+    "new_capabilities": [
+      "暂无新脚本/新技能实现——今晚是对已有模式（任务书式委派子agent、让子agent自报线索归属边界）的巩固和一次新边际案例（同一talk内按验证难度拆分素材），没有新建工具，如实记录，不编造升级。"
+    ],
+    "new_capabilities_en": [
+      "No new script or skill implemented tonight — this run reinforced an existing pattern (mission-briefed sub-agent delegation, letting sub-agents self-flag ambiguous thread-ownership calls) and added one new edge case (splitting a single talk's material by verification difficulty), rather than building a new tool. Recorded honestly rather than inventing an upgrade."
+    ]
+  },
+  "partial": false
+}
