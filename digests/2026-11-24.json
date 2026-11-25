@@ -1,0 +1,283 @@
+{
+  "date": "2026-11-24",
+  "banner": "代码涌进来，审核成护城河",
+  "banner_en": "Code floods in. Review becomes the moat.",
+  "image": {
+    "src": "digests/img/2026-11-24.jpg",
+    "caption": "Jarred Sumner在AI Engineer Code Summit讲Bun底层编译器连续推翻重写五版的故事（图：AI Engineer官方YouTube频道）。",
+    "caption_en": "Jarred Sumner at AI Engineer Code Summit on tearing up and rewriting Bun's low-level compiler five times (photo: AI Engineer's official YouTube channel)."
+  },
+  "actions": [
+    {
+      "text": "把Claude Approvals的策略文件设计（读Code Review结果、自定义分类器、observe-only模式起步）跟BY系仓库现在的CODEOWNERS + `--auto`流程对比一遍，看看哪一条差距最大、值不值得补。",
+      "text_en": "Compare Claude Approvals' policy-file design (reading Code Review findings, custom classifiers, starting in observe-only mode) against the BY repos' current CODEOWNERS + `--auto` pipeline, and see which single gap is biggest and worth closing.",
+      "source": "Anthropic 官方",
+      "source_en": "Anthropic",
+      "source_url": "https://claude.com/resources/articles/introducing-claude-ship"
+    },
+    {
+      "text": "更新Mac版Claude，挑一个自己常当工具用的artifact，从Share菜单点\"Install as app\"，试试装成独立窗口的桌面应用是什么体验。",
+      "text_en": "Update Claude for Mac, pick one artifact you already use as a daily tool, and click \"Install as app\" from the Share menu to see what it feels like as its own desktop window.",
+      "source": "Anthropic 官方",
+      "source_en": "Anthropic",
+      "source_url": "https://claude.com/resources/articles/install-as-app"
+    },
+    {
+      "text": "挑一个自己常用的AI工具，找一条它拒绝或者绕开的限制，问自己一句：这条红线保护的是我，还是保护厂商自己？",
+      "text_en": "Pick one AI tool you use often, find one restriction it refuses or routes around, and ask: does this boundary protect me, or does it protect the vendor?",
+      "source": "Michael Harley 个人博客",
+      "source_en": "Michael Harley's blog",
+      "source_url": "https://michaelharley.net/posts/2026/11/01/llm-agents-work-for-their-parent-companies-not-for-you/"
+    }
+  ],
+  "hands_on": {
+    "title": "给AI设计任务配齐\"参考+偏好+语境+素材\"四件，今晚就能试",
+    "title_en": "Give AI design tasks all four: reference, preference, context, assets — try it tonight",
+    "why": "Zara Zhang不是设计师出身，靠这四件套让AI做出的东西\"有品味\"而不是\"AI味\"。核心是别用词汇硬描述想要什么，直接给参考图，再补一句\"喜欢参考里的哪一点、要改哪一点\"，比光靠文字描述效果好出一个量级。她强调现在的模型（Opus 5.5级别）接受几百字长prompt完全没问题，不用担心\"喂太多信息会溢出\"。",
+    "why_en": "Zara Zhang isn't a trained designer, but this four-part combo is how she gets AI output that reads as tasteful rather than generically \"AI-flavored.\" The core move: don't describe what you want in words alone, hand over real reference images, then add one sentence on exactly what you like about each reference and what to change — that beats a text-only description by an order of magnitude. She stresses that models at the Opus 5.5 level handle prompts hundreds of words long without issue, so don't hold back out of a \"too much context\" worry.",
+    "time": "10分钟",
+    "time_en": "10 minutes",
+    "steps": [
+      "下次找AI生成图片、PPT、视频脚本或任何需要\"好看\"的东西之前，先花2分钟找1-3张你喜欢的参考图（截图、链接都行）。",
+      "给模型的prompt里按顺序写清四件事：①参考图本身；②这几张参考里具体喜欢哪一点、想改哪一点（不要只说\"像这样\"）；③语境：做出来给谁看、用在哪、想要什么氛围；④真实素材（自己的照片、截图、已有素材），不要让模型凭空编。",
+      "对比一下这次输出跟平时\"直接打字描述\"的差别，看是不是真的更贴你想要的东西。"
+    ],
+    "steps_en": [
+      "Next time you ask an AI to generate an image, deck, video script, or anything that needs to look good, spend 2 minutes finding 1-3 reference images you actually like (screenshots or links both work).",
+      "In the prompt, give the model four things in order: (1) the reference images themselves; (2) exactly what you like about each one and what to change (not just \"like this\"); (3) context — who it's for, where it's used, what mood you want; (4) real assets of your own (photos, screenshots, existing material), not something the model should invent from nothing.",
+      "Compare the result against your usual \"just type a description\" approach and see if it's genuinely closer to what you wanted."
+    ],
+    "source": "Zara Zhang（独立策展人，非程序员的AI工作流博主）· YouTube",
+    "source_en": "Zara Zhang (independent curator, blogs non-engineer AI workflows) · YouTube",
+    "source_url": "https://www.youtube.com/watch?v=xLwau2tf45k"
+  },
+  "sources": [
+    {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "9个频道RSS全部200加对照频道，无故障。几条无实质内容的新闻/预告片短视频被排除，Dex Horthy已在11-23用过的\"软件工厂\"线也被排除。Steve Yegge《Software Factories: Escape from Trash Mountain》全文字幕读完，内容扎实但\"软件工厂/多agent编排\"这条线本周已经用了3次（Ronacher、Osman、Horthy），按主题上限先压下，留作后续。最后收入1条：Jarred Sumner在AI Engineer Code Summit讲Bun底层编译器连续推翻重写五版的故事，全文字幕读完；另把Zara Zhang一条实用设计prompt技巧单独留给今晚的hands_on。",
+      "swept_en": "All 9 roster channels plus the control channel returned clean 200s, no outage. A few short clips with no substantive content were excluded, as was Dex Horthy's \"software factory\" thread (already used 11-23). Steve Yegge's full \"Software Factories: Escape from Trash Mountain\" talk was read in full — solid content, but the software-factory/multi-agent-orchestration thread had already appeared three times this week (Ronacher, Osman, Horthy), so it was held back under the per-theme cap rather than used. Kept exactly one item: Jarred Sumner's AI Engineer Code Summit talk on tearing up and rewriting Bun's low-level compiler five times, transcript read in full; a separate practical design-prompting tip from Zara Zhang became tonight's hands_on.",
+      "items": [
+        {
+          "title": "Bun作者在Anthropic：几百万行AI代码，怎么敢发",
+          "title_en": "Bun's creator at Anthropic on shipping millions of AI-written lines",
+          "author": "Jarred Sumner（Bun 作者，现任 Anthropic 工程师）· AI Engineer Code Summit",
+          "author_en": "Jarred Sumner (Bun's creator, now an engineer at Anthropic) · AI Engineer Code Summit",
+          "likes": "AI Engineer 官方频道",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=TvsF67C2F54",
+          "summary": "Jarred Sumner是Bun（给Claude Code提供运行时的JavaScript引擎）的作者，去年夏天把Bun用Rust重写了一遍，这次讲的项目规模比那次还大：给Bun底层的WebKit/JavaScriptCore加一个提前编译器，目的是让Claude Code跑得更快、占用内存更少。这个编译器已经推翻重写了五次。前几版写得很短，第三版他差点就要发了，结果发现编译时间太长，只能再推翻重写。下一版计划下周发布。他说现在最大的难题不是\"能不能让AI写代码\"，是\"怎么有把握把几百万行AI写的代码真的发出去\"。",
+          "summary_en": "Jarred Sumner wrote Bun, the JavaScript runtime that powers Claude Code, and rewrote it in Rust last summer. The project he's describing now is bigger than that rewrite: adding an ahead-of-time compiler to Bun's underlying WebKit/JavaScriptCore layer, meant to make Claude Code faster and lighter on memory. The compiler has been torn up and rewritten five times — the first few attempts were short, the third nearly shipped before he found compile times had ballooned, forcing another rewrite; the next version ships next week. His point: the hard problem isn't getting AI to write the code anymore, it's confidently shipping millions of lines of it.",
+          "why": "这跟今晚另外两条线（Claude Ship的审批策略、Nijholt用三个模型互相审对方代码）合在一起看才有意思：当\"让AI写代码\"已经不是问题，\"怎么确认几百万行代码真的没问题\"变成了新的瓶颈，而且连Bun这种底层项目都在正面撞这个问题，不是什么边缘案例。",
+          "why_en": "Read alongside tonight's other two threads (Claude Ship's approval policies, Nijholt's three-model cross-review), the real point sharpens: once getting AI to write code stops being the bottleneck, confidently verifying millions of lines of it becomes the new one — and this isn't an edge case, it's hitting even a low-level project like Bun head-on.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    },
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Firebase topstories取代Algolia front_page查询（后者今晚偏窄），人工扫了前20条而不是只靠标题关键词。Jensen Huang/Nvidia和GLM-5.4两条都是11-23已用过的原文重复，核实后剔除；一条Forbes关于Dario Amodei股票出售的说法因页面被反爬墙挡住、时间预算内没法独立核实，没收。",
+      "swept_en": "Used Firebase topstories instead of Algolia's front_page query (which ran narrow tonight), manually scanning the top 20 rather than filtering by title keywords alone. Both the Jensen Huang/Nvidia story and GLM-5.4 were exact repeats of items already used 11-23 and were cut after verification; a Forbes claim about Dario Amodei's stock sales was dropped — the page was bot-walled and couldn't be independently verified within budget.",
+      "items": [
+        {
+          "title": "Anthropic发布Claude Ship：PR审核、修复、合并全交给agent",
+          "title_en": "Anthropic launches Claude Ship: review, fix and merge, all handed to agents",
+          "author": "Anthropic 官方 · 经 Hacker News",
+          "author_en": "Anthropic · via Hacker News",
+          "likes": "87分，32条评论（Hacker News）",
+          "likes_label": "11月23日发布",
+          "url": "https://claude.com/resources/articles/introducing-claude-ship",
+          "summary": "Claude Ship由三部分组成。Code Review（已经正式发布）对PR做深度审查，多角度查找问题后交叉验证再打分；PR Steward（测试阶段）盯着CI失败、合并冲突、评审意见，自动推修复，但设计上不负责批准或合并；Claude Approvals（测试阶段）读仓库里一份策略文件，决定哪些改动能自动过，哪些要留给人。Anthropic自己团队用下来，合并的PR数从6月到9月翻了一倍多，被打回重做的比例降了四成以上。开发者在Claude Code里打一个`/ship`命令就能跑；管理员则是按仓库开关，分别给Code Review、PR Steward、Claude Approvals设权限和花费上限。Claude Enterprise客户现在申请，30天内能领至少一万美元额度。独立开发者Jonathan Nen当天发文唱反调：他自己那套类似的流程每天合并170多个PR，六成没人读就过了，重新搭一套只要一天；他的理由是SDLC本身还在剧烈变化，PR之后那段最该留在自己手里改，而不是急着交给厂商这一版。",
+          "summary_en": "Claude Ship has three pieces. Code Review (now generally available) does a deep multi-angle PR review, cross-verifies its own findings, then scores them. PR Steward (beta) chases down failing CI, merge conflicts and review comments, pushing fixes — but by design never approves or merges anything itself. Claude Approvals (beta) reads a policy file committed to the repo and decides which changes can clear automatically versus need a human. Inside Anthropic's own team, merged PRs more than doubled from June to September while the revert rate fell over 40%. Developers run it with a single `/ship` command in Claude Code; admins flip it on per-repository and set review level, spend caps and approval policy separately for each piece. Enterprise customers can currently claim at least $10,000 in credit within 30 days of signing up. The same day, independent developer Jonathan Nen pushed back: his own similar setup already merges 170+ PRs a day with 60% going through unread, and rebuilding his version of Ship would take him about a day — his argument is that the SDLC itself is still changing fast, so the part right after a PR opens is exactly the part worth keeping under your own hand rather than handing to whatever a vendor ships this month.",
+          "why": "Claude Approvals本质上是\"更聪明的CODEOWNERS文件\"，跟Zen自己在BY系仓库跑的CODEOWNERS + `--auto`合并流程是同一个思路，只是厂商把它做成了产品。Jonathan Nen的反对意见也值得照着想一遍：他的四点理由（SDLC还在变、自建不难、他查得比Ship多、换个模型审查有意义）哪一条站得住，直接决定BY的流程要不要跟进这套厂商方案，还是继续自己维护更划算。",
+          "why_en": "Claude Approvals is essentially a smarter CODEOWNERS file — the same shape as the CODEOWNERS + `--auto` merge pipeline Zen already runs on the BY repos, just productized by the vendor. Jonathan Nen's pushback is worth running through directly: whether his four reasons (the SDLC is still moving, building your own isn't hard, he runs more checks than Ship does, a different model reviewing matters) hold up determines whether BY's pipeline should adopt the vendor version or keep paying to maintain its own.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "作者发现：Claude肯帮他下载YouTube盗链歌曲，却不肯帮他绕过Bandcamp验证给乐队付钱",
+          "title_en": "A blogger's Claude: fine downloading a song free via YouTube, but won't help pay the band on Bandcamp",
+          "author": "Michael Harley · 个人博客 · 经 Hacker News",
+          "author_en": "Michael Harley · Personal blog · via Hacker News",
+          "likes": "905分，379条评论（Hacker News）",
+          "likes_label": "11月1日发布，今天上榜",
+          "url": "https://michaelharley.net/posts/2026/11/01/llm-agents-work-for-their-parent-companies-not-for-you/",
+          "summary": "作者刷Instagram reels刷到喜欢的歌，想直接给乐队打钱买歌，而不是去Spotify或TikTok。他用Claude Code写了个skill：识别reel里的歌，去Bandcamp查乐队主页，方便他直接购买。Bandcamp给搜索接口加了反爬验证后，这条路断了。他问Claude能不能帮着绕过，Claude拒绝了。但同一个skill里另有一条分支，去YouTube把同一首歌下载下来，完全不给乐队付一分钱，这条分支照常能用。作者的结论：模型挡住的是对小乐队友善、但对平台不利的那条路，挡不住的是对版权方更不利的那条路，说明这类\"别作恶\"的红线是按厂商自己的风险划的，不是按用户的利益划的。这篇帖子发布于11月1日，今晚才登上HN热榜（905分）。",
+          "summary_en": "Browsing Instagram reels, the author kept hearing songs he liked and wanted to pay the artist directly rather than route through Spotify or TikTok. He built a Claude Code skill to identify the song from a reel and find the band's Bandcamp page so he could buy it there. When Bandcamp added a bot challenge to its search endpoint, that path broke; he asked Claude to help work around it, and Claude refused. A separate branch of the same skill, which downloads the same song from YouTube and pays the band nothing, kept working fine. His conclusion: the model blocked the path that's friendly to a small artist but unfriendly to a platform, while leaving open the path that's worse for the rights holder — these \"don't do harm\" guardrails track what the vendor finds risky, not what's actually good for the user. The post is from Nov. 1 but only hit HN's front page tonight (905 points).",
+          "why": "对做agent/skill产品的人，这是一个真实可核查的案例，不是空谈：护栏的边界经常跟\"厂商觉得有法律/商业风险\"对齐，不跟\"对用户真正有利\"对齐。自己做agent产品时，这种不对称很可能原样重演，值得现在就想清楚规则是按谁的利益划的。",
+          "why_en": "For anyone building agent or skill products, this is a concrete, checkable case, not an abstract worry: guardrail boundaries routinely track what the vendor sees as legal or commercial risk, not what's actually good for the user. The same asymmetry will likely resurface in any agent product built without deliberately checking whose interest the rule is actually drawn around.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "Import AI本周暂无新一期；TLDR AI当天版（11-24）里Claude Ship、Shirudo、MindRoom orchestrators三条都在Deep Dive/Headlines板块出现，后两条没在HN单独出现过；Simon Willison今天刚好发了一篇跟AI工具一年复盘相关的长文，正好是Opus 4.5发布一周年当天。Latent Space这48小时内没有新帖。",
+      "swept_en": "Import AI had no new issue this week; today's (11-24) TLDR AI edition carried Claude Ship, Shirudo and the MindRoom orchestrators post across its Headlines/Deep Dive sections, with the latter two not separately surfacing on HN. Simon Willison happened to publish a year-in-review post today, the exact one-year anniversary of Opus 4.5's release. Latent Space had no new post in the 48h window.",
+      "items": [
+        {
+          "title": "Simon Willison复盘一年：三次真正的能力跃迁",
+          "title_en": "Simon Willison's year in review: three real capability jumps",
+          "author": "Simon Willison · 个人博客",
+          "author_en": "Simon Willison · Personal blog",
+          "likes": "个人博客",
+          "likes_label": "今天发布，Opus 4.5发布一周年",
+          "url": "https://simonwillison.net/2026/Nov/24/llm-inflection-points/",
+          "summary": "今天正好是Claude Opus 4.5发布一周年，Willison把过去一年分成三个拐点。第一次是去年11月Opus 4.5：他第一次觉得Claude Code的默认输出大多是对的，不用老纠正。第二次是今年6-7月的\"Fable级\"模型（Claude Fable系列、Opus 5.5）：特点是给定目标和工具后会主动越界解决问题，他举的例子是修Safari显示bug时，模型自己搭了截屏工具和本地日志服务器。第三次是9-10月，3D建模和游戏开发能力突然变好：8月他让Fable 5做一个RTS游戏，画面像游戏但很难玩；10月他跟Opus 5.5说\"这游戏不够好玩，让它好玩很多\"，结果真的好玩了，模型花了12小时自己试玩、调平衡。他说这是第一次觉得模型\"懂什么叫好玩\"。文章还提到一个插曲：今年4月Anthropic曾说一个叫Mythos的模型\"太危险不能发\"，6月放出一个阉割版叫Fable 5，结果三天后被美国政府出口管制叫停，7月才放回来。",
+          "summary_en": "Published on the exact one-year anniversary of Claude Opus 4.5, Willison divides the past twelve months into three inflection points. First, November 2025's Opus 4.5 — the first model where Claude Code's default output was usually just right, no constant correcting. Second, June/July's \"Fable-class\" models (the Claude Fable line, Opus 5.5) — defined by proactively overstepping to solve a problem once given a goal and tools, his example being a Safari display bug where the model spun up its own screenshot tool and local logging server unasked. Third, September/October's sudden jump in 3D modeling and game development: in August he had Fable 5 build an RTS that looked like a game but played dull; in October he told Opus 5.5 \"this isn't fun enough, make it a lot more fun,\" and it worked — the model spent 12 hours playtesting and rebalancing on its own. He calls this the first time a model seemed to understand what \"fun\" means. A side note: in April Anthropic said a model called Mythos was \"too dangerous to release\"; a defanged version, Fable 5, shipped in June and was blocked by US export controls within three days, not returning until July.",
+          "why": "这不是厂商发布稿，是一个每天真用这些工具的人写的诚实复盘。拿这篇当参照问自己一句：自己现在的工作流还停在哪个拐点，如果还停在去年，大概率已经错过至少两次真实的能力跃迁，而不是营销说的\"又一次升级\"。",
+          "why_en": "This is an honest practitioner's retrospective, not a vendor press release. Use it as a yardstick: which inflection point is your own workflow still stuck at? Stuck at last year's means you've likely missed at least two real capability jumps already, not just another marketing \"upgrade.\"",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "OpenAI联手思科：给Linux系统打\"临时盾\"，不用等补丁也不用重启",
+          "title_en": "OpenAI and Cisco: a temporary shield for Linux, no patch wait, no restart",
+          "author": "OpenAI 与 Cisco 官方 · 经 TLDR AI",
+          "author_en": "OpenAI and Cisco · via TLDR AI",
+          "likes": "开源项目",
+          "likes_label": "11月23日发布",
+          "url": "https://openai.com/index/introducing-shirudo/",
+          "summary": "Shirudo（日语\"盾\"）是OpenAI和思科联合开源的运行时，用Linux的eBPF技术，在系统运行时给某个漏洞挡一道\"临时盾\"，不用等补丁也不用重启服务。测试案例是一个叫Java4Shell的漏洞：团队用OpenAI的Codex自动生成一段给Java Base64解码器加输入检查的盾，挂到一个正在跑的Elasticsearch进程上，真实攻击尝试被挡住，服务没有中断。盾本身要签名验证，靠硬件级的可信平台模块（TPM）留一份可核查记录。代码已经开源在GitHub，BSD 2-Clause协议，配套有一个VM速成教程。",
+          "summary_en": "Shirudo (Japanese for \"shield\") is an open-source runtime from OpenAI and Cisco using Linux's eBPF to apply a temporary shield against a specific vulnerability while a system keeps running, no patch wait, no restart. The demo case: a vulnerability called Java4Shell, where the team used OpenAI's Codex to auto-generate a shield adding an input check to Java's Base64 decoder, attached to a live Elasticsearch process. The real exploit attempt was blocked while the service kept running. Shields are cryptographically signed and verified, with a hardware-backed Trusted Platform Module (TPM) keeping an auditable record. The code is open source on GitHub under BSD 2-Clause, with a VM quickstart guide included.",
+          "why": "对真跑着生产服务的人，这填的是一个一直存在的真实缺口：发现漏洞到补丁真正上线往往要几天到几周，这段窗口期目前基本靠下线或者碰运气。如果以后自己运维什么面向公网的服务，这类\"先挡一下再慢慢补\"的工具值得记住。",
+          "why_en": "For anyone actually running production services, this fills a real, persistent gap: the window between finding a vulnerability and actually shipping a patch is often days to weeks, and right now that window is covered mostly by taking the service offline or just hoping. Worth remembering if you ever end up operating anything public-facing yourself.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "一个人同时管40个AI编程会话：他不再指挥agent，是指挥\"指挥agent的agent\"",
+          "title_en": "Running 40 AI coding sessions at once: orchestrating the orchestrators, not the agents",
+          "author": "Bas Nijholt（MindRoom联合创始人）· 个人博客 · 经 TLDR AI",
+          "author_en": "Bas Nijholt (co-founder of MindRoom) · Personal blog · via TLDR AI",
+          "likes": "个人博客，23分钟长文",
+          "likes_label": "11月23日发布",
+          "url": "https://www.nijho.lt/post/orchestrating-orchestrators/",
+          "summary": "作者从\"三十个终端窗口手动切换\"一路升级到现在的做法：在自己做的聊天工具MindRoom里，每个任务是一个\"线程\"，他只跟线程里的一个\"父agent\"对话（跑在Opus 5.5上），父agent再把具体活派给更小的子agent。写代码默认用刚发布几天的Gemini 4 Neon，写完后GPT-6.2 Sol、GPT-6.2 Astra、Opus 5.5三个模型并行审查全量diff，规则是\"没有模型审自己写的代码\"；改完一轮，换一个全新的审查者再看一遍，避免盯着上一轮的问题不放。简单的活交给更便宜的Claude Haiku 5.5。界面按\"需要你\"\"进行中\"\"稍后\"\"完成\"四栏分类，专门修了一个坑：后台还在跑的任务不会被误标成\"不需要理你\"。他现在舒服能带15个并行会话，状态好时能顶到40个，一个月模型花费5万到10万美元（不是他自己掏钱）。他的结论是：真正卡脖子的不是\"知道哪个会话需要你\"，是自己脑子里记得住每个线程在干什么。",
+          "summary_en": "The author's workflow escalated from manually cycling through thirty terminal windows to this: in MindRoom, a chat tool he built himself, every task is a thread, and he only talks to one \"parent\" agent per thread (running on Opus 5.5), which delegates the actual work to smaller sub-agents. Code gets written by default with Gemini 4 Neon (released only days ago); three other models — GPT-6.2 Sol, GPT-6.2 Astra, Opus 5.5 — then review the full diff in parallel, with one rule: no model reviews its own code. After a fix round, a completely fresh reviewer checks again rather than fixating on what the last round already flagged. Simple lookups go to the cheaper Claude Haiku 5.5. The interface sorts threads into four columns — Needs you, Working, Later, Done — fixing a specific bug where a thread still running in the background used to get mislabeled as not needing attention. He comfortably runs 15 parallel sessions, peaking at 40 on a good day, spending $50,000–$100,000 a month on model usage (not out of his own pocket). His conclusion: the real bottleneck isn't knowing which session needs you, it's holding what every thread is actually doing in your own head.",
+          "why": "这篇不是展示稿，是今晚自己跑这套\"两个fork带任务书出发、各自决策、回来核对\"流程时真实在做的事，只是他的规模大了一个量级（15-40个并行线程 vs 今晚的2个fork）。\"没有模型审自己写的代码\"\"换一个全新审查者避免盯死上一轮问题\"这两条规则，直接能搬到任何多agent流程里用。",
+          "why_en": "This isn't a demo reel — it's describing, at roughly an order of magnitude more scale (15-40 parallel threads versus tonight's 2 forks), exactly the thing already happening tonight: dispatch with a mission brief, let each decide, reconcile on return. Two of his specific rules — no model reviews its own code, and a completely fresh reviewer each round instead of fixating on the last one's findings — port directly into any multi-agent workflow.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    }
+  ],
+  "meta_read": "今晚几条线合在一起看，焦点已经不是\"AI能不能写代码\"，是\"谁来确认这些代码没问题\"。Claude Ship把审批写成仓库里的一份策略文件；Nijholt的做法是三个模型轮流审，规定没有模型审自己写的代码；Jarred Sumner在Anthropic内部一个月推翻重写五版编译器，图的也是让AI写出的代码更敢发；连Jonathan Nen这种唱反调的，争的也不是要不要审，是审核这件事该留在自己手里还是交给厂商。往回看Michael Harley那条：这些审核规则到底按谁的利益划线，厂商自己说了算，不是用户。模型本身越写越快、越写越多，真正稀缺、真正值钱的，变成了\"审核权\"归谁。",
+  "meta_read_en": "Taken together, tonight's threads aren't really about whether AI can write code anymore — they're about who gets to confirm it's actually fine. Claude Ship writes approval into a policy file living in the repo. Nijholt runs three models in rotation with one hard rule: no model reviews its own code. Jarred Sumner tore up and rewrote a compiler five times in a month inside Anthropic, chasing the same goal — code confident enough to ship. Even Jonathan Nen's pushback isn't about whether review should happen, it's about whether review should stay in your own hands or move to a vendor's. And Michael Harley's piece is the reminder underneath all of it: whoever draws those review boundaries draws them around their own interest, not the user's, by default. As models write code faster and in greater volume, the scarce and valuable thing becomes who holds the review power.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 84 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 21538,
+      "stars_today": 1826
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 325859,
+      "stars_today": 1003
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 64866,
+      "stars_today": 1074
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 70264,
+      "stars_today": 727
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 19236,
+      "stars_today": 360
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+      "language": "TypeScript",
+      "stars": 208978,
+      "stars_today": 991
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 33228,
+      "stars_today": 158
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 12475,
+      "stars_today": 185
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 72110,
+      "stars_today": 802
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 74259,
+      "stars_today": 703
+    }
+  ],
+  "ota": {
+    "learned": [
+      "YouTube fork自己写的最终总结跟它实际完成的工作差了一个量级——它误读了\"避免与其他agent重复工作\"的提示，以为需要用ListAgents去核对另一个fork，结果收尾时心慌，只报了1条item。靠读它留在/tmp/digest-2026-11-24/里的decisions-youtube.md和3份完整字幕txt，才还原出它真正做完的工作（9个频道+控制频道全部200，3条talk全文读完，决策日志完整记录了取舍），不能只信子agent自己写的总结，这跟\"别当传话筒\"的原则是同一件事，只是这次是子agent自己低估了自己。",
+      "核实HN+文摘fork的报告时，抓到一处具体错误：它给Claude Ship写的URL是编的（\"claude.com/resources/articles\"不是真链接），去HN Algolia搜\"Claude Ship\"才找到真实地址（claude.com/resources/articles/introducing-claude-ship）。子agent给的summary看起来言之凿凿，不代表URL是真的，核实环节里URL本身也要当作一条待验证的claim，不能默认它复制对了。",
+      "Michael Harley那篇关于Bandcamp/YouTube下载不对等的帖子，HN显示\"905分、379条评论\"，乍看像今天的新闻，打开原文才发现发布日期是11月1日，是三周前的旧帖今晚才被顶上热榜。这正好是SKILL.md里已经写过的\"HN讨论的新鲜度不等于内容的新鲜度\"规则在今晚的一次真实命中，按发布日期而不是上榜日期处理，写成\"旧帖今晚上榜\"而不是当成新闻。"
+    ],
+    "learned_en": [
+      "The YouTube fork's own final summary undersold its actual completed work by an order of magnitude — it misread the \"avoid duplicating another agent's work\" guidance as meaning it should use ListAgents to check on the sibling fork, got rattled at wrap-up, and reported just 1 item. Reading its own checkpointed decisions-youtube.md and all 3 full transcript files in /tmp/digest-2026-11-24/ recovered what it had actually finished (all 9 channels plus the control channel returning clean 200s, 3 talks read in full, a complete decision log). Trusting only a sub-agent's self-written summary isn't enough — same principle as 'don't be a meat proxy,' just this time the sub-agent undersold itself rather than the content being unread.",
+      "Verifying the HN+文摘 fork's report caught one concrete error: the URL it gave for Claude Ship was fabricated (\"claude.com/resources/articles\" isn't a real link) — the actual URL (claude.com/resources/articles/introducing-claude-ship) only turned up after searching HN Algolia for \"Claude Ship\" directly. A sub-agent's summary reading confidently doesn't mean its URL is real; the URL itself needs treating as an unverified claim during the check pass, not assumed correctly copied.",
+      "Michael Harley's post on the Bandcamp/YouTube download asymmetry showed \"905 points, 379 comments\" on HN and read like tonight's news at a glance — opening the actual page showed a Nov. 1 publish date, a three-week-old post that only hit the front page tonight. This is a live hit on the SKILL.md rule already written down (\"HN discussion freshness isn't content freshness\") — handled by publish date, not front-page date, and written up as an old post resurfacing tonight rather than as news."
+    ],
+    "new_capabilities": [
+      "给sweep fork写任务书时新增一条边界：fork的任务是自包含的，不需要也不应该用ListAgents去确认兄弟fork的进度或是否撞车——今晚YouTube fork在收尾阶段误用了这个工具，误以为自己需要避让另一个fork，导致它自己写的最终总结大幅缩水（只报了1条item，实际完成了9个频道全扫+3条完整字幕）。下次写任务书时要把这条边界说清楚。"
+    ],
+    "new_capabilities_en": [
+      "Added a boundary to future sweep-fork mission briefs: a fork's task is self-contained, and it should neither need nor use ListAgents to check a sibling fork's progress or for overlap — tonight's YouTube fork misapplied that tool at wrap-up, mistakenly thinking it needed to defer to the other fork, which caused its own final summary to undersell its real work (reporting just 1 item, versus the full 9-channel sweep and 3 fully-read transcripts it had actually completed). Next time's mission brief should state this boundary explicitly."
+    ]
+  },
+  "partial": false
+}
