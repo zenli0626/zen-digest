@@ -1,0 +1,281 @@
+{
+  "date": "2026-11-25",
+  "banner": "机器验过，人未读懂",
+  "banner_en": "Math proofs now outrun their readers",
+  "image": {
+    "src": "digests/img/2026-11-25.png",
+    "caption": "Latent Space 统计了今年 64 项 AI 辅助数学研究进展，其中 11 月一个月就占 20 项，包括 Google Cogentic 的 6 篇论文（图：Latent Space · AI News）。",
+    "caption_en": "Latent Space's count of 64 AI-assisted math research advances this year; November alone accounts for 20, including six papers from Google's Cogentic (source: Latent Space · AI News)."
+  },
+  "actions": [
+    {
+      "text": "挑一条你手上正在用 AI 辅助写的 PR 或关键脚本，花 15 分钟补一件以前嫌贵没做的严谨动作：写下关键不变量，或给核心路径补一组穷举边界测试，再把这条动作贴进 PR 说明。15 到 20 分钟。做完的标准是，PR 里至少多了一条你能指着说清楚「这是 AI 帮我做、而我看得懂」的严谨动作。",
+      "text_en": "Pick a PR or critical script you're already writing with AI, and spend 15 minutes adding one piece of rigor you used to skip as too expensive: write down the key invariant, or add an exhaustive edge-case test around the core path, then note it in the PR description. 15 to 20 minutes. Done when the PR carries at least one rigor step you can point to and explain yourself, made with AI but understood by you.",
+      "source": "Ian K. Duncan · 个人博客",
+      "source_en": "Ian K. Duncan · Personal blog",
+      "source_url": "https://www.iankduncan.com/engineering/2026-11-19-smart-people-who-give-a-shit-use-tools"
+    },
+    {
+      "text": "把你最近一次用 AI 解决的问题，花 20 分钟让 AI 整理成一个能复用的 skill 或脚本，写清输入、步骤、验收标准。25 分钟以内。做完的标准是，下次遇到同类任务能直接调用它，这份东西你自己也读得懂。",
+      "text_en": "Take the last problem you solved with AI and spend 20 minutes having AI turn it into a reusable skill or script, with input, steps and acceptance criteria spelled out. Under 25 minutes. Done when the next similar task can call it directly, and you can read the thing yourself.",
+      "source": "Jayden · 个人博客",
+      "source_en": "Jayden · Personal blog",
+      "source_url": "https://jayd.ml/2026/11/14/rockbox-on-yp3.html"
+    },
+    {
+      "text": "逐个看你对外服务里所有吃文件名的入口（上传、导出、模板、下载），确认路径有没有先规范化再拼接，没有就补上。20 分钟。做完的标准是，你能讲清楚哪个接口原来能写到目录外、改完为什么不行了。",
+      "text_en": "Go through every file-name-taking endpoint in your public services (upload, export, template, download) and confirm the path is normalized before it is joined; add it where missing. 20 minutes. Done when you can explain which endpoint could previously write outside its directory and why it no longer can.",
+      "source": "Dan Goodin · Ars Technica",
+      "source_en": "Dan Goodin · Ars Technica",
+      "source_url": "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/"
+    }
+  ],
+  "hands_on": {
+    "title": "用 Jane Street 的苏格拉底导师 skill，把一篇论文教到你能验收",
+    "title_en": "Use Jane Street's Socratic tutor skill to learn a paper until you can check it yourself",
+    "why": "今天最刺眼的一条是「机器验过不等于人读懂」：黎曼证明的 Lean 仓库自己写明只跑了机器检查、没有数学家通读过。这个 skill 做的事正好相反，它不直接给答案，先做诊断，再按 0 到 5 级的技能地图一次只问一个问题，逼你把「哪一步没懂」说出来。拿它读今天那篇 9/4 论文或 GRH 仓库的 GUIDE.md，比让模型直接总结更能检验你到底懂没懂。",
+    "why_en": "Today's sharpest fact is that machine-checked is not the same as human-understood: the Riemann Lean repo states outright that only machine checks ran and no mathematician has read it through. This skill does the opposite of a summary. It diagnoses you first, then works a 0-to-5 skill map one question at a time, forcing you to name the step you don't actually understand. Point it at today's 9/4 paper or the GRH repo's GUIDE.md, and it tests your understanding far better than asking a model to summarize.",
+    "time": "20 到 30 分钟",
+    "time_en": "20 to 30 minutes",
+    "steps": [
+      "打开 github.com/janestreet/agent_skills，进 socratic-tutor 目录，把 SKILL.md 存下来。用 Claude Code 这类支持 SKILL.md 的 agent，就把整个目录放进它的 skills 文件夹；用纯聊天，就把 SKILL.md 正文整段贴进对话。",
+      "在正文后面加一句：「教我 <今天那篇 9/4 论文的摘要 / GRH 仓库的 GUIDE.md / 任何你想真正搞懂的题目>。」",
+      "跟着它走一遍：先回答诊断题，再按它一次一问往下答。答不上来的地方记下来，那就是你真正没懂的点。"
+    ],
+    "steps_en": [
+      "Open github.com/janestreet/agent_skills, go into the socratic-tutor directory, and save SKILL.md. With a SKILL.md-capable agent like Claude Code, drop the whole directory into its skills folder; with a plain chatbot, paste the body of SKILL.md into the chat.",
+      "Add one line after it: \"teach me <the abstract of today's 9/4 paper / the GRH repo's GUIDE.md / any topic you actually want to get>.\"",
+      "Work through it: answer the diagnostic, then answer one question at a time. Write down the spots you can't answer; those are the parts you genuinely don't understand yet."
+    ],
+    "source": "Jane Street agent_skills · GitHub",
+    "source_en": "Jane Street agent_skills · GitHub",
+    "source_url": "https://github.com/janestreet/agent_skills"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Firebase topstories 人工扫了前 30 条，不按关键词过滤。1Password 安全事件（1192 分）虽是当日最高，但不属 AI 口径，未收；黄仁勋复职英伟达 11-23 已用过，剔除；Scott Aaronson 那篇黎曼长文与本周已用的同一条线重叠，只作背景。核实过：9/4 是 OpenAI 11 月 24 日的预印本；GRH 仓库 README 自述只过了机器检查、没有数学家通读、也无配套论文。",
+      "swept_en": "Manually scanned the top 30 of Firebase topstories rather than filtering by keyword. The 1Password security incident (1,192 points) was the day's top story but outside the AI remit, so it was left out; Jensen Huang's Nvidia return was already used 11-23 and cut; Scott Aaronson's Riemann post overlaps the same thread already covered this week and was kept only as background. Verified: the 9/4 result is a Nov 24 OpenAI preprint; the GRH repo's README states it passed machine checks only, with no mathematician reading it through and no accompanying paper.",
+      "items": [
+        {
+          "title": "OpenAI 预印本：矩阵乘法指数恰为 9/4，推翻了 ω=2 猜想",
+          "title_en": "OpenAI preprint: the matrix multiplication exponent is exactly 9/4, refuting the ω=2 conjecture",
+          "author": "OpenAI 研究团队 · 预印本 · 经 Hacker News",
+          "author_en": "OpenAI research team · Preprint · via Hacker News",
+          "likes": "1026 分，580 条评论（Hacker News）",
+          "likes_label": "11 月 24 日发布",
+          "likes_label_en": "Published Nov 24",
+          "url": "https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf",
+          "summary": "11 月 24 日的预印本证明：在任何域上，方阵乘法的指数都等于 9/4。上界此前已知，10 月 OpenAI 给出复数域上的上界，Amanov、van den Berg、Zuiddam 推广到任意域；这篇补的是匹配的下界，即任意 n≥2 的形式算术电路，至少约 n 的 9/4 次方除以 2 个乘除门，线性运算免费也不够。此前主流猜想是 ω=2，这个结果等于说指数比输出规模的指数整整高 1/4。据 HN 评论，结论出自一个未公开的内部模型，配方没公布；评论区还统计同一批 4 篇论文一次解决了 8 个公开难题清单上的问题，包括 Smale 第九问题（强多项式时间线性规划），这一条属评论者说法，未经作者确认。",
+          "summary_en": "A Nov 24 preprint proves that over every field the exponent of square matrix multiplication is exactly 9/4. The upper bound was already known (OpenAI over the complex numbers in October, extended to every field by Amanov, van den Berg and Zuiddam); this paper supplies the matching lower bound: any formal arithmetic circuit for two n-by-n matrices with n at least 2 needs at least about n to the 9/4 over 2 multiplication or division gates, even with linear operations free. The long-standing conjecture was ω=2, so this says the exponent sits exactly a quarter above the exponent of the output size. Per HN comments, the result came from an unreleased internal model with no disclosed recipe; commenters also count that the same batch of four papers resolved eight problems on a public open-problem list, including Smale's ninth (strongly polynomial linear programming), a claim from commenters rather than the authors.",
+          "why": "这不是又一条跑分。它说明模型已经开始产出可被机器检验的新数学，而「可机检」正是关键区别：证明能被独立复核，不像一段说不出所以然的代码。对做 AI 产品的人，真正的信号是「AI 自产出可验的新结果」正在从新闻变成常态，这会改变哪些活值得压人力、哪些该先让模型做一版。",
+          "why_en": "This is not another benchmark line. It shows a model producing new mathematics that other machines can check, and machine-checkability is the important part: the proof can be independently verified, unlike a chunk of code nobody can explain. For anyone building AI products, the real signal is that AI generating verifiable new results is shifting from headline to normal, which changes which work is worth staffing with people and which should start as a model's first draft.",
+          "flag": "预印本，未经同行评审；据 HN 评论出自未公开的内部模型，方法与配方未披露。",
+          "flag_en": "Preprint, not peer-reviewed; per HN comments it came from an unreleased internal model, with method and recipe undisclosed."
+        },
+        {
+          "title": "Anthropic 放出更短的黎曼证明 Lean 版：机器验过，没人通读",
+          "title_en": "Anthropic ships a shorter Lean version of the Riemann proof: machine-checked, unread by humans",
+          "author": "lsernau（与 Anthropic 同事及 Claude 合作）· GitHub 仓库 · 经 Hacker News",
+          "author_en": "lsernau (with Anthropic colleagues and Claude) · GitHub repo · via Hacker News",
+          "likes": "299 分，136 条评论（Hacker News）",
+          "likes_label": "今天发布",
+          "likes_label_en": "Published today",
+          "url": "https://github.com/lsernau/grh-lean",
+          "summary": "上次说到两份独立的黎曼猜想证明。今天的进展是：一个更短的 Lean 4 版本放上 GitHub，基于 Levent Alpöge 的证明，由作者与 Anthropic 同事及 Claude 合作产出。两个版本：可读版约 30 万行，压缩版同样是五个定理、约 7.6 万行，只依赖 propext、Classical.choice、Quot.sound 三条公理，建在 Mathlib 上。仓库自己写明：只通过了机器检查，没有数学家通读过，也没有配套论文。HN 上最集中的疑问也在这：这几万到几十万行，谁能读懂、怎么确认读懂了。有人引用陶哲轩一个月前的看法，说拿到巨大却没有洞见的证明本身就是问题。",
+          "summary_en": "Last week the story was two independent Riemann proofs. Today's development: a shorter Lean 4 version is on GitHub, based on Levent Alpöge's proof and produced by the author with Anthropic colleagues and Claude. Two editions: a readable one of about 300,000 lines, and a compact one with the same five theorems at about 76,000 lines, relying only on the axioms propext, Classical.choice and Quot.sound, built on Mathlib. The repo says plainly what it is and isn't: machine checks only, no mathematician has read it through, and no paper accompanies it. That is where HN's questions cluster too: who can actually read tens to hundreds of thousands of lines, and how would anyone confirm they understood them. Someone quotes Terence Tao's point from a month ago that huge proofs with no insight are themselves a problem.",
+          "why": "这是「证明比读者快」最具体的样子。Lean 通过机器检查，只说明按形式化定义推下来没有逻辑漏洞，不等于有人理解了证明，也不等于定理有洞见。对做 agent 和评审流程的人，这提示一个真实的产品问题：当 AI 能批量产出可机检的产物，瓶颈从「生成」移到「谁来审、审到哪一层」。别把「机器验过」当成「人可以签字」。",
+          "why_en": "This is the most concrete face of proofs outrunning readers. Passing Lean's machine check means the derivation has no logical hole given the formalized statement; it does not mean a person understood the proof or that it carries insight. For anyone building agents or review pipelines, that exposes a real product question: once AI can mass-produce machine-checkable artifacts, the bottleneck moves from generation to who reviews, and to what level. Machine-checked is not the same as a human willing to sign off.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "他用 LLM 把 Rockbox 移植到 9 美元的杂牌 MP3，还把流程做成了工具包",
+          "title_en": "He used an LLM to port Rockbox to a $9 no-name MP3 player, then turned the process into a toolkit",
+          "author": "Jayden · 个人博客 · 经 Hacker News",
+          "author_en": "Jayden · Personal blog · via Hacker News",
+          "likes": "231 分，95 条评论（Hacker News）",
+          "likes_label": "11 月 14 日发布，11 月 24 日上榜",
+          "likes_label_en": "Published Nov 14, hit the front page Nov 24",
+          "url": "https://jayd.ml/2026/11/14/rockbox-on-yp3.html",
+          "summary": "作者在 AliExpress 上花 9.71 美元买了台杂牌 MP3——机器自称 yp3_2.0.43，芯片是网上查不到的 Smartlink SL6801——想给它跑 Rockbox。硬约束摆在那里：机器只有 512 KiB SRAM，而 Rockbox 原先最小的目标也要 2 MiB；没有缓存，双核还会互相卡死。他把目标交给模型，前后约一周，Rockbox 在这台机器上启动并放音，又花约一个月调优，自评基本没插手。更值钱的是下一步：他把这次的解法整理成可复用的工具包 auto-rockbox，Claude 用它在另一台 MP3（TS47）上 4 小时就跑起来了。代价是砍掉了播放时的并发、语音、除英语外的语言、DSP 变速等。",
+          "summary_en": "The author bought a $9.71 no-name AliExpress MP3 player (it reports itself as yp3_2.0.43, on a Smartlink SL6801 chip that doesn't exist online) and set out to run Rockbox on it. The constraints were brutal: only 512 KiB of SRAM versus the 2 MiB of Rockbox's smallest prior target, no cache, and two cores that can deadlock each other. He gave the model a goal; in about a week Rockbox booted and played audio on the device, then roughly a month of tuning, with his own summary being that he was barely involved. The more valuable step came after: he turned the approach into a reusable toolkit, auto-rockbox, and Claude used it to get Rockbox running on another player (the TS47) in 4 hours. The cuts: no concurrency while playing music, no voice, English only, no pitch or speed control.",
+          "why": "值钱的不是 LLM 会写代码，而是把一次性的战果沉淀成可复用的工具这一步：第一台一周，第二台 4 小时。对独立开发和小团队来说，这是能直接抄的模式。别让 AI 只解决眼前这一件事，让它顺手把这次的解法做成下次能直接调用的工具。",
+          "why_en": "The valuable part isn't that an LLM writes code; it's the step of turning a one-off win into a reusable tool: one week for the first device, four hours for the second. For indie developers and small teams, that's a pattern to copy directly. Don't let AI solve only the thing in front of you; have it package this solution into something the next task can call.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "LLM 只是放大器：认真的人更强，混的人更能混",
+          "title_en": "LLMs are just an amplifier: the careful get stronger, the careless coast further",
+          "author": "Ian K. Duncan · 软件工程师 · 个人博客 · 经 Hacker News",
+          "author_en": "Ian K. Duncan · Software engineer · Personal blog · via Hacker News",
+          "likes": "284 分，230 条评论（Hacker News）",
+          "likes_label": "11 月 19 日发布，今天上榜",
+          "likes_label_en": "Published Nov 19, hit the front page today",
+          "url": "https://www.iankduncan.com/engineering/2026-11-19-smart-people-who-give-a-shit-use-tools",
+          "summary": "作者回应另一篇说 AI 正在让工程师越来越不在乎系统的文章。他的判断相反：LLM 放大的是键盘后面那个人。以前在乎常被一个人的阅读和打字速度卡住，很多该做的严谨动作——TLA+ 建模、穷举边界测试、追一条调用链——做不起；有了能干的模型，认真的人反而终于做得起，懒的人则暂时能当人肉剪贴板，把工单丢进对话框、点合并。真正的风险来自没人验证、没人建立心智模型、出事没人负责的代码，而这种人在 ChatGPT 之前就有。他还指出，眼下很多事故的账，是过去四十年工程严谨度不够欠下的，不是 AI 新造的。",
+          "summary_en": "The author answers another essay arguing that AI is making engineers care less about the systems they run. His read is the opposite: an LLM amplifies whoever is behind the keyboard. Before, caring was often rationed by how fast one person could read and type, so plenty of rigor (TLA+ modeling, exhaustive edge-case tests, tracing a call chain) was simply unaffordable; with a capable model, careful engineers can finally afford it, while lazy ones can temporarily coast as a human clipboard, dropping tickets into a chat and clicking merge. The real risk is code nobody verified, nobody modeled mentally, and nobody owns when it breaks, and that engineer predates ChatGPT. He also argues much of today's outage bill is forty years of insufficient rigor coming due, not something AI invented.",
+          "why": "对带团队或自己写代码的人都直接可用：AI 不会自动让人变好或变坏，它把原有的习惯放大。判断一条 AI 工作流值不值，看它让人更愿意做本该做的严谨动作，还是只让人更快地点合并。这是比提效多少倍更该先问的一句。",
+          "why_en": "This is directly usable whether you lead a team or write code yourself: AI doesn't automatically make people better or worse; it amplifies habits already there. Judge an AI workflow by whether it makes people more willing to do the rigor they should, or just faster at clicking merge. That question comes before any \"how many times faster\" claim.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "Import AI 最新一期是 11 月 23 日发布的第 482 期，超出 48 小时窗口；Ahead of AI 最新一篇在 11 月 15 日，同样出窗；Simon Willison 的博客 11 月 21、24 日刚用过，本周按去重不再取；Latent Space 11 月 25 日的 AINews 用作本期要图的数据出处。今日收录 TLDR AI 11 月 25 日版里的两条：Paradigm 3 的蜂群对照研究、Amazon 披露的 Cairn 自主攻击。另记：YouTube 9 个频道 RSS 全部 200，但本 runner 上 yt-dlp 取字幕全部 403，按无字幕规则记 0 条，不编造。",
+      "swept_en": "Import AI's latest is issue 482 from Nov 23, outside the 48-hour window; Ahead of AI's most recent post is Nov 15, also outside it; Simon Willison's blog was used Nov 21 and 24 and is skipped this week under dedup; Latent Space's Nov 25 AINews supplied the data behind this issue's front-page image. Two items came from today's TLDR AI (Nov 25): Paradigm 3's swarm-control study and Amazon's disclosure of the Cairn autonomous attack. Also noted: all 9 YouTube channel RSS feeds returned 200, but yt-dlp's subtitle fetch returned 403 for every candidate on this runner, so YouTube is recorded at zero items rather than fabricated.",
+      "items": [
+        {
+          "title": "同样的 token 预算，单个 agent 反而比 agent 蜂群做得更好",
+          "title_en": "At the same token budget, a single agent beats an agent swarm",
+          "author": "Niccolò Zanichelli、Gavin Leech · Paradigm 3 · 经 TLDR AI",
+          "author_en": "Niccolò Zanichelli and Gavin Leech · Paradigm 3 · via TLDR AI",
+          "likes": "1100+ 次实验，80+ 种团队配置",
+          "likes_label": "11 月 24 日发布",
+          "likes_label_en": "Published Nov 24",
+          "url": "https://www.paradigm3.org/research/swarms",
+          "summary": "Paradigm 3 把 2、4、8 个 agent 组成的团队，和拿到同样总 token 预算的单个 agent 放在四个长任务、三种组织方式上比，跑了 1100 多次、80 多种团队配置。结论：蜂群明显更快，约 6 倍，但质量比单 agent 低约 7%，惩罚还随团队变大而加重；他们另跑过 16、32 个的队，也没比 8 个更好。关键发现是：过去所谓的蜂群溢价，多半来自单个 agent 跑久了会变馊。只要允许单 agent 用全新上下文重启，它又重新赢过团队。所以蜂群目前更像一种更快的推理缩放，用速度换一点质量，而不是打开了一条新的能力轴。",
+          "summary_en": "Paradigm 3 compared teams of 2, 4 and 8 agents against a single agent given the same total token budget, across four long-horizon tasks and three ways of organizing a team: over 1,100 runs and 80-plus team configurations. The result: swarms are clearly faster, about 6x, but about 7% worse on quality, and the penalty grows with team size; teams of 16 and 32 did no better than teams of 8. The key finding is that the earlier 'swarm premium' mostly came from a single agent going stale over a long run. Let the single agent restart with a fresh context and it beats the team again. So today's swarms look more like a faster form of inference scaling, trading some quality for speed, than a new capability axis.",
+          "why": "对正在决定要不要上多 agent 的人，这是少见的、把 token 预算对齐之后的对照实验。实际含义很直接：要的是一天内拿到约 93% 的结果，用蜂群合理；要的是最高质量、且能等，单 agent 加定期重启上下文更划算。别把更快误当成更强。",
+          "why_en": "For anyone deciding whether to adopt multi-agent setups, this is a rare controlled study with the token budget held equal. The practical read is direct: if you want roughly 93% of the result in a day, a swarm is reasonable; if you want the highest quality and can wait, a single agent with periodic context resets is the better deal. Don't mistake faster for stronger.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "AI agent 11 分钟找到并利用 0day，人类只给了一句目标",
+          "title_en": "AI agents found and exploited a zero-day in 11 minutes, with a one-line goal from a human",
+          "author": "Dan Goodin · Ars Technica · 经 TLDR AI",
+          "author_en": "Dan Goodin · Ars Technica · via TLDR AI",
+          "likes": "Ars Technica 报道",
+          "likes_label": "11 月 24 日发布",
+          "likes_label_en": "Published Nov 24",
+          "url": "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/",
+          "summary": "Amazon 说，有攻击者用开源的 AI 渗透框架 Cairn，只给 agent 一串 IP 和一句拿到 shell 权限，就让它们在东亚一所大学的服务器上，从一个开源医学影像 AI 应用的 API 里找到一个未公开的文件上传路径穿越漏洞。约 11 分钟，agent 从摸清 API 走到任意写文件；之后写入一个 Python 反向 shell 到 sitecustomize.py，借训练接口拉起新进程，拿到 root。Amazon 判定这是 0day：当时没有任何公告、补丁或漏洞库记录。Palo Alto Networks 另观察到同一框架被用于 25 次自主行动，针对至少 19 家半导体、国防和公民社会组织，至少 10 家被攻破，其中一家外泄超过 100 万条记录。Cairn 本是给防守方做的，模型无关，能接 Claude Code、Codex、Pi。",
+          "summary_en": "Amazon reports that attackers used the open-source AI pentesting framework Cairn, giving agents a list of IPs and a single goal, 'obtain shell access,' and letting them work on servers at an East Asian university. Against an open-source medical imaging AI application, the agents found an unpatched path-traversal flaw in an upload endpoint: about 11 minutes from mapping the API to arbitrary file write. They then wrote a Python reverse shell to sitecustomize.py and triggered the training endpoint to spawn a new process, landing as root. Amazon assessed it as a zero-day: at the time, no advisory, fix or vulnerability-database entry existed. Palo Alto Networks separately saw the same framework run 25 autonomous operations against at least 19 organizations in semiconductors, defense and civil society, breaching at least 10, with one org losing more than a million records. Cairn was built for defenders, is model-agnostic, and runs Claude Code, Codex or Pi.",
+          "why": "对任何要上线对外服务的人，这是一条具体的风险更新：从发现漏洞到打进去被压到分钟级，比很多安全运营中心人工分诊一次告警还快。它也提示做 agent 产品的一条底线：把授权渗透这类高危动作做成可自主执行的框架，授权边界和审计必须跟能力一起上，否则框架本身会被反过来用。",
+          "why_en": "For anyone running anything public-facing, this is a concrete risk update: the gap from finding a flaw to exploiting it is now measured in minutes, faster than many security operations centers can manually triage one alert. It also sets a boundary for agent products: if you make a high-risk action like authorized pentesting autonomously executable, authorization limits and auditing have to ship with the capability, or the framework itself gets turned against you.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条线并排看，变便宜的是生成，没跟着变便宜的是验证和担责。定理可以批量产出，却没人通读；多派几个 agent 不一定更聪明，卡点落在上下文和协调上；自主 agent 找漏洞比人分诊还快。于是「AI 能做什么」不再是分水岭，分水岭是有没有人真的看懂、并且愿意为结果签字。工具会放大这个人的判断，不会替他判断。",
+  "meta_read_en": "Looked at side by side, what got cheap today is generation; what stayed expensive is verification and accountability. Theorems can be mass-produced but nobody has read them through. More agents are not automatically smarter, since the limit sits in context and coordination. Autonomous agents find flaws faster than people triage them. So what AI can do is no longer the dividing line; whether someone actually understands the result and will put their name on it is. Tools amplify that person's judgment, they don't replace it.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 23133,
+      "stars_today": 1652
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 326684,
+      "stars_today": 903
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 65741,
+      "stars_today": 1106
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 71037,
+      "stars_today": 826
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 19561,
+      "stars_today": 416
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+      "language": "TypeScript",
+      "stars": 210124,
+      "stars_today": 1135
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 33388,
+      "stars_today": 176
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 12668,
+      "stars_today": 191
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 73118,
+      "stars_today": 1141
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 75168,
+      "stars_today": 945
+    }
+  ],
+  "ota": {
+    "learned": [
+      "观察：Paradigm 3 的对齐预算实验里，蜂群比单 agent 快约 6 倍、质量低约 7%，惩罚随团队规模变大；单 agent 只要允许重置上下文就重新领先。这说明「蜂群溢价」多半是单 agent 跑久了变馊造成的，不是团队本身更聪明。",
+      "已实施（cloud，待笔记本采纳）：把这条写成拆 fan-out 之前的判断规则，追加进 ota-ledger，先跑「单 agent 加定期重置上下文」的同预算基线，再决定要不要拆多 agent；把「更多 agent」当速度杠杆，不当质量杠杆。",
+      "已验证：validate-digest.py 的 PLATFORM_HOSTS 把 github.com 列为平台宿主豁免，同一期并列两条 GitHub 论文链接（今日 OpenAI 9/4 与 Anthropic GRH）不算同源重复，--strict 校验通过。"
+    ],
+    "learned_en": [
+      "Observation: in Paradigm 3's budget-matched experiment, a swarm was about 6x faster but about 7% worse on quality, with the penalty growing with team size; a single agent that can reset its context wins again. The 'swarm premium' mostly came from the single agent going stale, not from the team being smarter.",
+      "Implemented (cloud, queued for the laptop): wrote this into the OTA ledger as a pre-fan-out rule. Before splitting work across subagents, run the single-agent-with-periodic-resets baseline at matched budget, and treat more agents as a speed lever, not a quality lever.",
+      "Verified: validate-digest.py lists github.com under PLATFORM_HOSTS as a venue exemption, so two GitHub-hosted paper links can coexist in one issue (today's OpenAI 9/4 and Anthropic GRH) without tripping the same-domain rule; --strict passes."
+    ],
+    "new_capabilities": [
+      "同一期可以并列两条 GitHub 托管的论文或结果链接而不触发同源去重（github.com 属平台宿主豁免）；今日用 OpenAI 9/4 与 Anthropic GRH 两条，--strict 校验通过。"
+    ],
+    "new_capabilities_en": [
+      "Can place two GitHub-hosted paper or result links in one issue without triggering the same-source rule (github.com is a venue exemption); today's OpenAI 9/4 and Anthropic GRH pair passed --strict."
+    ]
+  },
+  "partial": false
+}
