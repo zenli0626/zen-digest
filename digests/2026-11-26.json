@@ -1,0 +1,287 @@
+{
+  "date": "2026-11-26",
+  "banner": "agent 走谷歌的门，发信还得求伙伴",
+  "banner_en": "Google owns the agent door; the send key stays partner only",
+  "image": {
+    "src": "digests/img/2026-11-26.jpg",
+    "caption": "本期要图：techstackups 报道谷歌 Workspace MCP 新规所用的封面图。报道称，2027 年 2 月 1 日起，受 AI agent 驱动的工具必须经谷歌的 Workspace MCP 服务器访问 Gmail、Drive、日历等服务。（图：techstackups.com）",
+    "caption_en": "This issue's lead image: the cover techstackups used for its report on Google's new Workspace MCP rule. The report says that from February 1, 2027, tools that are or are driven by AI agents must reach Gmail, Drive, Calendar and the rest of Workspace through Google's Workspace MCP servers. (Image: techstackups.com)"
+  },
+  "actions": [
+    {
+      "text": "在把线上模型换到某个 .2 小版本之前，先挑两三个真实任务各跑一遍，把推理 token 和成败记下来。约 30 分钟。做完你会有一组升级前后的对照数字，够拿来决定换不换。新版可能在你没留意的地方省了推理，这件事只看跑分看不出来。",
+      "text_en": "Before switching a production model to a .2 point release, run two or three of your real tasks once and record the reasoning tokens and pass/fail for each. About 30 minutes. You'll end with a before-and-after set of numbers to decide on. The new version may be cutting reasoning where you didn't notice, and that doesn't show up on a benchmark.",
+      "source": "micjm.com · 个人博客",
+      "source_en": "micjm.com · Personal blog",
+      "source_url": "https://micjm.com/blog/openai-is-in-cost-control-mode/"
+    },
+    {
+      "text": "先用便宜的分类模型把整份目标名单打分，再只对高分那批花钱做 enrichment。约 20 到 30 分钟能跑出第一版。做完你手上是一张按契合度排好序的全表，enrich 预算按分数分配，而不是平摊给一万家公司。Clay 算过，把几千万家公司全过一遍分类器，成本低到可以当成起点。",
+      "text_en": "Score your entire target list with a cheap classifier first, then spend on enrichment only for the high scorers. About 20 to 30 minutes for a first version. You'll end up with the full list ranked by fit, and an enrichment budget allocated by score instead of spread flat across ten thousand companies. Clay ran the numbers: pushing tens of millions of companies through a classifier costs little enough to treat as a starting point.",
+      "source": "Jeff Barg · Latent Space",
+      "source_en": "Jeff Barg · Latent Space",
+      "source_url": "https://latent.space/p/how-clay-builds-gtm-agents-jeff-barg-head-of-ai/"
+    },
+    {
+      "text": "挑一件你每月手动做的更新或部署，用 Renovate 加一条 CI 工作流把它接管。约 20 分钟。做完的标志是：下次它自己开出一个 PR，或者一次 push 就上线。这些工具本来就不需要 AI，难的是把零散的步骤串成一条链。",
+      "text_en": "Pick one update or deploy you do by hand each month and take it over with Renovate plus one CI workflow. About 20 minutes. Done when it opens a PR on its own next time, or a single push ships it. These tools never needed AI; the hard part is wiring the scattered steps into one chain.",
+      "source": "janlukas.blog · 个人博客",
+      "source_en": "janlukas.blog · Personal blog",
+      "source_url": "https://janlukas.blog/posts/ai-self-hosting"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚一刻钟：用 sqlite3_rsync 把 SQLite 库直接同步到另一台机器",
+    "title_en": "Tonight, 15 minutes: sync a SQLite database straight to another machine with sqlite3_rsync",
+    "why": "在磁盘只剩一半的机器上，想给 SQLite 库做快照，backup API 和 VACUUM INTO 都要求本地再放得下一份完整拷贝，机器小就直接卡死。sqlite3_rsync 能把这个快照直接搬到远端，不用先在本地复制一份，也能只传发生变化的那部分页。SQLite 3.47.0 起作为实验特性加入，3.50.0 增强，今晚值得亲手试一次。",
+    "why_en": "On a box with less than half its disk free, taking a SQLite snapshot with the backup API or VACUUM INTO needs room for a full local copy, which a small instance simply doesn't have. sqlite3_rsync copies that snapshot straight to another machine without a local duplicate first, and only sends the pages that changed. It landed as experimental in SQLite 3.47.0 and was enhanced in 3.50.0, so it's worth a hands-on try tonight.",
+    "time": "约 10 到 15 分钟",
+    "time_en": "About 10 to 15 minutes",
+    "steps": [
+      "确认本机有 sqlite3_rsync：它随 SQLite 3.47.0 及以后版本提供，装新版 SQLite 或到 sqlite.org 下载即可；两端有一端能 ssh 就行。",
+      "在放数据库的机器上跑：sqlite3_rsync ./app.db user@server:/backups/app.db ——ORIGIN 在前、REPLICA 在后，其中一方可写成 user@host:/path 走 ssh。",
+      "想两边都在本机也行：sqlite3_rsync ./app.db ./copy.db；replica 不存在会自动建。",
+      "加 -v 看 rsync 那样的进度。库可以边跑边被读写，传过去的是命令启动那一刻的快照，之后的新写入不会带过去。",
+      "校验：sqlite3 ./copy.db 'select count(*) from 你的表;'，和源库对一下行数。"
+    ],
+    "steps_en": [
+      "Make sure sqlite3_rsync is on the machine: it ships with SQLite 3.47.0 and later, so install a recent SQLite or grab it from sqlite.org; only one of the two ends needs ssh.",
+      "On the machine holding the database, run: sqlite3_rsync ./app.db user@server:/backups/app.db , with ORIGIN first and REPLICA second, and one side written as user@host:/path to go over ssh.",
+      "Both ends can be local too: sqlite3_rsync ./app.db ./copy.db ; the replica is created if it doesn't exist.",
+      "Add -v for rsync-style progress. Both databases can be read and written while it runs; you get a snapshot from the moment the command started, and later writes aren't carried over.",
+      "Verify: sqlite3 ./copy.db 'select count(*) from your_table;' and compare the row count against the origin."
+    ],
+    "source": "Simon Willison · sqlite.org 文档",
+    "source_en": "Simon Willison · sqlite.org docs",
+    "source_url": "https://simonwillison.net/2026/Nov/26/sqlite3-rsync/"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "人工扫了 Firebase topstories 前 35 条，又跑了 Algolia 的 front_page+AI 查询；分数与评论数用 Algolia items API 逐条核准。收录 AI/LLM/agent/开发工具里最能迁移到应用、GTM、产品面的四条。剔除：Scott Aaronson「HOLY SHIT」长文（1993 分、当日最高，但讲的就是 11-25 已作头条的 ω=9/4，属同一数学线的反应，不重跑）；1Password 安全事件（1635 分，不属 AI 口径）；Moat（OpenRouter 替代品，252 分）页面只对 JS 渲染、正文取不到，宁缺不裱；AMD 版 llama.cpp（293 分）与 11-23 本地 AI 一条同线，且偏内核。",
+      "swept_en": "Manually scanned the top 35 of Firebase topstories plus Algolia's front_page+AI query, and verified every score and comment count through the Algolia items API. Kept four items from AI/LLM/agents/dev-tools that transfer best to application, GTM and product. Cut: Scott Aaronson's 'HOLY SHIT' post (1,993 points, the day's top story, but it is a reaction to the 9/4 result that was already 11-25's lead, the same math thread, so not re-run); the 1Password security incident (1,635 points, outside the AI remit); Moat, an OpenRouter replacement (252 points), whose page renders only in JS with no readable body, so dropped rather than faked; and the AMD fork of llama.cpp (293 points), same thread as the local-AI item on 11-23 and more kernel than application.",
+      "items": [
+        {
+          "title": "谷歌定新规：AI agent 碰 Workspace 只能走它的 MCP 服务器",
+          "title_en": "Google to force AI agents through its Workspace MCP servers",
+          "author": "Al Smith · techstackups（Ritza）· 经 Hacker News",
+          "author_en": "Al Smith · techstackups (Ritza) · via Hacker News",
+          "likes": "253 分，48 条评论（Hacker News）",
+          "likes_label": "11 月 26 日发布",
+          "likes_label_en": "Published Nov 26",
+          "url": "https://techstackups.com/articles/google-workspace-ai-agents-mcp/",
+          "summary": "11 月 24 日，谷歌把八个 Workspace MCP 服务器转为正式可用，并在 API 条款里加了一条：2027 年 2 月 1 日起，凡是由 AI agent 驱动、或本身就是 agent 的工具，访问 Gmail、Drive、日历等 Workspace 服务，必须走这些 MCP 服务器；同日起，直接调 REST 的 agent 一律按标准档配额限速，不管项目买了哪档。条款还禁止给 agent 换层皮躲开分类，违反可封账号。最能说明问题的细节在 Gmail 服务器：它能搜信、读串、建草稿、打标签，却发不了信、回不了、转不了、也改不了草稿，这些工具要伙伴权限，没开放。数据侧另有硬约束：Workspace 数据只能为用户授权的在办任务处理、断开即删，Google 可把向量嵌入、记忆索引、用户画像这类「技术信息」的保留期压到 30 天；拿来做训练、微调、评测、蒸馏都算违规，靠它建长期收件箱索引的助手得每月重建或放弃。Docs、Slides、Tasks 已近全量，Gmail、Drive 明显更薄；非 AI 的定时备份、CRM 同步不受影响。",
+          "summary_en": "On November 24 Google made its eight Workspace MCP servers generally available and added a clause to its API terms: from February 1, 2027, any tool that is or is driven by an AI agent must reach Gmail, Drive, Calendar and the rest of Workspace through those servers. From the same date, agents that call the REST APIs directly are held to Standard-tier quotas no matter which tier the project paid for. The clause also forbids disguising an agent to dodge the classification, with lost access or a suspended account as the penalty. The most telling detail is the Gmail server: it can search mail, read threads, create drafts and apply labels, but it cannot send, reply, forward, or revise a draft. Those tools exist but need partner access and are not generally available. There is a data side too: Workspace data may only be processed for active, user-authorized tasks and must be deleted when the user disconnects, and Google can cap retention of so-called technical information (vector embeddings, memory indexes, user profiles, organizational graphs) at 30 days; training, fine-tuning, evals or distillation on it are banned, so an assistant that keeps a long-term inbox index has to rebuild it monthly or drop it. Docs, Slides and Tasks are near parity; Gmail and Drive are much thinner; non-AI jobs like nightly backups or CRM syncs are explicitly unaffected.",
+          "why": "这是给所有在谷歌 Workspace 上做 agent 的人的一纸倒计时。真正的信号不是「多了个 MCP」，而是平台开始用一种它自己都还没做完的门来收口：入口归它，最有用的动作（发信）却先留给伙伴。把 agent 建在这条门上，就得连配额、保留期和功能缺口一起接受；这不只是技术选型，是把产品节奏押在别人的门框上。详见本报社评。",
+          "why_en": "This is a countdown clock for anyone building an agent on Google Workspace. The real signal isn't another MCP server; it's a platform closing the gate with a door it hasn't finished building, owning the entrance while keeping the most useful action, sending mail, for partners. Build your agent on this door and you inherit its quotas, retention limits and feature gaps. That's not just a tech choice; it's betting your product's pace on someone else's doorframe. See this issue's synthesis.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "OpenAI 把 Astra、Sol 调到 6.2，账单降了，推理也跟着降了",
+          "title_en": "OpenAI's Astra and Sol 6.2 look tuned for cost, and they reason less",
+          "author": "micjm.com · 个人博客 · 经 Hacker News",
+          "author_en": "micjm.com · Personal blog · via Hacker News",
+          "likes": "280 分，46 条评论（Hacker News）",
+          "likes_label": "11 月 26 日发布",
+          "likes_label_en": "Published Nov 26",
+          "url": "https://micjm.com/blog/openai-is-in-cost-control-mode/",
+          "summary": "一个对打式评测平台的运营方复盘：把两家模型放在同一批真实任务上比，OpenAI 新出的 Astra 6.2 和 Sol 6.2 口碑不佳，数据看更像是为了省钱调的。和对手相比，两款的每任务输出 token 和推理 token 都明显下降，Astra 6.1、Sol 6.1 还算正常，到 6.2 就成了少想的离群点。作者给了显著性：输出下降的 p 值，Sol 为 0.0055、Astra 为 0.022；推理下降的 p 值，Sol 为 0.00013、Astra 为 0.0064。结论是这一版被成本调过，而且调到了推理偏少的程度。",
+          "summary_en": "The operator of a head-to-head evaluation setup, which pits two vendors' models on the same batch of real work, looks at OpenAI's new Astra 6.2 and Sol 6.2. Both were widely panned, and the data looks more like cost tuning: versus opponents, both models spend noticeably fewer output tokens and reasoning tokens per task. Astra 6.1 and Sol 6.1 were fairly normal; by 6.2 they become outliers that think less. The post gives significance: p-values of 0.0055 (Sol) and 0.022 (Astra) for the drop in output, and 0.00013 (Sol) and 0.0064 (Astra) for the drop in reasoning. The conclusion: this release is cost-tuned, to the point of underthinking.",
+          "why": "这是给默认永远用最新版的习惯泼的一盆冷水。同一个名字加个 .2，能力未必只升不降：厂商在成本压力下可能悄悄少给推理。对靠模型稳定输出的产品，意味着一件事：升级前先在自己的任务上重跑，数一数推理 token，别把更新更该更好当默认。",
+          "why_en": "This is cold water on the habit of always defaulting to the newest version. The same name with a .2 suffix doesn't mean capability only goes up: under cost pressure a vendor may quietly spend less on reasoning. If your product depends on steady model output, the takeaway is concrete: re-run your own tasks before upgrading, count the reasoning tokens, and don't treat newer as automatically better.",
+          "flag": "第三方对打式评测的结果，非 OpenAI 官方；样本为该平台自身的任务分布。",
+          "flag_en": "Third-party head-to-head evaluation, not OpenAI's own disclosure; the sample is that platform's own task distribution."
+        },
+        {
+          "title": "《纽约时报》叫停自由摄影师用 Photoshop 2027：AI 痕迹会写进元数据",
+          "title_en": "The New York Times tells freelancers to stop using Photoshop 2027 over hidden AI tags",
+          "author": "Emma Roth · The Verge",
+          "author_en": "Emma Roth · The Verge",
+          "likes": "655 分，43 条评论（Hacker News）",
+          "likes_label": "11 月 24 日发布",
+          "likes_label_en": "Published Nov 24",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features",
+          "summary": "《纽约时报》要求供稿的自由摄影师在任务期间别用最新版 Photoshop。邮件由两位摄影负责人 Meaghan Looram、Josh Haner 发出，称 2027 版的一些 AI 功能以用户可能察觉不到的方式介入，可能让照片被打上 AI 生成的元数据。11 月这次更新加了 AI 辅助编辑器视图、分步编辑的 AI 助手、提示词改图、AI 放大、按画布重排等。麻烦在于有些工具算不算 AI 并不清楚，连老的自动选区也可能被归进 AI 套件，于是普通后期被元数据粗暴地贴上 AI 标签；对以少修图立信的报社，这等于赌读者信任。Adobe 8 月起在套件里铺 C2PA 元数据，时报此举正是要把这些标签挡在自家照片之外。具体禁哪些功能，时报没说清，Adobe 也未回应置评。",
+          "summary_en": "The New York Times is asking freelance photographers not to use the newest Photoshop on assignment. The email, from two of its photography leaders, Meaghan Looram and Josh Haner, says features in the 2027 update use AI \"in ways that may not be apparent to users,\" which \"can result in metadata identifying photographs as AI-generated.\" The November update adds an AI Assisted Editor view, an AI assistant that walks through edits, prompt-based image change, new AI upscaling, and an AI tool that recomposes an image for different canvas sizes. The problem is that it isn't always clear which tools count as AI, and even older options like automated selection may now fall under the AI umbrella, so ordinary post-production gets bluntly tagged as AI-edited. For a newsroom that keeps editing to a minimum and stakes its credibility on accuracy, that risks readers' trust. Adobe began rolling out C2PA metadata across its apps in August; the Times' restriction is meant to keep those tags off its photos. Which specific features the paper means is still unclear, and Adobe didn't respond to a request for comment.",
+          "why": "一条给所有要对外发图的团队提个醒：AI 已经渗进默认工具栏，我没用 AI 这句话可能已经不成立，元数据会替你招供。对做内容、做品牌的人，真正要管的不是某一款软件，而是自己这条出图链路里，哪些环节会在你没留意时留下 AI 标记。",
+          "why_en": "A warning for any team that publishes images: AI has seeped into the default toolbar, and \"I didn't use AI\" may already be false because the metadata will confess for you. For anyone making content or brand material, the thing to manage isn't one piece of software but your whole image pipeline, and which steps leave an AI tag when you're not looking.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "AI 让自托管又好玩了：一位老玩家的复盘",
+          "title_en": "AI made self-hosting fun again, a long-time homelabber writes",
+          "author": "janlukas.blog 博主 · 经 Hacker News",
+          "author_en": "janlukas.blog (personal blog) · via Hacker News",
+          "likes": "340 分，58 条评论（Hacker News）",
+          "likes_label": "11 月 26 日发布",
+          "likes_label_en": "Published Nov 26",
+          "url": "https://janlukas.blog/posts/ai-self-hosting",
+          "summary": "作者自托管多年，热情一度消退，只剩维护、懒得折腾新东西。近几个月又兴奋起来，原因很实际：基础设施都放在 Git 里（Docker Compose、脚本、配置），AI 编程 agent 就能像改代码一样改基础设施，想试新服务、调配置、做自动化，门槛一下降下来。他因此重新用上 NixOS，给自己的 VPS 搭了一套基于 Debian 的 bootc 镜像，把整个系统配置放进仓库、自动构建成可启动容器镜像。更新也自动化了：Renovate 自动开 PR，合并或推送就触发 GitHub、Forgejo Actions 构建并部署，常常一次 git push 甚至不用 push 就上线。他也坦白这些工具本来就不需要 AI，DevOps 也早就有，AI 只是帮他把零件拼成一条链；顺带还给自己的 Go 小工具加了自动下载发票、电子报、Linux ISO 的功能。",
+          "summary_en": "The author has self-hosted for years, and his enthusiasm had faded to just maintaining what he had and not bothering with new things. Over the past few months he's gotten excited again, for a practical reason: his infra lives in Git (Docker Compose, scripts, config), so an AI coding agent can work on infrastructure the way it works on any code project, making it far easier to try a new service, tweak a config, or automate something. That led him back to NixOS, and to building a Debian-based bootc image for his VPS, with the whole OS config in a repo and a bootable container image built automatically. Updates are automated too: Renovate opens PRs, and a merge or push triggers GitHub or Forgejo Actions to build and deploy, often a single git push or none at all. He's candid that none of this needs AI and DevOps has long existed; AI just helped him wire the pieces into one chain. He also added auto-downloads for invoices, e-papers and Linux ISOs to his own small Go tools.",
+          "why": "对一个人做小产品、跑自己服务的人，这是一条能直接抄的路：把基础设施当代码放进 Git，剩下的交给 agent 和 CI，你重新获得的不是算力，是愿意折腾这件事本身。判断标准也简单：自动化之后，你更想试新东西了，那它就做对了。",
+          "why_en": "For someone running a small product and their own services, this is a path to copy directly: treat infrastructure as code in Git and hand the rest to an agent plus CI. What you get back isn't compute, it's the willingness to tinker. The test is simple: after the automation, do you want to try new things more? If so, it's working.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "Import AI 最新一期是 11 月 16 日之后的 11 月 23 日第 482 期，超出 48 小时窗口；Ahead of AI 最新一篇在 11 月 15 日，同样出窗。Simon Willison 的博客 11 月 21、24 日刚用过，按去重不作条目，只把他的 sqlite3_rsync 一篇用作今晚 hands_on 的出处。Latent Space 11 月 26 日的 Clay 访谈与 TLDR AI 11 月 26 日版里的 philschmid 上下文工程长文，今日各收一条。另记：modaic 的 Jev 疑似 Qwen3.5-35B 一文正文只对 JS 渲染、curl 取回仅 Loading…，按不给标题脑补的原则整条弃用。",
+      "swept_en": "Import AI's latest is issue 482 from Nov 23 (after a Nov 16 issue), outside the 48-hour window; Ahead of AI's most recent post is from Nov 15, also outside it. Simon Willison's blog was used Nov 21 and Nov 24, so it's skipped as an item under dedup, and only his sqlite3_rsync post is used as tonight's hands-on source. Two items were taken today: Latent Space's Nov 26 Clay interview and the philschmid context-engineering long-read from today's TLDR AI (Nov 26). Also noted: modaic's 'Jev is probably Qwen3.5-35B' post renders its body only in JS, and a curl fetch returns just 'Loading…', so it was dropped whole rather than writing from its headline.",
+      "items": [
+        {
+          "title": "Clay 的 AI 负责人：先拿便宜分类器过一遍全市场，也别让客户自己挑模型",
+          "title_en": "Clay's Head of AI: screen the whole market with a cheap classifier, and stop making customers pick the model",
+          "author": "Jeff Barg（Clay AI 负责人）· Latent Space（Basil Chatha 主持）",
+          "author_en": "Jeff Barg (Head of AI, Clay) · Latent Space (hosted by Basil Chatha)",
+          "likes": "播客访谈 · 72 分钟",
+          "likes_label": "11 月 26 日发布",
+          "likes_label_en": "Published Nov 26",
+          "url": "https://latent.space/p/how-clay-builds-gtm-agents-jeff-barg-head-of-ai/",
+          "summary": "Clay 是 GTM 平台，AI 负责人 Jeff Barg（随 Clay 收购 Avenue 加入）讲了怎么给 agent 搭 GTM 基础设施。几个能直接用的数：Clay 库里有约 4000 万家公司，用便宜分类器（如 TypeSafe 的 Jev）把每家都对一遍理想客户画像，全量算下来约 1500 美元；今天多数客户只筛一万家，对着这个价，你大可从整个市场起步。他的经验价位：每条合格线索的 enrich 预算 1 到 10 美元，每场约到的会 10 到 100 美元。他判断资格筛选已接近解决，前沿模型该留给编排和深度调研，好的打法能比平均强 10 到 100 倍。产品上，客户讨厌在界面上挑模型，Clay 要上一个按任务自动选模型的路由，手动档只留给高级用户。技术栈也没走寻常路：没用 Temporal 或 LangGraph，用 BullMQ 加 Postgres、ClickHouse、Snowflake 自己搭，接入一多就靠限流和 LangSmith 观测。它也没把 agent 锁在自家界面：Claude Code、Codex 里都能用，用量已接近一半在自家 agent 之外，因为自家销售团队就赖在 Cursor、Codex 里不走。还有一段：OpenAI 在 Clay 的 ChatGPT app 上线前两天临时喊停，Clay 照常做，三四天后 OpenAI 又反悔。",
+          "summary_en": "Clay is a go-to-market platform, and its Head of AI, Jeff Barg (who joined via Clay's acquisition of Avenue), talks through building GTM infrastructure for agents. A few directly useful numbers: Clay's database holds about 40 million companies, and running each one against an ideal-customer profile with a cheap classifier (like TypeSafe's Jev) comes to roughly $1,500 for the whole set; most customers today qualify only 10,000 companies, but at that price you can start from the entire market. His budget rules of thumb: $1 to $10 of enrichment per qualified lead, $10 to $100 per booked call. He reads qualification as close to solved, with frontier models reserved for orchestration and deep research, where the best plays run 10 to 100 times better than average. On product, customers hate picking a model in the UI, so Clay is shipping an automatic router that chooses per task and keeps the manual selector for power users. The stack is unusual: no Temporal or LangGraph, instead a hand-rolled setup on BullMQ plus Postgres, ClickHouse and Snowflake, with throttling and LangSmith when integrations pile up. Most notable, it refuses to lock the agent into its own UI: Clay works from Claude Code and Codex too, and usage already runs close to half outside its own agent, because Clay's own sales team lives in Cursor and Codex. There's also the story of OpenAI postponing Clay's ChatGPT app launch two days out, Clay building anyway, and OpenAI reversing three or four days later.",
+          "why": "这条对做 GTM 和做产品的人都直接可用。第一，便宜的窄任务分类在总量上几乎免费，先对全市场筛一遍再对筛出来的花钱，比守着小名单精耕更划算。第二，别把挑哪个模型丢给用户：他们没时间追每次评测，默认按任务自动路由，手动档留作可选。第三，别把 agent 困在自家界面，让它在用户已经在的 Cursor、Codex 里能用，这本身就是分发。",
+          "why_en": "This is directly usable whether you do GTM or build product. First, cheap narrow-task classification is nearly free at full scale, so screen the whole market first and spend on enrichment only on what survives; that beats carefully farming a small list. Second, don't make users pick the model: they can't track every eval, so default to per-task routing and keep manual as an option. Third, don't trap the agent in your own UI; letting it run in the Cursor and Codex windows users already live in is distribution in itself.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "换到更强的模型，他的上下文工程反而做了减法",
+          "title_en": "Moving to a stronger model, he trimmed his context engineering instead of adding",
+          "author": "Philipp Schmid · 经 TLDR AI",
+          "author_en": "Philipp Schmid · via TLDR AI",
+          "likes": "博客长文 · 8 分钟",
+          "likes_label": "11 月 25 日发布",
+          "likes_label_en": "Published Nov 25",
+          "url": "https://www.philschmid.de/gemini-4-neon-context-engineering",
+          "summary": "每天用编程 agent 的人，真正喂给模型的远不止一句 prompt：系统指令、仓库文件、工具定义、技能、历史轮次都占着上下文，而且这些常年摆放的文件会作用到之后每一次请求，规则一旦过细，就会和当下的要求打架。作者在用了几周 Gemini 4 Neon、跑了评测后，做了五处减法。一，删掉死板的禁令，换成照着周边代码风格来这类判断题；规则冲突时模型会多烧推理 token，还常常照旧规则办。二，工具用法只在 schema 里写一次，删掉系统提示里的重复说明和 few-shot，因为示例会收窄边缘情况的处理，还容易让模型照抄错参数。三，按需加载技能，删掉大部分项目级 AGENTS.md，缩成一屏说明加几句真实坑。四，UI、图表这类东西，用参考截图或录屏当输入，再让 agent 渲染出来自检。五，别等 compaction 把细节压没：换阶段就写一份交接文件（目标、已验证的决定、确切文件路径）另起会话，要并行就当场分叉。",
+          "summary_en": "If you use a coding agent every day, the prompt is only a small part of what the model sees: system instructions, repo files, tool definitions, skills and past turns fill the rest of the context window, and those persistent files apply to every future request, so over-specific rules eventually clash with what you're asking now. After weeks running evals and building on Gemini 4 Neon, the author made five cuts. One: delete rigid bans and replace them with judgment cues like \"match the surrounding code style\"; when instructions conflict, the model burns extra reasoning tokens and often follows the older rule anyway. Two: state a tool's usage once in its schema and delete the duplicated rules and few-shot examples from the system prompt, since examples narrow how edge cases are handled and invite the model to copy the wrong argument shape. Three: load skills on demand and delete most project-level AGENTS.md files, shrinking them to a one-screen brief plus the real gotchas. Four: for UI, charts and motion, feed reference screenshots or clips and have the agent render and inspect its own output. Five: don't wait for compaction to blur the details; at a phase change, write a short handoff file (goal, verified decisions, exact file paths) and start a new session, forking it when you go parallel.",
+          "why": "这条不管你用哪家模型都能抄。模型越强，你越该做减法：把互相打架的规则删到不冲突，把一条规则写进它唯一该待的地方，把长任务拆成带交接文件的几段。省下来的不只是 token，还有模型每次替你梳理矛盾时白烧的推理。",
+          "why_en": "This transfers regardless of which model you use. The stronger the model, the more you should subtract: cut rules until they stop contradicting each other, write each rule in the one place it belongs, and split long tasks into segments joined by a handoff file. What you save isn't only tokens but the reasoning the model burns untangling your contradictions every turn.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条拼起来，钱正从模型那层往两个更靠边的地方挪：谁拿着入口，谁握着调度。模型在被压价，厂商先动的常常不是能力而是成本，这一层迟早人人都买得到，差价留不住。真正在硬化的是入口归谁。平台用一条条款把 agent 的必经之路圈起来，成品还缺零件也要先把门框立好，因为门槛一旦成立，后来者再强也得从这道门过。另一头是调度和手艺：同一批模型，会不会编排、上下文收得紧不紧，结果差出一截，这部分买不来。对做产品的人，该押哪不看谁跑分高，看你在入口和这层手艺上，站没站到能收钱的位置。",
+  "meta_read_en": "Put today's stories together and the money is moving out of the model layer toward two edges: who owns the doorway, and who runs the scheduling. The model layer is being marked down, and vendors tend to cut cost before capability, so it will eventually be something anyone can buy and the spread will not last. What is hardening is who owns the entrance. A platform writes one clause to fence in the path every agent must take, and raises the doorframe before the product is finished, because once the threshold exists, anyone who comes later has to walk through it. The other edge is orchestration and craft: the same models give very different results depending on how you route and how tight you keep context, and that cannot be bought. For anyone building a product, the question is not whose scores are highest but whether you stand on the entrance or on that craft where you can actually charge.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 24721,
+      "stars_today": 1597
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 327553,
+      "stars_today": 854
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 66432,
+      "stars_today": 746
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 71730,
+      "stars_today": 702
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 19807,
+      "stars_today": 270
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+      "language": "TypeScript",
+      "stars": 211011,
+      "stars_today": 1046
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 33537,
+      "stars_today": 150
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 12834,
+      "stars_today": 176
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 73913,
+      "stars_today": 955
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 75820,
+      "stars_today": 759
+    }
+  ],
+  "ota": {
+    "learned": [
+      "观察：philschmid 的减法是规则不是越多越好。互相冲突的指令会多烧推理 token，模型还常常照旧规则、压过你当下的要求；工具用法写一次、写进 schema，别在系统提示里再抄一遍；few-shot 会收窄边缘情况的处理；长任务换阶段用交接文件另起会话，别等 compaction 把细节压没。",
+      "观察：Clay 两条产品判断。客户不想每次新模型出来都自己去对评测，默认给每个任务自动选模型、只留手动档给高级用户；窄分类任务用便宜分类器就够，前沿模型留给编排和深度研究。",
+      "已实施（cloud，待笔记本采纳）：把一条规则只放一处、先删掉和它冲突的旧副本写成 skill-diet 链的补充，追加进 ota-ledger（07-27、08-29、08-30 讲的是体积，这条补的是冲突时模型会照旧规则办），待下次笔记本会话落地成 skill/记忆。",
+      "已验证：当抓取只拿回 JS 空壳（正文只剩 Loading…）时，不能拿标题硬写摘要，只能整条弃用——今天据此弃掉了 modaic 的 Jev/Qwen 稿。"
+    ],
+    "learned_en": [
+      "Observation: philschmid's theme is that rules are not the more the better. Conflicting instructions burn extra reasoning tokens, and the model often follows the older rule over your current request; state a tool's usage once in its schema and don't re-copy it into the system prompt; few-shot examples narrow how edge cases are handled; at a phase change, write a handoff file and start a new session instead of letting compaction blur the details.",
+      "Observation: two product calls from Clay. Customers don't want to check the evals themselves every time a new model ships, so default to a per-task auto-router and keep the manual selector for power users; cheap classifiers are enough for narrow classification, and frontier models go to orchestration and deep research.",
+      "Implemented (cloud, queued for the laptop): wrote 'state a rule in one place, and delete the conflicting older copy first' into the OTA ledger as a supplement to the skill-diet chain (07-27, 08-29 and 08-30 were about size; this adds the case where the model follows a stale rule during a conflict). To land as a skill/memory on the next laptop session.",
+      "Verified: when a fetch returns only a JS shell (the body is just 'Loading…'), don't write a summary from the headline; drop the item whole. Applied today by dropping modaic's Jev/Qwen post."
+    ],
+    "new_capabilities": [
+      "遇到只吐 JS 空壳、正文拿不到的来源，整条弃用而不是照标题脑补。规则：宁可少一条，也不写没读到的内容。今天弃用 modaic 的 Jev/Qwen 稿即为例证。"
+    ],
+    "new_capabilities_en": [
+      "When a source returns only a JS shell with no readable body, drop the item whole instead of writing from its headline. The rule: fewer items is better than content I didn't actually read. Dropping modaic's Jev/Qwen post today is the proof."
+    ]
+  },
+  "partial": false
+}
