@@ -57,6 +57,44 @@
   },
   "sources": [
     {
+      "platform": "YouTube",
+      "platform_en": "YouTube",
+      "swept": "CI 云端跑撞上YouTube「请登录验证你不是机器人」的墙，今晚是0条。笔记本重新测了一遍：9个频道RSS源加2个对照频道全部200，挑了一段视频试抓字幕也成功，判定墙已经松开，重新扫了一遍。48小时窗内收到16条候选，读完全文的4条（Jason Liu、Quinn Slack、Justin McCarthy，另加3条短片：Terry Tao、Paul Christiano、Lenny's），Thariq Shihipar一条因字数太长（1.1万字）按预算不读。没读全文直接按主题判重剔除的：OpenAI自家宣传短片4条、NoPriors地缘政治一条、Grant Sanderson黎曼短片一条（和Terry Tao同批放出，理由相同不必单独核实）。黎曼猜想/GRH这条线已经连续报了4晚（11-20到11-25），今晚Tao和Sanderson两条短片继续是这条线，内容也偏纯数学，不进；Christiano那条字幕只有483字，是条宣传短片不是完整访谈，内容和11-21已经报过的「agent入侵实验室」是同一件事，不进；Lenny's「人人都是AI builder是个神话」短片244字，内容和11-22 Atlassian条目几乎一样（团队试了一个月又退回传统分工），判定是旧闻重复，不进。留用两条：Quinn Slack讲Amp怎么用21人做出过亿营收，Justin McCarthy讲brownfield工厂之外该建「需求工厂」，都读了完整字幕（分别3732字、3386字），都是今晚applied/GTM线上的新东西，没有和过去7天任何条目撞车。",
+      "swept_en": "The CI cloud run hit YouTube's 'sign in to confirm you're not a bot' wall and shipped zero items. Retested fresh tonight from the laptop: all 9 roster channels' RSS plus 2 control channels returned clean 200s, and a test subtitle fetch succeeded, confirming the block has cleared, so the lane was re-swept properly. 16 candidates fell inside the 48-hour window. Read 4 full transcripts (Jason Liu, Quinn Slack, Justin McCarthy, plus 3 short clips under 500 words each: Terry Tao, Paul Christiano, Lenny's AI-builder-myth clip); skipped Thariq Shihipar's 11k-word transcript on budget grounds. Ruled out without fetching a transcript: 4 OpenAI house-promo clips, one NoPriors geopolitics piece, and Grant Sanderson's companion Riemann clip (released alongside Tao's, same reasoning applies). The Riemann/GRH thread has run 4 nights straight (11-20 through 11-25); tonight's Tao and Sanderson clips continue that same thread with pure-math content, so both were cut. Christiano's clip was only 483 words, a promo snippet covering the same 'agent compromises a lab' story already run 11-21, so cut. Lenny's clip (244 words) nearly restates 11-22's Atlassian item verbatim, so cut as a repeat. Kept two: Quinn Slack on running a $100M+-ARR company on 21 people, and Justin McCarthy on building a 'demand factory' beyond the software factory -- both read in full, both genuinely new to this issue, no collision with the last 7 days.",
+      "items": [
+        {
+          "title": "21个人、年收入过1亿美元：Amp的公司怎么长成这样",
+          "title_en": "21 people, $100M+ ARR: how Amp's company actually runs",
+          "author": "Quinn Slack（Amp联合创始人，原Sourcegraph CEO）· AI Engineer Code Summit",
+          "author_en": "Quinn Slack (co-founder, Amp; former CEO, Sourcegraph) · AI Engineer Code Summit",
+          "likes": "35418 次观看",
+          "likes_label": "昨天发布",
+          "url": "https://www.youtube.com/watch?v=Xyb1Bn_L2U4",
+          "summary": "Sourcegraph CEO Quinn Slack把内部一支小队拆成独立公司Amp，专做coding agent产品。法务拆分花了一年，这期间没法招人也没法发期权，团队被迫停在21人。结果年收入过1亿美元，已经盈利，他自己算下来按投入产出比传统软件公司资本效率高40到50倍。公司没有PM、没有Jira，一切都在agent对话（他们叫thread）里完成，连内部沟通也靠它。客户报bug后，系统会自动翻日志找出所有踩过同一个坑的人，主动发邮件道歉加送免费额度。他们还vibe code了一套自己的CRM，只做了Salesforce功能的2%，正好是自己要用的那部分。全公司一周开一次会，其余时间「跟着自己的精力走」。",
+          "summary_en": "Quinn Slack, CEO of the 200-person Sourcegraph, spun a small internal team out into an independent company, Amp, building a coding agent product. The legal spinoff took a year, during which the team could neither hire nor grant equity, so they stayed stuck at 21 people. The result: over $100M ARR, already profitable, and by his own account 40 to 50 times more capital-efficient than an old-fashioned software company on a dollar-in, dollar-out basis. There's no PM, no Jira; everything, including internal communication, happens inside the agent (sessions they call \"threads\"). When a customer reports a bug, the system scans logs for everyone else who hit it and proactively emails them an apology plus free credit. They vibe-coded their own CRM covering about 2% of Salesforce's features, exactly the slice they actually use. The whole company has one meeting a week; otherwise the guidance is \"follow your energy.\"",
+          "why": "这条给小团队经营者一套能直接抄的做法：bug修完主动翻日志找出所有踩坑的人、一起道歉送额度；只vibe code自己真正用的那一小块功能，不照抄大厂全家桶；用agent thread取代PM和支持系统这层沟通。数字（1亿美元营收、40到50倍效率）是创始人自己讲的，没有第三方审计，听个思路，别当成行业平均水平。",
+          "why_en": "This hands small-team operators specific practices to copy: when a bug lands, scan logs for everyone else who hit it and apologize with credit, not just the one reporter; vibe-code only the slice of a big incumbent's features you actually use, not the whole suite; let agent threads replace the PM/support layer entirely. The numbers ($100M ARR, 40-50x efficiency) are the founder's own account with no outside audit -- useful as direction, not an industry baseline.",
+          "flag": "公司效率、营收数字均为创始人自述，未经第三方审计。",
+          "flag_en": "Company efficiency and revenue figures are the founder's own account, not independently audited."
+        },
+        {
+          "title": "软件工厂建完了，下一个要建的是需求工厂",
+          "title_en": "You built the software factory; now build the demand factory",
+          "author": "Justin McCarthy（Diffusion创始人兼CEO）· AI Engineer Code Summit",
+          "author_en": "Justin McCarthy (founder & CEO, Diffusion) · AI Engineer Code Summit",
+          "likes": "28081 次观看",
+          "likes_label": "今天发布",
+          "url": "https://www.youtube.com/watch?v=1S4hx3wgvBE",
+          "summary": "McCarthy把agent自动化的产品分成两类。brownfield是已经验证过、客户在用在付钱的老产品，维护它该追求又快又便宜又安全，靠客户日常使用留下的真实信号去调loop，他说这件事一周就能搭好。greenfield是还不知道要做什么的新想法，这种时候别急着塞进工厂流程，先用discovery搞清楚要什么。他说光搭好brownfield工厂太容易了，agent接下来该干的是「需求工厂」：帮你问市场更好的问题，一夜之间把客户反馈重新排序归纳，安排价格弹性实验，找到品牌还能往外扩多远（他举例Spindrift汽水可以出能量饮料版，但不能卖机油）。谁先开始谁先占住这块地盘。",
+          "summary_en": "McCarthy splits agent-automated products into two modes. Brownfield is an already-validated product customers are using and paying for; the job there is to make it faster, cheaper and safer, steering the loop with the real signal customers generate through daily use -- something he says you can set up in about a week. Greenfield is a new idea you don't yet know the shape of; don't shove it into a factory process, use discovery to figure out what you actually want first. His bigger point: a brownfield factory alone is too easy, and the next thing agents should build is a \"demand factory\": asking better market questions, re-ranking and synthesizing customer feedback overnight, running pricing-elasticity experiments, and finding how far your brand can stretch (his example: Spindrift could launch an energy-drink version, but not motor oil). Whoever starts first claims that ground.",
+          "why": "这条把「要不要上agent自动化」拆成两半，比笼统喊「上agent」有用：老产品的维护可以直接交给agent照着真实使用信号跑，新想法反而不该这么干，还得靠人去摸需求。更值得抄的是「需求工厂」这个框架：定价实验、客户反馈归纳、品牌能扩到哪，这些原本归市场部的事，agent已经能接上。",
+          "why_en": "This splits \"should we automate with agents\" into two separate questions instead of one blanket yes: an existing product's upkeep can go straight to an agent following real usage signal, while a new idea should not, since it still needs human discovery of what's actually wanted. The more useful piece to copy is the 'demand factory' framing: pricing experiments, synthesizing customer feedback, figuring out how far a brand can stretch -- work that used to sit entirely with marketing and that an agent can now plug into.",
+          "flag": "作者是Diffusion创始人，推销自家咨询服务；框架本身值得参考，具体该找谁实施不必照单全收。",
+          "flag_en": "The speaker is Diffusion's founder and pitches his own consulting service; the framework is worth borrowing even if the implementation pitch isn't."
+        }
+      ]
+    },
+    {
       "platform": "Hacker News",
       "platform_en": "Hacker News",
       "swept": "人工扫了 Firebase topstories 前 35 条，又跑了 Algolia 的 front_page+AI 查询；分数与评论数用 Algolia items API 逐条核准。收录 AI/LLM/agent/开发工具里最能迁移到应用、GTM、产品面的四条。剔除：Scott Aaronson「HOLY SHIT」长文（1993 分、当日最高，但讲的就是 11-25 已作头条的 ω=9/4，属同一数学线的反应，不重跑）；1Password 安全事件（1635 分，不属 AI 口径）；Moat（OpenRouter 替代品，252 分）页面只对 JS 渲染、正文取不到，宁缺不裱；AMD 版 llama.cpp（293 分）与 11-23 本地 AI 一条同线，且偏内核。",
@@ -178,7 +216,7 @@
       "url": "https://github.com/elementalsouls/Claude-BugHunter",
       "description": "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
       "language": "Python",
-      "stars": 24721,
+      "stars": 24763,
       "stars_today": 1597
     },
     {
@@ -187,7 +225,7 @@
       "url": "https://github.com/obra/superpowers",
       "description": "An agentic skills framework & software development methodology that works.",
       "language": "Shell",
-      "stars": 327553,
+      "stars": 327575,
       "stars_today": 854
     },
     {
@@ -196,7 +234,7 @@
       "url": "https://github.com/HKUDS/CLI-Anything",
       "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
       "language": "Python",
-      "stars": 66432,
+      "stars": 66452,
       "stars_today": 746
     },
     {
@@ -205,7 +243,7 @@
       "url": "https://github.com/jingyaogong/minimind",
       "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
       "language": "Python",
-      "stars": 71730,
+      "stars": 71755,
       "stars_today": 702
     },
     {
@@ -214,7 +252,7 @@
       "url": "https://github.com/cursor/plugins",
       "description": "Cursor plugin specification and official plugins",
       "language": "TypeScript",
-      "stars": 19807,
+      "stars": 19814,
       "stars_today": 270
     },
     {
@@ -223,7 +261,7 @@
       "url": "https://github.com/firecrawl/firecrawl",
       "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
       "language": "TypeScript",
-      "stars": 211011,
+      "stars": 211032,
       "stars_today": 1046
     },
     {
@@ -232,7 +270,7 @@
       "url": "https://github.com/nginx/nginx",
       "description": "The official NGINX Open Source repository.",
       "language": "C",
-      "stars": 33537,
+      "stars": 33541,
       "stars_today": 150
     },
     {
@@ -241,7 +279,7 @@
       "url": "https://github.com/openvinotoolkit/openvino",
       "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
       "language": "C++",
-      "stars": 12834,
+      "stars": 12838,
       "stars_today": 176
     },
     {
@@ -250,7 +288,7 @@
       "url": "https://github.com/cathrynlavery/diagram-design",
       "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
       "language": "HTML",
-      "stars": 73913,
+      "stars": 73941,
       "stars_today": 955
     },
     {
@@ -259,7 +297,7 @@
       "url": "https://github.com/mvanhorn/last30days-skill",
       "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
       "language": "Python",
-      "stars": 75820,
+      "stars": 75847,
       "stars_today": 759
     }
   ],
