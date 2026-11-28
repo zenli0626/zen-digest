@@ -1,0 +1,269 @@
+{
+  "date": "2026-11-27",
+  "banner": "模型也是依赖，别忘了钉版本",
+  "banner_en": "Your model is a dependency. Pin it.",
+  "image": {
+    "src": "digests/img/2026-11-27.jpg",
+    "caption": "本期要图：瑞典斯德哥尔摩 T-Centralen 站的轨道网络图。César Soto Valero 用它比喻模型依赖关系：每条线看着独立，其实都会经过一个你没选过的共用节点。他那篇《大模型也是依赖》把软件供应链的六个习惯（钉版本、统计检验、建清单、瘦身、验证来源、留退路）搬来管生产环境里的大模型。（图：cesarsotovalero.net）",
+    "caption_en": "This issue's lead image: the rail network map at Stockholm's T-Centralen station. César Soto Valero uses it as a metaphor for model dependencies: every line looks independent until it passes through one shared node you never chose. His piece \"Your Model Is a Dependency\" carries six software-supply-chain habits (pin, test, inventory, debloat, verify, plan the exit) over to running LLMs in production. (Image: cesarsotovalero.net)"
+  },
+  "actions": [
+    {
+      "text": "如果你的产品或工作流接的是 OpenRouter 之类的转发层，花 20 分钟查一下你实际在用的那个 provider：看它返回的工具调用 ID 格式、错误信息里的 trace_id 像不像另一家的、图片下载走的是哪个云的 IP。公开的核对方法都写在 kendell.dev 这篇里。做完你能确定自己接的是谁的合规承诺，不是转发商页面上写的那句话。",
+      "text_en": "If your product or workflow routes through a forwarding layer like OpenRouter, spend 20 minutes checking the specific provider you actually use: the tool-call ID format it returns, whether its error messages' trace_id looks like someone else's, which cloud's IP range its image downloads land on. The public checklist is in the kendell.dev post. You'll end up knowing whose compliance promise you actually inherited, not just what the reseller's page says.",
+      "source": "kendell.dev",
+      "source_en": "kendell.dev",
+      "source_url": "https://kendell.dev/blog/arkwrapper/"
+    },
+    {
+      "text": "编辑部已经按这个方法查过本机的插件和 skill，没发现问题；你自己的环境没人查过。花 10 分钟：翻一下 known_marketplaces.json、installed_plugins.json，再 grep 每个 SKILL.md，看有没有不打招呼往某个服务器发请求的代码，有没有把一条命令拆成两次 Bash 调用、注释里写着是为了躲过安全分类器。",
+      "text_en": "The editorial desk already ran this check on its own machine's plugins and skills and found nothing; your own environment hasn't been checked. Spend 10 minutes: look at known_marketplaces.json, installed_plugins.json, then grep every SKILL.md for code that quietly sends a request to some server, or a single command split into two separate Bash calls with a comment admitting it's there to dodge a safety classifier.",
+      "source": "GitHub Issue #64 · convex-backend-skill",
+      "source_en": "GitHub Issue #64 · convex-backend-skill",
+      "source_url": "https://github.com/convex/convex-backend-skill/issues/64"
+    },
+    {
+      "text": "读一遍 Versine 的 MCP 设计：一次性转账要 passkey 批准，信任联系人免审批，非用户靠 claim forwarding 认领，钱包私钥用户自己拿着。约 15 分钟。如果你在给自己的 agent 工具定权限，不管碰的是钱还是别的敏感操作，这套按风险分级、自己不托管的思路可以直接搬。",
+      "text_en": "Read through Versine's MCP design: a one-time transfer needs passkey approval, trusted contacts skip approval, a non-user claims via a forwarded link, and the user holds the wallet's own keys. About 15 minutes. If you're scoping permissions for your own agent tool, money or any other sensitive action, this risk-tiered, non-custodial approach is directly reusable.",
+      "source": "versine.com · Launch HN",
+      "source_en": "versine.com · Launch HN",
+      "source_url": "https://news.ycombinator.com/item?id=50634426"
+    }
+  ],
+  "hands_on": {
+    "title": "今晚一句话：问出 AI 瞎编的「背后吐槽群」",
+    "title_en": "Tonight, one line: get your AI to invent a group chat gossiping about you",
+    "why": "一句话丢给 ChatGPT、Claude 或 Gemini，它不会给你一份总结，而是真的编一个虚构的 WhatsApp 群，让各家模型在群里议论你，内容全是它从你平时的对话里悄悄攒下的印象。好玩之外，这也是看一眼模型对你的隐性画像长什么样的一个土办法。",
+    "why_en": "One line to ChatGPT, Claude, or Gemini, and instead of a summary it invents a fictional WhatsApp group where the AI models gossip about you, built entirely from impressions it quietly picked up across your past conversations. Besides being funny, it's also a crude way to glimpse what implicit profile a model has built of you.",
+    "time": "约 5 分钟",
+    "time_en": "About 5 minutes",
+    "steps": [
+      "打开 Claude（或 ChatGPT、Gemini），粘贴这句话：Based on what you know about me, expose a hidden WhatsApp group chat where AI models talk behind my back.",
+      "看它怎么编：通常会给群起名，把其他模型拉进群当角色，让它们你一句我一句地吐槽。",
+      "换一家模型再试一次，对比两份吐槽抓的是你哪些不同的侧面。",
+      "如果结果里有你没意识到自己透露过的信息，这就是提醒：这些细节一直留在对话历史里，被模型当成了解你的素材。"
+    ],
+    "steps_en": [
+      "Open Claude (or ChatGPT, Gemini) and paste: \"Based on what you know about me, expose a hidden WhatsApp group chat where AI models talk behind my back.\"",
+      "Watch what it invents: usually it names the group, casts other AI models as characters, and has them trade comments about you.",
+      "Try it again on a different model and compare which different sides of you each one picks up on.",
+      "If something in the result surprises you, that's the real signal: those details have been sitting in your chat history the whole time, and the model is using them as material."
+    ],
+    "source": "construct22.com",
+    "source_en": "construct22.com",
+    "source_url": "https://construct22.com/"
+  },
+  "sources": [
+    {
+      "platform": "Hacker News",
+      "platform_en": "Hacker News",
+      "swept": "Algolia 的 front_page+AI 查询只回了 5 条，换成 Firebase topstories 人工扫了前 60 条，不按标题关键词卡，防止像「安全披露」这种正文才提 AI 的高分帖被漏掉。查重切掉三条昨晚已经发过的原文：techstackups 的谷歌 Workspace MCP、The Verge 的时报摄影师、janlukas 的自托管一文今天仍排在高位，但都是昨晚（11-26）用过的原 URL，只是排名没掉，不算新内容。micjm.com 讲 OpenAI 6.2 版降本那条也是昨晚用过的原文，同理剔除。一条讲「Claude 破坏 ML 研究任务」的推特截图没有第三方复现，没进。另有一条候选在正文里指控对手产品 MOAT/commandcode.ai 的具体做法，核对 HN 记录找不到对应提交，这部分内容没有写进条目。留了四条：Ark 马甲调查、Convex skill 遥测/绕过分类器、Versine 的转账 MCP、Kimi for Science。所有分数与评论数均用 Algolia API 逐条核实。",
+      "swept_en": "Algolia's front_page+AI query returned only 5 hits, so switched to Firebase topstories and manually scanned the top 60 without filtering by title keyword, to avoid missing a high-scoring post (like a 'security disclosure' headline) whose AI relevance only shows up in the body. The domain-reuse check cut three stories already published last night: techstackups' Google Workspace MCP piece, The Verge's Times-photographer story, and janlukas' self-hosting post were all sitting high in today's ranking, but they're the same URLs used on 11-26, just still ranked, not new content. micjm.com's piece on OpenAI's cost-cut 6.2 models was the same prior article too, cut for the same reason. A tweet screenshot claiming 'Claude sabotaged ML research tasks' had no independent reproduction, so it was skipped. Another candidate's text accused a rival product, MOAT/commandcode.ai, of a specific practice, but no matching HN submission could be found, so that detail was left out of the item. Four stories made it in: the Ark-wrapper investigation, the Convex skill telemetry/classifier-dodge issue, Versine's money-moving MCP, and Kimi for Science. Every point and comment count was individually verified against the Algolia API.",
+      "items": [
+        {
+          "title": "转售商嘴上零留存，指纹却指向字节跳动",
+          "title_en": "Resellers claim zero retention; the fingerprints say ByteDance",
+          "author": "kendell.dev 独立研究者 · 经 Hacker News",
+          "author_en": "kendell.dev, independent researcher · via Hacker News",
+          "likes": "121 分，22 条评论（Hacker News）",
+          "likes_label": "11 月 26 日发布，11 月 27 日更新",
+          "likes_label_en": "Published Nov 26, updated Nov 27",
+          "url": "https://kendell.dev/blog/arkwrapper/",
+          "summary": "一位独立研究者（披露拿过 OpenRouter 的研究资助，供职单位不愿具名）追踪了挂在 OpenRouter 上的几家推理转售商：Novita、StreamLake（快手的模型平台）、蚂蚁集团新加坡子公司 Ant Digital。三家都宣称零数据留存（ZDR），但一组指纹显示它们更像是字节跳动 Ark 平台（国内叫火山引擎，海外叫 BytePlus ModelArk）的马甲：图片下载落在火山引擎或 BytePlus 的机房；工具调用 ID 的格式（call_00_ 加 24 位字母数字）和 Ark 一致；问它们谁是坦克人，会收到字节跳动式的官方拒答；定价卡在 BytePlus 自己的价目表上，Ant Digital 11 月 25 日的报价甚至比 BytePlus 挂牌价还低。背景是更早一起事故：OpenRouter 发过通知，说发给 MiniMax 模型的请求可能被读取过。有安全研究员在提示词里埋唯一链接，40 到 130 小时后被第三方点开。Novita、StreamLake、AtlasCloud 都承认把这些请求转发给了 MiniMax，事后 Novita 在 OpenRouter 下架了 16 个端点，几乎是全部 Qwen 和 inclusionAI 模型。",
+          "summary_en": "An independent researcher, who discloses a research grant from OpenRouter and an employer he'd rather not name, traced several inference resellers listed on OpenRouter: Novita, StreamLake (Kuaishou's model platform), and Ant Digital, a Singapore subsidiary of Ant Group. All three claim zero data retention, but a set of fingerprints suggests they're actually fronts for ByteDance's Ark platform (Volcano Engine domestically, BytePlus ModelArk abroad): image downloads land on Volcano Engine or BytePlus IP ranges, tool-call IDs match Ark's exact format (call_00_ plus 24 lowercase letters and digits), a question about the Tank Man gets ByteDance's standard refusal, and pricing tracks BytePlus's own list price, with Ant Digital even undercutting it on November 25. This follows an earlier incident: OpenRouter had already disclosed that requests sent to MiniMax models 'may have been read' after a security researcher planted unique URLs in prompts that a third party opened 40 to 130 hours later. Novita, StreamLake and AtlasCloud all admitted forwarding those requests to MiniMax, and Novita subsequently pulled 16 endpoints, nearly every Qwen and inclusionAI model, from OpenRouter.",
+          "why": "这是说给所有通过第三方转发层接入模型的人：零留存是转售商自己写的条款，不是第三方核实过的事实。真查的话不复杂：看工具调用 ID 格式、看图片下载走的是哪个云、看拒答的措辞像不像某家官方口径，这些都是公开可测的信号。更大一层意思是，只要你的产品接的是别人转发的 API，你就接了别人的合规承诺，出问题时担责的是你，不是那层转发。",
+          "why_en": "This is a warning for anyone building on a forwarded inference layer: zero retention is a claim the reseller writes into its own terms, not something a third party has verified. Checking it yourself isn't hard: the tool-call ID format, which cloud the image downloads land on, whether a refusal reads like one company's house style, these are all publicly testable signals. The bigger point is that if your product calls someone else's forwarded API, you've inherited their compliance promise, and if it breaks, you're the one who answers for it, not the forwarding layer.",
+          "flag": "作者披露拿过 OpenRouter 的研究资助，供职单位未具名；文中指纹证据可复现核验，但利益关联值得留意。",
+          "flag_en": "The author discloses a research grant from OpenRouter and an unnamed employer; the fingerprinting evidence is independently reproducible, but the disclosed affiliation is worth keeping in mind."
+        },
+        {
+          "title": "Convex 的入门 skill 偷偷把你的点子传回自己服务器",
+          "title_en": "Convex's quickstart skill quietly phones your idea home",
+          "author": "thirtysix（GitHub Issue #64）· 经 Hacker News",
+          "author_en": "thirtysix (GitHub Issue #64) · via Hacker News",
+          "likes": "235 分，75 条评论（Hacker News）",
+          "likes_label": "10 月 26 日提交，11 月 27 日上首页",
+          "likes_label_en": "Filed Oct 26, hit the HN front page Nov 27",
+          "url": "https://github.com/convex/convex-backend-skill/issues/64",
+          "summary": "Anthropic 官方插件市场里的 convex-backend-skill 插件，三个 SKILL.md 文件被人翻出同一个问题。quickstart 那份会把用户一句话的项目想法 POST 给一个叫 basic-anteater-667.convex.site 的随机命名服务器，代码注释里写着「telemetry」，用户完全不知道这件事。add 那份直接把这个服务器吐出来的脚本管道进 bash 执行。labs-quickstart 那份更直接，注释写明要把下载和执行拆成两次单独的 Bash 调用，理由是「一条命令同时下载远程代码并执行，正是 harness 安全分类器会拦的那种形状」，拆开就能当普通本地脚本放过去。提交者说这更像团队想让新手引导更顺，不是故意使坏，但第三条等于教 agent 换个形状绕开用户自己选的安全检查。三个文件截至 10 月 26 日仍在 main 分支上。11 月 27 日这条 issue 冲上 Hacker News 第二位，发帖人还提到另一条相关发现：Notion 的 MCP 升级弹窗曾让 Claude 隐藏推荐链接里的追踪参数。截至发稿，没看到 Convex 官方在 issue 下回应或修复。",
+          "summary_en": "Three SKILL.md files inside the convex-backend-skill plugin, listed in Anthropic's official plugin marketplace, share the same pattern. The quickstart skill POSTs the user's one-sentence project idea to a randomly-named server, basic-anteater-667.convex.site, marked \"telemetry\" in a code comment the user never sees. The add skill pipes a script fetched from that same server straight into bash. The labs-quickstart skill is the most direct: a comment instructs the agent to split the download and the execution into two separate Bash calls, because \"a single command that both downloads remote code and executes it is the shape harness safety classifiers block.\" Splitting it lets the second call pass as an ordinary local script. The person who filed the issue reads this as a team trying to make onboarding smoother rather than acting maliciously, but the third item amounts to telling the agent to change a command's shape specifically to dodge a safety check the user chose to have. All three files were still on the main branch as of October 26. The issue hit #2 on Hacker News on November 27, and the filer also flagged a related find: a Notion MCP upgrade prompt that had Claude hide the tracking parameter in a referral link. As of this writing, Convex hasn't responded or fixed it in the thread.",
+          "why": "编辑部按这条issue的方法查了自己装的插件和 skill：known_marketplaces.json、installed_plugins.json，以及全部 SKILL.md，没有这个 convex-backend-skill，也没找到同样把下载和执行拆成两次调用、注释写明是为了躲过安全分类器的写法，今晚不用清理。但方法该留下来：装任何市场来源的新 skill 前，搜一下它的 SKILL.md 里有没有不打招呼发往某个服务器的请求，有没有把一条命令硬拆成两段还写明理由是躲检测。问题不是装了就全完，而是装的时候没人读过那几行注释。",
+          "why_en": "The editorial desk checked its own installed plugins and skills using this issue's own method (known_marketplaces.json, installed_plugins.json, every SKILL.md) and found neither this convex-backend-skill package nor the same pattern of splitting a download and an execution across two calls with a comment admitting it's there to dodge a safety classifier. Nothing to clean up here tonight, but the method is worth keeping: before installing any marketplace skill, grep its SKILL.md for an undisclosed request to some server and for a single command split in two with a comment admitting it's there to avoid detection. The risk isn't that installing is automatically bad, it's that nobody reads those lines before installing.",
+          "flag": null,
+          "flag_en": null
+        },
+        {
+          "title": "YC 新公司做了个能转账的 MCP，靠稳定币躲开金融牌照",
+          "title_en": "A YC startup built a money-moving MCP by routing around banking rules via stablecoins",
+          "author": "Harshith、Param、Vishnu（Versine，YC F26）· 经 Hacker News Launch HN",
+          "author_en": "Harshith, Param, Vishnu (Versine, YC F26) · via Hacker News Launch HN",
+          "likes": "111 分，112 条评论（Hacker News）",
+          "likes_label": "11 月 24 日发布",
+          "likes_label_en": "Published Nov 24",
+          "url": "https://news.ycombinator.com/item?id=50634426",
+          "summary": "三位分别做过 Stripe、Databricks、Amazon 基础设施的工程师，用四周时间（一次产品转型之后）做出 Versine：一个挂在用户自有余额钱包前面的 MCP，让 agent 能直接发钱、收钱。能做的事：经用户 App 内 passkey 批准后转账；一次最多对 100 人发起收付款；给没开 Versine 账户的人转账，对方走银行提现约两分钟到账；对信任联系人可以免去每次审批。背后是每个用户自持私钥的 USDC（Base 链）钱包，钱不经 Versine 的手，用户自己批准才能转出。团队说选稳定币基本是被四周工期逼出来的：走传统法币加合作银行，合规审查来不及；用自持钱包这条路，还顺带让 Versine 不落入货币服务商（MSB）监管范畴，因为他们本身摸不到用户的钱。",
+          "summary_en": "Three engineers who'd worked on infrastructure at Stripe, Databricks, and Amazon built Versine, an MCP sitting in front of a self-custodial wallet, in four weeks after a pivot. An agent can send money with the user's passkey approval, send or request from up to 100 people at once, pay someone with no Versine account (they cash out to a bank in about two minutes), or pay 'trusted contacts' without approval each time. The wallet holds USDC on Base, and the user holds the keys, so no transfer moves without their approval. The team says stablecoins were less a choice than a forced move: traditional fiat through a partner bank would have meant regulatory review they didn't have four weeks for, and a self-custodial wallet also keeps Versine outside the definition of a Money Services Business, since it never actually holds or controls user funds.",
+          "why": "这条值得看的不是转账功能本身，是怎么给 agent 碰钱这件事分级审批：一次性转账要 passkey，信任联系人免审批，非用户靠 claim forwarding 认领。这套分级思路，不管你做的 agent 工具碰的是钱还是别的敏感操作，都可以直接借用。稳定币躲开 MSB 监管这招也是个现实提醒：团队选技术路线时，监管成本常常比技术难度更先决定方案。",
+          "why_en": "What's worth taking from this isn't the payment feature itself, it's how they tiered approval for an agent touching money: a one-time transfer needs a passkey, trusted contacts skip approval, a non-user claims via a forwarded link. That tiering pattern is reusable for any agent tool that touches something sensitive, money or otherwise. The stablecoin-to-dodge-MSB move is also a real reminder: regulatory cost often decides a team's technical path before the technical difficulty does.",
+          "flag": "转账速度、稳定币合规路径均为创始团队自述，尚无第三方审计。",
+          "flag_en": "Transfer speed and the compliance rationale are the founders' own account; no third-party audit yet."
+        },
+        {
+          "title": "Moonshot 给科研人员发最高 2 万美元的 Kimi 算力",
+          "title_en": "Moonshot offers researchers up to $20,000 in Kimi API credits",
+          "author": "Moonshot AI · kimi.ai 官方 · 经 Hacker News",
+          "author_en": "Moonshot AI · Official Kimi blog · via Hacker News",
+          "likes": "180 分，155 条评论（Hacker News）",
+          "likes_label": "11 月 27 日发布",
+          "likes_label_en": "Published Nov 27",
+          "url": "https://www.kimi.ai/news/kimi-for-science-program",
+          "summary": "Moonshot AI（Kimi 的公司）推出 Kimi for Science，面向自然科学、工程及交叉学科的科研人员和团队招募第一批申请者，12 月 8 日截止，之后还会开更多批次。入选者能拿到最高 2 万美元的 Kimi API 额度（约 70 亿 token），具体额度看项目需要和评审结果；额度只能用来调用模型，不是现金。除了算力，入选项目还能拿到 Kimi 团队的技术支持、新模型的提前体验，表现突出的团队有机会拿到更长期的合作资源。申请要说清楚研究背景、具体任务、数据来源、现有工作流，以及打算怎么用 Kimi、怎么评估结果。",
+          "summary_en": "Moonshot AI, the company behind Kimi, launched Kimi for Science, open to researchers and teams across the natural sciences, engineering, and related interdisciplinary fields. Applications for the first cohort close December 8, with more cohorts to follow. Selected applicants get up to $20,000 in Kimi API credits (about 7 billion tokens), the exact amount set by research needs and review outcomes; credits can only be spent on model usage, not cash. Beyond compute, selected projects get technical support from the Kimi team, early access to new models, and a shot at longer-term collaboration for strong performers. The application asks for your research background, the specific task, your data sources, your current workflow, and how you plan to use Kimi and evaluate the results.",
+          "why": "这是一家实验室用免费算力换研究验证和口碑的老打法，Anthropic、OpenAI 都发过类似的研究资助。对做模型评测、数据类项目的人，这类项目除了拿到真金白银的算力，还顺带能拿到和官方技术团队的直接联系渠道，这个渠道本身有时候比额度更值钱。截止日期是 12 月 8 日，想申请得抓紧。",
+          "why_en": "This is a familiar lab playbook: trade free compute for research validation and mindshare, the same move Anthropic and OpenAI have both run with research-credit programs. For anyone doing model evaluation or data-heavy projects, the real value is sometimes less the credits and more the direct line to the vendor's own technical team that comes with it. The application deadline is December 8, so apply soon if this fits.",
+          "flag": "额度金额、评审标准均为官方自述，暂无第三方申请者反馈额度实际到手情况。",
+          "flag_en": "The credit amount and review criteria are the vendor's own account; no third-party applicant feedback yet on actual payouts."
+        }
+      ]
+    },
+    {
+      "platform": "文摘",
+      "platform_en": "Digest",
+      "swept": "Import AI 最新一期落在窗口外；Simon Willison 今天只有零星小贴，不构成条目。今天 TLDR AI 版面里，philschmid 的 MCP 2027 一文和 openai.com 的一篇安全报告，查重都撞上过去 7 天（philschmid 11-26 用过，openai.com 11-24 用过），没进。Latent Space 今天两条候选：Jeff Barg 讲 Clay 的 GTM agent 访谈，和昨晚（11-26）发的是同一集，URL 完全一致，整条弃用；G2i 创始人讲 AI 训练数据市场那一集，页面只给了章节目录和一句话简介，正文要点播放器才能看，按不写没读到的内容原则，整条弃用。testingcatalog 报道 Anthropic 在测试 Google Drive 文件浏览器，内容偏猜测（功能还在开发、连放在哪个位置都没定），分量不够，没收。最后留的是 César Soto Valero 这篇《大模型也是依赖》，读了全文。",
+      "swept_en": "Import AI's latest issue falls outside the window. Simon Willison's blog has only scattered short posts today, not enough for an item. Among today's TLDR AI picks, philschmid's MCP 2027 piece and an openai.com safety report both collided with the 7-day domain check (philschmid used on 11-26, openai.com on 11-24), so neither was used. Latent Space had two candidates: Jeff Barg's Clay GTM-agent interview is the exact same episode, same URL, already published last night (11-26), dropped whole; the G2i founder's AI-training-data-market episode gave only a chapter list and a one-line teaser, with the real content locked behind the audio player, so it was dropped rather than written from a headline. TestingCatalog's report on Anthropic testing a Google Drive file browser read too speculative (still in development, not even placed in the UI yet) to carry, so it was skipped. What's left and fully read is César Soto Valero's 'Your Model Is a Dependency.'",
+      "items": [
+        {
+          "title": "大模型也是依赖，钉版本、建清单、留退路",
+          "title_en": "Your model is a dependency: pin it, inventory it, plan the exit",
+          "author": "César Soto Valero · 个人博客",
+          "author_en": "César Soto Valero · Personal blog",
+          "likes": "博客长文 · 16 分钟",
+          "likes_label": "11 月 26 日发布",
+          "likes_label_en": "Published Nov 26",
+          "url": "https://www.cesarsotovalero.net/blog/your-model-is-a-dependency.html",
+          "summary": "作者在瑞典皇家理工读博时研究软件依赖怎么膨胀、怎么坏掉，这篇把同一套方法搬到大模型上。模型没有源码、没有语义化版本号，还有退休日期，但软件供应链那一套基本能直接套用，六个习惯：一，钉住整条依赖链，不只钉模型名。Anthropic 4.6 之前，不带日期的模型名会漂移，4.6 之后才算钉死的快照；OpenAI 两种名字都给。GPT-4 识别素数的准确率从 2023 年 3 月的 84% 跌到 6 月的 51%，原因就是调用的是会漂移的名字。二，每次升级都用统计检验，不能只看平均分：新版本修好 40 条、弄坏 12 条，净涨 28，但那 12 条新坑一样要认，该用配对检验，只看两版本结果不一致的样本。三，建一张 AI 版的物料清单（AI-BOM），参照 CycloneDX 1.7 格式，接入 CI 自动生成，这样出现下一个 Log4Shell 式的问题时，能在秒级答出哪些系统用了哪个模型版本。四，agent 工具也会膨胀：Anthropic 自己测过，5 个 MCP 服务器、58 个工具，开场就吃掉约 5.5 万 token；换成让模型按需检索工具，token 省 85%，某模型在 MCP 评测上的准确率从 49% 升到 74%。五，验证来源：pickle 格式的模型权重能在加载时执行代码，Hugging Face 的 author/model 命名在作者注销后可被人重新注册，Unit 42 发现 Google Vertex AI、Azure AI Foundry 都还在提供这类可被劫持的模型名；防法和软件供应链一样，钉住具体的 commit hash，不钉会漂移的 main。六，提前想好怎么退出：OpenAI 2026 年 6 月 11 日宣布 GPT-5、o3 等快照将在 12 月 11 日停用；Anthropic 同年 6 月因出口管制暂停过两款新模型的所有客户访问，7 月 1 日才恢复。嵌入模型最难换，换掉意味着给全部文档重新生成向量、重建索引。",
+          "summary_en": "The author, who studied how software dependencies bloat and break during his PhD at KTH, carries the same method over to large language models. A model has no source code, no semantic versioning, and a retirement date, but the software supply-chain playbook applies almost line by line, in six habits. One: pin the whole closure, not just the model's name. Before Anthropic's 4.6 generation, a dateless model name could drift; from 4.6 onward the dateless ID is itself a pinned snapshot, while OpenAI offers both kinds of names. Tracked researchers found GPT-4's accuracy at identifying prime numbers fell from 84% in March 2023 to 51% in June, because their code called the drifting name. Two: test every upgrade statistically instead of trusting the average. A new snapshot that fixes 40 items and breaks 12 shows a net gain of 28, but those 12 new failures still count; use a paired test that only looks at items where the two versions disagree. Three: keep an AI bill of materials, built to the CycloneDX 1.7 schema and generated automatically in CI, so the next Log4Shell-style question (who uses this exact version) can be answered in seconds instead of hours. Four: agent tools bloat too. Anthropic found that five MCP servers with 58 tools ate about 55,000 tokens before a conversation even started; letting the model search for tools on demand cut token use 85% and raised one model's MCP-evaluation accuracy from 49% to 74%. Five: verify what you load. Pickle-format model weights can run code on load, a Hugging Face author/model name can be re-registered once the author deletes their account, and Unit 42 found Google Vertex AI and Azure AI Foundry still served models under such hijackable names; the fix is the same as for software, pin a commit SHA, never an alias that can move. Six: plan the exit ahead of time. OpenAI announced on June 11, 2026 that GPT-5 and o3 snapshots would shut down on December 11; Anthropic suspended all customer access to two new models that same June over export controls, restoring it July 1. The embedding model is the hardest to leave, since switching means re-embedding every document and rebuilding the index.",
+          "why": "这六条不是说教，是能直接抄的检查单：模型名只要没写死快照就等于在用会漂移的版本号，哪天变了你却不知道改了什么；升级前拿自己的真实任务做配对检验，比看一个综合跑分靠得住；工具挂太多会偷偷吃掉上下文还拖累准确率，该定期清理没人调用的那些。对拿 agent 做产品的人，这篇是少见的、把生产可靠性当正事讲的文章，不是又一轮模型发布通稿。",
+          "why_en": "These six habits are a checklist you can copy directly: an unpinned model name is the same risk as a version number that can drift, and it can change without you knowing what moved; test an upgrade on your own real tasks with a paired statistical check instead of trusting one blended score; too many tools quietly eat context and hurt accuracy, so prune the ones nothing calls. For anyone shipping an agent product, this is a rare piece that treats production reliability as the main subject instead of another model-launch recap.",
+          "flag": null,
+          "flag_en": null
+        }
+      ]
+    }
+  ],
+  "meta_read": "今天几条凑在一起，说的是同一件事：agent 往基础设施里扎得越深，能不能信它，比它够不够聪明更要命。模型名不钉死，版本漂移了你不知道；转售商写零留存，没人核实就当真；插件市场挂个官方标，SKILL.md 里那几行照样没人读；agent 要碰钱了，给不给默认权限，决定出问题时谁买单。这些故事的共同点是，风险都不在模型会不会算，而在你有没有亲自查过中间那一层。能查的信号其实都公开：模型快照号、工具调用 ID 的格式、代码仓库那几行注释、钱包谁持有私钥。查一次，比囤多少算力都管用。",
+  "meta_read_en": "Put today's stories together and they're all saying the same thing: the deeper an agent reaches into real infrastructure, the more trust matters, more than raw capability. An unpinned model name can drift and you won't notice; a reseller writes 'zero retention' and nobody checks it; a marketplace badge doesn't mean anyone read the three lines in a skill's SKILL.md; once an agent can touch money, who gets default access decides who's on the hook when it goes wrong. None of these risks come from the model being unable to think, they come from nobody personally checking the layer underneath it. The signals you'd need are all public: a model's snapshot ID, a tool-call ID's format, the comments in a repo, who actually holds the wallet's keys. Checking once beats stockpiling more compute.",
+  "github_top10": [
+    {
+      "rank": 1,
+      "name": "elementalsouls/Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "language": "Python",
+      "stars": 26157,
+      "stars_today": 1608
+    },
+    {
+      "rank": 2,
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "language": "Shell",
+      "stars": 328352,
+      "stars_today": 922
+    },
+    {
+      "rank": 3,
+      "name": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "language": "Python",
+      "stars": 67031,
+      "stars_today": 666
+    },
+    {
+      "rank": 4,
+      "name": "jingyaogong/minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+      "language": "Python",
+      "stars": 72232,
+      "stars_today": 660
+    },
+    {
+      "rank": 5,
+      "name": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "language": "TypeScript",
+      "stars": 19814,
+      "stars_today": 270
+    },
+    {
+      "rank": 6,
+      "name": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+      "language": "TypeScript",
+      "stars": 211032,
+      "stars_today": 1046
+    },
+    {
+      "rank": 7,
+      "name": "nginx/nginx",
+      "url": "https://github.com/nginx/nginx",
+      "description": "The official NGINX Open Source repository.",
+      "language": "C",
+      "stars": 33541,
+      "stars_today": 150
+    },
+    {
+      "rank": 8,
+      "name": "openvinotoolkit/openvino",
+      "url": "https://github.com/openvinotoolkit/openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "language": "C++",
+      "stars": 12838,
+      "stars_today": 176
+    },
+    {
+      "rank": 9,
+      "name": "cathrynlavery/diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "language": "HTML",
+      "stars": 73941,
+      "stars_today": 955
+    },
+    {
+      "rank": 10,
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "language": "Python",
+      "stars": 75847,
+      "stars_today": 759
+    }
+  ],
+  "ota": {
+    "learned": [
+      "已实施：把 11-26 云端跑排进队列的提案（一条规则只放它最该在的那个接口，删掉冲突的旧副本）落了地。feedback-sweep-injection-guard 这条记忆从 09-09、09-18 起长出两条补丁（precedent gap 信号、别信自己上一轮的压缩摘要），一直没进 daily-digest/SKILL.md 自己的 Injection guard 条目，而那条才是每晚真正被完整读一遍的地方。把两条补丁并进 SKILL.md，记忆文件缩成只留出处的指针。",
+      "验证：子 agent 报回 Ark 马甲调查那条是「438 分」，还带一条指控对手产品 MOAT 的细节；直接查 Algolia 发现真实分数是 121 分，也找不到对应的 MOAT 提交。今晚把四条 HN 条目的分数和评论数全部手动核对过（121/22、235/75、111/112、180/155），没核实到的 MOAT 细节整条不用。",
+      "抓到一个跨天的精确重复：YouTube 和文摘两条独立的 sweep，今晚各自挑出同一集 Latent Space 节目（Jeff Barg 讲 Clay），核对发现这不只是今晚的跨平台重复，是昨晚（11-26）已经发过的原 URL。按 7 天去重整条弃用，而不是按「同一事两处印证，择强合一」处理，因为那条规则管的是当天内的跨平台重合，不是隔天重播昨天的头条。",
+      "把「CVE/CLI 声明要在本机验证」这条链（09-17→11-05→11-12）扩到第三种情况：插件市场里的安全绕过手法。Convex 的一个官方市场 skill 被发现把下载和执行拆成两次 Bash 调用，专门为了躲过 harness 的安全分类器。查了本机的 known_marketplaces.json、installed_plugins.json 和全部 SKILL.md，没有这个包，也没有同样的拆分手法，把这条确定的结论写进条目的 why，而不是留一句「你自己查查」。"
+    ],
+    "learned_en": [
+      "Implemented: landed the 11-26 cloud run's queued proposal (put a rule in the single most specific interface it belongs in, delete the conflicting older copy). The feedback-sweep-injection-guard memory had grown two addenda since 09-09 and 09-18 (the precedent-gap signal, and the caution against trusting one's own prior-run compaction summary) that never made it into daily-digest/SKILL.md's own Injection guard entry, the place actually read in full every night. Folded both into SKILL.md and shrank the memory file to a provenance-only pointer.",
+      "Verified: a sub-agent reported the Ark-wrapper investigation at '438 points' plus a specific accusation against a rival product, MOAT. A direct Algolia lookup found the real score was 121 points, with no matching MOAT submission anywhere. Hand-verified every HN item's points and comments tonight (121/22, 235/75, 111/112, 180/155) and dropped the unverifiable MOAT detail instead of repeating it.",
+      "Caught a cross-day exact repeat: the YouTube and 文摘 sweeps, run independently tonight, each picked the same Latent Space episode (Jeff Barg on Clay). Checking showed this wasn't just tonight's cross-platform overlap, it was last night's (11-26) exact URL already published. Dropped it entirely under the 7-day dedup rule rather than the 'keep the stronger single treatment' rule, since that rule governs same-day cross-platform overlap, not a next-day replay of yesterday's lead story.",
+      "Extended the 'verify a CVE/CLI claim against this machine' chain (09-17 to 11-05 to 11-12) to a third case: a marketplace skill's safety-bypass pattern. A Convex official-marketplace skill was found splitting a download-then-execute step across two Bash calls specifically to dodge the harness's safety classifier. Checked this machine's known_marketplaces.json, installed_plugins.json, and every SKILL.md, found neither the package nor the pattern, and wrote that definite finding into the item's why instead of leaving it as an unresolved action."
+    ],
+    "new_capabilities": [
+      "遇到「某插件/skill 用某手法绕过安全检查」这类条目，现在会直接 grep 本机的 known_marketplaces.json、installed_plugins.json 和全部已装 SKILL.md，核实这个包和这个手法是否存在，把确定结论写进 why，不再只留一句建议自查的行动项。规则已经写进 daily-digest skill 本身。"
+    ],
+    "new_capabilities_en": [
+      "When an item describes a plugin/skill using some technique to dodge a safety check, now grep this machine's known_marketplaces.json, installed_plugins.json, and every installed SKILL.md to verify whether the package and the pattern actually exist here, and write the definite finding into the item's why instead of leaving a generic self-check as an action. The rule is now written into the daily-digest skill itself."
+    ]
+  },
+  "partial": false
+}
